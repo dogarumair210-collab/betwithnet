@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>First Person XXXtreme Lightning Roulette - Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="../js/wallet.js?v=xxxtreme_live"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100dvh;
+            overflow: hidden;
+            background: #080102;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+        }
+
+        /* =====================================================================
+           1. PHOTOREALISTIC EVOLUTION SPLASH SCREEN (DITTO fp_extra_1.jpg)
+           ===================================================================== */
+        #evoSplashScreen {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            background: #120203 url('../assets/games/xxxtreme_roulette/fp_splash_hd.jpg') center center / 100% 100% no-repeat;
+            transition: opacity 0.55s ease, visibility 0.55s ease;
+        }
+
+        #evoSplashScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Animated Laser-Spark Loader Track Aligned with fp_splash_hd.jpg */
+        .splash-laser-track {
+            position: absolute;
+            left: 31.5%;
+            top: 78.3%;
+            width: 37%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+        }
+
+        .splash-laser-fill {
+            position: relative;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,190,90,0.1) 0%, #fde68a 75%, #ffffff 100%);
+            box-shadow: 0 0 12px #fbbf24, 0 0 24px #f59e0b;
+            border-radius: 4px;
+            transition: width 0.12s linear;
+        }
+
+        .splash-laser-fill::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 0%, #fef08a 45%, rgba(245,158,11,0) 75%);
+            box-shadow: 0 0 18px 5px #ffffff, 0 0 32px 10px #f59e0b;
+        }
+
+        /* =====================================================================
+           2. CINEMATIC TRAILER INTRO SCREEN (DITTO fp_ref_6.jpg)
+           ===================================================================== */
+        #evoTrailerOverlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 95000;
+            background: #000 url('../assets/games/xxxtreme_roulette/fp_ref_6.jpg') center center / 100% 100% no-repeat;
+            display: none;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 24px 36px;
+        }
+
+        #evoTrailerOverlay.active {
+            display: flex;
+        }
+
+        #trailerBoltCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .trailer-bottom-controls {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-trailer-play {
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
+            color: #fff;
+            border: 1.5px solid #fde68a;
+            padding: 10px 26px;
+            border-radius: 28px;
+            font-family: 'Cinzel', serif;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+        }
+
+        .btn-trailer-skip {
+            background: rgba(15, 15, 20, 0.85);
+            color: #fde68a;
+            border: 1.5px solid rgba(251, 191, 36, 0.65);
+            padding: 9px 22px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* =====================================================================
+           3. MAIN 1376x768 LOCKED STUDIO STAGE (#gameRotator)
+           ===================================================================== */
+        #gameRotator {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100dvh;
+            overflow: hidden;
+            background: #080102;
+        }
+
+        @media screen and (orientation: portrait) {
+            #gameRotator {
+                width: 100dvh;
+                height: 100vw;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+        }
+
+        /* ---------------------------------------------------------------------
+           VIEW A: TOP-DOWN BETTING VIEW LAYER (1:1 fp_extra_2.jpg / fp_betting_hd.jpg)
+           --------------------------------------------------------------------- */
+        #bettingSceneLayer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-origin: center center;
+        }
+
+        #gameRotator.spin-mode-3d #bettingSceneLayer {
+            opacity: 0;
+            transform: scale(0.92) translateY(18px);
+            pointer-events: none;
+        }
+
+        .scene-plate-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Live Rotating Wheel Rotor Inside Left Wheel Rim of Betting View */
+        .betting-wheel-rotor-mask {
+            position: absolute;
+            left: -17.15%;
+            top: 37.5%;
+            width: 26.8%;
+            height: 54.0%;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 3;
+            pointer-events: none;
+            transform: rotate(-4deg);
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.95);
+        }
+
+        #bettingWheelCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Unified 1376x768 Interactive SVG Layer Over Betting Plate */
+        #bettingInteractiveSvg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+        }
+
+        .bet-cell-poly {
+            fill: rgba(255, 215, 0, 0);
+            stroke: rgba(255, 215, 0, 0);
+            stroke-width: 1.5;
+            cursor: pointer;
+            transition: fill 0.14s ease, stroke 0.14s ease;
+        }
+
+        .bet-cell-poly:hover,
+        .bet-cell-poly.hover-highlight {
+            fill: rgba(251, 191, 36, 0.22);
+            stroke: rgba(253, 224, 71, 0.75);
+        }
+
+        /* Lightning Multiplier Strike on Betting Grid Cell */
+        .bet-cell-poly.lightning-hit {
+            fill: rgba(250, 204, 21, 0.34) !important;
+            stroke: #fde047 !important;
+            stroke-width: 2.5px !important;
+            filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.9));
+        }
+
+        .bet-cell-poly.lightning-hit-red {
+            fill: rgba(239, 68, 68, 0.42) !important;
+            stroke: #fca5a5 !important;
+            stroke-width: 2.8px !important;
+            filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.95));
+        }
+
+        /* Winning Golden Spotlight Cell (Exact fp_ref_2.jpg!) */
+        .bet-cell-poly.winning-dolly-cell {
+            fill: rgba(253, 224, 71, 0.45) !important;
+            stroke: #fef08a !important;
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 0 16px rgba(250, 204, 21, 1));
+        }
+
+        .rt-clickable-zone {
+            fill: rgba(255, 215, 0, 0);
+            cursor: pointer;
+            transition: fill 0.14s ease;
+        }
+
+        .rt-clickable-zone:hover {
+            fill: rgba(251, 191, 36, 0.26);
+        }
+
+        /* On-Felt Interactive Evolution Casino Chips Row (6 Chips on Clean Velvet) */
+        .evo-chip-btn-group {
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .evo-chip-btn-group:hover {
+            transform: translateY(-2px);
+        }
+
+        .evo-chip-glow-ring {
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .evo-chip-btn-group.selected .evo-chip-glow-ring {
+            opacity: 1;
+        }
+
+        /* Winning Number Trapezoid Flag Popup (22 | 18 | 29 in fp_ref_2.jpg) */
+        #winningBannerPopup {
+            position: absolute;
+            left: 51.0%;
+            top: 63.8%;
+            transform: translate(-50%, -50%) scale(0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 45;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #winningBannerPopup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .wb-neighbor {
+            font-family: 'Oswald', sans-serif;
+            font-size: 36px;
+            font-weight: 500;
+            color: rgba(240, 236, 230, 0.92);
+            text-shadow: 0 3px 8px rgba(0,0,0,0.95);
+        }
+
+        .wb-center-flag {
+            min-width: 78px;
+            height: 92px;
+            background: #dc2626;
+            border: 2.5px solid #fde047;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.95);
+        }
+
+        .wb-main-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 44px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .wb-mult-sub {
+            font-family: 'Oswald', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fde047;
+            margin-top: 2px;
+        }
+
+        /* ---------------------------------------------------------------------
+           VIEW B: 3D WIDE-ANGLE SPIN VIEW LAYER (1:1 fp_ref_4.jpg & fp_spin3d_hd.jpg)
+           --------------------------------------------------------------------- */
+        #spin3dSceneLayer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            opacity: 0;
+            transform: scale(1.06);
+            pointer-events: none;
+            transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #gameRotator.spin-mode-3d #spin3dSceneLayer {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* 3D Tilted Wheel Rotor Inside fp_spin3d_hd.jpg Left Wheel Bowl */
+        .spin3d-wheel-rotor-mask {
+            position: absolute;
+            left: 8.9%;
+            top: 57.2%;
+            width: 26.9%;
+            height: 31.8%;
+            border-radius: 50%;
+            overflow: hidden;
+            transform: rotate(-7deg);
+            z-index: 5;
+            pointer-events: none;
+            box-shadow: inset 0 0 16px rgba(0,0,0,0.95);
+        }
+
+        #spin3dWheelCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Extracted Photorealistic 3D Chrome Spindle Turret Mounted Over Rotor Center */
+        .spin3d-turret-overlay {
+            position: absolute;
+            left: 19.7%;
+            top: 56.6%;
+            width: 5.38%;
+            height: 17.7%;
+            z-index: 12;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.85));
+        }
+
+        /* Back-Wall Art-Deco Lightning Multiplier Plaques (Exact fp_ref_4.jpg & fp_ref_5.jpg!) */
+        .wall-lightning-plaques {
+            position: absolute;
+            left: 25.5%;
+            top: 2.2%;
+            width: 44.5%;
+            height: 31.5%;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 12px;
+            z-index: 14;
+            pointer-events: none;
+        }
+
+        .art-deco-plaque {
+            position: relative;
+            flex: 1;
+            max-width: 112px;
+            background: linear-gradient(180deg, rgba(28,8,10,0.95) 0%, rgba(12,2,4,0.98) 100%);
+            border: 2.5px solid #d97706;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 6px 8px;
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.35), inset 0 0 18px rgba(217, 119, 6, 0.25);
+            clip-path: polygon(10% 0%, 90% 0%, 100% 7%, 100% 93%, 90% 100%, 10% 100%, 0% 93%, 0% 7%);
+            opacity: 0.35;
+            transform: scale(0.94);
+            transition: all 0.22s ease;
+        }
+
+        /* Inner Art-Deco Gold Frame Lines */
+        .art-deco-plaque::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border: 1.5px solid rgba(253, 224, 71, 0.65);
+            pointer-events: none;
+        }
+
+        .art-deco-plaque.struck-yellow {
+            opacity: 1;
+            transform: scale(1);
+            border-color: #fde047;
+            background: linear-gradient(180deg, #523006 0%, #241202 68%, #0f0601 100%);
+            box-shadow: 0 0 28px rgba(250, 204, 21, 0.95), inset 0 0 22px rgba(253, 224, 71, 0.55);
+        }
+
+        .art-deco-plaque.struck-red {
+            opacity: 1;
+            transform: scale(1.03);
+            border-color: #fca5a5;
+            background: linear-gradient(180deg, #7f1d1d 0%, #450a0a 68%, #1a0303 100%);
+            box-shadow: 0 0 34px rgba(239, 68, 68, 1), inset 0 0 24px rgba(248, 113, 113, 0.65);
+        }
+
+        .adp-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(26px, 3.4vw, 44px);
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.95);
+            margin-top: 8px;
+            z-index: 2;
+        }
+
+        .adp-mult {
+            width: 90%;
+            background: rgba(10, 4, 4, 0.88);
+            border: 1px solid rgba(253, 224, 71, 0.65);
+            text-align: center;
+            padding: 3px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(13px, 1.5vw, 19px);
+            font-weight: 900;
+            color: #fde047;
+            text-shadow: 0 0 8px rgba(250, 204, 21, 0.8);
+            z-index: 2;
+        }
+
+        .art-deco-plaque.struck-red .adp-mult {
+            color: #fef08a;
+            border-color: #f87171;
+            background: rgba(69, 10, 10, 0.92);
+        }
+
+        /* 3D Spin View SVG Overlay (Projecting Chips & Multipliers onto Angled Table!) */
+        #spin3dInteractiveSvg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* =====================================================================
+           4. PERSISTENT TOP & BOTTOM EVOLUTION HUD BARS
+           ===================================================================== */
+        /* Top Clickable Buttons Aligned Over Top Bar */
+        .hud-top-close-hitbox {
+            position: absolute;
+            left: 0.4%;
+            top: 0.5%;
+            width: 2.5%;
+            height: 4.8%;
+            z-index: 60;
+            cursor: pointer;
+        }
+
+        .hud-top-right-btns {
+            position: absolute;
+            right: 0.4%;
+            top: 0.5%;
+            width: 14.5%;
+            height: 4.8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 60;
+        }
+
+        .hud-top-invisible-btn {
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .hud-top-invisible-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Top-Left Header Bar for 3D Spin View (Matches Betting View Header) */
+        .spin3d-top-hud-bar {
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            right: 10px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        .spin3d-top-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spin3d-circle-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(14, 14, 18, 0.85);
+            border: 1.2px solid rgba(255, 255, 255, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        /* Live BALANCE & TOTAL BET Values Inside Bottom-Left Gold Capsules */
+        .hud-bottom-balance-pill {
+            position: absolute;
+            left: 0.9%;
+            bottom: 0.5%;
+            width: 9.2%;
+            height: 4.9%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .hud-bottom-bet-pill {
+            position: absolute;
+            left: 13.0%;
+            bottom: 0.5%;
+            width: 7.8%;
+            height: 4.9%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .hud-pill-lbl {
+            font-size: clamp(7px, 0.65vw, 9.5px);
+            font-weight: 700;
+            color: #d6d3d1;
+            letter-spacing: 0.4px;
+            line-height: 1.05;
+            text-transform: uppercase;
+        }
+
+        .hud-pill-val {
+            font-size: clamp(9px, 0.9vw, 13px);
+            font-weight: 800;
+            color: #fbbf24;
+            line-height: 1.15;
+            white-space: nowrap;
+        }
+
+        /* Bottom-Right Evolution Action Bar (Recent Numbers + Tools + GO LIVE + LOBBY) */
+        .hud-bottom-right-wrap {
+            position: absolute;
+            right: 0.6%;
+            bottom: 0.5%;
+            height: 4.9%;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 60;
+        }
+
+        .recent-nums-bar {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(14, 12, 10, 0.92);
+            border: 1px solid rgba(217, 119, 6, 0.45);
+            border-radius: 16px;
+            padding: 2px 10px;
+            height: 30px;
+            margin-right: 4px;
+        }
+
+        .rn-badge {
+            font-family: 'Oswald', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #fff;
+        }
+        .rn-red { background: #dc2626; }
+        .rn-black { color: #e2e8f0; }
+        .rn-green { background: #059669; }
+
+        .evo-br-circle {
+            width: 31px;
+            height: 31px;
+            border-radius: 50%;
+            background: rgba(16, 14, 12, 0.94);
+            border: 1.3px solid rgba(212, 175, 55, 0.55);
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .evo-br-circle:hover, .evo-br-circle.active {
+            border-color: #fde047;
+            color: #fde047;
+            background: rgba(45, 30, 15, 0.95);
+        }
+
+        .evo-go-live-pill {
+            height: 31px;
+            padding: 0 12px;
+            border-radius: 18px;
+            background: rgba(10, 22, 28, 0.95);
+            border: 1.5px solid #22d3ee;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+        }
+
+        .evo-lobby-pill {
+            height: 31px;
+            padding: 0 13px;
+            border-radius: 18px;
+            background: rgba(20, 15, 10, 0.95);
+            border: 1.5px solid #f59e0b;
+            color: #fbbf24;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+        }
+
+        /* =====================================================================
+           5. EVOLUTION HELP / HOW TO PLAY MODAL (1:1 fp_ref_1.jpg & fp_extra_4.jpg)
+           ===================================================================== */
+        .evo-help-modal {
+            position: absolute;
+            top: 5.5%;
+            right: 0;
+            width: min(620px, 52%);
+            height: 88%;
+            background: rgba(18, 18, 20, 0.94);
+            border-left: 1px solid rgba(255,255,255,0.18);
+            border-bottom: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(10px);
+            z-index: 500;
+            display: none;
+            flex-direction: column;
+            box-shadow: -10px 15px 45px rgba(0,0,0,0.95);
+        }
+
+        .evo-help-modal.open {
+            display: flex;
+        }
+
+        .ehm-header {
+            height: 34px;
+            background: rgba(42, 42, 46, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .ehm-body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 185px 1fr;
+            overflow: hidden;
+        }
+
+        .ehm-nav {
+            background: rgba(26, 26, 30, 0.94);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            font-size: 11.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #cbd5e1;
+        }
+
+        .ehm-nav div { cursor: pointer; }
+        .ehm-nav div.active { color: #fbbf24; font-weight: 700; }
+
+        .ehm-content {
+            padding: 14px 18px;
+            font-size: 11.5px;
+            line-height: 1.55;
+            color: #e2e8f0;
+            overflow-y: auto;
+        }
+
+        .ehm-content h4 { color: #fbbf24; margin-bottom: 6px; }
+        .ehm-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
+        .ehm-table td, .ehm-table th { border: 1px solid rgba(255,255,255,0.2); padding: 5px 8px; text-align: left; }
+
+        /* Fullscreen Lightning Bolt Canvas & Flash */
+        #lightningBoltCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 80;
+        }
+
+        .lightning-flash-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255, 235, 150, 0.38) 0%, rgba(255, 30, 30, 0.28) 65%, transparent 100%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 79;
+            mix-blend-mode: screen;
+            transition: opacity 0.08s ease;
+        }
+
+        .lightning-flash-overlay.flash-active { opacity: 1; }
+
+        /* Win Toast */
+        .win-toast {
+            position: absolute;
+            top: 6.2%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: linear-gradient(135deg, #2b0407 0%, #0f0102 100%);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 7px 22px;
+            border-radius: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 900;
+            box-shadow: 0 0 30px rgba(255, 40, 20, 0.85), 0 8px 25px rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        .win-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =====================================================================
+         MAIN 1376x768 LOCKED STUDIO VIEWPORT (#gameRotator)
+         ===================================================================== -->
+    <div id="gameRotator">
+        <!-- 1. PHOTOREALISTIC EVOLUTION SPLASH SCREEN (ROTATES ON MOBILE) -->
+        <div id="evoSplashScreen">
+            <div class="splash-laser-track">
+                <div id="evoLaserFill" class="splash-laser-fill"></div>
+            </div>
+        </div>
+
+        <!-- 2. CINEMATIC TRAILER INTRO SCREEN (ROTATES ON MOBILE) -->
+        <div id="evoTrailerOverlay">
+            <canvas id="trailerBoltCanvas"></canvas>
+            <div class="trailer-bottom-controls">
+                <button class="btn-trailer-play" onclick="closeEvoTrailer()">⚡ PLAY NOW</button>
+                <button class="btn-trailer-skip" onclick="closeEvoTrailer()">SKIP TRAILER ❯</button>
+            </div>
+        </div>
+
+        <div id="winToast" class="win-toast">⚡ YOU WON ₨ 0</div>
+        <div id="lightningFlashOverlay" class="lightning-flash-overlay"></div>
+        <canvas id="lightningBoltCanvas"></canvas>
+
+        <!-- Invisible Top-Left Close Button & Top-Right Utility Hitboxes -->
+        <a href="../casino.html" class="hud-top-close-hitbox" title="Back to Casino Lobby"></a>
+        <div class="hud-top-right-btns">
+            <button class="hud-top-invisible-btn" onclick="toggleRouletteBGM()" title="Sound / Mute"></button>
+            <button class="hud-top-invisible-btn" onclick="openEvoTrailer()" title="Trailer / Settings"></button>
+            <button class="hud-top-invisible-btn" onclick="toggleHelpModal()" title="Game History"></button>
+            <button class="hud-top-invisible-btn" onclick="toggleHelpModal()" title="How to Play / Rules"></button>
+            <button class="hud-top-invisible-btn" onclick="toggleFullscreen()" title="Fullscreen"></button>
+        </div>
+
+        <!-- =================================================================
+             VIEW A: TOP-DOWN BETTING VIEW (1:1 fp_extra_2.jpg / fp_betting_hd.jpg)
+             ================================================================= -->
+        <div id="bettingSceneLayer">
+            <!-- Photorealistic 1376x768 Evolution Table & Wheel Base Plate -->
+            <img class="scene-plate-img" src="../assets/games/xxxtreme_roulette/fp_betting_hd.jpg" alt="Evolution XXXtreme Lightning Roulette Table">
+
+            <!-- Live Rotating Wheel Rotor Inside Left Wheel Rim -->
+            <div class="betting-wheel-rotor-mask">
+                <canvas id="bettingWheelCanvas" width="460" height="460"></canvas>
+            </div>
+
+            <!-- Precision 1376x768 SVG Interactive Layer (Bilinear Grid, Racetrack, Dolly, Chips, Spin) -->
+            <svg id="bettingInteractiveSvg" viewBox="0 0 1376 768" preserveAspectRatio="none">
+                <defs>
+                    <!-- 3D Gold Glass Dolly Gradient (Exact fp_extra_2.jpg & fp_ref_2.jpg) -->
+                    <linearGradient id="dollyGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#fef9c3"/>
+                        <stop offset="35%" stop-color="#facc15"/>
+                        <stop offset="75%" stop-color="#b45309"/>
+                        <stop offset="100%" stop-color="#451a03"/>
+                    </linearGradient>
+                    <!-- Brushed Silver Spin Disc Gradient (When Spinning like fp_ref_2.jpg) -->
+                    <radialGradient id="silverSpinDiscGrad" cx="38%" cy="32%" r="68%">
+                        <stop offset="0%" stop-color="#e2e8f0"/>
+                        <stop offset="45%" stop-color="#94a3b8"/>
+                        <stop offset="85%" stop-color="#475569"/>
+                        <stop offset="100%" stop-color="#1e293b"/>
+                    </radialGradient>
+                    <!-- Reusable 3D Gold Dolly Symbol -->
+                    <g id="evoGoldDollyPin">
+                        <ellipse cx="0" cy="16" rx="12" ry="6" fill="rgba(0,0,0,0.65)"/>
+                        <ellipse cx="0" cy="14" rx="10.5" ry="5" fill="#78350f" stroke="#fde047" stroke-width="1.2"/>
+                        <path d="M -8 13 L -4 -10 H 4 L 8 13 Z" fill="url(#dollyGoldGrad)"/>
+                        <ellipse cx="0" cy="-10" rx="6.5" ry="2.2" fill="#fef08a"/>
+                        <circle cx="0" cy="-18" r="6" fill="url(#dollyGoldGrad)"/>
+                        <circle cx="-2" cy="-20" r="1.8" fill="#ffffff" opacity="0.85"/>
+                    </g>
+                </defs>
+
+                <!-- 1. Clean 37-Pocket Racetrack Ring & Interactive Sectors (x=493..943, y=88..204) -->
+                <g id="svgRacetrackGroup"></g>
+
+                <!-- 2. Neighbour Bet Controls (+ 2 -) Hitboxes (x=692..765, y=55..82) -->
+                <g style="cursor:pointer;" onclick="adjustNeighbours(1)">
+                    <circle cx="701" cy="69" r="11" fill="rgba(0,0,0,0.01)"/>
+                </g>
+                <rect x="714" y="56" width="22" height="24" fill="#230709" rx="3"/>
+                <text id="svgNbCountTxt" x="725" y="73" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">2</text>
+                <g style="cursor:pointer;" onclick="adjustNeighbours(-1)">
+                    <circle cx="748" cy="69" r="11" fill="rgba(0,0,0,0.01)"/>
+                </g>
+
+                <!-- 3. Resting 3D Gold Dolly Above Left of Racetrack (Exact fp_extra_2.jpg position: x=416, y=102!) -->
+                <use id="restingGoldDolly" href="#evoGoldDollyPin" x="416" y="102"/>
+
+                <!-- 4. Bilinear 3D Main Betting Grid Polygons (0, 1..36, 2to1, Dozens, Even-Money) -->
+                <g id="svgMainGridPolys"></g>
+
+                <!-- 5. Dynamic Lightning Multiplier Badges Layer on Betting Grid -->
+                <g id="svgBettingMultipliers"></g>
+
+                <!-- 6. Dynamic Placed Chips & Winning Dolly Layer on Betting Grid -->
+                <g id="svgBettingPlacedChips"></g>
+
+                <!-- 7. On-Felt Bottom Controls: Undo [↶], 6 Evolution Chips, [2×], and [SPIN] -->
+                <!-- Undo Button Hitbox (x=420..488, y=575..657) -->
+                <circle cx="452" cy="616" r="34" fill="rgba(255,255,255,0.001)" style="cursor:pointer;" onclick="clearStudioBets()">
+                    <title>Undo / Clear Bets</title>
+                </circle>
+
+                <!-- 6 Interactive Evolution Casino Chips on Clean Velvet (x=584..884, y=586..646) -->
+                <g id="svgInteractiveChipsTray"></g>
+
+                <!-- Double [2×] Button Hitbox (x=1048..1120, y=548..630) -->
+                <circle cx="1084" cy="588" r="34" fill="rgba(255,255,255,0.001)" style="cursor:pointer;" onclick="doubleStudioBets()">
+                    <title>Double All Bets (2x)</title>
+                </circle>
+
+                <!-- Green / Silver [SPIN] Button Hitbox (x=1170..1272, y=528..642) -->
+                <g id="svgSpinBtnGroup" style="cursor:pointer;" onclick="spinStudioWheel()">
+                    <circle cx="1220" cy="582" r="48" fill="rgba(255,255,255,0.001)"/>
+                    <!-- Silver Disc Overlay Shown During Spin (Exact fp_ref_2.jpg!) -->
+                    <g id="svgSilverSpinOverlay" style="display:none;">
+                        <circle cx="1220" cy="582" r="41" fill="url(#silverSpinDiscGrad)" stroke="#fde68a" stroke-width="2"/>
+                        <path d="M 1196 575 A 24 24 0 0 1 1242 570" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="4.5" stroke-linecap="round"/>
+                        <path d="M 1244 589 A 24 24 0 0 1 1198 594" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="4.5" stroke-linecap="round"/>
+                        <text x="1220" y="588" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="19" fill="#e2e8f0" letter-spacing="1">SPIN</text>
+                    </g>
+                </g>
+            </svg>
+
+            <!-- Winning Number Banner Popup (22 | 18 | 29 in fp_ref_2.jpg) -->
+            <div id="winningBannerPopup">
+                <span class="wb-neighbor" id="wbLeftNum">22</span>
+                <div class="wb-center-flag" id="wbCenterFlag">
+                    <span class="wb-main-num" id="wbWinNum">18</span>
+                    <span class="wb-mult-sub" id="wbWinMult"></span>
+                </div>
+                <span class="wb-neighbor" id="wbRightNum">29</span>
+            </div>
+        </div>
+
+        <!-- =================================================================
+             VIEW B: 3D WIDE-ANGLE SPIN VIEW (1:1 fp_ref_4.jpg & fp_spin3d_hd.jpg)
+             ================================================================= -->
+        <div id="spin3dSceneLayer">
+            <!-- Photorealistic 1376x768 Evolution 3D Wide-Angle Studio Plate -->
+            <img class="scene-plate-img" src="../assets/games/xxxtreme_roulette/fp_spin3d_hd.jpg" alt="Evolution 3D Spin Studio View">
+
+            <!-- Top Header Bar in 3D Spin View -->
+            <div class="spin3d-top-hud-bar">
+                <div class="spin3d-top-left">
+                    <div class="spin3d-circle-icon">✕</div>
+                    <span style="font-size:13px;font-weight:700;color:#fff;text-shadow:0 1px 4px #000;">First Person XXXtreme Lightning Roulette</span>
+                    <span style="font-size:13px;font-weight:800;color:#fbbf24;text-shadow:0 1px 4px #000;">500 – 10,000,000 ₨ ⚡</span>
+                </div>
+            </div>
+
+            <!-- Back-Wall Art-Deco Lightning Multiplier Plaques (Between Copper Organ Pillars!) -->
+            <div class="wall-lightning-plaques" id="wallLightningPlaques"></div>
+
+            <!-- Live 3D-Tilted Spinning Wheel Rotor & Ball Inside Left 3D Wheel -->
+            <div class="spin3d-wheel-rotor-mask">
+                <canvas id="spin3dWheelCanvas" width="460" height="460"></canvas>
+            </div>
+
+            <!-- Photorealistic 3D Chrome Spindle Turret Mounted Over Rotor Center -->
+            <img class="spin3d-turret-overlay" src="../assets/games/xxxtreme_roulette/wheel_turret_3d.png" alt="Turret">
+
+            <!-- 3D Spin View SVG Overlay: Projects Placed Chips, Multipliers & On-Felt Controls onto Angled Table! -->
+            <svg id="spin3dInteractiveSvg" viewBox="0 0 1376 768" preserveAspectRatio="none">
+                <!-- 1. Struck Multiplier Tiles on 3D Angled Grid (Exact fp_ref_4.jpg!) -->
+                <g id="svgSpin3dMultipliers"></g>
+
+                <!-- 2. Placed Chips on 3D Angled Grid (Exact fp_ref_4.jpg!) -->
+                <g id="svgSpin3dPlacedChips"></g>
+            </svg>
+        </div>
+
+        <!-- =================================================================
+             4. PERSISTENT BOTTOM EVOLUTION HUD OVERLAY (BALANCE, BET, GO LIVE, LOBBY)
+             ================================================================= -->
+        <div class="hud-bottom-balance-pill">
+            <span class="hud-pill-lbl">BALANCE</span>
+            <span class="hud-pill-val" id="topWalletBalance">₨ 0.00</span>
+        </div>
+
+        <div class="hud-bottom-bet-pill">
+            <span class="hud-pill-lbl">TOTAL BET</span>
+            <span class="hud-pill-val" id="totalBetDisp">₨ 0</span>
+        </div>
+
+        <div class="hud-bottom-right-wrap">
+            <!-- Recent Winning Numbers Strip -->
+            <div class="recent-nums-bar" id="recentNumbersStrip">
+                <span class="rn-badge rn-red">18</span>
+                <span class="rn-badge rn-black">33</span>
+                <span class="rn-badge rn-red">19</span>
+                <span class="rn-badge rn-black">20</span>
+                <span class="rn-badge rn-red">12</span>
+                <span class="rn-badge rn-black">26</span>
+                <span class="rn-badge rn-red">30</span>
+                <span class="rn-badge rn-green">0</span>
+            </div>
+
+            <button class="evo-br-circle" id="btnSpeedToggle" onclick="toggleGameSpeed()" title="Game Speed">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l3.5-3.5M4.5 16.5a9 9 0 1 1 15 0"/></svg>
+            </button>
+            <button class="evo-br-circle" onclick="placeRacetrackBet('voisins')" title="Favourite Bets">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+            <button class="evo-br-circle" onclick="toggleHelpModal()" title="Statistics & Rules">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="12" width="4" height="8"/><rect x="10" y="6" width="4" height="14"/><rect x="16" y="9" width="4" height="11"/></svg>
+            </button>
+            <button class="evo-br-circle" onclick="spinStudioWheel()" title="Autoplay / Spin">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>
+            </button>
+
+            <a href="../deposit.html" class="evo-go-live-pill" title="Go Live">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#22d3ee">
+                    <path d="M12 3C7 3 3 7 3 12C8 12 12 8 12 3Z"/>
+                    <path d="M12 21C7 21 3 17 3 12C8 12 12 16 12 21Z"/>
+                </svg>
+                <span>GO LIVE</span>
+            </a>
+
+            <a href="../casino.html" class="evo-lobby-pill" title="Casino Lobby">
+                <span>❯ LOBBY</span>
+            </a>
+        </div>
+
+        <!-- =================================================================
+             5. HOW TO PLAY / RULES MODAL (1:1 fp_ref_1.jpg & fp_extra_4.jpg)
+             ================================================================= -->
+        <div id="evoHelpModal" class="evo-help-modal">
+            <div class="ehm-header">
+                <span>❓ HOW TO PLAY — FIRST PERSON XXXTREME LIGHTNING ROULETTE</span>
+                <button onclick="toggleHelpModal()" style="background:none;border:none;color:#fff;font-size:15px;cursor:pointer;">✕</button>
+            </div>
+            <div class="ehm-body">
+                <div class="ehm-nav">
+                    <div class="active">Game Rules</div>
+                    <div>Bet Types</div>
+                    <div>Neighbour Bets</div>
+                    <div>Favourite & Special Bets</div>
+                    <div>Winning Numbers</div>
+                    <div>Payouts (50x–2000x)</div>
+                    <div>Return to Player</div>
+                </div>
+                <div class="ehm-content">
+                    <h4>Game Rules</h4>
+                    <p><strong>First Person XXXtreme Lightning Roulette</strong> is an electrifying roulette game. In each game round, yellow lightning strikes between 1 and 5 numbers, giving you the chance to win multiplied payouts from <strong>50x up to 500x</strong> (49:1 to 499:1). In addition, red Chain Lightning can strike up to 10 total Lightning Numbers per round, and Double Strikes can boost existing multipliers up to <strong>2000x</strong> (1999:1)!</p>
+                    <table class="ehm-table">
+                        <tr><th>INSIDE BETS</th><th>PAYOUT</th></tr>
+                        <tr><td>Straight Up (Pleno)</td><td>19 – 1999:1 (20x – 2000x)</td></tr>
+                        <tr><td>Split (Caballo)</td><td>17:1</td></tr>
+                        <tr><td>Street (Transversal)</td><td>11:1</td></tr>
+                        <tr><td>Corner (Cuadro)</td><td>8:1</td></tr>
+                        <tr><td>Six Line (Seisena)</td><td>5:1</td></tr>
+                        <tr><th>OUTSIDE BETS</th><th>PAYOUT</th></tr>
+                        <tr><td>Column / Dozen (2 to 1)</td><td>2:1</td></tr>
+                        <tr><td>Red/Black, Even/Odd, 1-18/19-36</td><td>1:1</td></tr>
+                    </table>
+                    <p><strong>Return to Player (RTP):</strong> Optimal theoretical RTP for Straight Up is <strong>97.12%</strong>, and for all other bets is <strong>97.30%</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bet With Net Core Scripts -->
+    <script src="../js/audio.js"></script>
+
+    <script>
+        /* =============================================================
+           1. CONSTANTS & EXACT 1376x768 BILINEAR PERSPECTIVE GEOMETRY
+           ============================================================= */
+        const ROULETTE_ORDER = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+        const RED_NUMS = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+
+        const CHIP_CONFIGS = [
+            { val: 25,   label: '25',   bg: '#16a34a', dark: '#14532d', ring: '#86efac', cx: 612, cy: 616 },
+            { val: 50,   label: '50',   bg: '#64748b', dark: '#334155', ring: '#cbd5e1', cx: 668, cy: 615 },
+            { val: 100,  label: '100',  bg: '#27272a', dark: '#09090b', ring: '#a1a1aa', cx: 725, cy: 614 },
+            { val: 500,  label: '500',  bg: '#2b6cb0', dark: '#1e3a5f', ring: '#93c5fd', cx: 782, cy: 613 },
+            { val: 1000, label: '1000', bg: '#b45309', dark: '#78350f', ring: '#fcd34d', cx: 839, cy: 612 },
+            { val: 5000, label: '5000', bg: '#991b1b', dark: '#450a0a', ring: '#fca5a5', cx: 896, cy: 611 }
+        ];
+
+        // Exact Measured Bilinear Mapping for View A (Betting View fp_betting_hd.jpg 1376x768)
+        // Row boundaries of 3x12 grid: y0=212, y1=278, y2=350, y3=425
+        const BET_Y_ROWS = [212, 278, 350, 425];
+        function betGridPt(colFrac, rowIdx) {
+            const y = BET_Y_ROWS[rowIdx];
+            const v = (y - 212) / (425 - 212);
+            const xL = 430 - 20 * v;
+            const xR = 1091 + 49 * v;
+            const x = xL + colFrac * (xR - xL);
+            return [x, y];
+        }
+
+        // Exact Measured Bilinear Mapping for View B (3D Spin View fp_spin3d_hd.jpg 1376x768)
+        // 3x12 Grid Corners: TL=(665,392), TR=(1142,330), BL=(682,493), BR=(1198,414)
+        function spin3dGridPt(u, v) {
+            const topX = 665 + u * (1142 - 665);
+            const topY = 392 + u * (330 - 392);
+            const botX = 682 + u * (1198 - 682);
+            const botY = 493 + u * (414 - 493);
+            return [
+                topX + v * (botX - topX),
+                topY + v * (botY - topY)
+            ];
+        }
+
+        // Cell Polygon Dictionary for Both Views
+        const bettingCellPolys = {}; // key -> { pts: [[x,y]...], cx, cy }
+        const spin3dCellPolys = {};  // key -> { pts: [[x,y]...], cx, cy }
+
+        function polyCentroid(pts) {
+            let sx = 0, sy = 0;
+            pts.forEach(p => { sx += p[0]; sy += p[1]; });
+            return [sx / pts.length, sy / pts.length];
+        }
+
+        function ptsToStr(pts) {
+            return pts.map(p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
+        }
+
+        function buildAllGridGeometries() {
+            // 1. Number 0 Pentagon
+            const zeroBetPts = [[430,212], [398,212], [358,318], [374,425], [410,425]];
+            bettingCellPolys['0'] = { pts: zeroBetPts, center: [396, 318] };
+
+            const zeroSpinPts = [[665,392], [640,395], [622,445], [652,496], [682,493]];
+            spin3dCellPolys['0'] = { pts: zeroSpinPts, center: [652, 444] };
+
+            // 2. Numbers 1..36 (3 rows x 12 cols)
+            const rows = [
+                [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
+                [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35],
+                [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
+            ];
+            for (let r = 0; r < 3; r++) {
+                for (let c = 0; c < 12; c++) {
+                    const num = rows[r][c];
+                    const u0 = c / 12, u1 = (c + 1) / 12;
+                    const bPts = [
+                        betGridPt(u0, r),
+                        betGridPt(u1, r),
+                        betGridPt(u1, r + 1),
+                        betGridPt(u0, r + 1)
+                    ];
+                    bettingCellPolys[String(num)] = { pts: bPts, center: polyCentroid(bPts) };
+
+                    const v0 = r / 3, v1 = (r + 1) / 3;
+                    const sPts = [
+                        spin3dGridPt(u0, v0),
+                        spin3dGridPt(u1, v0),
+                        spin3dGridPt(u1, v1),
+                        spin3dGridPt(u0, v1)
+                    ];
+                    spin3dCellPolys[String(num)] = { pts: sPts, center: polyCentroid(sPts) };
+                }
+            }
+
+            // 3. 2 to 1 Columns (col3 = top row, col2 = mid row, col1 = bot row)
+            const colKeys = ['col3', 'col2', 'col1'];
+            for (let r = 0; r < 3; r++) {
+                const v0 = (BET_Y_ROWS[r] - 212) / (425 - 212);
+                const v1 = (BET_Y_ROWS[r + 1] - 212) / (425 - 212);
+                const bPts = [
+                    betGridPt(1, r),
+                    [1136 + 54 * v0, BET_Y_ROWS[r]],
+                    [1136 + 54 * v1, BET_Y_ROWS[r + 1]],
+                    betGridPt(1, r + 1)
+                ];
+                bettingCellPolys[colKeys[r]] = { pts: bPts, center: polyCentroid(bPts) };
+
+                const sv0 = r / 3, sv1 = (r + 1) / 3;
+                const sPts = [
+                    spin3dGridPt(1, sv0),
+                    spin3dGridPt(1.08, sv0),
+                    spin3dGridPt(1.08, sv1),
+                    spin3dGridPt(1, sv1)
+                ];
+                spin3dCellPolys[colKeys[r]] = { pts: sPts, center: polyCentroid(sPts) };
+            }
+
+            // 4. Dozens Row (1st12, 2nd12, 3rd12)
+            // Betting View: y from 425 to 492, xL from 410 to 404, xR from 1140 to 1156
+            const dozKeys = ['1st12', '2nd12', '3rd12'];
+            for (let d = 0; d < 3; d++) {
+                const u0 = d / 3, u1 = (d + 1) / 3;
+                const bPts = [
+                    [410 + u0 * (1140 - 410), 425],
+                    [410 + u1 * (1140 - 410), 425],
+                    [404 + u1 * (1156 - 404), 492],
+                    [404 + u0 * (1156 - 404), 492]
+                ];
+                bettingCellPolys[dozKeys[d]] = { pts: bPts, center: polyCentroid(bPts) };
+
+                const sPts = [
+                    spin3dGridPt(u0, 1.0),
+                    spin3dGridPt(u1, 1.0),
+                    spin3dGridPt(u1, 1.33),
+                    spin3dGridPt(u0, 1.33)
+                ];
+                spin3dCellPolys[dozKeys[d]] = { pts: sPts, center: polyCentroid(sPts) };
+            }
+
+            // 5. Even-Money Row (1-18, even, red, black, odd, 19-36)
+            // Betting View: y from 492 to 563, xL from 404 to 397, xR from 1156 to 1174
+            const evenKeys = ['1-18', 'even', 'red', 'black', 'odd', '19-36'];
+            for (let e = 0; e < 6; e++) {
+                const u0 = e / 6, u1 = (e + 1) / 6;
+                const bPts = [
+                    [404 + u0 * (1156 - 404), 492],
+                    [404 + u1 * (1156 - 404), 492],
+                    [397 + u1 * (1174 - 397), 563],
+                    [397 + u0 * (1174 - 397), 563]
+                ];
+                bettingCellPolys[evenKeys[e]] = { pts: bPts, center: polyCentroid(bPts) };
+
+                const sPts = [
+                    spin3dGridPt(u0, 1.33),
+                    spin3dGridPt(u1, 1.33),
+                    spin3dGridPt(u1, 1.68),
+                    spin3dGridPt(u0, 1.68)
+                ];
+                spin3dCellPolys[evenKeys[e]] = { pts: sPts, center: polyCentroid(sPts) };
+            }
+        }
+
+        function renderInteractiveMainGrid() {
+            const group = document.getElementById('svgMainGridPolys');
+            if (!group) return;
+            let html = '';
+
+            for (let key in bettingCellPolys) {
+                const poly = bettingCellPolys[key];
+                const isNum = !isNaN(parseInt(key, 10)) && String(parseInt(key, 10)) === key;
+                const clickCall = isNum ? `placeStudioBet(${key})` : `placeOutsideBet('${key}')`;
+                html += `<polygon id="poly-cell-${key}" class="bet-cell-poly" points="${ptsToStr(poly.pts)}" onclick="${clickCall}"/>`;
+            }
+            group.innerHTML = html;
+        }
+
+        /* =============================================================
+           2. RENDER PRECISION 37-POCKET RACETRACK ON BETTING PLATE
+           ============================================================= */
+        function renderInteractiveRacetrack() {
+            const group = document.getElementById('svgRacetrackGroup');
+            if (!group) return;
+
+            // Racetrack bounding box in fp_betting_hd.jpg (1376x768):
+            // Center Y = 146, Left Semicircle Center X = 548, Right Semicircle Center X = 888
+            // Outer Radius = 56, Inner Radius = 31
+            const xL = 548, xR = 888, cy = 146, rOut = 56, rIn = 31;
+            const straightW = xR - xL; // 340
+
+            const topNums = [24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35];
+            const rightCurveNums = [3, 26, 0, 32];
+            const bottomNums = [15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30];
+            const leftCurveNums = [8, 23, 10, 5];
+
+            function numColor(n) {
+                if (n === 0) return '#22c55e';
+                return RED_NUMS.includes(n) ? '#dc2626' : '#e2e8f0';
+            }
+
+            // Cover only the outer number track ring with clean dark burgundy-velvet so all 37 numbers are 100% sharp
+            let html = `
+                <path d="M ${xL} ${cy - rOut} H ${xR} A ${rOut} ${rOut} 0 0 1 ${xR} ${cy + rOut} H ${xL} A ${rOut} ${rOut} 0 0 1 ${xL} ${cy - rOut} Z
+                         M ${xL} ${cy - rIn} A ${rIn} ${rIn} 0 0 0 ${xL} ${cy + rIn} H ${xR} A ${rIn} ${rIn} 0 0 0 ${xR} ${cy - rIn} H ${xL} Z"
+                      fill="#230709" fill-rule="evenodd" stroke="rgba(218, 210, 200, 0.72)" stroke-width="1.3"/>
+            `;
+
+            // 4 Inner Sector Hitboxes (TIER | ORPHELINS | VOISINS | ZERO)
+            html += `
+                <path class="rt-clickable-zone" d="M ${xL} ${cy - rIn} H 636 V ${cy + rIn} H ${xL} A ${rIn} ${rIn} 0 0 1 ${xL} ${cy - rIn} Z"
+                      onclick="placeRacetrackBet('tier')" onmouseenter="highlightSector('tier', true)" onmouseleave="highlightSector('tier', false)"/>
+                <rect class="rt-clickable-zone" x="636" y="${cy - rIn}" width="96" height="${rIn * 2}"
+                      onclick="placeRacetrackBet('orphelins')" onmouseenter="highlightSector('orphelins', true)" onmouseleave="highlightSector('orphelins', false)"/>
+                <rect class="rt-clickable-zone" x="732" y="${cy - rIn}" width="106" height="${rIn * 2}"
+                      onclick="placeRacetrackBet('voisins')" onmouseenter="highlightSector('voisins', true)" onmouseleave="highlightSector('voisins', false)"/>
+                <path class="rt-clickable-zone" d="M 838 ${cy - rIn} H ${xR} A ${rIn} ${rIn} 0 0 1 ${xR} ${cy + rIn} H 838 Z"
+                      onclick="placeRacetrackBet('zero')" onmouseenter="highlightSector('zero', true)" onmouseleave="highlightSector('zero', false)"/>
+            `;
+
+            // 1. Top Straight 15 Pockets
+            const topStep = straightW / topNums.length;
+            topNums.forEach((n, i) => {
+                const x1 = xL + i * topStep;
+                const cx = x1 + topStep / 2;
+                const cyTxt = cy - (rOut + rIn) / 2 + 4.5;
+                html += `
+                    <g class="rt-clickable-zone" onclick="placeNeighbourBet(${n})" onmouseenter="highlightNeighbours(${n}, true)" onmouseleave="highlightNeighbours(${n}, false)">
+                        <rect x="${x1}" y="${cy - rOut}" width="${topStep}" height="${rOut - rIn}"/>
+                        <line x1="${x1}" y1="${cy - rOut}" x2="${x1}" y2="${cy - rIn}" stroke="rgba(218, 210, 200, 0.55)" stroke-width="1"/>
+                        <text x="${cx}" y="${cyTxt}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="12.5" font-weight="500" fill="${numColor(n)}">${n}</text>
+                    </g>
+                `;
+            });
+
+            // 2. Right Curve 4 Wedge Pockets
+            rightCurveNums.forEach((n, i) => {
+                const a1 = (-90 + i * 45) * Math.PI / 180;
+                const a2 = (-90 + (i + 1) * 45) * Math.PI / 180;
+                const aMid = (a1 + a2) / 2;
+                const ox1 = xR + rOut * Math.cos(a1), oy1 = cy + rOut * Math.sin(a1);
+                const ox2 = xR + rOut * Math.cos(a2), oy2 = cy + rOut * Math.sin(a2);
+                const ix2 = xR + rIn * Math.cos(a2),  iy2 = cy + rIn * Math.sin(a2);
+                const ix1 = xR + rIn * Math.cos(a1),  iy1 = cy + rIn * Math.sin(a1);
+                const tx = xR + ((rOut + rIn) / 2) * Math.cos(aMid);
+                const ty = cy + ((rOut + rIn) / 2) * Math.sin(aMid) + 4.5;
+                html += `
+                    <g class="rt-clickable-zone" onclick="placeNeighbourBet(${n})" onmouseenter="highlightNeighbours(${n}, true)" onmouseleave="highlightNeighbours(${n}, false)">
+                        <path d="M ${ox1} ${oy1} A ${rOut} ${rOut} 0 0 1 ${ox2} ${oy2} L ${ix2} ${iy2} A ${rIn} ${rIn} 0 0 0 ${ix1} ${iy1} Z"/>
+                        <line x1="${ix1}" y1="${iy1}" x2="${ox1}" y2="${oy1}" stroke="rgba(218, 210, 200, 0.55)" stroke-width="1"/>
+                        <text x="${tx}" y="${ty}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="12.5" font-weight="500" fill="${numColor(n)}">${n}</text>
+                    </g>
+                `;
+            });
+
+            // 3. Bottom Straight 14 Pockets
+            const botStep = straightW / bottomNums.length;
+            bottomNums.forEach((n, i) => {
+                const x2 = xR - i * botStep;
+                const x1 = x2 - botStep;
+                const cx = (x1 + x2) / 2;
+                const cyTxt = cy + (rOut + rIn) / 2 + 4.5;
+                html += `
+                    <g class="rt-clickable-zone" onclick="placeNeighbourBet(${n})" onmouseenter="highlightNeighbours(${n}, true)" onmouseleave="highlightNeighbours(${n}, false)">
+                        <rect x="${x1}" y="${cy + rIn}" width="${botStep}" height="${rOut - rIn}"/>
+                        <line x1="${x1}" y1="${cy + rIn}" x2="${x1}" y2="${cy + rOut}" stroke="rgba(218, 210, 200, 0.55)" stroke-width="1"/>
+                        <text x="${cx}" y="${cyTxt}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="12.5" font-weight="500" fill="${numColor(n)}">${n}</text>
+                    </g>
+                `;
+            });
+
+            // 4. Left Curve 4 Wedge Pockets
+            leftCurveNums.forEach((n, i) => {
+                const a1 = (90 + i * 45) * Math.PI / 180;
+                const a2 = (90 + (i + 1) * 45) * Math.PI / 180;
+                const aMid = (a1 + a2) / 2;
+                const ox1 = xL + rOut * Math.cos(a1), oy1 = cy + rOut * Math.sin(a1);
+                const ox2 = xL + rOut * Math.cos(a2), oy2 = cy + rOut * Math.sin(a2);
+                const ix2 = xL + rIn * Math.cos(a2),  iy2 = cy + rIn * Math.sin(a2);
+                const ix1 = xL + rIn * Math.cos(a1),  iy1 = cy + rIn * Math.sin(a1);
+                const tx = xL + ((rOut + rIn) / 2) * Math.cos(aMid);
+                const ty = cy + ((rOut + rIn) / 2) * Math.sin(aMid) + 4.5;
+                html += `
+                    <g class="rt-clickable-zone" onclick="placeNeighbourBet(${n})" onmouseenter="highlightNeighbours(${n}, true)" onmouseleave="highlightNeighbours(${n}, false)">
+                        <path d="M ${ox1} ${oy1} A ${rOut} ${rOut} 0 0 1 ${ox2} ${oy2} L ${ix2} ${iy2} A ${rIn} ${rIn} 0 0 0 ${ix1} ${iy1} Z"/>
+                        <line x1="${ix2}" y1="${iy2}" x2="${ox2}" y2="${oy2}" stroke="rgba(218, 210, 200, 0.55)" stroke-width="1"/>
+                        <text x="${tx}" y="${ty}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="12.5" font-weight="500" fill="${numColor(n)}">${n}</text>
+                    </g>
+                `;
+            });
+
+            group.innerHTML = html;
+        }
+
+        /* =============================================================
+           3. RENDER 6 INTERACTIVE EVOLUTION CASINO CHIPS ON VELVET FELT
+           ============================================================= */
+        function renderInteractiveChipsTray() {
+            const tray = document.getElementById('svgInteractiveChipsTray');
+            if (!tray) return;
+            let html = '';
+
+            CHIP_CONFIGS.forEach((c, idx) => {
+                const isSel = c.val === selectedChip ? 'selected' : '';
+                html += `
+                    <g class="evo-chip-btn-group ${isSel}" data-chipval="${c.val}" onclick="pickChip(${c.val}, this)">
+                        <!-- Glowing Neon Yellow Ring Around Selected Chip (Exact fp_extra_2.jpg!) -->
+                        <circle class="evo-chip-glow-ring" cx="${c.cx}" cy="${c.cy}" r="28.5" fill="none" stroke="#fde047" stroke-width="3.5" filter="drop-shadow(0 0 8px #facc15)"/>
+                        <!-- Drop Shadow on Felt -->
+                        <ellipse cx="${c.cx}" cy="${c.cy + 4}" rx="25" ry="23" fill="rgba(0,0,0,0.75)"/>
+                        <!-- Outer Chip Body -->
+                        <circle cx="${c.cx}" cy="${c.cy}" r="24" fill="${c.dark}" stroke="#e2e8f0" stroke-width="1.2"/>
+                        <circle cx="${c.cx}" cy="${c.cy}" r="21" fill="${c.bg}" stroke="#ffffff" stroke-width="3.6" stroke-dasharray="5.2 5.8"/>
+                        <circle cx="${c.cx}" cy="${c.cy}" r="15.5" fill="${c.dark}" stroke="${c.ring}" stroke-width="1.1" stroke-dasharray="2.5 2"/>
+                        <circle cx="${c.cx}" cy="${c.cy}" r="12" fill="${c.bg}" stroke="rgba(255,255,255,0.4)" stroke-width="0.9"/>
+                        <text x="${c.cx}" y="${c.cy + 4}" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="11.5" fill="#ffffff">${c.label}</text>
+                    </g>
+                `;
+            });
+            tray.innerHTML = html;
+        }
+
+        function getChipColorForAmount(amt) {
+            if (amt >= 1000) return CHIP_CONFIGS[5];
+            if (amt >= 500)  return CHIP_CONFIGS[4];
+            if (amt >= 100)  return CHIP_CONFIGS[3];
+            if (amt >= 25)   return CHIP_CONFIGS[2];
+            if (amt >= 5)    return CHIP_CONFIGS[1];
+            return CHIP_CONFIGS[0];
+        }
+
+        function renderPlacedChipsAndMultipliers() {
+            const betChipsG = document.getElementById('svgBettingPlacedChips');
+            const spinChipsG = document.getElementById('svgSpin3dPlacedChips');
+            const betMultG = document.getElementById('svgBettingMultipliers');
+            const spinMultG = document.getElementById('svgSpin3dMultipliers');
+
+            if (betChipsG && spinChipsG) {
+                let bHtml = '';
+                let sHtml = '';
+
+                for (let key in studioBets) {
+                    const amt = studioBets[key];
+                    if (amt <= 0) continue;
+                    const c = getChipColorForAmount(amt);
+                    const disp = amt >= 1000 ? (amt / 1000).toFixed(amt % 1000 === 0 ? 0 : 1) + 'K' : amt;
+
+                    const bPoly = bettingCellPolys[String(key)];
+                    if (bPoly) {
+                        const [bx, by] = bPoly.center;
+                        bHtml += `
+                            <g pointer-events="none">
+                                <ellipse cx="${bx}" cy="${by + 3}" rx="17" ry="15" fill="rgba(0,0,0,0.8)"/>
+                                <circle cx="${bx}" cy="${by}" r="16" fill="${c.bg}" stroke="#ffffff" stroke-width="2.6" stroke-dasharray="4 4"/>
+                                <circle cx="${bx}" cy="${by}" r="11" fill="${c.dark}" stroke="${c.ring}" stroke-width="1"/>
+                                <text x="${bx}" y="${by + 3.5}" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="10" fill="#ffffff">${disp}</text>
+                            </g>
+                        `;
+                    }
+
+                    const sPoly = spin3dCellPolys[String(key)];
+                    if (sPoly) {
+                        const [sx, sy] = sPoly.center;
+                        sHtml += `
+                            <g pointer-events="none">
+                                <ellipse cx="${sx}" cy="${sy + 2.5}" rx="13" ry="9.5" fill="rgba(0,0,0,0.85)"/>
+                                <ellipse cx="${sx}" cy="${sy}" rx="12.5" ry="9" fill="${c.bg}" stroke="#ffffff" stroke-width="2" stroke-dasharray="3.2 3.2"/>
+                                <ellipse cx="${sx}" cy="${sy}" rx="8.2" ry="6" fill="${c.dark}" stroke="${c.ring}" stroke-width="0.9"/>
+                                <text x="${sx}" y="${sy + 3}" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="8" fill="#ffffff">${disp}</text>
+                            </g>
+                        `;
+                    }
+                }
+
+                // If there is a winning number Dolly active, render it on the winning cell!
+                if (activeWinningNumber !== null) {
+                    const bWin = bettingCellPolys[String(activeWinningNumber)];
+                    if (bWin) {
+                        const [wx, wy] = bWin.center;
+                        bHtml += `<use href="#evoGoldDollyPin" x="${wx}" y="${wy - 4}" pointer-events="none"/>`;
+                    }
+                }
+
+                betChipsG.innerHTML = bHtml;
+                spinChipsG.innerHTML = sHtml;
+            }
+
+            if (betMultG && spinMultG) {
+                let bmHtml = '';
+                let smHtml = '';
+
+                currentMultipliers.forEach(item => {
+                    if (!item.revealed) return;
+                    const isRed = item.type === 'chain' || item.type === 'double' || item.mult >= 500;
+                    const fillCol = isRed ? 'rgba(220, 38, 38, 0.45)' : 'rgba(234, 179, 8, 0.38)';
+                    const strokeCol = isRed ? '#fca5a5' : '#fde047';
+                    const txtCol = isRed ? '#fef08a' : '#ffffff';
+
+                    const bPoly = bettingCellPolys[String(item.num)];
+                    if (bPoly) {
+                        const [bx, by] = bPoly.center;
+                        bmHtml += `
+                            <g pointer-events="none">
+                                <polygon points="${ptsToStr(bPoly.pts)}" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2.2"/>
+                                <text x="${bx}" y="${by + 25}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="11.5" fill="${txtCol}" style="text-shadow:0 1px 4px #000;">${item.mult}x</text>
+                            </g>
+                        `;
+                    }
+
+                    const sPoly = spin3dCellPolys[String(item.num)];
+                    if (sPoly) {
+                        const [sx, sy] = sPoly.center;
+                        smHtml += `
+                            <g pointer-events="none">
+                                <polygon points="${ptsToStr(sPoly.pts)}" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+                                <text x="${sx}" y="${sy + 5}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="10.5" fill="${txtCol}" style="text-shadow:0 1px 4px #000;">${item.mult}x</text>
+                            </g>
+                        `;
+                    }
+                });
+
+                betMultG.innerHTML = bmHtml;
+                spinMultG.innerHTML = smHtml;
+            }
+        }
+
+        /* =============================================================
+           4. PHOTOREALISTIC 3D WHEEL BALL & SPECULAR ROTATION RENDERER
+           ============================================================= */
+        let selectedChip = 25;
+        let studioBets = {};
+        let studioSpinning = false;
+        let activeRoundBetInfo = null;
+        let studioAngle = 0;
+        let studioBallAngle = 0;
+        let studioBallRadius = 175;
+        let currentMultipliers = [];
+        let neighbourCount = 2;
+        let fastSpeedMode = false;
+        let activeWinningNumber = null;
+        let recentWinningNums = [18, 33, 19, 20, 12, 26, 30, 0];
+
+        function drawWheelOnCanvas(canvasId, angle, ballAngle = null, ballRad = 175) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const cx = w / 2, cy = h / 2;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // 1. Subtle Rotating 3D Specular Light Sweep Over the Photorealistic Wheel
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(angle);
+            const sweep = ctx.createLinearGradient(-190, -190, 190, 190);
+            sweep.addColorStop(0, 'rgba(255,255,255,0)');
+            sweep.addColorStop(0.46, 'rgba(255,245,210,0.03)');
+            sweep.addColorStop(0.5, studioSpinning ? 'rgba(255,245,200,0.18)' : 'rgba(255,245,200,0.08)');
+            sweep.addColorStop(0.54, 'rgba(255,245,210,0.03)');
+            sweep.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.beginPath();
+            ctx.arc(0, 0, 205, 0, Math.PI * 2);
+            ctx.fillStyle = sweep;
+            ctx.fill();
+            ctx.restore();
+
+            // 2. Orbiting 3D Ivory Roulette Ball Along the Photorealistic Pocket Track
+            if (ballAngle !== null) {
+                const bx = cx + Math.cos(ballAngle - Math.PI / 2) * ballRad;
+                const by = cy + Math.sin(ballAngle - Math.PI / 2) * ballRad;
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(bx, by, 8.5, 0, Math.PI * 2);
+                const bGrad = ctx.createRadialGradient(bx - 2.5, by - 2.5, 1, bx, by, 8.5);
+                bGrad.addColorStop(0, '#ffffff');
+                bGrad.addColorStop(0.68, '#f1f5f9');
+                bGrad.addColorStop(1, '#94a3b8');
+                ctx.fillStyle = bGrad;
+                ctx.shadowColor = 'rgba(0,0,0,0.95)';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function drawBothStudioWheels(angle, ballAngle = null, ballRad = 175) {
+            drawWheelOnCanvas('bettingWheelCanvas', angle, ballAngle, ballRad);
+            drawWheelOnCanvas('spin3dWheelCanvas', angle, ballAngle, ballRad);
+        }
+
+        // Gentle continuous idle wheel rotation during Betting View
+        let lastIdleTick = performance.now();
+        function idleWheelLoop(now) {
+            const dt = (now - lastIdleTick) / 1000;
+            lastIdleTick = now;
+            if (!studioSpinning) {
+                studioAngle = (studioAngle + dt * 0.35) % (Math.PI * 2);
+                studioBallAngle = (studioBallAngle - dt * 0.25) % (Math.PI * 2);
+                drawBothStudioWheels(studioAngle, studioBallAngle, 130);
+            }
+            requestAnimationFrame(idleWheelLoop);
+        }
+
+        /* =============================================================
+           5. HOVER HIGHLIGHT & BETTING ACTIONS
+           ============================================================= */
+        function highlightNeighbours(centerNum, active) {
+            const idx = ROULETTE_ORDER.indexOf(centerNum);
+            if (idx === -1) return;
+            for (let offset = -neighbourCount; offset <= neighbourCount; offset++) {
+                const n = ROULETTE_ORDER[(idx + offset + 37) % 37];
+                const poly = document.getElementById(`poly-cell-${n}`);
+                if (poly) poly.classList.toggle('hover-highlight', active);
+            }
+        }
+
+        function highlightSector(sector, active) {
+            const sectors = {
+                zero: [12, 35, 3, 26, 0, 32, 15],
+                voisins: [22, 18, 29, 7, 28, 12, 35, 3, 26, 0, 32, 15, 19, 4, 21, 2, 25],
+                orphelins: [1, 20, 14, 31, 9, 17, 34, 6],
+                tier: [27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33]
+            };
+            (sectors[sector] || []).forEach(n => {
+                const poly = document.getElementById(`poly-cell-${n}`);
+                if (poly) poly.classList.toggle('hover-highlight', active);
+            });
+        }
+
+        function adjustNeighbours(delta) {
+            neighbourCount = Math.max(1, Math.min(8, neighbourCount + delta));
+            const disp = document.getElementById('svgNbCountTxt');
+            if (disp) disp.textContent = neighbourCount;
+            vaultSounds.chip.play();
+        }
+
+        function placeNeighbourBet(centerNum) {
+            if (studioSpinning) return;
+            const idx = ROULETTE_ORDER.indexOf(centerNum);
+            if (idx === -1) return;
+            for (let offset = -neighbourCount; offset <= neighbourCount; offset++) {
+                const targetIdx = (idx + offset + 37) % 37;
+                placeStudioBet(ROULETTE_ORDER[targetIdx]);
+            }
+        }
+
+        function placeRacetrackBet(sector) {
+            if (studioSpinning) return;
+            const sectors = {
+                zero: [12, 35, 3, 26, 0, 32, 15],
+                voisins: [22, 18, 29, 7, 28, 12, 35, 3, 26, 0, 32, 15, 19, 4, 21, 2, 25],
+                orphelins: [1, 20, 14, 31, 9, 17, 34, 6],
+                tier: [27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33]
+            };
+            (sectors[sector] || []).forEach(n => placeStudioBet(n));
+        }
+
+        function getUnspunTableTotal() {
+            let t = 0;
+            for (let k in studioBets) t += (parseFloat(studioBets[k]) || 0);
+            return t;
+        }
+
+        function pickChip(val, el) {
+            selectedChip = val;
+            vaultSounds.chip.play();
+            document.querySelectorAll('.evo-chip-btn-group').forEach(c => c.classList.remove('selected'));
+            if (el) el.classList.add('selected');
+        }
+
+        function placeStudioBet(num) {
+            if (studioSpinning) return false;
+            const curBal = getRealBalancePKR();
+            if (curBal < selectedChip) {
+                showWinToast(`⚠️ INSUFFICIENT BALANCE! AVAILABLE: ₨ ${curBal.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}`);
+                return false;
+            }
+            setRealBalancePKR(curBal - selectedChip);
+            vaultSounds.chip.play();
+            studioBets[num] = (studioBets[num] || 0) + selectedChip;
+            renderPlacedChipsAndMultipliers();
+            updateTotalBetDisplay();
+            return true;
+        }
+
+        function placeOutsideBet(type) {
+            if (studioSpinning) return false;
+            const curBal = getRealBalancePKR();
+            if (curBal < selectedChip) {
+                showWinToast(`⚠️ INSUFFICIENT BALANCE! AVAILABLE: ₨ ${curBal.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}`);
+                return false;
+            }
+            setRealBalancePKR(curBal - selectedChip);
+            vaultSounds.chip.play();
+            studioBets[type] = (studioBets[type] || 0) + selectedChip;
+            renderPlacedChipsAndMultipliers();
+            updateTotalBetDisplay();
+            return true;
+        }
+
+        function doubleStudioBets() {
+            if (studioSpinning) return false;
+            const currentTotal = getUnspunTableTotal();
+            if (currentTotal <= 0) return false;
+
+            const curBal = getRealBalancePKR();
+            if (curBal < currentTotal) {
+                showWinToast(`⚠️ INSUFFICIENT BALANCE TO DOUBLE (2×)! NEED ₨ ${currentTotal.toLocaleString()}`);
+                return false;
+            }
+            setRealBalancePKR(curBal - currentTotal);
+            vaultSounds.chip.play();
+            for (let k in studioBets) studioBets[k] *= 2;
+            renderPlacedChipsAndMultipliers();
+            updateTotalBetDisplay();
+            return true;
+        }
+
+        function clearStudioBets() {
+            if (studioSpinning) return;
+            const totalRefund = getUnspunTableTotal();
+            if (totalRefund > 0) {
+                setRealBalancePKR(getRealBalancePKR() + totalRefund);
+            }
+            studioBets = {};
+            renderPlacedChipsAndMultipliers();
+            updateTotalBetDisplay();
+        }
+
+        function updateTotalBetDisplay() {
+            const total = getUnspunTableTotal();
+            const el = document.getElementById('totalBetDisp');
+            if (el) el.textContent = '₨ ' + total.toLocaleString();
+        }
+
+        /* =============================================================
+           6. XXXTREME CHAIN LIGHTNING & 3D SPIN ENGINE
+           ============================================================= */
+        function drawLightningBranch(ctx, x1, y1, x2, y2, displace, color, width) {
+            if (displace < 4) {
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = width;
+                ctx.stroke();
+                return;
+            }
+            const midX = (x1 + x2) / 2 + (Math.random() - 0.5) * displace;
+            const midY = (y1 + y2) / 2 + (Math.random() - 0.5) * displace;
+            drawLightningBranch(ctx, x1, y1, midX, midY, displace / 2, color, width);
+            drawLightningBranch(ctx, midX, midY, x2, y2, displace / 2, color, width);
+        }
+
+        function triggerVisualLightningBolts(isRedChain = false) {
+            const canvas = document.getElementById('lightningBoltCanvas');
+            const flash = document.getElementById('lightningFlashOverlay');
+            if (!canvas) return;
+
+            canvas.width = canvas.offsetWidth || window.innerWidth;
+            canvas.height = canvas.offsetHeight || window.innerHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (flash) {
+                flash.classList.add('flash-active');
+                setTimeout(() => flash.classList.remove('flash-active'), 150);
+            }
+
+            const numBolts = isRedChain ? 4 : 2;
+            for (let b = 0; b < numBolts; b++) {
+                const startX = canvas.width * (0.28 + Math.random() * 0.44);
+                const endX = startX + (Math.random() - 0.5) * 220;
+                const endY = canvas.height * (0.35 + Math.random() * 0.35);
+
+                ctx.save();
+                ctx.shadowColor = isRedChain ? '#ff1744' : '#ffd700';
+                ctx.shadowBlur = 24;
+                drawLightningBranch(ctx, startX, 0, endX, endY, 75, isRedChain ? '#ff5252' : '#fde047', 3.2);
+                drawLightningBranch(ctx, startX, 0, endX, endY, 35, '#ffffff', 1.4);
+                ctx.restore();
+            }
+
+            setTimeout(() => ctx.clearRect(0, 0, canvas.width, canvas.height), 240);
+        }
+
+        function clearPreviousRoundVisuals() {
+            activeWinningNumber = null;
+            currentMultipliers = [];
+            document.querySelectorAll('.bet-cell-poly').forEach(el => {
+                el.classList.remove('lightning-hit', 'lightning-hit-red', 'winning-dolly-cell');
+            });
+            const resting = document.getElementById('restingGoldDolly');
+            if (resting) resting.style.opacity = '1';
+            const banner = document.getElementById('winningBannerPopup');
+            if (banner) banner.classList.remove('show');
+            renderPlacedChipsAndMultipliers();
+        }
+
+        function generateXXXtremeMultipliers() {
+            clearPreviousRoundVisuals();
+
+            const baseCount = Math.floor(Math.random() * 3) + 3; // 3 to 5 initial numbers
+            const basePool = [50, 50, 100, 100, 150, 200, 300, 500];
+            const chainPool = [100, 150, 200, 300, 400, 500];
+            const doublePool = [600, 750, 1000, 1500, 2000];
+
+            const used = new Set();
+            currentMultipliers = [];
+
+            while (currentMultipliers.length < baseCount) {
+                const n = Math.floor(Math.random() * 37);
+                if (!used.has(n)) {
+                    used.add(n);
+                    const m = basePool[Math.floor(Math.random() * basePool.length)];
+                    currentMultipliers.push({ num: n, mult: m, type: 'yellow', revealed: false });
+                }
+            }
+
+            if (Math.random() < 0.65) {
+                const extra = Math.floor(Math.random() * 2) + 1;
+                for (let i = 0; i < extra && currentMultipliers.length < 5; i++) {
+                    const n = Math.floor(Math.random() * 37);
+                    if (!used.has(n)) {
+                        used.add(n);
+                        const m = chainPool[Math.floor(Math.random() * chainPool.length)];
+                        currentMultipliers.push({ num: n, mult: m, type: 'chain', revealed: false });
+                    }
+                }
+            }
+
+            if (Math.random() < 0.5 && currentMultipliers.length > 0) {
+                const targetIdx = Math.floor(Math.random() * currentMultipliers.length);
+                currentMultipliers[targetIdx].mult = doublePool[Math.floor(Math.random() * doublePool.length)];
+                currentMultipliers[targetIdx].type = 'double';
+            }
+
+            const wallWrap = document.getElementById('wallLightningPlaques');
+            if (wallWrap) wallWrap.innerHTML = '';
+
+            currentMultipliers.slice(0, 5).forEach((item, idx) => {
+                const isRed = item.type === 'chain' || item.type === 'double' || item.mult >= 500;
+                const plaque = document.createElement('div');
+                plaque.className = 'art-deco-plaque';
+                plaque.innerHTML = `
+                    <span class="adp-num">${item.num}</span>
+                    <span class="adp-mult">${item.mult}x</span>
+                `;
+                if (wallWrap) wallWrap.appendChild(plaque);
+
+                setTimeout(() => {
+                    item.revealed = true;
+                    plaque.classList.add(isRed ? 'struck-red' : 'struck-yellow');
+                    playThunderCrack(isRed ? 1.15 : 0.85);
+                    triggerVisualLightningBolts(isRed);
+
+                    const poly = document.getElementById(`poly-cell-${item.num}`);
+                    if (poly) poly.classList.add(isRed ? 'lightning-hit-red' : 'lightning-hit');
+                    renderPlacedChipsAndMultipliers();
+                }, 140 * idx);
+            });
+        }
+
+        function spinStudioWheel() {
+            if (studioSpinning) return;
+
+            let totalBet = getUnspunTableTotal();
+
+            if (totalBet <= 0) {
+                if (!placeOutsideBet('red')) return;
+                totalBet = getUnspunTableTotal();
+                if (totalBet <= 0) return;
+            }
+
+            studioSpinning = true;
+            activeRoundBetInfo = null;
+            submitRoundBetToServer(totalBet);
+
+            const silverOverlay = document.getElementById('svgSilverSpinOverlay');
+            if (silverOverlay) silverOverlay.style.display = 'block';
+
+            // Transition camera into 3D Wide-Angle Spin View (fp_spin3d_hd.jpg)
+            const rotator = document.getElementById('gameRotator');
+            if (rotator) rotator.classList.add('spin-mode-3d');
+
+            vaultSounds.bet.play();
+            setTimeout(() => vaultSounds.spin.play(), 200);
+
+            generateXXXtremeMultipliers();
+
+            const winIdx = Math.floor(Math.random() * 37);
+            const winNum = ROULETTE_ORDER[winIdx];
+            const slice = (Math.PI * 2) / 37;
+
+            const extraSpins = (Math.PI * 2) * (fastSpeedMode ? 4 : 6);
+            const targetWheelAngle = studioAngle + extraSpins + (Math.PI * 2 - (winIdx * slice) - (studioAngle % (Math.PI * 2)));
+            const startWheelAngle = studioAngle;
+
+            const startBallAngle = 0;
+            const ballTurns = (Math.PI * 2) * (fastSpeedMode ? 7 : 10);
+
+            const duration = fastSpeedMode ? 2800 : 4800;
+            const startTime = performance.now();
+            let lastBallClick = 0;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(elapsed / duration, 1);
+
+                const easeWheel = 1 - Math.pow(1 - p, 3);
+                const currentWheelAngle = startWheelAngle + (targetWheelAngle - startWheelAngle) * easeWheel;
+
+                const easeBall = 1 - Math.pow(1 - p, 2.5);
+                studioBallAngle = startBallAngle - (ballTurns * easeBall);
+
+                if (p < 0.62) {
+                    studioBallRadius = 205;
+                } else if (p < 0.88) {
+                    const dropP = (p - 0.62) / 0.26;
+                    studioBallRadius = 205 - (dropP * 80);
+                    if (now - lastBallClick > 130) {
+                        lastBallClick = now;
+                        vaultSounds.ball1.play();
+                    }
+                } else {
+                    const bounceP = (p - 0.88) / 0.12;
+                    const bounce = Math.sin(bounceP * Math.PI * 2) * (1 - bounceP) * 5;
+                    studioBallRadius = 125 + bounce;
+                }
+
+                drawBothStudioWheels(currentWheelAngle, studioBallAngle, studioBallRadius);
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    studioAngle = targetWheelAngle % (Math.PI * 2);
+                    studioBallAngle = 0;
+                    studioBallRadius = 125;
+                    studioSpinning = false;
+
+                    if (silverOverlay) silverOverlay.style.display = 'none';
+                    try {
+                        vaultSounds.spin.stop();
+                        vaultSounds.ball1.stop();
+                    } catch(e) {}
+
+                    drawBothStudioWheels(studioAngle, studioBallAngle, studioBallRadius);
+                    resolveSpinPayout(winNum, winIdx);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        function resolveSpinPayout(winNum, winIdx) {
+            const isRed = RED_NUMS.includes(winNum);
+            const lucky = currentMultipliers.find(m => m.num === winNum);
+
+            activeWinningNumber = winNum;
+            const resting = document.getElementById('restingGoldDolly');
+            if (resting) resting.style.opacity = '0';
+
+            const winPoly = document.getElementById(`poly-cell-${winNum}`);
+            if (winPoly) winPoly.classList.add('winning-dolly-cell');
+
+            // Update Recent Numbers Bar
+            recentWinningNums.unshift(winNum);
+            if (recentWinningNums.length > 8) recentWinningNums.pop();
+            const rnStrip = document.getElementById('recentNumbersStrip');
+            if (rnStrip) {
+                rnStrip.innerHTML = recentWinningNums.map(n => {
+                    const cls = n === 0 ? 'rn-green' : (RED_NUMS.includes(n) ? 'rn-red' : 'rn-black');
+                    return `<span class="rn-badge ${cls}">${n}</span>`;
+                }).join('');
+            }
+
+            // Show Winning Number Trapezoid Flag (22 | 18 | 29 in fp_ref_2.jpg)
+            const leftNeighbor = ROULETTE_ORDER[(winIdx - 1 + 37) % 37];
+            const rightNeighbor = ROULETTE_ORDER[(winIdx + 1) % 37];
+            const banner = document.getElementById('winningBannerPopup');
+            const wbLeft = document.getElementById('wbLeftNum');
+            const wbRight = document.getElementById('wbRightNum');
+            const wbWin = document.getElementById('wbWinNum');
+            const wbMult = document.getElementById('wbWinMult');
+            const wbFlag = document.getElementById('wbCenterFlag');
+
+            if (wbLeft) wbLeft.textContent = leftNeighbor;
+            if (wbRight) wbRight.textContent = rightNeighbor;
+            if (wbWin) wbWin.textContent = winNum;
+            if (wbMult) wbMult.textContent = lucky ? `⚡ ${lucky.mult}x` : '';
+            if (wbFlag) {
+                wbFlag.style.background = winNum === 0 ? '#059669' : (isRed ? '#dc2626' : '#18181b');
+            }
+            if (banner) banner.classList.add('show');
+
+            let totalPayout = 0;
+            let luckyMultiplierHit = null;
+
+            if (studioBets[winNum]) {
+                const bet = studioBets[winNum];
+                if (lucky) {
+                    luckyMultiplierHit = lucky.mult;
+                    totalPayout += bet * lucky.mult;
+                } else {
+                    totalPayout += bet * 20;
+                }
+            }
+
+            if (winNum !== 0) {
+                if (studioBets['red'] && isRed) totalPayout += studioBets['red'] * 2;
+                if (studioBets['black'] && !isRed) totalPayout += studioBets['black'] * 2;
+                if (studioBets['even'] && winNum % 2 === 0) totalPayout += studioBets['even'] * 2;
+                if (studioBets['odd'] && winNum % 2 === 1) totalPayout += studioBets['odd'] * 2;
+                if (studioBets['1-18'] && winNum >= 1 && winNum <= 18) totalPayout += studioBets['1-18'] * 2;
+                if (studioBets['19-36'] && winNum >= 19 && winNum <= 36) totalPayout += studioBets['19-36'] * 2;
+                if (studioBets['1st12'] && winNum >= 1 && winNum <= 12) totalPayout += studioBets['1st12'] * 3;
+                if (studioBets['2nd12'] && winNum >= 13 && winNum <= 24) totalPayout += studioBets['2nd12'] * 3;
+                if (studioBets['3rd12'] && winNum >= 25 && winNum <= 36) totalPayout += studioBets['3rd12'] * 3;
+                if (studioBets['col1'] && winNum % 3 === 1) totalPayout += studioBets['col1'] * 3;
+                if (studioBets['col2'] && winNum % 3 === 2) totalPayout += studioBets['col2'] * 3;
+                if (studioBets['col3'] && winNum % 3 === 0) totalPayout += studioBets['col3'] * 3;
+            }
+
+            const totalPlaced = getUnspunTableTotal();
+
+            // Clear bets before crediting payout so unspun table total is 0
+            studioBets = {};
+            renderPlacedChipsAndMultipliers();
+            updateTotalBetDisplay();
+
+            if (totalPayout > 0) {
+                vaultSounds.win.play();
+                if (luckyMultiplierHit) playThunderCrack(1.2);
+
+                const newBal = getRealBalancePKR() + totalPayout;
+                setRealBalancePKR(newBal);
+                submitRoundWinToServer(totalPlaced, totalPayout);
+
+                if (luckyMultiplierHit) {
+                    showWinToast(`⚡ ${luckyMultiplierHit}X XXXTREME LIGHTNING HIT! WON ₨ ${totalPayout.toLocaleString()}`);
+                } else {
+                    showWinToast(`🎉 WINNING NUMBER #${winNum}! YOU WON ₨ ${totalPayout.toLocaleString()}`);
+                }
+            } else {
+                showWinToast(`WINNING NUMBER: ${winNum} (${winNum === 0 ? 'GREEN' : (isRed ? 'RED' : 'BLACK')})`);
+            }
+
+            // Return camera from 3D Spin View back to Betting View (showing Winning Dolly & Banner like fp_ref_2.jpg!)
+            setTimeout(() => {
+                const rotator = document.getElementById('gameRotator');
+                if (rotator) rotator.classList.remove('spin-mode-3d');
+            }, 1200);
+        }
+
+        /* =============================================================
+           7. AUDIO, REAL WALLET & LIVE SERVER MYSQL SYNC ENGINE
+           ============================================================= */
+        let lightningAudioCtx = null;
+        function playThunderCrack(intensity = 1.0) {
+            try {
+                if (rouletteBgmMuted) return;
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                if (!lightningAudioCtx) lightningAudioCtx = new AudioContextClass();
+                if (lightningAudioCtx.state === 'suspended') lightningAudioCtx.resume();
+
+                const dur = 0.65 * intensity;
+                const bufferSize = Math.floor(lightningAudioCtx.sampleRate * dur);
+                const buffer = lightningAudioCtx.createBuffer(1, bufferSize, lightningAudioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    const env = Math.pow(1 - i / bufferSize, 1.8);
+                    data[i] = (Math.random() * 2 - 1) * env;
+                }
+                const noise = lightningAudioCtx.createBufferSource();
+                noise.buffer = buffer;
+                const filter = lightningAudioCtx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(320 * intensity, lightningAudioCtx.currentTime);
+                filter.Q.setValueAtTime(0.8, lightningAudioCtx.currentTime);
+                const gain = lightningAudioCtx.createGain();
+                gain.gain.setValueAtTime(0.38 * intensity, lightningAudioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, lightningAudioCtx.currentTime + dur);
+                noise.connect(filter);
+                filter.connect(gain);
+                gain.connect(lightningAudioCtx.destination);
+                noise.start();
+            } catch (e) {}
+        }
+
+        const vaultSounds = {
+            spin: new Howl({ src: ['../game_assets/audio_sounds/wheel_spin.mp3'], volume: 0.7 }),
+            ball1: new Howl({ src: ['../game_assets/audio_sounds/ball-click-1.mp3'], volume: 0.6 }),
+            chip: new Howl({ src: ['../game_assets/audio_sounds/chip_place.mp3'], volume: 0.75 }),
+            bet: new Howl({ src: ['../game_assets/audio_sounds/bet.mp3'], volume: 0.7 }),
+            win: new Howl({ src: ['../game_assets/audio_sounds/win.mp3'], volume: 0.9 })
+        };
+
+        let serverSyncLock = false;
+
+        function getActiveUserObj() {
+            try {
+                const raw = localStorage.getItem('bwn_session_user') || localStorage.getItem('currentUser');
+                if (raw) {
+                    const u = JSON.parse(raw);
+                    if (u && (u.id || u.username)) return u;
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        function getRealBalancePKR() {
+            try {
+                if (window.wallet && window.wallet.state) {
+                    window.wallet.state.currency = 'PKR';
+                    if (window.wallet.state.balancePKR !== undefined && !isNaN(parseFloat(window.wallet.state.balancePKR))) {
+                        return Math.max(0, parseFloat(window.wallet.state.balancePKR));
+                    }
+                }
+                const u = getActiveUserObj();
+                if (u && (u.balance_pkr !== undefined || u.balancePKR !== undefined)) {
+                    const b = parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : u.balancePKR);
+                    if (!isNaN(b)) return Math.max(0, b);
+                }
+                const stRaw = localStorage.getItem('bwn_wallet_state_v1');
+                if (stRaw) {
+                    const st = JSON.parse(stRaw);
+                    if (st && st.balancePKR !== undefined) return Math.max(0, parseFloat(st.balancePKR) || 0);
+                }
+                const bwnBal = localStorage.getItem('BETWITHNET_balance') || localStorage.getItem('bwn_wallet_balance');
+                if (bwnBal !== null && bwnBal !== undefined && bwnBal !== '') {
+                    return Math.max(0, parseFloat(bwnBal) || 0);
+                }
+            } catch (e) {}
+            return 0;
+        }
+
+        function setRealBalancePKR(newBalPKR) {
+            const cleanPKR = Math.max(0, parseFloat(Number(newBalPKR || 0).toFixed(2)));
+            const cleanUSD = parseFloat((cleanPKR / 280).toFixed(2));
+            try {
+                if (window.wallet && typeof window.wallet.setBalancePKR === 'function') {
+                    window.wallet.state.currency = 'PKR';
+                    window.wallet.setBalancePKR(cleanPKR);
+                }
+                localStorage.setItem('BETWITHNET_balance', String(cleanPKR));
+                localStorage.setItem('bwn_wallet_balance', String(cleanPKR));
+
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    u.balance_pkr = cleanPKR;
+                    u.balancePKR = cleanPKR;
+                    u.balance_usd = cleanUSD;
+                    u.balanceUSD = cleanUSD;
+                    localStorage.setItem('bwn_session_user', JSON.stringify(u));
+                }
+            } catch (e) {}
+            syncWallet();
+        }
+
+        let activeRoundBetPromise = null;
+
+        async function submitRoundBetToServer(totalBetPKR) {
+            const u = getActiveUserObj();
+            serverSyncLock = true;
+            activeRoundBetPromise = (async () => {
+                try {
+                    const payload = {
+                        game: 'First Person XXXtreme Lightning Roulette',
+                        amount: totalBetPKR,
+                        currency: 'PKR'
+                    };
+                    if (u && u.id) payload.user_id = u.id;
+
+                    const res = await fetch('/api/wallet.php?action=bet', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (res.ok) {
+                        const json = await res.json();
+                        if (json && json.success && json.data) {
+                            activeRoundBetInfo = {
+                                bet_id: json.data.bet_id,
+                                amount_deducted: parseFloat(json.data.amount_deducted || (totalBetPKR / 280))
+                            };
+                            if (json.data.new_balance_pkr !== undefined) {
+                                setRealBalancePKR(parseFloat(json.data.new_balance_pkr));
+                            }
+                        }
+                    }
+                } catch (e) {}
+                serverSyncLock = false;
+            })();
+            return activeRoundBetPromise;
+        }
+
+        async function submitRoundWinToServer(totalPlacedPKR, totalPayoutPKR) {
+            if (activeRoundBetPromise) {
+                try { await activeRoundBetPromise; } catch (e) {}
+            }
+            if (!activeRoundBetInfo || !activeRoundBetInfo.bet_id) return;
+            const u = getActiveUserObj();
+            serverSyncLock = true;
+            try {
+                const betUsd = activeRoundBetInfo.amount_deducted || parseFloat((totalPlacedPKR / 280).toFixed(2));
+                const payoutUsd = parseFloat((totalPayoutPKR / 280).toFixed(2));
+                const exactMult = betUsd > 0 ? parseFloat((payoutUsd / betUsd).toFixed(6)) : (totalPayoutPKR / totalPlacedPKR);
+
+                const payload = {
+                    bet_id: activeRoundBetInfo.bet_id,
+                    multiplier: exactMult,
+                    payout: payoutUsd
+                };
+                if (u && u.id) payload.user_id = u.id;
+
+                const res = await fetch('/api/wallet.php?action=win', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    const json = await res.json();
+                    if (json && json.success && json.data && json.data.new_balance_pkr !== undefined) {
+                        setRealBalancePKR(parseFloat(json.data.new_balance_pkr));
+                    }
+                }
+            } catch (e) {}
+            serverSyncLock = false;
+        }
+
+        async function fetchServerBalance() {
+            if (studioSpinning || serverSyncLock) return;
+            try {
+                let user = getActiveUserObj();
+                if (!user || !user.id) {
+                    try {
+                        const authRes = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                        if (authRes.ok) {
+                            const authData = await authRes.json();
+                            if (authData && authData.success && authData.data) {
+                                user = authData.data;
+                                localStorage.setItem('bwn_session_user', JSON.stringify(user));
+                            }
+                        }
+                    } catch(e) {}
+                }
+                const balUrl = (user && user.id)
+                    ? `/api/wallet.php?action=balance&user_id=${encodeURIComponent(user.id)}`
+                    : `/api/wallet.php?action=balance`;
+                const res = await fetch(balUrl, { cache: 'no-store', credentials: 'include' });
+                if (res.ok) {
+                    const json = await res.json();
+                    if (json && json.success && json.data && !studioSpinning && !serverSyncLock) {
+                        if (!user && json.data.id) {
+                            localStorage.setItem('bwn_session_user', JSON.stringify(json.data));
+                        }
+                        const serverBalPkr = parseFloat(json.data.balance_pkr || 0);
+                        const unspunOnTable = getUnspunTableTotal();
+                        const effectiveBalPkr = Math.max(0, serverBalPkr - unspunOnTable);
+                        setRealBalancePKR(effectiveBalPkr);
+                    }
+                }
+            } catch(e) {}
+            syncWallet();
+        }
+
+        function syncWallet() {
+            try {
+                const bal = getRealBalancePKR();
+                const formatted = '₨ ' + Number(bal).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const topEl = document.getElementById('topWalletBalance');
+                if (topEl) topEl.textContent = formatted;
+            } catch (e) {}
+        }
+
+        function showWinToast(msg) {
+            const t = document.getElementById('winToast');
+            if (!t) return;
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3600);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+            else document.exitFullscreen().catch(() => {});
+        }
+
+        function toggleHelpModal() {
+            const m = document.getElementById('evoHelpModal');
+            if (m) m.classList.toggle('open');
+        }
+
+        function toggleGameSpeed() {
+            fastSpeedMode = !fastSpeedMode;
+            const btn = document.getElementById('btnSpeedToggle');
+            if (btn) btn.classList.toggle('active', fastSpeedMode);
+            showWinToast(fastSpeedMode ? '⚡ FAST SPIN MODE ENABLED' : '⏱️ NORMAL SPIN MODE');
+        }
+
+        /* =============================================================
+           8. SPLASH SCREEN, TRAILER & BGM CONTROLLER
+           ============================================================= */
+        let trailerAnimId = null;
+        let trailerTimer = null;
+
+        function openEvoTrailer() {
+            const ov = document.getElementById('evoTrailerOverlay');
+            if (!ov) return;
+            ov.classList.add('active');
+            playThunderCrack(1.0);
+            startTrailerBolts();
+            if (trailerTimer) clearTimeout(trailerTimer);
+            trailerTimer = setTimeout(closeEvoTrailer, 4500);
+        }
+
+        function closeEvoTrailer() {
+            const ov = document.getElementById('evoTrailerOverlay');
+            if (!ov) return;
+            if (trailerTimer) clearTimeout(trailerTimer);
+            if (trailerAnimId) {
+                cancelAnimationFrame(trailerAnimId);
+                trailerAnimId = null;
+            }
+            ov.classList.remove('active');
+        }
+
+        function startTrailerBolts() {
+            const canvas = document.getElementById('trailerBoltCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let last = 0;
+
+            function loop(now) {
+                const ov = document.getElementById('evoTrailerOverlay');
+                if (!ov || !ov.classList.contains('active')) return;
+                ctx.fillStyle = 'rgba(0,0,0,0.22)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                if (now - last > 550) {
+                    last = now;
+                    const sx = Math.random() * canvas.width;
+                    const ex = sx + (Math.random() - 0.5) * 280;
+                    ctx.save();
+                    ctx.shadowColor = '#ff1744';
+                    ctx.shadowBlur = 22;
+                    drawLightningBranch(ctx, sx, 0, ex, canvas.height, 85, '#ff5252', 2.8);
+                    drawLightningBranch(ctx, sx, 0, ex, canvas.height, 40, '#ffffff', 1.2);
+                    ctx.restore();
+                }
+                trailerAnimId = requestAnimationFrame(loop);
+            }
+            trailerAnimId = requestAnimationFrame(loop);
+        }
+
+        (function initSplashLoader() {
+            const splash = document.getElementById('evoSplashScreen');
+            const fill = document.getElementById('evoLaserFill');
+            if (!splash || !fill) return;
+            let pct = 0;
+            let finished = false;
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                fill.style.width = '100%';
+                startBGMAuto();
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                }, 380);
+            }
+
+            function step() {
+                if (finished) return;
+                pct += Math.floor(Math.random() * 22) + 18;
+                fill.style.width = Math.min(pct, 100) + '%';
+                if (pct >= 100) finish();
+                else setTimeout(step, 105);
+            }
+            setTimeout(step, 100);
+            setTimeout(finish, 1800);
+        })();
+
+        let rouletteBgmAudio = null;
+        let rouletteBgmMuted = false;
+
+        function initRouletteBGM() {
+            try {
+                rouletteBgmMuted = localStorage.getItem('roulette_bgm_muted') === '1';
+                rouletteBgmAudio = new Howl({
+                    src: ['../game_assets/audio_sounds/bg_ambience.mp3', '../game_assets/audio_sounds/roulette_hiphop.wav'],
+                    loop: true,
+                    volume: rouletteBgmMuted ? 0.0 : 0.32,
+                    autoplay: false,
+                    onload: () => startBGMAuto()
+                });
+            } catch (e) {}
+        }
+
+        function startBGMAuto() {
+            if (!rouletteBgmAudio || rouletteBgmMuted) return;
+            try {
+                if (!rouletteBgmAudio.playing()) {
+                    rouletteBgmAudio.volume(0.32);
+                    rouletteBgmAudio.play();
+                }
+            } catch(e) {}
+        }
+
+        function toggleRouletteBGM() {
+            if (!rouletteBgmAudio) return;
+            rouletteBgmMuted = !rouletteBgmMuted;
+            try { localStorage.setItem('roulette_bgm_muted', rouletteBgmMuted ? '1' : '0'); } catch (e) {}
+            if (rouletteBgmMuted) rouletteBgmAudio.pause();
+            else {
+                rouletteBgmAudio.volume(0.32);
+                rouletteBgmAudio.play();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initRouletteBGM();
+            buildAllGridGeometries();
+            renderInteractiveMainGrid();
+            renderInteractiveRacetrack();
+            renderInteractiveChipsTray();
+            drawBothStudioWheels(studioAngle, studioBallAngle, 130);
+            requestAnimationFrame(idleWheelLoop);
+
+            syncWallet();
+            fetchServerBalance();
+            if (window.wallet && window.wallet.on) {
+                window.wallet.on('balanceChange', () => syncWallet());
+                window.wallet.on('change', () => syncWallet());
+            }
+            window.addEventListener('storage', () => syncWallet());
+            setInterval(fetchServerBalance, 5000);
+        });
+    </script>
+</body>
+</html>

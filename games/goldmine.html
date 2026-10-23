@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Gold Rush - Mega7 / MannaPlay | Bet With Net Official Play</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png" type="image/png">
+    <script src="../js/wallet.js?v=3.0"></script>
+    <style>
+        :root {
+            --gold-primary: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #fff7c2 0%, #ffd700 35%, #d4af37 70%, #8a5a00 100%);
+            --hud-height: 48px;
+            --bg-dark: #070402;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000000;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Main Viewport Container */
+        .game-viewport {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #000000;
+            overflow: hidden;
+        }
+
+        /* Top Casino HUD */
+        .ingame-top-hud {
+            width: 100%;
+            height: var(--hud-height);
+            background: linear-gradient(180deg, #180d05 0%, #0a0502 100%);
+            border-bottom: 1.5px solid rgba(255, 215, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+        }
+
+        .ingame-top-hud.collapsed {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hud-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hud-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            border-radius: 8px;
+            padding: 6px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.2s;
+            gap: 5px;
+        }
+
+        .hud-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: translateY(-1px);
+            color: #fff;
+        }
+
+        .hud-brand-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hud-brand-logo {
+            height: 28px;
+            width: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .hud-brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hud-game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.8px;
+            line-height: 1.1;
+        }
+
+        .hud-status-badge {
+            font-size: 9px;
+            color: #10b981;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Center Real Wallet Balance */
+        .hud-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .hud-wallet-pill {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1.5px solid rgba(255, 215, 0, 0.45);
+            border-radius: 20px;
+            padding: 4px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .wallet-label {
+            color: #ff9800;
+            font-weight: 800;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .wallet-currency {
+            color: #ffd700;
+            font-weight: 800;
+        }
+
+        .wallet-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .wallet-refresh-btn {
+            background: none;
+            border: none;
+            color: #ffd700;
+            cursor: pointer;
+            font-size: 13px;
+            margin-left: 2px;
+            padding: 2px;
+            transition: transform 0.3s;
+        }
+
+        .wallet-refresh-btn:hover {
+            transform: rotate(180deg);
+        }
+
+        /* Right HUD Actions */
+        .hud-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action-trailer {
+            background: linear-gradient(180deg, #ff9800, #e65100);
+            border: 1px solid #ffd700;
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(255, 152, 0, 0.4);
+        }
+
+        .btn-action-trailer:hover {
+            background: linear-gradient(180deg, #ffa726, #f57c00);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-action-fs,
+        .btn-fs-trigger,
+        .freespin-badge,
+        .freespins-transition-overlay,
+        .modal-settlement {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .deposit-btn {
+            background: linear-gradient(180deg, #10b981, #059669);
+            border: 1px solid #34d399;
+            color: #ffffff;
+            font-weight: 800;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .deposit-btn:hover {
+            background: linear-gradient(180deg, #059669, #047857);
+            border-color: #6ee7b7;
+        }
+
+        /* Mini Floating Restore Button */
+        .hud-restore-pill {
+            position: fixed;
+            top: 10px;
+            right: 14px;
+            z-index: 101;
+            background: rgba(20, 10, 5, 0.95);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 16px;
+            padding: 4px 10px;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+            color: #ffd700;
+            font-size: 10px;
+            font-weight: 800;
+            transition: all 0.2s;
+        }
+
+        .hud-restore-pill.show {
+            display: flex;
+        }
+
+        .hud-restore-pill:hover {
+            background: rgba(30, 15, 8, 0.98);
+            border-color: #ffd700;
+            transform: translateY(1px);
+        }
+
+        .hud-pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+        }
+
+        /* Authentic Slot Game Stage */
+        .real-game-stage {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .real-game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #000000;
+        }
+
+        /* Floating Win Toast Banner */
+        .spin-win-toast {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: linear-gradient(135deg, rgba(20, 10, 5, 0.95), rgba(40, 20, 10, 0.95));
+            border: 2px solid #ffd700;
+            border-radius: 30px;
+            padding: 8px 24px;
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: 900;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            z-index: 50;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spin-win-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-viewport">
+        <!-- Top Casino Navigation HUD -->
+        <header class="ingame-top-hud" id="topHud">
+            <div class="hud-left">
+                <a href="../casino.html" class="hud-btn" title="Back to Bet With Net Casino">
+                    &larr; CASINO
+                </a>
+                <div class="hud-brand-tag">
+                    <img src="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png" class="hud-brand-logo" alt="Gold Rush">
+                    <div class="hud-brand-info">
+                        <span class="hud-game-title">GOLD RUSH</span>
+                        <span class="hud-status-badge">1024 WAYS &bull; RTP 96.5%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Real Wallet Balance -->
+            <div class="hud-center">
+                <div class="hud-wallet-pill">
+                    <span class="wallet-label">REAL BALANCE</span>
+                    <span class="wallet-currency">PKR</span>
+                    <span class="wallet-amount" id="walletBalance">17,681.00</span>
+                    <button class="wallet-refresh-btn" onclick="refreshWalletBalance()" title="Refresh Wallet Balance">&#8635;</button>
+                </div>
+            </div>
+
+            <!-- Right HUD Actions -->
+            <div class="hud-right">
+                <button class="hud-btn btn-action-trailer" onclick="sendActionToGame('playTrailer')" title="Watch Official Game Cinematic Trailer">
+                    🎬 TRAILER
+                </button>
+                <button class="hud-btn" onclick="sendActionToGame('openRules')" title="Official Paytable & Rules">
+                    ℹ️ RULES
+                </button>
+                <a href="../wallet.html" class="hud-btn deposit-btn" title="Deposit Funds">
+                    + DEPOSIT
+                </a>
+                <button class="hud-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+                    ⛶
+                </button>
+                <button class="hud-btn" onclick="toggleHudCollapse()" title="Hide Top Bar">
+                    ▲
+                </button>
+            </div>
+        </header>
+
+        <!-- Mini Floating Restore Button -->
+        <button class="hud-restore-pill" id="hudRestorePill" onclick="toggleHudCollapse()" title="Show Top Bar">
+            <span class="hud-pill-dot"></span>
+            <span>BWN HUD</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </button>
+
+        <!-- Official Gold Rush Game Frame -->
+        <main class="real-game-stage" id="gameStage">
+            <iframe
+                id="goldRushFrame"
+                class="real-game-iframe"
+                src="/gold_rush_template/standalone_game/index.html?portal=bwn&currency=PKR"
+                allow="autoplay; fullscreen; screen-wake-lock; accelerometer; gyroscope"
+                allowfullscreen="true"
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
+                scrolling="no"
+                frameborder="0">
+            </iframe>
+
+            <!-- Floating Win Toast Banner -->
+            <div class="spin-win-toast" id="spinWinToast">
+                🎉 WIN! +<span id="toastWinAmount">PKR 0.00</span>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // REAL WALLET SYSTEM & BIDIRECTIONAL SYNC
+        // ------------------------------------------------------------------
+        function getStoredRealBalance() {
+            var bal = 17681.00;
+            if (typeof getRealWalletBalance === 'function') {
+                bal = getRealWalletBalance();
+            } else if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                bal = window.wallet.getBalance();
+            } else {
+                try {
+                    var u = JSON.parse(localStorage.getItem('bwn_session_user') || localStorage.getItem('currentUser') || 'null');
+                    if (u && (u.balance_pkr !== undefined || u.balancePKR !== undefined)) {
+                        bal = parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : u.balancePKR);
+                    } else if (u && u.balance !== undefined) {
+                        bal = parseFloat(u.balance);
+                    } else {
+                        var l = localStorage.getItem("wallet_balance") || localStorage.getItem("BETWITHNET_balance");
+                        if (l !== null) bal = parseFloat(l);
+                    }
+                } catch(e) {}
+            }
+            if (isNaN(bal) || bal < 0) bal = 0;
+            return bal;
+        }
+
+        var bwnCurrentBal = getStoredRealBalance();
+
+        function updateRealBalance(newBal) {
+            bwnCurrentBal = Math.max(0, newBal);
+            localStorage.setItem('wallet_balance', bwnCurrentBal.toString());
+            localStorage.setItem('BETWITHNET_balance', bwnCurrentBal.toString());
+
+            var el = document.getElementById('walletBalance');
+            if (el) el.innerText = bwnCurrentBal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            // Notify embedded game of balance update
+            var frame = document.getElementById('goldRushFrame');
+            if (frame && frame.contentWindow) {
+                frame.contentWindow.postMessage({ action: 'updateBalance', balance: bwnCurrentBal }, '*');
+            }
+        }
+
+        function refreshWalletBalance() {
+            var cur = getStoredRealBalance();
+            updateRealBalance(cur);
+        }
+
+        // Initialize UI with real balance
+        updateRealBalance(bwnCurrentBal);
+
+        // ------------------------------------------------------------------
+        // CROSS-FRAME MESSAGING (Game -> BWN Wrapper & BWN -> Game)
+        // ------------------------------------------------------------------
+        window.addEventListener('message', function(e) {
+            if (!e.data) return;
+
+            // Handle bet deduction from game
+            if (e.data.action === 'bwn_bet') {
+                var betAmount = parseFloat(e.data.amount) || 0;
+                if (betAmount > 0) {
+                    if (window.wallet && typeof window.wallet.addBalancePKR === 'function') {
+                        window.wallet.addBalancePKR(-betAmount);
+                    }
+                    bwnCurrentBal = Math.max(0, bwnCurrentBal - betAmount);
+                    localStorage.setItem('wallet_balance', bwnCurrentBal.toString());
+                    localStorage.setItem('BETWITHNET_balance', bwnCurrentBal.toString());
+
+                    var el = document.getElementById('walletBalance');
+                    if (el) el.innerText = bwnCurrentBal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            }
+
+            // Handle win payout from game
+            else if (e.data.action === 'bwn_win') {
+                var winAmount = parseFloat(e.data.amount) || 0;
+                if (winAmount > 0) {
+                    if (window.wallet && typeof window.wallet.addBalancePKR === 'function') {
+                        window.wallet.addBalancePKR(winAmount);
+                    }
+                    bwnCurrentBal += winAmount;
+                    localStorage.setItem('wallet_balance', bwnCurrentBal.toString());
+                    localStorage.setItem('BETWITHNET_balance', bwnCurrentBal.toString());
+
+                    var el = document.getElementById('walletBalance');
+                    if (el) el.innerText = bwnCurrentBal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                    // Show Win Toast
+                    var toast = document.getElementById('spinWinToast');
+                    var toastAmt = document.getElementById('toastWinAmount');
+                    if (toast && toastAmt) {
+                        toastAmt.innerText = 'PKR ' + winAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        toast.classList.add('show');
+                        setTimeout(function() { toast.classList.remove('show'); }, 3500);
+                    }
+                }
+            }
+        });
+
+        function sendActionToGame(actionName) {
+            var frame = document.getElementById('goldRushFrame');
+            if (frame && frame.contentWindow) {
+                frame.contentWindow.postMessage({ action: actionName }, '*');
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // HUD COLLAPSE & FULLSCREEN
+        // ------------------------------------------------------------------
+        function toggleHudCollapse() {
+            var hud = document.getElementById('topHud');
+            var pill = document.getElementById('hudRestorePill');
+            if (hud) hud.classList.toggle('collapsed');
+            if (pill) pill.classList.toggle('show');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(function() {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // Initial balance push when iframe loads
+        var goldFrame = document.getElementById('goldRushFrame');
+        if (goldFrame) {
+            goldFrame.addEventListener('load', function() {
+                setTimeout(function() {
+                    goldFrame.contentWindow.postMessage({ action: 'updateBalance', balance: bwnCurrentBal }, '*');
+                }, 500);
+            });
+        }
+    </script>
+</body>
+</html>

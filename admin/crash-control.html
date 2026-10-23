@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Crash Live Controller - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .radar-box {
+            background: radial-gradient(circle at center, #0c1824 0%, #060a10 100%);
+            border: 2px solid var(--lte-border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+        }
+        .radar-box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            height: 280px;
+            margin-top: -140px;
+            margin-left: -140px;
+            border: 1px dashed rgba(0, 231, 0, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: radarSpin 10s linear infinite;
+        }
+        @keyframes radarSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .radar-multiplier {
+            font-size: 64px;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(0, 231, 0, 0.4);
+            margin: 15px 0 10px 0;
+            transition: color 0.2s;
+        }
+        .btn-big-crash {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff4757 0%, #b71c1c 100%);
+            border: 2px solid #ff7675;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 71, 87, 0.6);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .btn-big-crash:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(255, 71, 87, 0.9);
+        }
+        .btn-big-crash:active {
+            transform: scale(0.98);
+        }
+        .btn-big-auto {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #00b09b 0%, #10ac84 100%);
+            border: 2px solid #2ecc71;
+            border-radius: 10px;
+            color: #0b1510;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(0, 231, 0, 0.5);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .btn-big-auto:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 231, 0, 0.8);
+        }
+        .btn-big-auto:active {
+            transform: scale(0.98);
+        }
+        .crash-preset-btn {
+            padding: 8px 14px;
+            border-radius: 6px;
+            background: #111722;
+            border: 1px solid var(--lte-border);
+            color: #8e9bb0;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+                .real-bet-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: rgba(17, 23, 34, 0.95);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            font-size: 12px;
+            color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+        .real-bet-chip.cashed {
+            border-color: rgba(0, 231, 0, 0.5);
+            background: rgba(0, 231, 0, 0.1);
+        }
+        .real-bet-chip.crashed {
+            border-color: rgba(255, 71, 87, 0.4);
+            background: rgba(255, 71, 87, 0.08);
+            opacity: 0.75;
+        }
+        .real-bet-chip.rigged {
+            border-color: rgba(255, 71, 87, 0.85);
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.4);
+        }
+        .btn-rig-mini {
+            padding: 4px 9px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s;
+        }
+        .btn-rig-loss {
+            background: #ff4757;
+            color: #fff;
+        }
+        .btn-rig-loss:hover {
+            background: #ff6b81;
+            transform: scale(1.05);
+        }
+        .btn-rig-fair {
+            background: #2ed573;
+            color: #000;
+        }
+        .btn-rig-fair:hover {
+            background: #7bed9f;
+            transform: scale(1.05);
+        }
+        .crash-preset-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-color: #526175;
+        }
+    </style>
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#andarbahar-radar" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🃏</span>
+                        <span style="color:#ffd700; font-weight:800;">Andar Bahar Radar</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#ffd700; color:#000; font-weight:800;">LIVE</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">Live Studios / <b style="color:#fff;">Crash Controller & Rigging</b></span>
+            </div>
+            <div class="navbar-right">
+                <a href="../games/crash.html" target="_blank" class="btn-lte btn-lte-secondary" style="color:var(--lte-green);">
+                    <span>🚀 Launch Crash Player Game</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>🚀</span> Live Crash Radar & Manual Rig Trigger
+                    </h1>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-top:4px;">
+                        Monitor live rocket flights, set predetermined crash multipliers, or trigger instant emergency crash on click.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Radar Monitor Card -->
+            <div class="lte-card" style="margin-bottom:24px;">
+                
+                <!-- REAL USERS LIVE BETS SUMMARY STRIP (RADAR KE UPAR) -->
+                <div style="background:linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(13, 20, 32, 0.98) 100%); border:1px solid rgba(0, 229, 255, 0.3); border-radius:10px; padding:14px 18px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(0,229,255,0.15); border:1px solid rgba(0,229,255,0.3); font-size:18px;">ðŸŽ¯</span>
+                                <div>
+                                    <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.8px; color:var(--lte-cyan); font-weight:800;">Real Users Live Bets</div>
+                                    <div style="font-size:11px; color:var(--lte-muted);">Sirf Real Users Ki Bets (Bots Excluded)</div>
+                                </div>
+                            </div>
+                            
+                            <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:8px; background:rgba(0,0,0,0.5); border:1px solid var(--lte-border);">
+                                <span style="font-size:12px; color:var(--lte-muted); font-weight:700;">Kitni Bet Lagi:</span>
+                                <span id="real-bets-count-badge" style="font-size:16px; font-weight:900; color:#00e5ff; font-family:'JetBrains Mono',monospace;">0 Bets</span>
+                            </div>
+
+                            <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:8px; background:rgba(0,0,0,0.5); border:1px solid var(--lte-border);">
+                                <span style="font-size:12px; color:var(--lte-muted); font-weight:700;">Kitna Ki (Total Amount):</span>
+                                <span id="real-bets-total-badge" style="font-size:16px; font-weight:900; color:#ffd700; font-family:'JetBrains Mono',monospace;">â‚¨ 0 PKR</span>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span id="real-bets-round-pill" style="font-size:11px; font-weight:700; padding:5px 12px; border-radius:6px; background:#111722; border:1px solid var(--lte-border); color:var(--lte-muted); font-family:'JetBrains Mono',monospace;">Round #---</span>
+                            <span id="real-bets-status-pill" style="font-size:11px; font-weight:800; padding:5px 12px; border-radius:6px; background:rgba(0,231,0,0.15); color:#00e700; border:1px solid rgba(0,231,0,0.3);">ðŸŸ¢ LIVE RADAR STREAM</span>
+                        </div>
+                    </div>
+
+                    <!-- Real User Bet Chips Strip (On Top of Radar) -->
+                    <div id="real-bets-live-chips" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); min-height:28px; align-items:center;">
+                        <span style="font-size:12px; color:var(--lte-muted); font-style:italic;">Waiting for real user bets in next round...</span>
+                    </div>
+                </div>
+
+                <div class="radar-box">
+                    <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
+                        <span id="radar-indicator" style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#00e700; box-shadow:0 0 10px #00e700;"></span>
+                        <span id="crash-radar-status" style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#00e700;">
+                            STANDBY / IDLE
+                        </span>
+                    </div>
+
+                    <!-- Real Bets Radar Banner Badge -->
+                    <div id="radar-live-real-bets-pill" style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:14px; background:rgba(0,229,255,0.1); border:1px solid rgba(0,229,255,0.3); font-size:12px; font-weight:800; color:#00e5ff; font-family:'JetBrains Mono',monospace; margin-top:10px;">
+                        <span>ðŸ‘¥ Real Bets: <b>0</b></span>
+                        <span style="opacity:0.4;">|</span>
+                        <span>ðŸ’° Total: <b>â‚¨ 0 PKR</b></span>
+                    </div>
+
+                    <div class="radar-multiplier" id="crash-radar-text">1.00x</div>
+                    <div style="font-size:12px; color:var(--lte-muted); margin-bottom:8px;">Live Studio Telemetry (Synchronized via LocalStorage & Server API)</div>
+                    
+                    <!-- Radar Mode Badge -->
+                    <div id="radar-mode-badge" style="display:inline-flex; align-items:center; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:800; border:1px solid rgba(0,231,0,0.4); background:rgba(0,231,0,0.1); color:#00e700;">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00e700; margin-right:6px; box-shadow:0 0 8px #00e700;"></span> AUTO MODE (DYNAMIC RTP) ACTIVE
+                    </div>
+                </div>
+
+                <!-- Instant Crash Force & Auto Mode Buttons Side by Side -->
+                <div style="margin-top:20px;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; max-width:800px; margin:0 auto;">
+                        <button class="btn-big-crash" onclick="triggerInstantCrash()">
+                            <span>💥</span>
+                            <span>CRASH NOW (FORCE EXPLODE)</span>
+                        </button>
+                        <button class="btn-big-auto" onclick="activateAutoMode()">
+                            <span>🔄</span>
+                            <span>AUTO MODE (RESET TO DYNAMIC RTP)</span>
+                        </button>
+                    </div>
+                    <p style="font-size:11px; color:var(--lte-muted); margin-top:12px; text-align:center;">
+                        💡 <b>Auto Mode:</b> Radar ya target set karne ke baad agar game ko dobara automatic dynamic RTP par chalana ho, foran <b>AUTO MODE</b> dabayein!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Real Users Live Bet Ledger Table Card -->
+            <div class="lte-card" style="margin-bottom:24px; border:1px solid rgba(0, 229, 255, 0.25);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+                    <div>
+                        <h3 style="font-size:16px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+                            <span>ðŸ“¡</span> Real Users Live Bet Ledger (Crash Radar)
+                        </h3>
+                        <p style="font-size:12px; color:var(--lte-muted); margin-top:2px;">
+                            Sirf genuine real accounts ki live bets, amounts aur cashout telemetry (Bots excluded).
+                        </p>
+                    </div>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <span id="ledger-mode-indicator" class="badge-status badge-active" style="font-size:11px;">Active Round</span>
+                        <button class="btn-lte btn-lte-secondary" style="padding:4px 10px; font-size:11px;" onclick="fetchLiveTelemetry()">ðŸ”„ Refresh</button>
+                    </div>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="datatable" style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="border-bottom:1px solid var(--lte-border); text-align:left; font-size:11px; text-transform:uppercase; color:var(--lte-muted);">
+                                <th style="padding:10px 12px;">Real User</th>
+                                <th style="padding:10px 12px;">Bet Amount</th>
+                                <th style="padding:10px 12px;">Target Auto</th>
+                                <th style="padding:10px 12px;">Live Multiplier / Status</th>
+                                <th style="padding:10px 12px;">Profit / Payout</th>
+                                <th style="padding:10px 12px;">Rig Bias</th>
+                                <th style="padding:10px 12px; text-align:right;">Quick Rig Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="real-bets-table-body">
+                            <tr>
+                                <td colspan="7" style="text-align:center; padding:24px; color:var(--lte-muted); font-size:13px;">
+                                    Waiting for real users to place bets...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Pre-Determined Crash Target Multiplier -->
+            <div class="lte-card" style="max-width:850px;">
+                <h2 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:6px;">
+                    🎯 Target Next Flight Crash Multiplier:
+                </h2>
+                <p style="font-size:12px; color:var(--lte-muted); margin-bottom:16px;">
+                    Pre-rig the exact multiplier where the next round will crash automatically.
+                </p>
+
+                <div style="display:flex; gap:10px; align-items:center; margin-bottom:16px; flex-wrap:wrap;">
+                    <input type="number" id="input-next-crash" class="form-ctrl" style="max-width:180px;" step="0.05" min="1.00" value="1.20" placeholder="e.g. 1.20">
+                    <button class="btn-lte btn-lte-primary" style="padding:10px 18px;" onclick="saveNextCrash()">
+                        <span>🎯 Set Next Crash Point</span>
+                    </button>
+                    <button class="btn-lte btn-lte-secondary" style="padding:10px 18px; color:var(--lte-green); border:1px solid rgba(0,231,0,0.4);" onclick="activateAutoMode()">
+                        <span>🔄 Reset to Auto (Dynamic)</span>
+                    </button>
+                    <span id="current-preset-label" style="font-size:12px; color:var(--lte-gold); font-weight:700;"></span>
+                </div>
+
+                <div style="font-size:11px; font-weight:800; color:var(--lte-muted); margin-bottom:8px; text-transform:uppercase;">Quick Presets:</div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="crash-preset-btn" style="color:var(--lte-red); border-color:rgba(255,71,87,0.3);" onclick="setQuickCrash(1.00)">1.00x (Instant Bust 💀)</button>
+                    <button class="crash-preset-btn" onclick="setQuickCrash(1.15)">1.15x (Ultra Low)</button>
+                    <button class="crash-preset-btn" onclick="setQuickCrash(1.35)">1.35x (Quick Loss)</button>
+                    <button class="crash-preset-btn" onclick="setQuickCrash(1.95)">1.95x (Just Under 2x)</button>
+                    <button class="crash-preset-btn" onclick="setQuickCrash(2.50)">2.50x (Medium)</button>
+                    <button class="crash-preset-btn" onclick="setQuickCrash(5.00)">5.00x (High)</button>
+                    <button class="crash-preset-btn" style="color:var(--lte-gold); border-color:rgba(245,197,24,0.3);" onclick="setQuickCrash(25.00)">25.00x (Mega Run 🚀)</button>
+                    <button class="crash-preset-btn" style="color:var(--lte-gold); border-color:rgba(245,197,24,0.3);" onclick="setQuickCrash(100.00)">100.00x (Moon 🌕)</button>
+                </div>
+            </div>
+
+            <!-- Speedy Andar Bahar Live Radar & Outcome Controller -->
+            <div class="lte-card" id="andarbahar-radar" style="max-width:850px; margin-top:22px; border:1px solid rgba(255,215,0,0.4);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                    <div>
+                        <h2 style="font-size:18px; font-weight:900; color:#ffd700; margin:0; display:flex; align-items:center; gap:8px;">
+                            <span>🃏</span> Speedy Andar Bahar Live Radar & Outcome Controller
+                        </h2>
+                        <p style="font-size:12px; color:var(--lte-muted); margin:4px 0 0 0;">
+                            Connected live to <a href="../games/andarbahar.html" target="_blank" style="color:#00e5ff; font-weight:700;">/games/andarbahar.html</a> — Jo button aap dabayenge, game mein wohi outcome aayega!
+                        </p>
+                    </div>
+                    <a href="../games/andarbahar.html" target="_blank" class="btn-lte btn-lte-primary" style="padding:8px 14px; font-size:12px; text-decoration:none;">
+                        🎮 Open Andar Bahar
+                    </a>
+                </div>
+
+                <div class="radar-box" style="padding:20px; margin-bottom:16px;">
+                    <div style="font-size:11px; color:var(--lte-muted); font-weight:800; text-transform:uppercase;">
+                        ROUND <span id="lte-ab-round" style="color:#00e5ff;">#STANDBY</span> • <span id="lte-ab-status" style="color:#00e700;">WAITING FOR PLAYER</span>
+                    </div>
+                    <div style="display:flex; justify-content:center; align-items:center; gap:24px; flex-wrap:wrap; margin:14px 0;">
+                        <div style="background:#fff; color:#111; width:74px; height:102px; border-radius:8px; border:3px solid #ffd700; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                            <span style="font-size:9px; font-weight:800; color:#64748b;">JOKER</span>
+                            <span id="lte-ab-joker" style="font-size:28px; font-weight:900; font-family:monospace; color:#e11d48;">♥10</span>
+                        </div>
+                        <div style="text-align:left;">
+                            <div style="font-size:13px; color:#fff; font-weight:800; margin-bottom:6px;">
+                                🟦 Andar Bets: <span id="lte-ab-bet-a" style="color:#38bdf8;">₨ 0</span> &nbsp;|&nbsp;
+                                🟥 Bahar Bets: <span id="lte-ab-bet-b" style="color:#fb7185;">₨ 0</span>
+                            </div>
+                            <div style="font-size:12px; color:#cbd5e1; margin-bottom:8px;">
+                                ⭐ Side Bets: <span id="lte-ab-bet-side" style="color:#ffd700;">₨ 0</span> &nbsp;|&nbsp;
+                                💰 Total: <span id="lte-ab-bet-tot" style="color:#00e700;">₨ 0</span>
+                            </div>
+                            <div id="lte-ab-mode-badge" style="display:inline-flex; align-items:center; padding:5px 12px; border-radius:16px; font-size:11px; font-weight:800; border:1px solid rgba(0,231,0,0.4); background:rgba(0,231,0,0.1); color:#00e700;">
+                                🔄 AUTO / FAIR MODE ACTIVE
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:10px; margin-bottom:12px;">
+                    <button class="btn-lte" style="padding:14px; background:linear-gradient(135deg,#0052cc,#0191ff); color:#fff; font-weight:900; border:2px solid #38bdf8; border-radius:8px; cursor:pointer;" onclick="setLTEABMode('force_andar')">
+                        🟦 FORCE ANDAR WIN
+                    </button>
+                    <button class="btn-lte" style="padding:14px; background:linear-gradient(135deg,#b71c1c,#ff3829); color:#fff; font-weight:900; border:2px solid #fb7185; border-radius:8px; cursor:pointer;" onclick="setLTEABMode('force_bahar')">
+                        🟥 FORCE BAHAR WIN
+                    </button>
+                    <button class="btn-lte" style="padding:14px; background:linear-gradient(135deg,#4a0e17,#991b1b); color:#ffdada; font-weight:900; border:2px solid #ff4757; border-radius:8px; cursor:pointer;" onclick="setLTEABMode('house_win')">
+                        💀 HOUSE WIN (PLAYER LOSE)
+                    </button>
+                    <button class="btn-lte" style="padding:14px; background:linear-gradient(135deg,#065f46,#059669); color:#fff; font-weight:900; border:2px solid #00e700; border-radius:8px; cursor:pointer;" onclick="setLTEABMode('player_win')">
+                        👑 PLAYER WIN (VIP BOOST)
+                    </button>
+                </div>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="crash-preset-btn" style="color:#38bdf8; border-color:#38bdf8;" onclick="setLTEABMode('first_andar')">⚡ 1st Card ANDAR Win</button>
+                    <button class="crash-preset-btn" style="color:#fb7185; border-color:#fb7185;" onclick="setLTEABMode('first_bahar')">⚡ 1st Card BAHAR Win</button>
+                    <button class="crash-preset-btn" style="color:#00e700; border-color:#00e700; font-weight:900;" onclick="setLTEABMode('auto')">🔄 Reset to AUTO / FAIR Mode</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js?v=radar_fix_v1"></script>
+    <script>
+        let isCrashBusy = false;
+
+        async function fetchLiveTelemetry() {
+            try {
+                const res = await fetch('/api/games.php?action=crash_state', { cache: 'no-store' });
+                const json = await res.json();
+                if (json && json.success && json.data) {
+                    const d = json.data;
+                    updateRadarDisplay(d.status || 'idle', (d.multiplier || 1.00).toFixed(2), d.next_crash_point);
+                    renderRealBets(d);
+                    const lbl = document.getElementById('current-preset-label');
+                    if (lbl) {
+                        lbl.innerText = d.next_crash_point ? `Active Target: ${Number(d.next_crash_point).toFixed(2)}x` : '';
+                    }
+                    return;
+                }
+            } catch (e) {}
+
+            // Fallback to local storage if network or offline
+            const status = localStorage.getItem('bwn_crash_live_status') || 'idle';
+            const mul = localStorage.getItem('bwn_crash_live_multiplier') || '1.00';
+            const nextPt = localStorage.getItem('bwn_admin_next_crash');
+            updateRadarDisplay(status, mul, nextPt);
+        }
+
+        function updateRadarDisplay(status, mul, nextPoint) {
+            const radarText = document.getElementById('crash-radar-text');
+            const radarStatus = document.getElementById('crash-radar-status');
+            const radarInd = document.getElementById('radar-indicator');
+            const modeBadge = document.getElementById('radar-mode-badge');
+
+            if (radarText) {
+                radarText.innerText = `${mul}x`;
+                radarText.style.color = (status === 'running' || status === 'flying') ? '#00e700' : (status === 'crashed' ? '#ff4757' : '#ffffff');
+            }
+
+            if (radarStatus && radarInd) {
+                if (status === 'running' || status === 'flying') {
+                    radarStatus.innerText = '🟢 PLANE IN FLIGHT (ACTIVE ROUND)';
+                    radarStatus.style.color = '#00e700';
+                    radarInd.style.background = '#00e700';
+                    radarInd.style.boxShadow = '0 0 12px #00e700';
+                } else if (status === 'crashed') {
+                    radarStatus.innerText = '🔴 PLANE CRASHED / ROUND OVER';
+                    radarStatus.style.color = '#ff4757';
+                    radarInd.style.background = '#ff4757';
+                    radarInd.style.boxShadow = '0 0 12px #ff4757';
+                } else {
+                    radarStatus.innerText = '⚪ STANDBY / WAITING FOR BETS';
+                    radarStatus.style.color = '#8e9bb0';
+                    radarInd.style.background = '#8e9bb0';
+                    radarInd.style.boxShadow = 'none';
+                }
+            }
+
+            if (modeBadge) {
+                if (nextPoint) {
+                    modeBadge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#f5a623; margin-right:6px; box-shadow:0 0 8px #f5a623;"></span> MANUAL TARGET SET (${Number(nextPoint).toFixed(2)}x)`;
+                    modeBadge.style.color = '#f5a623';
+                    modeBadge.style.borderColor = 'rgba(245,166,35,0.4)';
+                    modeBadge.style.background = 'rgba(245,166,35,0.1)';
+                } else {
+                    modeBadge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00e700; margin-right:6px; box-shadow:0 0 8px #00e700;"></span> AUTO MODE (DYNAMIC RTP) ACTIVE`;
+                    modeBadge.style.color = '#00e700';
+                    modeBadge.style.borderColor = 'rgba(0,231,0,0.4)';
+                    modeBadge.style.background = 'rgba(0,231,0,0.1)';
+                }
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function isGenuineRealUser(bet) {
+            if (!bet) return false;
+            const name = String(bet.id || bet.username || '').trim();
+            if (!name) return false;
+            const lower = name.toLowerCase();
+            if (lower.startsWith('bot_') || 
+                lower.startsWith('bot-') ||
+                lower.startsWith('guest_') || 
+                lower.startsWith('demo_') || 
+                lower.startsWith('demoauto') || 
+                lower.startsWith('appplayer_')) {
+                return false;
+            }
+            return true;
+        }
+
+        function renderRealBets(d) {
+            const countBadge = document.getElementById('real-bets-count-badge');
+            const totalBadge = document.getElementById('real-bets-total-badge');
+            const roundPill = document.getElementById('real-bets-round-pill');
+            const chipsContainer = document.getElementById('real-bets-live-chips');
+            const radarPill = document.getElementById('radar-live-real-bets-pill');
+            const tableBody = document.getElementById('real-bets-table-body');
+            const ledgerMode = document.getElementById('ledger-mode-indicator');
+
+            if (roundPill && d.round_id) {
+                roundPill.innerText = `Round #${d.round_id}`;
+            }
+
+            // Real active bets in current flight
+            const activeRaw = d.real_active_bets || (d.active_bets || []).filter(isGenuineRealUser);
+            // Real prev bets in last flight
+            const prevRaw = d.real_prev_bets || (d.prev_bets || []).filter(isGenuineRealUser);
+
+            const isFlight = (d.status === 'flying' || d.status === 'running');
+            const curMult = parseFloat(d.multiplier) || 1.00;
+
+            let displayBets = [];
+            let isCurrentRound = true;
+
+            if (activeRaw.length > 0) {
+                displayBets = activeRaw;
+                isCurrentRound = true;
+                if (ledgerMode) {
+                    ledgerMode.innerText = isFlight ? 'ðŸš€ In Flight' : 'â³ Waiting Bets';
+                    ledgerMode.className = isFlight ? 'badge-status badge-active' : 'badge-status badge-rigged';
+                }
+            } else if (prevRaw.length > 0) {
+                // Show recent finished bets
+                displayBets = prevRaw.slice(0, 15);
+                isCurrentRound = false;
+                if (ledgerMode) {
+                    ledgerMode.innerText = 'ðŸ Last Round Bets';
+                    ledgerMode.className = 'badge-status badge-suspended';
+                }
+            }
+
+            const totalCount = displayBets.length;
+            const totalPKR = displayBets.reduce((s, b) => s + (parseFloat(b.betPKR || b.amount || 0) || 0), 0);
+
+            if (countBadge) {
+                countBadge.innerText = `${totalCount} ${totalCount === 1 ? 'Bet' : 'Bets'}` + (isCurrentRound ? '' : ' (Recent)');
+            }
+            if (totalBadge) {
+                totalBadge.innerText = `â‚¨ ${totalPKR.toLocaleString()} PKR`;
+            }
+
+            if (radarPill) {
+                radarPill.innerHTML = `<span>ðŸ‘¥ Real Bets: <b>${totalCount}</b></span> <span style="opacity:0.4;">|</span> <span>ðŸ’° Total: <b>â‚¨ ${totalPKR.toLocaleString()} PKR</b></span>`;
+                radarPill.style.borderColor = totalCount > 0 ? 'rgba(0,229,255,0.6)' : 'rgba(0,229,255,0.2)';
+            }
+
+            // Render Real Bet Chips above Radar
+            if (chipsContainer) {
+                if (displayBets.length === 0) {
+                    chipsContainer.innerHTML = `<span style="font-size:12px; color:var(--lte-muted); font-style:italic;">No real bets placed yet in this round.</span>`;
+                } else {
+                    chipsContainer.innerHTML = displayBets.map(b => {
+                        const uname = escapeHtml(b.id || b.username || 'Real User');
+                        const amt = (parseFloat(b.betPKR || b.amount || 0) || 0).toLocaleString();
+                        const isRig = (b.isRiggedUser || (b.outcomeBias && ['force_loss', 'force_stop', 'stop', 'loss'].includes(b.outcomeBias)));
+                        
+                        let chipStatus = '';
+                        let chipCls = '';
+                        if (b.cashedOut) {
+                            chipCls = 'cashed';
+                            chipStatus = `âœ… ${Number(b.cashoutMult || 0).toFixed(2)}x (+â‚¨ ${(parseFloat(b.winPKR || 0) || 0).toLocaleString()})`;
+                        } else if (d.status === 'crashed') {
+                            chipCls = 'crashed';
+                            chipStatus = `ðŸ’¥ Lost`;
+                        } else if (isFlight) {
+                            chipStatus = `ðŸš€ @ ${curMult.toFixed(2)}x`;
+                        } else {
+                            chipStatus = `â³ Waiting`;
+                        }
+
+                        const rigTag = isRig ? `<span style="color:#ff4757; font-weight:900; font-size:10px;">ðŸ›‘ RIGGED</span>` : '';
+
+                        return `
+                            <div class="real-bet-chip ${chipCls} ${isRig ? 'rigged' : ''}">
+                                <span style="color:var(--lte-cyan); font-weight:800;">ðŸ‘¤ ${uname}</span>
+                                <span style="color:#ffd700; font-weight:800; font-family:'JetBrains Mono',monospace;">â‚¨ ${amt}</span>
+                                <span style="font-size:11px; font-weight:700;">${chipStatus}</span>
+                                ${rigTag}
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // Render Table Rows
+            if (tableBody) {
+                if (displayBets.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align:center; padding:24px; color:var(--lte-muted); font-size:13px;">
+                                Waiting for real users to place bets...
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    tableBody.innerHTML = displayBets.map(b => {
+                        const uname = escapeHtml(b.id || b.username || 'Real User');
+                        const amt = (parseFloat(b.betPKR || b.amount || 0) || 0);
+                        const autoTarget = b.targetCashout ? `${Number(b.targetCashout).toFixed(2)}x` : '<span style="color:var(--lte-muted);">Manual</span>';
+                        const isRig = (b.isRiggedUser || (b.outcomeBias && ['force_loss', 'force_stop', 'stop', 'loss'].includes(b.outcomeBias)));
+
+                        let statusCol = '';
+                        let payoutCol = '';
+
+                        if (b.cashedOut) {
+                            const won = parseFloat(b.winPKR || 0) || (amt * (parseFloat(b.cashoutMult) || 1));
+                            statusCol = `<span class="badge-status badge-active" style="font-size:11px;">âœ… Cashed @ ${Number(b.cashoutMult || 0).toFixed(2)}x</span>`;
+                            payoutCol = `<span style="color:#00e700; font-weight:800; font-family:'JetBrains Mono',monospace;">+â‚¨ ${won.toLocaleString()} PKR</span>`;
+                        } else if (d.status === 'crashed') {
+                            statusCol = `<span class="badge-status badge-suspended" style="font-size:11px;">ðŸ’¥ Busted</span>`;
+                            payoutCol = `<span style="color:#ff4757; font-weight:700; font-family:'JetBrains Mono',monospace;">-â‚¨ ${amt.toLocaleString()} PKR</span>`;
+                        } else if (isFlight) {
+                            const curPotential = Math.round(amt * curMult);
+                            statusCol = `<span class="badge-status" style="background:rgba(0,229,255,0.15); color:#00e5ff; font-size:11px;">ðŸš€ Flying @ ${curMult.toFixed(2)}x</span>`;
+                            payoutCol = `<span style="color:#ffd700; font-weight:700; font-family:'JetBrains Mono',monospace;">~â‚¨ ${curPotential.toLocaleString()} PKR</span>`;
+                        } else {
+                            statusCol = `<span class="badge-status" style="background:#111722; color:var(--lte-muted); font-size:11px;">â³ Waiting</span>`;
+                            payoutCol = `<span style="color:var(--lte-muted); font-family:'JetBrains Mono',monospace;">Pending</span>`;
+                        }
+
+                        let rigBadge = `<span class="badge-status" style="background:#111722; color:var(--lte-muted); font-size:10px;">ðŸŸ¢ Fair RTP</span>`;
+                        if (isRig) {
+                            rigBadge = `<span class="badge-status badge-suspended" style="font-size:10px;" title="Capped strictly between 1.03x - 1.08x">ðŸ›‘ Force Loss (1.03-1.08x)</span>`;
+                        } else if (b.outcomeBias === 'force_win') {
+                            rigBadge = `<span class="badge-status badge-active" style="font-size:10px;">â­ Force Win</span>`;
+                        }
+
+                        const rigBtn = isRig ? `
+                            <button class="btn-rig-mini btn-rig-fair" onclick="quickRigUser('${escapeHtml(b.id || b.username)}', 'fair')" title="Reset user to fair RTP">
+                                ðŸ”„ Set Fair
+                            </button>
+                        ` : `
+                            <button class="btn-rig-mini btn-rig-loss" onclick="quickRigUser('${escapeHtml(b.id || b.username)}', 'force_loss')" title="Force Loss: Plane will strictly crash 1.03-1.08x">
+                                ðŸ›‘ Rig Loss
+                            </button>
+                        `;
+
+                        return `
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                                <td style="padding:10px 12px;">
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:24px; height:24px; border-radius:50%; background:${b.avatarColor || '#00e5ff'}; display:inline-flex; align-items:center; justify-content:center; color:#000; font-size:11px; font-weight:900;">
+                                            ${uname.charAt(0).toUpperCase()}
+                                        </span>
+                                        <span style="font-weight:800; color:#fff;">${uname}</span>
+                                    </div>
+                                </td>
+                                <td style="padding:10px 12px; font-weight:800; color:#ffd700; font-family:'JetBrains Mono',monospace;">
+                                    â‚¨ ${amt.toLocaleString()} PKR
+                                </td>
+                                <td style="padding:10px 12px; font-family:'JetBrains Mono',monospace;">
+                                    ${autoTarget}
+                                </td>
+                                <td style="padding:10px 12px;">
+                                    ${statusCol}
+                                </td>
+                                <td style="padding:10px 12px;">
+                                    ${payoutCol}
+                                </td>
+                                <td style="padding:10px 12px;">
+                                    ${rigBadge}
+                                </td>
+                                <td style="padding:10px 12px; text-align:right;">
+                                    ${rigBtn}
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            }
+        }
+
+        async function quickRigUser(username, bias) {
+            if (!confirm(`Are you sure you want to set rig '${bias === 'force_loss' ? 'FORCE LOSS (1.03-1.08x CAP)' : 'FAIR RTP'}' for user ${username}?`)) {
+                return;
+            }
+            try {
+                const res = await fetch('/api/admin.php?action=update_user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '7777' },
+                    body: JSON.stringify({ id: username, outcome_bias: bias, admin_pin: '7777' })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    alert(`âœ… User '${username}' successfully updated to ${bias === 'force_loss' ? 'Force Loss (Plane capped at 1.03-1.08x)' : 'Fair RTP'}!`);
+                    fetchLiveTelemetry();
+                } else {
+                    alert('Error updating user rig: ' + (json.message || 'Unknown error'));
+                }
+            } catch (e) {
+                alert('Network error: ' + e.message);
+            }
+        }
+
+        function startLiveRadar() {
+            fetchLiveTelemetry();
+            setInterval(fetchLiveTelemetry, 350);
+        }
+
+        async function triggerInstantCrash() {
+            if (isCrashBusy) return;
+            isCrashBusy = true;
+
+            const radarText = document.getElementById('crash-radar-text');
+            const radarStatus = document.getElementById('crash-radar-status');
+            const modeBadge = document.getElementById('radar-mode-badge');
+            if (radarText) {
+                radarText.innerText = '💥 CRASHED!';
+                radarText.style.color = '#ff4757';
+            }
+            if (radarStatus) {
+                radarStatus.innerText = '🔴 ADMIN FORCED CRASH!';
+                radarStatus.style.color = '#ff4757';
+            }
+            if (modeBadge) {
+                modeBadge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff4757; margin-right:6px; box-shadow:0 0 8px #ff4757;"></span> FORCED CRASH EXECUTED`;
+                modeBadge.style.color = '#ff4757';
+                modeBadge.style.borderColor = 'rgba(255,71,87,0.4)';
+                modeBadge.style.background = 'rgba(255,71,87,0.1)';
+            }
+            if (window.sound && window.sound.playCrashBoom) window.sound.playCrashBoom();
+
+            // Broadcast to local storage
+            if (window.adminConfig && window.adminConfig.triggerForceCrash) {
+                window.adminConfig.triggerForceCrash();
+            }
+
+            // Broadcast to server API
+            try {
+                const res = await fetch('/api/games.php?action=crash_control', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Admin-Pin': '9824'
+                    },
+                    body: JSON.stringify({ command: 'force_crash', admin_pin: '9824' })
+                });
+                const json = await res.json();
+                console.log('Force crash response:', json);
+            } catch (e) {
+                console.error('Crash control network error:', e);
+            }
+
+            setTimeout(() => { isCrashBusy = false; }, 1000);
+            alert('💥 Force Crash signal broadcasted! Active plane exploded on server and players screen.\n\nTip: Click AUTO MODE anytime to revert to auto dynamic rounds.');
+        }
+
+        async function activateAutoMode() {
+            if (window.adminConfig && window.adminConfig.resetCrashToAuto) {
+                window.adminConfig.resetCrashToAuto();
+            }
+            localStorage.removeItem('bwn_admin_next_crash');
+            localStorage.removeItem('bwn_admin_force_crash_now');
+            localStorage.setItem('bwn_admin_crash_mode', 'auto');
+            localStorage.setItem('bwn_admin_crash_auto_trigger', Date.now().toString());
+
+            try {
+                await fetch('/api/games.php?action=crash_control', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Admin-Pin': '9824'
+                    },
+                    body: JSON.stringify({ command: 'reset_auto', admin_pin: '9824' })
+                });
+            } catch (e) {}
+
+            const modeBadge = document.getElementById('radar-mode-badge');
+            if (modeBadge) {
+                modeBadge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00e700; margin-right:6px; box-shadow:0 0 8px #00e700;"></span> AUTO MODE (DYNAMIC RTP) ACTIVE`;
+                modeBadge.style.color = '#00e700';
+                modeBadge.style.borderColor = 'rgba(0,231,0,0.4)';
+                modeBadge.style.background = 'rgba(0,231,0,0.1)';
+            }
+            const lbl = document.getElementById('current-preset-label');
+            if (lbl) lbl.innerText = '';
+            const inp = document.getElementById('input-next-crash');
+            if (inp) inp.value = '';
+
+            alert('✅ Crash Radar reset to AUTO MODE!\n\nManual override cancelled. Dynamic 97% RTP is now automatically active.');
+        }
+
+        async function saveNextCrash() {
+            const input = document.getElementById('input-next-crash');
+            const val = input ? parseFloat(input.value) : 1.20;
+            if (isNaN(val) || val < 1.01) {
+                alert('Please enter a valid multiplier (>= 1.01)');
+                return;
+            }
+
+            localStorage.setItem('bwn_admin_next_crash', val.toFixed(2));
+            localStorage.removeItem('bwn_admin_force_crash_now');
+            localStorage.removeItem('bwn_admin_force_crash_trigger');
+            localStorage.removeItem('bwn_admin_crash_mode');
+
+            // Save locally
+            if (window.adminConfig && window.adminConfig.setNextCrashPoint) {
+                window.adminConfig.setNextCrashPoint(val);
+            }
+
+            // Save on server
+            try {
+                const res = await fetch('/api/games.php?action=crash_control', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Admin-Pin': '9824'
+                    },
+                    body: JSON.stringify({ command: 'set_next_crash', target: val, admin_pin: '9824' })
+                });
+                const json = await res.json();
+                console.log('Set next crash server response:', json);
+            } catch (e) {}
+
+            const modeBadge = document.getElementById('radar-mode-badge');
+            if (modeBadge) {
+                modeBadge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#f5a623; margin-right:6px; box-shadow:0 0 8px #f5a623;"></span> MANUAL TARGET LOCKED: ${val.toFixed(2)}x`;
+                modeBadge.style.color = '#f5a623';
+                modeBadge.style.borderColor = 'rgba(245,166,35,0.4)';
+                modeBadge.style.background = 'rgba(245,166,35,0.1)';
+            }
+
+            const lbl = document.getElementById('current-preset-label');
+            if (lbl) lbl.innerText = `Active Target: ${val.toFixed(2)}x (LOCKED)`;
+            alert(`✅ Target Crash Point locked at: ${val.toFixed(2)}x!\n\nPlane will fly up and burst at ${val.toFixed(2)}x.\n(Click "AUTO MODE" anytime to return to natural auto rounds)`);
+        }
+
+        function setQuickCrash(val) {
+            const input = document.getElementById('input-next-crash');
+            if (input) input.value = val.toFixed(2);
+            saveNextCrash();
+        }
+
+        function formatLTEABCard(cardStr) {
+            if (!cardStr) return { text: '—', color: '#111' };
+            const s = cardStr.charAt(0).toUpperCase();
+            const r = parseInt(cardStr.slice(1), 10) || 10;
+            const rMap = { 1: 'A', 11: 'J', 12: 'Q', 13: 'K' };
+            const sMap = { 'H': '♥', 'D': '♦', 'S': '♠', 'C': '♣' };
+            return {
+                text: (sMap[s] || '🃏') + (rMap[r] || r),
+                color: (s === 'H' || s === 'D') ? '#e11d48' : '#0f172a'
+            };
+        }
+
+        async function fetchLTEABTelemetry() {
+            try {
+                const res = await fetch('/api/games.php?action=ab_state', { cache: 'no-store' });
+                const json = await res.json();
+                if (json && json.success && json.data) {
+                    const d = json.data;
+                    const elR = document.getElementById('lte-ab-round');
+                    const elS = document.getElementById('lte-ab-status');
+                    const elJ = document.getElementById('lte-ab-joker');
+                    const elBA = document.getElementById('lte-ab-bet-a');
+                    const elBB = document.getElementById('lte-ab-bet-b');
+                    const elBS = document.getElementById('lte-ab-bet-side');
+                    const elBT = document.getElementById('lte-ab-bet-tot');
+                    const elM = document.getElementById('lte-ab-mode-badge');
+
+                    if (elR) elR.innerText = '#' + (d.round_id || 'STANDBY');
+                    if (elS) {
+                        if (d.status === 'betting') {
+                            elS.innerText = `🟢 BETTING OPEN (${d.time_left || 0}s)`;
+                            elS.style.color = '#00e700';
+                        } else if (d.status === 'dealing') {
+                            elS.innerText = `🃏 DEALING (${d.winner ? d.winner.toUpperCase() + ' WINS' : ''})`;
+                            elS.style.color = '#ffd700';
+                        } else {
+                            elS.innerText = '⚪ STANDBY';
+                            elS.style.color = '#8e9bb0';
+                        }
+                    }
+                    if (elJ) {
+                        const c = formatLTEABCard(d.middle_card || 'H10');
+                        elJ.innerText = c.text;
+                        elJ.style.color = c.color;
+                    }
+                    const pb = d.player_bets || {};
+                    const aAmt = (parseFloat(pb.andar) || 0) + (parseFloat(pb.first_andar) || 0);
+                    const bAmt = (parseFloat(pb.bahar) || 0) + (parseFloat(pb.first_bahar) || 0);
+                    const totAmt = parseFloat(pb.total) || 0;
+                    const sAmt = Math.max(0, totAmt - aAmt - bAmt);
+                    if (elBA) elBA.innerText = '₨ ' + aAmt.toLocaleString();
+                    if (elBB) elBB.innerText = '₨ ' + bAmt.toLocaleString();
+                    if (elBS) elBS.innerText = '₨ ' + sAmt.toLocaleString();
+                    if (elBT) elBT.innerText = '₨ ' + totAmt.toLocaleString();
+                    if (elM) {
+                        const m = d.mode || 'auto';
+                        elM.innerText = m === 'auto' ? '🔄 AUTO / FAIR MODE ACTIVE' : ('⚡ RADAR LOCKED: ' + m.toUpperCase());
+                        elM.style.color = m === 'auto' ? '#00e700' : '#ffd700';
+                    }
+                }
+            } catch (e) {}
+        }
+
+        async function setLTEABMode(mode) {
+            try {
+                localStorage.setItem('bwn_ab_radar', JSON.stringify({
+                    mode: mode,
+                    lock_mode: 'lock',
+                    target_range: 'auto',
+                    target_first3: 'auto',
+                    command_id: Date.now()
+                }));
+            } catch (e) {}
+            try {
+                await fetch('/api/games.php?action=ab_control', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    body: JSON.stringify({ mode: mode, lock_mode: 'lock', admin_pin: '9824' })
+                });
+            } catch (e) {}
+            fetchLTEABTelemetry();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            startLiveRadar();
+            fetchLTEABTelemetry();
+            setInterval(fetchLTEABTelemetry, 600);
+            const saved = localStorage.getItem('bwn_admin_next_crash');
+            if (saved) {
+                document.getElementById('current-preset-label').innerText = `Active Target: ${parseFloat(saved).toFixed(2)}x`;
+                document.getElementById('input-next-crash').value = parseFloat(saved).toFixed(2);
+            }
+        });
+    </script>
+    <script src="js/adminlte.js"></script>
+</body>
+</html>

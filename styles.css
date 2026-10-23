@@ -1,0 +1,112 @@
+/* Hook Up! Fishing Wars - Mascot Gaming Component Styles */
+
+/* Cannon Base and Barrel Container */
+.cannon-station {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+
+.cannon-barrel {
+  transform-origin: 50% 85%;
+  transition: transform 0.05s linear;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.75));
+}
+
+/* Reticle Lock-On Indicator */
+.lock-reticle {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border: 2px dashed #00f7ff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: rotateReticle 4s linear infinite;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.6);
+}
+
+.lock-reticle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #ff3366;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px #ff3366;
+}
+
+@keyframes rotateReticle {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Bullet Energy Trail */
+.bullet-glow {
+  box-shadow: 0 0 12px #ffd700, 0 0 24px #ff9900;
+}
+
+/* Floating Damage & Multiplier Popups */
+.damage-number {
+  position: absolute;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 12px rgba(255, 215, 0, 0.8);
+  pointer-events: none;
+  animation: floatUpFade 1.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes floatUpFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -20px) scale(1.25);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -45px) scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -75px) scale(0.9);
+  }
+}
+
+/* Fish Capture Electric Net Effect */
+.capture-net {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 247, 255, 0.6) 0%, rgba(0, 168, 243, 0.3) 50%, transparent 70%);
+  border: 2px solid #00f7ff;
+  animation: netExpand 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes netExpand {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+  60% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+}
+
+/* Header & Footer Dock Badges */
+.dock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(4, 24, 41, 0.85);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 9999px;
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,1 @@
+﻿window._CCSettings={platform:"web-mobile",groupList:["default"],collisionMatrix:[[true]],hasResourcesBundle:true,hasStartSceneBundle:false,remoteBundles:[],subpackages:[],launchScene:"db://assets/games/Slots/mega7042 GoldRush/scene/mega7042_loading.fire",orientation:"",jsList:[],bundleVers:{internal:"d17e2",resources:"24561",art_7042:"fccb3",main:"ba8e2"}};

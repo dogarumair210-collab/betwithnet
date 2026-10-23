@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Fortune Garuda 500 Game Online | Play For Real Money at 1x-betpk.mobi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --1x-navy-dark: #0a1322;
+            --1x-navy-header: #0e1e36;
+            --1x-navy-subnav: #142847;
+            --1x-blue: #1c8ffa;
+            --1x-blue-hover: #38bdf8;
+            --1x-green: #10b981;
+            --1x-green-hover: #059669;
+            --1x-gold: #ffd700;
+            --1x-gray-bg: #070d18;
+            --1x-card-bg: #0e1c31;
+            --1x-border: #1a2f4d;
+            --1x-text-dim: #7f99b8;
+            --1x-text-light: #dce7f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--1x-gray-bg);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------------------------------------------
+           1. TOP 1XBET MASTER HEADER
+           ------------------------------------------------------------- */
+        .portal-header {
+            background: linear-gradient(180deg, #10213d 0%, #0c182c 100%);
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--1x-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .brand-1x-logo {
+            font-family: 'Cinzel', -apple-system, sans-serif;
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+        }
+        .brand-1x-logo span {
+            color: var(--1x-blue);
+        }
+
+        .header-badge-slots {
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Primary double-row navigation */
+        .header-main-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: 14px;
+        }
+
+        @media (max-width: 980px) {
+            .header-main-nav { display: none; }
+        }
+
+        .nav-item-link {
+            padding: 6px 11px;
+            color: var(--1x-text-dim);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-item-link:hover, .nav-item-link.active {
+            color: #ffffff;
+            background: rgba(28, 143, 250, 0.15);
+        }
+        .nav-item-link.active {
+            border-bottom: 2px solid var(--1x-blue);
+            border-radius: 6px 6px 0 0;
+            color: #ffffff;
+        }
+
+        /* Header Right Controls */
+        .header-user-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .balance-chip {
+            background: #091322;
+            border: 1px solid var(--1x-border);
+            border-radius: 20px;
+            padding: 4px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--1x-gold);
+            cursor: pointer;
+        }
+        .balance-label {
+            font-size: 9.5px;
+            color: var(--1x-text-dim);
+            text-transform: uppercase;
+        }
+
+        .btn-1x-deposit {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+            transition: all 0.2s;
+        }
+        .btn-1x-deposit:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        .btn-1x-reg {
+            background: linear-gradient(180deg, #1c8ffa 0%, #0284c7 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-1x-reg:hover {
+            filter: brightness(1.1);
+        }
+
+        /* -------------------------------------------------------------
+           2. SUB NAVIGATION BAR (SLOTS TABS)
+           ------------------------------------------------------------- */
+        .portal-subnav {
+            background: var(--1x-navy-subnav);
+            height: 42px;
+            border-bottom: 2px solid var(--1x-blue);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .subnav-links-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .subnav-item {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--1x-text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .subnav-item:hover, .subnav-item.active {
+            color: #ffffff;
+        }
+
+        .subnav-tools-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-direct-clean {
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-direct-clean:hover {
+            background: rgba(28, 143, 250, 0.25);
+            border-color: var(--1x-blue);
+            color: var(--1x-blue-hover);
+        }
+
+        /* -------------------------------------------------------------
+           3. PORTAL WORKSPACE (SIDEBAR + MAIN CASINO ARENA)
+           ------------------------------------------------------------- */
+        .portal-workspace {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - 94px);
+        }
+
+        /* Left 1xBet Casino Sidebar */
+        .portal-sidebar {
+            width: 62px;
+            background: #08111e;
+            border-right: 1px solid var(--1x-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .portal-sidebar { display: none; }
+        }
+
+        .sidebar-icon-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #7188a4;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            font-size: 17px;
+        }
+        .sidebar-icon-btn span {
+            font-size: 8.5px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        .sidebar-icon-btn:hover, .sidebar-icon-btn.active {
+            background: #112239;
+            color: var(--1x-blue-hover);
+            border-color: rgba(28, 143, 250, 0.35);
+        }
+
+        /* Main Game Stage Wrapper */
+        .portal-main-stage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #040810;
+            position: relative;
+        }
+
+        /* 1xBet Slot Breadcrumb & Controls Ribbon */
+        .slot-ribbon-bar {
+            background: #0c182c;
+            border-bottom: 1px solid var(--1x-border);
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .ribbon-breadcrumbs {
+            font-size: 12px;
+            color: var(--1x-text-dim);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ribbon-breadcrumbs a {
+            color: var(--1x-text-dim);
+            text-decoration: none;
+        }
+        .ribbon-breadcrumbs a:hover {
+            color: var(--1x-blue-hover);
+        }
+        .game-title-highlight {
+            color: var(--1x-gold);
+            font-weight: 900;
+        }
+
+        .ribbon-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Demo / Real Money Mode Switcher */
+        .mode-toggle-group {
+            display: flex;
+            background: #070d17;
+            border: 1px solid var(--1x-border);
+            border-radius: 20px;
+            padding: 2px;
+        }
+
+        .mode-toggle-btn {
+            padding: 3px 10px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--1x-text-dim);
+            transition: all 0.2s;
+        }
+        .mode-toggle-btn.active {
+            background: #10b981;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+
+        .ribbon-icon-btn {
+            background: #102138;
+            border: 1px solid var(--1x-border);
+            color: var(--1x-text-light);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .ribbon-icon-btn:hover {
+            background: #162f52;
+            color: #ffffff;
+            border-color: var(--1x-blue);
+        }
+
+        /* -------------------------------------------------------------
+           4. GAME VIEWPORT CONTAINER
+           ------------------------------------------------------------- */
+        .game-viewport-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 146px);
+            min-height: 640px;
+            background: #020509;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-viewport-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* -------------------------------------------------------------
+           5. GAME INFO ACCORDION & RECOMMENDED SLOTS (1XBET OFFICIAL)
+           ------------------------------------------------------------- */
+        .game-info-tray {
+            background: #091322;
+            border-top: 1px solid var(--1x-border);
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .info-stats-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .meta-pill-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .meta-stat-card {
+            background: #0e1e36;
+            border: 1px solid var(--1x-border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .meta-stat-card .label {
+            font-size: 9.5px;
+            color: var(--1x-text-dim);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .meta-stat-card .value {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .meta-stat-card .value.gold {
+            color: var(--1x-gold);
+        }
+
+        /* Recommended Games Row */
+        .recommended-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-header-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .recommended-games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .game-thumb-card {
+            background: #0e1e36;
+            border: 1px solid var(--1x-border);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .game-thumb-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--1x-blue);
+            box-shadow: 0 4px 15px rgba(28, 143, 250, 0.2);
+        }
+
+        .thumb-icon-placeholder {
+            width: 100%;
+            height: 70px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #162f52 0%, #0d1a2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .thumb-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+        }
+        .thumb-provider {
+            font-size: 9.5px;
+            color: var(--1x-text-dim);
+        }
+
+        /* -------------------------------------------------------------
+           6. 1XBET OFFICIAL FOOTER
+           ------------------------------------------------------------- */
+        .portal-footer {
+            background: #060c16;
+            border-top: 1px solid var(--1x-border);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            color: var(--1x-text-dim);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .payment-logos-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            font-weight: 800;
+            color: #94a3b8;
+        }
+        .pay-tag {
+            background: #0d1a2d;
+            border: 1px solid var(--1x-border);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10.5px;
+        }
+
+        .footer-disclaimer {
+            max-width: 800px;
+            line-height: 1.5;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 1xBet Master Header Bar -->
+    <header class="portal-header">
+        <div class="header-brand-wrap">
+            <a href="/casino.html" class="header-logo-link" title="1xBet Casino">
+                <span class="brand-1x-logo">1X<span>BET</span></span>
+            </a>
+            <span class="header-badge-slots">SLOTS</span>
+
+            <!-- Main Navigation Links -->
+            <nav class="header-main-nav">
+                <a href="/casino.html" class="nav-item-link">TOP-EVENTS</a>
+                <a href="/casino.html" class="nav-item-link">CRICKET</a>
+                <a href="/casino.html" class="nav-item-link">SPORTS</a>
+                <a href="/casino.html" class="nav-item-link">LIVE</a>
+                <a href="/casino.html" class="nav-item-link active">CASINO</a>
+                <a href="/casino.html" class="nav-item-link">1XGAMES</a>
+                <a href="/casino.html" class="nav-item-link">PROMO</a>
+            </nav>
+        </div>
+
+        <!-- User Controls & Wallet -->
+        <div class="header-user-controls">
+            <div class="balance-chip" onclick="topUpBalance()" title="Click to Top-Up Balance">
+                <span class="balance-label">MAIN:</span>
+                <span id="portalHeaderBalance">PKR 50,000.00</span>
+            </div>
+
+            <button class="btn-1x-deposit" onclick="topUpBalance()">+ DEPOSIT</button>
+            <button class="btn-1x-reg" onclick="window.location.href='/casino.html'">LOBBY</button>
+        </div>
+    </header>
+
+    <!-- 2. Sub Navigation Bar -->
+    <nav class="portal-subnav">
+        <div class="subnav-links-left">
+            <a href="/casino.html" class="subnav-item">🎰 All Slots</a>
+            <a href="/en/slots/game/177041/fortune-garuda-500" class="subnav-item active">🦅 Fortune Garuda 500 (#177041)</a>
+            <a href="/fortune_gems_2_template/1xbet_portal_embed/index.html" class="subnav-item">💎 Fortune Gems 2</a>
+            <a href="/fortune_garuda_500_template/index.html" class="subnav-item">📦 Template Kit</a>
+        </div>
+
+        <div class="subnav-tools-right">
+            <a href="/fortune_garuda_500_template/standalone_game/index.html" target="_blank" class="btn-direct-clean">
+                📱 Full Screen Demo ↗
+            </a>
+        </div>
+    </nav>
+
+    <!-- 3. Workspace Layout (Sidebar + Main Stage) -->
+    <div class="portal-workspace">
+        <!-- 1xBet Left Sidebar -->
+        <aside class="portal-sidebar">
+            <a href="/casino.html" class="sidebar-icon-btn active" title="All Slots">
+                🎰
+                <span>Slots</span>
+            </a>
+            <a href="javascript:void(0)" class="sidebar-icon-btn" title="Favorites" onclick="toggleFavorite(this)">
+                ⭐
+                <span>Favs</span>
+            </a>
+            <a href="/casino.html" class="sidebar-icon-btn" title="Categories">
+                📑
+                <span>Menu</span>
+            </a>
+            <a href="javascript:void(0)" class="sidebar-icon-btn" title="Tournaments" onclick="alert('Fortune Garuda 500 Daily Race: Active!')">
+                🏆
+                <span>Races</span>
+            </a>
+            <a href="/fortune_garuda_500_template/index.html" class="sidebar-icon-btn" title="Template Showcase">
+                📦
+                <span>Kit</span>
+            </a>
+        </aside>
+
+        <!-- Main Game Content -->
+        <main class="portal-main-stage">
+            <!-- Breadcrumbs & Quick Controls Ribbon -->
+            <div class="slot-ribbon-bar">
+                <div class="ribbon-breadcrumbs">
+                    <a href="/casino.html">Casino</a> / 
+                    <a href="/casino.html">Slots</a> / 
+                    <span>TaDa Gaming</span> / 
+                    <strong class="game-title-highlight">Fortune Garuda 500 (ID: 177041)</strong>
+                </div>
+
+                <div class="ribbon-actions">
+                    <!-- Mode Toggle -->
+                    <div class="mode-toggle-group">
+                        <button class="mode-toggle-btn active" id="btnModeDemo" onclick="setPlayMode('DEMO')">FREE DEMO</button>
+                        <button class="mode-toggle-btn" id="btnModeReal" onclick="setPlayMode('REAL')">REAL MONEY</button>
+                    </div>
+
+                    <button class="ribbon-icon-btn" title="Toggle Fullscreen" onclick="toggleIframeFullscreen()">⛶</button>
+                    <button class="ribbon-icon-btn" title="Reload Game" onclick="reloadGame()">🔄</button>
+                    <a href="/fortune_garuda_500_template/standalone_game/index.html" target="_blank" class="btn-direct-clean">
+                        Clean View ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Game Viewport Iframe (Root-Relative Source) -->
+            <div class="game-viewport-container" id="iframeWrap">
+                <iframe id="gameIframe" src="/fortune_garuda_500_template/standalone_game/index.html" title="Fortune Garuda 500 Slot Machine" allow="fullscreen; autoplay"></iframe>
+            </div>
+
+            <!-- 5. Game Metadata & Recommended Games Section -->
+            <div class="game-info-tray">
+                <div class="info-stats-row">
+                    <div class="meta-pill-group">
+                        <div class="meta-stat-card">
+                            <span class="label">Provider</span>
+                            <span class="value">TaDa Gaming / JILI</span>
+                        </div>
+                        <div class="meta-stat-card">
+                            <span class="label">Game ID</span>
+                            <span class="value">177041</span>
+                        </div>
+                        <div class="meta-stat-card">
+                            <span class="label">Grid Structure</span>
+                            <span class="value">3x3 Reels + 4th Multiplier Reel</span>
+                        </div>
+                        <div class="meta-stat-card">
+                            <span class="label">Max Multiplier</span>
+                            <span class="value gold">500X (25,000X Win)</span>
+                        </div>
+                        <div class="meta-stat-card">
+                            <span class="label">Features</span>
+                            <span class="value">Ex NUDGE™ + Extra Bet + Gift of Garuda</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommended TaDa Gaming Games -->
+                <div class="recommended-section">
+                    <div class="section-header-title">🔥 More Popular Slots by TaDa Gaming</div>
+                    <div class="recommended-games-grid">
+                        <a href="/fortune_gems_2_template/1xbet_portal_embed/index.html" class="game-thumb-card">
+                            <div class="thumb-icon-placeholder">💎</div>
+                            <span class="thumb-name">Fortune Gems 2</span>
+                            <span class="thumb-provider">TaDa Gaming</span>
+                        </a>
+                        <a href="/casino.html" class="game-thumb-card">
+                            <div class="thumb-icon-placeholder">♠️</div>
+                            <span class="thumb-name">Super Ace</span>
+                            <span class="thumb-provider">TaDa Gaming</span>
+                        </a>
+                        <a href="/casino.html" class="game-thumb-card">
+                            <div class="thumb-icon-placeholder">🏛️</div>
+                            <span class="thumb-name">Golden Empire</span>
+                            <span class="thumb-provider">TaDa Gaming</span>
+                        </a>
+                        <a href="/casino.html" class="game-thumb-card">
+                            <div class="thumb-icon-placeholder">🏺</div>
+                            <span class="thumb-name">Ali Baba</span>
+                            <span class="thumb-provider">TaDa Gaming</span>
+                        </a>
+                        <a href="/casino.html" class="game-thumb-card">
+                            <div class="thumb-icon-placeholder">🥊</div>
+                            <span class="thumb-name">Boxing King</span>
+                            <span class="thumb-provider">TaDa Gaming</span>
+                        </a>
+                        <a href="/casino.html" class="game-thumb-card">
+                            <div class="thumb-icon-placeholder">🦬</div>
+                            <span class="thumb-name">Charge Buffalo</span>
+                            <span class="thumb-provider">TaDa Gaming</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 6. 1xBet Official Footer -->
+    <footer class="portal-footer">
+        <div class="payment-logos-row">
+            <span class="pay-tag">JazzCash</span>
+            <span class="pay-tag">Easypaisa</span>
+            <span class="pay-tag">VISA</span>
+            <span class="pay-tag">MasterCard</span>
+            <span class="pay-tag">Bitcoin (BTC)</span>
+            <span class="pay-tag">USDT TRC20</span>
+            <span class="pay-tag">Bank Transfer</span>
+            <span class="pay-tag">18+ Only</span>
+        </div>
+        <div class="footer-disclaimer">
+            1xBet is operated by Caecus N.V. in accordance with Curacao License 1668/JAZ. Playing Fortune Garuda 500 online slot for entertainment and real money gameplay. Round-the-clock support in Pakistan.
+        </div>
+    </footer>
+
+    <script>
+        // Fullscreen Toggle
+        function toggleIframeFullscreen() {
+            const wrap = document.getElementById('iframeWrap');
+            if (!document.fullscreenElement) {
+                if (wrap.requestFullscreen) {
+                    wrap.requestFullscreen();
+                } else if (wrap.webkitRequestFullscreen) {
+                    wrap.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Reload Game Frame
+        function reloadGame() {
+            const frame = document.getElementById('gameIframe');
+            frame.src = frame.src;
+        }
+
+        // Favorites toggle
+        function toggleFavorite(btn) {
+            btn.classList.toggle('active');
+            if (btn.classList.contains('active')) {
+                alert('Fortune Garuda 500 added to your favorites!');
+            }
+        }
+
+        // Play Mode Switcher (Demo vs Real)
+        function setPlayMode(mode) {
+            const btnDemo = document.getElementById('btnModeDemo');
+            const btnReal = document.getElementById('btnModeReal');
+            if (mode === 'REAL') {
+                btnDemo.classList.remove('active');
+                btnReal.classList.add('active');
+                alert('Real Money Mode: Bets and payouts are directly reflected in your main wallet.');
+            } else {
+                btnReal.classList.remove('active');
+                btnDemo.classList.add('active');
+            }
+        }
+
+        // Top up Balance
+        function topUpBalance() {
+            const currentBal = parseFloat(localStorage.getItem('user_balance') || '50000');
+            const newBal = currentBal + 10000;
+            localStorage.setItem('user_balance', newBal.toFixed(2));
+            updateBalanceDisplay(newBal);
+            alert('Deposit Successful! PKR 10,000.00 added to your balance.');
+            
+            // Notify iframe
+            const frame = document.getElementById('gameIframe');
+            if (frame && frame.contentWindow) {
+                frame.contentWindow.postMessage({ type: 'SYNC_BALANCE', balance: newBal }, '*');
+            }
+        }
+
+        function updateBalanceDisplay(bal) {
+            document.getElementById('portalHeaderBalance').innerText = 'PKR ' + parseFloat(bal).toLocaleString('en-US', { minimumFractionDigits: 2 });
+        }
+
+        // Balance Sync from Game Engine via postMessage
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'BALANCE_UPDATE') {
+                updateBalanceDisplay(e.data.balance);
+            }
+        });
+
+        // Initialize Balance on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bal = parseFloat(localStorage.getItem('user_balance') || '50000');
+            updateBalanceDisplay(bal);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Teen Patti Versus (1xBet Ditto) | Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <script src="../js/wallet.js"></script>
+    <style>
+        :root {
+            --gold: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #fff7c2 0%, #ffd700 35%, #d4af37 70%, #8a5a00 100%);
+            --bg-dark: #070210;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar */
+        .tp-header {
+            height: 52px;
+            background: linear-gradient(180deg, #1b0933 0%, #0d031c 100%);
+            border-bottom: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            z-index: 50;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1.5px solid rgba(255, 215, 0, 0.45);
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(-2px);
+        }
+
+        .btn-mode-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            border: 1.5px solid #c084fc;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+            transition: transform 0.2s;
+        }
+        .btn-mode-switch:hover {
+            transform: scale(1.04);
+        }
+
+        .tp-title-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .tp-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+            line-height: 1.1;
+        }
+        .tp-provider-tag {
+            font-size: 8.5px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #c084fc;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wallet-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+            color: #ffffff;
+            font-size: 13px;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .icon-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        /* Game Container */
+        .tp-game-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: calc(100% - 52px);
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #000;
+        }
+
+        /* Loading Preloader */
+        .loader-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, #1c0836 0%, #0d031c 60%, #030107 100%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .loader-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .spinner-ring {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 215, 0, 0.2);
+            border-top: 4px solid #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .loader-subtext {
+            font-size: 11px;
+            color: #c084fc;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header class="tp-header">
+        <div class="header-left">
+            <a href="../casino.html" class="btn-back">
+                <span>◀</span> LOBBY
+            </a>
+            <a href="teenpatti.html" class="btn-mode-switch" title="Switch to Native High-FPS Live Studio Mode">
+                <span>👑</span> NATIVE STUDIO
+            </a>
+        </div>
+
+        <div class="tp-title-box">
+            <span class="tp-main-title">TEEN PATTI VERSUS</span>
+            <span class="tp-provider-tag">1XBET • KING MIDAS GAMES</span>
+        </div>
+
+        <div class="header-right">
+            <div id="walletBalancePill" class="wallet-pill" onclick="refreshWallet()" title="Click to refresh balance">
+                ₨ <span id="headerBalanceVal">0.00</span>
+            </div>
+            <button class="icon-btn" onclick="reloadGame()" title="Reload Game">
+                🔄
+            </button>
+            <button class="icon-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                ⛶
+            </button>
+        </div>
+    </header>
+
+    <div class="tp-game-container" id="gameFrameWrap">
+        <div class="loader-overlay" id="gameLoader">
+            <div class="spinner-ring"></div>
+            <div class="loader-text">CONNECTING TO 1XBET ENGINE</div>
+            <div class="loader-subtext">King Midas Games • Teen Patti Versus</div>
+        </div>
+
+        <iframe 
+            id="gameIframe" 
+            class="game-iframe" 
+            src="https://cdn.kingmidasdev.net/games/demo8/teen-patti-versus/2026-01-13-09-57-01/index.html?currency=USD&lang=en&test=1" 
+            allow="fullscreen; autoplay; screen-wake-lock; orientation"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        function updateBalanceUI() {
+            let bal = 0;
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                bal = window.wallet.getBalance();
+            } else {
+                try {
+                    const u = JSON.parse(localStorage.getItem('currentUser') || 'null');
+                    if (u && u.balance !== undefined) bal = parseFloat(u.balance);
+                } catch(e) {}
+            }
+            if (!bal || isNaN(bal) || bal <= 0) bal = 10000.00;
+            document.getElementById('headerBalanceVal').textContent = Number(bal).toFixed(2);
+        }
+
+        function refreshWallet() {
+            updateBalanceUI();
+        }
+
+        function reloadGame() {
+            const iframe = document.getElementById('gameIframe');
+            const loader = document.getElementById('gameLoader');
+            loader.classList.remove('fade-out');
+            iframe.src = iframe.src;
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 1800);
+        }
+
+        function toggleFullscreen() {
+            const wrap = document.getElementById('gameFrameWrap');
+            if (!document.fullscreenElement) {
+                if (wrap.requestFullscreen) {
+                    wrap.requestFullscreen();
+                } else if (wrap.webkitRequestFullscreen) {
+                    wrap.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Hide preloader when loaded
+        const iframe = document.getElementById('gameIframe');
+        iframe.onload = function() {
+            setTimeout(() => {
+                const loader = document.getElementById('gameLoader');
+                if (loader) loader.classList.add('fade-out');
+            }, 1500);
+        };
+
+        window.addEventListener('load', () => {
+            updateBalanceUI();
+            setTimeout(() => {
+                const loader = document.getElementById('gameLoader');
+                if (loader) loader.classList.add('fade-out');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

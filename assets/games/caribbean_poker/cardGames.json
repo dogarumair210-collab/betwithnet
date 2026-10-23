@@ -1,0 +1,52 @@
+{
+  "resources": [
+    "cardGames.mp3"
+  ],
+  "spritemap": {
+    "bust": {
+      "start": 0,
+      "end": 1.572562358276644,
+      "loop": false
+    },
+    "click": {
+      "start": 1.872562358276644,
+      "end": 2.0205895691609976,
+      "loop": false
+    },
+    "deal_card": {
+      "start": 2.3205895691609975,
+      "end": 2.752585034013605,
+      "loop": false
+    },
+    "flip_card": {
+      "start": 3.052585034013605,
+      "end": 4.38859410430839,
+      "loop": false
+    },
+    "limit": {
+      "start": 4.68859410430839,
+      "end": 5.950340136054422,
+      "loop": false
+    },
+    "rebet": {
+      "start": 6.2503401360544215,
+      "end": 6.630204081632653,
+      "loop": false
+    },
+    "remove_cards": {
+      "start": 6.9302040816326524,
+      "end": 8.223151927437641,
+      "loop": false
+    },
+    "win_bj": {
+      "start": 8.523151927437642,
+      "end": 9.6378231292517,
+      "loop": false
+    },
+    "win": {
+      "start": 9.9378231292517,
+      "end": 13.360907029478458,
+      "loop": false
+    }
+  }
+}

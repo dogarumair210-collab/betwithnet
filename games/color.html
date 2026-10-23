@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <title>Win Go Color Prediction VIP - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        :root {
+            --c-white-bg: #f8fafc;
+            --c-white-card: #ffffff;
+            --c-text-main: #0f172a;
+            --c-text-muted: #64748b;
+            --c-border-light: #e2e8f0;
+            
+            --c-green: #10b981;
+            --c-green-dark: #059669;
+            --c-green-glow: rgba(16, 185, 129, 0.45);
+            
+            --c-red: #ef4444;
+            --c-red-dark: #dc2626;
+            --c-red-glow: rgba(239, 68, 68, 0.45);
+            
+            --c-violet: #a855f7;
+            --c-violet-dark: #7c3aed;
+            --c-violet-glow: rgba(168, 85, 247, 0.45);
+            
+            --c-gold: #f59e0b;
+            --c-gold-dark: #d97706;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            background: #f8fafc;
+            color: var(--c-text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* -------------------------------------------------------------
+           ANIMATED WHITE LUXURY AMBIENT BACKGROUND WITH PARTICLES
+           ------------------------------------------------------------- */
+        .white-ambient-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 10% 15%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+            overflow: hidden;
+        }
+
+        .white-mesh-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.8;
+        }
+
+        #whiteParticlesCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Floating Light Aura Ribbons */
+        .ambient-aurora-wave {
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.12), transparent 70%);
+            filter: blur(50px);
+            animation: auroraFloat 12s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes auroraFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5%, 10%) scale(1.15); }
+            100% { transform: translate(-5%, -5%) scale(0.95); }
+        }
+
+        /* App Wrapper */
+        .color-app-frame {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Audio Autoplay Helper Prompt */
+        .audio-prompt-banner {
+            background: linear-gradient(90deg, #7c3aed, #a855f7);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            text-align: center;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+            animation: pulseBanner 2s infinite ease-in-out;
+        }
+        @keyframes pulseBanner {
+            0% { opacity: 0.92; }
+            50% { opacity: 1; filter: brightness(1.1); }
+            100% { opacity: 0.92; }
+        }
+
+        /* -------------------------------------------------------------
+           1. CRISP PORCELAIN WHITE TOPBAR
+           ------------------------------------------------------------- */
+        .color-topbar {
+            height: 50px;
+            background: #ffffff;
+            border-bottom: 2px solid #7c3aed;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-lobby-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #0f172a;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            background: #f1f5f9;
+            border: 1.5px solid #cbd5e1;
+            padding: 5px 9px;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .btn-lobby-back:active { transform: scale(0.93); background: #e2e8f0; }
+
+        .color-brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .brand-vip-badge {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+        }
+
+        .topbar-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wallet-badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #059669;
+            background: #ecfdf5;
+            border: 1.5px solid #a7f3d0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-top-deposit {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 900;
+            width: 27px;
+            height: 27px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+            transition: transform 0.15s;
+        }
+        .btn-top-deposit:active { transform: scale(0.92); }
+
+        .top-btn-icon {
+            background: #f1f5f9;
+            border: 1.5px solid #e2e8f0;
+            color: #0f172a;
+            font-size: 12.5px;
+            width: 27px;
+            height: 27px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .top-btn-icon:active { transform: scale(0.92); background: #e2e8f0; }
+
+        /* User Profile Avatar (Avatar Only - No Name Popup) */
+        .user-avatar-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fdf4ff;
+            border: 1.5px solid #c084fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7c3aed;
+            text-decoration: none;
+            overflow: hidden;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.15s, border-color 0.2s;
+            box-shadow: 0 1px 4px rgba(124, 58, 237, 0.15);
+        }
+        .user-avatar-btn:active { transform: scale(0.92); }
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Music Equalizer Visualizer */
+        .music-eq-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 13px;
+            width: 13px;
+        }
+        .music-eq-bars .eq-bar {
+            width: 2.5px;
+            background: #7c3aed;
+            border-radius: 1px;
+            height: 3px;
+            transition: height 0.2s;
+        }
+        .music-eq-bars.playing .bar-1 { animation: eqAnim1 0.65s infinite ease-in-out alternate; }
+        .music-eq-bars.playing .bar-2 { animation: eqAnim2 0.5s infinite ease-in-out alternate 0.15s; }
+        .music-eq-bars.playing .bar-3 { animation: eqAnim3 0.75s infinite ease-in-out alternate 0.3s; }
+        @keyframes eqAnim1 { 0% { height: 3px; } 100% { height: 12px; } }
+        @keyframes eqAnim2 { 0% { height: 11px; } 100% { height: 4px; } }
+        @keyframes eqAnim3 { 0% { height: 4px; } 100% { height: 13px; } }
+
+        /* -------------------------------------------------------------
+           2. TIMEFRAME TEMPLATES (WIN GO TABS)
+           ------------------------------------------------------------- */
+        .wingo-tabs-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            padding: 8px 10px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .wingo-tab-pill {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 7px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+        .wingo-tab-pill.active {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border-color: #7c3aed;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+            transform: translateY(-1px);
+        }
+        .wingo-tab-icon {
+            font-size: 14px;
+            line-height: 1;
+        }
+        .wingo-tab-title {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.2px;
+        }
+        .wingo-tab-pill.active .wingo-tab-title {
+            color: #ffffff;
+        }
+        .wingo-tab-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            color: #64748b;
+            font-weight: 700;
+        }
+        .wingo-tab-pill.active .wingo-tab-sub {
+            color: #e9d5ff;
+        }
+
+        /* -------------------------------------------------------------
+           3. PERIOD BANNER & ANIMATED COUNTDOWN ARENA (WHITE LUXURY)
+           ------------------------------------------------------------- */
+        .color-hero-arena {
+            padding: 12px;
+            background: linear-gradient(160deg, #ffffff 0%, #fbf9ff 60%, #f5f0ff 100%);
+            border-radius: 14px;
+            margin: 10px;
+            border: 1.5px solid #e9d5ff;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arena-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .period-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .period-live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #059669;
+            letter-spacing: 0.5px;
+        }
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulseDot 1s infinite alternate ease-in-out;
+        }
+        @keyframes pulseDot {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            100% { transform: scale(1.3); opacity: 1; }
+        }
+
+        .period-number-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: 0.8px;
+        }
+
+        .rules-badge-btn {
+            background: #fdf4ff;
+            border: 1.5px solid #e9d5ff;
+            color: #7c3aed;
+            padding: 4px 9px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);
+        }
+
+        /* Countdown Card */
+        .countdown-display-card {
+            background: #ffffff;
+            border: 1.5px solid #f1f5f9;
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .countdown-meta-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .time-remaining-label {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 0.5px;
+        }
+        .countdown-timer-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 900;
+            color: #7c3aed;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+        .countdown-timer-text.danger {
+            color: #ef4444 !important;
+            animation: timerDangerPulse 0.5s infinite alternate;
+        }
+        @keyframes timerDangerPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* Recent Mini Result Beads */
+        .recent-mini-results {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .mini-bead-ball {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            border: 1.5px solid #ffffff;
+            transition: transform 0.2s;
+        }
+        .mini-bead-ball:hover { transform: scale(1.15); }
+        .bead-green { background: linear-gradient(135deg, #10b981, #059669); }
+        .bead-red { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .bead-violet { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+        .bead-half-red-violet {
+            background: linear-gradient(135deg, #ef4444 50%, #a855f7 50%);
+        }
+        .bead-half-green-violet {
+            background: linear-gradient(135deg, #10b981 50%, #a855f7 50%);
+        }
+
+        /* -------------------------------------------------------------
+           4. VIBRANT COLOR BUTTONS (GREEN, VIOLET, RED)
+           ------------------------------------------------------------- */
+        .color-betting-cluster {
+            padding: 0 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .color-triad-row {
+            display: grid;
+            grid-template-columns: 1.15fr 0.9fr 1.15fr;
+            gap: 8px;
+        }
+
+        .btn-predict-color {
+            position: relative;
+            height: 50px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 900;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .btn-predict-color:active { transform: scale(0.95); }
+        .btn-predict-color::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(255,255,255,0.25), transparent);
+            pointer-events: none;
+        }
+
+        .btn-join-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+        }
+        .btn-join-violet {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
+        }
+        .btn-join-red {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.35);
+        }
+
+        .btn-color-title {
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+        .btn-color-mult {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1px 7px;
+            border-radius: 10px;
+            margin-top: 2px;
+        }
+
+        /* -------------------------------------------------------------
+           5. NUMBER BALLS (0 - 9) ON WHITE CARD
+           ------------------------------------------------------------- */
+        .number-balls-card {
+            background: #ffffff;
+            border: 1.5px solid #f1f5f9;
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .number-balls-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .number-balls-title {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .number-payout-pill {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+        }
+
+        .number-balls-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .btn-number-ball {
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 17px;
+            font-weight: 900;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+            transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+        .btn-number-ball:active { transform: scale(0.9); }
+
+        .btn-number-ball .ball-num {
+            line-height: 1;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+        .btn-number-ball .ball-mult {
+            font-size: 7.5px;
+            font-weight: 800;
+            opacity: 0.9;
+            line-height: 1;
+            margin-top: 1px;
+        }
+
+        /* -------------------------------------------------------------
+           6. BIG & SMALL SELECTION
+           ------------------------------------------------------------- */
+        .big-small-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .btn-big-small {
+            height: 42px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 13.5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: all 0.15s;
+        }
+        .btn-big-small:active { transform: scale(0.95); }
+        .btn-pick-big {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+        }
+        .btn-pick-small {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+        }
+
+        /* -------------------------------------------------------------
+           7. TREND HISTORY & MY BETS TABS (WHITE CLEAN TABLE)
+           ------------------------------------------------------------- */
+        .color-records-panel {
+            padding: 10px;
+            margin-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .records-nav-bar {
+            display: flex;
+            border-bottom: 2px solid #e2e8f0;
+            gap: 14px;
+        }
+
+        .records-tab-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 12.5px;
+            font-weight: 800;
+            padding: 8px 0;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.15s;
+        }
+        .records-tab-btn.active {
+            color: #7c3aed;
+        }
+        .records-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: #7c3aed;
+            border-radius: 2px;
+        }
+
+        .records-table-wrap {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            text-align: center;
+        }
+        .history-table th {
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 8px 4px;
+            border-bottom: 1.5px solid #e2e8f0;
+            letter-spacing: 0.4px;
+        }
+        .history-table td {
+            padding: 8px 4px;
+            border-bottom: 1px solid #f1f5f9;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #0f172a;
+        }
+        .history-table tr:last-child td { border-bottom: none; }
+        .history-table tr:hover td { background: #faf5ff; }
+
+        .tag-bs-big {
+            color: #d97706;
+            font-weight: 900;
+        }
+        .tag-bs-small {
+            color: #0284c7;
+            font-weight: 900;
+        }
+
+        .table-bead-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 0 auto;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+
+        /* -------------------------------------------------------------
+           8. BETTING DRAWER / BOTTOM SHEET
+           ------------------------------------------------------------- */
+        .bet-drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 100;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .bet-drawer-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .bet-drawer-sheet {
+            width: 100%;
+            max-width: 520px;
+            background: #ffffff;
+            border-top: 3px solid #7c3aed;
+            border-radius: 20px 20px 0 0;
+            padding: 16px;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(100%);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .bet-drawer-overlay.open .bet-drawer-sheet {
+            transform: translateY(0);
+        }
+
+        .drawer-sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        .drawer-target-title {
+            font-size: 15px;
+            font-weight: 900;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-drawer-close {
+            background: #f1f5f9;
+            border: none;
+            color: #64748b;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* Chips selector */
+        .chip-pills-row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+        }
+        .chip-pill-btn {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            color: #0f172a;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 7px 2px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .chip-pill-btn.active {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border-color: #7c3aed;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Multiplier buttons */
+        .multiplier-pills-row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+        }
+        .mult-pill-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            color: #64748b;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 6px 2px;
+            cursor: pointer;
+        }
+        .mult-pill-btn.active {
+            background: #0f172a;
+            border-color: #0f172a;
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+        /* Quantity stepper */
+        .quantity-stepper-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 4px;
+        }
+        .btn-step {
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .step-qty-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            color: #7c3aed;
+        }
+
+        .drawer-total-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 0;
+        }
+        .drawer-total-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 700;
+        }
+        .drawer-total-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 19px;
+            font-weight: 900;
+            color: #059669;
+        }
+
+        .drawer-confirm-btn {
+            width: 100%;
+            height: 45px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14.5px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+            transition: transform 0.15s;
+        }
+        .drawer-confirm-btn:active { transform: scale(0.97); }
+
+        /* -------------------------------------------------------------
+           9. 5-SECOND DRAMATIC LOCKOUT OVERLAY
+           ------------------------------------------------------------- */
+        .lockout-countdown-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            z-index: 40;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            animation: fadeIn 0.2s;
+        }
+        .lockout-countdown-overlay.active {
+            display: flex;
+        }
+
+        .lockout-big-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 85px;
+            font-weight: 900;
+            color: #ef4444;
+            text-shadow: 0 4px 20px rgba(239, 68, 68, 0.5);
+            animation: popNumber 0.8s infinite alternate ease-in-out;
+            line-height: 1;
+        }
+        @keyframes popNumber {
+            0% { transform: scale(0.85); opacity: 0.8; }
+            100% { transform: scale(1.15); opacity: 1; }
+        }
+
+        .lockout-sub-text {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #7c3aed;
+            letter-spacing: 1px;
+        }
+
+        /* Result Celebration Modal */
+        .result-celebration-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .result-celebration-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .result-modal-box {
+            background: #ffffff;
+            border: 2px solid #7c3aed;
+            border-radius: 18px;
+            padding: 22px;
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            animation: zoomModal 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes zoomModal {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .res-modal-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+        .res-modal-ball {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 3px solid #ffffff;
+        }
+        .res-modal-outcome {
+            font-size: 15px;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: 0.6px;
+            margin-bottom: 4px;
+        }
+        .res-modal-profit {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            color: #059669;
+            margin-bottom: 14px;
+        }
+        .btn-modal-claim {
+            width: 100%;
+            height: 42px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        /* -------------------------------------------------------------
+           10. JILI OFFICIAL LOADING SCREEN
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 9999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            user-select: none;
+        }
+        .jili-splash-overlay.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .jili-img-brand {
+            width: 175px;
+            max-width: 58vw;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 4px 18px rgba(124, 58, 237, 0.2));
+        }
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 60%;
+            height: 140%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: glintPass 2.2s infinite ease-in-out;
+        }
+        @keyframes glintPass {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+        .jili-loadline-track {
+            width: 110px;
+            max-width: 35vw;
+            height: 4px;
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed 0%, #a855f7 50%, #f59e0b 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+            transition: width 0.08s ease-out;
+        }
+        .jili-load-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .jili-load-pct {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #7c3aed;
+        }
+        .jili-load-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 8.5px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        /* -------------------------------------------------------------
+           11. HELP / RULES MODAL
+           ------------------------------------------------------------- */
+        .modal-wrap {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-wrap.open { display: flex; animation: fadeIn 0.2s; }
+        .modal-card {
+            background: #ffffff;
+            border: 2px solid #7c3aed;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        .modal-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 380px) {
+            .color-brand-title span:last-child { display: none; }
+            .topbar-right-actions { gap: 3px; }
+            .top-btn-icon, .user-avatar-btn, .btn-top-deposit { width: 24px; height: 24px; font-size: 11px; }
+            .wallet-badge-pill { font-size: 9.5px; padding: 2px 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay" onclick="kickstartColorAudio()" ontouchstart="kickstartColorAudio()">
+        <div class="jili-center-stage">
+            <div class="jili-logo-box">
+                <img src="../assets/games/slots777/jili_logo.png" alt="JILI" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+            <div class="jili-loadline-track">
+                <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+            </div>
+            <div class="jili-load-meta">
+                <span id="jiliLoadPct" class="jili-load-pct">0%</span>
+                <span class="jili-load-sub">JILI GAMES • WIN GO COLOR VIP</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Hip Hop Music Audio Player -->
+    <audio id="colorBgmAudio" src="../assets/games/slots777/audio/bgm_hiphop.mp3" loop preload="auto"></audio>
+
+    <!-- Animated White Luxury Ambient Background -->
+    <div class="white-ambient-bg">
+        <div class="ambient-aurora-wave"></div>
+        <div class="white-mesh-grid"></div>
+        <canvas id="whiteParticlesCanvas"></canvas>
+    </div>
+
+    <!-- Main Container -->
+    <div class="color-app-frame">
+
+        <!-- Tap Anywhere Audio Helper Banner -->
+        <div class="audio-prompt-banner" id="audioBannerPrompt" onclick="kickstartColorAudio()">
+            <span>🎵</span> Tap here to Play Background Hip Hop Beats!
+        </div>
+
+        <!-- 1. Header Topbar -->
+        <header class="color-topbar">
+            <a href="../index.html" class="btn-lobby-back">
+                <span>◀</span> LOBBY
+            </a>
+
+            <div class="color-brand-title">
+                <span class="brand-vip-badge">WIN GO</span>
+                <span>COLOR VIP</span>
+            </div>
+
+            <div class="topbar-right-actions">
+                <div id="walletBalancePill" class="wallet-badge-pill" onclick="colorGame.refreshWallet()" title="Click to Refresh">
+                    ₨ <span id="headerBalanceVal">0.00</span>
+                </div>
+                <a href="../deposit.html" class="btn-top-deposit" title="Deposit Funds">+</a>
+                <!-- Hip Hop Music Toggle Button -->
+                <button class="top-btn-icon" onclick="colorGame.toggleMusic()" id="musicToggleBtn" title="Hip Hop Music">
+                    <span class="music-eq-bars playing" id="musicEqBars">
+                        <span class="eq-bar bar-1"></span>
+                        <span class="eq-bar bar-2"></span>
+                        <span class="eq-bar bar-3"></span>
+                    </span>
+                </button>
+                <!-- Sound Effects Toggle -->
+                <button class="top-btn-icon" onclick="colorGame.toggleSound()" id="soundToggleBtn" title="Sound Effects">
+                    🔊
+                </button>
+                <button class="top-btn-icon" onclick="colorGame.toggleHelpModal()" title="Game Rules">
+                    ℹ️
+                </button>
+                <!-- User Profile Avatar (Avatar Only - No Name Popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar">
+                    <span id="headerAvatarIcon" style="font-size:13px;">👑</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- 2. Timeframe Templates (Win Go Tabs) -->
+        <div class="wingo-tabs-bar">
+            <div class="wingo-tab-pill active" onclick="colorGame.switchTimeframe(30, this)">
+                <span class="wingo-tab-icon">⚡</span>
+                <span class="wingo-tab-title">Win Go 30s</span>
+                <span class="wingo-tab-sub">LIGHTNING</span>
+            </div>
+            <div class="wingo-tab-pill" onclick="colorGame.switchTimeframe(60, this)">
+                <span class="wingo-tab-icon">⏱️</span>
+                <span class="wingo-tab-title">Win Go 1Min</span>
+                <span class="wingo-tab-sub">CLASSIC</span>
+            </div>
+            <div class="wingo-tab-pill" onclick="colorGame.switchTimeframe(180, this)">
+                <span class="wingo-tab-icon">🎯</span>
+                <span class="wingo-tab-title">Win Go 3Min</span>
+                <span class="wingo-tab-sub">PRO</span>
+            </div>
+            <div class="wingo-tab-pill" onclick="colorGame.switchTimeframe(300, this)">
+                <span class="wingo-tab-icon">👑</span>
+                <span class="wingo-tab-title">Win Go 5Min</span>
+                <span class="wingo-tab-sub">VIP</span>
+            </div>
+        </div>
+
+        <!-- 3. Period Banner & Animated Countdown Arena -->
+        <section class="color-hero-arena">
+            <div class="arena-top-row">
+                <div class="period-box">
+                    <div class="period-live-indicator">
+                        <span class="pulse-dot"></span>
+                        <span id="modeTitleTag">LIVE 30s DRAW</span>
+                    </div>
+                    <div class="period-number-val" id="periodNumberDisplay">20260926001</div>
+                </div>
+
+                <button class="rules-badge-btn" onclick="colorGame.toggleHelpModal()">
+                    <span>📜</span> Rules & Odds
+                </button>
+            </div>
+
+            <div class="countdown-display-card">
+                <div class="countdown-meta-left">
+                    <span class="time-remaining-label">TIME REMAINING:</span>
+                    <span class="countdown-timer-text" id="countdownClockDisplay">00:30</span>
+                </div>
+
+                <!-- Last 5 Mini Result Beads -->
+                <div class="recent-mini-results" id="heroMiniHistory">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Dramatic 5-Second Lockout Overlay -->
+            <div class="lockout-countdown-overlay" id="lockoutOverlay">
+                <div class="lockout-big-number" id="lockoutSeconds">5</div>
+                <div class="lockout-sub-text">BETTING CLOSED • DRAWING SOON</div>
+            </div>
+        </section>
+
+        <!-- 4. Interactive Betting Clusters -->
+        <div class="color-betting-cluster">
+
+            <!-- Color Triad: GREEN (2x), VIOLET (4.5x), RED (2x) -->
+            <div class="color-triad-row">
+                <button class="btn-predict-color btn-join-green" onclick="colorGame.openBetDrawer('green', 'GREEN', '2.0×', '#10b981')">
+                    <span class="btn-color-title">🟢 GREEN</span>
+                    <span class="btn-color-mult">2.0× Payout</span>
+                </button>
+
+                <button class="btn-predict-color btn-join-violet" onclick="colorGame.openBetDrawer('violet', 'VIOLET', '4.5×', '#a855f7')">
+                    <span class="btn-color-title">🟣 VIOLET</span>
+                    <span class="btn-color-mult">4.5× Payout</span>
+                </button>
+
+                <button class="btn-predict-color btn-join-red" onclick="colorGame.openBetDrawer('red', 'RED', '2.0×', '#ef4444')">
+                    <span class="btn-color-title">🔴 RED</span>
+                    <span class="btn-color-mult">2.0× Payout</span>
+                </button>
+            </div>
+
+            <!-- Number Balls 0 - 9 -->
+            <div class="number-balls-card">
+                <div class="number-balls-header">
+                    <span class="number-balls-title"><span>🔢</span> PICK LUCKY NUMBERS</span>
+                    <span class="number-payout-pill">9.0× MEGA PAYOUT</span>
+                </div>
+
+                <div class="number-balls-grid" id="numberBallsGrid">
+                    <!-- 0: Half Violet / Red -->
+                    <button class="btn-number-ball bead-half-red-violet" onclick="colorGame.openBetDrawer('0', 'NUMBER 0', '9.0×', '#a855f7')">
+                        <span class="ball-num">0</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 1: Green -->
+                    <button class="btn-number-ball bead-green" onclick="colorGame.openBetDrawer('1', 'NUMBER 1', '9.0×', '#10b981')">
+                        <span class="ball-num">1</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 2: Red -->
+                    <button class="btn-number-ball bead-red" onclick="colorGame.openBetDrawer('2', 'NUMBER 2', '9.0×', '#ef4444')">
+                        <span class="ball-num">2</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 3: Green -->
+                    <button class="btn-number-ball bead-green" onclick="colorGame.openBetDrawer('3', 'NUMBER 3', '9.0×', '#10b981')">
+                        <span class="ball-num">3</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 4: Red -->
+                    <button class="btn-number-ball bead-red" onclick="colorGame.openBetDrawer('4', 'NUMBER 4', '9.0×', '#ef4444')">
+                        <span class="ball-num">4</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 5: Half Violet / Green -->
+                    <button class="btn-number-ball bead-half-green-violet" onclick="colorGame.openBetDrawer('5', 'NUMBER 5', '9.0×', '#a855f7')">
+                        <span class="ball-num">5</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 6: Red -->
+                    <button class="btn-number-ball bead-red" onclick="colorGame.openBetDrawer('6', 'NUMBER 6', '9.0×', '#ef4444')">
+                        <span class="ball-num">6</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 7: Green -->
+                    <button class="btn-number-ball bead-green" onclick="colorGame.openBetDrawer('7', 'NUMBER 7', '9.0×', '#10b981')">
+                        <span class="ball-num">7</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 8: Red -->
+                    <button class="btn-number-ball bead-red" onclick="colorGame.openBetDrawer('8', 'NUMBER 8', '9.0×', '#ef4444')">
+                        <span class="ball-num">8</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                    <!-- 9: Green -->
+                    <button class="btn-number-ball bead-green" onclick="colorGame.openBetDrawer('9', 'NUMBER 9', '9.0×', '#10b981')">
+                        <span class="ball-num">9</span>
+                        <span class="ball-mult">9×</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Big / Small Dual Option -->
+            <div class="big-small-row">
+                <button class="btn-big-small btn-pick-big" onclick="colorGame.openBetDrawer('big', 'BIG (5-9)', '2.0×', '#f59e0b')">
+                    <span>🟡 BIG (5-9)</span>
+                    <span style="font-family:'JetBrains Mono'; font-size:11px; opacity:0.9;">2.0×</span>
+                </button>
+                <button class="btn-big-small btn-pick-small" onclick="colorGame.openBetDrawer('small', 'SMALL (0-4)', '2.0×', '#0ea5e9')">
+                    <span>🔵 SMALL (0-4)</span>
+                    <span style="font-family:'JetBrains Mono'; font-size:11px; opacity:0.9;">2.0×</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- 5. History & My Bets Tabs -->
+        <section class="color-records-panel">
+            <div class="records-nav-bar">
+                <button class="records-tab-btn active" id="tabBtnGameHistory" onclick="colorGame.switchRecordTab('game')">Game Record</button>
+                <button class="records-tab-btn" id="tabBtnMyBets" onclick="colorGame.switchRecordTab('my')">My Bets (<span id="myBetsCountTag">0</span>)</button>
+            </div>
+
+            <!-- Game History Table -->
+            <div class="records-table-wrap" id="panelGameHistory">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>PERIOD</th>
+                            <th>NUMBER</th>
+                            <th>BIG/SMALL</th>
+                            <th>COLOR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- My Bets Table -->
+            <div class="records-table-wrap" id="panelMyBets" style="display:none;">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>PERIOD</th>
+                            <th>SELECT</th>
+                            <th>AMOUNT</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myBetsTableBody">
+                        <tr>
+                            <td colspan="4" style="color:#64748b; padding:18px;">No bets placed yet. Pick a color or number above!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- -------------------------------------------------------------
+         BOTTOM SHEET BETTING DRAWER
+         ------------------------------------------------------------- -->
+    <div class="bet-drawer-overlay" id="betDrawerOverlay" onclick="colorGame.closeBetDrawerOnOverlay(event)">
+        <div class="bet-drawer-sheet" id="betDrawerSheet">
+            <div class="drawer-sheet-header">
+                <div class="drawer-target-title" id="drawerTargetTitle">
+                    <span>🟢</span> Selected: GREEN
+                </div>
+                <button class="btn-drawer-close" onclick="colorGame.closeBetDrawer()">✕</button>
+            </div>
+
+            <!-- Chip Balance Presets -->
+            <div style="font-size:11px; font-weight:800; color:#64748b;">SELECT CHIP UNIT:</div>
+            <div class="chip-pills-row">
+                <button class="chip-pill-btn active" onclick="colorGame.setChipBase(10, this)">₨ 10</button>
+                <button class="chip-pill-btn" onclick="colorGame.setChipBase(50, this)">₨ 50</button>
+                <button class="chip-pill-btn" onclick="colorGame.setChipBase(100, this)">₨ 100</button>
+                <button class="chip-pill-btn" onclick="colorGame.setChipBase(500, this)">₨ 500</button>
+                <button class="chip-pill-btn" onclick="colorGame.setChipBase(1000, this)">₨ 1K</button>
+                <button class="chip-pill-btn" onclick="colorGame.setChipBase(5000, this)">₨ 5K</button>
+            </div>
+
+            <!-- Quantity Multiplier Presets -->
+            <div style="font-size:11px; font-weight:800; color:#64748b;">QUANTITY MULTIPLIER:</div>
+            <div class="multiplier-pills-row">
+                <button class="mult-pill-btn active" onclick="colorGame.setMultiplier(1, this)">×1</button>
+                <button class="mult-pill-btn" onclick="colorGame.setMultiplier(5, this)">×5</button>
+                <button class="mult-pill-btn" onclick="colorGame.setMultiplier(10, this)">×10</button>
+                <button class="mult-pill-btn" onclick="colorGame.setMultiplier(20, this)">×20</button>
+                <button class="mult-pill-btn" onclick="colorGame.setMultiplier(50, this)">×50</button>
+                <button class="mult-pill-btn" onclick="colorGame.setMultiplier(100, this)">×100</button>
+            </div>
+
+            <!-- Stepper Adjustment -->
+            <div class="quantity-stepper-box">
+                <button class="btn-step" onclick="colorGame.stepMultiplier(-1)">−</button>
+                <span class="step-qty-val" id="drawerQtyDisplay">Quantity: 1</span>
+                <button class="btn-step" onclick="colorGame.stepMultiplier(1)">+</button>
+            </div>
+
+            <!-- Total Bet Calculation -->
+            <div class="drawer-total-row">
+                <span class="drawer-total-label">TOTAL CONTRACT MONEY:</span>
+                <span class="drawer-total-val" id="drawerTotalDisplay">₨ 10.00</span>
+            </div>
+
+            <!-- Confirm Button -->
+            <button class="drawer-confirm-btn" onclick="colorGame.confirmBetFromDrawer()">
+                CONFIRM PREDICTION
+            </button>
+        </div>
+    </div>
+
+    <!-- -------------------------------------------------------------
+         RESULT CELEBRATION MODAL
+         ------------------------------------------------------------- -->
+    <div class="result-celebration-overlay" id="resultModalOverlay">
+        <div class="result-modal-box">
+            <div class="res-modal-badge" id="resModalPeriod">PERIOD: 20260926001</div>
+            <div class="res-modal-ball bead-green" id="resModalBall">7</div>
+            <div class="res-modal-outcome" id="resModalOutcome">RESULT: GREEN (BIG)</div>
+            <div class="res-modal-profit" id="resModalProfit">+₨ 0.00</div>
+            <button class="btn-modal-claim" onclick="colorGame.closeResultModal()">CONTINUE PLAYING</button>
+        </div>
+    </div>
+
+    <!-- -------------------------------------------------------------
+         RULES & PAYTABLE MODAL
+         ------------------------------------------------------------- -->
+    <div class="modal-wrap" id="helpModal">
+        <div class="modal-card">
+            <div class="modal-card-header">
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:900; color:#7c3aed; display:flex; align-items:center; gap:6px;">
+                    <span>📜</span> COLOR PREDICTION RULES
+                </div>
+                <button class="top-btn-icon" onclick="colorGame.toggleHelpModal()">✕</button>
+            </div>
+
+            <div style="font-size:11.5px; line-height:1.6; color:#334155; display:flex; flex-direction:column; gap:8px;">
+                <p><b>⏱️ Game Time:</b> Each round has a countdown timer. Betting is locked during the last <b>5 seconds</b> of each period.</p>
+
+                <div style="background:#f8fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0;">
+                    <div style="color:#059669; font-weight:800; margin-bottom:2px;">🟢 GREEN (1, 3, 7, 9)</div>
+                    <div>If result is 1, 3, 7, 9 ➔ <b>2.0× Payout</b>.<br>If result is 5 (Green+Violet) ➔ <b>1.5× Payout</b>.</div>
+                </div>
+
+                <div style="background:#f8fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0;">
+                    <div style="color:#dc2626; font-weight:800; margin-bottom:2px;">🔴 RED (2, 4, 6, 8)</div>
+                    <div>If result is 2, 4, 6, 8 ➔ <b>2.0× Payout</b>.<br>If result is 0 (Red+Violet) ➔ <b>1.5× Payout</b>.</div>
+                </div>
+
+                <div style="background:#f8fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0;">
+                    <div style="color:#7c3aed; font-weight:800; margin-bottom:2px;">🟣 VIOLET (0, 5)</div>
+                    <div>If result is 0 or 5 ➔ <b>4.5× Payout</b>.</div>
+                </div>
+
+                <div style="background:#f8fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0;">
+                    <div style="color:#d97706; font-weight:800; margin-bottom:2px;">🔢 LUCKY NUMBERS (0 - 9)</div>
+                    <div>Direct match of exact winning number ➔ <b>9.0× Mega Payout</b>!</div>
+                </div>
+
+                <div style="background:#f8fafc; padding:8px; border-radius:8px; border:1px solid #e2e8f0;">
+                    <div style="color:#0284c7; font-weight:800; margin-bottom:2px;">🟡 BIG (5-9) & 🔵 SMALL (0-4)</div>
+                    <div>Predict high or low ➔ <b>2.0× Payout</b>.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Central Bet With Net Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+
+    <!-- -------------------------------------------------------------
+         CANVAS WHITE PARTICLES ANIMATION
+         ------------------------------------------------------------- -->
+    <script>
+        (function initWhiteParticleCanvas() {
+            const canvas = document.getElementById('whiteParticlesCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w, h, particles = [];
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            const colors = [
+                'rgba(168, 85, 247, 0.25)', // Violet
+                'rgba(16, 185, 129, 0.22)', // Green
+                'rgba(239, 68, 68, 0.18)',  // Red
+                'rgba(245, 158, 11, 0.22)', // Gold
+                'rgba(14, 165, 233, 0.20)', // Blue
+                'rgba(255, 255, 255, 0.8)'  // Sparkle white
+            ];
+
+            const count = Math.min(45, Math.floor(window.innerWidth / 12));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    radius: Math.random() * 5 + 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: -(Math.random() * 0.5 + 0.3),
+                    alpha: Math.random() * 0.6 + 0.2,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.phase += 0.02;
+                    p.x += p.vx + Math.sin(p.phase) * 0.3;
+                    p.y += p.vy;
+
+                    if (p.y < -10) {
+                        p.y = h + 10;
+                        p.x = Math.random() * w;
+                    }
+                    if (p.x < -10) p.x = w + 10;
+                    if (p.x > w + 10) p.x = -10;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowBlur = 12;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+    </script>
+
+    <!-- -------------------------------------------------------------
+         ZERO-LATENCY SOUND SYNTHESIZER
+         ------------------------------------------------------------- -->
+    <script>
+        class ColorSoundEngine {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) this.ctx = new AudioCtx();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+
+            playClick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.04);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            }
+
+            playChip() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(1200, now);
+                osc.frequency.exponentialRampToValueAtTime(400, now + 0.08);
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.09);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            }
+
+            playTick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(950, now);
+                gain.gain.setValueAtTime(0.14, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.07);
+            }
+
+            playWin() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                    gain.gain.setValueAtTime(0.12, now + idx * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.08 + 0.35);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.08);
+                    osc.stop(now + idx * 0.08 + 0.38);
+                });
+            }
+
+            playLose() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.exponentialRampToValueAtTime(150, now + 0.25);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.28);
+            }
+        }
+
+        const sound = new ColorSoundEngine();
+
+        /* -------------------------------------------------------------
+           WIN GO COLOR PREDICTION TRADING ENGINE
+           ------------------------------------------------------------- */
+        class ColorGameEngine {
+            constructor() {
+                this.balance = 50000.00;
+                this.timeframe = 30; // seconds
+                this.secondsLeft = 30;
+                this.timerInterval = null;
+                this.period = this.generatePeriodId();
+                this.isLocked = false;
+
+                // Active bets placed in current period
+                this.currentBets = [];
+                // User's overall bet records
+                this.myBetsHistory = [];
+
+                // Historical periods
+                this.history = this.generateSeedHistory();
+
+                // Betting Drawer State
+                this.drawerTarget = null;
+                this.drawerMultiplier = 1;
+                this.drawerChipBase = 10;
+
+                // Audio state
+                this.musicEnabled = true;
+                this.musicPlaying = false;
+            }
+
+            init() {
+                this.initWalletEngine();
+                this.renderHistoryTable();
+                this.renderMiniHistory();
+                this.startTimer();
+                this.updateUI();
+            }
+
+            generatePeriodId() {
+                const now = new Date();
+                const yyyy = now.getFullYear();
+                const mm = String(now.getMonth() + 1).padStart(2, '0');
+                const dd = String(now.getDate()).padStart(2, '0');
+                const randSeq = Math.floor(1000 + Math.random() * 8999);
+                return parseInt(`${yyyy}${mm}${dd}${randSeq}`, 10);
+            }
+
+            generateSeedHistory() {
+                const list = [];
+                let basePeriod = this.period - 1;
+                for (let i = 0; i < 15; i++) {
+                    const num = Math.floor(Math.random() * 10);
+                    const color = this.getColorForNumber(num);
+                    const bs = num >= 5 ? 'BIG' : 'SMALL';
+                    list.push({ period: basePeriod - i, num, color, bs });
+                }
+                return list;
+            }
+
+            getColorForNumber(num) {
+                if (num === 0) return 'half-red-violet';
+                if (num === 5) return 'half-green-violet';
+                if ([1, 3, 7, 9].includes(num)) return 'green';
+                return 'red';
+            }
+
+            initWalletEngine() {
+                if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    this.balance = window.wallet.getBalance();
+                    window.wallet.on('balanceChange', (newBal) => {
+                        this.balance = newBal;
+                        this.updateUI();
+                    });
+                    window.wallet.on('change', () => {
+                        this.balance = window.wallet.getBalance();
+                        this.updateUI();
+                    });
+                }
+            }
+
+            /* Timeframe switching (30s, 1Min, 3Min, 5Min) */
+            switchTimeframe(seconds, el) {
+                sound.playClick();
+                document.querySelectorAll('.wingo-tab-pill').forEach(p => p.classList.remove('active'));
+                if (el) el.classList.add('active');
+
+                this.timeframe = seconds;
+                this.secondsLeft = seconds;
+
+                const modeTag = document.getElementById('modeTitleTag');
+                if (modeTag) {
+                    if (seconds === 30) modeTag.innerText = 'LIVE 30s DRAW';
+                    else if (seconds === 60) modeTag.innerText = 'LIVE 1MIN DRAW';
+                    else if (seconds === 180) modeTag.innerText = 'LIVE 3MIN DRAW';
+                    else modeTag.innerText = 'LIVE 5MIN DRAW';
+                }
+
+                this.period = this.generatePeriodId();
+                this.currentBets = [];
+                this.isLocked = false;
+                const lockout = document.getElementById('lockoutOverlay');
+                if (lockout) lockout.classList.remove('active');
+
+                this.startTimer();
+                this.updateUI();
+            }
+
+            startTimer() {
+                if (this.timerInterval) clearInterval(this.timerInterval);
+
+                const updateTimerDisplay = () => {
+                    const clock = document.getElementById('countdownClockDisplay');
+                    const periodEl = document.getElementById('periodNumberDisplay');
+                    const lockout = document.getElementById('lockoutOverlay');
+                    const lockoutSec = document.getElementById('lockoutSeconds');
+
+                    if (periodEl) periodEl.innerText = this.period;
+
+                    const m = Math.floor(this.secondsLeft / 60);
+                    const s = this.secondsLeft % 60;
+                    const formatted = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+                    if (clock) {
+                        clock.innerText = formatted;
+                        if (this.secondsLeft <= 5) clock.classList.add('danger');
+                        else clock.classList.remove('danger');
+                    }
+
+                    // Last 5 seconds lockout
+                    if (this.secondsLeft <= 5 && this.secondsLeft > 0) {
+                        this.isLocked = true;
+                        if (lockout) lockout.classList.add('active');
+                        if (lockoutSec) lockoutSec.innerText = this.secondsLeft;
+                        sound.playTick();
+                    } else if (this.secondsLeft > 5) {
+                        this.isLocked = false;
+                        if (lockout) lockout.classList.remove('active');
+                    }
+
+                    // Period Resolves at 0
+                    if (this.secondsLeft <= 0) {
+                        if (lockout) lockout.classList.remove('active');
+                        this.resolvePeriod();
+                    }
+                };
+
+                updateTimerDisplay();
+                this.timerInterval = setInterval(() => {
+                    this.secondsLeft--;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+
+            resolvePeriod() {
+                // Balanced 30% win / 70% loss probability against active bets
+                let winningNum = Math.floor(Math.random() * 10);
+                if (this.currentBets && this.currentBets.length > 0) {
+                    const shouldWin = Math.random() < 0.30;
+                    const candidates = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                    const winCandidates = [];
+                    const loseCandidates = [];
+                    candidates.forEach(num => {
+                        let hasWin = false;
+                        this.currentBets.forEach(betObj => {
+                            if (betObj.target === 'green' && [1, 3, 5, 7, 9].includes(num)) hasWin = true;
+                            else if (betObj.target === 'red' && [0, 2, 4, 6, 8].includes(num)) hasWin = true;
+                            else if (betObj.target === 'violet' && (num === 0 || num === 5)) hasWin = true;
+                            else if (betObj.target === String(num)) hasWin = true;
+                            else if (betObj.target === 'big' && num >= 5) hasWin = true;
+                            else if (betObj.target === 'small' && num < 5) hasWin = true;
+                        });
+                        if (hasWin) winCandidates.push(num);
+                        else loseCandidates.push(num);
+                    });
+
+                    if (shouldWin && winCandidates.length > 0) {
+                        winningNum = winCandidates[Math.floor(Math.random() * winCandidates.length)];
+                    } else if (!shouldWin && loseCandidates.length > 0) {
+                        winningNum = loseCandidates[Math.floor(Math.random() * loseCandidates.length)];
+                    }
+                }
+                const winningColor = this.getColorForNumber(winningNum);
+                const winningBS = winningNum >= 5 ? 'BIG' : 'SMALL';
+
+                let totalWon = 0;
+                let totalBet = 0;
+
+                this.currentBets.forEach(betObj => {
+                    totalBet += betObj.amount;
+                    let mult = 0;
+
+                    if (betObj.target === 'green') {
+                        if (winningNum === 5) mult = 1.5;
+                        else if ([1, 3, 7, 9].includes(winningNum)) mult = 2.0;
+                    } else if (betObj.target === 'red') {
+                        if (winningNum === 0) mult = 1.5;
+                        else if ([2, 4, 6, 8].includes(winningNum)) mult = 2.0;
+                    } else if (betObj.target === 'violet') {
+                        if (winningNum === 0 || winningNum === 5) mult = 4.5;
+                    } else if (betObj.target === String(winningNum)) {
+                        mult = 9.0;
+                    } else if (betObj.target === 'big' && winningBS === 'BIG') {
+                        mult = 2.0;
+                    } else if (betObj.target === 'small' && winningBS === 'SMALL') {
+                        mult = 2.0;
+                    }
+
+                    if (mult > 0) {
+                        const winAmt = betObj.amount * mult;
+                        totalWon += winAmt;
+                        betObj.status = 'WON';
+                        betObj.profit = winAmt;
+                    } else {
+                        betObj.status = 'LOST';
+                        betObj.profit = 0;
+                    }
+
+                    this.myBetsHistory.unshift({
+                        period: this.period,
+                        targetName: betObj.targetName,
+                        amount: betObj.amount,
+                        status: betObj.status,
+                        profit: betObj.profit
+                    });
+                });
+
+                if (totalWon > 0 && window.wallet && typeof window.wallet.creditWin === 'function') {
+                    window.wallet.creditWin(totalBet, totalWon, 'Win Go Color VIP', (totalWon / (totalBet || 1)), `Result: ${winningNum} (${winningColor})`);
+                    this.balance = window.wallet.getBalance();
+                    sound.playWin();
+                } else if (totalBet > 0) {
+                    sound.playLose();
+                }
+
+                this.history.unshift({
+                    period: this.period,
+                    num: winningNum,
+                    color: winningColor,
+                    bs: winningBS
+                });
+                if (this.history.length > 30) this.history.pop();
+
+                if (this.currentBets.length > 0) {
+                    this.showResultModal(winningNum, winningColor, winningBS, totalWon, totalBet);
+                }
+
+                this.period++;
+                this.secondsLeft = this.timeframe;
+                this.currentBets = [];
+                this.isLocked = false;
+
+                this.renderHistoryTable();
+                this.renderMiniHistory();
+                this.renderMyBetsTable();
+                this.updateUI();
+            }
+
+            openBetDrawer(targetKey, targetName, payoutText, accentColor) {
+                if (this.isLocked) {
+                    this.showToast('Betting is locked for current period!', 'error');
+                    return;
+                }
+                sound.playClick();
+                this.drawerTarget = { key: targetKey, name: targetName, payout: payoutText, color: accentColor };
+                
+                const title = document.getElementById('drawerTargetTitle');
+                if (title) {
+                    title.innerHTML = `<span style="color:${accentColor};">●</span> Selected: ${targetName} (${payoutText})`;
+                }
+
+                this.drawerMultiplier = 1;
+                this.updateDrawerCalculations();
+
+                const drawer = document.getElementById('betDrawerOverlay');
+                if (drawer) drawer.classList.add('open');
+            }
+
+            closeBetDrawer() {
+                sound.playClick();
+                const drawer = document.getElementById('betDrawerOverlay');
+                if (drawer) drawer.classList.remove('open');
+            }
+
+            closeBetDrawerOnOverlay(e) {
+                if (e.target && e.target.id === 'betDrawerOverlay') {
+                    this.closeBetDrawer();
+                }
+            }
+
+            setChipBase(val, el) {
+                sound.playChip();
+                this.drawerChipBase = val;
+                document.querySelectorAll('.chip-pill-btn').forEach(b => b.classList.remove('active'));
+                if (el) el.classList.add('active');
+                this.updateDrawerCalculations();
+            }
+
+            setMultiplier(mult, el) {
+                sound.playClick();
+                this.drawerMultiplier = mult;
+                document.querySelectorAll('.mult-pill-btn').forEach(b => b.classList.remove('active'));
+                if (el) el.classList.add('active');
+                this.updateDrawerCalculations();
+            }
+
+            stepMultiplier(delta) {
+                sound.playClick();
+                this.drawerMultiplier = Math.max(1, this.drawerMultiplier + delta);
+                document.querySelectorAll('.mult-pill-btn').forEach(b => b.classList.remove('active'));
+                this.updateDrawerCalculations();
+            }
+
+            updateDrawerCalculations() {
+                const total = this.drawerChipBase * this.drawerMultiplier;
+                const qtyDisp = document.getElementById('drawerQtyDisplay');
+                const totalDisp = document.getElementById('drawerTotalDisplay');
+
+                if (qtyDisp) qtyDisp.innerText = `Quantity: ${this.drawerMultiplier}`;
+                if (totalDisp) totalDisp.innerText = `₨ ${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+            }
+
+            confirmBetFromDrawer() {
+                if (this.isLocked) {
+                    this.showToast('Betting is locked! Wait for next round.', 'error');
+                    this.closeBetDrawer();
+                    return;
+                }
+
+                const betTotal = this.drawerChipBase * this.drawerMultiplier;
+
+                if (this.balance < betTotal) {
+                    this.showToast('Insufficient balance! Please deposit to continue.', 'error');
+                    return;
+                }
+
+                let placed = false;
+                if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                    placed = window.wallet.placeBet(betTotal, 'Win Go Color VIP');
+                    if (placed) this.balance = window.wallet.getBalance();
+                } else {
+                    this.balance -= betTotal;
+                    placed = true;
+                }
+
+                if (!placed) {
+                    this.showToast('Could not place bet! Check wallet balance.', 'error');
+                    return;
+                }
+
+                sound.playChip();
+
+                this.currentBets.push({
+                    target: this.drawerTarget.key,
+                    targetName: this.drawerTarget.name,
+                    amount: betTotal,
+                    period: this.period
+                });
+
+                this.showToast(`Placed ₨ ${betTotal} on ${this.drawerTarget.name}`, 'success');
+                this.closeBetDrawer();
+                this.renderMyBetsTable();
+                this.updateUI();
+            }
+
+            showResultModal(num, color, bs, wonAmt, totalBet) {
+                const modal = document.getElementById('resultModalOverlay');
+                const periodEl = document.getElementById('resModalPeriod');
+                const ballEl = document.getElementById('resModalBall');
+                const outcomeEl = document.getElementById('resModalOutcome');
+                const profitEl = document.getElementById('resModalProfit');
+
+                if (periodEl) periodEl.innerText = `PERIOD: ${this.period}`;
+                if (ballEl) {
+                    ballEl.innerText = num;
+                    ballEl.className = `res-modal-ball bead-${color}`;
+                }
+                if (outcomeEl) {
+                    outcomeEl.innerText = `RESULT: ${color.toUpperCase()} (${bs})`;
+                }
+                if (profitEl) {
+                    if (wonAmt > 0) {
+                        profitEl.innerText = `+₨ ${wonAmt.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                        profitEl.style.color = '#059669';
+                    } else {
+                        profitEl.innerText = `-₨ ${totalBet.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                        profitEl.style.color = '#ef4444';
+                    }
+                }
+
+                if (modal) modal.classList.add('active');
+            }
+
+            closeResultModal() {
+                sound.playClick();
+                const modal = document.getElementById('resultModalOverlay');
+                if (modal) modal.classList.remove('active');
+            }
+
+            renderMiniHistory() {
+                const container = document.getElementById('heroMiniHistory');
+                if (!container) return;
+                const recents = this.history.slice(0, 5);
+                container.innerHTML = recents.map(h => `
+                    <div class="mini-bead-ball bead-${h.color}" title="Period ${h.period}">
+                        ${h.num}
+                    </div>
+                `).join('');
+            }
+
+            renderHistoryTable() {
+                const tbody = document.getElementById('historyTableBody');
+                if (!tbody) return;
+                tbody.innerHTML = this.history.map(h => {
+                    const bsClass = h.bs === 'BIG' ? 'tag-bs-big' : 'tag-bs-small';
+                    return `
+                        <tr>
+                            <td style="color:#64748b;">${String(h.period).slice(-4)}</td>
+                            <td><b style="color:#0f172a;">${h.num}</b></td>
+                            <td class="${bsClass}">${h.bs}</td>
+                            <td>
+                                <div class="table-bead-dot bead-${h.color}">${h.num}</div>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            renderMyBetsTable() {
+                const tbody = document.getElementById('myBetsTableBody');
+                const countTag = document.getElementById('myBetsCountTag');
+                if (countTag) countTag.innerText = this.currentBets.length + this.myBetsHistory.length;
+                if (!tbody) return;
+
+                let html = '';
+
+                this.currentBets.forEach(b => {
+                    html += `
+                        <tr style="background:#fefce8;">
+                            <td style="color:#d97706; font-weight:800;">${String(b.period).slice(-4)}</td>
+                            <td style="font-weight:800; color:#0f172a;">${b.targetName}</td>
+                            <td style="color:#059669; font-weight:800;">₨ ${b.amount}</td>
+                            <td><span style="color:#d97706; font-weight:900;">⏳ PENDING</span></td>
+                        </tr>
+                    `;
+                });
+
+                this.myBetsHistory.slice(0, 10).forEach(b => {
+                    const isWin = b.status === 'WON';
+                    html += `
+                        <tr>
+                            <td style="color:#64748b;">${String(b.period).slice(-4)}</td>
+                            <td style="color:#0f172a; font-weight:700;">${b.targetName}</td>
+                            <td style="color:#059669; font-weight:800;">₨ ${b.amount}</td>
+                            <td>
+                                <span style="color:${isWin ? '#059669' : '#ef4444'}; font-weight:900;">
+                                    ${isWin ? `+₨ ${b.profit}` : '✕ LOST'}
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                if (!html) {
+                    html = `<tr><td colspan="4" style="color:#64748b; padding:18px;">No bets placed yet. Pick a color or number above!</td></tr>`;
+                }
+
+                tbody.innerHTML = html;
+            }
+
+            switchRecordTab(tab) {
+                sound.playClick();
+                const btnGame = document.getElementById('tabBtnGameHistory');
+                const btnMy = document.getElementById('tabBtnMyBets');
+                const pGame = document.getElementById('panelGameHistory');
+                const pMy = document.getElementById('panelMyBets');
+
+                if (tab === 'game') {
+                    if (btnGame) btnGame.classList.add('active');
+                    if (btnMy) btnMy.classList.remove('active');
+                    if (pGame) pGame.style.display = 'block';
+                    if (pMy) pMy.style.display = 'none';
+                } else {
+                    if (btnGame) btnGame.classList.remove('active');
+                    if (btnMy) btnMy.classList.add('active');
+                    if (pGame) pGame.style.display = 'none';
+                    if (pMy) pMy.style.display = 'block';
+                }
+            }
+
+            /* Hip Hop Music BGM Controls */
+            playBgm() {
+                if (!this.musicEnabled) return;
+                const bgm = document.getElementById('colorBgmAudio');
+                const eq = document.getElementById('musicEqBars');
+                const banner = document.getElementById('audioBannerPrompt');
+                if (bgm) {
+                    bgm.volume = 0.45;
+                    const p = bgm.play();
+                    if (p !== undefined) {
+                        p.then(() => {
+                            this.musicPlaying = true;
+                            if (eq) eq.classList.add('playing');
+                            if (banner) banner.style.display = 'none';
+                        }).catch(() => {
+                            this.musicPlaying = false;
+                            if (eq) eq.classList.remove('playing');
+                        });
+                    }
+                }
+            }
+
+            pauseBgm() {
+                const bgm = document.getElementById('colorBgmAudio');
+                const eq = document.getElementById('musicEqBars');
+                if (bgm) bgm.pause();
+                this.musicPlaying = false;
+                if (eq) eq.classList.remove('playing');
+            }
+
+            toggleMusic() {
+                sound.playClick();
+                this.musicEnabled = !this.musicEnabled;
+                if (this.musicEnabled) {
+                    this.playBgm();
+                } else {
+                    this.pauseBgm();
+                }
+            }
+
+            toggleSound() {
+                sound.muted = !sound.muted;
+                const btn = document.getElementById('soundToggleBtn');
+                if (btn) btn.textContent = sound.muted ? '🔇' : '🔊';
+            }
+
+            toggleHelpModal() {
+                sound.playClick();
+                const m = document.getElementById('helpModal');
+                if (m) m.classList.toggle('open');
+            }
+
+            async refreshWallet() {
+                sound.playClick();
+                if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                    const sess = localStorage.getItem('bwn_session_user');
+                    if (sess) {
+                        try { window.wallet.syncWithUser(JSON.parse(sess)); } catch(e) {}
+                    }
+                    this.balance = window.wallet.getBalance();
+                    this.updateUI();
+                }
+                try {
+                    const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && data.success && data.data && data.data.balance !== undefined) {
+                            if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                                window.wallet.syncWithUser(data.data);
+                                this.balance = window.wallet.getBalance();
+                            } else {
+                                this.balance = parseFloat(data.data.balance);
+                            }
+                            this.updateUI();
+                        }
+                    }
+                } catch(e) {}
+            }
+
+            updateUI() {
+                const balFormatted = this.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const hBal = document.getElementById('headerBalanceVal');
+                if (hBal) hBal.textContent = balFormatted;
+            }
+
+            showToast(msg, type = 'info') {
+                if (window.app && typeof window.app.showToast === 'function') {
+                    window.app.showToast(msg, type);
+                } else {
+                    console.log(`[${type.toUpperCase()}] ${msg}`);
+                }
+            }
+        }
+
+        const colorGame = new ColorGameEngine();
+
+        // Audio & Hip Hop Music Kickstart on ANY user gesture
+        function kickstartColorAudio() {
+            sound.init();
+            if (colorGame && colorGame.musicEnabled && !colorGame.musicPlaying) {
+                colorGame.playBgm();
+            }
+        }
+
+        // Official JILI Splash Loading Screen Animation
+        function startJiliLoader() {
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            const pctEl = document.getElementById('jiliLoadPct');
+            if (!splash || !progressBar) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1850;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.7 ? (p * 1.15) : (0.805 + (p - 0.7) * 0.65);
+                const pct = Math.min(100, Math.round(ease * 100));
+                progressBar.style.width = pct + '%';
+                if (pctEl) pctEl.innerText = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    setTimeout(() => {
+                        splash.classList.add('loaded');
+                        kickstartColorAudio();
+                        setTimeout(() => {
+                            splash.style.display = 'none';
+                        }, 600);
+                    }, 140);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startJiliLoader);
+        } else {
+            startJiliLoader();
+        }
+
+        // Wallet Session Sync with Backend & Central Wallet Engine
+        async function syncWalletSession() {
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) activeUser = JSON.parse(sess);
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                        if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                            window.wallet.syncWithUser(activeUser);
+                        }
+                    }
+                }
+            } catch(e) {}
+
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                colorGame.balance = window.wallet.getBalance();
+            } else if (activeUser && activeUser.balance !== undefined) {
+                colorGame.balance = parseFloat(activeUser.balance);
+            }
+
+            // User Profile Avatar Sync (Clean Picture Only - No Name Popup)
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                if (avWrap && activeUser) {
+                    if (activeUser.avatar && (activeUser.avatar.startsWith('http') || activeUser.avatar.startsWith('data:') || activeUser.avatar.includes('/') || activeUser.avatar.includes('.'))) {
+                        avWrap.innerHTML = `<img src="${activeUser.avatar}" alt="">`;
+                    } else if (activeUser.avatar) {
+                        avWrap.innerHTML = `<span style="font-size:13px;">${activeUser.avatar}</span>`;
+                    }
+                }
+            } catch(e) {}
+
+            colorGame.updateUI();
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await syncWalletSession();
+            colorGame.init();
+
+            // Multi-listener auto-unlock for Web Audio and Hip Hop BGM on first interaction
+            ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown'].forEach(evt => {
+                document.addEventListener(evt, kickstartColorAudio, { once: true, capture: true });
+            });
+        });
+    </script>
+</body>
+</html>

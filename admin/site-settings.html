@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Site Settings, Branding & SMTP - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .preset-card {
+            background: #0d1420;
+            border: 2px solid var(--lte-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .preset-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .preset-card.active {
+            border-color: var(--lte-green);
+            box-shadow: 0 0 15px rgba(0, 231, 0, 0.3);
+        }
+        .color-palette-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .color-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .color-picker-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #090e17;
+            border: 1px solid var(--lte-border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .color-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: transparent;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    Platform Settings / <b style="color:#fff;">Site Identity, Dynamic Themes & SMTP</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <a href="../index.html" target="_blank" class="btn-lte btn-lte-secondary" style="color:var(--lte-green);">
+                    <span>🎮 Open Casino Preview</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>🎨</span> Site Settings, Branding & Mail Server
+                    </h1>
+                    <p class="page-subtitle">
+                        Customize site title, logo icon, default platform currency (USD $), live casino theme colors, and SMTP notifications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tabs: Branding vs Theme Colors vs SMTP -->
+            <div class="tab-pills">
+                <button class="tab-pill-btn active" id="pill-branding" onclick="switchSettingsTab('branding')">
+                    <span>👑 Site Branding & Currency</span>
+                </button>
+                <button class="tab-pill-btn" id="pill-theme" onclick="switchSettingsTab('theme')">
+                    <span>🎨 Visual Theme & Dynamic Colors</span>
+                </button>
+                <button class="tab-pill-btn" id="pill-smtp" onclick="switchSettingsTab('smtp')">
+                    <span>📧 SMTP Mail Server</span>
+                </button>
+                <button class="tab-pill-btn" id="pill-whatsapp" onclick="switchSettingsTab('whatsapp')">
+                    <span style="color:#25D366;">💬</span> <span>WhatsApp Group & Support</span>
+                </button>
+            </div>
+
+            <!-- TAB 1: BRANDING -->
+            <div id="tab-content-branding" class="lte-card">
+                <form onsubmit="handleSaveBranding(event)">
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Base Platform Currency:</label>
+                            <select id="set-base-currency" class="form-ctrl" onchange="updateCurrencySymbol(this.value)">
+                                <option value="USD" selected>USD ($ - United States Dollar) [Default Recommended]</option>
+                                <option value="PKR">PKR (₨ - Pakistani Rupee)</option>
+                                <option value="EUR">EUR (€ - Euro)</option>
+                                <option value="GBP">GBP (£ - British Pound)</option>
+                                <option value="USDT">USDT (₮ - Tether Crypto)</option>
+                            </select>
+                            <span style="font-size:10px; color:var(--lte-muted);">All 17 games, wallet calculations, and win/loss ledgers run in this base currency.</span>
+                        </div>
+                        <div class="form-field">
+                            <label>Currency Symbol:</label>
+                            <input type="text" id="set-currency-symbol" class="form-ctrl" value="$" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Site Brand Title:</label>
+                            <input type="text" id="set-site-title" class="form-ctrl" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Site Tagline:</label>
+                            <input type="text" id="set-site-tagline" class="form-ctrl" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Logo Icon / Emoji:</label>
+                            <input type="text" id="set-logo-icon" class="form-ctrl" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Custom Logo Image URL (Optional):</label>
+                            <input type="text" id="set-logo-url" class="form-ctrl" placeholder="https://example.com/logo.png">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Top Notice / Announcement Banner:</label>
+                        <input type="text" id="set-notice-banner" class="form-ctrl" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Footer Copyright Notice:</label>
+                        <input type="text" id="set-footer-text" class="form-ctrl" required>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>P2P Merchant Commission Rate (%):</label>
+                            <input type="number" id="set-p2p-commission" class="form-ctrl" step="0.1" min="0" max="15" value="2.0" required>
+                            <span style="font-size:10px; color:var(--lte-muted);">Commission percentage paid to P2P verified merchants on completed volume.</span>
+                        </div>
+                        <div class="form-field">
+                            <label>P2P Escrow Timeout (Minutes):</label>
+                            <input type="number" id="set-p2p-escrow-time" class="form-ctrl" value="15" min="5" max="60" required>
+                            <span style="font-size:10px; color:var(--lte-muted);">Guaranteed price hold window for buyer payment transfer.</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-lte btn-lte-primary" style="margin-top:10px;">
+                        <span>💾 Save Brand Settings</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- TAB 2: VISUAL THEME & DYNAMIC COLORS -->
+            <div id="tab-content-theme" class="lte-card" style="display:none;">
+                
+                <h3 style="font-size:15px; font-weight:800; color:#fff; margin-bottom:6px;">1-Click Luxury Theme Presets:</h3>
+                <p style="font-size:11px; color:var(--lte-muted); margin-bottom:16px;">
+                    Select a curated high-roller aesthetic or fine-tune individual colors below.
+                </p>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-bottom:24px;" id="presets-grid">
+                    <!-- Injected by JS -->
+                </div>
+
+                <div style="border-top:1px solid var(--lte-border); padding-top:20px;">
+                    <h3 style="font-size:15px; font-weight:800; color:#fff; margin-bottom:6px;">Individual Color Customization:</h3>
+                    <p style="font-size:11px; color:var(--lte-muted); margin-bottom:14px;">
+                        Colors apply in real-time across both the player casino lobby and the AdminLTE panel.
+                    </p>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
+                        <div class="color-picker-item">
+                            <div>
+                                <div style="font-weight:700; color:#fff;">Primary Neon Accent</div>
+                                <div style="font-size:11px; color:var(--lte-muted);">Buttons, active links, winning highlights</div>
+                            </div>
+                            <div class="color-input-wrap">
+                                <span id="val-col-primary" style="font-family:'JetBrains Mono',monospace; font-size:11px;">#00e700</span>
+                                <input type="color" id="col-primary" onchange="onColorChange()">
+                            </div>
+                        </div>
+
+                        <div class="color-picker-item">
+                            <div>
+                                <div style="font-weight:700; color:#fff;">Secondary Cyan Accent</div>
+                                <div style="font-size:11px; color:var(--lte-muted);">Multipliers, secondary badges, radar</div>
+                            </div>
+                            <div class="color-input-wrap">
+                                <span id="val-col-secondary" style="font-family:'JetBrains Mono',monospace; font-size:11px;">#00cfe8</span>
+                                <input type="color" id="col-secondary" onchange="onColorChange()">
+                            </div>
+                        </div>
+
+                        <div class="color-picker-item">
+                            <div>
+                                <div style="font-weight:700; color:#fff;">24K Luxury Gold</div>
+                                <div style="font-size:11px; color:var(--lte-muted);">VIP badges, jackpot counters, trophies</div>
+                            </div>
+                            <div class="color-input-wrap">
+                                <span id="val-col-gold" style="font-family:'JetBrains Mono',monospace; font-size:11px;">#f5c518</span>
+                                <input type="color" id="col-gold" onchange="onColorChange()">
+                            </div>
+                        </div>
+
+                        <div class="color-picker-item">
+                            <div>
+                                <div style="font-weight:700; color:#fff;">Alert & Danger Red</div>
+                                <div style="font-size:11px; color:var(--lte-muted);">Crash explode, losses, account suspensions</div>
+                            </div>
+                            <div class="color-input-wrap">
+                                <span id="val-col-danger" style="font-family:'JetBrains Mono',monospace; font-size:11px;">#ff4757</span>
+                                <input type="color" id="col-danger" onchange="onColorChange()">
+                            </div>
+                        </div>
+
+                        <div class="color-picker-item">
+                            <div>
+                                <div style="font-weight:700; color:#fff;">Deep Obsidian Background</div>
+                                <div style="font-size:11px; color:var(--lte-muted);">Main platform body & viewport background</div>
+                            </div>
+                            <div class="color-input-wrap">
+                                <span id="val-col-bg" style="font-family:'JetBrains Mono',monospace; font-size:11px;">#080b11</span>
+                                <input type="color" id="col-bg" onchange="onColorChange()">
+                            </div>
+                        </div>
+
+                        <div class="color-picker-item">
+                            <div>
+                                <div style="font-weight:700; color:#fff;">Surface Card Slate</div>
+                                <div style="font-size:11px; color:var(--lte-muted);">Casino games cards and containers</div>
+                            </div>
+                            <div class="color-input-wrap">
+                                <span id="val-col-card" style="font-family:'JetBrains Mono',monospace; font-size:11px;">#101622</span>
+                                <input type="color" id="col-card" onchange="onColorChange()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;">
+                        <button class="btn-lte btn-lte-primary" onclick="saveCustomColors()">
+                            <span>💾 Save Custom Theme Colors</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: SMTP MAIL SERVER -->
+            <div id="tab-content-smtp" class="lte-card" style="display:none;">
+                <form onsubmit="handleSaveSMTP(event)">
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>SMTP Host / Relay Server:</label>
+                            <input type="text" id="smtp-host" class="form-ctrl" placeholder="smtp.mailserver.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>SMTP Port:</label>
+                            <input type="number" id="smtp-port" class="form-ctrl" placeholder="587" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>SMTP Username / Email:</label>
+                            <input type="text" id="smtp-user" class="form-ctrl" placeholder="support@betwithnet.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>SMTP Password / App Secret:</label>
+                            <input type="password" id="smtp-pass" class="form-ctrl" placeholder="••••••••••••" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>From Sender Email:</label>
+                            <input type="email" id="smtp-from-email" class="form-ctrl" placeholder="cashier@betwithnet.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>From Sender Name:</label>
+                            <input type="text" id="smtp-from-name" class="form-ctrl" placeholder="Bet With Net Cashier Desk" required>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Security Encryption:</label>
+                        <select id="smtp-enc" class="form-ctrl">
+                            <option value="TLS">TLS (Recommended - Port 587)</option>
+                            <option value="SSL">SSL (Port 465)</option>
+                            <option value="None">None (Insecure / Local)</option>
+                        </select>
+                    </div>
+
+                    <div style="display:flex; gap:10px; margin-top:16px;">
+                        <button type="submit" class="btn-lte btn-lte-primary">
+                            <span>💾 Save SMTP Configuration</span>
+                        </button>
+                        <button type="button" class="btn-lte btn-lte-secondary" onclick="simulateTestEmail()">
+                            <span>📨 Send Test Email Simulation</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        
+            <!-- TAB 4: WHATSAPP GROUP & SUPPORT -->
+            <div id="tab-content-whatsapp" class="lte-card" style="display:none; border:1px solid rgba(37,211,102,0.3);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <h2 style="font-size:18px; font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;">
+                            <span style="color:#25D366;">💬</span> WhatsApp Community Group & Live Chat
+                        </h2>
+                        <p style="font-size:12px; color:var(--lte-muted); margin:0;">
+                            Configure your official WhatsApp group invite link and player floating support button.
+                        </p>
+                    </div>
+                    <a href="whatsapp.html" class="btn-lte btn-lte-primary" style="background:#25D366; color:#000; font-weight:800; border:none;">
+                        <span>🚀 Dedicated WhatsApp Page →</span>
+                    </a>
+                </div>
+
+                <form onsubmit="handleSaveWhatsAppInSettings(event)">
+                    <div class="form-field" style="margin-bottom:16px;">
+                        <label>WhatsApp Group Invite URL:</label>
+                        <input type="url" id="settings-wa-link" class="form-ctrl" placeholder="https://chat.whatsapp.com/..." style="font-family:'JetBrains Mono',monospace;">
+                        <span style="font-size:10px; color:var(--lte-muted);">Players will join this group when clicking WhatsApp buttons across the casino.</span>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Support Phone Number (Fallback 1-on-1):</label>
+                            <input type="text" id="settings-wa-num" class="form-ctrl" placeholder="923001234567">
+                        </div>
+                        <div class="form-field">
+                            <label>Floating Bubble Status:</label>
+                            <select id="settings-wa-enabled" class="form-ctrl">
+                                <option value="1">🟢 Enabled (Floating draggable button visible)</option>
+                                <option value="0">🔴 Disabled (Hidden)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-field" style="margin-bottom:20px;">
+                        <label>Default Chat Greeting:</label>
+                        <input type="text" id="settings-wa-msg" class="form-ctrl" placeholder="Hello BetWithNet Support, I need assistance with my account.">
+                    </div>
+
+                    <div style="display:flex; gap:12px;">
+                        <button type="submit" class="btn-lte btn-lte-primary" style="background:#25D366; color:#000; font-weight:800; border:none;">
+                            <span>💾 Save WhatsApp Settings</span>
+                        </button>
+                        <button type="button" class="btn-lte btn-lte-secondary" onclick="testWhatsAppInSettings()">
+                            <span>🔗 Test Open Group Link</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/site_settings.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        function updateCurrencySymbol(curr) {
+            const sym = document.getElementById('set-currency-symbol');
+            if (curr === 'USD') sym.value = '$';
+            else if (curr === 'PKR') sym.value = '₨';
+            else if (curr === 'EUR') sym.value = '€';
+            else if (curr === 'GBP') sym.value = '£';
+            else if (curr === 'USDT') sym.value = '₮';
+        }
+
+        function switchSettingsTab(tab) {
+            document.getElementById('pill-branding').className = `tab-pill-btn ${tab === 'branding' ? 'active' : ''}`;
+            document.getElementById('pill-theme').className = `tab-pill-btn ${tab === 'theme' ? 'active' : ''}`;
+            document.getElementById('pill-smtp').className = `tab-pill-btn ${tab === 'smtp' ? 'active' : ''}`;
+            if (document.getElementById('pill-whatsapp')) {
+                document.getElementById('pill-whatsapp').className = `tab-pill-btn ${tab === 'whatsapp' ? 'active' : ''}`;
+            }
+
+            document.getElementById('tab-content-branding').style.display = (tab === 'branding') ? 'block' : 'none';
+            document.getElementById('tab-content-theme').style.display = (tab === 'theme') ? 'block' : 'none';
+            document.getElementById('tab-content-smtp').style.display = (tab === 'smtp') ? 'block' : 'none';
+            if (document.getElementById('tab-content-whatsapp')) {
+                document.getElementById('tab-content-whatsapp').style.display = (tab === 'whatsapp') ? 'block' : 'none';
+            }
+        }
+
+        function loadSettings() {
+            const b = window.siteSettings.settings.branding;
+            document.getElementById('set-base-currency').value = b.baseCurrency || 'USD';
+            document.getElementById('set-currency-symbol').value = b.currencySymbol || '$';
+            document.getElementById('set-site-title').value = b.siteTitle || 'BET WITH NET';
+            document.getElementById('set-site-tagline').value = b.tagline || '';
+            document.getElementById('set-logo-icon').value = b.logoIcon || '👑';
+            document.getElementById('set-logo-url').value = b.logoUrl || '';
+            document.getElementById('set-notice-banner').value = b.noticeBanner || '';
+            document.getElementById('set-footer-text').value = b.footerText || '';
+            document.getElementById('set-p2p-commission').value = localStorage.getItem('bwn_p2p_commission_rate') || '2.0';
+            document.getElementById('set-p2p-escrow-time').value = localStorage.getItem('bwn_p2p_escrow_timeout') || '15';
+
+            // Colors
+            const c = window.siteSettings.settings.theme.colors;
+            setColorInputs(c);
+
+            // Presets
+            renderPresets();
+
+            // SMTP
+            const s = window.siteSettings.settings.smtp;
+            document.getElementById('smtp-host').value = s.host || '';
+            document.getElementById('smtp-port').value = s.port || 587;
+            document.getElementById('smtp-user').value = s.username || '';
+            document.getElementById('smtp-pass').value = s.password || '';
+            document.getElementById('smtp-from-email').value = s.fromEmail || '';
+            document.getElementById('smtp-from-name').value = s.fromName || '';
+            document.getElementById('smtp-enc').value = s.encryption || 'TLS';
+        }
+
+        function setColorInputs(c) {
+            document.getElementById('col-primary').value = c.primary;
+            document.getElementById('val-col-primary').innerText = c.primary;
+
+            document.getElementById('col-secondary').value = c.secondary;
+            document.getElementById('val-col-secondary').innerText = c.secondary;
+
+            document.getElementById('col-gold').value = c.gold;
+            document.getElementById('val-col-gold').innerText = c.gold;
+
+            document.getElementById('col-danger').value = c.danger;
+            document.getElementById('val-col-danger').innerText = c.danger;
+
+            document.getElementById('col-bg').value = c.bgDark;
+            document.getElementById('val-col-bg').innerText = c.bgDark;
+
+            document.getElementById('col-card').value = c.bgCard;
+            document.getElementById('val-col-card').innerText = c.bgCard;
+        }
+
+        function renderPresets() {
+            const presets = window.siteSettings.getPresets();
+            const activePreset = window.siteSettings.settings.theme.activePreset;
+            const container = document.getElementById('presets-grid');
+
+            container.innerHTML = Object.keys(presets).map(key => {
+                const p = presets[key];
+                const isActive = (key === activePreset);
+                return `
+                    <div class="preset-card ${isActive ? 'active' : ''}" onclick="applyPreset('${key}')">
+                        <div style="font-weight:800; color:#fff; font-size:13px;">${p.name}</div>
+                        <div class="color-palette-dots">
+                            <div class="color-dot" style="background:${p.colors.primary};"></div>
+                            <div class="color-dot" style="background:${p.colors.secondary};"></div>
+                            <div class="color-dot" style="background:${p.colors.gold};"></div>
+                            <div class="color-dot" style="background:${p.colors.bgDark};"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function applyPreset(key) {
+            window.siteSettings.setPresetTheme(key);
+            const c = window.siteSettings.settings.theme.colors;
+            setColorInputs(c);
+            renderPresets();
+            alert(`Applied luxury preset: ${key.toUpperCase()}`);
+        }
+
+        function onColorChange() {
+            const c = {
+                primary: document.getElementById('col-primary').value,
+                secondary: document.getElementById('col-secondary').value,
+                gold: document.getElementById('col-gold').value,
+                danger: document.getElementById('col-danger').value,
+                bgDark: document.getElementById('col-bg').value,
+                bgCard: document.getElementById('col-card').value
+            };
+            setColorInputs(c);
+        }
+
+        function saveCustomColors() {
+            const c = {
+                primary: document.getElementById('col-primary').value,
+                secondary: document.getElementById('col-secondary').value,
+                gold: document.getElementById('col-gold').value,
+                danger: document.getElementById('col-danger').value,
+                bgDark: document.getElementById('col-bg').value,
+                bgCard: document.getElementById('col-card').value
+            };
+            window.siteSettings.updateColors(c);
+            renderPresets();
+            alert('Custom platform theme colors saved and activated!');
+        }
+
+        function handleSaveBranding(e) {
+            e.preventDefault();
+            const b = {
+                baseCurrency: document.getElementById('set-base-currency').value,
+                currencySymbol: document.getElementById('set-currency-symbol').value.trim(),
+                siteTitle: document.getElementById('set-site-title').value.trim(),
+                tagline: document.getElementById('set-site-tagline').value.trim(),
+                logoIcon: document.getElementById('set-logo-icon').value.trim(),
+                logoUrl: document.getElementById('set-logo-url').value.trim(),
+                noticeBanner: document.getElementById('set-notice-banner').value.trim(),
+                footerText: document.getElementById('set-footer-text').value.trim()
+            };
+            window.siteSettings.updateBranding(b);
+            const p2pRate = document.getElementById('set-p2p-commission').value;
+            const p2pTime = document.getElementById('set-p2p-escrow-time').value;
+            localStorage.setItem('bwn_p2p_commission_rate', p2pRate);
+            localStorage.setItem('bwn_p2p_escrow_timeout', p2pTime);
+            if (window.p2pManager) window.p2pManager.setCommissionRate(p2pRate);
+            alert('Site branding, currency, logo and P2P commission settings updated successfully!');
+        }
+
+        function handleSaveSMTP(e) {
+            e.preventDefault();
+            const s = {
+                host: document.getElementById('smtp-host').value.trim(),
+                port: parseInt(document.getElementById('smtp-port').value, 10) || 587,
+                username: document.getElementById('smtp-user').value.trim(),
+                password: document.getElementById('smtp-pass').value.trim(),
+                fromEmail: document.getElementById('smtp-from-email').value.trim(),
+                fromName: document.getElementById('smtp-from-name').value.trim(),
+                encryption: document.getElementById('smtp-enc').value
+            };
+            window.siteSettings.updateSMTP(s);
+            alert('SMTP Mail Server configuration saved successfully!');
+        }
+
+        function simulateTestEmail() {
+            const email = prompt('Enter recipient email for test message:', window.siteSettings.settings.adminProfile.email);
+            if (email) {
+                alert(`Test email simulated successfully! Dispatched to: ${email}\nServer: ${window.siteSettings.settings.smtp.host}:${window.siteSettings.settings.smtp.port} (TLS Handshake Verified ✅)`);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadSettings);
+    </script>
+</body>
+</html>

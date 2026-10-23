@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Meow HiLo</title>
+
+    <!--http://www.html5rocks.com/en/mobile/mobifying/-->
+    <meta
+      name="viewport"
+      content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"
+    />
+
+    <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- force webkit on 360 -->
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <!-- force edge on IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- force full screen on some browser -->
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+
+    <!--fix fireball/issues/3568 -->
+    <!--<meta name="browsermode" content="application">-->
+    <meta name="x5-page-mode" content="app" />
+
+    <!--<link rel="apple-touch-icon" href=".png" />-->
+    <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1029XKB3MB"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-1029XKB3MB");
+    </script>
+    <!-- smart look tracking code -->
+    <script type='text/javascript'>
+      window.smartlook||(function(d) {
+        var o = smartlook= function() { 
+        o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+        var c = d.createElement('script');
+        o.api = new Array();
+        c.async = true;
+        c.type = 'text/javascript';
+        c.charset = 'utf-8';
+        c.src = 'https://web-sdk.smartlook.com/recorder.js';
+        h.appendChild(c);
+        })(document);
+        smartlook('init', 'd80007c42a79fa591fc5f58bff70c9c6ba15e4f9', { region: 'eu' });
+    </script>
+    
+    <!-- <script>
+      let time = 0; // seconds
+      const timer = setInterval(() => {
+        time++;
+        console.log(time);
+      }, 1000)
+
+      window.stopInitLog = function() {
+        console.log(`init time: ${time}`);
+        clearInterval(timer);
+      }
+    </script> -->
+    
+  </head>
+  <style>
+    .custom-style {
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-transform-origin: top;
+          -ms-transform-origin: top;
+              transform-origin: top;
+    }
+  </style>
+  <body>
+    <div id="GameDiv" cc_exact_fit_screen="true">
+      <div id="Cocos3dGameContainer">
+        <canvas
+          id="GameCanvas"
+          oncontextmenu="event.preventDefault()"
+          tabindex="99"
+          data-sl="canvas-mq"
+        ></canvas>
+      </div>
+    </div>
+    
+<!-- Polyfills bundle. -->
+<script src="src/polyfills.bundle.5adbf.js" charset="utf-8"> </script>
+
+<!-- SystemJS support. -->
+<script src="src/system.bundle.543e6.js" charset="utf-8"> </script>
+
+<!-- Import map -->
+<script src="src/import-map.c3893.json" type="systemjs-importmap" charset="utf-8"> </script>
+
+<script>
+    System.import('./index.65a65.js').catch(function(err) { console.error(err); })
+</script>
+
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"2564bd88abe5497ba8f3512b46acf5fd","spa":2}' crossorigin="anonymous"></script>
+</body>
+  <script>
+    
+  </script>
+</html>
+

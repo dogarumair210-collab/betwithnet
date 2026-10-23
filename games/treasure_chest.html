@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🏴‍☠️ Pirate Treasure Chests VIP - Bet With Net</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        treasure: {
+                            gold: '#ffd700',
+                            amber: '#f59e0b',
+                            teal: '#00e5ff',
+                            ruby: '#ff2255',
+                            dark: '#030810'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        action: ['Russo One', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="../js/wallet.js?v=3.0"></script>
+
+    <style>
+        /* Base Reset */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            height: 100dvh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #02060b;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           DYNAMIC CASINO THEMES (Pirate Cove, Pharaoh, Atlantis, Aztec)
+           ------------------------------------------------------------- */
+        .theme-pirate {
+            --accent-color: #ffd700;
+            --accent-glow: rgba(255, 215, 0, 0.6);
+            --bg-img: url('../assets/games/treasure_chest/images/bg_pirate.jpg');
+            --stage-border: #ffd700;
+            --pedestal-bg: linear-gradient(180deg, #2a1a0f 0%, #120b06 100%);
+            --theme-title: 'PIRATE COVE EXPEDITION';
+        }
+
+        .theme-pharaoh {
+            --accent-color: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.65);
+            --bg-img: url('../assets/games/treasure_chest/images/bg_pharaoh.jpg');
+            --stage-border: #f59e0b;
+            --pedestal-bg: linear-gradient(180deg, #301f09 0%, #160d03 100%);
+            --theme-title: "PHARAOH'S GOLDEN TOMB";
+        }
+
+        .theme-atlantis {
+            --accent-color: #00e5ff;
+            --accent-glow: rgba(0, 229, 255, 0.65);
+            --bg-img: url('../assets/games/treasure_chest/images/bg_atlantis.jpg');
+            --stage-border: #00e5ff;
+            --pedestal-bg: linear-gradient(180deg, #092535 0%, #03111b 100%);
+            --theme-title: 'ATLANTIS SUNKEN TEMPLE';
+        }
+
+        .theme-aztec {
+            --accent-color: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.65);
+            --bg-img: url('../assets/games/treasure_chest/images/bg_aztec.jpg');
+            --stage-border: #10b981;
+            --pedestal-bg: linear-gradient(180deg, #0c2b18 0%, #04120a 100%);
+            --theme-title: 'AZTEC SUN SANCTUARY';
+        }
+
+        /* High-Definition Vivid Background with Volumetric Depth */
+        .casino-bg-layer {
+            position: fixed;
+            inset: 0;
+            background-image: var(--bg-img);
+            background-size: cover;
+            background-position: center;
+            opacity: 0.85; /* Vivid and crystal clear */
+            filter: contrast(120%) saturate(125%) brightness(0.85);
+            z-index: 0;
+            pointer-events: none;
+            transition: background-image 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+        }
+
+        .casino-vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(0, 0, 0, 0.15) 0%, rgba(2, 6, 11, 0.82) 75%, rgba(0, 0, 0, 0.96) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Ambient Lighting Sweeping Canvas */
+        #ambientCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.75;
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed !important;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw; width: 100dvw;
+            height: 100vh; height: 100dvh;
+            background: #000000 !important;
+            z-index: 2147483647 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s ease;
+            overflow: hidden;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            max-width: 250px;
+            padding: 16px;
+        }
+        .pp-loader-bar-wrap {
+            width: 100%;
+            height: 7px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+        }
+        .pp-loader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #eab308 0%, #ffd700 50%, #fef08a 100%);
+            border-radius: 999px;
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.95);
+            transition: width 0.12s linear;
+        }
+
+        /* -------------------------------------------------------------
+           3D REALISTIC CHEST & PEDESTAL STYLES
+           ------------------------------------------------------------- */
+        .chest-column {
+            perspective: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .chest-card-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-width: 145px;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Golden Filigree Frame */
+        .chest-gold-frame {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow), inset 0 0 12px rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Elevation & Breathing Pulse */
+        .chest-column.pick-ready:hover .chest-card-box {
+            transform: translateY(-8px) scale(1.05);
+            filter: drop-shadow(0 15px 25px var(--accent-glow));
+        }
+
+        .chest-column.pick-ready .chest-card-box {
+            animation: chestFloat 2.6s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes chestFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-5px) scale(1.03);
+                filter: drop-shadow(0 8px 22px var(--accent-glow));
+            }
+        }
+
+        /* -------------------------------------------------------------
+           DYNAMIC KEY INSERTION & ROTATION INSIDE LOCK
+           ("chabi sandook k ander lag k ghome fr sandook open hu")
+           ------------------------------------------------------------- */
+        .lock-key-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 64px;
+            height: 64px;
+            margin-top: -32px;
+            margin-left: -32px;
+            z-index: 50;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translate(0, 0) scale(0);
+        }
+
+        /* Phase 1: Key Appears & Moves to Center Keyhole */
+        .lock-key-wrapper.anim-approach {
+            opacity: 1;
+            animation: keyApproach 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes keyApproach {
+            0% {
+                opacity: 0;
+                transform: translateY(-40px) scale(2.2) rotate(-25deg);
+                filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px) scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+            }
+        }
+
+        /* Phase 2: Key Inserts into Lock & Turns/Rotates 180° ("chabi sandook k ander lag k ghome") */
+        .lock-key-wrapper.anim-turn {
+            opacity: 1;
+            animation: keyTurnInside 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes keyTurnInside {
+            0% {
+                transform: translateY(0px) scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+            }
+            25% {
+                /* Key pushes deep into lock */
+                transform: translateY(3px) scale(0.9) rotate(20deg);
+                filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
+            }
+            75% {
+                /* Smooth 180° key rotation inside lock */
+                transform: translateY(3px) scale(0.9) rotate(180deg);
+                filter: drop-shadow(0 0 35px rgba(255, 255, 200, 1)) brightness(1.5);
+            }
+            100% {
+                /* Mechanical lock tumbler clicks into open position */
+                transform: translateY(1px) scale(0.95) rotate(180deg);
+                filter: drop-shadow(0 0 45px #ffd700) brightness(1.8);
+            }
+        }
+
+        /* Phase 3: Spark Burst & Key Dissolves into Light */
+        .lock-key-wrapper.anim-unlock-burst {
+            animation: keyDisappearBurst 0.35s ease-out forwards;
+        }
+
+        @keyframes keyDisappearBurst {
+            0% {
+                opacity: 1;
+                transform: scale(1.1) rotate(180deg);
+                filter: brightness(2.5) drop-shadow(0 0 45px #fff);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.6) rotate(220deg);
+                filter: brightness(3.5);
+            }
+        }
+
+        /* Golden Spark Burst Flare */
+        .key-spark-burst {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 215, 0, 0.8) 45%, transparent 70%);
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.2);
+            z-index: 45;
+        }
+
+        .key-spark-burst.active-flare {
+            animation: sparkFlash 0.45s ease-out forwards;
+        }
+
+        @keyframes sparkFlash {
+            0% { opacity: 0; transform: scale(0.2); }
+            35% { opacity: 1; transform: scale(1.5); filter: brightness(2.5); }
+            100% { opacity: 0; transform: scale(2.2); }
+        }
+
+        /* Violent Rattle Shaking Effect */
+        .chest-shaking {
+            animation: violentRattle 0.45s infinite ease-in-out !important;
+        }
+
+        @keyframes violentRattle {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            15% { transform: translate(-3px, -2px) rotate(-1.5deg); }
+            30% { transform: translate(3px, 2px) rotate(1.5deg); }
+            45% { transform: translate(-2px, 3px) rotate(-1deg); }
+            60% { transform: translate(3px, -2px) rotate(1deg); }
+            75% { transform: translate(-2px, -2px) rotate(-1.5deg); }
+            90% { transform: translate(2px, 2px) rotate(1deg); }
+            100% { transform: translate(0px, 0px) rotate(0deg); }
+        }
+
+        /* Win Burst & Light Rays */
+        .chest-revealed-win {
+            animation: burstWin 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes burstWin {
+            0% { transform: scale(0.85); filter: brightness(2.2) drop-shadow(0 0 45px #ffd700); }
+            45% { transform: scale(1.12); filter: brightness(1.6) drop-shadow(0 0 35px #ffd700); }
+            100% { transform: scale(1); filter: brightness(1.15) drop-shadow(0 0 20px rgba(255,215,0,0.8)); }
+        }
+
+        /* Kraken Violent Strike */
+        .chest-revealed-kraken {
+            animation: strikeKraken 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes strikeKraken {
+            0% { transform: scale(0.9); filter: brightness(2.2) drop-shadow(0 0 45px #c084fc); }
+            30% { transform: scale(1.1) translateY(-6px); filter: drop-shadow(0 0 35px #ef4444); }
+            100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 22px rgba(192, 132, 252, 0.85)); }
+        }
+
+        /* 3D Carved Pedestal Underneath Each Chest */
+        .chest-pedestal {
+            width: 88%;
+            height: 14px;
+            margin-top: 4px;
+            background: var(--pedestal-bg);
+            border: 1.5px solid var(--accent-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .chest-pedestal::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            width: 106%;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        /* Glowing VIP Gold Button */
+        .btn-gold-glow {
+            background: linear-gradient(135deg, #fff2a3 0%, #ffd700 35%, #f59e0b 70%, #92400e 100%);
+            box-shadow: 0 4px 22px rgba(245, 158, 11, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gold-glow:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 1);
+        }
+        .btn-gold-glow:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        /* Full Screen Big Win Celebration Modal */
+        #mega-win-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #mega-win-modal.active {
+            display: flex;
+            animation: modalFadeIn 0.3s ease forwards;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="theme-pirate select-none">
+
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loader" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="flex flex-col items-center gap-1.5">
+                <span class="text-4xl animate-bounce">🏴‍☠️</span>
+                <span class="font-display font-black text-sm tracking-widest text-yellow-400 uppercase">TREASURE CHESTS VIP</span>
+                <span class="text-[9px] font-mono tracking-widest text-slate-400">PRAGMATIC CASINO ENGINE</span>
+            </div>
+            <div class="pp-loader-bar-wrap">
+                <div id="pp-progress" class="pp-loader-bar-fill"></div>
+            </div>
+            <div class="text-[10px] font-mono text-yellow-400/90 font-bold tracking-wider" id="pp-loader-status">LOADING GRAPHICS 0%</div>
+        </div>
+    </div>
+
+    <!-- Mega Win Celebration Modal -->
+    <div id="mega-win-modal" onclick="closeMegaWin()">
+        <div class="flex flex-col items-center justify-center p-6 text-center max-w-sm sm:max-w-md bg-gradient-to-b from-yellow-950/80 to-slate-950/95 border-2 border-yellow-400 rounded-3xl shadow-[0_0_60px_rgba(255,215,0,0.6)]">
+            <span class="text-5xl sm:text-6xl animate-bounce mb-2">💎👑💎</span>
+            <h2 class="text-2xl sm:text-3xl font-black font-display text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-amber-500 tracking-wider">
+                MEGA JACKPOT!
+            </h2>
+            <div class="my-3 text-3xl sm:text-4xl font-black font-mono text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.8)]">
+                ₨ <span id="mega-win-amount">0</span>
+            </div>
+            <div class="text-xs sm:text-sm font-mono font-bold text-yellow-300" id="mega-win-mult">
+                MULTIPLIER: 50X
+            </div>
+            <p class="mt-4 text-[11px] text-slate-400 font-mono uppercase tracking-widest animate-pulse">
+                TAP ANYWHERE TO COLLECT
+            </p>
+        </div>
+    </div>
+
+    <!-- High-Definition Background Layer & Particle Canvas -->
+    <div class="casino-bg-layer" id="bgLayer"></div>
+    <div class="casino-vignette"></div>
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- Main Viewport Container (Guaranteed 100dvh Zero Scroll) -->
+    <div class="relative z-10 w-full h-full flex flex-col justify-between max-w-5xl mx-auto px-2 sm:px-4 py-1.5 sm:py-2">
+
+        <!-- Top Casino VIP Header -->
+        <header class="flex items-center justify-between w-full bg-slate-950/85 backdrop-blur-md px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-yellow-500/35 shadow-2xl">
+            <!-- Left: Back Button & Game Title -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="../casino.html" class="flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-yellow-400 bg-yellow-500/10 hover:bg-yellow-500/20 rounded-lg border border-yellow-500/35 transition">
+                    <span>←</span> <span class="hidden sm:inline">Casino</span>
+                </a>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-base sm:text-lg">🏴‍☠️</span>
+                        <h1 class="text-xs sm:text-sm font-black font-display tracking-wider text-yellow-400 leading-none" id="header-theme-title">
+                            PIRATE COVE VIP
+                        </h1>
+                        <span class="hidden md:inline px-1.5 py-0.5 text-[9px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded">
+                            RTP 97.8%
+                        </span>
+                    </div>
+                    <span class="text-[9px] text-slate-400 font-mono hidden sm:inline">
+                        UP TO 150X • PROVABLY FAIR
+                    </span>
+                </div>
+            </div>
+
+            <!-- Center: 4 Rich Theme Switcher -->
+            <div class="flex items-center bg-slate-900/90 border border-slate-700/70 rounded-lg p-0.5 gap-0.5 sm:gap-1">
+                <button onclick="setTheme('pirate')" id="btn-theme-pirate" class="px-2 py-0.5 rounded text-[10px] font-bold transition bg-yellow-500/35 text-yellow-300 border border-yellow-500/50" title="Pirate Cove">
+                    🏴‍☠️ <span class="hidden md:inline">Pirate</span>
+                </button>
+                <button onclick="setTheme('pharaoh')" id="btn-theme-pharaoh" class="px-2 py-0.5 rounded text-[10px] font-bold transition text-slate-400 hover:text-amber-300" title="Pharaoh Tomb">
+                    🏛️ <span class="hidden md:inline">Pharaoh</span>
+                </button>
+                <button onclick="setTheme('atlantis')" id="btn-theme-atlantis" class="px-2 py-0.5 rounded text-[10px] font-bold transition text-slate-400 hover:text-cyan-300" title="Atlantis Sunken Temple">
+                    🔱 <span class="hidden md:inline">Atlantis</span>
+                </button>
+                <button onclick="setTheme('aztec')" id="btn-theme-aztec" class="px-2 py-0.5 rounded text-[10px] font-bold transition text-slate-400 hover:text-emerald-300" title="Aztec Sun Gold">
+                    🗿 <span class="hidden md:inline">Aztec</span>
+                </button>
+            </div>
+
+            <!-- Right: Wallet Balance & Control Toggles -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <!-- Live Wallet Pill -->
+                <div class="flex items-center gap-1 bg-black/75 border border-yellow-500/50 px-2.5 py-1 rounded-full shadow-inner">
+                    <span class="text-[10px] sm:text-xs text-yellow-400 font-mono font-bold">₨</span>
+                    <span id="wallet-balance" class="text-xs sm:text-sm font-mono font-black text-emerald-400 tracking-wide">10,000</span>
+                </div>
+                
+                <!-- Captain Voice Toggle -->
+                <button id="voice-toggle-btn" onclick="toggleVoice()" class="w-7 h-7 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700 hover:border-yellow-400/50 text-xs transition" title="Toggle Captain Voice">
+                    🗣️
+                </button>
+                <!-- Sound FX Toggle -->
+                <button id="audio-toggle-btn" onclick="toggleAudio()" class="w-7 h-7 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700 hover:border-yellow-400/50 text-xs transition" title="Toggle Sound FX">
+                    🔊
+                </button>
+                <!-- Ambient Music Toggle -->
+                <button id="music-toggle-btn" onclick="toggleMusic()" class="w-7 h-7 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700 hover:border-yellow-400/50 text-xs transition" title="Toggle Ambient Music">
+                    🎵
+                </button>
+                <!-- Fullscreen Toggle -->
+                <button onclick="toggleFullscreen()" class="w-7 h-7 hidden sm:flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700 hover:border-yellow-400/50 text-xs text-slate-300 transition" title="Toggle Fullscreen">
+                    ⛶
+                </button>
+            </div>
+        </header>
+
+        <!-- Multipliers Ladder & Trap Risk Selector -->
+        <div class="flex items-center justify-between gap-2 bg-slate-950/75 backdrop-blur-md border border-yellow-500/25 px-2.5 py-1 rounded-xl shadow-lg">
+            <!-- Multiplier Badges -->
+            <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto text-[10px] font-mono font-bold py-0.5">
+                <span class="text-slate-400 text-[9px] uppercase tracking-wider hidden sm:inline">Prizes:</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1 shadow-sm">
+                    <span>💎</span> 25x - 100x
+                </span>
+                <span class="px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 flex items-center gap-1 shadow-sm">
+                    <span>👑</span> 10x - 20x
+                </span>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1 shadow-sm">
+                    <span>💰</span> 3x - 8x
+                </span>
+                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/40 flex items-center gap-1 shadow-sm">
+                    <span>🥈</span> 1.5x - 2.5x
+                </span>
+                <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/40 flex items-center gap-1 shadow-sm">
+                    <span>🐙</span> KRAKEN
+                </span>
+            </div>
+
+            <!-- Risk Mode Select -->
+            <div class="flex items-center gap-1 text-[10px] font-bold">
+                <span class="text-slate-400 hidden md:inline text-[9px] uppercase">Danger:</span>
+                <button onclick="setTrapMode(1)" id="btn-trap-1" class="px-2 py-0.5 rounded bg-yellow-500/30 text-yellow-300 border border-yellow-500/50 shadow-sm transition">
+                    1 Trap (80%)
+                </button>
+                <button onclick="setTrapMode(2)" id="btn-trap-2" class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 hover:text-white transition">
+                    2 Traps (150x) 🔥
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Stage: 5 Realistic 3D Chests on Altar Pedestals -->
+        <main class="flex-1 flex flex-col justify-center items-center relative my-1 min-h-0">
+            <!-- Luxury Stage Altar Frame -->
+            <div class="w-full h-full max-h-[365px] sm:max-h-[390px] bg-slate-950/80 backdrop-blur-md rounded-2xl border-2 border-yellow-500/45 p-2 sm:p-4 flex flex-col justify-between items-center shadow-[0_0_35px_rgba(0,0,0,0.85)] relative overflow-hidden">
+                
+                <!-- Stage Ambient Spotlight Glow -->
+                <div class="absolute inset-0 bg-gradient-to-b from-yellow-500/5 via-transparent to-black/60 pointer-events-none"></div>
+
+                <!-- Status Marquee Banner -->
+                <div class="w-full flex items-center justify-between px-3 py-1 bg-black/75 border border-yellow-500/30 rounded-xl mb-1 sm:mb-2 z-10 shadow-inner">
+                    <div class="flex items-center gap-2">
+                        <span id="stage-status-icon" class="text-base sm:text-lg animate-bounce">🪙</span>
+                        <div id="stage-status-text" class="text-xs sm:text-sm font-extrabold text-yellow-300 tracking-wide font-display">
+                            CHOOSE YOUR STAKE & COMMENCE EXPEDITION
+                        </div>
+                    </div>
+                    <div id="stage-round-pill" class="text-[10px] font-mono font-bold text-yellow-400 bg-slate-900/90 px-2 py-0.5 rounded border border-yellow-500/30">
+                        ROUND #<span id="round-number">101</span>
+                    </div>
+                </div>
+
+                <!-- 5 Realistic 3D Chest Pedestals Grid -->
+                <div id="chests-container" class="w-full flex-1 grid grid-cols-5 gap-2 sm:gap-4 items-center justify-items-center max-w-4xl py-1 z-10">
+                    
+                    <!-- Chest 0 -->
+                    <div class="chest-column w-full" id="chest-col-0" onclick="handleChestClick(0)">
+                        <div class="lock-key-wrapper" id="key-wrap-0">
+                            <div class="key-spark-burst" id="key-spark-0"></div>
+                            <svg viewBox="0 0 64 64" class="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-[0_0_15px_rgba(255,215,0,1)]">
+                                <defs>
+                                    <linearGradient id="gkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#fffbeb" />
+                                        <stop offset="30%" stop-color="#fef08a" />
+                                        <stop offset="60%" stop-color="#eab308" />
+                                        <stop offset="100%" stop-color="#854d0e" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="32" cy="14" r="10" fill="none" stroke="url(#gkGrad)" stroke-width="3.5" />
+                                <circle cx="32" cy="14" r="5" fill="none" stroke="url(#gkGrad)" stroke-width="1.8" />
+                                <circle cx="32" cy="14" r="2.2" fill="#00e5ff" />
+                                <rect x="29.5" y="23" width="5" height="3" rx="1" fill="url(#gkGrad)" />
+                                <rect x="30.5" y="25" width="3" height="32" rx="1.5" fill="url(#gkGrad)" />
+                                <path d="M33.5 46 H43 V50 H37 V52.5 H43 V56 H33.5 Z" fill="url(#gkGrad)" />
+                            </svg>
+                        </div>
+                        <div class="chest-card-box" id="chest-box-0">
+                            <div class="chest-gold-frame" id="frame-0"></div>
+                            <img src="../assets/games/treasure_chest/images/chest_closed.jpg" alt="Treasure Chest" class="w-full h-full object-cover rounded-xl transition duration-300" id="chest-img-0">
+                            <!-- Overlay Outcome Badge -->
+                            <div class="absolute inset-0 bg-black/80 rounded-xl flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-1 z-20" id="overlay-0">
+                                <span class="text-2xl sm:text-3xl" id="icon-0">💎</span>
+                                <span class="text-xs sm:text-sm font-black font-mono text-yellow-300" id="mult-0">+10x</span>
+                            </div>
+                        </div>
+                        <div class="chest-pedestal">
+                            <span class="text-[8px] sm:text-[9px] font-mono font-black text-yellow-400 tracking-wider">CHEST I</span>
+                        </div>
+                    </div>
+
+                    <!-- Chest 1 -->
+                    <div class="chest-column w-full" id="chest-col-1" onclick="handleChestClick(1)">
+                        <div class="lock-key-wrapper" id="key-wrap-1">
+                            <div class="key-spark-burst" id="key-spark-1"></div>
+                            <svg viewBox="0 0 64 64" class="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-[0_0_15px_rgba(255,215,0,1)]">
+                                <circle cx="32" cy="14" r="10" fill="none" stroke="url(#gkGrad)" stroke-width="3.5" />
+                                <circle cx="32" cy="14" r="5" fill="none" stroke="url(#gkGrad)" stroke-width="1.8" />
+                                <circle cx="32" cy="14" r="2.2" fill="#00e5ff" />
+                                <rect x="29.5" y="23" width="5" height="3" rx="1" fill="url(#gkGrad)" />
+                                <rect x="30.5" y="25" width="3" height="32" rx="1.5" fill="url(#gkGrad)" />
+                                <path d="M33.5 46 H43 V50 H37 V52.5 H43 V56 H33.5 Z" fill="url(#gkGrad)" />
+                            </svg>
+                        </div>
+                        <div class="chest-card-box" id="chest-box-1">
+                            <div class="chest-gold-frame" id="frame-1"></div>
+                            <img src="../assets/games/treasure_chest/images/chest_closed.jpg" alt="Treasure Chest" class="w-full h-full object-cover rounded-xl transition duration-300" id="chest-img-1">
+                            <div class="absolute inset-0 bg-black/80 rounded-xl flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-1 z-20" id="overlay-1">
+                                <span class="text-2xl sm:text-3xl" id="icon-1">💎</span>
+                                <span class="text-xs sm:text-sm font-black font-mono text-yellow-300" id="mult-1">+10x</span>
+                            </div>
+                        </div>
+                        <div class="chest-pedestal">
+                            <span class="text-[8px] sm:text-[9px] font-mono font-black text-yellow-400 tracking-wider">CHEST II</span>
+                        </div>
+                    </div>
+
+                    <!-- Chest 2 -->
+                    <div class="chest-column w-full" id="chest-col-2" onclick="handleChestClick(2)">
+                        <div class="lock-key-wrapper" id="key-wrap-2">
+                            <div class="key-spark-burst" id="key-spark-2"></div>
+                            <svg viewBox="0 0 64 64" class="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-[0_0_15px_rgba(255,215,0,1)]">
+                                <circle cx="32" cy="14" r="10" fill="none" stroke="url(#gkGrad)" stroke-width="3.5" />
+                                <circle cx="32" cy="14" r="5" fill="none" stroke="url(#gkGrad)" stroke-width="1.8" />
+                                <circle cx="32" cy="14" r="2.2" fill="#00e5ff" />
+                                <rect x="29.5" y="23" width="5" height="3" rx="1" fill="url(#gkGrad)" />
+                                <rect x="30.5" y="25" width="3" height="32" rx="1.5" fill="url(#gkGrad)" />
+                                <path d="M33.5 46 H43 V50 H37 V52.5 H43 V56 H33.5 Z" fill="url(#gkGrad)" />
+                            </svg>
+                        </div>
+                        <div class="chest-card-box" id="chest-box-2">
+                            <div class="chest-gold-frame" id="frame-2"></div>
+                            <img src="../assets/games/treasure_chest/images/chest_closed.jpg" alt="Treasure Chest" class="w-full h-full object-cover rounded-xl transition duration-300" id="chest-img-2">
+                            <div class="absolute inset-0 bg-black/80 rounded-xl flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-1 z-20" id="overlay-2">
+                                <span class="text-2xl sm:text-3xl" id="icon-2">💎</span>
+                                <span class="text-xs sm:text-sm font-black font-mono text-yellow-300" id="mult-2">+10x</span>
+                            </div>
+                        </div>
+                        <div class="chest-pedestal">
+                            <span class="text-[8px] sm:text-[9px] font-mono font-black text-yellow-400 tracking-wider">CHEST III</span>
+                        </div>
+                    </div>
+
+                    <!-- Chest 3 -->
+                    <div class="chest-column w-full" id="chest-col-3" onclick="handleChestClick(3)">
+                        <div class="lock-key-wrapper" id="key-wrap-3">
+                            <div class="key-spark-burst" id="key-spark-3"></div>
+                            <svg viewBox="0 0 64 64" class="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-[0_0_15px_rgba(255,215,0,1)]">
+                                <circle cx="32" cy="14" r="10" fill="none" stroke="url(#gkGrad)" stroke-width="3.5" />
+                                <circle cx="32" cy="14" r="5" fill="none" stroke="url(#gkGrad)" stroke-width="1.8" />
+                                <circle cx="32" cy="14" r="2.2" fill="#00e5ff" />
+                                <rect x="29.5" y="23" width="5" height="3" rx="1" fill="url(#gkGrad)" />
+                                <rect x="30.5" y="25" width="3" height="32" rx="1.5" fill="url(#gkGrad)" />
+                                <path d="M33.5 46 H43 V50 H37 V52.5 H43 V56 H33.5 Z" fill="url(#gkGrad)" />
+                            </svg>
+                        </div>
+                        <div class="chest-card-box" id="chest-box-3">
+                            <div class="chest-gold-frame" id="frame-3"></div>
+                            <img src="../assets/games/treasure_chest/images/chest_closed.jpg" alt="Treasure Chest" class="w-full h-full object-cover rounded-xl transition duration-300" id="chest-img-3">
+                            <div class="absolute inset-0 bg-black/80 rounded-xl flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-1 z-20" id="overlay-3">
+                                <span class="text-2xl sm:text-3xl" id="icon-3">💎</span>
+                                <span class="text-xs sm:text-sm font-black font-mono text-yellow-300" id="mult-3">+10x</span>
+                            </div>
+                        </div>
+                        <div class="chest-pedestal">
+                            <span class="text-[8px] sm:text-[9px] font-mono font-black text-yellow-400 tracking-wider">CHEST IV</span>
+                        </div>
+                    </div>
+
+                    <!-- Chest 4 -->
+                    <div class="chest-column w-full" id="chest-col-4" onclick="handleChestClick(4)">
+                        <div class="lock-key-wrapper" id="key-wrap-4">
+                            <div class="key-spark-burst" id="key-spark-4"></div>
+                            <svg viewBox="0 0 64 64" class="w-12 h-12 sm:w-14 sm:h-14 filter drop-shadow-[0_0_15px_rgba(255,215,0,1)]">
+                                <circle cx="32" cy="14" r="10" fill="none" stroke="url(#gkGrad)" stroke-width="3.5" />
+                                <circle cx="32" cy="14" r="5" fill="none" stroke="url(#gkGrad)" stroke-width="1.8" />
+                                <circle cx="32" cy="14" r="2.2" fill="#00e5ff" />
+                                <rect x="29.5" y="23" width="5" height="3" rx="1" fill="url(#gkGrad)" />
+                                <rect x="30.5" y="25" width="3" height="32" rx="1.5" fill="url(#gkGrad)" />
+                                <path d="M33.5 46 H43 V50 H37 V52.5 H43 V56 H33.5 Z" fill="url(#gkGrad)" />
+                            </svg>
+                        </div>
+                        <div class="chest-card-box" id="chest-box-4">
+                            <div class="chest-gold-frame" id="frame-4"></div>
+                            <img src="../assets/games/treasure_chest/images/chest_closed.jpg" alt="Treasure Chest" class="w-full h-full object-cover rounded-xl transition duration-300" id="chest-img-4">
+                            <div class="absolute inset-0 bg-black/80 rounded-xl flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-1 z-20" id="overlay-4">
+                                <span class="text-2xl sm:text-3xl" id="icon-4">💎</span>
+                                <span class="text-xs sm:text-sm font-black font-mono text-yellow-300" id="mult-4">+10x</span>
+                            </div>
+                        </div>
+                        <div class="chest-pedestal">
+                            <span class="text-[8px] sm:text-[9px] font-mono font-black text-yellow-400 tracking-wider">CHEST V</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Ticker Inside Stage -->
+                <div class="w-full flex items-center justify-between text-[10px] font-mono text-slate-400 pt-1 border-t border-yellow-500/20 z-10">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="text-emerald-400 font-bold uppercase text-[9px]">Live Wins:</span>
+                        <span id="live-wins-ticker" class="text-yellow-200 text-[9px] font-bold">Captain Morgan won ₨25,000 (25x)</span>
+                    </div>
+                    <div class="text-[9px] text-yellow-400/90 font-bold tracking-wider">
+                        SECURE CIPHER SHIFT RNG
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Controls & Betting Panel -->
+        <footer class="w-full bg-slate-950/90 backdrop-blur-md rounded-xl border border-yellow-500/35 p-2 sm:p-2.5 shadow-2xl flex flex-col gap-1.5">
+            <!-- Chip Preset Buttons -->
+            <div class="flex items-center justify-between gap-1 overflow-x-auto">
+                <div class="flex items-center gap-1">
+                    <span class="text-[9px] font-bold text-yellow-400 uppercase hidden sm:inline">Chips:</span>
+                    <button onclick="setBetPreset(100)" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-yellow-400 text-yellow-400 rounded-lg text-[10px] font-mono font-bold transition shadow-sm">100</button>
+                    <button onclick="setBetPreset(500)" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-yellow-400 text-yellow-400 rounded-lg text-[10px] font-mono font-bold transition shadow-sm">500</button>
+                    <button onclick="setBetPreset(1000)" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-yellow-400 text-yellow-400 rounded-lg text-[10px] font-mono font-bold transition shadow-sm">1K</button>
+                    <button onclick="setBetPreset(5000)" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-yellow-400 text-yellow-400 rounded-lg text-[10px] font-mono font-bold transition shadow-sm">5K</button>
+                    <button onclick="setBetPreset(10000)" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-yellow-400 text-yellow-400 rounded-lg text-[10px] font-mono font-bold transition shadow-sm">10K</button>
+                </div>
+                <div class="flex items-center gap-1">
+                    <button onclick="modifyBet('half')" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 rounded-lg text-[10px] font-mono font-bold">½</button>
+                    <button onclick="modifyBet('double')" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 rounded-lg text-[10px] font-mono font-bold">2×</button>
+                    <button onclick="modifyBet('max')" class="px-2.5 py-1 bg-slate-900 border border-slate-700 hover:border-yellow-400 text-yellow-400 rounded-lg text-[10px] font-mono font-bold">MAX</button>
+                </div>
+            </div>
+
+            <!-- Input Row & Action Trigger Button -->
+            <div class="flex items-center gap-2">
+                <!-- Bet Input Box -->
+                <div class="flex-1 flex items-center bg-black/80 border border-yellow-500/50 rounded-xl px-3 py-1.5 focus-within:border-yellow-400 shadow-inner">
+                    <span class="text-xs font-mono font-bold text-yellow-400 mr-1.5">₨</span>
+                    <input type="number" id="tc-bet-input" value="100" min="10" max="100000" step="10" class="w-full bg-transparent text-white font-mono font-black text-sm sm:text-base outline-none tracking-wide" placeholder="Bet Amount">
+                </div>
+
+                <!-- Big Main Action Button -->
+                <button id="main-action-btn" onclick="handleMainAction()" class="flex-1 sm:flex-initial sm:min-w-[250px] py-2 sm:py-2.5 px-4 rounded-xl font-action tracking-wider text-xs sm:text-sm font-black text-slate-950 uppercase btn-gold-glow flex items-center justify-center gap-2">
+                    <span id="main-btn-icon">⚓</span>
+                    <span id="main-btn-text">START EXPEDITION</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==============================================================
+         AUDIO & GAME ENGINE
+         ============================================================== -->
+    <script>
+        // --- Sound FX State & Audio Objects ---
+        let soundEnabled = true;
+        let musicEnabled = false;
+        let voiceEnabled = true;
+        let audioContext = null;
+        let musicOsc = null;
+
+        const soundFiles = {
+            turn: new Audio('../assets/games/treasure_chest/audio/key_turn.wav'),
+            open: new Audio('../assets/games/treasure_chest/audio/chest_open.wav'),
+            win: new Audio('../assets/games/treasure_chest/audio/coins_win.wav'),
+            kraken: new Audio('../assets/games/treasure_chest/audio/kraken_curse.wav'),
+            click: new Audio('../assets/games/treasure_chest/audio/click.wav'),
+            jackpot: new Audio('../assets/games/treasure_chest/audio/jackpot.wav')
+        };
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                const s = soundFiles[type];
+                if (s) {
+                    s.currentTime = 0;
+                    s.play().catch(() => {});
+                }
+            } catch (e) {}
+        }
+
+        // --- Captain Voice Announcer ---
+        function speakCaptain(text) {
+            if (!voiceEnabled || !('speechSynthesis' in window)) return;
+            try {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.rate = 1.05;
+                utter.pitch = 0.85; // Deep pirate voice
+                window.speechSynthesis.speak(utter);
+            } catch (e) {}
+        }
+
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled;
+            document.getElementById('voice-toggle-btn').innerText = voiceEnabled ? '🗣️' : '🤐';
+            playSound('click');
+            if (voiceEnabled) speakCaptain("Aye Captain! Voice activated!");
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('audio-toggle-btn').innerText = soundEnabled ? '🔊' : '🔇';
+            playSound('click');
+        }
+
+        function toggleMusic() {
+            musicEnabled = !musicEnabled;
+            document.getElementById('music-toggle-btn').innerText = musicEnabled ? '🎶' : '🎵';
+            if (musicEnabled) {
+                startAmbientMusic();
+            } else {
+                stopAmbientMusic();
+            }
+        }
+
+        function startAmbientMusic() {
+            try {
+                if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioContext.state === 'suspended') audioContext.resume();
+
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(110, audioContext.currentTime);
+                gain.gain.setValueAtTime(0.035, audioContext.currentTime);
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.start();
+                musicOsc = osc;
+            } catch (e) {}
+        }
+
+        function stopAmbientMusic() {
+            if (musicOsc) {
+                try { musicOsc.stop(); musicOsc.disconnect(); } catch (e) {}
+                musicOsc = null;
+            }
+        }
+
+        // --- 4 Switchable Themes ---
+        let currentTheme = 'pirate';
+        const themeTitles = {
+            pirate: 'PIRATE COVE VIP',
+            pharaoh: "PHARAOH'S GOLDEN TOMB",
+            atlantis: 'ATLANTIS SUNKEN TEMPLE',
+            aztec: 'AZTEC SUN SANCTUARY'
+        };
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            document.body.className = `theme-${theme} select-none`;
+            playSound('click');
+
+            ['pirate', 'pharaoh', 'atlantis', 'aztec'].forEach(t => {
+                const btn = document.getElementById(`btn-theme-${t}`);
+                if (btn) {
+                    if (t === theme) {
+                        btn.className = 'px-2 py-0.5 rounded text-[10px] font-bold transition bg-yellow-500/35 text-yellow-300 border border-yellow-500/50';
+                    } else {
+                        btn.className = 'px-2 py-0.5 rounded text-[10px] font-bold transition text-slate-400 hover:text-white';
+                    }
+                }
+            });
+
+            document.getElementById('header-theme-title').innerText = themeTitles[theme] || 'TREASURE CHESTS VIP';
+            const bgLayer = document.getElementById('bgLayer');
+            bgLayer.style.backgroundImage = `url('../assets/games/treasure_chest/images/bg_${theme}.jpg')`;
+
+            if (voiceEnabled) {
+                if (theme === 'pirate') speakCaptain("Welcome to the Pirate's Cove!");
+                else if (theme === 'pharaoh') speakCaptain("Entering the Pharaoh's Tomb!");
+                else if (theme === 'atlantis') speakCaptain("Diving into Atlantis!");
+                else if (theme === 'aztec') speakCaptain("Entering the Aztec Temple!");
+            }
+        }
+
+        // --- Fullscreen Toggle ---
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        // --- Wallet Synchronization ---
+        function getBalance() {
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                return window.wallet.getBalance();
+            }
+            return parseFloat(localStorage.getItem('user_balance') || '10000');
+        }
+
+        function updateBalanceDisplay() {
+            const bal = getBalance();
+            const el = document.getElementById('wallet-balance');
+            if (el) el.innerText = Math.floor(bal).toLocaleString();
+        }
+
+        // --- Bet Controls ---
+        function setBetPreset(val) {
+            playSound('click');
+            const input = document.getElementById('tc-bet-input');
+            const bal = getBalance();
+            input.value = Math.min(val, bal);
+        }
+
+        function modifyBet(type) {
+            playSound('click');
+            const input = document.getElementById('tc-bet-input');
+            let val = parseFloat(input.value) || 100;
+            const bal = getBalance();
+
+            if (type === 'half') val = Math.max(10, Math.floor(val / 2));
+            if (type === 'double') val = Math.min(bal, val * 2);
+            if (type === 'max') val = Math.max(10, bal);
+
+            input.value = Math.floor(val);
+        }
+
+        // --- Risk Mode (1 vs 2 Traps) ---
+        let trapCount = 1;
+        function setTrapMode(traps) {
+            if (gameState === 'PLAYING') return;
+            playSound('click');
+            trapCount = traps;
+            const btn1 = document.getElementById('btn-trap-1');
+            const btn2 = document.getElementById('btn-trap-2');
+            if (traps === 1) {
+                btn1.className = 'px-2 py-0.5 rounded bg-yellow-500/30 text-yellow-300 border border-yellow-500/50 shadow-sm transition';
+                btn2.className = 'px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 hover:text-white transition';
+            } else {
+                btn1.className = 'px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 hover:text-white transition';
+                btn2.className = 'px-2 py-0.5 rounded bg-red-500/30 text-red-300 border border-red-500/50 shadow-sm transition';
+            }
+        }
+
+        // --- Game Engine Logic ---
+        let gameState = 'IDLE'; // IDLE | PLAYING | REVEALED
+        let activeBet = 100;
+        let roundNumber = 101;
+        let chestContents = [];
+
+        function generateRoundContents() {
+            const indices = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+            const krakenIndices = indices.slice(0, trapCount);
+            
+            const multipliersPool = trapCount === 1 
+                ? [1.5, 2.0, 3.5, 5.0, 10.0, 15.0, 25.0, 50.0, 100.0]
+                : [3.0, 6.0, 12.0, 25.0, 45.0, 80.0, 150.0];
+
+            chestContents = [];
+            for (let i = 0; i < 5; i++) {
+                if (krakenIndices.includes(i)) {
+                    chestContents[i] = { type: 'kraken', mult: 0, icon: '🐙', title: 'KRAKEN CURSE' };
+                } else {
+                    const m = multipliersPool[Math.floor(Math.random() * multipliersPool.length)];
+                    let icon = '💰';
+                    let title = 'GOLD DOUBLOONS';
+                    if (m >= 50) { icon = '💎'; title = 'DIAMOND HOARD'; }
+                    else if (m >= 15) { icon = '👑'; title = 'ROYAL SCEPTER'; }
+                    else if (m < 3) { icon = '🥈'; title = 'SILVER CHALICE'; }
+                    chestContents[i] = { type: 'win', mult: m, icon: icon, title: title };
+                }
+            }
+        }
+
+        function handleMainAction() {
+            if (gameState === 'IDLE' || gameState === 'REVEALED') {
+                startExpedition();
+            } else if (gameState === 'PLAYING') {
+                const unpicked = [0, 1, 2, 3, 4];
+                const rand = unpicked[Math.floor(Math.random() * unpicked.length)];
+                handleChestClick(rand);
+            }
+        }
+
+        function startExpedition() {
+            const betInput = document.getElementById('tc-bet-input');
+            const bet = parseFloat(betInput.value) || 100;
+            const bal = getBalance();
+
+            if (bet < 10) {
+                alert('Minimum bet is ₨ 10');
+                return;
+            }
+            if (bet > bal) {
+                alert('Insufficient wallet balance!');
+                return;
+            }
+
+            // Deduct Bet from Wallet
+            if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                if (!window.wallet.placeBet(bet, 'Pirate Chests')) return;
+            } else {
+                localStorage.setItem('user_balance', (bal - bet).toString());
+            }
+
+            activeBet = bet;
+            gameState = 'PLAYING';
+            generateRoundContents();
+            updateBalanceDisplay();
+            playSound('click');
+
+            if (voiceEnabled) speakCaptain("Choose yer chest wisely, Captain!");
+
+            // Reset Chests UI
+            for (let i = 0; i < 5; i++) {
+                const col = document.getElementById(`chest-col-${i}`);
+                const img = document.getElementById(`chest-img-${i}`);
+                const overlay = document.getElementById(`overlay-${i}`);
+                const frame = document.getElementById(`frame-${i}`);
+                const keyWrap = document.getElementById(`key-wrap-${i}`);
+                const spark = document.getElementById(`key-spark-${i}`);
+                
+                col.className = 'chest-column pick-ready w-full';
+                col.style.opacity = '1';
+                img.src = '../assets/games/treasure_chest/images/chest_closed.jpg';
+                overlay.style.opacity = '0';
+                frame.style.borderColor = 'var(--accent-color)';
+                frame.style.boxShadow = '0 0 15px var(--accent-glow)';
+                if (keyWrap) keyWrap.className = 'lock-key-wrapper';
+                if (spark) spark.className = 'key-spark-burst';
+            }
+
+            // Update Status UI
+            document.getElementById('stage-status-icon').innerText = '🗝️';
+            document.getElementById('stage-status-text').innerHTML = '<span class="text-yellow-400 animate-pulse">CHOOSE ANY CHEST TO UNLOCK THE LOOT!</span>';
+            document.getElementById('main-btn-icon').innerText = '🔓';
+            document.getElementById('main-btn-text').innerText = 'PICK RANDOM CHEST';
+            document.getElementById('round-number').innerText = (++roundNumber);
+        }
+
+        function handleChestClick(idx) {
+            if (gameState !== 'PLAYING') {
+                playSound('click');
+                return;
+            }
+
+            gameState = 'REVEALED';
+            // Balanced 30% win / 70% loss probability
+            const willWin = Math.random() < 0.30;
+            if (willWin) {
+                const multipliersPool = [1.5, 2.0, 3.5, 5.0, 10.0, 15.0, 25.0];
+                const m = multipliersPool[Math.floor(Math.random() * multipliersPool.length)];
+                chestContents[idx] = { type: 'win', mult: m, icon: m >= 10 ? '👑' : '💰', title: m >= 10 ? 'ROYAL SCEPTER' : 'GOLD DOUBLOONS' };
+            } else {
+                chestContents[idx] = { type: 'kraken', mult: 0, icon: '🐙', title: 'KRAKEN CURSE' };
+            }
+            const outcome = chestContents[idx];
+            const clickedBox = document.getElementById(`chest-box-${idx}`);
+            const clickedImg = document.getElementById(`chest-img-${idx}`);
+            const clickedFrame = document.getElementById(`frame-${idx}`);
+            const keyWrap = document.getElementById(`key-wrap-${idx}`);
+            const spark = document.getElementById(`key-spark-${idx}`);
+
+            // Remove float pulse from all chests
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`chest-col-${i}`).classList.remove('pick-ready');
+            }
+
+            // Step 1: Chabi lock keyhole k samne aati hai (Approach 0 - 380ms)
+            keyWrap.className = 'lock-key-wrapper anim-approach';
+            playSound('click');
+
+            // Step 2: Chabi sandook k ander lag k ghoomti hai ("chabi sandook k ander lag k ghome" 380ms - 1130ms)
+            setTimeout(() => {
+                keyWrap.className = 'lock-key-wrapper anim-turn';
+                playSound('turn'); // Key scrape + 180° tumbler rotation click!
+
+                // Step 3: Ghoomne k baad lock latch click hota hai aur sparks burst hoti hain (1130ms)
+                setTimeout(() => {
+                    spark.className = 'key-spark-burst active-flare';
+                    keyWrap.className = 'lock-key-wrapper anim-unlock-burst';
+                    clickedBox.classList.add('chest-shaking');
+                    playSound('open'); // Metallic latch snap & heavy wood lid creak!
+
+                    // Step 4: Ab sandook open hota hai ("fr sandook open hu" 1580ms)
+                    setTimeout(() => {
+                        clickedBox.classList.remove('chest-shaking');
+                        keyWrap.className = 'lock-key-wrapper';
+                        spark.className = 'key-spark-burst';
+
+                        if (outcome.type === 'win') {
+                            // WIN
+                            clickedImg.src = '../assets/games/treasure_chest/images/chest_win.jpg';
+                            clickedBox.classList.add('chest-revealed-win');
+                            clickedFrame.style.borderColor = '#10b981';
+                            clickedFrame.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.85)';
+
+                            const winAmount = activeBet * outcome.mult;
+
+                            // Credit Wallet
+                            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                                window.wallet.creditWin(activeBet, winAmount, 'Pirate Chests', outcome.mult, `${outcome.title} (${outcome.mult}x)`);
+                            } else {
+                                const cur = getBalance();
+                                localStorage.setItem('user_balance', (cur + winAmount).toString());
+                            }
+                            updateBalanceDisplay();
+
+                            if (outcome.mult >= 10) {
+                                playSound('jackpot');
+                                triggerJackpotConfetti();
+                                showMegaWinModal(winAmount, outcome.mult);
+                                if (voiceEnabled) speakCaptain(`Shiver me timbers! You found ${Math.floor(winAmount)} rupees!`);
+                            } else {
+                                playSound('win');
+                                if (voiceEnabled) speakCaptain(`A fine bounty! Won ${Math.floor(winAmount)} rupees!`);
+                            }
+
+                            document.getElementById('stage-status-icon').innerText = '🏆';
+                            document.getElementById('stage-status-text').innerHTML = 
+                                `<span class="text-emerald-400 font-black">TREASURE UNEARTHED! WON ₨ ${Math.floor(winAmount).toLocaleString()} (${outcome.mult}x)</span>`;
+
+                        } else {
+                            // KRAKEN TRAP
+                            clickedImg.src = '../assets/games/treasure_chest/images/chest_kraken.jpg';
+                            clickedBox.classList.add('chest-revealed-kraken');
+                            clickedFrame.style.borderColor = '#ef4444';
+                            clickedFrame.style.boxShadow = '0 0 25px rgba(239, 68, 68, 0.85)';
+
+                            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                                window.wallet.creditWin(activeBet, 0, 'Pirate Chests', 0, 'Kraken Curse Trap');
+                            }
+                            updateBalanceDisplay();
+                            playSound('kraken');
+                            if (voiceEnabled) speakCaptain("The Kraken has claimed yer ship! Retreat!");
+
+                            document.getElementById('stage-status-icon').innerText = '🐙';
+                            document.getElementById('stage-status-text').innerHTML = 
+                                `<span class="text-red-400 font-black">KRAKEN CURSE! THE CHEST WAS TRAPPED!</span>`;
+                        }
+
+                        // Reveal remaining chests
+                        revealAllChests(idx);
+
+                        // Reset Button to Play Again
+                        document.getElementById('main-btn-icon').innerText = '🔄';
+                        document.getElementById('main-btn-text').innerText = 'PLAY AGAIN';
+
+                    }, 450);
+                }, 750);
+            }, 380);
+        }
+
+        function revealAllChests(selectedIdx) {
+            for (let i = 0; i < 5; i++) {
+                const overlay = document.getElementById(`overlay-${i}`);
+                const icon = document.getElementById(`icon-${i}`);
+                const mult = document.getElementById(`mult-${i}`);
+                const item = chestContents[i];
+
+                icon.innerText = item.icon;
+                if (item.type === 'win') {
+                    mult.innerText = `+${item.mult}x`;
+                    mult.className = 'text-xs sm:text-sm font-black font-mono text-emerald-400';
+                } else {
+                    mult.innerText = `TRAP`;
+                    mult.className = 'text-xs sm:text-sm font-black font-mono text-red-400';
+                }
+
+                if (i !== selectedIdx) {
+                    overlay.style.opacity = '0.9';
+                    document.getElementById(`chest-col-${i}`).style.opacity = '0.75';
+                }
+            }
+        }
+
+        // --- Mega Win Modal Popup ---
+        function showMegaWinModal(amt, mult) {
+            const modal = document.getElementById('mega-win-modal');
+            const amtEl = document.getElementById('mega-win-amount');
+            const multEl = document.getElementById('mega-win-mult');
+
+            multEl.innerText = `MULTIPLIER: ${mult}X`;
+            modal.classList.add('active');
+
+            // Count-up animation
+            let current = 0;
+            const step = Math.ceil(amt / 25);
+            const interval = setInterval(() => {
+                current += step;
+                if (current >= amt) {
+                    current = amt;
+                    clearInterval(interval);
+                }
+                amtEl.innerText = Math.floor(current).toLocaleString();
+            }, 30);
+        }
+
+        function closeMegaWin() {
+            document.getElementById('mega-win-modal').classList.remove('active');
+        }
+
+        function triggerJackpotConfetti() {
+            try {
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 90, spread: 85, origin: { y: 0.6 } });
+                    setTimeout(() => {
+                        confetti({ particleCount: 70, spread: 110, origin: { y: 0.4 } });
+                    }, 280);
+                }
+            } catch (e) {}
+        }
+
+        // --- Live Wins Ticker Simulator ---
+        const pirateNames = ["Captain Jack", "Blackbeard", "Calico Jack", "Anne Bonny", "Henry Morgan", "Barbarossa", "Red Corsair", "Mary Read", "Captain Hook", "Sir Francis"];
+        setInterval(() => {
+            const name = pirateNames[Math.floor(Math.random() * pirateNames.length)];
+            const mult = [2.5, 5, 10, 15, 25, 50, 100][Math.floor(Math.random() * 7)];
+            const amt = Math.floor(mult * (Math.random() * 500 + 100));
+            const ticker = document.getElementById('live-wins-ticker');
+            if (ticker) {
+                ticker.innerText = `${name} won ₨${amt.toLocaleString()} (${mult}x)`;
+            }
+        }, 3800);
+
+        // --- Ambient Background Canvas Particle Animation ---
+        const canvas = document.getElementById('ambientCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 50;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 0.9 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -10) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                if (currentTheme === 'pirate') {
+                    ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                } else if (currentTheme === 'pharaoh') {
+                    ctx.fillStyle = `rgba(245, 158, 11, ${this.opacity})`;
+                } else if (currentTheme === 'atlantis') {
+                    ctx.fillStyle = `rgba(0, 229, 255, ${this.opacity})`;
+                } else {
+                    ctx.fillStyle = `rgba(16, 185, 129, ${this.opacity})`;
+                }
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // --- Pragmatic Loading Screen Simulator ---
+        let loadProgress = 0;
+        const loaderScreen = document.getElementById('pp-loader');
+        const progressBar = document.getElementById('pp-progress');
+        const statusLabel = document.getElementById('pp-loader-status');
+
+        const loadInterval = setInterval(() => {
+            loadProgress += Math.floor(Math.random() * 18) + 12;
+            if (loadProgress >= 100) {
+                loadProgress = 100;
+                clearInterval(loadInterval);
+                progressBar.style.width = '100%';
+                statusLabel.innerText = 'EXPEDITION READY 100%';
+                setTimeout(() => {
+                    loaderScreen.classList.add('pp-fade-out');
+                }, 300);
+            } else {
+                progressBar.style.width = `${loadProgress}%`;
+                statusLabel.innerText = `LOADING GRAPHICS ${loadProgress}%`;
+            }
+        }, 80);
+
+        // --- Compatibility with legacy window.treasure_chestGame ---
+        window.treasure_chestGame = {
+            init: () => { updateBalanceDisplay(); },
+            startPick: () => { startExpedition(); },
+            pickChest: (idx) => { handleChestClick(idx); }
+        };
+
+        // Initialize on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateBalanceDisplay();
+            window.addEventListener('balanceUpdated', updateBalanceDisplay);
+            window.addEventListener('storage', updateBalanceDisplay);
+        });
+    </script>
+</body>
+</html>

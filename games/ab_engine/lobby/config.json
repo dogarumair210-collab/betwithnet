@@ -1,0 +1,16 @@
+{
+  "serverUrl": "https://demo8.kingmidasdev.net",
+  "socketServerUrl": "https://demo8.kingmidasdev.net",
+  "activeGameService": 1,
+  "serverUrlROR": "https://demo8.kingmidasdev.net",
+  "socketServerUrlROR": "https://demo8.kingmidasdev.net",
+  "dynamicDomain": false,
+  "gameIdentifier": "andar-bahar",
+  "fontPath": "localizations/FontsAsset/fontsConfig/fontsConfig.json",
+  "errorLocalizationPath": "error-message.json",
+  "env": "DEMO",
+  "assetsHost": "https://cdn.kingmidasdev.net",
+  "syncBalanceInterval": 10000,
+  "languageSets": ["id", "test", "my"],
+  "authTokenKey": "params"
+}

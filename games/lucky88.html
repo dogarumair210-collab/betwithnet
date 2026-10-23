@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <title>Lucky 88 Pearls - Macau VIP Studio - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT (0-SCROLL)
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner,
+        #bwn-sound-toggle-fixed, .bwn-sound-toggle-btn, #bwn-game-splash,
+        .social-toast-container, .social-win-toast,
+        .user-name-mini, .user-vip-pill,
+        .header-user-badge .user-name-mini, .header-user-badge .user-vip-pill {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        :root {
+            --table-felt-bg: radial-gradient(circle at 50% 35%, #ffffff 0%, #f8fafc 40%, #e2e8f0 75%, #cbd5e1 100%);
+            --table-rim: #d4af37;
+            --table-border: rgba(212, 175, 55, 0.6);
+            --accent-glow: rgba(255, 215, 0, 0.75);
+            --cylinder-gold: #ffd700;
+            --neon-color: #ffd700;
+            --bead-bg: radial-gradient(circle at 35% 35%, #ffffff 0%, #f1f5f9 55%, #cbd5e1 100%);
+            --bead-text: #0f172a;
+            --bead-border: rgba(212, 175, 55, 0.4);
+            --bead-active: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+            --bead-hit: linear-gradient(135deg, #00ff88 0%, #00aa33 100%);
+            --shell-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #edf2f7 100%);
+            --topbar-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            --topbar-text: #0f172a;
+            --deck-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            --deck-border: rgba(212, 175, 55, 0.5);
+            --input-bg: #ffffff;
+            --input-text: #0f172a;
+            --badge-bg: rgba(212, 175, 55, 0.12);
+            --badge-text: #b8860b;
+        }
+
+        /* 4 SELECTABLE CASINO THEMES */
+        body.theme-pearl {
+            --table-felt-bg: radial-gradient(circle at 50% 35%, #ffffff 0%, #f8fafc 40%, #e2e8f0 75%, #cbd5e1 100%);
+            --table-rim: #d4af37;
+            --table-border: rgba(212, 175, 55, 0.65);
+            --accent-glow: rgba(255, 215, 0, 0.75);
+            --cylinder-gold: #ffd700;
+            --neon-color: #ffd700;
+            --bead-bg: radial-gradient(circle at 35% 35%, #ffffff 0%, #f1f5f9 55%, #cbd5e1 100%);
+            --bead-text: #0f172a;
+            --bead-border: rgba(212, 175, 55, 0.45);
+            --bead-active: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+            --bead-hit: linear-gradient(135deg, #00ff88 0%, #00aa33 100%);
+            --shell-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #edf2f7 100%);
+            --topbar-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            --topbar-text: #0f172a;
+            --deck-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            --deck-border: rgba(212, 175, 55, 0.5);
+            --input-bg: #ffffff;
+            --input-text: #0f172a;
+            --badge-bg: rgba(212, 175, 55, 0.12);
+            --badge-text: #b8860b;
+        }
+
+        body.theme-ruby {
+            --table-felt-bg: radial-gradient(circle at 50% 35%, #3d0910 0%, #1e0307 65%, #0a0103 100%);
+            --table-rim: #ff4757;
+            --table-border: rgba(255, 71, 87, 0.5);
+            --accent-glow: rgba(255, 71, 87, 0.7);
+            --cylinder-gold: #ffd700;
+            --neon-color: #ffd700;
+            --bead-bg: radial-gradient(circle at 35% 35%, #35080e 0%, #170306 100%);
+            --bead-text: #d1d5db;
+            --bead-border: rgba(255, 255, 255, 0.15);
+            --bead-active: linear-gradient(135deg, #ffd700 0%, #ff6b22 100%);
+            --bead-hit: linear-gradient(135deg, #00ff88 0%, #00aa33 100%);
+            --shell-bg: linear-gradient(180deg, #100508 0%, #050204 100%);
+            --topbar-bg: linear-gradient(180deg, #1f080e 0%, #110306 100%);
+            --topbar-text: #ffd700;
+            --deck-bg: linear-gradient(180deg, #18050a 0%, #0c0205 100%);
+            --deck-border: rgba(255, 71, 87, 0.4);
+            --input-bg: rgba(8, 2, 4, 0.9);
+            --input-text: #00ffcc;
+            --badge-bg: rgba(255, 215, 0, 0.1);
+            --badge-text: #ffd700;
+        }
+
+        body.theme-emerald {
+            --table-felt-bg: radial-gradient(circle at 50% 35%, #082d1c 0%, #04170e 65%, #010a06 100%);
+            --table-rim: #00ffaa;
+            --table-border: rgba(0, 255, 170, 0.45);
+            --accent-glow: rgba(0, 231, 0, 0.65);
+            --cylinder-gold: #00ffaa;
+            --neon-color: #00ffaa;
+            --bead-bg: radial-gradient(circle at 35% 35%, #0b3823 0%, #041a10 100%);
+            --bead-text: #d1d5db;
+            --bead-border: rgba(0, 255, 170, 0.25);
+            --bead-active: linear-gradient(135deg, #00ffaa 0%, #008855 100%);
+            --bead-hit: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+            --shell-bg: linear-gradient(180deg, #02120b 0%, #010805 100%);
+            --topbar-bg: linear-gradient(180deg, #052617 0%, #02140c 100%);
+            --topbar-text: #00ffaa;
+            --deck-bg: linear-gradient(180deg, #031c11 0%, #010c07 100%);
+            --deck-border: rgba(0, 255, 170, 0.4);
+            --input-bg: rgba(2, 14, 8, 0.9);
+            --input-text: #00ffaa;
+            --badge-bg: rgba(0, 255, 170, 0.1);
+            --badge-text: #00ffaa;
+        }
+
+        body.theme-onyx {
+            --table-felt-bg: radial-gradient(circle at 50% 35%, #18191f 0%, #0c0d10 65%, #040506 100%);
+            --table-rim: #ffd700;
+            --table-border: rgba(255, 215, 0, 0.4);
+            --accent-glow: rgba(255, 215, 0, 0.6);
+            --cylinder-gold: #ffd700;
+            --neon-color: #ffd700;
+            --bead-bg: radial-gradient(circle at 35% 35%, #2a2c35 0%, #121317 100%);
+            --bead-text: #e2e8f0;
+            --bead-border: rgba(255, 215, 0, 0.25);
+            --bead-active: linear-gradient(135deg, #ffd700 0%, #cca000 100%);
+            --bead-hit: linear-gradient(135deg, #00ffaa 0%, #009966 100%);
+            --shell-bg: linear-gradient(180deg, #0c0d10 0%, #040506 100%);
+            --topbar-bg: linear-gradient(180deg, #18191f 0%, #0e0f14 100%);
+            --topbar-text: #ffd700;
+            --deck-bg: linear-gradient(180deg, #14151a 0%, #0a0b0e 100%);
+            --deck-border: rgba(255, 215, 0, 0.4);
+            --input-bg: rgba(8, 9, 12, 0.9);
+            --input-text: #ffd700;
+            --badge-bg: rgba(255, 215, 0, 0.1);
+            --badge-text: #ffd700;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* -------------------------------------------------------------
+           LUCKY 88 ANIMATED WHITE PEARL & GOLD BACKGROUND CANVAS
+           ------------------------------------------------------------- */
+        .desktop-ambient-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 30%, #ffffff 0%, #f1f5f9 45%, #e2e8f0 80%, #cbd5e1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lucky88-white-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .desktop-ambient-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(203, 213, 225, 0.6) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* -------------------------------------------------------------
+           1:1 MOBILE APP SHELL (ROYAL CASINO TABLE)
+           ------------------------------------------------------------- */
+        .lucky-shell {
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: var(--shell-bg);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            border-left: 1.5px solid var(--table-border);
+            border-right: 1.5px solid var(--table-border);
+            margin: 0 auto;
+        }
+
+        /* 1. TOP HEADER BAR */
+        .lucky-topbar {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            background: var(--topbar-bg);
+            border-bottom: 1.5px solid var(--table-border);
+            flex-shrink: 0;
+            z-index: 30;
+        }
+
+        .btn-lobby-back {
+            color: #b8860b;
+            font-size: 10.5px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:active {
+            transform: scale(0.95);
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        .lucky-brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #b8860b;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .topbar-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wallet-badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #0d9488;
+            background: rgba(13, 148, 136, 0.12);
+            border: 1px solid rgba(13, 148, 136, 0.4);
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-shadow: 0 0 6px rgba(13, 148, 136, 0.3);
+            cursor: pointer;
+        }
+
+        .top-btn-icon {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #b8860b;
+            font-size: 12px;
+            width: 27px;
+            height: 27px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .top-btn-icon:active { transform: scale(0.92); }
+        .top-btn-icon.active-guitar {
+            background: rgba(212, 175, 55, 0.28) !important;
+            border-color: #d4af37 !important;
+            color: #b8860b !important;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+            animation: pulseGuitar 2s infinite alternate;
+        }
+        @keyframes pulseGuitar {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); box-shadow: 0 0 14px rgba(212, 175, 55, 0.8) !important; }
+        }
+
+        /* User Profile Avatar: Lucky 88 Profile Picture (Avatar Only - NO Name Popup) */
+        .user-avatar-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0a0503;
+            border: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            overflow: hidden;
+            flex-shrink: 0;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            transition: transform 0.15s, border-color 0.2s;
+            position: relative;
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            user-select: none !important;
+        }
+        .user-avatar-btn:active { transform: scale(0.92); }
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            pointer-events: none !important;
+            -webkit-touch-callout: none !important;
+        }
+        .user-avatar-btn::before,
+        .user-avatar-btn::after,
+        .user-avatar-btn *::before,
+        .user-avatar-btn *::after,
+        #headerUserAvatar::before,
+        #headerUserAvatar::after,
+        .user-name-mini,
+        .user-vip-pill,
+        .user-avatar-mini,
+        .profile-name-popup,
+        .user-name-popup,
+        .name-popup,
+        .header-user-badge .user-name-mini,
+        .header-user-badge .user-vip-pill {
+            display: none !important;
+            content: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        /* 2. PAYTABLE STRIP */
+        .paytable-strip {
+            width: 100%;
+            height: 32px;
+            background: rgba(241, 245, 249, 0.95);
+            border-bottom: 1px solid var(--table-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            flex-shrink: 0;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .paytable-strip::-webkit-scrollbar { display: none; }
+
+        .pay-pill {
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #64748b;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.25s ease;
+        }
+        .pay-pill b { color: #0f172a; }
+        .pay-pill.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(255, 140, 0, 0.45));
+            border-color: #d4af37;
+            color: #854d0e;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            transform: scale(1.08);
+        }
+        .pay-pill.active b { color: #854d0e; }
+        .pay-pill.mega {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+            border-color: #b8860b;
+            color: #000000;
+        }
+        .pay-pill.mega b { color: #000000; }
+
+        /* -------------------------------------------------------------
+           3. CASINO FELT STAGE & CELESTIAL PEARL SHAKER
+           ------------------------------------------------------------- */
+        .lucky-stage-wrap {
+            width: 100%;
+            padding: 6px 8px 4px 8px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 15;
+        }
+
+        .casino-felt-table {
+            width: 100%;
+            background: var(--table-felt-bg);
+            border: 2px solid var(--table-rim);
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.8), 0 4px 15px rgba(0, 0, 0, 0.12);
+            padding: 8px 8px 10px 8px;
+        }
+
+        /* Stage Inner White Animation Canvas */
+        .stage-white-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.65;
+            z-index: 1;
+        }
+
+        /* Status Banner */
+        .table-status-bubble {
+            position: relative;
+            z-index: 5;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px;
+            padding: 3px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-status-text {
+            font-size: 11px;
+            font-weight: 800;
+            color: #b8860b;
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+
+        /* 8 DRAWN PEARLS DISPLAY ROW */
+        .drawn-pearls-container {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 0;
+            min-height: 44px;
+        }
+
+        .drawn-bead-slot {
+            flex: 1;
+            aspect-ratio: 1;
+            max-width: 44px;
+            max-height: 44px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f1f5f9 55%, #cbd5e1 100%);
+            border: 2px solid rgba(212, 175, 55, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.9), 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .drawn-bead-slot::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30%;
+            height: 25%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            filter: blur(1px);
+            pointer-events: none;
+        }
+
+        .drawn-bead-slot.drawn {
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fef08a 45%, #ffd700 85%, #d97706 100%);
+            border-color: #ffffff;
+            color: #000000;
+            transform: scale(1.05);
+            animation: pearlPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.9), inset 0 2px 6px #ffffff;
+        }
+
+        .drawn-bead-slot.drawn.hit {
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #a7f3d0 40%, #00ff88 75%, #059669 100%);
+            border-color: #ffffff;
+            color: #000000;
+            transform: scale(1.15);
+            box-shadow: 0 0 22px #00ff88, inset 0 2px 6px #ffffff;
+            animation: hitPulse 0.8s infinite alternate;
+        }
+
+        @keyframes pearlPop {
+            0% { transform: scale(0.2) rotate(-90deg); opacity: 0; }
+            70% { transform: scale(1.25) rotate(10deg); }
+            100% { transform: scale(1.05) rotate(0deg); opacity: 1; }
+        }
+
+        @keyframes hitPulse {
+            0% { transform: scale(1.1); box-shadow: 0 0 15px #00ff88; }
+            100% { transform: scale(1.22); box-shadow: 0 0 28px #00ffaa, 0 0 40px rgba(0, 255, 170, 0.6); }
+        }
+
+        .bead-num-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            line-height: 1;
+            z-index: 2;
+            color: #0f172a;
+        }
+        .drawn-bead-slot.drawn .bead-num-text,
+        .drawn-bead-slot.drawn.hit .bead-num-text {
+            color: #000000;
+        }
+
+        .bead-placeholder {
+            font-size: 10px;
+            color: #94a3b8;
+            font-weight: 800;
+        }
+
+        /* Sub Info Bar */
+        .stage-sub-info {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 6px;
+            padding: 2px 4px 0 4px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        /* -------------------------------------------------------------
+           4. 88 PEARLS GRID MATRIX & CONTROLS
+           ------------------------------------------------------------- */
+        .pearls-deck-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 4px 8px;
+            min-height: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Quick Action Tools Bar */
+        .grid-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .selection-counter-badge {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--badge-text);
+            background: var(--badge-bg);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .quick-pick-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-quick-tool {
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #b8860b;
+            font-size: 9.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .btn-quick-tool:active {
+            transform: scale(0.94);
+            background: rgba(212, 175, 55, 0.25);
+        }
+        .btn-quick-tool.highlight {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+            border-color: #b8860b;
+            color: #000000;
+            font-weight: 900;
+        }
+
+        /* 88 Beads Matrix Scroll Area */
+        .pearls-matrix-wrap {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #f8fafc;
+            border: 1.5px solid var(--table-border);
+            border-radius: 12px;
+            padding: 6px 4px;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.06);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212, 175, 55, 0.4) transparent;
+        }
+
+        .pearls-matrix-wrap::-webkit-scrollbar {
+            width: 4px;
+        }
+        .pearls-matrix-wrap::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 3px;
+        }
+
+        .l88-grid {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);
+            gap: 3.5px;
+            width: 100%;
+        }
+
+        .l88-pearl-btn {
+            aspect-ratio: 1;
+            background: var(--bead-bg);
+            border: 1px solid var(--bead-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--bead-text);
+            cursor: pointer;
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s, border-color 0.2s;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .l88-pearl-btn::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 25%;
+            height: 25%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            pointer-events: none;
+        }
+
+        .l88-pearl-btn:active {
+            transform: scale(0.9);
+        }
+
+        .l88-pearl-btn.selected {
+            background: var(--bead-active);
+            color: #000000;
+            font-weight: 900;
+            border-color: #ffffff;
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.9), inset 0 1px 3px rgba(255, 255, 255, 0.8);
+            z-index: 2;
+        }
+
+        .l88-pearl-btn.drawn-match {
+            background: var(--bead-hit);
+            color: #000000;
+            font-weight: 900;
+            border-color: #ffffff;
+            transform: scale(1.18);
+            box-shadow: 0 0 18px #00ff88;
+            z-index: 3;
+            animation: hitPulse 0.7s infinite alternate;
+        }
+
+        /* -------------------------------------------------------------
+           5. CONTROL PANEL & BETTING CONSOLE
+           ------------------------------------------------------------- */
+        .bottom-control-deck {
+            width: 100%;
+            background: var(--deck-bg);
+            border-top: 1.5px solid var(--deck-border);
+            padding: 6px 10px 10px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-shrink: 0;
+            z-index: 30;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Quick Chip Buttons */
+        .chip-scroll-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+        }
+
+        .chip-btn {
+            flex: 1;
+            height: 26px;
+            border-radius: 6px;
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #b8860b;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chip-btn:active, .chip-btn.active {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: #b8860b;
+            transform: scale(0.96);
+            color: #854d0e;
+        }
+
+        /* Bet Input Row */
+        .bet-adjuster-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 38px;
+        }
+
+        .bet-input-box {
+            flex: 1;
+            height: 100%;
+            background: var(--input-bg);
+            border: 1.5px solid var(--table-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .currency-symbol {
+            color: #b8860b;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .bet-val-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--input-text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .btn-bet-step {
+            width: 32px;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 8px;
+            color: #b8860b;
+            font-size: 15px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-bet-step:active { transform: scale(0.92); }
+
+        .btn-mod-half, .btn-mod-double {
+            height: 100%;
+            padding: 0 10px;
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 8px;
+            color: #475569;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-mod-half:active, .btn-mod-double:active {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(0.92);
+        }
+
+        /* Big Draw Button */
+        .btn-master-draw {
+            width: 100%;
+            height: 44px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8800 50%, #cc5500 100%);
+            border: none;
+            border-radius: 10px;
+            color: #000000;
+            font-family: 'Cinzel', serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(255, 136, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            transition: all 0.15s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-master-draw::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: btnShine 2.5s infinite;
+        }
+
+        @keyframes btnShine {
+            0% { left: -100%; }
+            40% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .btn-master-draw:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(255, 136, 0, 0.4);
+        }
+
+        .btn-master-draw:disabled {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            color: #e2e8f0;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* -------------------------------------------------------------
+           6. WIN OVERLAYS & MODALS
+           ------------------------------------------------------------- */
+        #confettiCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .win-pop-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.7);
+            z-index: 120;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .win-pop-banner.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Theme Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: #ffffff;
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 360px;
+            padding: 16px;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
+            color: #0f172a;
+        }
+
+        .theme-select-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .theme-option-card {
+            background: #f8fafc;
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            border-radius: 10px;
+            padding: 10px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .theme-option-card.active, .theme-option-card:hover {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* -------------------------------------------------------------
+           OFFICIAL PRAGMATIC PLAY LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 240px;
+        }
+        .pp-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
+        .pp-bar-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #ffcc00;
+            box-shadow: 0 0 10px #ffcc00;
+            border-radius: 3px;
+            transition: width 0.15s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           RESPONSIVE MOBILE VIEWPORT (ZERO SCROLL FIT)
+           ------------------------------------------------------------- */
+        @media (max-height: 720px) {
+            .lucky-topbar { height: 36px; padding: 0 6px; }
+            .paytable-strip { height: 28px; }
+            .drawn-bead-slot { max-width: 38px; max-height: 38px; }
+            .bead-num-text { font-size: 11px; }
+            .l88-grid { gap: 2.5px; }
+            .l88-pearl-btn { font-size: 9px; }
+            .bottom-control-deck { padding: 4px 8px 8px 8px; gap: 4px; }
+            .bet-adjuster-bar { height: 34px; }
+            .btn-master-draw { height: 38px; font-size: 12px; }
+        }
+
+        @media (max-height: 620px) {
+            .lucky-topbar { height: 32px; }
+            .paytable-strip { height: 24px; }
+            .table-status-bubble { padding: 2px 8px; margin-bottom: 3px; }
+            .table-status-text { font-size: 9.5px; }
+            .drawn-bead-slot { max-width: 32px; max-height: 32px; }
+            .bead-num-text { font-size: 10px; }
+            .grid-action-row { margin-bottom: 3px; }
+            .selection-counter-badge, .btn-quick-tool { font-size: 8.5px; padding: 2px 5px; }
+            .l88-grid { gap: 2px; }
+            .l88-pearl-btn { font-size: 8px; }
+            .chip-btn { height: 22px; font-size: 8.5px; }
+            .bet-adjuster-bar { height: 30px; }
+            .btn-master-draw { height: 34px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body class="theme-pearl">
+
+    <!-- 1. OFFICIAL PRAGMATIC PLAY LOADING SCREEN -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DESKTOP AMBIENT BACKGROUND: LUCKY 88 ANIMATED WHITE PEARL CANVAS -->
+    <div class="desktop-ambient-wrap">
+        <canvas id="lucky88WhiteAnimCanvas" class="lucky88-white-canvas"></canvas>
+        <div class="desktop-ambient-vignette"></div>
+    </div>
+
+    <!-- Background Audio Element -->
+    <audio id="casinoBgm" src="../assets/audio/card/casino_bgm.mp3" loop preload="auto"></audio>
+
+    <!-- 3. MAIN ROYAL APP SHELL (100% 0-SCROLL VIEWPORT) -->
+    <div class="lucky-shell">
+
+        <!-- Top Navigation Bar -->
+        <header class="lucky-topbar">
+            <a href="../casino.html" class="btn-lobby-back">
+                <span>◀</span> CASINO
+            </a>
+            <div class="lucky-brand-title">
+                <span>🐉</span> LUCKY 88
+            </div>
+            <div class="topbar-right-actions">
+                <div id="topWalletDisplay" class="wallet-badge-pill wallet-balance-display" onclick="window.location.href='../deposit.html'">₨ 0.00</div>
+                <button class="top-btn-icon active-guitar" id="guitarBtn" onclick="lucky88Engine.toggleGuitar()">🎸</button>
+                <button class="top-btn-icon" id="soundBtn" onclick="lucky88Engine.toggleAudio()">🔊</button>
+                <button class="top-btn-icon" id="voiceBtn" onclick="lucky88Engine.toggleVoice()">🗣️</button>
+                <button class="top-btn-icon" onclick="lucky88Engine.toggleThemeModal()">🎨</button>
+                
+                <!-- Profile Avatar: Authentic 3D Lucky 88 Profile Picture (Avatar Only - NO Name Popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar" title="">
+                    <img src="../assets/icons/lucky88_profile.png?v=999" alt="" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; pointer-events:none; -webkit-touch-callout:none;">
+                </a>
+            </div>
+        </header>
+
+        <!-- Live Payout Multiplier Strip -->
+        <div class="paytable-strip" id="paytableStrip">
+            <div class="pay-pill" id="pill-1">1 Hit: <b>1.8×</b></div>
+            <div class="pay-pill" id="pill-2">2 Hits: <b>4.5×</b></div>
+            <div class="pay-pill" id="pill-3">3 Hits: <b>18×</b></div>
+            <div class="pay-pill" id="pill-4">4 Hits: <b>88×</b></div>
+            <div class="pay-pill" id="pill-5">5 Hits: <b>388×</b></div>
+            <div class="pay-pill mega" id="pill-6">6 Hits: <b>888× 👑</b></div>
+        </div>
+
+        <!-- Felt Casino Stage Arena -->
+        <div class="lucky-stage-wrap">
+            <div class="casino-felt-table">
+                <!-- Inner Stage Animated White Pearls Canvas -->
+                <canvas id="stageWhiteAnimCanvas" class="stage-white-canvas"></canvas>
+
+                <!-- Status Bubble -->
+                <div class="table-status-bubble" id="statusBubble">
+                    <span id="statusIcon">✨</span>
+                    <span id="statusMsg" class="table-status-text">Pick 1 to 6 Lucky Pearls & Tap DRAW</span>
+                </div>
+
+                <!-- 8 Grand Drawn Imperial Pearls -->
+                <div class="drawn-pearls-container" id="drawnContainer">
+                    <div class="drawn-bead-slot" id="slot-0"><span class="bead-placeholder">1</span></div>
+                    <div class="drawn-bead-slot" id="slot-1"><span class="bead-placeholder">2</span></div>
+                    <div class="drawn-bead-slot" id="slot-2"><span class="bead-placeholder">3</span></div>
+                    <div class="drawn-bead-slot" id="slot-3"><span class="bead-placeholder">4</span></div>
+                    <div class="drawn-bead-slot" id="slot-4"><span class="bead-placeholder">5</span></div>
+                    <div class="drawn-bead-slot" id="slot-5"><span class="bead-placeholder">6</span></div>
+                    <div class="drawn-bead-slot" id="slot-6"><span class="bead-placeholder">7</span></div>
+                    <div class="drawn-bead-slot" id="slot-7"><span class="bead-placeholder">8</span></div>
+                </div>
+
+                <!-- Stage Sub Info -->
+                <div class="stage-sub-info">
+                    <span>Imperial Sphere: <b style="color:#b8860b;">8 Pearls Drawn</b></span>
+                    <span>RTP: <b style="color:#0d9488;">96.8% VIP</b></span>
+                    <span>Max Win: <b style="color:#b8860b;">888×</b></span>
+                </div>
+
+                <!-- Particle Confetti Canvas -->
+                <canvas id="confettiCanvas"></canvas>
+
+                <!-- Big Win Alert Popup -->
+                <div class="win-pop-banner" id="winBanner">
+                    <span style="font-family:'Cinzel',serif; font-size:16px; font-weight:900; color:#b8860b;">🐉 LUCKY 88 MEGA WIN! 🐉</span>
+                    <span id="winBannerHits" style="font-size:12px; color:#0f172a; font-weight:800;">MATCHED 4 PEARLS (88×)</span>
+                    <span id="winBannerAmt" style="font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:900; color:#0d9488;">+₨ 8,800.00</span>
+                    <button class="btn-quick-tool highlight" style="padding:6px 16px; font-size:11px; margin-top:4px;" onclick="lucky88Engine.dismissWinBanner()">COLLECT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 88 Pearls Grid Matrix & Selection Deck -->
+        <div class="pearls-deck-container">
+            <div class="grid-action-row">
+                <div class="selection-counter-badge">
+                    <span>🎯 PICKED:</span>
+                    <b id="pickedCount" style="color:#b8860b; font-size:12px;">0</b>/6
+                </div>
+                <div class="quick-pick-btn-group">
+                    <button class="btn-quick-tool highlight" onclick="lucky88Engine.quickPick(6)">⚡ QUICK 6</button>
+                    <button class="btn-quick-tool" onclick="lucky88Engine.pickLuckyEights()">🐉 LUCKY 8s</button>
+                    <button class="btn-quick-tool" onclick="lucky88Engine.quickPick(3)">🎲 3 NUMS</button>
+                    <button class="btn-quick-tool" onclick="lucky88Engine.clearSelection()">🧹 CLEAR</button>
+                </div>
+            </div>
+
+            <div class="pearls-matrix-wrap" id="matrixWrap">
+                <div class="l88-grid" id="pearlsGrid">
+                    <!-- 88 Beads generated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Deck & Betting Console -->
+        <div class="bottom-control-deck">
+            <!-- Chip Presets -->
+            <div class="chip-scroll-row">
+                <button class="chip-btn" onclick="lucky88Engine.setBet(50)">50</button>
+                <button class="chip-btn active" onclick="lucky88Engine.setBet(100)">100</button>
+                <button class="chip-btn" onclick="lucky88Engine.setBet(500)">500</button>
+                <button class="chip-btn" onclick="lucky88Engine.setBet(1000)">1K</button>
+                <button class="chip-btn" onclick="lucky88Engine.setBet(5000)">5K</button>
+                <button class="chip-btn" onclick="lucky88Engine.setBet(10000)">10K</button>
+            </div>
+
+            <!-- Bet Adjuster -->
+            <div class="bet-adjuster-bar">
+                <button class="btn-bet-step" onclick="lucky88Engine.stepBet(-50)">−</button>
+                <div class="bet-input-box">
+                    <span class="currency-symbol">₨</span>
+                    <input type="number" id="betAmountInput" class="bet-val-input" value="100" min="10" max="50000">
+                </div>
+                <button class="btn-bet-step" onclick="lucky88Engine.stepBet(50)">+</button>
+                <button class="btn-mod-half" onclick="lucky88Engine.modifyBet('half')">½</button>
+                <button class="btn-mod-double" onclick="lucky88Engine.modifyBet('double')">2×</button>
+                <button class="btn-mod-double" onclick="lucky88Engine.modifyBet('max')">MAX</button>
+            </div>
+
+            <!-- Big Master Draw Button -->
+            <button id="masterDrawBtn" class="btn-master-draw" onclick="lucky88Engine.startDraw()">
+                <span>🎱</span>
+                <span id="drawBtnText">DRAW 8 LUCKY PEARLS</span>
+                <span>➔</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Theme & Paytable Modal -->
+    <div id="themeModal" class="modal-overlay" onclick="if(event.target===this) lucky88Engine.toggleThemeModal()">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(212,175,55,0.35); padding-bottom:8px;">
+                <b style="color:#b8860b; font-family:'Cinzel',serif; font-size:14px;">🎨 STUDIO SETTINGS & THEMES</b>
+                <button onclick="lucky88Engine.toggleThemeModal()" style="background:transparent; border:none; color:#64748b; font-size:18px; cursor:pointer;">✕</button>
+            </div>
+            <div style="margin-top:12px; font-size:11px; color:#475569; line-height:1.5;">
+                Select your preferred VIP Macau Salon atmosphere:
+            </div>
+            <div class="theme-select-grid">
+                <div class="theme-option-card active" onclick="lucky88Engine.switchTheme('theme-pearl')">
+                    <span style="font-size:18px;">⚪</span>
+                    <div>
+                        <b style="color:#b8860b; font-size:11px; display:block;">Pearl White</b>
+                        <span style="font-size:9px; color:#64748b;">Platinum 88</span>
+                    </div>
+                </div>
+                <div class="theme-option-card" onclick="lucky88Engine.switchTheme('theme-ruby')">
+                    <span style="font-size:18px;">🐉</span>
+                    <div>
+                        <b style="color:#ff4757; font-size:11px; display:block;">Imperial Ruby</b>
+                        <span style="font-size:9px; color:#64748b;">Chinese Dynasty</span>
+                    </div>
+                </div>
+                <div class="theme-option-card" onclick="lucky88Engine.switchTheme('theme-emerald')">
+                    <span style="font-size:18px;">🐲</span>
+                    <div>
+                        <b style="color:#00ffaa; font-size:11px; display:block;">Jade Emperor</b>
+                        <span style="font-size:9px; color:#64748b;">Oriental Emerald</span>
+                    </div>
+                </div>
+                <div class="theme-option-card" onclick="lucky88Engine.switchTheme('theme-onyx')">
+                    <span style="font-size:18px;">👑</span>
+                    <div>
+                        <b style="color:#ffd700; font-size:11px; display:block;">Macau Onyx</b>
+                        <span style="font-size:9px; color:#64748b;">24K High Roller</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:14px; padding:10px; background:rgba(212,175,55,0.08); border-radius:8px; border:1px solid rgba(212,175,55,0.25);">
+                <b style="color:#b8860b; font-size:11px; display:block; margin-bottom:4px;">📜 How to Play Lucky 88:</b>
+                <div style="font-size:10px; color:#334155; line-height:1.4;">
+                    1. Pick 1 to 6 Lucky Numbers (or use <b>QUICK 6</b>).<br>
+                    2. Set your bet amount and tap <b>DRAW 8 PEARLS</b>.<br>
+                    3. The Imperial Sphere draws 8 Golden Pearls.<br>
+                    4. Match 4 = <b>88×</b> • Match 5 = <b>388×</b> • Match 6 = <b>888× JACKPOT</b>!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script>
+        /* -------------------------------------------------------------
+           LUCKY 88 WHITE PEARL ANIMATION ENGINE (3D ANIMATED CANVAS)
+           ------------------------------------------------------------- */
+        class Lucky88WhiteBackgroundAnimation {
+            constructor(canvasId, isStage = false) {
+                this.canvas = document.getElementById(canvasId);
+                if (!this.canvas) return;
+                this.ctx = this.canvas.getContext('2d');
+                this.isStage = isStage;
+                this.pearls = [];
+                this.luckyNumbers = [];
+                this.sparkles = [];
+                this.init();
+            }
+
+            init() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                
+                const count = this.isStage ? 12 : 28;
+                for (let i = 0; i < count; i++) {
+                    this.pearls.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        r: Math.random() * (this.isStage ? 12 : 22) + (this.isStage ? 6 : 8),
+                        vx: (Math.random() - 0.5) * 0.4,
+                        vy: -(Math.random() * 0.4 + 0.15),
+                        alpha: Math.random() * 0.5 + 0.35,
+                        angle: Math.random() * Math.PI * 2
+                    });
+                }
+
+                // Lucky 88 floating glowing numbers
+                const numCount = this.isStage ? 4 : 10;
+                for (let i = 0; i < numCount; i++) {
+                    this.luckyNumbers.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * (this.isStage ? 16 : 28) + 14,
+                        vy: -(Math.random() * 0.35 + 0.1),
+                        alpha: Math.random() * 0.45 + 0.25,
+                        isGold: Math.random() > 0.4
+                    });
+                }
+
+                // White Stardust Sparkles
+                for (let i = 0; i < (this.isStage ? 15 : 35); i++) {
+                    this.sparkles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 3 + 1,
+                        alpha: Math.random(),
+                        dAlpha: (Math.random() * 0.02 + 0.01) * (Math.random() > 0.5 ? 1 : -1)
+                    });
+                }
+
+                this.animate();
+            }
+
+            resize() {
+                if (!this.canvas) return;
+                const rect = this.canvas.parentElement ? this.canvas.parentElement.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight };
+                this.canvas.width = rect.width || window.innerWidth;
+                this.canvas.height = rect.height || window.innerHeight;
+            }
+
+            drawStar(cx, cy, spikes, outerRadius, innerRadius, color, alpha) {
+                let rot = Math.PI / 2 * 3;
+                let x = cx;
+                let y = cy;
+                const step = Math.PI / spikes;
+
+                this.ctx.save();
+                this.ctx.beginPath();
+                this.ctx.moveTo(cx, cy - outerRadius);
+                for (let i = 0; i < spikes; i++) {
+                    x = cx + Math.cos(rot) * outerRadius;
+                    y = cy + Math.sin(rot) * outerRadius;
+                    this.ctx.lineTo(x, y);
+                    rot += step;
+
+                    x = cx + Math.cos(rot) * innerRadius;
+                    y = cy + Math.sin(rot) * innerRadius;
+                    this.ctx.lineTo(x, y);
+                    rot += step;
+                }
+                this.ctx.lineTo(cx, cy - outerRadius);
+                this.ctx.closePath();
+                this.ctx.fillStyle = color;
+                this.ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+                this.ctx.fill();
+                this.ctx.restore();
+            }
+
+            animate() {
+                if (!this.canvas || !this.ctx) return;
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // 1. Draw Sparkles
+                this.sparkles.forEach(s => {
+                    s.alpha += s.dAlpha;
+                    if (s.alpha > 1 || s.alpha < 0.1) s.dAlpha *= -1;
+                    this.drawStar(s.x, s.y, 4, s.size * 2, s.size * 0.6, '#ffffff', s.alpha * 0.85);
+                });
+
+                // 2. Draw Floating 3D White Pearls
+                this.pearls.forEach(p => {
+                    p.y += p.vy;
+                    p.angle += 0.015;
+                    p.x += Math.sin(p.angle) * 0.3;
+
+                    if (p.y < -p.r * 2) {
+                        p.y = this.canvas.height + p.r * 2;
+                        p.x = Math.random() * this.canvas.width;
+                    }
+
+                    this.ctx.save();
+                    this.ctx.globalAlpha = p.alpha;
+
+                    // 3D Spherical Radial Pearl Gradient
+                    const g = this.ctx.createRadialGradient(
+                        p.x - p.r * 0.35, p.y - p.r * 0.35, p.r * 0.08,
+                        p.x, p.y, p.r
+                    );
+                    g.addColorStop(0, '#ffffff');
+                    g.addColorStop(0.35, '#f8fafc');
+                    g.addColorStop(0.7, '#e2e8f0');
+                    g.addColorStop(1, '#94a3b8');
+
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    this.ctx.fillStyle = g;
+                    this.ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                    this.ctx.shadowBlur = 8;
+                    this.ctx.fill();
+
+                    // Specular highlight glint
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x - p.r * 0.3, p.y - p.r * 0.3, p.r * 0.22, 0, Math.PI * 2);
+                    this.ctx.fillStyle = '#ffffff';
+                    this.ctx.shadowBlur = 0;
+                    this.ctx.fill();
+
+                    this.ctx.restore();
+                });
+
+                // 3. Draw Floating "88" Lucky Numbers
+                this.luckyNumbers.forEach(n => {
+                    n.y += n.vy;
+                    if (n.y < -30) {
+                        n.y = this.canvas.height + 30;
+                        n.x = Math.random() * this.canvas.width;
+                    }
+
+                    this.ctx.save();
+                    this.ctx.globalAlpha = n.alpha;
+                    this.ctx.font = `900 ${n.size}px 'Cinzel', serif`;
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+
+                    if (n.isGold) {
+                        this.ctx.fillStyle = '#ffd700';
+                        this.ctx.shadowColor = '#ffd700';
+                        this.ctx.shadowBlur = 10;
+                    } else {
+                        this.ctx.fillStyle = '#ffffff';
+                        this.ctx.shadowColor = '#ffffff';
+                        this.ctx.shadowBlur = 12;
+                    }
+
+                    this.ctx.fillText('88', n.x, n.y);
+                    this.ctx.restore();
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        /* -------------------------------------------------------------
+           HIGH PERFORMANCE SYNTHESIZER & SOUND FX
+           ------------------------------------------------------------- */
+        class SoundFX {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) this.ctx = new AudioCtx();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+            playBeadClick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(600, now);
+                osc.frequency.exponentialRampToValueAtTime(1400, now + 0.05);
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.07);
+            }
+            playDrawPop() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(350, now);
+                osc.frequency.exponentialRampToValueAtTime(750, now + 0.08);
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.11);
+            }
+            playMatchHit() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.03);
+                    gain.gain.setValueAtTime(0.2, now + i * 0.03);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + i * 0.03);
+                    osc.stop(now + 0.65);
+                });
+            }
+            playWin() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                    gain.gain.setValueAtTime(0.25, now + idx * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.4);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.08);
+                    osc.stop(now + idx * 0.08 + 0.45);
+                });
+            }
+            playLoss() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.exponentialRampToValueAtTime(110, now + 0.3);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.36);
+            }
+        }
+        const sound = new SoundFX();
+
+        /* -------------------------------------------------------------
+           ACOUSTIC GUITAR MUSIC ENGINE (PHYSICAL STRING MODELING)
+           ------------------------------------------------------------- */
+        class AcousticGuitarEngine {
+            constructor() {
+                this.ctx = null;
+                this.isPlaying = false;
+                this.bpm = 84;
+                this.timer = null;
+                this.step = 0;
+                this.masterGain = null;
+
+                // Authentic acoustic guitar chord progressions (Hz)
+                // Strings: 6(E2), 5(A2), 4(D3), 3(G3), 2(B3), 1(E4)
+                this.chords = [
+                    // Am (A minor): A2, E3, A3, C4, E4
+                    [110.00, 164.81, 220.00, 261.63, 329.63],
+                    // Fmaj7: F2, C3, F3, A3, E4
+                    [87.31, 130.81, 174.61, 220.00, 329.63],
+                    // C: C3, G3, C4, E4, G4
+                    [130.81, 196.00, 261.63, 329.63, 392.00],
+                    // G/B: B2, D3, G3, B3, D4
+                    [123.47, 146.83, 196.00, 246.94, 293.66],
+                    // Dm9: D3, A3, C4, E4, F4
+                    [146.83, 220.00, 261.63, 329.63, 349.23],
+                    // E7: E2, B2, E3, G#3, D4
+                    [82.41, 123.47, 164.81, 207.65, 293.66]
+                ];
+                this.chordIndex = 0;
+                this.pattern = [0, 1, 2, 4, 3, 2, 4, 1];
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) {
+                        this.ctx = new AudioCtx();
+                        this.masterGain = this.ctx.createGain();
+                        this.masterGain.gain.setValueAtTime(0.38, this.ctx.currentTime);
+                        this.masterGain.connect(this.ctx.destination);
+                    }
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+
+            pluck(freq, velocity = 0.8) {
+                if (!this.ctx || !this.masterGain) return;
+                const ctx = this.ctx;
+                const now = ctx.currentTime;
+
+                const sampleRate = ctx.sampleRate;
+                const period = sampleRate / freq;
+                const bufferSize = Math.max(16, Math.round(period));
+
+                const noiseBuffer = ctx.createBuffer(1, bufferSize, sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.42));
+                }
+
+                const noise = ctx.createBufferSource();
+                noise.buffer = noiseBuffer;
+
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(freq * 3.8, now);
+                filter.frequency.exponentialRampToValueAtTime(freq * 0.85, now + 1.4);
+
+                const delay = ctx.createDelay();
+                delay.delayTime.setValueAtTime(1 / freq, now);
+
+                const feedback = ctx.createGain();
+                const damping = Math.min(0.985, 0.962 + (100 / freq) * 0.012);
+                feedback.gain.setValueAtTime(damping, now);
+
+                const bodyResonance = ctx.createBiquadFilter();
+                bodyResonance.type = 'peaking';
+                bodyResonance.frequency.value = 190;
+                bodyResonance.Q.value = 2.2;
+                bodyResonance.gain.value = 3.6;
+
+                const pluckGain = ctx.createGain();
+                pluckGain.gain.setValueAtTime(velocity * 0.45, now);
+                pluckGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
+
+                noise.connect(filter);
+                filter.connect(delay);
+                delay.connect(feedback);
+                feedback.connect(filter);
+
+                filter.connect(bodyResonance);
+                bodyResonance.connect(pluckGain);
+                pluckGain.connect(this.masterGain);
+
+                noise.start(now);
+                noise.stop(now + 0.04);
+            }
+
+            start() {
+                this.init();
+                if (this.isPlaying) return;
+                this.isPlaying = true;
+                this.scheduleNext();
+            }
+
+            scheduleNext() {
+                if (!this.isPlaying) return;
+                const currentChord = this.chords[this.chordIndex];
+                const noteIndex = this.pattern[this.step % this.pattern.length];
+                const freq = currentChord[noteIndex % currentChord.length];
+
+                const isBass = (noteIndex === 0);
+                const velocity = isBass ? (0.75 + Math.random() * 0.15) : (0.45 + Math.random() * 0.2);
+
+                this.pluck(freq, velocity);
+
+                this.step++;
+                if (this.step % this.pattern.length === 0) {
+                    this.chordIndex = (this.chordIndex + 1) % this.chords.length;
+                }
+
+                const interval = (60 / this.bpm / 2) * 1000 + (Math.random() * 10 - 5);
+                this.timer = setTimeout(() => this.scheduleNext(), interval);
+            }
+
+            stop() {
+                this.isPlaying = false;
+                if (this.timer) clearTimeout(this.timer);
+            }
+
+            toggle() {
+                if (this.isPlaying) {
+                    this.stop();
+                    return false;
+                } else {
+                    this.start();
+                    return true;
+                }
+            }
+        }
+        const guitar = new AcousticGuitarEngine();
+
+        /* -------------------------------------------------------------
+           CASINO VOICE ANNOUNCER ENGINE
+           ------------------------------------------------------------- */
+        class VoiceAnnouncer {
+            constructor() {
+                this.enabled = true;
+                this.synth = window.speechSynthesis || null;
+                this.selectedVoice = null;
+                this.initVoices();
+            }
+
+            initVoices() {
+                if (!this.synth) return;
+                const updateVoice = () => {
+                    const voices = this.synth.getVoices();
+                    if (!voices || voices.length === 0) return;
+                    this.selectedVoice = voices.find(v => v.lang.startsWith('en') && (
+                        v.name.includes('Natural') ||
+                        v.name.includes('Google') ||
+                        v.name.includes('Samantha') ||
+                        v.name.includes('Siri') ||
+                        v.name.includes('Karen') ||
+                        v.name.includes('Zira') ||
+                        v.name.includes('David') ||
+                        v.name.includes('Female')
+                    )) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+                };
+                updateVoice();
+                if (typeof this.synth.onvoiceschanged !== 'undefined') {
+                    this.synth.onvoiceschanged = updateVoice;
+                }
+            }
+
+            speak(text, rate = 1.05) {
+                if (!this.enabled || !this.synth) return;
+                try {
+                    this.synth.cancel();
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.rate = rate;
+                    utter.pitch = 1.08;
+                    utter.volume = 0.95;
+                    if (this.selectedVoice) utter.voice = this.selectedVoice;
+                    this.synth.speak(utter);
+                } catch(e) {}
+            }
+
+            toggle() {
+                this.enabled = !this.enabled;
+                const vBtn = document.getElementById('voiceBtn');
+                if (vBtn) vBtn.textContent = this.enabled ? '🗣️' : '🔇';
+                if (this.enabled) this.speak('Voice Announcer Enabled');
+            }
+        }
+        const voice = new VoiceAnnouncer();
+
+        /* -------------------------------------------------------------
+           LUCKY 88 PEARLS CORE GAME ENGINE
+           ------------------------------------------------------------- */
+        class Lucky88Engine {
+            constructor() {
+                this.selectedNumbers = [];
+                this.drawnNumbers = [];
+                this.betAmount = 100;
+                this.isPlaying = false;
+                this.balance = (window.wallet && typeof window.wallet.getBalance === 'function') ? window.wallet.getBalance() : 0.00;
+                this.payTable = { 0: 0, 1: 1.8, 2: 4.5, 3: 18.0, 4: 88.0, 5: 388.0, 6: 888.0 };
+
+                this.confettiCanvas = null;
+                this.confettiCtx = null;
+                this.particles = [];
+            }
+
+            getBalance() {
+                if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    return window.wallet.getBalance();
+                }
+                return parseFloat(this.balance || 0);
+            }
+
+            init() {
+                this.renderGrid();
+                this.initConfetti();
+                this.syncBetInput();
+                this.updateUI();
+                voice.speak('Welcome to Lucky 88 Pearls! Select your lucky numbers.');
+            }
+
+            renderGrid() {
+                const grid = document.getElementById('pearlsGrid');
+                if (!grid) return;
+                grid.innerHTML = '';
+                for (let i = 1; i <= 88; i++) {
+                    const btn = document.createElement('div');
+                    btn.className = 'l88-pearl-btn';
+                    btn.id = `bead-${i}`;
+                    btn.innerText = i;
+                    btn.onclick = () => this.toggleNumber(i, btn);
+                    grid.appendChild(btn);
+                }
+            }
+
+            toggleNumber(num, el) {
+                if (this.isPlaying) return;
+                sound.playBeadClick();
+
+                const idx = this.selectedNumbers.indexOf(num);
+                if (idx > -1) {
+                    this.selectedNumbers.splice(idx, 1);
+                    el.classList.remove('selected');
+                } else {
+                    if (this.selectedNumbers.length >= 6) {
+                        if (window.core && window.core.showToast) {
+                            window.core.showToast('Maximum 6 Lucky Pearls allowed!', 'warning');
+                        }
+                        voice.speak('Maximum six numbers allowed!');
+                        return;
+                    }
+                    this.selectedNumbers.push(num);
+                    el.classList.add('selected');
+
+                    if (this.selectedNumbers.length === 6) {
+                        voice.speak(`Number ${num}. All six numbers selected! Ready to draw.`);
+                    } else {
+                        voice.speak(`Number ${num}`);
+                    }
+                }
+                this.updateSelectionDisplay();
+            }
+
+            updateSelectionDisplay() {
+                const countEl = document.getElementById('pickedCount');
+                if (countEl) countEl.innerText = this.selectedNumbers.length;
+
+                document.querySelectorAll('.pay-pill').forEach(p => p.classList.remove('active'));
+                const selLen = this.selectedNumbers.length;
+                if (selLen > 0) {
+                    const pill = document.getElementById(`pill-${selLen}`);
+                    if (pill) pill.classList.add('active');
+                }
+
+                const statusMsg = document.getElementById('statusMsg');
+                if (statusMsg) {
+                    if (this.selectedNumbers.length === 0) {
+                        statusMsg.innerText = 'Pick 1 to 6 Lucky Pearls & Tap DRAW';
+                    } else {
+                        statusMsg.innerHTML = `Selected <b>${this.selectedNumbers.length} Pearls</b> • Tap DRAW to Spin!`;
+                    }
+                }
+            }
+
+            quickPick(count = 6) {
+                if (this.isPlaying) return;
+                sound.playBeadClick();
+                this.clearSelection(false);
+
+                while (this.selectedNumbers.length < count) {
+                    const r = Math.floor(Math.random() * 88) + 1;
+                    if (!this.selectedNumbers.includes(r)) this.selectedNumbers.push(r);
+                }
+
+                this.selectedNumbers.forEach(num => {
+                    const el = document.getElementById(`bead-${num}`);
+                    if (el) el.classList.add('selected');
+                });
+                this.updateSelectionDisplay();
+                voice.speak(`Quick pick ${count} selected! Good luck!`);
+            }
+
+            pickLuckyEights() {
+                if (this.isPlaying) return;
+                sound.playBeadClick();
+                this.clearSelection(false);
+
+                const eights = [8, 18, 28, 38, 48, 88];
+                this.selectedNumbers = [...eights];
+
+                this.selectedNumbers.forEach(num => {
+                    const el = document.getElementById(`bead-${num}`);
+                    if (el) el.classList.add('selected');
+                });
+                this.updateSelectionDisplay();
+                voice.speak('Imperial Lucky Eights combination chosen!');
+            }
+
+            clearSelection(playAudio = true) {
+                if (this.isPlaying) return;
+                if (playAudio) sound.playBeadClick();
+                this.selectedNumbers = [];
+                document.querySelectorAll('.l88-pearl-btn').forEach(b => {
+                    b.classList.remove('selected', 'drawn-match');
+                });
+                this.updateSelectionDisplay();
+                if (playAudio) voice.speak('Board cleared.');
+            }
+
+            setBet(val) {
+                if (this.isPlaying) return;
+                sound.playBeadClick();
+                this.betAmount = Math.max(10, Math.min(50000, parseFloat(val) || 100));
+                this.syncBetInput();
+                document.querySelectorAll('.chip-btn').forEach(c => c.classList.remove('active'));
+                const matched = Array.from(document.querySelectorAll('.chip-btn')).find(c => parseFloat(c.innerText) === this.betAmount || (c.innerText === '1K' && this.betAmount === 1000) || (c.innerText === '5K' && this.betAmount === 5000) || (c.innerText === '10K' && this.betAmount === 10000));
+                if (matched) matched.classList.add('active');
+                voice.speak(`Bet ${this.betAmount} Rupees`);
+            }
+
+            stepBet(delta) {
+                if (this.isPlaying) return;
+                sound.playBeadClick();
+                this.betAmount = Math.max(10, Math.min(50000, this.betAmount + delta));
+                this.syncBetInput();
+            }
+
+            modifyBet(type) {
+                if (this.isPlaying) return;
+                sound.playBeadClick();
+                const curBal = this.getBalance();
+                if (type === 'half') this.betAmount = Math.max(10, Math.floor(this.betAmount / 2));
+                else if (type === 'double') this.betAmount = Math.min(50000, this.betAmount * 2);
+                else if (type === 'max') this.betAmount = Math.max(10, Math.min(50000, Math.floor(curBal)));
+                this.syncBetInput();
+                voice.speak(`Bet ${this.betAmount} Rupees`);
+            }
+
+            syncBetInput() {
+                const inp = document.getElementById('betAmountInput');
+                if (inp) inp.value = this.betAmount;
+            }
+
+            formatCurrency(val) {
+                return '₨ ' + parseFloat(val || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+
+            updateUI() {
+                this.balance = this.getBalance();
+                const wDisplay = document.getElementById('topWalletDisplay');
+                if (wDisplay) {
+                    if (window.wallet && typeof window.wallet.formatAmount === 'function') {
+                        wDisplay.innerText = window.wallet.formatAmount(this.balance);
+                    } else {
+                        wDisplay.innerText = this.formatCurrency(this.balance);
+                    }
+                }
+            }
+
+            async startDraw() {
+                if (this.isPlaying) return;
+                sound.init();
+                guitar.init();
+
+                if (this.selectedNumbers.length === 0) {
+                    if (window.core && window.core.showToast) {
+                        window.core.showToast('Please select at least 1 Lucky Pearl!', 'warning');
+                    }
+                    voice.speak('Please select your numbers first!');
+                    return;
+                }
+
+                const betInp = document.getElementById('betAmountInput');
+                if (betInp) this.betAmount = Math.max(10, parseFloat(betInp.value) || 100);
+
+                const curBal = this.getBalance();
+                if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                    if (!window.wallet.placeBet(this.betAmount, 'Lucky 88 Pearls')) {
+                        if (window.core && window.core.showToast) {
+                            window.core.showToast('Insufficient wallet balance! Please deposit to play.', 'error');
+                        }
+                        voice.speak('Insufficient balance to place bet!');
+                        return;
+                    }
+                    this.balance = window.wallet.getBalance();
+                } else {
+                    if (curBal < this.betAmount) {
+                        if (window.core && window.core.showToast) {
+                            window.core.showToast('Insufficient wallet balance! Please deposit to play.', 'error');
+                        }
+                        voice.speak('Insufficient balance!');
+                        return;
+                    }
+                    this.balance -= this.betAmount;
+                }
+                this.updateUI();
+                if (window.core && typeof window.core.updateAllBalances === 'function') {
+                    window.core.updateAllBalances();
+                }
+
+                this.isPlaying = true;
+                const drawBtn = document.getElementById('masterDrawBtn');
+                if (drawBtn) {
+                    drawBtn.disabled = true;
+                    document.getElementById('drawBtnText').innerText = 'DRAWING PEARLS...';
+                }
+
+                for (let i = 0; i < 8; i++) {
+                    const slot = document.getElementById(`slot-${i}`);
+                    if (slot) {
+                        slot.className = 'drawn-bead-slot';
+                        slot.innerHTML = `<span class="bead-placeholder">${i + 1}</span>`;
+                    }
+                }
+                document.querySelectorAll('.l88-pearl-btn').forEach(b => b.classList.remove('drawn-match'));
+
+                const statusMsg = document.getElementById('statusMsg');
+                if (statusMsg) statusMsg.innerHTML = '<span style="color:#b8860b;">🐉 Imperial Sphere Spinning...</span>';
+                voice.speak('Imperial sphere is spinning! Drawing eight lucky pearls.');
+
+                this.drawnNumbers = [];
+                while (this.drawnNumbers.length < 8) {
+                    const r = Math.floor(Math.random() * 88) + 1;
+                    if (!this.drawnNumbers.includes(r)) this.drawnNumbers.push(r);
+                }
+
+                let matches = 0;
+
+                for (let i = 0; i < 8; i++) {
+                    await new Promise(res => setTimeout(res, 400));
+                    const val = this.drawnNumbers[i];
+                    const isHit = this.selectedNumbers.includes(val);
+                    if (isHit) matches++;
+
+                    const slot = document.getElementById(`slot-${i}`);
+                    if (slot) {
+                        slot.classList.add('drawn');
+                        if (isHit) slot.classList.add('hit');
+                        slot.innerHTML = `<span class="bead-num-text">${val}</span>`;
+                    }
+
+                    if (isHit) {
+                        const boardBead = document.getElementById(`bead-${val}`);
+                        if (boardBead) boardBead.classList.add('drawn-match');
+                        sound.playMatchHit();
+                        this.triggerMiniConfetti();
+
+                        // Dynamic voice on each hit
+                        if (matches === 1) voice.speak(`Number ${val}! It's a match!`);
+                        else if (matches === 2) voice.speak(`Number ${val}! Double match!`);
+                        else if (matches === 3) voice.speak(`Number ${val}! Triple match!`);
+                        else if (matches === 4) voice.speak(`Number ${val}! Lucky 88 match!`);
+                        else if (matches === 5) voice.speak(`Number ${val}! Five pearls hit!`);
+                        else if (matches === 6) voice.speak(`Number ${val}! All six matched! Mega Jackpot!`);
+                    } else {
+                        sound.playDrawPop();
+                    }
+
+                    document.querySelectorAll('.pay-pill').forEach(p => p.classList.remove('active'));
+                    if (matches > 0) {
+                        const pill = document.getElementById(`pill-${Math.min(6, matches)}`);
+                        if (pill) pill.classList.add('active');
+                    }
+                }
+
+                const mult = this.payTable[matches] || 0;
+                await new Promise(res => setTimeout(res, 350));
+
+                if (mult > 0) {
+                    const winAmt = this.betAmount * mult;
+
+                    if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                        window.wallet.creditWin(this.betAmount, winAmt, 'Lucky 88 Pearls', mult, `Matched ${matches} of ${this.selectedNumbers.length} beads`);
+                        this.balance = window.wallet.getBalance();
+                    } else {
+                        this.balance += winAmt;
+                    }
+
+                    sound.playWin();
+                    this.triggerConfetti();
+                    this.showWinBanner(winAmt, matches, mult);
+
+                    if (statusMsg) {
+                        statusMsg.innerHTML = `<span style="color:#059669; font-weight:900;">🎉 MATCHED ${matches} PEARLS! (${mult}×) +${this.formatCurrency(winAmt)}</span>`;
+                    }
+
+                    if (mult === 888) {
+                        voice.speak('UNBELIEVABLE! Eight hundred and eighty-eight times IMPERIAL JACKPOT! Congratulations!');
+                    } else if (mult === 388) {
+                        voice.speak('Spectacular win! Three hundred and eighty-eight times payout!');
+                    } else if (mult === 88) {
+                        voice.speak('LUCKY 88! Eighty-eight times big win!');
+                    } else if (mult === 18) {
+                        voice.speak('Winner! Eighteen times your bet!');
+                    } else if (mult === 4.5) {
+                        voice.speak('Winner! Four point five times win!');
+                    } else {
+                        voice.speak('Winner! One point eight times payout!');
+                    }
+                } else {
+                    if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                        window.wallet.creditWin(this.betAmount, 0, 'Lucky 88 Pearls', 0, `Matched ${matches} beads`);
+                    }
+                    sound.playLoss();
+                    if (statusMsg) {
+                        statusMsg.innerHTML = `<span style="color:#e11d48;">NO WIN (${matches} HITS) • TRY AGAIN!</span>`;
+                    }
+                    voice.speak('No match this round. Spin again to win!');
+                }
+
+                this.updateUI();
+                if (window.core && typeof window.core.updateAllBalances === 'function') {
+                    window.core.updateAllBalances();
+                }
+
+                this.isPlaying = false;
+                if (drawBtn) {
+                    drawBtn.disabled = false;
+                    document.getElementById('drawBtnText').innerText = 'DRAW 8 LUCKY PEARLS';
+                }
+            }
+
+            initConfetti() {
+                this.confettiCanvas = document.getElementById('confettiCanvas');
+                if (this.confettiCanvas) {
+                    this.confettiCtx = this.confettiCanvas.getContext('2d');
+                    this.resizeCanvas();
+                    window.addEventListener('resize', () => this.resizeCanvas());
+                }
+            }
+
+            resizeCanvas() {
+                if (!this.confettiCanvas) return;
+                const rect = this.confettiCanvas.parentElement.getBoundingClientRect();
+                this.confettiCanvas.width = rect.width;
+                this.confettiCanvas.height = rect.height;
+            }
+
+            triggerMiniConfetti() {
+                if (!this.confettiCtx || !this.confettiCanvas) return;
+                const colors = ['#00ff88', '#ffd700', '#ffffff'];
+                for (let i = 0; i < 20; i++) {
+                    this.particles.push({
+                        x: this.confettiCanvas.width / 2,
+                        y: this.confettiCanvas.height * 0.4,
+                        vx: (Math.random() - 0.5) * 6,
+                        vy: (Math.random() - 0.6) * 6,
+                        size: Math.random() * 3 + 2,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        alpha: 1,
+                        decay: Math.random() * 0.03 + 0.02
+                    });
+                }
+                this.animateParticles();
+            }
+
+            triggerConfetti() {
+                if (!this.confettiCtx || !this.confettiCanvas) return;
+                const colors = ['#ffd700', '#00ffcc', '#ff3b30', '#ffffff', '#ff9900'];
+                for (let i = 0; i < 60; i++) {
+                    this.particles.push({
+                        x: this.confettiCanvas.width / 2,
+                        y: this.confettiCanvas.height / 2,
+                        vx: (Math.random() - 0.5) * 9,
+                        vy: (Math.random() - 0.7) * 9,
+                        size: Math.random() * 4 + 2,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        alpha: 1,
+                        decay: Math.random() * 0.02 + 0.015
+                    });
+                }
+                this.animateParticles();
+            }
+
+            animateParticles() {
+                if (!this.confettiCtx || !this.confettiCanvas) return;
+                this.confettiCtx.clearRect(0, 0, this.confettiCanvas.width, this.confettiCanvas.height);
+                this.particles = this.particles.filter(p => p.alpha > 0);
+
+                this.particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.2;
+                    p.alpha -= p.decay;
+
+                    this.confettiCtx.fillStyle = p.color;
+                    this.confettiCtx.globalAlpha = Math.max(0, p.alpha);
+                    this.confettiCtx.beginPath();
+                    this.confettiCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.confettiCtx.fill();
+                });
+
+                if (this.particles.length > 0) {
+                    requestAnimationFrame(() => this.animateParticles());
+                } else {
+                    this.confettiCtx.clearRect(0, 0, this.confettiCanvas.width, this.confettiCanvas.height);
+                }
+            }
+
+            showWinBanner(amt, hits, mult) {
+                const banner = document.getElementById('winBanner');
+                const amtEl = document.getElementById('winBannerAmt');
+                const hitsEl = document.getElementById('winBannerHits');
+                if (amtEl) amtEl.innerText = `+${this.formatCurrency(amt)}`;
+                if (hitsEl) hitsEl.innerText = `MATCHED ${hits} PEARLS (${mult}×)`;
+                if (banner) banner.classList.add('active');
+            }
+
+            dismissWinBanner() {
+                const banner = document.getElementById('winBanner');
+                if (banner) banner.classList.remove('active');
+            }
+
+            toggleGuitar() {
+                guitar.init();
+                const active = guitar.toggle();
+                const gBtn = document.getElementById('guitarBtn');
+                if (gBtn) {
+                    if (active) {
+                        gBtn.classList.add('active-guitar');
+                    } else {
+                        gBtn.classList.remove('active-guitar');
+                    }
+                }
+                voice.speak(active ? 'Guitar Music On' : 'Guitar Music Off');
+            }
+
+            toggleAudio() {
+                sound.muted = !sound.muted;
+                const sBtn = document.getElementById('soundBtn');
+                if (sBtn) sBtn.innerText = sound.muted ? '🔇' : '🔊';
+            }
+
+            toggleVoice() {
+                voice.toggle();
+            }
+
+            toggleThemeModal() {
+                const modal = document.getElementById('themeModal');
+                if (modal) modal.classList.toggle('open');
+            }
+
+            switchTheme(themeName) {
+                document.body.className = themeName;
+                document.querySelectorAll('.theme-option-card').forEach(c => c.classList.remove('active'));
+                const active = Array.from(document.querySelectorAll('.theme-option-card')).find(c => c.getAttribute('onclick')?.includes(themeName));
+                if (active) active.classList.add('active');
+                this.toggleThemeModal();
+                voice.speak('Theme Changed');
+            }
+        }
+
+        const lucky88Engine = new Lucky88Engine();
+        window.lucky88Engine = lucky88Engine;
+        window.lucky88Game = lucky88Engine;
+
+        /* -------------------------------------------------------------
+           OFFICIAL PRAGMATIC PLAY LOADING FLOW & DIRECT MUSIC PLAY
+           ------------------------------------------------------------- */
+        (function initLoader() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) return;
+
+            let pct = 0;
+            let finished = false;
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+
+                    // Start authentic Acoustic Guitar Music automatically!
+                    guitar.init();
+                    guitar.start();
+                    const gBtn = document.getElementById('guitarBtn');
+                    if (gBtn) gBtn.classList.add('active-guitar');
+
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 200);
+            }
+
+            const step = () => {
+                if (finished) return;
+                pct += Math.floor(Math.random() * 18) + 12;
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+                if (pct < 100) setTimeout(step, 60);
+                else finish();
+            };
+
+            setTimeout(finish, 1800);
+            setTimeout(step, 70);
+        })();
+
+        // Wallet Session & Profile Avatar Sync (Clean Lucky 88 Avatar - NO Name Popup)
+        async function syncWalletSession() {
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    activeUser = JSON.parse(sess);
+                    if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                        window.wallet.syncWithUser(activeUser);
+                    }
+                }
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                        if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                            window.wallet.syncWithUser(activeUser);
+                        }
+                    }
+                }
+            } catch(e) {}
+
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                lucky88Engine.balance = window.wallet.getBalance();
+            } else if (activeUser) {
+                const uBal = activeUser.balance_pkr !== undefined ? activeUser.balance_pkr : (activeUser.balancePKR || activeUser.balance || 0);
+                lucky88Engine.balance = parseFloat(uBal);
+            } else {
+                lucky88Engine.balance = 0.00;
+            }
+
+            // Always display the authentic Lucky 88 Profile Avatar cleanly without any name popup
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                if (avWrap) {
+                    avWrap.removeAttribute('title');
+                    avWrap.removeAttribute('aria-label');
+                    avWrap.title = '';
+                    avWrap.innerHTML = `<img src="../assets/icons/lucky88_profile.png?v=999" alt="" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; pointer-events:none; -webkit-touch-callout:none;">`;
+                }
+            } catch(e) {}
+
+            lucky88Engine.updateUI();
+            if (window.core && typeof window.core.updateAllBalances === 'function') {
+                window.core.updateAllBalances();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.wallet && typeof window.wallet.on === 'function') {
+                window.wallet.on('balanceChange', (bal) => {
+                    lucky88Engine.balance = bal;
+                    lucky88Engine.updateUI();
+                });
+            }
+
+            await syncWalletSession();
+            lucky88Engine.init();
+
+            // Initialize Lucky 88 White Animations (Full Desktop Backdrop + Stage Felt)
+            new Lucky88WhiteBackgroundAnimation('lucky88WhiteAnimCanvas', false);
+            new Lucky88WhiteBackgroundAnimation('stageWhiteAnimCanvas', true);
+
+            // Audio Context Unlock for mobile devices
+            const unlockAudio = () => {
+                guitar.init();
+                sound.init();
+                if (!guitar.isPlaying) {
+                    guitar.start();
+                    const gBtn = document.getElementById('guitarBtn');
+                    if (gBtn) gBtn.classList.add('active-guitar');
+                }
+            };
+            document.addEventListener('click', unlockAudio, { once: true });
+            document.addEventListener('touchstart', unlockAudio, { once: true });
+        });
+    </script>
+</body>
+</html>

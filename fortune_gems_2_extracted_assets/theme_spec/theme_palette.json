@@ -1,0 +1,51 @@
+{
+  "game_title": "Fortune Gems 2",
+  "provider": "TaDa Gaming / JILI Games",
+  "platform_reference": "1xBet (game/98308/fortune-gems-2)",
+  "theme_name": "Ancient Aztec / Mayan Golden Temple & Precious Gems",
+  "colors": {
+    "brand_1xbet": {
+      "primary_navy": "#0b1f3a",
+      "cyan_accent": "#00a3e0",
+      "bright_blue": "#1c8ffa",
+      "dark_bg": "#060b13",
+      "stage_bg": "#0a1424"
+    },
+    "aztec_gold": {
+      "bright": "#fff5a6",
+      "main": "#ffd700",
+      "deep": "#b8860b",
+      "shadow": "#573f00",
+      "linear_gradient": "linear-gradient(135deg, #fff7b8 0%, #ffd700 25%, #d4af37 60%, #7d5900 100%)",
+      "metallic_bevel": "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 40%, rgba(0,0,0,0.6) 100%)"
+    },
+    "gemstone_accents": {
+      "ruby_red": "#ff1744",
+      "ruby_glow": "rgba(255, 23, 68, 0.6)",
+      "sapphire_blue": "#00b0ff",
+      "sapphire_glow": "rgba(0, 176, 255, 0.6)",
+      "emerald_green": "#00e676",
+      "emerald_glow": "rgba(0, 230, 118, 0.6)",
+      "amethyst_purple": "#d500f9",
+      "amethyst_glow": "rgba(213, 0, 249, 0.6)"
+    },
+    "multipliers": {
+      "1x": "#718096",
+      "2x": "#d97706",
+      "3x": "#0284c7",
+      "5x": "#ffd700",
+      "10x": "#e11d48",
+      "15x": "#9333ea"
+    }
+  },
+  "typography": {
+    "headings_and_ornaments": "'Cinzel', 'Cinzel Decorative', serif",
+    "ui_and_labels": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    "counters_and_numbers": "'JetBrains Mono', monospace"
+  },
+  "visual_effects": {
+    "reel_frame_glow": "0 0 25px rgba(212, 175, 55, 0.45), inset 0 0 15px rgba(0,0,0,0.8)",
+    "win_glow_animation": "symbolWinZoom 0.5s infinite alternate ease-in-out",
+    "lucky_wheel_shadow": "0 0 50px rgba(255, 215, 0, 0.7), 0 20px 60px rgba(0, 0, 0, 0.9)"
+  }
+}

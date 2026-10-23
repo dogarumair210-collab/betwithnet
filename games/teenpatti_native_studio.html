@@ -1,0 +1,3430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Teen Patti Versus | King Midas Games | Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Platform Central Wallet -->
+    <script src="../js/wallet.js"></script>
+
+    <style>
+        :root {
+            --gold-primary: #ffd700;
+            --gold-light: #fff7c2;
+            --gold-dark: #b8860b;
+            --gold-gradient: linear-gradient(135deg, #fff7c2 0%, #ffd700 35%, #d4af37 70%, #8a5a00 100%);
+            --red-banker: #ef4444;
+            --red-banker-dark: #991b1b;
+            --red-banker-glow: rgba(239, 68, 68, 0.45);
+            --blue-player: #3b82f6;
+            --blue-player-dark: #1e40af;
+            --blue-player-glow: rgba(59, 130, 246, 0.45);
+            --green-tie: #10b981;
+            --emerald-felt: #042718;
+            --emerald-felt-mid: #083f27;
+            --emerald-felt-glow: #0e5c39;
+            --leather-rim: #1f0f06;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: #030107;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.15) 0%, transparent 65%),
+                radial-gradient(circle at 10% 70%, rgba(147, 51, 234, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 90% 70%, rgba(220, 38, 38, 0.12) 0%, transparent 50%),
+                linear-gradient(180deg, #070210 0%, #020106 100%);
+        }
+
+        /* -------------------------------------------------------------
+           0. DITTO KING MIDAS OPENING PRELOADER / SPLASH SCREEN
+           ------------------------------------------------------------- */
+        .km-splash-screen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, #20083b 0%, #0e031c 55%, #04010a 100%);
+            z-index: 9999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+            overflow: hidden;
+        }
+        .km-splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-sunburst {
+            position: absolute;
+            width: 750px;
+            height: 750px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.18) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%);
+            animation: sunburstRotate 30s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes sunburstRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .km-studio-emblem {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        .km-crown-icon {
+            font-size: 28px;
+            color: #ffd700;
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+            animation: floatCrown 2.5s infinite alternate ease-in-out;
+        }
+        @keyframes floatCrown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-4px) scale(1.05); }
+        }
+        .km-studio-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3.5px;
+            color: #ffd700;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .splash-hero-box {
+            position: relative;
+            width: 290px;
+            height: 290px;
+            border-radius: 24px;
+            border: 3px solid #ffd700;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.9);
+            margin-bottom: 22px;
+            animation: heroZoomIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2;
+        }
+        @keyframes heroZoomIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .splash-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: heroImgBreathe 8s infinite alternate ease-in-out;
+        }
+        @keyframes heroImgBreathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        .splash-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(10, 3, 20, 0.85) 100%);
+        }
+        .splash-live-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid #ffd700;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+        }
+        .splash-live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+            animation: liveBlink 1s infinite alternate;
+        }
+        @keyframes liveBlink {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .splash-game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+            margin-bottom: 4px;
+            text-align: center;
+            z-index: 2;
+        }
+        .splash-game-subtitle {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #c084fc;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .splash-progress-wrap {
+            width: 290px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2;
+        }
+        .splash-progress-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .splash-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--gold-gradient);
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+            transition: width 0.25s linear;
+        }
+        .splash-status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #cbd5e1;
+        }
+        .splash-status-txt {
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-splash-start {
+            margin-top: 14px;
+            width: 100%;
+            height: 48px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #080312;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            animation: pulsePlayBtn 1.5s infinite alternate ease-in-out;
+        }
+        @keyframes pulsePlayBtn {
+            0% { transform: scale(0.97); box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+            100% { transform: scale(1.03); box-shadow: 0 0 35px rgba(255, 215, 0, 1); }
+        }
+
+        /* -------------------------------------------------------------
+           1. MAIN CASINO STUDIO APP FRAME
+           ------------------------------------------------------------- */
+        .tp-app-frame {
+            width: 100%;
+            max-width: 540px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #080314;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.95);
+            border-left: 2px solid rgba(255, 215, 0, 0.25);
+            border-right: 2px solid rgba(255, 215, 0, 0.25);
+        }
+
+        /* -------------------------------------------------------------
+           2. TOPBAR HEADER (KING MIDAS CASINO HEADER)
+           ------------------------------------------------------------- */
+        .tp-topbar {
+            height: 52px;
+            background: linear-gradient(180deg, #1a0833 0%, #0d031c 100%);
+            border-bottom: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.75);
+        }
+
+        .btn-lobby-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1.5px solid rgba(255, 215, 0, 0.45);
+            padding: 5px 9px;
+            border-radius: 6px;
+            transition: transform 0.15s;
+        }
+        .btn-lobby-back:active { transform: scale(0.92); }
+
+        .tp-brand-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .tp-brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+            line-height: 1.1;
+        }
+        .tp-brand-provider {
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1.8px;
+            color: #c084fc;
+            text-transform: uppercase;
+        }
+
+        .topbar-right-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wallet-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .btn-trailer-watch {
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%);
+            border: 1.5px solid #f472b6;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 5px 8px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            animation: pulseTrailer 2s infinite ease-in-out;
+            box-shadow: 0 0 12px rgba(236, 72, 153, 0.4);
+        }
+        @keyframes pulseTrailer {
+            0% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.2); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        .btn-top-icon {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+            color: #ffffff;
+            font-size: 12px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .btn-top-icon:active { transform: scale(0.92); }
+
+        .user-avatar-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #2e1065;
+            border: 1.5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* -------------------------------------------------------------
+           3. ROADMAP / BEAD ROAD & ROUND INFO
+           ------------------------------------------------------------- */
+        .tp-roadmap-strip {
+            height: 32px;
+            background: rgba(13, 5, 24, 0.96);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+            flex-shrink: 0;
+        }
+        .roadmap-dots-wrap {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            overflow-x: auto;
+            max-width: 320px;
+        }
+        .road-dot {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.45);
+        }
+        .dot-player { background: var(--blue-player); }
+        .dot-banker { background: var(--red-banker); }
+        .dot-tie { background: #d97706; }
+
+        /* -------------------------------------------------------------
+           4. LIVE CASINO DEALER STAGE (PRIYA - KING MIDAS)
+           ------------------------------------------------------------- */
+        /* -------------------------------------------------------------
+           4. 3D ANIMATED LIVE DEALER PRIYA (IMPROVED HIGH-DEFINITION CARTOON RIG)
+           ------------------------------------------------------------- */
+        .live-dealer-theater {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: radial-gradient(ellipse at 50% 25%, #2a0b4d 0%, #16042a 55%, #080112 100%);
+            border-radius: 16px 16px 0 0;
+            border: 2px solid #ffd700;
+            border-bottom: none;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.95);
+            margin-top: 4px;
+            perspective: 900px;
+            overflow: visible; /* Allows Priya's attached arm to reach down onto table felt */
+            z-index: 120;
+        }
+
+        .dealer-svg-viewport {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: relative;
+            z-index: 25;
+            overflow: visible; /* Allows Priya's arm to sweep past boundary onto cards */
+        }
+
+        /* 3D Dealer Priya Body Breathing Animation */
+        .dealer-priya-body {
+            transform-origin: 250px 230px;
+            animation: priyaIdleBreathe 4.5s ease-in-out infinite;
+        }
+        @keyframes priyaIdleBreathe {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            45% { transform: translateY(-3.5px) scaleY(1.015); }
+        }
+
+        /* 3D Head Sway, Tilt & Soft Nodding */
+        .priya-head-group {
+            transform-origin: 250px 88px;
+            animation: priyaHeadSway 5.5s ease-in-out infinite;
+            transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        @keyframes priyaHeadSway {
+            0%, 100% { transform: rotate(0deg); }
+            35% { transform: rotate(1.8deg) translateY(-1px); }
+            70% { transform: rotate(-2deg) translateY(-0.6px); }
+        }
+
+        /* Natural Eye Blinking */
+        .priya-eyelid {
+            transform-origin: 250px 58px;
+            animation: priyaBlink 4s infinite ease-in-out;
+        }
+        @keyframes priyaBlink {
+            0%, 94%, 100% { transform: scaleY(0); opacity: 0; }
+            96%, 98% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Eye Pupils Micro-Movement (Looking around table) */
+        .priya-pupils {
+            animation: priyaLookAround 8s infinite ease-in-out;
+        }
+        @keyframes priyaLookAround {
+            0%, 20%, 80%, 100% { transform: translate(0, 0); }
+            30%, 45% { transform: translate(-1.8px, 1px); }
+            55%, 70% { transform: translate(1.8px, 0.8px); }
+        }
+
+        /* Jhumka Earring 3D Physics Swing */
+        .priya-earring-left {
+            transform-origin: 224px 68px;
+            animation: earringSwingLeft 2.8s ease-in-out infinite alternate;
+        }
+        .priya-earring-right {
+            transform-origin: 276px 68px;
+            animation: earringSwingRight 2.8s ease-in-out infinite alternate;
+        }
+        @keyframes earringSwingLeft {
+            0% { transform: rotate(-4deg); }
+            100% { transform: rotate(4deg); }
+        }
+        @keyframes earringSwingRight {
+            0% { transform: rotate(4deg); }
+            100% { transform: rotate(-4deg); }
+        }
+
+        /* Lip-Sync Talking Animation */
+        .priya-lips {
+            transform-origin: 250px 80px;
+            transition: transform 0.2s ease;
+        }
+        .priya-speaking .priya-lips {
+            animation: priyaLipSync 0.22s infinite alternate ease-in-out;
+        }
+        @keyframes priyaLipSync {
+            0% { transform: scaleY(0.85) scaleX(1); }
+            100% { transform: scaleY(1.4) scaleX(0.94); }
+        }
+
+        /* Permanently Anchored 3D Dealing Arm (Fixed Pivot at Shoulder: 292, 118) */
+        .priya-dealing-arm {
+            transform-origin: 292px 118px;
+            transition: transform 0.36s cubic-bezier(0.2, 0.85, 0.25, 1);
+            filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.9));
+            pointer-events: none;
+            will-change: transform;
+        }
+        .priya-dealing-arm.idle {
+            transform: rotate(0deg) scale(1);
+        }
+        .priya-dealing-arm.reach-shoe,
+        .priya-dealing-arm.reach_shoe,
+        .priya-dealing-arm.draw {
+            transform: rotate(-24deg) scale(0.92);
+        }
+        .priya-dealing-arm.deal-player,
+        .priya-dealing-arm.deal {
+            transform: rotate(62deg) scale(1.22);
+        }
+        .priya-dealing-arm.deal-banker {
+            transform: rotate(14deg) scale(1.18);
+        }
+        .priya-dealing-arm.squeeze-player,
+        .priya-dealing-arm.squeeze {
+            transform: rotate(60deg) scale(1.22);
+        }
+        .priya-dealing-arm.squeeze-banker {
+            transform: rotate(12deg) scale(1.18);
+        }
+        .priya-dealing-arm.celebrate,
+        .priya-dealing-arm.win {
+            transform: rotate(-52deg) translateY(-25px) scale(1.08);
+        }
+
+
+        /* Golden Shoe 3D & Ejection */
+        .rig-shoe-box {
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            pointer-events: auto;
+        }
+        .rig-shoe-box:hover {
+            transform: translate(374px, 160px) scale(1.05);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+        }
+        .rig-shoe-box.ejecting {
+            animation: shoePop 0.28s ease-out;
+        }
+        @keyframes shoePop {
+            0% { transform: translate(374px, 160px) scale(1); }
+            45% { transform: translate(374px, 155px) scale(1.15); filter: drop-shadow(0 0 16px #ffd700); }
+            100% { transform: translate(374px, 160px) scale(1); }
+        }
+
+        .dealer-hud-topleft {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .dealer-live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(239, 68, 68, 0.85);
+            border-radius: 20px;
+            padding: 3px 8px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+
+        .pulse-red-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+            animation: redBeacon 1s infinite alternate;
+        }
+
+        @keyframes redBeacon {
+            0% { opacity: 0.5; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .live-txt {
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.8px;
+        }
+
+        .dealer-sub-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 215, 0, 0.65);
+            border-radius: 20px;
+            padding: 3px 9px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+
+        .dealer-hud-topright {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        /* Floating dealer speech bubble over table */
+        .dealer-dialogue-floating {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 4, 20, 0.88);
+            border: 1.5px solid #ffd700;
+            border-radius: 24px;
+            padding: 5px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8), 0 0 10px rgba(255, 215, 0, 0.4);
+            z-index: 10;
+            max-width: 90%;
+            backdrop-filter: blur(5px);
+        }
+
+        .dealer-speech-icon {
+            font-size: 12px;
+            animation: micPulse 1.2s infinite alternate;
+        }
+
+        @keyframes micPulse {
+            0% { transform: scale(0.9); }
+            100% { transform: scale(1.2); }
+        }
+
+        .dealer-dialogue-floating .dealer-dialogue-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Luxury brass divider between Dealer and Felt */
+        .dealer-table-brass-rail {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #b45309 0%, #ffd700 25%, #fef08a 50%, #ffd700 75%, #b45309 100%);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+            z-index: 15;
+        }
+
+        /* Betting Timer Ring in Dealer Area */
+        .bet-timer-widget {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2.5px solid #10b981;
+            background: rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+            transition: all 0.2s;
+        }
+        .bet-timer-widget.warning {
+            border-color: #ef4444;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
+            animation: timerWarnPulse 0.5s infinite alternate;
+        }
+        @keyframes timerWarnPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        .bet-timer-sec {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+        }
+        .bet-timer-lbl {
+            font-size: 7px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        /* 3D Dealer Shoe & Dealing Hand */
+        .dealer-shoe-box {
+            position: relative;
+            width: 44px;
+            height: 48px;
+            background: linear-gradient(135deg, #2b1807 0%, #150902 100%);
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), inset 0 0 8px rgba(255, 215, 0, 0.3);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .dealer-shoe-box.ejecting {
+            animation: shoeEject 0.25s ease-out;
+        }
+        @keyframes shoeEject {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.18) translateY(-4px); filter: brightness(1.6); box-shadow: 0 0 20px #ffd700; }
+            100% { transform: scale(1); }
+        }
+        .shoe-lip {
+            width: 24px;
+            height: 16px;
+            background: linear-gradient(180deg, #ffd700 0%, #b45309 100%);
+            border-radius: 3px;
+            border: 1px solid #ffffff;
+            margin-bottom: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .shoe-lip::after {
+            content: '♠';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #1e1b4b;
+        }
+        .shoe-txt {
+            font-size: 7.5px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Fullscreen Flying Cards Animation Layer */
+        .flying-cards-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 200;
+            overflow: hidden;
+        }
+        .flying-dealing-card {
+            position: absolute;
+            width: 60px;
+            height: 88px;
+            border-radius: 7px;
+            background: linear-gradient(135deg, #78350f 0%, #451a03 50%, #1e1b4b 100%);
+            border: 2px solid #ffd700;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 215, 0, 0.6);
+            z-index: 210;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 16px;
+            will-change: transform, left, top;
+            transition: all 0.35s cubic-bezier(0.2, 0.85, 0.3, 1);
+        }
+        .dealer-portrait-frame.dealing,
+        .dealer-portrait-frame.revealing {
+            animation: dealerDealingPulse 0.4s infinite alternate ease-in-out;
+        }
+        @keyframes dealerDealingPulse {
+            0% { transform: scale(1); box-shadow: 0 0 22px rgba(255, 215, 0, 0.55); }
+            100% { transform: scale(1.06); box-shadow: 0 0 35px rgba(255, 215, 0, 0.9); }
+        }
+
+        /* Legacy floating hand removed - Dealer Priya's real articulated arm is permanently fixed to her shoulder inside the 3D rig */
+        .tp-dealer-active-arm,
+        .dealer-reveal-hand {
+            display: none !important;
+        }
+
+        /* Backwards-compatible dealer-reveal-hand alias */
+        .dealer-reveal-hand {
+            display: none !important;
+        }
+
+        /* Realistic Card Peeling / Squeeze Opening Animation */
+        .tp-card.peeling {
+            animation: cardSqueezePeel 0.45s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+        }
+        @keyframes cardSqueezePeel {
+            0% {
+                transform: rotateY(0deg) scale(1);
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+            }
+            35% {
+                transform: rotateY(65deg) skewY(-8deg) translateY(-14px) scale(1.15);
+                box-shadow: 0 18px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 215, 0, 0.5);
+            }
+            70% {
+                transform: rotateY(130deg) skewY(4deg) translateY(-6px) scale(1.08);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+            }
+            100% {
+                transform: rotateY(180deg) scale(1);
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           5. ROYAL EMERALD CASINO TABLE FELT (KING MIDAS VERSUS)
+           ------------------------------------------------------------- */
+        .tp-table-arena {
+            background: 
+                radial-gradient(ellipse at 50% 20%, var(--emerald-felt-glow) 0%, var(--emerald-felt-mid) 45%, var(--emerald-felt) 85%, #02120a 100%);
+            border-left: 2px solid #ffd700;
+            border-right: 2px solid #ffd700;
+            border-bottom: 3px solid #ffd700;
+            border-top: none;
+            margin: 0 0 8px 0;
+            padding: 14px 10px 10px;
+            position: relative;
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.8);
+            border-radius: 0 0 18px 18px;
+            overflow: hidden;
+        }
+
+        .table-damask-mesh {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at center, rgba(255, 215, 0, 0.06) 1.5px, transparent 1.5px),
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            border-radius: 18px;
+        }
+
+        /* King's 2X Random Multiplier Banner */
+        .random-bonus-banner {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 50%, #7f1d1d 100%);
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 3px 16px;
+            font-size: 10.5px;
+            font-weight: 900;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.85);
+            display: none;
+            align-items: center;
+            gap: 5px;
+            z-index: 10;
+            animation: bounceBonus 0.8s infinite alternate ease-in-out;
+        }
+        .random-bonus-banner.active { display: flex; }
+        @keyframes bounceBonus {
+            0% { transform: translateX(-50%) scale(0.95); }
+            100% { transform: translateX(-50%) scale(1.08); filter: brightness(1.2); }
+        }
+
+        /* 3-Cards Grid (PLAYER VS BANKER) */
+        .showdown-hands-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hand-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hand-header-badge {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .badge-player {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: 1.5px solid #93c5fd;
+            color: #ffffff;
+        }
+        .badge-banker {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            border: 1.5px solid #fca5a5;
+            color: #ffffff;
+        }
+
+        /* 3-Cards Cluster */
+        .cards-cluster {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            height: 92px;
+            perspective: 800px;
+        }
+
+        /* 3D Playing Card */
+        .tp-card {
+            width: 60px;
+            height: 88px;
+            border-radius: 7px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+        }
+        .tp-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            inset: 0;
+            border-radius: 7px;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        /* Card Back (Royal King Midas Pattern) */
+        .card-back {
+            background: linear-gradient(135deg, #78350f 0%, #451a03 50%, #1e1b4b 100%);
+            border: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+        }
+        .card-back-ornament {
+            width: 82%;
+            height: 82%;
+            border: 1px dashed rgba(255, 215, 0, 0.7);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #ffd700;
+            text-shadow: 0 0 8px #ffd700;
+        }
+
+        /* Card Front */
+        .card-front {
+            background: #ffffff;
+            border: 1.5px solid #94a3b8;
+            transform: rotateY(180deg);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+        }
+        .card-front.suit-red { color: #dc2626; }
+        .card-front.suit-black { color: #0f172a; }
+
+        .card-corner-top {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 0.9;
+            font-size: 12.5px;
+        }
+        .card-center-suit {
+            font-size: 26px;
+            align-self: center;
+            line-height: 1;
+        }
+        .card-corner-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            line-height: 0.9;
+            font-size: 12.5px;
+            transform: rotate(180deg);
+        }
+
+        /* Center VS Clash */
+        .vs-battle-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+        .vs-badge-glow {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd700 0%, #b45309 100%);
+            border: 2.5px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            color: #080312;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.85);
+            animation: pulseVs 1.5s infinite alternate ease-in-out;
+        }
+        @keyframes pulseVs {
+            0% { transform: scale(0.95); box-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
+            100% { transform: scale(1.1); box-shadow: 0 0 28px rgba(255, 215, 0, 1); }
+        }
+
+        .hand-rank-pill {
+            font-size: 9.5px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            min-height: 18px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .showdown-status-ribbon {
+            font-size: 11.5px;
+            font-weight: 900;
+            text-align: center;
+            margin-top: 6px;
+            letter-spacing: 0.8px;
+            color: #fef08a;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+            min-height: 18px;
+        }
+
+        /* -------------------------------------------------------------
+           6. BETTING BOARD (PLAYER VS BANKER DITTO LAYOUT)
+           ------------------------------------------------------------- */
+        .tp-betting-board {
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .primary-bets-row {
+            display: grid;
+            grid-template-columns: 1.2fr 0.9fr 1.2fr;
+            gap: 6px;
+        }
+
+        .bet-box {
+            background: rgba(18, 9, 34, 0.9);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            border-radius: 12px;
+            padding: 10px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            transition: all 0.15s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+        }
+        .bet-box:active { transform: scale(0.96); }
+        .bet-box.selected {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            background: rgba(45, 20, 82, 0.95);
+        }
+        .bet-box.winner-glow {
+            animation: winBoxGlow 0.8s infinite alternate ease-in-out;
+        }
+        @keyframes winBoxGlow {
+            0% { border-color: #ffd700; box-shadow: 0 0 10px #ffd700; }
+            100% { border-color: #ffffff; box-shadow: 0 0 25px #ffd700; }
+        }
+
+        .bet-title {
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+        .box-player .bet-title { color: #60a5fa; }
+        .box-banker .bet-title { color: #f87171; }
+        .box-tie .bet-title { color: #facc15; }
+
+        .bet-multiplier {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+        }
+        .bet-staked-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #a7f3d0;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-top: 3px;
+            min-height: 16px;
+        }
+
+        /* Side Bets */
+        .side-bets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+        .side-bet-card {
+            background: rgba(24, 12, 44, 0.85);
+            border: 1.5px solid rgba(192, 132, 252, 0.35);
+            border-radius: 10px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .side-bet-card:active { transform: scale(0.96); }
+        .side-bet-card.selected {
+            border-color: #c084fc;
+            box-shadow: 0 0 14px rgba(192, 132, 252, 0.6);
+            background: rgba(50, 18, 110, 0.95);
+        }
+        .side-bet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .side-bet-name {
+            font-size: 11px;
+            font-weight: 900;
+            color: #e9d5ff;
+        }
+        .side-bet-odds {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+        .side-bet-desc {
+            font-size: 8.5px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+
+        /* -------------------------------------------------------------
+           7. CHIP SELECTOR & ACTION DOCK
+           ------------------------------------------------------------- */
+        .tp-action-dock {
+            margin-top: auto;
+            background: #080312;
+            border-top: 2px solid rgba(255, 215, 0, 0.35);
+            padding: 10px 10px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chips-scroll-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 4px 0;
+        }
+
+        /* 3D Casino Chips */
+        .poker-chip {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 900;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            border: 3px dashed rgba(255,255,255,0.7);
+            flex-shrink: 0;
+        }
+        .poker-chip:active { transform: scale(0.9); }
+        .poker-chip.active {
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.5);
+            border-color: #ffd700;
+        }
+        .chip-10 { background: radial-gradient(circle at 35% 35%, #94a3b8, #475569); }
+        .chip-50 { background: radial-gradient(circle at 35% 35%, #3b82f6, #1d4ed8); }
+        .chip-100 { background: radial-gradient(circle at 35% 35%, #10b981, #047857); }
+        .chip-500 { background: radial-gradient(circle at 35% 35%, #ef4444, #b91c1c); }
+        .chip-1000 { background: radial-gradient(circle at 35% 35%, #a855f7, #6b21a8); }
+        .chip-5000 { background: radial-gradient(circle at 35% 35%, #ffd700, #b45309); color: #000; }
+
+        .controls-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2.2fr;
+            gap: 8px;
+        }
+
+        .btn-action-util {
+            height: 44px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            transition: all 0.15s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+        .btn-action-util:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.15); }
+
+        .btn-main-deal {
+            height: 44px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 10px;
+            color: #080312;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(255, 215, 0, 0.45);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-main-deal:active { transform: scale(0.97); }
+        .btn-main-deal:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(0.8);
+        }
+
+        /* -------------------------------------------------------------
+           8. INTERACTIVE CINEMATIC TRAILER MODAL ("or trailer b")
+           ------------------------------------------------------------- */
+        .trailer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 2, 8, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 999999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .trailer-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .trailer-card {
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(165deg, #220b3e 0%, #0c0318 100%);
+            border: 2.5px solid #ffd700;
+            border-radius: 22px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .trailer-video-box {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .trailer-poster-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: trailerZoom 12s infinite alternate ease-in-out;
+        }
+        @keyframes trailerZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        .trailer-flares {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(4, 2, 8, 0.85) 100%);
+            pointer-events: none;
+        }
+        .trailer-play-pulse {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            color: #0d0618;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 1);
+            animation: playBeat 1.5s infinite ease-in-out;
+            cursor: pointer;
+            z-index: 5;
+        }
+        @keyframes playBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .trailer-content {
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .trailer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffd700;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        .trailer-subtitle {
+            font-size: 12.5px;
+            color: #e2e8f0;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .trailer-highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 4px 0;
+        }
+        .trailer-badge-item {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        .trailer-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .btn-trailer-play {
+            flex: 2;
+            height: 44px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 10px;
+            color: #080312;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+        .btn-trailer-close {
+            flex: 1;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* -------------------------------------------------------------
+           9. WIN / LOSS OUTCOME MODAL
+           ------------------------------------------------------------- */
+        .result-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .result-modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.2s;
+        }
+        .result-modal-card {
+            width: 100%;
+            max-width: 360px;
+            background: linear-gradient(165deg, #1f0b38 0%, #0d0418 100%);
+            border: 2px solid #ffd700;
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 45px rgba(0, 0, 0, 0.95);
+            animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes zoomIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .res-icon { font-size: 48px; margin-bottom: 6px; }
+        .res-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 4px;
+        }
+        .res-detail {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .res-payout {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            font-weight: 900;
+            color: #10b981;
+            margin-bottom: 16px;
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+        .btn-res-collect {
+            width: 100%;
+            height: 42px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 8px;
+            color: #080312;
+            font-weight: 900;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Rules Modal */
+        .modal-wrap {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 400;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-wrap.open { display: flex; animation: fadeIn 0.2s; }
+        .modal-card {
+            background: #0f071c;
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==============================================================
+         0. DITTO KING MIDAS OPENING PRELOADER / SPLASH SCREEN
+         ============================================================== -->
+    <div class="km-splash-screen" id="kmSplashScreen" onclick="if(window.tpGame) window.tpGame.enterGameStudio(); else this.classList.add('hidden');" style="cursor: pointer;" title="Tap anywhere to enter">
+        <div class="splash-sunburst"></div>
+
+        <!-- Studio Crest -->
+        <div class="km-studio-emblem">
+            <span class="km-crown-icon">👑</span>
+            <span class="km-studio-tag">KING MIDAS GAMES</span>
+        </div>
+
+        <!-- Center Studio Hero -->
+        <div class="splash-hero-box">
+            <img src="../assets/covers/teenpatti_versus.jpg" alt="Teen Patti Versus - Dealer Priya" class="splash-hero-img">
+            <div class="splash-hero-overlay"></div>
+            <div class="splash-live-badge">
+                <span class="splash-live-dot"></span>
+                <span>LIVE STUDIO 4K</span>
+            </div>
+        </div>
+
+        <!-- 3D Title -->
+        <div class="splash-game-title">TEEN PATTI VERSUS</div>
+        <div class="splash-game-subtitle">PLAYER VS BANKER • 3-CARD SHOWDOWN</div>
+
+        <!-- Progress Track -->
+        <div class="splash-progress-wrap" id="splashProgressWrap">
+            <div class="splash-progress-track">
+                <div class="splash-progress-fill" id="splashProgressBar"></div>
+            </div>
+            <div class="splash-status-row">
+                <span class="splash-status-txt" id="splashStatusText">Initializing Live Studio...</span>
+                <span id="splashPercentText">0%</span>
+            </div>
+            <button class="btn-splash-start" id="btnSplashStart" onclick="if(window.tpGame) window.tpGame.enterGameStudio();">
+                <span>▶</span> ENTER STUDIO / PLAY
+            </button>
+            <div style="font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 6px; text-transform: uppercase; letter-spacing: 1px;">(Tap anywhere to enter)</div>
+        </div>
+    </div>
+
+    <!-- ==============================================================
+         1. MAIN CASINO STUDIO APP FRAME
+         ============================================================== -->
+    <div class="tp-app-frame">
+
+        <!-- 1. Header Topbar -->
+        <header class="tp-topbar">
+            <a href="../index.html" class="btn-lobby-back">
+                <span>◀</span> LOBBY
+            </a>
+
+            <div class="tp-brand-center">
+                <span class="tp-brand-title">TEEN PATTI</span>
+                <span class="tp-brand-provider">KING MIDAS GAMES</span>
+            </div>
+
+            <div class="topbar-right-group">
+                <div id="walletBalancePill" class="wallet-pill" onclick="tpGame.refreshWallet()" title="Click to refresh">
+                    ₨ <span id="headerBalanceVal">0.00</span>
+                </div>
+                <!-- Quick Deposit Button -->
+                <a href="../deposit.html" class="btn-trailer-watch" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #34d399; text-decoration: none;" title="Deposit Funds">
+                    <span>+</span> DEPOSIT
+                </a>
+                <!-- Interactive Cinematic Trailer Button -->
+                <button class="btn-trailer-watch" onclick="tpGame.openTrailer()" title="Watch Trailer">
+                    <span>🎬</span> TRAILER
+                </button>
+                <button class="btn-top-icon" onclick="tpGame.toggleAudio()" id="soundToggleBtn" title="Sound Mute/Unmute">
+                    🔊
+                </button>
+                <button class="btn-top-icon" onclick="tpGame.toggleRulesModal()" title="Game Rules">
+                    ℹ️
+                </button>
+                <!-- Clean Profile Avatar (No name popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar">
+                    <span id="headerAvatarIcon" style="font-size:13px;">👑</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- 2. Roadmap / History Ribbon -->
+        <div class="tp-roadmap-strip">
+            <span>BEAD ROAD</span>
+            <div class="roadmap-dots-wrap" id="roadmapDots">
+                <div class="road-dot dot-player">P</div>
+                <div class="road-dot dot-banker">B</div>
+                <div class="road-dot dot-player">P</div>
+                <div class="road-dot dot-player">P</div>
+                <div class="road-dot dot-banker">B</div>
+                <div class="road-dot dot-tie">T</div>
+                <div class="road-dot dot-banker">B</div>
+                <div class="road-dot dot-player">P</div>
+            </div>
+            <span style="color:#ffd700;" id="roundCounterText">R-112</span>
+        </div>
+
+        <!-- 3. 3D ANIMATED LIVE DEALER PRIYA (IMPROVED HIGH-DEFINITION CARTOON RIG) -->
+        <div class="live-dealer-theater" id="liveDealerTheater">
+            <svg class="dealer-svg-viewport" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Studio Room Ambient Gradient -->
+                    <radialGradient id="studioBgGrad" cx="50%" cy="30%" r="75%">
+                        <stop offset="0%" stop-color="#300d54"/>
+                        <stop offset="45%" stop-color="#190530"/>
+                        <stop offset="85%" stop-color="#0a0115"/>
+                        <stop offset="100%" stop-color="#040008"/>
+                    </radialGradient>
+
+                    <!-- Chandelier Radiant Light Beam -->
+                    <radialGradient id="chandelierGlow" cx="50%" cy="0%" r="75%">
+                        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.85"/>
+                        <stop offset="30%" stop-color="#f59e0b" stop-opacity="0.38"/>
+                        <stop offset="65%" stop-color="#b45309" stop-opacity="0.12"/>
+                        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                    </radialGradient>
+
+                    <!-- 3D Skin Tones (Warm Indian Peach & Contour) -->
+                    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffe4d0"/>
+                        <stop offset="35%" stop-color="#f4be9b"/>
+                        <stop offset="70%" stop-color="#dc9973"/>
+                        <stop offset="100%" stop-color="#b8724d"/>
+                    </linearGradient>
+
+                    <!-- Face 3D Center Highlight -->
+                    <radialGradient id="faceShine" cx="50%" cy="40%" r="60%">
+                        <stop offset="0%" stop-color="#fff0e6" stop-opacity="0.75"/>
+                        <stop offset="50%" stop-color="#f4be9b" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#b8724d" stop-opacity="0"/>
+                    </radialGradient>
+
+                    <!-- Cheek Rose Glow -->
+                    <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.55"/>
+                        <stop offset="70%" stop-color="#e11d48" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="#e11d48" stop-opacity="0"/>
+                    </radialGradient>
+
+                    <!-- Chin/Neck Ambient Shadow -->
+                    <linearGradient id="neckShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#8a4725"/>
+                        <stop offset="60%" stop-color="#be754d"/>
+                        <stop offset="100%" stop-color="#f0b692"/>
+                    </linearGradient>
+
+                    <!-- Royal Crimson Velvet Saree -->
+                    <linearGradient id="sareeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f43f5e"/>
+                        <stop offset="25%" stop-color="#be123c"/>
+                        <stop offset="65%" stop-color="#881337"/>
+                        <stop offset="100%" stop-color="#4c0519"/>
+                    </linearGradient>
+
+                    <!-- Saree Pallu 3D Drape -->
+                    <linearGradient id="sareeDrapeGrad" x1="0%" y1="0%" x2="100%" y2="80%">
+                        <stop offset="0%" stop-color="#fb7185"/>
+                        <stop offset="35%" stop-color="#be123c"/>
+                        <stop offset="75%" stop-color="#700e28"/>
+                        <stop offset="100%" stop-color="#380614"/>
+                    </linearGradient>
+
+                    <!-- Gold Kundan / Metallic Zari Gradient -->
+                    <linearGradient id="goldJewelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="20%" stop-color="#fef08a"/>
+                        <stop offset="50%" stop-color="#eab308"/>
+                        <stop offset="80%" stop-color="#b45309"/>
+                        <stop offset="100%" stop-color="#78350f"/>
+                    </linearGradient>
+
+                    <!-- Ruby Gemstone Shimmer -->
+                    <radialGradient id="rubyGrad" cx="35%" cy="35%" r="65%">
+                        <stop offset="0%" stop-color="#fecdd3"/>
+                        <stop offset="30%" stop-color="#f43f5e"/>
+                        <stop offset="70%" stop-color="#be123c"/>
+                        <stop offset="100%" stop-color="#4c0519"/>
+                    </radialGradient>
+
+                    <!-- Amber Eyes 3D Iris -->
+                    <radialGradient id="irisGrad" cx="40%" cy="40%" r="60%">
+                        <stop offset="0%" stop-color="#fde047"/>
+                        <stop offset="40%" stop-color="#d97706"/>
+                        <stop offset="80%" stop-color="#78350f"/>
+                        <stop offset="100%" stop-color="#1e0c03"/>
+                    </radialGradient>
+
+                    <!-- Glossy Raven Hair with Violet Rim Light -->
+                    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#3b274c"/>
+                        <stop offset="35%" stop-color="#1e1129"/>
+                        <stop offset="75%" stop-color="#0e0614"/>
+                        <stop offset="100%" stop-color="#040107"/>
+                    </linearGradient>
+
+                    <!-- Hair Strand Specular Highlight -->
+                    <linearGradient id="hairHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(192, 132, 252, 0)"/>
+                        <stop offset="50%" stop-color="rgba(216, 180, 254, 0.45)"/>
+                        <stop offset="100%" stop-color="rgba(192, 132, 252, 0)"/>
+                    </linearGradient>
+
+                    <!-- Emerald Felt Upper Table Connection -->
+                    <linearGradient id="tableEmeraldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#047857"/>
+                        <stop offset="40%" stop-color="#065f46"/>
+                        <stop offset="85%" stop-color="#022c22"/>
+                        <stop offset="100%" stop-color="#01140e"/>
+                    </linearGradient>
+
+                    <!-- Brass Table Edge Bevel -->
+                    <linearGradient id="brassBevel" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#78350f"/>
+                        <stop offset="25%" stop-color="#fde047"/>
+                        <stop offset="50%" stop-color="#ffffff"/>
+                        <stop offset="75%" stop-color="#f59e0b"/>
+                        <stop offset="100%" stop-color="#78350f"/>
+                    </linearGradient>
+
+                    <!-- Soft Drop Shadow Filter for 3D Depth -->
+                    <filter id="shadow3d" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.6"/>
+                    </filter>
+                    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+
+                    <!-- 3D Realistic Feminine Skin Gradient for Fixed Dealing Arm -->
+                    <linearGradient id="armSkin3D" x1="0%" y1="0%" x2="100%" y2="80%">
+                        <stop offset="0%" stop-color="#fff5eb"/>
+                        <stop offset="22%" stop-color="#fed7aa"/>
+                        <stop offset="55%" stop-color="#fb923c"/>
+                        <stop offset="85%" stop-color="#c2410c"/>
+                        <stop offset="100%" stop-color="#7c2d12"/>
+                    </linearGradient>
+
+                    <!-- Smooth Arm Cylindrical Ambient Highlight -->
+                    <linearGradient id="armHighlightLine" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                        <stop offset="50%" stop-color="rgba(255,255,255,0.3)"/>
+                        <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                    </linearGradient>
+
+                    <!-- Royal Velvet Saree Blouse Arm Gradient -->
+                    <linearGradient id="armSareeVelvet" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#fb7185"/>
+                        <stop offset="25%" stop-color="#e11d48"/>
+                        <stop offset="65%" stop-color="#9f1239"/>
+                        <stop offset="100%" stop-color="#4c0519"/>
+                    </linearGradient>
+
+                    <!-- Rich 24K Gold Chroma for Arm Jewels & Bangles -->
+                    <linearGradient id="armGoldChroma" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="18%" stop-color="#fef08a"/>
+                        <stop offset="45%" stop-color="#f59e0b"/>
+                        <stop offset="80%" stop-color="#b45309"/>
+                        <stop offset="100%" stop-color="#78350f"/>
+                    </linearGradient>
+
+                    <!-- Pigeon Blood Ruby Gemstone Radial for Kada insets -->
+                    <radialGradient id="armRubyChroma" cx="35%" cy="35%" r="65%">
+                        <stop offset="0%" stop-color="#fda4af"/>
+                        <stop offset="25%" stop-color="#f43f5e"/>
+                        <stop offset="70%" stop-color="#9f1239"/>
+                        <stop offset="100%" stop-color="#4c0519"/>
+                    </radialGradient>
+
+                    <!-- Hand Table Felt Soft Contact Shadow -->
+                    <radialGradient id="feltContactShadow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#000000" stop-opacity="0.8"/>
+                        <stop offset="60%" stop-color="#000000" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- 1. CASINO STUDIO ARCHES & AMBIENT LIGHTING -->
+                <rect width="500" height="250" fill="url(#studioBgGrad)"/>
+
+                <!-- Royal Palace Arches & Filigree Backing -->
+                <path d="M 0 0 L 80 0 C 80 90, 110 170, 130 200 L 0 200 Z" fill="#1b0633" opacity="0.6"/>
+                <path d="M 500 0 L 420 0 C 420 90, 390 170, 370 200 L 500 200 Z" fill="#1b0633" opacity="0.6"/>
+                <path d="M 120 0 Q 250 80 380 0 L 380 180 Q 250 200 120 180 Z" fill="#140324" opacity="0.5"/>
+
+                <!-- Overhead Chandelier Glow & Crystals -->
+                <ellipse cx="250" cy="0" rx="160" ry="55" fill="url(#chandelierGlow)"/>
+                <g filter="url(#softGlow)" opacity="0.85">
+                    <circle cx="250" cy="8" r="7" fill="#ffffff"/>
+                    <circle cx="230" cy="14" r="4.5" fill="#fef08a"/>
+                    <circle cx="270" cy="14" r="4.5" fill="#fef08a"/>
+                    <circle cx="210" cy="20" r="3" fill="#fde047"/>
+                    <circle cx="290" cy="20" r="3" fill="#fde047"/>
+                </g>
+
+                <!-- 2. CONNECTED EMERALD TABLE FELT (Direct connection to gaming arena below) -->
+                <path d="M 0 195 Q 250 172 500 195 L 500 250 L 0 250 Z" fill="url(#tableEmeraldGrad)"/>
+                <path d="M 0 195 Q 250 172 500 195" stroke="url(#goldJewelGrad)" stroke-width="2.5" fill="none"/>
+                <path d="M 12 203 Q 250 180 488 203" stroke="rgba(255, 215, 0, 0.35)" stroke-width="1.3" stroke-dasharray="6,4" fill="none"/>
+
+                <!-- 3. ARTICULATED 3D DEALER PRIYA RIG -->
+                <g id="dealerPriyaRig" class="dealer-priya-body">
+                    <!-- Flowing Back Hair Waves (Layer behind torso) -->
+                    <path d="M 212 50 C 172 78, 162 135, 188 185 C 205 192, 295 192, 312 185 C 338 135, 328 78, 288 50 C 272 32, 228 32, 212 50 Z" fill="url(#hairGrad)" filter="url(#shadow3d)"/>
+                    <path d="M 180 148 C 172 178, 178 198, 192 215 C 196 195, 190 165, 186 148 Z" fill="#08020c"/>
+                    <path d="M 320 148 C 328 178, 322 198, 308 215 C 304 195, 310 165, 314 148 Z" fill="#08020c"/>
+                    <!-- Hair Violet Rim Sheen -->
+                    <path d="M 195 85 Q 180 130 192 180" stroke="url(#hairHighlight)" stroke-width="5" fill="none" opacity="0.6"/>
+                    <path d="M 305 85 Q 320 130 308 180" stroke="url(#hairHighlight)" stroke-width="5" fill="none" opacity="0.6"/>
+
+                    <!-- Neck & Throat -->
+                    <path d="M 236 78 L 234 116 C 242 120, 258 120, 266 116 L 264 78 Z" fill="url(#skinGrad)"/>
+                    <path d="M 236 78 Q 250 90 264 78 L 264 88 Q 250 98 236 88 Z" fill="url(#neckShadow)" opacity="0.7"/>
+
+                    <!-- Torso & Royal Saree Blouse -->
+                    <path d="M 205 125 C 212 118, 235 114, 250 114 C 265 114, 288 118, 295 125 L 312 208 Q 250 202 188 208 Z" fill="url(#sareeGrad)" filter="url(#shadow3d)"/>
+                    <!-- Gold Zari Neckline Embroidery -->
+                    <path d="M 224 118 Q 250 138 276 118" stroke="url(#goldJewelGrad)" stroke-width="3.5" fill="none"/>
+                    <path d="M 224 118 Q 250 138 276 118" stroke="#78350f" stroke-width="1.2" stroke-dasharray="3,2" fill="none"/>
+
+                    <!-- Diagonal Saree Pallu 3D Drape across chest -->
+                    <path d="M 200 128 Q 242 162 306 205 L 290 212 Q 228 168 188 136 Z" fill="url(#sareeDrapeGrad)" filter="url(#shadow3d)"/>
+                    <path d="M 200 128 Q 242 162 306 205" stroke="url(#goldJewelGrad)" stroke-width="5" fill="none"/>
+                    <path d="M 200 128 Q 242 162 306 205" stroke="#78350f" stroke-width="1.5" stroke-dasharray="4,2" fill="none"/>
+
+                    <!-- Royal Kundan & Ruby Necklace (Layered Choker) -->
+                    <path d="M 230 96 Q 250 118 270 96" stroke="url(#goldJewelGrad)" stroke-width="4" fill="none"/>
+                    <circle cx="250" cy="118" r="4.2" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="1.2"/>
+                    <circle cx="240" cy="112" r="3.2" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="1"/>
+                    <circle cx="260" cy="112" r="3.2" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="1"/>
+                    <circle cx="232" cy="104" r="2.5" fill="url(#goldJewelGrad)"/>
+                    <circle cx="268" cy="104" r="2.5" fill="url(#goldJewelGrad)"/>
+
+                    <!-- Gold Dealer Name Badge "PRIYA" -->
+                    <g transform="translate(266, 142)">
+                        <rect x="0" y="0" width="34" height="13" rx="3" fill="url(#goldJewelGrad)" stroke="#78350f" stroke-width="1" filter="url(#shadow3d)"/>
+                        <text x="17" y="9.5" font-family="'Cinzel', serif" font-size="7.5" font-weight="900" fill="#180402" text-anchor="middle" letter-spacing="0.6">PRIYA</text>
+                    </g>
+
+                    <!-- Left Arm & Hand (Gracefully resting on table rail) -->
+                    <g id="priyaLeftArm">
+                        <path d="M 208 126 Q 180 145 172 172 Q 188 178 202 158 Q 218 142 208 126 Z" fill="url(#sareeGrad)"/>
+                        <path d="M 174 168 Q 192 175 198 160" stroke="url(#goldJewelGrad)" stroke-width="2.5" fill="none"/>
+                        <!-- Forearm -->
+                        <path d="M 174 168 C 160 190, 158 208, 180 218 C 192 218, 202 206, 195 186 Z" fill="url(#skinGrad)"/>
+                        <!-- Gold Bangles with Ruby insets -->
+                        <ellipse cx="174" cy="206" rx="7" ry="4" fill="url(#goldJewelGrad)" stroke="#b45309" stroke-width="1"/>
+                        <ellipse cx="171" cy="202" rx="6.8" ry="3.8" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="1"/>
+                        <ellipse cx="168" cy="198" rx="7" ry="4" fill="url(#goldJewelGrad)" stroke="#b45309" stroke-width="1"/>
+                        <!-- Hand resting on felt -->
+                        <path d="M 178 214 C 185 220, 196 220, 204 212 C 206 208, 198 204, 190 206 Z" fill="url(#skinGrad)"/>
+                        <circle cx="204" cy="212" r="1.5" fill="#be123c"/>
+                        <ellipse cx="188" cy="214" rx="2" ry="3" fill="url(#goldJewelGrad)"/>
+                    </g>
+
+                    <!-- 3D ARTICULATED HEAD & GORGEOUS EXPRESSIVE FACE -->
+                    <g id="priyaHeadGroup" class="priya-head-group">
+                        <!-- Head Base & Feminine Jawline -->
+                        <path d="M 228 48 C 220 64, 226 84, 250 95 C 274 84, 280 64, 272 48 C 266 35, 234 35, 228 48 Z" fill="url(#skinGrad)" filter="url(#shadow3d)"/>
+                        <!-- 3D Face Center Light Contour -->
+                        <path d="M 232 52 C 228 66, 234 82, 250 90 C 266 82, 272 66, 268 52 Z" fill="url(#faceShine)"/>
+
+                        <!-- Contoured Cheekbone Rose Blush -->
+                        <ellipse cx="234" cy="72" rx="7" ry="4" fill="url(#blushGrad)"/>
+                        <ellipse cx="266" cy="72" rx="7" ry="4" fill="url(#blushGrad)"/>
+
+                        <!-- Elegant Arched Dark Eyebrows -->
+                        <path d="M 232 58 Q 241 53 247 57" stroke="#180b20" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <path d="M 268 58 Q 259 53 253 57" stroke="#180b20" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+                        <!-- Stunning Anime/3D Big Expressive Eyes -->
+                        <g id="priyaEyes">
+                            <!-- Left Eye Socket -->
+                            <path d="M 232 64 Q 240 59 248 64 Q 240 69 232 64 Z" fill="#ffffff"/>
+                            <g class="priya-pupils">
+                                <!-- Amber Iris -->
+                                <circle cx="240" cy="64" r="3.6" fill="url(#irisGrad)"/>
+                                <circle cx="240" cy="64" r="2.2" fill="#0d0408"/>
+                                <!-- Crisp Specular Catchlights -->
+                                <circle cx="239" cy="62.5" r="1.1" fill="#ffffff"/>
+                                <circle cx="241.5" cy="65.5" r="0.6" fill="#ffffff"/>
+                            </g>
+                            <!-- Top Eyeliner & Lashes -->
+                            <path d="M 230 64 Q 240 58 249 63" stroke="#0d0408" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                            <path d="M 247 62 L 250 60.5" stroke="#0d0408" stroke-width="1.2" stroke-linecap="round"/>
+                            <!-- Blinking Eyelid -->
+                            <ellipse cx="240" cy="64" rx="8" ry="4.2" fill="url(#skinGrad)" class="priya-eyelid"/>
+
+                            <!-- Right Eye Socket -->
+                            <path d="M 252 64 Q 260 59 268 64 Q 260 69 252 64 Z" fill="#ffffff"/>
+                            <g class="priya-pupils">
+                                <!-- Amber Iris -->
+                                <circle cx="260" cy="64" r="3.6" fill="url(#irisGrad)"/>
+                                <circle cx="260" cy="64" r="2.2" fill="#0d0408"/>
+                                <!-- Crisp Specular Catchlights -->
+                                <circle cx="259" cy="62.5" r="1.1" fill="#ffffff"/>
+                                <circle cx="261.5" cy="65.5" r="0.6" fill="#ffffff"/>
+                            </g>
+                            <!-- Top Eyeliner & Lashes -->
+                            <path d="M 251 63 Q 260 58 270 64" stroke="#0d0408" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                            <path d="M 269 62 L 272 60.5" stroke="#0d0408" stroke-width="1.2" stroke-linecap="round"/>
+                            <!-- Blinking Eyelid -->
+                            <ellipse cx="260" cy="64" rx="8" ry="4.2" fill="url(#skinGrad)" class="priya-eyelid"/>
+                        </g>
+
+                        <!-- Traditional Ruby & Gold Bindi -->
+                        <circle cx="250" cy="55" r="2" fill="#be123c"/>
+                        <circle cx="250" cy="55" r="0.7" fill="#fef08a"/>
+
+                        <!-- Delicate Nose with Soft Tip Highlight -->
+                        <path d="M 250 58 L 250 74 Q 247 77 250 78 Q 253 77 250 74" stroke="#aa643a" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+                        <circle cx="250" cy="74" r="0.8" fill="#fff" opacity="0.6"/>
+
+                        <!-- 3D Glossy Ruby Smiling Lips -->
+                        <g id="priyaLips" class="priya-lips">
+                            <!-- Upper Lip -->
+                            <path d="M 240 84 Q 245 81 250 83 Q 255 81 260 84 Q 250 87 240 84 Z" fill="#be123c"/>
+                            <!-- Teeth Smile Reveal -->
+                            <path d="M 242 84 Q 250 86 258 84" stroke="#ffffff" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+                            <!-- Lower Lip with Specular Gloss -->
+                            <path d="M 240 84 Q 250 92 260 84 Q 250 87 240 84 Z" fill="#e11d48"/>
+                            <ellipse cx="250" cy="87.5" rx="3.5" ry="1.2" fill="#ffffff" opacity="0.65"/>
+                            <path d="M 240 84 Q 250 92 260 84" stroke="#881337" stroke-width="0.8" fill="none"/>
+                        </g>
+
+                        <!-- Front Hair Side Wings Framing Face -->
+                        <path d="M 224 46 C 234 35, 245 44, 250 50 C 255 44, 266 35, 276 46 C 280 55, 280 72, 278 78 C 272 60, 262 52, 250 54 C 238 52, 228 60, 222 78 C 220 72, 220 55, 224 46 Z" fill="url(#hairGrad)"/>
+                        <!-- Side Face Tendrils -->
+                        <path d="M 220 72 C 218 90, 224 105, 226 112 C 225 102, 220 90, 222 72 Z" fill="#14081c"/>
+                        <path d="M 280 72 C 282 90, 276 105, 274 112 C 275 102, 280 90, 278 72 Z" fill="#14081c"/>
+
+                        <!-- Gold Maang Tikka Jewelry on Parting -->
+                        <path d="M 250 30 L 250 49" stroke="url(#goldJewelGrad)" stroke-width="1.4"/>
+                        <circle cx="250" cy="49" r="2.8" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="1"/>
+                        <circle cx="250" cy="49" r="1" fill="#ffffff"/>
+
+                        <!-- Hanging Jhumka Drop Earrings with 3D Physics Swing -->
+                        <g class="priya-earring-left">
+                            <circle cx="224" cy="72" r="1.8" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="0.8"/>
+                            <path d="M 221 76 L 227 76 L 226 83 L 222 83 Z" fill="url(#goldJewelGrad)"/>
+                            <circle cx="224" cy="85" r="2.2" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="0.8"/>
+                            <circle cx="221.5" cy="88" r="0.8" fill="#ffd700"/>
+                            <circle cx="224" cy="89" r="0.8" fill="#ffd700"/>
+                            <circle cx="226.5" cy="88" r="0.8" fill="#ffd700"/>
+                        </g>
+                        <g class="priya-earring-right">
+                            <circle cx="276" cy="72" r="1.8" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="0.8"/>
+                            <path d="M 273 76 L 279 76 L 278 83 L 274 83 Z" fill="url(#goldJewelGrad)"/>
+                            <circle cx="276" cy="85" r="2.2" fill="url(#rubyGrad)" stroke="url(#goldJewelGrad)" stroke-width="0.8"/>
+                            <circle cx="273.5" cy="88" r="0.8" fill="#ffd700"/>
+                            <circle cx="276" cy="89" r="0.8" fill="#ffd700"/>
+                            <circle cx="278.5" cy="88" r="0.8" fill="#ffd700"/>
+                        </g>
+                    </g>
+                </g>
+
+                <!-- 4. 3D PADDED LEATHER TABLE RAIL (Seamless Connection to Arena) -->
+                <path d="M 0 236 Q 250 214 500 236 L 500 250 L 0 250 Z" fill="#160904"/>
+                <path d="M 0 236 Q 250 214 500 236" stroke="url(#brassBevel)" stroke-width="4.5" fill="none"/>
+                <path d="M 0 242 Q 250 220 500 242" stroke="rgba(255, 215, 0, 0.45)" stroke-width="1.2" fill="none"/>
+
+                <!-- 5. 3D GOLDEN CARD DEALING SHOE (Resting Directly on Emerald Felt) -->
+                <g id="dealerShoe" class="rig-shoe-box" transform="translate(374, 160)" onclick="tpGame.dealRound()" title="King Midas 8-Deck Shoe">
+                    <!-- Drop Shadow on Felt -->
+                    <ellipse cx="42" cy="54" rx="46" ry="14" fill="#011208" opacity="0.8"/>
+                    <!-- Shoe Base Plating -->
+                    <path d="M 5 32 L 72 22 L 88 50 L 20 60 Z" fill="#1c0802" stroke="url(#goldJewelGrad)" stroke-width="2"/>
+                    <!-- Translucent Acrylic Deck Chamber -->
+                    <path d="M 14 14 L 76 6 L 72 22 L 5 32 Z" fill="rgba(255, 215, 0, 0.25)" stroke="url(#goldJewelGrad)" stroke-width="1.4"/>
+                    <!-- Stacked Decks of Cards (8 Decks) -->
+                    <path d="M 18 18 L 72 10 L 70 20 L 14 28 Z" fill="#ffffff" opacity="0.95"/>
+                    <path d="M 17 21 L 71 13 L 70 21 L 15 29 Z" fill="#dc2626" opacity="0.9"/>
+                    <path d="M 16 23 L 70 15 L 69 22 L 16 30 Z" fill="#ffffff" opacity="0.95"/>
+                    <!-- Black Card Roller Wheel -->
+                    <circle cx="42" cy="20" r="7" fill="#180402" stroke="url(#goldJewelGrad)" stroke-width="1.4"/>
+                    <circle cx="42" cy="20" r="2.5" fill="#fef08a"/>
+                    <!-- Golden Card Exit Roller Mouth -->
+                    <path d="M 5 32 L 26 28 L 30 52 L 9 56 Z" fill="url(#goldJewelGrad)" stroke="#451a03" stroke-width="1.2"/>
+                    <line x1="9" y1="42" x2="24" y2="39" stroke="#ffffff" stroke-width="3"/>
+                    <!-- Ejection Flash Glow -->
+                    <circle id="shoeEjectGlow" cx="14" cy="44" r="16" fill="#ffd700" opacity="0"/>
+                    <!-- SHOE 8 Plaque Label -->
+                    <text x="52" y="50" font-family="'Cinzel', serif" font-size="9.5" font-weight="900" fill="#fef08a" letter-spacing="0.6">SHOE 8</text>
+                </g>
+
+                <!-- 6. HIGH-DEFINITION ARTICULATED DEALING ARM (100% Permanently Fixed at Shoulder: 292, 118) -->
+                <g id="priyaDealingArm" class="priya-dealing-arm idle">
+                    <!-- Felt Contact Ambient Shadow -->
+                    <ellipse cx="388" cy="308" rx="42" ry="14" fill="url(#feltContactShadow)"/>
+
+                    <!-- Shoulder Socket & Velvet Saree Sleeve with 3D Zari Brocade -->
+                    <path d="M 284 116 C 304 110, 328 122, 338 142 C 344 154, 338 168, 326 174 C 310 180, 296 168, 288 150 C 282 138, 280 124, 284 116 Z" fill="url(#armSareeVelvet)" filter="url(#shadow3d)"/>
+                    <!-- Gold Zari Sleeve Cuff Border -->
+                    <path d="M 336 166 Q 314 176, 290 152" stroke="url(#armGoldChroma)" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+                    <path d="M 336 166 Q 314 176, 290 152" stroke="#78350f" stroke-width="1.3" stroke-dasharray="3,2" fill="none"/>
+                    <!-- Hanging Golden Pearl Beads on Cuff -->
+                    <circle cx="298" cy="162" r="1.6" fill="url(#armGoldChroma)"/>
+                    <circle cx="308" cy="168" r="1.6" fill="url(#armGoldChroma)"/>
+                    <circle cx="318" cy="171" r="1.6" fill="url(#armGoldChroma)"/>
+                    <circle cx="328" cy="170" r="1.6" fill="url(#armGoldChroma)"/>
+
+                    <!-- Slender Feminine Bicep & Elbow with 3D Subsurface Shading -->
+                    <path d="M 326 168 C 340 188, 356 214, 372 236 C 358 244, 342 234, 328 206 C 318 186, 308 170, 314 158 Z" fill="url(#armSkin3D)"/>
+                    <!-- 3D Specular Highlight Line -->
+                    <path d="M 322 172 Q 342 204, 358 230" stroke="url(#armHighlightLine)" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+                    <!-- Royal Gold Bajuband (Armlet) with Pigeon-Blood Ruby -->
+                    <path d="M 314 178 L 334 188 L 332 194 L 312 184 Z" fill="url(#armGoldChroma)" stroke="#78350f" stroke-width="0.8"/>
+                    <circle cx="323" cy="186" r="3.2" fill="url(#armRubyChroma)" stroke="url(#armGoldChroma)" stroke-width="1"/>
+                    <circle cx="323" cy="186" r="1" fill="#ffffff"/>
+
+                    <!-- 6-Tier Layered Luxury Bangles (Gold Kadas & Ruby Choodiyan) -->
+                    <ellipse cx="356" cy="232" rx="12" ry="5.8" transform="rotate(36 356 232)" fill="url(#armGoldChroma)" stroke="#78350f" stroke-width="1.2"/>
+                    <ellipse cx="359" cy="236" rx="11.5" ry="5.4" transform="rotate(36 359 236)" fill="url(#armRubyChroma)" stroke="url(#armGoldChroma)" stroke-width="0.8"/>
+                    <ellipse cx="362" cy="240" rx="11.8" ry="5.5" transform="rotate(36 362 240)" fill="url(#armGoldChroma)" stroke="#ffffff" stroke-width="0.9"/>
+                    <ellipse cx="365" cy="244" rx="11.5" ry="5.4" transform="rotate(36 365 244)" fill="url(#armRubyChroma)" stroke="url(#armGoldChroma)" stroke-width="0.8"/>
+                    <ellipse cx="368" cy="248" rx="12" ry="5.8" transform="rotate(36 368 248)" fill="url(#armGoldChroma)" stroke="#78350f" stroke-width="1.2"/>
+                    <circle cx="354" cy="230" r="1.2" fill="#fff"/>
+                    <circle cx="360" cy="238" r="1.2" fill="#fff"/>
+                    <circle cx="366" cy="246" r="1.2" fill="#fff"/>
+
+                    <!-- Royal Haathphool Hand Jewelry Ornament -->
+                    <path d="M 368 248 Q 376 262, 386 276" stroke="url(#armGoldChroma)" stroke-width="1.5" stroke-dasharray="2.5,1.5" fill="none"/>
+                    <circle cx="386" cy="276" r="3.2" fill="url(#armRubyChroma)" stroke="url(#armGoldChroma)" stroke-width="1.2"/>
+                    <circle cx="386" cy="276" r="0.9" fill="#fff"/>
+                    <line x1="386" y1="276" x2="396" y2="290" stroke="url(#armGoldChroma)" stroke-width="1.2" stroke-dasharray="2,1"/>
+
+                    <!-- Delicate Hand, Slender Palm & Expressive Fingers -->
+                    <path d="M 364 246 C 376 256, 388 270, 396 284 C 390 292, 378 288, 368 274 C 360 262, 354 254, 350 246 Z" fill="url(#armSkin3D)"/>
+                    <!-- Extended Index Finger (Touching/Peeling/Dealing) -->
+                    <path d="M 386 270 C 394 286, 404 304, 408 312 C 411 315, 415 313, 413 308 C 407 294, 397 276, 388 264 Z" fill="url(#armSkin3D)"/>
+                    <!-- Thumb Pinpoint -->
+                    <path d="M 360 252 C 368 260, 376 272, 376 278 C 372 280, 368 276, 364 266 Z" fill="url(#armSkin3D)"/>
+                    <!-- Middle Finger -->
+                    <path d="M 380 274 C 388 288, 396 300, 398 304 C 395 306, 390 302, 384 290 Z" fill="url(#armSkin3D)"/>
+                    <!-- Ring and Pinky Fingers -->
+                    <path d="M 374 276 C 380 286, 386 294, 388 296 C 386 298, 382 295, 376 286 Z" fill="url(#armSkin3D)"/>
+
+                    <!-- Crimson Glossy Nails & Diamond Solitaire Rings -->
+                    <ellipse cx="410" cy="311" rx="2.2" ry="1.6" fill="#be123c"/>
+                    <ellipse cx="409.5" cy="310.5" rx="1.2" ry="0.6" fill="#ffffff" opacity="0.85"/>
+                    <ellipse cx="397" cy="303" rx="1.8" ry="1.4" fill="#be123c"/>
+                    <ellipse cx="375" cy="277" rx="1.8" ry="1.4" fill="#be123c"/>
+                    <ellipse cx="398" cy="286" rx="3.6" ry="2.2" fill="url(#armGoldChroma)" stroke="#ffffff" stroke-width="0.9"/>
+                    <circle cx="398" cy="286" r="1.4" fill="#ffffff"/>
+
+                    <!-- Physical Playing Card Held in Hand During Deal -->
+                    <g id="priyaHandCard" opacity="0">
+                        <rect x="384" y="274" width="38" height="54" rx="4" transform="rotate(22 384 274)" fill="#000000" opacity="0.55"/>
+                        <rect x="382" y="272" width="38" height="54" rx="4" transform="rotate(22 382 272)" fill="#1c0b30" stroke="url(#armGoldChroma)" stroke-width="2.2"/>
+                        <rect x="386" y="276" width="30" height="46" rx="2.5" transform="rotate(22 382 272)" fill="none" stroke="rgba(255, 215, 0, 0.6)" stroke-width="1"/>
+                        <text x="401" y="304" font-size="16" fill="#ffd700" text-anchor="middle">♠</text>
+                    </g>
+                </g>
+            </svg>
+
+            <!-- Live HUD Badge -->
+            <div class="dealer-hud-topleft">
+                <div class="dealer-live-pill">
+                    <span class="pulse-red-dot"></span>
+                    <span class="live-txt">LIVE 3D</span>
+                </div>
+                <div class="dealer-sub-pill">
+                    <span>👑</span> PRIYA
+                </div>
+            </div>
+
+            <!-- Top Right Timer Widget -->
+            <div class="dealer-hud-topright">
+                <div class="bet-timer-widget" id="betTimerWidget">
+                    <span class="bet-timer-sec" id="timerSeconds">15</span>
+                    <span class="bet-timer-lbl">SEC</span>
+                </div>
+            </div>
+
+            <!-- Speech Bubble on Dealer -->
+            <div class="dealer-dialogue-floating" id="dealerDialogueBox">
+                <span class="dealer-speech-icon">🔊</span>
+                <span class="dealer-dialogue-text" id="dealerSpeechText">
+                    "Namaste! Place your bets on Player or Banker!"
+                </span>
+            </div>
+
+            <!-- Golden Table Rim Transition -->
+            <div class="dealer-table-brass-rail"></div>
+        </div>
+
+        <!-- Flying Cards Overlay Container -->
+        <div id="flyingCardContainer" class="flying-cards-container"></div>
+        <!-- Alias placeholder for backwards compatibility -->
+        <div id="dealerRevealHand" style="display:none;"></div>
+
+        <!-- 4. Royal Persian Casino Table Arena -->
+        <div class="tp-table-arena">
+            <div class="table-damask-mesh"></div>
+
+            <!-- Random 2X Bonus Multiplier Flash -->
+            <div class="random-bonus-banner" id="randomBonusBanner">
+                <span>⚡</span> RANDOM 2X BONUS TRIGGERED!
+            </div>
+
+            <div class="showdown-hands-grid">
+                <!-- PLAYER HAND -->
+                <div class="hand-col">
+                    <span class="hand-header-badge badge-player">PLAYER</span>
+                    <div class="cards-cluster" id="playerCardsWrap">
+                        <!-- 3 Cards -->
+                        <div class="tp-card" id="pCard0">
+                            <div class="card-face card-back"><div class="card-back-ornament">♠</div></div>
+                            <div class="card-face card-front suit-red">
+                                <div class="card-corner-top"><span>A</span><span>♥</span></div>
+                                <div class="card-center-suit">♥</div>
+                                <div class="card-corner-bottom"><span>A</span><span>♥</span></div>
+                            </div>
+                        </div>
+                        <div class="tp-card" id="pCard1">
+                            <div class="card-face card-back"><div class="card-back-ornament">♠</div></div>
+                            <div class="card-face card-front suit-red">
+                                <div class="card-corner-top"><span>K</span><span>♦</span></div>
+                                <div class="card-center-suit">♦</div>
+                                <div class="card-corner-bottom"><span>K</span><span>♦</span></div>
+                            </div>
+                        </div>
+                        <div class="tp-card" id="pCard2">
+                            <div class="card-face card-back"><div class="card-back-ornament">♠</div></div>
+                            <div class="card-face card-front suit-red">
+                                <div class="card-corner-top"><span>Q</span><span>♥</span></div>
+                                <div class="card-center-suit">♥</div>
+                                <div class="card-corner-bottom"><span>Q</span><span>♥</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hand-rank-pill" id="playerRankTag">WAITING BETS</div>
+                </div>
+
+                <!-- VS CLASH -->
+                <div class="vs-battle-col">
+                    <div class="vs-badge-glow">VS</div>
+                </div>
+
+                <!-- BANKER HAND -->
+                <div class="hand-col">
+                    <span class="hand-header-badge badge-banker">BANKER</span>
+                    <div class="cards-cluster" id="dealerCardsWrap">
+                        <!-- 3 Cards -->
+                        <div class="tp-card" id="dCard0">
+                            <div class="card-face card-back"><div class="card-back-ornament">♠</div></div>
+                            <div class="card-face card-front suit-black">
+                                <div class="card-corner-top"><span>K</span><span>♠</span></div>
+                                <div class="card-center-suit">♠</div>
+                                <div class="card-corner-bottom"><span>K</span><span>♠</span></div>
+                            </div>
+                        </div>
+                        <div class="tp-card" id="dCard1">
+                            <div class="card-face card-back"><div class="card-back-ornament">♠</div></div>
+                            <div class="card-face card-front suit-black">
+                                <div class="card-corner-top"><span>J</span><span>♣</span></div>
+                                <div class="card-center-suit">♣</div>
+                                <div class="card-corner-bottom"><span>J</span><span>♣</span></div>
+                            </div>
+                        </div>
+                        <div class="tp-card" id="dCard2">
+                            <div class="card-face card-back"><div class="card-back-ornament">♠</div></div>
+                            <div class="card-face card-front suit-red">
+                                <div class="card-corner-top"><span>9</span><span>♦</span></div>
+                                <div class="card-center-suit">♦</div>
+                                <div class="card-corner-bottom"><span>9</span><span>♦</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hand-rank-pill" id="dealerRankTag">WAITING BETS</div>
+                </div>
+            </div>
+
+            <!-- Showdown Status Ribbon -->
+            <div class="showdown-status-ribbon" id="showdownStatusText">
+                PLACE BETS TO DEAL CARDS
+            </div>
+        </div>
+
+        <!-- 5. Betting Board -->
+        <div class="tp-betting-board">
+            <!-- Main Bets: Player, Tie, Banker -->
+            <div class="primary-bets-row">
+                <div class="bet-box box-player" onclick="tpGame.placeBet('player', this)" id="betBoxPlayer">
+                    <span class="bet-title">PLAYER</span>
+                    <span class="bet-multiplier">1.98X</span>
+                    <span class="bet-staked-val" id="stakePlayer">₨ 0</span>
+                </div>
+
+                <div class="bet-box box-tie" onclick="tpGame.placeBet('tie', this)" id="betBoxTie">
+                    <span class="bet-title">TIE</span>
+                    <span class="bet-multiplier">32X</span>
+                    <span class="bet-staked-val" id="stakeTie">₨ 0</span>
+                </div>
+
+                <div class="bet-box box-banker" onclick="tpGame.placeBet('banker', this)" id="betBoxBanker">
+                    <span class="bet-title">BANKER</span>
+                    <span class="bet-multiplier">1.98X</span>
+                    <span class="bet-staked-val" id="stakeBanker">₨ 0</span>
+                </div>
+            </div>
+
+            <!-- Side Bets -->
+            <div class="side-bets-grid">
+                <div class="side-bet-card" onclick="tpGame.placeBet('pair_plus', this)" id="betBoxPairPlus">
+                    <div class="side-bet-header">
+                        <span class="side-bet-name">PAIR PLUS</span>
+                        <span class="side-bet-odds">UP TO 45X</span>
+                    </div>
+                    <span class="side-bet-desc">Pair 2x • Flush 5x • Straight 8x • Trail 45x</span>
+                    <span class="bet-staked-val" id="stakePairPlus" style="margin-top:4px;">₨ 0</span>
+                </div>
+
+                <div class="side-bet-card" onclick="tpGame.placeBet('royal_bonus', this)" id="betBoxRoyalBonus">
+                    <div class="side-bet-header">
+                        <span class="side-bet-name">6-CARD BONUS</span>
+                        <span class="side-bet-odds">UP TO 2085X</span>
+                    </div>
+                    <span class="side-bet-desc">Combined 5-Card Poker Hand</span>
+                    <span class="bet-staked-val" id="stakeRoyalBonus" style="margin-top:4px;">₨ 0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Chip Selector & Action Dock -->
+        <div class="tp-action-dock">
+            <!-- Chip Selector -->
+            <div class="chips-scroll-bar">
+                <div class="poker-chip chip-10 active" onclick="tpGame.selectChip(10, this)">10</div>
+                <div class="poker-chip chip-50" onclick="tpGame.selectChip(50, this)">50</div>
+                <div class="poker-chip chip-100" onclick="tpGame.selectChip(100, this)">100</div>
+                <div class="poker-chip chip-500" onclick="tpGame.selectChip(500, this)">500</div>
+                <div class="poker-chip chip-1000" onclick="tpGame.selectChip(1000, this)">1K</div>
+                <div class="poker-chip chip-5000" onclick="tpGame.selectChip(5000, this)">5K</div>
+            </div>
+
+            <!-- Actions Row -->
+            <div class="controls-row">
+                <button class="btn-action-util" onclick="tpGame.clearBets()">
+                    <span>🗑️</span> CLEAR
+                </button>
+                <button class="btn-action-util" onclick="tpGame.doubleBets()">
+                    <span>2X</span> DOUBLE
+                </button>
+                <button class="btn-main-deal" id="btnDealCards" onclick="tpGame.dealRound()">
+                    <span>🃏</span> DEAL NOW
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 7. CINEMATIC INTERACTIVE TRAILER MODAL ("or trailer b") -->
+    <div class="trailer-overlay" id="trailerModal">
+        <div class="trailer-card">
+            <div class="trailer-video-box">
+                <img src="../assets/covers/teenpatti_versus.jpg" alt="Teen Patti Versus" class="trailer-poster-img">
+                <div class="trailer-flares"></div>
+                <div class="trailer-play-pulse" onclick="tpGame.playTrailerSfx()">▶</div>
+            </div>
+            <div class="trailer-content">
+                <div class="trailer-title">TEEN PATTI VERSUS</div>
+                <div class="trailer-subtitle">
+                    Official King Midas Games • Instant 3-Card Showdown with Live Dealer Priya!
+                </div>
+                <div class="trailer-highlights-grid">
+                    <div class="trailer-badge-item">
+                        <span>⚡</span> Fast 10s Duel
+                    </div>
+                    <div class="trailer-badge-item">
+                        <span>🔥</span> Trail Pays 45X
+                    </div>
+                    <div class="trailer-badge-item">
+                        <span>👑</span> 6-Card Royal 2085X
+                    </div>
+                    <div class="trailer-badge-item">
+                        <span>💎</span> 97.13% RTP & 2X Bonus
+                    </div>
+                </div>
+                <div class="trailer-actions-row">
+                    <button class="btn-trailer-play" onclick="tpGame.closeTrailer()">
+                        PLAY NOW ▶
+                    </button>
+                    <button class="btn-trailer-close" onclick="tpGame.closeTrailer()">
+                        CLOSE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. WIN / LOSS OUTCOME MODAL -->
+    <div class="result-modal-overlay" id="resultModal">
+        <div class="result-modal-card">
+            <div class="res-icon" id="resIcon">🏆</div>
+            <div class="res-title" id="resTitle">PLAYER WINS!</div>
+            <div class="res-detail" id="resDetail">Player has Pure Sequence vs Banker High Card</div>
+            <div class="res-payout" id="resPayout">+₨ 396.00</div>
+            <button class="btn-res-collect" onclick="tpGame.closeResultModal()">COLLECT & PLAY NEXT</button>
+        </div>
+    </div>
+
+    <!-- 9. HELP / RULES MODAL -->
+    <div class="modal-wrap" id="rulesModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 style="color:#ffd700; font-family:'Cinzel',serif; font-size:16px;">TEEN PATTI VERSUS RULES</h3>
+                <button onclick="tpGame.toggleRulesModal()" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer;">✕</button>
+            </div>
+            <div style="font-size:12px; line-height:1.6; color:#cbd5e1; display:flex; flex-direction:column; gap:8px;">
+                <p><strong style="color:#ffd700;">1. Objective:</strong> Bet on which 3-card hand (Player or Banker) will rank higher, or bet on a Tie.</p>
+                <p><strong style="color:#ffd700;">2. Hand Rankings (Highest to Lowest):</strong></p>
+                <ul style="padding-left:18px; line-height:1.7;">
+                    <li><strong>Trail / Trio:</strong> Three cards of same rank (AAA highest, 222 lowest).</li>
+                    <li><strong>Pure Sequence:</strong> 3 consecutive cards of same suit (AKQ suited highest).</li>
+                    <li><strong>Sequence:</strong> 3 consecutive cards of different suits (AKQ, KQJ).</li>
+                    <li><strong>Color / Flush:</strong> 3 cards of same suit not in sequence.</li>
+                    <li><strong>Pair:</strong> 2 cards of same rank.</li>
+                    <li><strong>High Card:</strong> Highest card among the 3.</li>
+                </ul>
+                <p><strong style="color:#ffd700;">3. Special Multipliers:</strong></p>
+                <ul style="padding-left:18px; line-height:1.7;">
+                    <li>Player / Banker: <strong>1.98X</strong></li>
+                    <li>Tie: <strong>32X</strong></li>
+                    <li>Pair Plus: Up to <strong>45X</strong></li>
+                    <li>6-Card Royal Bonus: Up to <strong>2085X</strong></li>
+                    <li><strong>Random 2X Multiplier:</strong> Randomly triggers on winning rounds!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Sitar Lounge Audio Track -->
+    <audio id="tpAmbientAudio" src="../assets/games/caribbean_poker/cardGames.mp3" loop preload="auto"></audio>
+
+    <script>
+        window.onerror = function(msg, url, line, col, error) {
+            console.error('Teen Patti Error:', msg, url, line, col, error);
+        };
+
+        /* ============================================================
+           TEEN PATTI VERSUS DITTO ENGINE & LIVE DEALER AUDIO
+           ============================================================ */
+        class TeenPattiGame {
+            constructor() {
+                this.balance = typeof getRealWalletBalance === 'function' ? getRealWalletBalance() : 0;
+                this.selectedChip = 10;
+                this.bets = {
+                    player: 0,
+                    banker: 0,
+                    tie: 0,
+                    pair_plus: 0,
+                    royal_bonus: 0
+                };
+                this.lastBets = null;
+                this.isDealing = false;
+                this.audioEnabled = true;
+                this.roundId = 112;
+                this.timerCount = 15;
+                this.timerInterval = null;
+
+                this.suits = [
+                    { symbol: '♠', name: 'spades', isRed: false },
+                    { symbol: '♥', name: 'hearts', isRed: true },
+                    { symbol: '♦', name: 'diamonds', isRed: true },
+                    { symbol: '♣', name: 'clubs', isRed: false }
+                ];
+                this.ranks = [
+                    { name: '2', val: 2 }, { name: '3', val: 3 }, { name: '4', val: 4 },
+                    { name: '5', val: 5 }, { name: '6', val: 6 }, { name: '7', val: 7 },
+                    { name: '8', val: 8 }, { name: '9', val: 9 }, { name: '10', val: 10 },
+                    { name: 'J', val: 11 }, { name: 'Q', val: 12 }, { name: 'K', val: 13 },
+                    { name: 'A', val: 14 }
+                ];
+
+                this.initAudioContext();
+                this.updateUI();
+                this.runSplashLoader();
+            }
+
+            initAudioContext() {
+                try {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) {
+                        this.actx = new AudioCtx();
+                    }
+                } catch(e) {}
+            }
+
+            setDealerPose(pose) {
+                const arm = document.getElementById('priyaDealingArm');
+                const head = document.getElementById('priyaHeadGroup');
+                const heldCard = document.getElementById('priyaHandCard');
+                const shoeGlow = document.getElementById('shoeEjectGlow');
+                const shoe = document.getElementById('dealerShoe');
+
+                if (arm) {
+                    arm.className.baseVal = `priya-dealing-arm ${pose}`;
+                    arm.style.transform = ''; // Clear inline styles so class takes over
+                }
+
+                if (pose === 'reach_shoe' || pose === 'draw') {
+                    if (heldCard) heldCard.setAttribute('opacity', '0');
+                    if (shoeGlow) {
+                        shoeGlow.setAttribute('opacity', '0.9');
+                        setTimeout(() => shoeGlow.setAttribute('opacity', '0'), 250);
+                    }
+                    if (shoe) {
+                        shoe.classList.add('ejecting');
+                        setTimeout(() => shoe.classList.remove('ejecting'), 280);
+                    }
+                    if (head) head.style.transform = 'rotate(2.5deg) translateY(1px)';
+                } else if (pose === 'deal-player' || pose === 'deal') {
+                    if (heldCard) heldCard.setAttribute('opacity', '1');
+                    if (head) head.style.transform = 'rotate(-3.5deg) translateY(1.5px)';
+                } else if (pose === 'deal-banker') {
+                    if (heldCard) heldCard.setAttribute('opacity', '1');
+                    if (head) head.style.transform = 'rotate(3deg) translateY(1.5px)';
+                } else if (pose === 'squeeze') {
+                    if (heldCard) heldCard.setAttribute('opacity', '0');
+                    if (head) head.style.transform = 'rotate(-1.5deg) translateY(2px)';
+                } else if (pose === 'celebrate' || pose === 'win') {
+                    if (heldCard) heldCard.setAttribute('opacity', '0');
+                    if (head) head.style.transform = 'rotate(0deg) translateY(-2.5px)';
+                } else { // idle
+                    if (heldCard) heldCard.setAttribute('opacity', '0');
+                    if (head) head.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            speakDealer(text) {
+                const speechBox = document.getElementById('dealerSpeechText');
+                if (speechBox) {
+                    speechBox.textContent = `"${text}"`;
+                }
+                const rig = document.getElementById('dealerPriyaRig');
+                if (rig) {
+                    rig.classList.add('priya-speaking');
+                    setTimeout(() => {
+                        rig.classList.remove('priya-speaking');
+                    }, Math.min(3000, Math.max(1000, text.length * 75)));
+                }
+                if (!this.audioEnabled || !('speechSynthesis' in window)) return;
+                try {
+                    window.speechSynthesis.cancel();
+                    const ut = new SpeechSynthesisUtterance(text);
+                    ut.lang = 'en-IN';
+                    ut.rate = 1.05;
+                    ut.pitch = 1.15; // friendly female tone
+                    window.speechSynthesis.speak(ut);
+                } catch(e) {}
+            }
+
+            runSplashLoader() {
+                const bar = document.getElementById('splashProgressBar');
+                const percentText = document.getElementById('splashPercentText');
+                const statusText = document.getElementById('splashStatusText');
+                const startBtn = document.getElementById('btnSplashStart');
+
+                let progress = 0;
+                const steps = [
+                    { p: 25, msg: "Connecting to King Midas Live Studio..." },
+                    { p: 55, msg: "Loading 3D Card Engine & Shaders..." },
+                    { p: 85, msg: "Syncing Table Limits & RTP 97.13%..." },
+                    { p: 100, msg: "Live Studio Ready!" }
+                ];
+
+                let stepIndex = 0;
+                const interval = setInterval(() => {
+                    progress += 6;
+                    if (progress > 100) progress = 100;
+
+                    if (bar) bar.style.width = `${progress}%`;
+                    if (percentText) percentText.textContent = `${progress}%`;
+
+                    if (stepIndex < steps.length && progress >= steps[stepIndex].p) {
+                        if (statusText) statusText.textContent = steps[stepIndex].msg;
+                        stepIndex++;
+                    }
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        if (startBtn) {
+                            startBtn.style.display = 'flex';
+                        }
+                        setTimeout(() => {
+                            this.enterGameStudio();
+                        }, 500);
+                    }
+                }, 25);
+
+                // Hard fallback safety timer (in case interval is paused or throttled)
+                setTimeout(() => {
+                    this.enterGameStudio();
+                }, 1200);
+            }
+
+            enterGameStudio() {
+                const splash = document.getElementById('kmSplashScreen');
+                if (splash && splash.classList.contains('hidden')) {
+                    return; // already entered
+                }
+                if (splash) {
+                    splash.classList.add('hidden');
+                }
+                if (this.actx && this.actx.state === 'suspended') {
+                    this.actx.resume().catch(() => {});
+                }
+                this.playSynthSound('win');
+                const bgm = document.getElementById('tpAmbientAudio');
+                if (bgm && this.audioEnabled && bgm.paused) {
+                    bgm.play().catch(() => {});
+                }
+                this.speakDealer("Namaste! Place your bets on Player or Banker!");
+                this.startBettingTimer();
+            }
+
+            startBettingTimer() {
+                if (this.timerInterval) clearInterval(this.timerInterval);
+                this.isDealing = false;
+                this.setDealerPose('idle');
+                this.timerCount = 15;
+                const timerEl = document.getElementById('timerSeconds');
+                const widget = document.getElementById('betTimerWidget');
+                if (widget) widget.classList.remove('warning');
+
+                this.timerInterval = setInterval(() => {
+                    if (this.isDealing) return;
+                    this.timerCount--;
+                    if (timerEl) timerEl.textContent = this.timerCount;
+
+                    if (this.timerCount <= 5 && widget) {
+                        widget.classList.add('warning');
+                        this.playSynthSound('tick');
+                    }
+
+                    if (this.timerCount <= 0) {
+                        clearInterval(this.timerInterval);
+                        const totalBet = Object.values(this.bets).reduce((a, b) => a + b, 0);
+                        if (totalBet > 0) {
+                            this.dealRound();
+                        } else {
+                            this.startBettingTimer();
+                        }
+                    }
+                }, 1000);
+            }
+
+            playSynthSound(type) {
+                if (!this.audioEnabled || !this.actx) return;
+                try {
+                    if (this.actx.state === 'suspended') this.actx.resume();
+                    const now = this.actx.currentTime;
+
+                    if (type === 'tick') {
+                        const osc = this.actx.createOscillator();
+                        const gain = this.actx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(800, now);
+                        gain.gain.setValueAtTime(0.15, now);
+                        gain.gain.linearRampToValueAtTime(0.01, now + 0.04);
+                        osc.connect(gain);
+                        gain.connect(this.actx.destination);
+                        osc.start(now);
+                        osc.stop(now + 0.05);
+                    } else if (type === 'chip') {
+                        const osc = this.actx.createOscillator();
+                        const gain = this.actx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(1400, now);
+                        osc.frequency.exponentialRampToValueAtTime(700, now + 0.05);
+                        gain.gain.setValueAtTime(0.4, now);
+                        gain.gain.linearRampToValueAtTime(0.01, now + 0.06);
+                        osc.connect(gain);
+                        gain.connect(this.actx.destination);
+                        osc.start(now);
+                        osc.stop(now + 0.07);
+                    } else if (type === 'deal') {
+                        const bufferSize = this.actx.sampleRate * 0.08;
+                        const buffer = this.actx.createBuffer(1, bufferSize, this.actx.sampleRate);
+                        const data = buffer.getChannelData(0);
+                        for (let i = 0; i < bufferSize; i++) {
+                            data[i] = Math.random() * 2 - 1;
+                        }
+                        const noise = this.actx.createBufferSource();
+                        noise.buffer = buffer;
+                        const filter = this.actx.createBiquadFilter();
+                        filter.type = 'bandpass';
+                        filter.frequency.setValueAtTime(1200, now);
+                        const gain = this.actx.createGain();
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                        noise.connect(filter);
+                        filter.connect(gain);
+                        gain.connect(this.actx.destination);
+                        noise.start(now);
+                    } else if (type === 'win') {
+                        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                            const osc = this.actx.createOscillator();
+                            const gain = this.actx.createGain();
+                            osc.type = 'triangle';
+                            osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                            gain.gain.setValueAtTime(0.3, now + idx * 0.08);
+                            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+                            osc.connect(gain);
+                            gain.connect(this.actx.destination);
+                            osc.start(now + idx * 0.08);
+                            osc.stop(now + idx * 0.08 + 0.4);
+                        });
+                    } else if (type === 'clash') {
+                        const osc = this.actx.createOscillator();
+                        const gain = this.actx.createGain();
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(180, now);
+                        osc.frequency.exponentialRampToValueAtTime(45, now + 0.3);
+                        gain.gain.setValueAtTime(0.5, now);
+                        gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                        osc.connect(gain);
+                        gain.connect(this.actx.destination);
+                        osc.start(now);
+                        osc.stop(now + 0.32);
+                    } else if (type === 'friction') {
+                        const bufferSize = Math.floor(this.actx.sampleRate * 0.12);
+                        const buffer = this.actx.createBuffer(1, bufferSize, this.actx.sampleRate);
+                        const data = buffer.getChannelData(0);
+                        for (let i = 0; i < bufferSize; i++) {
+                            data[i] = (Math.random() * 2 - 1) * Math.sin((i / bufferSize) * Math.PI);
+                        }
+                        const noise = this.actx.createBufferSource();
+                        noise.buffer = buffer;
+                        const filter = this.actx.createBiquadFilter();
+                        filter.type = 'bandpass';
+                        filter.frequency.setValueAtTime(600, now);
+                        filter.frequency.linearRampToValueAtTime(1400, now + 0.1);
+                        const gain = this.actx.createGain();
+                        gain.gain.setValueAtTime(0.25, now);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                        noise.connect(filter);
+                        filter.connect(gain);
+                        gain.connect(this.actx.destination);
+                        noise.start(now);
+                    }
+                } catch(e) {}
+            }
+
+            selectChip(val, el) {
+                this.selectedChip = val;
+                document.querySelectorAll('.poker-chip').forEach(c => c.classList.remove('active'));
+                if (el) el.classList.add('active');
+                this.playSynthSound('chip');
+            }
+
+            placeBet(type, el) {
+                if (this.isDealing) return;
+                if (typeof getRealWalletBalance === 'function') {
+                    this.balance = getRealWalletBalance();
+                }
+                const totalCurrent = Object.values(this.bets).reduce((a, b) => a + b, 0);
+                if (totalCurrent + this.selectedChip > this.balance) {
+                    alert(`Balance kam hai! Aapka balance ₨ ${this.balance.toFixed(2)} hai. Please deposit karein.`);
+                    return;
+                }
+
+                this.bets[type] += this.selectedChip;
+                this.updateBetLabels();
+                this.playSynthSound('chip');
+
+                if (el) {
+                    el.classList.add('selected');
+                }
+            }
+
+            clearBets() {
+                if (this.isDealing) return;
+                this.bets = { player: 0, banker: 0, tie: 0, pair_plus: 0, royal_bonus: 0 };
+                document.querySelectorAll('.bet-box, .side-bet-card').forEach(b => b.classList.remove('selected', 'winner-glow'));
+                this.updateBetLabels();
+            }
+
+            doubleBets() {
+                if (this.isDealing) return;
+                if (typeof getRealWalletBalance === 'function') {
+                    this.balance = getRealWalletBalance();
+                }
+                const totalCurrent = Object.values(this.bets).reduce((a, b) => a + b, 0);
+                if (totalCurrent === 0) return;
+                if (totalCurrent * 2 > this.balance) {
+                    alert(`Balance kam hai! Double karne ke liye ₨ ${(totalCurrent * 2).toFixed(2)} chahiye. Please deposit karein.`);
+                    return;
+                }
+                for (let k in this.bets) {
+                    this.bets[k] *= 2;
+                }
+                this.updateBetLabels();
+                this.playSynthSound('chip');
+            }
+
+            updateBetLabels() {
+                document.getElementById('stakePlayer').textContent = this.bets.player > 0 ? `₨ ${this.bets.player}` : '₨ 0';
+                document.getElementById('stakeBanker').textContent = this.bets.banker > 0 ? `₨ ${this.bets.banker}` : '₨ 0';
+                document.getElementById('stakeTie').textContent = this.bets.tie > 0 ? `₨ ${this.bets.tie}` : '₨ 0';
+                document.getElementById('stakePairPlus').textContent = this.bets.pair_plus > 0 ? `₨ ${this.bets.pair_plus}` : '₨ 0';
+                document.getElementById('stakeRoyalBonus').textContent = this.bets.royal_bonus > 0 ? `₨ ${this.bets.royal_bonus}` : '₨ 0';
+            }
+
+            generateDeck() {
+                const deck = [];
+                for (let s of this.suits) {
+                    for (let r of this.ranks) {
+                        deck.push({ rank: r.name, val: r.val, suit: s.symbol, isRed: s.isRed });
+                    }
+                }
+                for (let i = deck.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [deck[i], deck[j]] = [deck[j], deck[i]];
+                }
+                return deck;
+            }
+
+            evaluateHand(cards) {
+                const sorted = [...cards].sort((a, b) => a.val - b.val);
+                const vals = sorted.map(c => c.val);
+                const suits = sorted.map(c => c.suit);
+
+                const isFlush = suits[0] === suits[1] && suits[1] === suits[2];
+                let isStraight = (vals[0] + 1 === vals[1] && vals[1] + 1 === vals[2]);
+                const isA23 = (vals[0] === 2 && vals[1] === 3 && vals[2] === 14);
+                if (isA23) isStraight = true;
+
+                // 1. Trail / Trio
+                if (vals[0] === vals[1] && vals[1] === vals[2]) {
+                    return { rank: 6, name: `TRAIL (TRIO) ${sorted[0].rank}'s`, score: 60000 + vals[0] };
+                }
+                // 2. Pure Sequence
+                if (isStraight && isFlush) {
+                    return { rank: 5, name: 'PURE SEQUENCE', score: 50000 + (isA23 ? 3 : vals[2]) };
+                }
+                // 3. Sequence
+                if (isStraight) {
+                    return { rank: 4, name: 'SEQUENCE (STRAIGHT)', score: 40000 + (isA23 ? 3 : vals[2]) };
+                }
+                // 4. Color (Flush)
+                if (isFlush) {
+                    return { rank: 3, name: 'COLOR (FLUSH)', score: 30000 + vals[2] * 100 + vals[1] * 10 + vals[0] };
+                }
+                // 5. Pair
+                if (vals[0] === vals[1]) {
+                    return { rank: 2, name: `PAIR OF ${sorted[0].rank}'s`, score: 20000 + vals[0] * 100 + vals[2] };
+                }
+                if (vals[1] === vals[2]) {
+                    return { rank: 2, name: `PAIR OF ${sorted[1].rank}'s`, score: 20000 + vals[1] * 100 + vals[0] };
+                }
+                // 6. High Card
+                return { rank: 1, name: `HIGH CARD ${sorted[2].rank}`, score: 10000 + vals[2] * 100 + vals[1] * 10 + vals[0] };
+            }
+
+            renderCardElement(card, cardEl) {
+                const front = cardEl.querySelector('.card-front');
+                front.className = `card-face card-front ${card.isRed ? 'suit-red' : 'suit-black'}`;
+                front.innerHTML = `
+                    <div class="card-corner-top"><span>${card.rank}</span><span>${card.suit}</span></div>
+                    <div class="card-center-suit">${card.suit}</div>
+                    <div class="card-corner-bottom"><span>${card.rank}</span><span>${card.suit}</span></div>
+                `;
+            }
+
+            async dealSingleCardToSlot(targetEl, cardData) {
+                return new Promise((resolve) => {
+                    const svg = document.querySelector('.dealer-svg-viewport');
+                    const arm = document.getElementById('priyaDealingArm');
+                    const heldCard = document.getElementById('priyaHandCard');
+                    const shoe = document.getElementById('dealerShoe');
+                    const head = document.getElementById('priyaHeadGroup');
+
+                    const frame = document.querySelector('.tp-app-frame');
+                    const frameRect = frame ? frame.getBoundingClientRect() : { left: 0, top: 0 };
+                    const svgRect = svg ? svg.getBoundingClientRect() : { left: 0, top: 0, width: 500, height: 250 };
+                    const targetRect = targetEl.getBoundingClientRect();
+
+                    // Priya's right shoulder socket position on screen (SVG viewBox coordinate 292, 118)
+                    const shoulderX = svgRect.left + (292 / 500) * svgRect.width;
+                    const shoulderY = svgRect.top + (118 / 250) * svgRect.height;
+
+                    // Target center on table felt
+                    const targetX = targetRect.left + (targetRect.width / 2);
+                    const targetY = targetRect.top + 22;
+
+                    // Vector and target angle from permanently fixed shoulder
+                    const dx = targetX - shoulderX;
+                    const dy = targetY - shoulderY;
+                    const targetAngleDeg = Math.atan2(dy, dx) * (180 / Math.PI);
+                    const idleAngleDeg = 59.1; // Default arm angle from shoulder (292, 118) to idle hand (395, 290)
+                    const rotateDeg = targetAngleDeg - idleAngleDeg;
+
+                    // Distance and scale from fixed shoulder
+                    const dist = Math.hypot(dx, dy);
+                    const idleDistOnScreen = Math.hypot(395 - 292, 290 - 118) * (svgRect.height / 250);
+                    const scale = Math.min(1.4, Math.max(0.85, dist / idleDistOnScreen));
+
+                    // Flying card element for visual card gliding
+                    const container = document.getElementById('flyingCardContainer');
+                    const flyingCard = document.createElement('div');
+                    flyingCard.className = 'flying-dealing-card';
+                    flyingCard.innerHTML = '<div class="card-back-ornament">♠</div>';
+
+                    const shoeRect = shoe ? shoe.getBoundingClientRect() : { left: frameRect.left + 370, top: frameRect.top + 160, width: 70, height: 45 };
+                    const startX = (shoeRect.left - frameRect.left) + (shoeRect.width / 2) - 30;
+                    const startY = (shoeRect.top - frameRect.top) + (shoeRect.height / 2) - 44;
+                    const relTargetX = targetRect.left - frameRect.left;
+                    const relTargetY = targetRect.top - frameRect.top;
+
+                    flyingCard.style.left = `${startX}px`;
+                    flyingCard.style.top = `${startY}px`;
+                    flyingCard.style.transform = 'scale(0.4) rotate(-25deg)';
+                    container.appendChild(flyingCard);
+
+                    // Eject shoe glow & sound
+                    if (shoe) {
+                        shoe.classList.add('ejecting');
+                        setTimeout(() => shoe.classList.remove('ejecting'), 240);
+                    }
+                    this.playSynthSound('deal');
+
+                    // Show card held in Priya's fingers
+                    if (heldCard) heldCard.setAttribute('opacity', '1');
+
+                    // Rotate Priya's attached arm from shoulder towards target
+                    if (arm) {
+                        arm.style.transform = `rotate(${rotateDeg}deg) scale(${scale})`;
+                    }
+                    if (head) {
+                        head.style.transform = dx < 0 ? 'rotate(-3deg) translate(-2px, 1px)' : 'rotate(2.5deg) translate(2px, 1px)';
+                    }
+
+                    // Force reflow
+                    void flyingCard.offsetHeight;
+
+                    // Flying card glides in sync with Priya's reaching hand
+                    requestAnimationFrame(() => {
+                        flyingCard.style.left = `${relTargetX}px`;
+                        flyingCard.style.top = `${relTargetY}px`;
+                        flyingCard.style.transform = 'scale(1) rotate(0deg)';
+                    });
+
+                    // Land on slot
+                    setTimeout(() => {
+                        // Hand delivers card onto felt with a crisp snap
+                        if (arm) {
+                            arm.style.transform = `rotate(${rotateDeg}deg) scale(${scale * 0.98}) translateY(8px)`;
+                        }
+                        if (heldCard) heldCard.setAttribute('opacity', '0');
+
+                        this.renderCardElement(cardData, targetEl);
+                        targetEl.style.opacity = '1';
+                        targetEl.classList.remove('flipped');
+                        this.playSynthSound('chip');
+
+                        if (flyingCard.parentNode) {
+                            flyingCard.parentNode.removeChild(flyingCard);
+                        }
+
+                        // Smooth hand lift
+                        setTimeout(() => {
+                            if (arm) {
+                                arm.style.transform = `rotate(${rotateDeg}deg) scale(${scale * 0.95}) translateY(-6px)`;
+                            }
+                            resolve();
+                        }, 120);
+                    }, 340);
+                });
+            }
+
+            async revealCardWithDealerHand(targetCardEl) {
+                return new Promise((resolve) => {
+                    const svg = document.querySelector('.dealer-svg-viewport');
+                    const arm = document.getElementById('priyaDealingArm');
+                    const heldCard = document.getElementById('priyaHandCard');
+                    const head = document.getElementById('priyaHeadGroup');
+
+                    if (heldCard) heldCard.setAttribute('opacity', '0');
+
+                    const svgRect = svg ? svg.getBoundingClientRect() : { left: 0, top: 0, width: 500, height: 250 };
+                    const cardRect = targetCardEl.getBoundingClientRect();
+
+                    const shoulderX = svgRect.left + (292 / 500) * svgRect.width;
+                    const shoulderY = svgRect.top + (118 / 250) * svgRect.height;
+                    const targetX = cardRect.left + (cardRect.width / 2);
+                    const targetY = cardRect.top + 15;
+
+                    const dx = targetX - shoulderX;
+                    const dy = targetY - shoulderY;
+                    const targetAngleDeg = Math.atan2(dy, dx) * (180 / Math.PI);
+                    const idleAngleDeg = 59.1;
+                    const rotateDeg = targetAngleDeg - idleAngleDeg;
+
+                    const dist = Math.hypot(dx, dy);
+                    const idleDistOnScreen = Math.hypot(395 - 292, 290 - 118) * (svgRect.height / 250);
+                    const scale = Math.min(1.4, Math.max(0.85, dist / idleDistOnScreen));
+
+                    // Priya reaches arm from fixed shoulder, index finger pointing onto card
+                    if (arm) {
+                        arm.style.transform = `rotate(${rotateDeg}deg) scale(${scale})`;
+                    }
+                    if (head) {
+                        head.style.transform = dx < 0 ? 'rotate(-2.5deg) translateY(1.5px)' : 'rotate(2deg) translateY(1.5px)';
+                    }
+
+                    this.playSynthSound('friction');
+
+                    setTimeout(() => {
+                        // Priya presses finger down and peels card open
+                        if (arm) {
+                            arm.style.transform = `rotate(${rotateDeg}deg) scale(${scale * 1.01}) translateY(6px)`;
+                        }
+                        targetCardEl.classList.add('peeling');
+                        targetCardEl.classList.add('flipped');
+
+                        setTimeout(() => {
+                            this.playSynthSound('deal');
+                            if (arm) {
+                                arm.style.transform = `rotate(${rotateDeg}deg) scale(${scale * 0.96}) translateY(-8px)`;
+                            }
+                        }, 200);
+
+                        setTimeout(() => {
+                            targetCardEl.classList.remove('peeling');
+                            resolve();
+                        }, 380);
+                    }, 180);
+                });
+            }
+
+            async dealRound() {
+                const totalBet = Object.values(this.bets).reduce((a, b) => a + b, 0);
+                if (totalBet <= 0) {
+                    alert('Please place a bet on Player, Banker, or Side Bets first!');
+                    return;
+                }
+
+                if (typeof getRealWalletBalance === 'function') {
+                    this.balance = getRealWalletBalance();
+                }
+
+                if (totalBet > this.balance) {
+                    alert(`Balance kam hai! Aapka balance ₨ ${this.balance.toFixed(2)} hai. Please deposit karein.`);
+                    return;
+                }
+
+                if (this.timerInterval) clearInterval(this.timerInterval);
+                this.isDealing = true;
+                document.getElementById('btnDealCards').disabled = true;
+
+                // Deduct Bet from Central Real Wallet
+                let deducted = false;
+                if (typeof window.placeBet === 'function') {
+                    deducted = window.placeBet(totalBet);
+                } else if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                    deducted = window.wallet.placeBet(totalBet, 'Teen Patti Versus');
+                } else {
+                    deducted = true;
+                }
+
+                if (!deducted) {
+                    this.isDealing = false;
+                    document.getElementById('btnDealCards').disabled = false;
+                    alert('Bet deduct nahi ho saki. Please balance check karein.');
+                    return;
+                }
+
+                if (typeof getRealWalletBalance === 'function') {
+                    this.balance = getRealWalletBalance();
+                } else {
+                    this.balance = Math.max(0, this.balance - totalBet);
+                }
+                this.updateUI();
+
+                // Dealer speech
+                this.speakDealer("Bets are closed! Dealing cards.");
+                document.getElementById('dealerSpeechText').textContent = '"Dealing cards... Best of luck!"';
+                document.getElementById('showdownStatusText').textContent = 'DEALER IS DISTRIBUTING CARDS...';
+                
+                // Hide all cards initially so they land from dealer's hands
+                for (let i = 0; i < 3; i++) {
+                    const pEl = document.getElementById(`pCard${i}`);
+                    const dEl = document.getElementById(`dCard${i}`);
+                    pEl.style.opacity = '0';
+                    pEl.classList.remove('flipped');
+                    dEl.style.opacity = '0';
+                    dEl.classList.remove('flipped');
+                }
+
+                const deck = this.generateDeck();
+                const playerCards = [deck.pop(), deck.pop(), deck.pop()];
+                const dealerCards = [deck.pop(), deck.pop(), deck.pop()];
+
+                // Card Deal Sequence: 3D Priya reaches to shoe, draws card, and sweeps to Player/Banker!
+                for (let i = 0; i < 3; i++) {
+                    this.setDealerPose('draw');
+                    await new Promise(r => setTimeout(r, 100));
+
+                    this.setDealerPose('deal');
+                    document.getElementById('dealerSpeechText').textContent = `"Dealing Player card ${i + 1}..."`;
+                    await this.dealSingleCardToSlot(document.getElementById(`pCard${i}`), playerCards[i]);
+                    await new Promise(r => setTimeout(r, 120));
+
+                    this.setDealerPose('draw');
+                    await new Promise(r => setTimeout(r, 100));
+
+                    this.setDealerPose('deal');
+                    document.getElementById('dealerSpeechText').textContent = `"Dealing Banker card ${i + 1}..."`;
+                    await this.dealSingleCardToSlot(document.getElementById(`dCard${i}`), dealerCards[i]);
+                    await new Promise(r => setTimeout(r, 120));
+                }
+
+                // Switch Priya back to attentive idle pose for card reveal
+                this.setDealerPose('idle');
+
+                document.getElementById('dealerSpeechText').textContent = '"Cards are dealt! Let\'s reveal the hands!"';
+                document.getElementById('showdownStatusText').textContent = 'DEALER PRIYA IS OPENING CARDS...';
+                this.speakDealer("Let's reveal the hands!");
+                await new Promise(r => setTimeout(r, 450));
+
+                // 1. Priya opens Player's 3 cards
+                this.setDealerPose('squeeze');
+                document.getElementById('dealerSpeechText').textContent = '"Priya is opening Player hand..."';
+                for (let i = 0; i < 3; i++) {
+                    const card = playerCards[i];
+                    document.getElementById('dealerSpeechText').textContent = `"Opening Player: ${card.rank} of ${card.suit}..."`;
+                    await this.revealCardWithDealerHand(document.getElementById(`pCard${i}`));
+                    await new Promise(r => setTimeout(r, 120));
+                }
+
+                // Show Player Hand Rank after all 3 are open
+                const pResult = this.evaluateHand(playerCards);
+                document.getElementById('playerRankTag').textContent = pResult.name;
+                this.speakDealer(`Player has ${pResult.name}`);
+                await new Promise(r => setTimeout(r, 350));
+
+                // 2. Priya opens Banker's 3 cards
+                document.getElementById('dealerSpeechText').textContent = '"Priya is opening Banker hand..."';
+                for (let i = 0; i < 3; i++) {
+                    const card = dealerCards[i];
+                    document.getElementById('dealerSpeechText').textContent = `"Opening Banker: ${card.rank} of ${card.suit}..."`;
+                    await this.revealCardWithDealerHand(document.getElementById(`dCard${i}`));
+                    await new Promise(r => setTimeout(r, 120));
+                }
+
+                // Return Priya's attached arm to idle pose smoothly
+                this.setDealerPose('idle');
+
+                // Show Banker Hand Rank
+                const dResult = this.evaluateHand(dealerCards);
+                document.getElementById('dealerRankTag').textContent = dResult.name;
+                this.speakDealer(`Banker has ${dResult.name}`);
+
+                await new Promise(r => setTimeout(r, 350));
+                this.playSynthSound('clash');
+
+                let outcome = 'tie';
+                if (pResult.score > dResult.score) {
+                    outcome = 'player';
+                    this.setDealerPose('celebrate');
+                } else if (dResult.score > pResult.score) {
+                    outcome = 'banker';
+                    this.setDealerPose('celebrate');
+                } else {
+                    this.setDealerPose('celebrate');
+                }
+
+                // Payout Calculation (with 2X Bonus)
+                const bonusMultiplier = has2xBonus ? 2 : 1;
+                let totalWin = 0;
+                let wonSummary = [];
+
+                if (outcome === 'player' && this.bets.player > 0) {
+                    const winAmt = Math.round(this.bets.player * 1.98 * bonusMultiplier);
+                    totalWin += winAmt;
+                    wonSummary.push(`Player Win: ₨ ${winAmt} ${has2xBonus ? '(2X BONUS!)' : ''}`);
+                    document.getElementById('betBoxPlayer').classList.add('winner-glow');
+                } else if (outcome === 'banker' && this.bets.banker > 0) {
+                    const winAmt = Math.round(this.bets.banker * 1.98 * bonusMultiplier);
+                    totalWin += winAmt;
+                    wonSummary.push(`Banker Win: ₨ ${winAmt} ${has2xBonus ? '(2X BONUS!)' : ''}`);
+                    document.getElementById('betBoxBanker').classList.add('winner-glow');
+                } else if (outcome === 'tie' && this.bets.tie > 0) {
+                    const winAmt = Math.round(this.bets.tie * 32 * bonusMultiplier);
+                    totalWin += winAmt;
+                    wonSummary.push(`Tie Win: ₨ ${winAmt} ${has2xBonus ? '(2X BONUS!)' : ''}`);
+                    document.getElementById('betBoxTie').classList.add('winner-glow');
+                }
+
+                // Side Bet: Pair Plus
+                if (this.bets.pair_plus > 0) {
+                    let sideMult = 0;
+                    if (pResult.rank === 6) sideMult = 45;
+                    else if (pResult.rank === 5) sideMult = 15;
+                    else if (pResult.rank === 4) sideMult = 8;
+                    else if (pResult.rank === 3) sideMult = 5;
+                    else if (pResult.rank === 2) sideMult = 2;
+
+                    if (sideMult > 0) {
+                        const winAmt = this.bets.pair_plus * sideMult * bonusMultiplier;
+                        totalWin += winAmt;
+                        wonSummary.push(`Pair Plus (${sideMult}X): ₨ ${winAmt}`);
+                        document.getElementById('betBoxPairPlus').classList.add('winner-glow');
+                    }
+                }
+
+                // Side Bet: 6-Card Bonus (Combined 5-Card Poker Hand - up to 2085X)
+                if (this.bets.royal_bonus > 0) {
+                    if (pResult.rank === 6 || dResult.rank === 6) {
+                        const winAmt = this.bets.royal_bonus * 7 * bonusMultiplier;
+                        totalWin += winAmt;
+                        wonSummary.push(`6-Card Trio Bonus (7X): ₨ ${winAmt}`);
+                        document.getElementById('betBoxRoyalBonus').classList.add('winner-glow');
+                    }
+                }
+
+                // Credit Wallet
+                if (totalWin > 0) {
+                    this.balance += totalWin;
+                    if (typeof window.winBet === 'function') {
+                        window.winBet(totalBet, (totalWin / totalBet).toFixed(2));
+                    } else if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                        window.wallet.creditWin(totalBet, totalWin, 'Teen Patti Versus', (totalWin / totalBet).toFixed(2), wonSummary.join(' • '));
+                    }
+                    this.playSynthSound('win');
+                }
+
+                this.updateUI();
+                this.addRoadmapDot(outcome);
+
+                // Update Dialogue & Result Modal
+                await new Promise(r => setTimeout(r, 600));
+                if (totalWin > 0) {
+                    this.speakDealer(`Badhai ho! You won ${totalWin} rupees!`);
+                    document.getElementById('dealerSpeechText').textContent = `"Badhai ho! You won ₨ ${totalWin}!"`;
+                    document.getElementById('showdownStatusText').textContent = `WINNER: ${outcome === 'player' ? 'PLAYER' : (outcome === 'banker' ? 'BANKER' : 'TIE')}!`;
+                    this.showResultModal(true, totalWin, wonSummary.join(' • '));
+                } else {
+                    this.speakDealer(`${outcome === 'player' ? 'Player' : (outcome === 'banker' ? 'Banker' : 'Tie')} wins. Better luck next round!`);
+                    document.getElementById('dealerSpeechText').textContent = `"Better luck next round! Try again!"`;
+                    document.getElementById('showdownStatusText').textContent = `${outcome === 'player' ? 'PLAYER' : (outcome === 'banker' ? 'BANKER' : 'TIE')} WON THIS ROUND`;
+                    this.showResultModal(false, 0, `${outcome === 'player' ? 'Player' : (outcome === 'banker' ? 'Banker' : 'Tie')} won the hand`);
+                }
+
+                this.isDealing = false;
+                document.getElementById('btnDealCards').disabled = false;
+            }
+
+            addRoadmapDot(outcome) {
+                const wrap = document.getElementById('roadmapDots');
+                const dot = document.createElement('div');
+                dot.className = `road-dot dot-${outcome}`;
+                dot.textContent = outcome === 'player' ? 'P' : (outcome === 'banker' ? 'B' : 'T');
+                wrap.appendChild(dot);
+                if (wrap.children.length > 15) {
+                    wrap.removeChild(wrap.firstChild);
+                }
+                this.roundId++;
+                document.getElementById('roundCounterText').textContent = `R-${this.roundId}`;
+            }
+
+            showResultModal(isWin, amount, detail) {
+                const modal = document.getElementById('resultModal');
+                document.getElementById('resIcon').textContent = isWin ? '🏆' : '🃏';
+                document.getElementById('resTitle').textContent = isWin ? 'CONGRATULATIONS!' : 'ROUND OVER';
+                document.getElementById('resDetail').textContent = detail;
+                document.getElementById('resPayout').textContent = isWin ? `+₨ ${amount.toFixed(2)}` : '₨ 0.00';
+                document.getElementById('resPayout').style.color = isWin ? '#10b981' : '#94a3b8';
+                modal.classList.add('active');
+            }
+
+            closeResultModal() {
+                document.getElementById('resultModal').classList.remove('active');
+                document.querySelectorAll('.bet-box, .side-bet-card').forEach(b => b.classList.remove('winner-glow'));
+                this.setDealerPose('idle');
+                this.startBettingTimer();
+            }
+
+            openTrailer() {
+                document.getElementById('trailerModal').classList.add('active');
+                this.playTrailerSfx();
+            }
+
+            closeTrailer() {
+                document.getElementById('trailerModal').classList.remove('active');
+            }
+
+            playTrailerSfx() {
+                this.playSynthSound('clash');
+                setTimeout(() => this.playSynthSound('win'), 400);
+            }
+
+            toggleRulesModal() {
+                const m = document.getElementById('rulesModal');
+                m.classList.toggle('open');
+            }
+
+            toggleAudio() {
+                this.audioEnabled = !this.audioEnabled;
+                const bgm = document.getElementById('tpAmbientAudio');
+                const btn = document.getElementById('soundToggleBtn');
+                if (this.audioEnabled) {
+                    btn.textContent = '🔊';
+                    if (bgm) bgm.play().catch(() => {});
+                } else {
+                    btn.textContent = '🔇';
+                    if (bgm) bgm.pause();
+                    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                }
+            }
+
+            async syncSession() {
+                try {
+                    const token = localStorage.getItem('token') || localStorage.getItem('auth_token') || localStorage.getItem('bwn_auth_token');
+                    if (token) {
+                        const res = await fetch('/api/user/me', {
+                            headers: { 'Authorization': 'Bearer ' + token }
+                        });
+                        const data = await res.json();
+                        if (data && data.success && data.data) {
+                            localStorage.setItem('bwn_session_user', JSON.stringify(data.data));
+                            if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                                window.wallet.syncWithUser(data.data);
+                            }
+                        }
+                    }
+                } catch(e) {}
+                this.refreshWallet();
+            }
+
+            refreshWallet() {
+                if (typeof getRealWalletBalance === 'function') {
+                    this.balance = getRealWalletBalance();
+                } else if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    this.balance = window.wallet.getBalance();
+                } else {
+                    try {
+                        const activeUser = JSON.parse(localStorage.getItem('bwn_session_user') || localStorage.getItem('currentUser') || 'null');
+                        if (activeUser && (activeUser.balance_pkr !== undefined || activeUser.balancePKR !== undefined)) {
+                            this.balance = parseFloat(activeUser.balance_pkr !== undefined ? activeUser.balance_pkr : activeUser.balancePKR);
+                        } else if (activeUser && activeUser.balance !== undefined) {
+                            this.balance = parseFloat(activeUser.balance);
+                        }
+                    } catch(e) {}
+                }
+                if (isNaN(this.balance) || this.balance < 0) this.balance = 0;
+                this.updateUI();
+            }
+
+            updateUI() {
+                const num = Number(this.balance || 0);
+                const formatted = num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const el = document.getElementById('headerBalanceVal');
+                if (el) el.textContent = formatted;
+            }
+        }
+
+        // Initialize Game Safely
+        var tpGame = null;
+
+        function startTeenPatti() {
+            if (window.tpGame) return;
+            window.tpGame = new TeenPattiGame();
+            tpGame = window.tpGame;
+
+            window.tpGame.refreshWallet();
+            window.tpGame.syncSession();
+
+            if (window.wallet && typeof window.wallet.on === 'function') {
+                window.wallet.on('change', () => window.tpGame.refreshWallet());
+                window.wallet.on('balanceChange', () => window.tpGame.refreshWallet());
+            }
+            window.addEventListener('storage', () => window.tpGame.refreshWallet());
+            window.addEventListener('focus', () => window.tpGame.syncSession());
+
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                const activeUser = JSON.parse(localStorage.getItem('bwn_session_user') || localStorage.getItem('currentUser') || 'null');
+                if (avWrap && activeUser) {
+                    if (activeUser.avatar && (activeUser.avatar.startsWith('http') || activeUser.avatar.startsWith('data:') || activeUser.avatar.includes('/') || activeUser.avatar.includes('.'))) {
+                        avWrap.innerHTML = `<img src="${activeUser.avatar}" alt="">`;
+                    } else if (activeUser.avatar) {
+                        avWrap.innerHTML = `<span style="font-size:13px;">${activeUser.avatar}</span>`;
+                    }
+                }
+            } catch(e) {}
+
+            window.tpGame.updateUI();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startTeenPatti);
+        } else {
+            startTeenPatti();
+        }
+        window.addEventListener('load', startTeenPatti);
+        setTimeout(startTeenPatti, 20);
+
+        document.body.addEventListener('click', () => {
+            const bgm = document.getElementById('tpAmbientAudio');
+            if (bgm && window.tpGame && window.tpGame.audioEnabled && bgm.paused) {
+                bgm.play().catch(() => {});
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>

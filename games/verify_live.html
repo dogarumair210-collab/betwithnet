@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Fruity Aztec Sun Wheel - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="preload" as="image" href="../assets/games/wheel/aztec_wheel_disc.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/aztec_wheel_frame.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/symbols/sym_grapes.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/symbols/sym_cherries.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/symbols/sym_watermelon.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/symbols/sym_a.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/symbols/sym_k.png">
+    <link rel="preload" as="image" href="../assets/games/wheel/symbols/sym_q.png">
+    <style>
+        /* ------------------------------------------------------------------
+           RESET & ESSENTIALS
+           ------------------------------------------------------------------ */
+        #bwn-sound-toggle-fixed,
+        .bwn-sound-toggle-btn,
+        #bwn-game-splash, 
+        #app-luxury-footer, 
+        #app-bottom-nav-slot,
+        #app-header-slot,
+        #vip-apk-modal,
+        #daily-bonus-modal-root,
+        .daily-bonus-overlay,
+        .daily-bonus-dialog,
+        .daily-bonus-floating-trigger,
+        .vip-apk-modal-overlay,
+        .vip-apk-modal-dialog,
+        .drawer-nav,
+        .side-drawer,
+        .app-header,
+        .app-bottom-nav,
+        .luxury-casino-footer,
+        .game-balance-hud,
+        .live-ticker,
+        .hero-banner,
+        .drawer-overlay {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            pointer-events: none !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img {
+            color: transparent;
+            font-size: 0;
+        }
+
+        :root {
+            --primary-accent: #ffd700;
+            --primary-highlight: #fff5a6;
+            --cabinet-border: #d4a017;
+            --glow-color: rgba(255, 215, 0, 0.45);
+            --reel-bg: rgba(255, 255, 255, 0.94);
+            --dark-wine: #2a0016;
+            --deep-black: #0c0006;
+        }
+
+        body.bg-fruity-wheel {
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background-color: #0b0006;
+            background-image: 
+                radial-gradient(circle at 50% 22%, rgba(220, 20, 85, 0.55) 0%, rgba(135, 0, 55, 0.35) 30%, rgba(45, 0, 20, 0.92) 65%, #0b0006 100%),
+                radial-gradient(ellipse at 50% 0%, rgba(255, 50, 110, 0.25) 0%, transparent 55%);
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* 3D Gold Coin Rain Canvas */
+        #coinRainCanvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 150;
+        }
+
+        /* Main Game Cabinet Wrapper (Portrait Mobile / Centered Desktop) */
+        .game-cabinet-wrapper {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 6px 8px 24px 8px;
+            position: relative;
+        }
+
+        /* ------------------------------------------------------------------
+           1. TOP HEADER (Ditto Video)
+           ------------------------------------------------------------------ */
+        .top-game-header {
+            width: 100%;
+            max-width: 374px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 4px 4px 6px 4px;
+            position: relative;
+            z-index: 20;
+            margin: 0 auto;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-self: start;
+        }
+
+        .btn-header-back {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 900;
+            transition: all 0.2s;
+        }
+
+        .brand-badge {
+            background: linear-gradient(180deg, #ffd700, #b8860b);
+            color: #1a0800;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 7px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Center Marquee Title */
+        .center-logo-marquee {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(180deg, #e60049 0%, #800028 100%);
+            border: 2px solid #ffd700;
+            border-radius: 14px;
+            padding: 2px 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 16px rgba(255, 215, 0, 0.35);
+        }
+
+        .marquee-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 6px #ffd700, 0 2px 4px #000;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .marquee-sub {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 1.5px;
+        }
+
+        /* Right Buy Bonus Button */
+        .btn-buy-bonus {
+            background: linear-gradient(180deg, #ff1744 0%, #b71c1c 100%);
+            border: 2px solid #ffd700;
+            border-radius: 18px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.5), 0 0 10px rgba(255, 215, 0, 0.4);
+            transition: transform 0.15s ease;
+            outline: none;
+            justify-self: end;
+        }
+
+        .btn-buy-bonus:hover { transform: scale(1.05); }
+        .btn-buy-bonus:active { transform: scale(0.95); }
+
+        .buy-bonus-icon { font-size: 15px; }
+        .buy-bonus-text {
+            font-family: 'Cinzel', serif;
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.05;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-align: left;
+        }
+
+        /* ------------------------------------------------------------------
+           2. UPPER HALF: THE AZTEC SUN WHEEL (WHEEL WOHI RAHNA DO)
+           ------------------------------------------------------------------ */
+        .wheel-upper-section {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0px;
+            margin-bottom: -30px;
+            z-index: 10;
+        }
+
+        .aztec-wheel-container {
+            position: relative;
+            width: 100%;
+            max-width: 290px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            user-select: none;
+            -webkit-user-select: none;
+            filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.95));
+        }
+
+        @media (min-width: 480px) {
+            .aztec-wheel-container { max-width: 315px; }
+            .wheel-upper-section { margin-bottom: -34px; }
+        }
+
+        .wheel-upper-section::before {
+            content: '';
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 30, 110, 0.45) 0%, rgba(180, 0, 75, 0.25) 45%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(12px);
+        }
+
+        .aztec-wheel-disc-wrap {
+            position: absolute;
+            left: 21.2890625%;
+            top: 21.2890625%;
+            width: 57.421875%;
+            height: 57.421875%;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #aztec-wheel-disc {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform-origin: 50% 50%;
+            -webkit-transform-origin: 50% 50%;
+            transform: rotate(0deg);
+            will-change: transform;
+            display: block;
+        }
+
+        .aztec-wheel-frame {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 5;
+            filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7));
+        }
+
+        .aztec-pointer-glow {
+            position: absolute;
+            top: 20.8%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.95) 0%, rgba(0, 229, 255, 0.4) 45%, rgba(0, 229, 255, 0) 70%);
+            pointer-events: none;
+            z-index: 6;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+            mix-blend-mode: screen;
+        }
+
+        .aztec-pointer-glow.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.35);
+            animation: pointerAura 0.75s ease-in-out infinite alternate;
+        }
+
+        @keyframes pointerAura {
+            0% { transform: translate(-50%, -50%) scale(1.15); filter: brightness(1); }
+            100% { transform: translate(-50%, -50%) scale(1.45); filter: brightness(1.6); }
+        }
+
+        .aztec-sun-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(255, 140, 0, 0.4) 45%, rgba(255, 215, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            mix-blend-mode: screen;
+        }
+
+        .aztec-sun-glow.active {
+            opacity: 1;
+            animation: sunPulse 1.8s linear infinite;
+        }
+
+        @keyframes sunPulse {
+            0% { transform: translate(-50%, -50%) scale(0.95) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
+            100% { transform: translate(-50%, -50%) scale(0.95) rotate(360deg); }
+        }
+
+        /* Wheel Bottom Strip & Info Button (Ditto Video) */
+        .wheel-bottom-bar {
+            width: 100%;
+            max-width: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: -6px;
+            padding: 0 10px;
+            z-index: 10;
+        }
+
+        .wheel-arrow-indicator {
+            flex: 1;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            padding: 2px 0;
+            border-radius: 8px;
+        }
+
+        .btn-info-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #9b51e0, #6b21a8);
+            border: 1.5px solid #ffd700;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            transition: transform 0.15s;
+        }
+
+        .btn-info-icon:hover { transform: scale(1.1); }
+
+        /* ------------------------------------------------------------------
+           3. LOWER HALF: 5-REEL x 3-ROW SLOT GRID (Ditto Video)
+           ------------------------------------------------------------------ */
+        /* ------------------------------------------------------------------
+           3. SLOT CABINET & TABLE ITEMS
+           ------------------------------------------------------------------ */
+        .game-center-playarea {
+            width: 100%;
+            max-width: 374px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 auto;
+        }
+
+        /* Slot Table Container with Side Payline Markers */
+        .slot-table-wrapper {
+            width: 100%;
+            max-width: 370px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 0px;
+            gap: 4px;
+        }
+
+        .payline-tags-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 220px;
+            padding: 0;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .payline-tag-num {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5px;
+            font-weight: 900;
+            color: #ffffff;
+            border: 1px solid #ffd700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .tag-1 { background: #e60049; }
+        .tag-2 { background: #00bcd4; }
+        .tag-3 { background: #4caf50; }
+        .tag-4 { background: #ff9800; }
+        .tag-5 { background: #9c27b0; }
+
+        .slot-reels-cabinet {
+            flex: 1;
+            max-width: 326px;
+            background: linear-gradient(180deg, #ffffff 0%, #fbf9f4 50%, #f1ece1 100%);
+            border: 3px solid #d4a017;
+            border-radius: 14px;
+            padding: 2px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 
+                        0 0 25px rgba(255, 215, 0, 0.35),
+                        inset 0 0 15px rgba(212, 160, 23, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slot-reel-column {
+            flex: 1;
+            height: 234px; /* 3 rows x 78px */
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+        }
+
+        @media (min-width: 480px) {
+            .slot-reel-column { height: 264px; } /* 3 rows x 88px */
+        }
+
+        .slot-column-divider {
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #8a5a00 0%, #ffd700 25%, #fff2a3 50%, #ffd700 75%, #8a5a00 100%);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.45);
+            flex-shrink: 0;
+            z-index: 5;
+        }
+
+        .slot-reel-tape {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
+
+        .slot-symbol-cell {
+            width: 100%;
+            height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 3px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.98) 0%, rgba(250, 246, 238, 0.8) 60%, rgba(235, 224, 205, 0.5) 100%);
+            border-bottom: 2px solid rgba(184, 134, 11, 0.45);
+            box-shadow: inset 0 0 0 1px rgba(212, 160, 23, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .slot-symbol-cell:last-child {
+            border-bottom: none;
+        }
+
+        @media (min-width: 480px) {
+            .slot-symbol-cell { height: 88px; }
+        }
+
+        .slot-symbol-cell.win-hit {
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.45) 0%, rgba(255, 165, 0, 0.25) 70%, transparent 100%) !important;
+            box-shadow: 0 0 16px #ffd700, inset 0 0 10px #ffd700 !important;
+            animation: winPulse 0.75s infinite alternate ease-in-out;
+        }
+
+        @keyframes winPulse {
+            0% { transform: scale(1); filter: brightness(1); }
+            100% { transform: scale(1.06); filter: brightness(1.2); }
+        }
+
+        .slot-sym-img {
+            max-width: 86%;
+            max-height: 86%;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
+            transition: transform 0.2s ease;
+        }
+
+        .slot-symbol-cell.win-hit .slot-sym-img {
+            animation: pulseWinSymbol 0.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseWinSymbol {
+            0% { transform: scale(1); filter: drop-shadow(0 0 8px #ffd700) brightness(1); }
+            100% { transform: scale(1.18); filter: drop-shadow(0 0 16px #ffd700) brightness(1.3); }
+        }
+
+        /* ------------------------------------------------------------------
+           4. DASHBOARD & CONTROLS (Ditto Video)
+           ------------------------------------------------------------------ */
+        .slot-control-panel {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 8px;
+            gap: 6px;
+        }
+
+        /* Win Ribbon (Top of controls) */
+        .win-ribbon-bar {
+            width: 100%;
+            background: linear-gradient(180deg, #2b0014 0%, #150009 100%);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 5px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .win-ribbon-label {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 1px;
+        }
+
+        .win-ribbon-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Main Bottom Control Bar */
+        .main-control-strip {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 4px;
+        }
+
+        /* Left Controls (Menu & Bet) */
+        .deck-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-deck-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-deck-icon:hover {
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        .btn-bet-pill {
+            background: linear-gradient(180deg, #2b0014 0%, #150009 100%);
+            border: 1.5px solid #ffd700;
+            border-radius: 18px;
+            padding: 6px 14px;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.15s, border-color 0.2s;
+        }
+
+        .btn-bet-pill:hover {
+            border-color: #fff5a6;
+            transform: scale(1.03);
+        }
+
+        /* Center Big Yellow Spin Button (Ditto Video) */
+        .deck-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-main-spin {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #fff7a1 0%, #ffd700 40%, #e6a100 80%, #b87b00 100%);
+            border: 3.5px solid #ffffff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.65);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s, filter 0.2s;
+            outline: none;
+            position: relative;
+        }
+
+        .btn-main-spin:hover {
+            transform: scale(1.06);
+            filter: brightness(1.12);
+        }
+
+        .btn-main-spin:active {
+            transform: scale(0.94);
+        }
+
+        .spin-icon-arrows {
+            font-size: 26px;
+            color: #1a0800;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-main-spin.spinning .spin-icon-arrows {
+            animation: rotateSpinIcon 0.9s linear infinite;
+        }
+
+        @keyframes rotateSpinIcon {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Right Controls (Turbo & Auto) */
+        .deck-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-deck-toggle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #cbd5e1;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .btn-deck-toggle.active {
+            background: linear-gradient(180deg, #ffd700, #d97706);
+            color: #1a0800;
+            border-color: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+
+        .auto-count {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            background: #ff1744;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 1px 4px;
+            border-radius: 6px;
+        }
+
+        /* Bottom Status Footer (Ditto Video) */
+        .slot-status-footer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 6px;
+            margin-top: 2px;
+            font-size: 11px;
+            color: #8da4be;
+        }
+
+        .status-level-badge {
+            font-size: 10px;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #cbd5e1;
+        }
+
+        .status-balance {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .status-version {
+            font-size: 9px;
+            color: #64748b;
+        }
+
+        /* ------------------------------------------------------------------
+           5. MODALS & POPUPS
+           ------------------------------------------------------------------ */
+        /* Buy Bonus Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(6px);
+            padding: 16px;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal-card {
+            background: #16000c;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 20px 24px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.35);
+        }
+
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .modal-body-text {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .modal-btn-confirm {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #ff1744 0%, #b71c1c 100%);
+            border: 2px solid #ffd700;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .modal-btn-cancel {
+            width: 100%;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Bet Select Grid */
+        .bet-grid-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .btn-bet-option {
+            padding: 10px 4px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-bet-option:hover {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+        }
+
+        /* Visual Paytable Modal */
+        .visual-paytable-scroll {
+            max-height: 340px;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .paytable-feature-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 10px;
+            padding: 6px 10px;
+        }
+
+        .pay-sym-thumb {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+            flex-shrink: 0;
+        }
+
+        .pay-sym-details {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .pay-sym-name {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .pay-sym-desc {
+            font-size: 10px;
+            color: #cbd5e1;
+            line-height: 1.25;
+        }
+
+        .paytable-items-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .paytable-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 4px 8px;
+        }
+
+        .pay-sym-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pay-sym-title {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .pay-tiers {
+            display: flex;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #cbd5e1;
+        }
+
+        /* Big Win Shield Modal */
+        .bigwin-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 220;
+            backdrop-filter: blur(8px);
+        }
+
+        .bigwin-modal.show { display: flex; }
+
+        .bigwin-shield-img {
+            max-width: 290px;
+            width: 75%;
+            filter: drop-shadow(0 0 45px rgba(255, 215, 0, 0.6));
+            animation: floatShield 2s infinite ease-in-out alternate;
+        }
+
+        @keyframes floatShield {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-12px) scale(1.05); }
+        }
+
+        .bigwin-amount {
+            font-family: 'Cinzel', serif;
+            font-size: 38px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            margin-top: 14px;
+        }
+    </style>
+</head>
+<body class="bg-fruity-wheel">
+
+    <!-- 3D Gold Coin Rain Canvas -->
+    <canvas id="coinRainCanvas"></canvas>
+
+    <div class="game-cabinet-wrapper">
+
+        <!-- 1. Top Header (Ditto Video) -->
+        <header class="top-game-header">
+            <div class="header-left">
+                <a href="../index.html" class="btn-header-back" title="Lobby">❮</a>
+                <button class="btn-info-icon" onclick="openPaytable()" title="Game Rules & Paytable">i</button>
+            </div>
+
+            <div class="center-logo-marquee">
+                <span class="marquee-title">FRUITY WHEEL</span>
+            </div>
+
+            <button class="btn-buy-bonus" onclick="openBuyBonus()" title="Buy Sun Wheel Bonus">
+                <span class="buy-bonus-icon">💰</span>
+                <span class="buy-bonus-text">BUY<br>BONUS</span>
+            </button>
+        </header>
+
+        <!-- 2. Main Game Play Area (Wheel + Table + Controls) -->
+        <main class="game-center-playarea">
+            <!-- Aztec Sun Wheel Section (Spins on Bonus) -->
+            <section class="wheel-upper-section">
+                <div class="aztec-wheel-container">
+                    <div class="aztec-wheel-disc-wrap">
+                        <img src="../assets/games/wheel/aztec_wheel_disc.png" id="aztec-wheel-disc" alt="Sun Wheel Disc">
+                    </div>
+                    <img src="../assets/games/wheel/aztec_wheel_frame.png" class="aztec-wheel-frame" alt="Sun Wheel Frame">
+                    <div class="aztec-pointer-glow" id="aztec-pointer-glow"></div>
+                    <div class="aztec-sun-glow" id="aztec-sun-glow"></div>
+                </div>
+            </section>
+
+            <!-- 5x3 Video Slot Reels Table with Side Payline Markers -->
+            <div class="slot-table-wrapper">
+                <!-- Left Payline Badges -->
+                <div class="payline-tags-col">
+                    <span class="payline-tag-num tag-1">1</span>
+                    <span class="payline-tag-num tag-2">2</span>
+                    <span class="payline-tag-num tag-3">3</span>
+                    <span class="payline-tag-num tag-4">4</span>
+                    <span class="payline-tag-num tag-5">5</span>
+                </div>
+
+                <section class="slot-reels-cabinet">
+                    <!-- Column 0 -->
+                    <div class="slot-reel-column">
+                        <div class="slot-reel-tape" id="reel-tape-0"></div>
+                    </div>
+                    <div class="slot-column-divider"></div>
+
+                    <!-- Column 1 -->
+                    <div class="slot-reel-column">
+                        <div class="slot-reel-tape" id="reel-tape-1"></div>
+                    </div>
+                    <div class="slot-column-divider"></div>
+
+                    <!-- Column 2 -->
+                    <div class="slot-reel-column">
+                        <div class="slot-reel-tape" id="reel-tape-2"></div>
+                    </div>
+                    <div class="slot-column-divider"></div>
+
+                    <!-- Column 3 -->
+                    <div class="slot-reel-column">
+                        <div class="slot-reel-tape" id="reel-tape-3"></div>
+                    </div>
+                    <div class="slot-column-divider"></div>
+
+                    <!-- Column 4 -->
+                    <div class="slot-reel-column">
+                        <div class="slot-reel-tape" id="reel-tape-4"></div>
+                    </div>
+                </section>
+
+                <!-- Right Payline Badges -->
+                <div class="payline-tags-col">
+                    <span class="payline-tag-num tag-5">6</span>
+                    <span class="payline-tag-num tag-4">7</span>
+                    <span class="payline-tag-num tag-3">8</span>
+                    <span class="payline-tag-num tag-2">9</span>
+                    <span class="payline-tag-num tag-1">10</span>
+                </div>
+            </div>
+
+            <!-- Dashboard & Controls (Ditto Video) -->
+            <footer class="slot-control-panel">
+                <!-- Win Bar -->
+                <div class="win-ribbon-bar">
+                    <span class="win-ribbon-label">WIN</span>
+                    <span class="win-ribbon-amount" id="win-amount-text">Rs 0.00</span>
+                </div>
+
+                <!-- Main Control Bar -->
+                <div class="main-control-strip">
+                    <!-- Left: Settings & Bet Button -->
+                    <div class="deck-left">
+                        <button class="btn-deck-icon" onclick="if(window.audio) window.audio.toggleMute()" title="Audio Toggle">
+                            <span id="muteIcon">🔊</span>
+                        </button>
+                        <button class="btn-bet-pill" id="current-bet-display" onclick="openBetModal()">
+                            Bet Rs 100
+                        </button>
+                    </div>
+
+                    <!-- Center: Big Round Yellow Spin Button (Ditto Video) -->
+                    <div class="deck-center">
+                        <button class="btn-main-spin" id="mainSpinBtn" onclick="executeSpin()">
+                            <span class="spin-icon-arrows">↻</span>
+                        </button>
+                    </div>
+
+                    <!-- Right: Turbo & Auto -->
+                    <div class="deck-right">
+                        <button class="btn-deck-toggle" id="turboToggleBtn" onclick="toggleTurbo()" title="Turbo Spin">
+                            <span>⚡</span>
+                        </button>
+                        <button class="btn-deck-toggle" id="autoToggleBtn" onclick="toggleAutoSpin()" title="Auto Spin">
+                            <span class="icon-auto">🔄</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bottom Status Footer (Ditto Video) -->
+                <div class="slot-status-footer">
+                    <span class="status-level-badge">LV0</span>
+                    <span class="status-balance">Balance <span id="user-balance-display">Rs 10,000.00</span></span>
+                    <span class="status-version">v_186_61</span>
+                </div>
+            </footer>
+        </main>
+
+    </div>
+
+    <!-- Modals -->
+    <!-- Buy Bonus Modal -->
+    <div class="modal-overlay" id="buyBonusModal">
+        <div class="modal-card">
+            <h3 class="modal-title">BUY SUN WHEEL BONUS</h3>
+            <p class="modal-body-text">
+                Trigger the Aztec Sun Wheel immediately for <strong id="buy-bonus-cost" style="color:#ffd700;">Rs 5,000</strong> and win up to <strong>100X Jackpot</strong>!
+            </p>
+            <button class="modal-btn-confirm" onclick="confirmBuyBonus()">CONFIRM BUY BONUS</button>
+            <button class="modal-btn-cancel" onclick="closeBuyBonus()">CANCEL</button>
+        </div>
+    </div>
+
+    <!-- Bet Selection Modal -->
+    <div class="modal-overlay" id="betSelectModal">
+        <div class="modal-card">
+            <h3 class="modal-title">SELECT BET AMOUNT</h3>
+            <div class="bet-grid-options">
+                <button class="btn-bet-option" onclick="selectBet(10)">Rs 10</button>
+                <button class="btn-bet-option" onclick="selectBet(20)">Rs 20</button>
+                <button class="btn-bet-option" onclick="selectBet(50)">Rs 50</button>
+                <button class="btn-bet-option" onclick="selectBet(100)">Rs 100</button>
+                <button class="btn-bet-option" onclick="selectBet(200)">Rs 200</button>
+                <button class="btn-bet-option" onclick="selectBet(500)">Rs 500</button>
+                <button class="btn-bet-option" onclick="selectBet(1000)">Rs 1,000</button>
+                <button class="btn-bet-option" onclick="selectBet(2000)">Rs 2,000</button>
+                <button class="btn-bet-option" onclick="selectBet(5000)">Rs 5,000</button>
+            </div>
+            <button class="modal-btn-cancel" onclick="closeBetModal()">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- Paytable Modal -->
+    <div class="modal-overlay" id="paytableModal">
+        <div class="modal-card" style="max-width: 420px; text-align: left; padding: 16px;">
+            <h3 class="modal-title" style="text-align: center; margin-bottom: 10px;">SYMBOL PAYOUT TABLE</h3>
+            <div class="visual-paytable-scroll">
+                <!-- Special Features -->
+                <div class="paytable-feature-card">
+                    <img src="../assets/games/wheel/symbols/sym_wheel.png" class="pay-sym-thumb" alt="">
+                    <div class="pay-sym-details">
+                        <span class="pay-sym-name" style="color: #ffd700;">☀️ SUN WHEEL BONUS</span>
+                        <span class="pay-sym-desc">3+ anywhere triggers Aztec Sun Wheel Jackpot feature (up to 100X)!</span>
+                    </div>
+                </div>
+
+                <div class="paytable-feature-card">
+                    <img src="../assets/games/wheel/symbols/sym_wild.png" class="pay-sym-thumb" alt="">
+                    <div class="pay-sym-details">
+                        <span class="pay-sym-name" style="color: #ffd700;">👑 GOLDEN WILD</span>
+                        <span class="pay-sym-desc">Substitutes for all normal symbols to complete winning lines.</span>
+                    </div>
+                </div>
+
+                <!-- Regular Symbols Grid Table -->
+                <div class="paytable-items-grid">
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_grapes.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">Grapes</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">180x</strong></span>
+                            <span>4x: 50x</span>
+                            <span>3x: 15x</span>
+                        </div>
+                    </div>
+
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_cherries.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">Cherries</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">140x</strong></span>
+                            <span>4x: 40x</span>
+                            <span>3x: 12x</span>
+                        </div>
+                    </div>
+
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_watermelon.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">Melon</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">100x</strong></span>
+                            <span>4x: 30x</span>
+                            <span>3x: 10x</span>
+                        </div>
+                    </div>
+
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_a.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">Ace</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">60x</strong></span>
+                            <span>4x: 20x</span>
+                            <span>3x: 8x</span>
+                        </div>
+                    </div>
+
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_k.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">King</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">45x</strong></span>
+                            <span>4x: 15x</span>
+                            <span>3x: 6x</span>
+                        </div>
+                    </div>
+
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_q.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">Queen</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">35x</strong></span>
+                            <span>4x: 12x</span>
+                            <span>3x: 5x</span>
+                        </div>
+                    </div>
+
+                    <div class="paytable-item-row">
+                        <div class="pay-sym-cell">
+                            <img src="../assets/games/wheel/symbols/sym_j.png" class="pay-sym-thumb" alt="">
+                            <span class="pay-sym-title">Jack</span>
+                        </div>
+                        <div class="pay-tiers">
+                            <span>5x: <strong style="color:#ffd700;">25x</strong></span>
+                            <span>4x: 10x</span>
+                            <span>3x: 4x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="modal-btn-cancel" style="margin-top: 12px;" onclick="closePaytable()">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- Big Win Shield Modal -->
+    <div class="bigwin-modal" id="bigWinModal">
+        <img src="../assets/games/wheel/aztec_bigwin_shield.png" class="bigwin-shield-img" alt="Big Win Shield">
+        <div class="bigwin-amount" id="bigWinAmount">Rs 0</div>
+    </div>
+
+    <!-- Core Game Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/wheel.js"></script>
+    <script>
+        function initializeFruityWheel() {
+            if (window.core && typeof window.core.init === 'function') {
+                window.core.init('casino');
+            }
+            if (window.wheelGame && typeof window.wheelGame.init === 'function') {
+                window.wheelGame.init();
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeFruityWheel);
+        } else {
+            initializeFruityWheel();
+        }
+    </script>
+<script>
+window.addEventListener('load', async () => {
+    console.log('LIVE INIT ANGLE:', window.wheelGame.wheelAngle);
+    await new Promise(r => setTimeout(r, 700));
+    console.log('LIVE ANGLE AFTER 700ms:', window.wheelGame.wheelAngle);
+    console.log('LIVE_IDLE_SPIN_OK');
+});
+</script></body>
+</html>
+

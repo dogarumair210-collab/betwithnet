@@ -1,0 +1,17 @@
+{"method":"Network.webSocketFrameSent","params":{"requestId":"11700.260","timestamp":43802.701865,"response":{"opcode":1,"mask":true,"payloadData":"{\"arguments\":[{\"version\":2}],\"invocationId\":\"3\",\"target\":\"Ping\",\"type\":1}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43802.907595,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":1,\"target\":\"Ping\",\"arguments\":[]}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43802.908402,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":3,\"invocationId\":\"3\",\"result\":null}\u001e"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"11700.262","timestamp":43803.668114,"response":{"opcode":2,"mask":true,"payloadData":"G5UBgKEytFVwZGF0ZVBsYXllclNlc3Npb25zkA=="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.262","timestamp":43803.885214,"response":{"opcode":2,"mask":false,"payloadData":"B5UDgKEyA8A="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43807.644617,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":6}\u001e"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"11700.260","timestamp":43807.699803,"response":{"opcode":1,"mask":true,"payloadData":"{\"arguments\":[{\"version\":2}],\"invocationId\":\"4\",\"target\":\"Ping\",\"type\":1}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43807.900129,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":1,\"target\":\"Ping\",\"arguments\":[]}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43807.901177,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":3,\"invocationId\":\"4\",\"result\":null}\u001e"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"11700.262","timestamp":43808.666309,"response":{"opcode":2,"mask":true,"payloadData":"G5UBgKEztFVwZGF0ZVBsYXllclNlc3Npb25zkA=="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.262","timestamp":43808.837116,"response":{"opcode":2,"mask":false,"payloadData":"B5UDgKEzA8A="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.262","timestamp":43809.41883,"response":{"opcode":2,"mask":false,"payloadData":"ApEG"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"11700.260","timestamp":43812.698462,"response":{"opcode":1,"mask":true,"payloadData":"{\"arguments\":[{\"version\":2}],\"invocationId\":\"5\",\"target\":\"Ping\",\"type\":1}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43812.956538,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":1,\"target\":\"Ping\",\"arguments\":[]}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.260","timestamp":43812.957335,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":3,\"invocationId\":\"5\",\"result\":null}\u001e"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"11700.262","timestamp":43813.66541,"response":{"opcode":2,"mask":true,"payloadData":"G5UBgKE0tFVwZGF0ZVBsYXllclNlc3Npb25zkA=="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"11700.262","timestamp":43813.882427,"response":{"opcode":2,"mask":false,"payloadData":"B5UDgKE0A8A="}}}

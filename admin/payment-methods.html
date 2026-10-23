@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Payment Gateways - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    Cashier / <b style="color:#fff;">Payment Gateways & Currency Exchange</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="openAddModal()" class="btn-lte btn-lte-primary">
+                    <span>➕ Add New Gateway</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>💳</span> Payment Gateways & Exchange Rate Engine
+                    </h1>
+                    <p class="page-subtitle">
+                        Add, edit, or delete Deposit and Withdrawal channels. Configure local currency exchange rates (PKR / USDT / EUR) to auto-convert balances into base USD ($).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tabs: Deposit Methods vs Withdraw Methods -->
+            <div class="tab-pills">
+                <button class="tab-pill-btn active" id="tab-btn-deposit" onclick="switchTab('deposit')">
+                    <span>📥 Deposit Methods (Receiving Accounts)</span>
+                </button>
+                <button class="tab-pill-btn" id="tab-btn-withdraw" onclick="switchTab('withdraw')">
+                    <span>📤 Withdrawal Methods (Payout Channels)</span>
+                </button>
+                <button class="tab-pill-btn" id="tab-btn-p2p" onclick="switchTab('p2p')">
+                    <span>🔄 P2P OTC Desk & Merchant Commissions</span>
+                </button>
+            </div>
+
+            <!-- DEPOSIT METHODS SECTION -->
+            <div id="section-deposit" class="lte-card">
+                <div class="lte-card-header">
+                    <div class="lte-card-title">
+                        <span>📥</span> Active Deposit Gateways
+                    </div>
+                    <span style="font-size:11px; color:var(--lte-muted);">These payment options appear in the player deposit modal with automatic USD conversion</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th>Method Name</th>
+                                <th>Type</th>
+                                <th>Account Title</th>
+                                <th>Account Number / IBAN</th>
+                                <th>Currency & USD Rate</th>
+                                <th>Min / Max</th>
+                                <th>Status</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deposit-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- WITHDRAW METHODS SECTION -->
+            <div id="section-withdraw" class="lte-card" style="display:none;">
+                <div class="lte-card-header">
+                    <div class="lte-card-title">
+                        <span>📤</span> Active Withdrawal Channels
+                    </div>
+                    <span style="font-size:11px; color:var(--lte-muted);">Channels available for player cashout requests</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th>Method Name</th>
+                                <th>Type</th>
+                                <th>Currency & USD Rate</th>
+                                <th>Min / Max Cashout</th>
+                                <th>Fee %</th>
+                                <th>ETA Time</th>
+                                <th>Status</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="withdraw-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- P2P OTC DESK & MERCHANTS SECTION -->
+            <div id="section-p2p" class="lte-card" style="display:none;">
+                <div class="lte-card-header">
+                    <div class="lte-card-title">
+                        <span>🔄</span> P2P OTC Desk & Merchant Liquidity Controls
+                    </div>
+                    <span style="font-size:11px; color:var(--lte-muted);">Manage verified OTC merchants, commission percentages, and live escrow volume</span>
+                </div>
+
+                <!-- P2P KPI & Settings Card -->
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:20px; padding:16px; background:var(--lte-bg); border-radius:10px; border:1px solid var(--lte-border);">
+                    <div>
+                        <label style="font-size:11px; color:var(--lte-muted); font-weight:700; text-transform:uppercase;">Merchant Commission Rate (%):</label>
+                        <div style="display:flex; gap:8px; margin-top:6px;">
+                            <input type="number" id="p2p-admin-commission-input" class="form-ctrl" value="2.0" step="0.1" min="0" max="15" style="max-width:110px;">
+                            <button class="btn-lte btn-lte-primary" onclick="saveP2PCommission()" style="padding:4px 12px; font-size:12px;">Save Rate</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size:11px; color:var(--lte-muted); font-weight:700; text-transform:uppercase;">Active Verified Merchants:</div>
+                        <div id="p2p-stat-merchants" style="font-size:20px; font-weight:900; color:#00e5ff; margin-top:6px;">8 Verified Desks</div>
+                    </div>
+                    <div>
+                        <div style="font-size:11px; color:var(--lte-muted); font-weight:700; text-transform:uppercase;">24h P2P Volume:</div>
+                        <div style="font-size:20px; font-weight:900; color:var(--lte-gold); margin-top:6px; font-family:var(--font-mono);">$ 482,900 USD</div>
+                    </div>
+                    <div>
+                        <div style="font-size:11px; color:var(--lte-muted); font-weight:700; text-transform:uppercase;">Merchant Commissions Paid:</div>
+                        <div style="font-size:20px; font-weight:900; color:#00e700; margin-top:6px; font-family:var(--font-mono);">$ 9,658 USD (2.0%)</div>
+                    </div>
+                </div>
+
+                <!-- Verified Merchants Table -->
+                <div style="margin-bottom:24px;">
+                    <h4 style="font-size:14px; font-weight:800; color:#fff; margin-bottom:10px;">👑 Verified P2P Liquidity Merchants</h4>
+                    <div class="table-responsive">
+                        <table class="table-lte">
+                            <thead>
+                                <tr>
+                                    <th>Merchant Name & ID</th>
+                                    <th>Badge & Rating</th>
+                                    <th>Completed Orders</th>
+                                    <th>Channels</th>
+                                    <th>Buy / Sell Rates</th>
+                                    <th>Order Limits (PKR)</th>
+                                    <th>Desk Status</th>
+                                    <th style="text-align:right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="p2p-merchants-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Live P2P Orders Ledger -->
+                <div>
+                    <h4 style="font-size:14px; font-weight:800; color:#fff; margin-bottom:10px;">📋 Live P2P Escrow & Completed Orders</h4>
+                    <div class="table-responsive">
+                        <table class="table-lte">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Type</th>
+                                    <th>Merchant Desk</th>
+                                    <th>USD Amount</th>
+                                    <th>PKR Fiat Amount</th>
+                                    <th>Payment Channel</th>
+                                    <th>Commission Earned</th>
+                                    <th>Escrow Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="p2p-orders-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ADD/EDIT MODAL OVERLAY -->
+    <div id="gateway-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(4,7,12,0.85); backdrop-filter:blur(10px); z-index:1000; align-items:center; justify-content:center; padding:20px;">
+        <div class="lte-card" style="max-width:600px; width:100%; max-height:90vh; overflow-y:auto;">
+            <div class="lte-card-header">
+                <h3 class="lte-card-title" id="modal-title">➕ Add Payment Gateway</h3>
+                <button onclick="closeModal()" class="btn-lte btn-lte-secondary" style="padding:4px 10px;">✕</button>
+            </div>
+
+            <form id="gateway-form" onsubmit="handleSaveGateway(event)">
+                <input type="hidden" id="gw-mode" value="deposit">
+                <input type="hidden" id="gw-id" value="">
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <label>Gateway Name:</label>
+                        <input type="text" id="gw-name" class="form-ctrl" placeholder="e.g. EasyPaisa VIP" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Channel Type:</label>
+                        <select id="gw-type" class="form-ctrl">
+                            <option value="Mobile Wallet">Mobile Wallet (EasyPaisa / JazzCash)</option>
+                            <option value="Bank Transfer">Bank Transfer (IBFT / Raast)</option>
+                            <option value="Cryptocurrency">Cryptocurrency (USDT / Bitcoin)</option>
+                            <option value="Direct Merchant">Direct Merchant Gateway</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <label>Gateway Currency:</label>
+                        <select id="gw-currency" class="form-ctrl" onchange="autoFillExchangeRate(this.value)">
+                            <option value="PKR">PKR (Pakistani Rupee ₨)</option>
+                            <option value="USD">USD (US Dollar $)</option>
+                            <option value="USDT">USDT (Tether Crypto ₮)</option>
+                            <option value="EUR">EUR (Euro €)</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Exchange Rate to USD (1 USD = ? Units):</label>
+                        <input type="number" step="0.01" id="gw-exchange-rate" class="form-ctrl" value="280" required>
+                        <span style="font-size:10px; color:var(--lte-muted);">e.g. 280 for PKR (₨ 280 = $1.00 USD), 1 for USD/USDT</span>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <label>Icon / Emoji:</label>
+                        <input type="text" id="gw-icon" class="form-ctrl" value="📱" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Status:</label>
+                        <select id="gw-status" class="form-ctrl">
+                            <option value="active" selected>Active 🟢</option>
+                            <option value="inactive">Disabled / Inactive 🔴</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="deposit-specific-fields">
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Merchant Account Title:</label>
+                            <input type="text" id="gw-acc-title" class="form-ctrl" placeholder="e.g. Bet With Net Official">
+                        </div>
+                        <div class="form-field">
+                            <label>Account Number / IBAN / Wallet:</label>
+                            <input type="text" id="gw-acc-num" class="form-ctrl" placeholder="e.g. 0315-9988776">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>Player Payment Instructions:</label>
+                        <textarea id="gw-instructions" class="form-ctrl" rows="3" placeholder="Step by step deposit guidelines for the player..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <label>Minimum Amount (Local):</label>
+                        <input type="number" id="gw-min" class="form-ctrl" value="500" min="1" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Maximum Amount (Local):</label>
+                        <input type="number" id="gw-max" class="form-ctrl" value="100000" min="10" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <label>Processing ETA:</label>
+                        <input type="text" id="gw-eta" class="form-ctrl" value="Instant (0-60s)">
+                    </div>
+                    <div class="form-field" id="fee-field" style="display:none;">
+                        <label>Withdrawal Fee %:</label>
+                        <input type="number" id="gw-fee" class="form-ctrl" value="0" min="0" step="0.1">
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:10px; margin-top:16px;">
+                    <button type="submit" class="btn-lte btn-lte-primary" style="flex:1;">
+                        <span>💾 Save Gateway</span>
+                    </button>
+                    <button type="button" onclick="closeModal()" class="btn-lte btn-lte-secondary">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js?v=3.5"></script>
+    <script src="../js/admin_config.js?v=2026_ijaz_v5"></script>
+    <script src="../js/payment_manager.js?v=2026_ijaz_v5"></script>
+    <script src="../js/p2p_manager.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        let currentTab = 'deposit';
+
+        function autoFillExchangeRate(curr) {
+            const input = document.getElementById('gw-exchange-rate');
+            if (curr === 'PKR') input.value = '280';
+            else if (curr === 'USD' || curr === 'USDT') input.value = '1';
+            else if (curr === 'EUR') input.value = '0.92';
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tab-btn-deposit').className = `tab-pill-btn ${tab === 'deposit' ? 'active' : ''}`;
+            document.getElementById('tab-btn-withdraw').className = `tab-pill-btn ${tab === 'withdraw' ? 'active' : ''}`;
+            const p2pBtn = document.getElementById('tab-btn-p2p');
+            if (p2pBtn) p2pBtn.className = `tab-pill-btn ${tab === 'p2p' ? 'active' : ''}`;
+
+            document.getElementById('section-deposit').style.display = (tab === 'deposit') ? 'block' : 'none';
+            document.getElementById('section-withdraw').style.display = (tab === 'withdraw') ? 'block' : 'none';
+            const secP2P = document.getElementById('section-p2p');
+            if (secP2P) secP2P.style.display = (tab === 'p2p') ? 'block' : 'none';
+
+            if (tab === 'p2p') {
+                renderP2PTab();
+            } else {
+                renderGateways();
+            }
+        }
+
+        function renderP2PTab() {
+            if (!window.p2pManager) return;
+            const commInput = document.getElementById('p2p-admin-commission-input');
+            if (commInput) commInput.value = window.p2pManager.getCommissionRate();
+
+            const merchants = window.p2pManager.state.merchants || [];
+            const orders = window.p2pManager.state.orders || [];
+
+            const mBody = document.getElementById('p2p-merchants-tbody');
+            if (mBody) {
+                mBody.innerHTML = merchants.map(m => `
+                    <tr>
+                        <td style="font-weight:800; color:#fff;">
+                            <span style="margin-right:6px;">${m.avatar}</span>
+                            ${m.name}
+                            <div style="font-size:10px; color:var(--lte-cyan); font-family:var(--font-mono);">${m.id}</div>
+                        </td>
+                        <td>
+                            <span style="font-size:11px; font-weight:700; color:#00e5ff;">${m.badge}</span>
+                            <div style="font-size:10.5px; color:var(--lte-muted);">${m.completion}% completion</div>
+                        </td>
+                        <td style="font-weight:700; color:#fff;">${m.trades.toLocaleString()} trades</td>
+                        <td>${m.channels.map(c => `<span style="font-size:10px; padding:1px 5px; border-radius:3px; background:rgba(255,255,255,0.06); color:#fff; margin-right:4px;">${c}</span>`).join('')}</td>
+                        <td style="font-family:var(--font-mono); font-size:12px;">
+                            <span style="color:#00e700;">Buy: ₨ ${m.buyPrice.toFixed(2)}</span><br>
+                            <span style="color:#ff3b30;">Sell: ₨ ${m.sellPrice.toFixed(2)}</span>
+                        </td>
+                        <td style="font-family:var(--font-mono); font-size:11.5px; color:#fff;">
+                            ₨ ${m.minLimitPKR.toLocaleString()} - ₨ ${m.maxLimitPKR.toLocaleString()}
+                        </td>
+                        <td>
+                            <span class="badge-status ${m.status === 'online' ? 'badge-active' : 'badge-suspended'}">
+                                ${m.status.toUpperCase()}
+                            </span>
+                        </td>
+                        <td style="text-align:right;">
+                            <button class="btn-lte btn-lte-secondary" style="padding:4px 8px; font-size:11px;" onclick="toggleMerchantStatus('${m.id}')">
+                                ${m.status === 'online' ? 'Set Offline' : 'Set Online'}
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            const oBody = document.getElementById('p2p-orders-tbody');
+            if (oBody) {
+                oBody.innerHTML = orders.map(o => `
+                    <tr>
+                        <td style="font-family:var(--font-mono); font-size:11.5px; font-weight:800; color:var(--lte-gold);">${o.id}</td>
+                        <td>
+                            <span style="font-size:11px; font-weight:800; color:${o.type === 'BUY' ? '#00e700' : '#ff3b30'};">
+                                ${o.type} USD
+                            </span>
+                        </td>
+                        <td style="font-weight:700; color:#fff;">${o.merchantName || 'Merchant'}</td>
+                        <td style="font-weight:800; font-family:var(--font-mono); color:#fff;">$ ${Number(o.amountUSD).toFixed(2)}</td>
+                        <td style="font-family:var(--font-mono); color:#8e9bb0;">₨ ${Number(o.amountPKR).toLocaleString()}</td>
+                        <td><span style="font-size:11px; color:var(--lte-cyan);">${o.channel || 'EasyPaisa'}</span></td>
+                        <td style="font-family:var(--font-mono); color:#00e700; font-weight:700;">+$ ${Number(o.commissionEarnedUSD || 0).toFixed(2)}</td>
+                        <td>
+                            <span class="badge-status ${o.status === 'COMPLETED' ? 'badge-active' : 'badge-pending'}">
+                                ${o.status}
+                            </span>
+                        </td>
+                        <td style="font-size:11px; color:#8e9bb0;">${o.date || 'Today'}</td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function saveP2PCommission() {
+            const val = parseFloat(document.getElementById('p2p-admin-commission-input').value) || 2.0;
+            if (window.p2pManager) {
+                window.p2pManager.setCommissionRate(val);
+                alert(`P2P Merchant Commission rate updated to ${val.toFixed(1)}%!`);
+                renderP2PTab();
+            }
+        }
+
+        function toggleMerchantStatus(id) {
+            if (!window.p2pManager) return;
+            const m = window.p2pManager.getMerchantById(id);
+            if (m) {
+                m.status = m.status === 'online' ? 'offline' : 'online';
+                window.p2pManager.saveState();
+                renderP2PTab();
+            }
+        }
+
+        function renderGateways() {
+            renderDepositTable();
+            renderWithdrawTable();
+        }
+
+        function renderDepositTable() {
+            const tbody = document.getElementById('deposit-tbody');
+            const methods = window.paymentManager.getDepositMethods();
+
+            if (methods.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#8e9bb0;">No deposit methods configured. Click "Add New Gateway" to create one.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = methods.map(m => {
+                const isActive = m.status === 'active';
+                const curr = m.currency || 'PKR';
+                const rate = m.exchangeRateToUSD || (curr === 'PKR' ? 280 : 1);
+                const sym = curr === 'PKR' ? '₨' : (curr === 'USD' ? '$' : (curr === 'EUR' ? '€' : '₮'));
+                const isEpOrJc = (m.id === 'dep-easypaisa' || m.id === 'pm-easypaisa' || m.id === 'dep-jazzcash' || m.id === 'pm-jazzcash' || /easypaisa|jazzcash/i.test(m.name || ''));
+                const displayTitle = isEpOrJc ? 'Muhammad Ijaz' : (m.accountTitle || m.account_title || '-');
+                const displayNum = isEpOrJc ? '03246533046' : (m.accountNumber || m.account_number || '-');
+                return `
+                    <tr>
+                        <td style="font-weight:800; color:#fff;">
+                            <span style="font-size:16px; margin-right:6px;">${m.icon || '💳'}</span>
+                            ${m.name}
+                        </td>
+                        <td style="color:#8e9bb0;">${m.type}</td>
+                        <td style="color:var(--lte-gold); font-weight:700;">${displayTitle}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; color:var(--lte-cyan); font-weight:700;">${displayNum}</td>
+                        <td>
+                            <span style="font-weight:800; color:#fff;">${curr}</span>
+                            <div style="font-size:10px; color:var(--lte-muted);">1 USD = ${rate} ${curr}</div>
+                        </td>
+                        <td style="font-family:'JetBrains Mono',monospace;">${sym} ${Number(m.minDeposit).toLocaleString()} - ${sym} ${Number(m.maxDeposit).toLocaleString()}</td>
+                        <td>
+                            <span class="badge-status ${isActive ? 'badge-active' : 'badge-suspended'}" style="cursor:pointer;" onclick="toggleDepositStatus('${m.id}')">
+                                ${m.status}
+                            </span>
+                        </td>
+                        <td style="text-align:right;">
+                            <button onclick="editDeposit('${m.id}')" class="btn-lte btn-lte-secondary" style="padding:4px 8px; font-size:11px;">Edit</button>
+                            <button onclick="deleteDeposit('${m.id}')" class="btn-lte btn-lte-danger" style="padding:4px 8px; font-size:11px;">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderWithdrawTable() {
+            const tbody = document.getElementById('withdraw-tbody');
+            const methods = window.paymentManager.getWithdrawMethods();
+
+            if (methods.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#8e9bb0;">No withdrawal methods configured.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = methods.map(m => {
+                const isActive = m.status === 'active';
+                const curr = m.currency || 'PKR';
+                const rate = m.exchangeRateToUSD || (curr === 'PKR' ? 280 : 1);
+                const sym = curr === 'PKR' ? '₨' : (curr === 'USD' ? '$' : (curr === 'EUR' ? '€' : '₮'));
+                return `
+                    <tr>
+                        <td style="font-weight:800; color:#fff;">
+                            <span style="font-size:16px; margin-right:6px;">${m.icon || '💸'}</span>
+                            ${m.name}
+                        </td>
+                        <td style="color:#8e9bb0;">${m.type}</td>
+                        <td>
+                            <span style="font-weight:800; color:#fff;">${curr}</span>
+                            <div style="font-size:10px; color:var(--lte-muted);">1 USD = ${rate} ${curr}</div>
+                        </td>
+                        <td style="font-family:'JetBrains Mono',monospace;">${sym} ${Number(m.minWithdraw).toLocaleString()} - ${sym} ${Number(m.maxWithdraw).toLocaleString()}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; color:var(--lte-gold);">${m.feePercent || 0}%</td>
+                        <td style="font-size:11px; color:#8e9bb0;">${m.processingTime || '15-30m'}</td>
+                        <td>
+                            <span class="badge-status ${isActive ? 'badge-active' : 'badge-suspended'}" style="cursor:pointer;" onclick="toggleWithdrawStatus('${m.id}')">
+                                ${m.status}
+                            </span>
+                        </td>
+                        <td style="text-align:right;">
+                            <button onclick="editWithdraw('${m.id}')" class="btn-lte btn-lte-secondary" style="padding:4px 8px; font-size:11px;">Edit</button>
+                            <button onclick="deleteWithdraw('${m.id}')" class="btn-lte btn-lte-danger" style="padding:4px 8px; font-size:11px;">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function toggleDepositStatus(id) {
+            window.paymentManager.toggleDepositStatus(id);
+            renderDepositTable();
+        }
+
+        function toggleWithdrawStatus(id) {
+            window.paymentManager.toggleWithdrawStatus(id);
+            renderWithdrawTable();
+        }
+
+        function deleteDeposit(id) {
+            if (confirm('Are you sure you want to delete this deposit method? Players will no longer be able to deposit through it.')) {
+                window.paymentManager.deleteDepositMethod(id);
+                renderDepositTable();
+            }
+        }
+
+        function deleteWithdraw(id) {
+            if (confirm('Are you sure you want to delete this withdrawal method?')) {
+                window.paymentManager.deleteWithdrawMethod(id);
+                renderWithdrawTable();
+            }
+        }
+
+        function openAddModal() {
+            document.getElementById('gw-id').value = '';
+            document.getElementById('gw-mode').value = currentTab;
+            document.getElementById('modal-title').innerText = currentTab === 'deposit' ? '➕ Add Deposit Gateway' : '➕ Add Withdrawal Channel';
+
+            document.getElementById('deposit-specific-fields').style.display = (currentTab === 'deposit') ? 'block' : 'none';
+            document.getElementById('fee-field').style.display = (currentTab === 'withdraw') ? 'block' : 'none';
+
+            document.getElementById('gateway-form').reset();
+            document.getElementById('gw-currency').value = 'PKR';
+            document.getElementById('gw-exchange-rate').value = '280';
+            document.getElementById('gateway-modal').style.display = 'flex';
+        }
+
+        function editDeposit(id) {
+            const m = window.paymentManager.getDepositMethodById(id);
+            if (!m) return;
+
+            document.getElementById('gw-id').value = m.id;
+            document.getElementById('gw-mode').value = 'deposit';
+            document.getElementById('modal-title').innerText = `✏️ Edit Deposit: ${m.name}`;
+
+            document.getElementById('gw-name').value = m.name;
+            document.getElementById('gw-type').value = m.type;
+            document.getElementById('gw-currency').value = m.currency || 'PKR';
+            document.getElementById('gw-exchange-rate').value = m.exchangeRateToUSD || (m.currency === 'PKR' ? 280 : 1);
+            document.getElementById('gw-icon').value = m.icon || '💳';
+            document.getElementById('gw-status').value = m.status;
+            document.getElementById('gw-acc-title').value = m.accountTitle || '';
+            document.getElementById('gw-acc-num').value = m.accountNumber || '';
+            document.getElementById('gw-instructions').value = m.instructions || '';
+            document.getElementById('gw-min').value = m.minDeposit;
+            document.getElementById('gw-max').value = m.maxDeposit;
+            document.getElementById('gw-eta').value = m.processingTime || 'Instant';
+
+            document.getElementById('deposit-specific-fields').style.display = 'block';
+            document.getElementById('fee-field').style.display = 'none';
+            document.getElementById('gateway-modal').style.display = 'flex';
+        }
+
+        function editWithdraw(id) {
+            const m = window.paymentManager.getWithdrawMethodById(id);
+            if (!m) return;
+
+            document.getElementById('gw-id').value = m.id;
+            document.getElementById('gw-mode').value = 'withdraw';
+            document.getElementById('modal-title').innerText = `✏️ Edit Withdrawal: ${m.name}`;
+
+            document.getElementById('gw-name').value = m.name;
+            document.getElementById('gw-type').value = m.type;
+            document.getElementById('gw-currency').value = m.currency || 'PKR';
+            document.getElementById('gw-exchange-rate').value = m.exchangeRateToUSD || (m.currency === 'PKR' ? 280 : 1);
+            document.getElementById('gw-icon').value = m.icon || '💸';
+            document.getElementById('gw-status').value = m.status;
+            document.getElementById('gw-min').value = m.minWithdraw;
+            document.getElementById('gw-max').value = m.maxWithdraw;
+            document.getElementById('gw-fee').value = m.feePercent || 0;
+            document.getElementById('gw-eta').value = m.processingTime || '15-30m';
+
+            document.getElementById('deposit-specific-fields').style.display = 'none';
+            document.getElementById('fee-field').style.display = 'block';
+            document.getElementById('gateway-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('gateway-modal').style.display = 'none';
+        }
+
+        function handleSaveGateway(e) {
+            e.preventDefault();
+            const id = document.getElementById('gw-id').value;
+            const mode = document.getElementById('gw-mode').value;
+
+            const name = document.getElementById('gw-name').value.trim();
+            const type = document.getElementById('gw-type').value;
+            const currency = document.getElementById('gw-currency').value;
+            const exchangeRateToUSD = parseFloat(document.getElementById('gw-exchange-rate').value) || 1;
+            const icon = document.getElementById('gw-icon').value.trim() || '💳';
+            const status = document.getElementById('gw-status').value;
+            const eta = document.getElementById('gw-eta').value.trim();
+
+            if (mode === 'deposit') {
+                const payload = {
+                    name,
+                    type,
+                    currency,
+                    exchangeRateToUSD,
+                    icon,
+                    status,
+                    accountTitle: document.getElementById('gw-acc-title').value.trim(),
+                    accountNumber: document.getElementById('gw-acc-num').value.trim(),
+                    instructions: document.getElementById('gw-instructions').value.trim(),
+                    minDeposit: parseFloat(document.getElementById('gw-min').value) || 500,
+                    maxDeposit: parseFloat(document.getElementById('gw-max').value) || 100000,
+                    processingTime: eta
+                };
+
+                if (id) {
+                    payload.id = id;
+                    window.paymentManager.updateDepositMethod(id, payload);
+                } else {
+                    window.paymentManager.addDepositMethod(payload);
+                }
+
+                // Issue #70: Persist directly into MySQL payment_methods table
+                try {
+                    fetch('../api/admin.php?action=save_payment_method', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify(payload)
+                    });
+                } catch(e) {}
+            } else {
+                const payload = {
+                    name,
+                    type,
+                    currency,
+                    exchangeRateToUSD,
+                    icon,
+                    status,
+                    minWithdraw: parseFloat(document.getElementById('gw-min').value) || 1000,
+                    maxWithdraw: parseFloat(document.getElementById('gw-max').value) || 100000,
+                    feePercent: parseFloat(document.getElementById('gw-fee').value) || 0,
+                    processingTime: eta
+                };
+
+                if (id) {
+                    payload.id = id;
+                    window.paymentManager.updateWithdrawMethod(id, payload);
+                } else {
+                    window.paymentManager.addWithdrawMethod(payload);
+                }
+
+                // Issue #70: Persist directly into MySQL payment_methods table
+                try {
+                    fetch('../api/admin.php?action=save_payment_method', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify(payload)
+                    });
+                } catch(e) {}
+            }
+
+            closeModal();
+            renderGateways();
+            alert('Gateway settings saved successfully to SQL database!');
+        }
+
+        window.addEventListener('DOMContentLoaded', renderGateways);
+    </script>
+</body>
+</html>

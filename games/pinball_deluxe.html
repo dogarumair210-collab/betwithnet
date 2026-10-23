@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🕹️ Pinball Arcade Deluxe - Heavy VIP 2.5D Machine | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           3 AUTHENTIC RETRO ARCADE THEMES
+           ------------------------------------------------------------- */
+        :root {
+            --pb-accent: #00e5ff;
+            --pb-accent-glow: rgba(0, 229, 255, 0.55);
+            --pb-gold: #ffd700;
+            --pb-surface: rgba(13, 13, 26, 0.94);
+            --pb-card: rgba(18, 18, 36, 0.90);
+            --pb-border: rgba(0, 229, 255, 0.35);
+            --pb-font-mono: 'JetBrains Mono', monospace;
+            --pb-font-dmd: 'VT323', monospace;
+        }
+
+        /* 1. CYBER NEON 80S ARCADE */
+        body.theme-cyber {
+            --pb-accent: #00e5ff;
+            --pb-accent-glow: rgba(0, 229, 255, 0.65);
+            --pb-surface: rgba(13, 13, 26, 0.95);
+            --pb-card: rgba(18, 18, 36, 0.92);
+            --pb-border: rgba(0, 229, 255, 0.45);
+        }
+
+        /* 2. LAS VEGAS VIP GOLD */
+        body.theme-gold {
+            --pb-accent: #ffd700;
+            --pb-accent-glow: rgba(255, 215, 0, 0.65);
+            --pb-surface: rgba(26, 18, 5, 0.95);
+            --pb-card: rgba(36, 26, 8, 0.92);
+            --pb-border: rgba(255, 215, 0, 0.45);
+        }
+
+        /* 3. SPACE CADET 3D */
+        body.theme-space {
+            --pb-accent: #7c4dff;
+            --pb-accent-glow: rgba(124, 77, 255, 0.65);
+            --pb-surface: rgba(8, 11, 24, 0.95);
+            --pb-card: rgba(14, 18, 38, 0.92);
+            --pb-border: rgba(124, 77, 255, 0.45);
+        }
+
+        /* Reset & Essential Isolation */
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-header-slot, #app-bottom-nav-slot, #app-luxury-footer,
+        .luxury-casino-footer, .app-bottom-nav, .hero-banner,
+        #bwn-sound-toggle-fixed, .bwn-sound-toggle-btn, #bwn-game-splash {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        body.game-page.bg-pinball {
+            background-color: #04050a;
+            background-image: radial-gradient(circle at 50% 20%, #15182b 0%, #05060d 75%, #020205 100%);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        /* Atmospheric Ambient Neon Grid */
+        .pb-ambient-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN (Pure Pitch Black)
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            width: 100dvw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: #000000 !important;
+            background-color: #000000 !important;
+            z-index: 2147483647 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.4s ease;
+            overflow: hidden !important;
+            pointer-events: auto;
+            margin: 0 !important;
+            padding: 0 !important;
+            animation: ppAutoDismiss 0.4s ease 1.2s forwards;
+        }
+
+        @keyframes ppAutoDismiss {
+            0% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; visibility: hidden; }
+        }
+
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 210px;
+            padding: 16px;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .pp-logo-wrap {
+            width: 100%;
+            max-width: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pp-logo-img {
+            width: 100%;
+            max-width: 140px;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            filter: drop-shadow(0 0 10px rgba(255, 122, 0, 0.35));
+        }
+
+        .pp-bar-track {
+            width: 100%;
+            max-width: 150px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+        }
+
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff9500 0%, #ffb700 50%, #ffd000 100%);
+            border-radius: 9999px;
+            box-shadow: 0 0 12px rgba(255, 190, 0, 0.95), 0 0 4px #ffe066;
+            transition: width 0.1s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           COMPACT CONTAINER & TOP NAVBAR
+           ------------------------------------------------------------- */
+        .pb-app-container {
+            width: 100%;
+            max-width: 345px;
+            padding: 6px 8px 14px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pb-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--pb-surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid var(--pb-border);
+            border-radius: 12px;
+            padding: 4px 7px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+            gap: 5px;
+        }
+
+        .pb-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .pb-back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #e2e8f0;
+            padding: 4px 6px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            transition: all 0.2s ease;
+        }
+        .pb-back-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+        }
+
+        .pb-title-badge {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .pb-title-row {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .pb-title-text {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .pb-rtp-badge {
+            font-size: 8px;
+            font-weight: 800;
+            color: #00e676;
+            letter-spacing: 0.4px;
+        }
+
+        .pb-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .pb-ctrl-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            height: 28px;
+            padding: 0 7px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            transition: all 0.2s ease;
+        }
+        .pb-ctrl-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: var(--pb-accent);
+        }
+
+        /* Animated Music Equalizer */
+        .music-eq-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 11px;
+            width: 10px;
+        }
+        .music-eq-bars .eq-bar {
+            flex: 1;
+            background: var(--pb-accent);
+            border-radius: 1px;
+            animation: eqDance 1.2s ease-in-out infinite alternate;
+        }
+        .music-eq-bars .bar-1 { height: 40%; animation-delay: 0.1s; }
+        .music-eq-bars .bar-2 { height: 95%; animation-delay: 0.3s; }
+        .music-eq-bars .bar-3 { height: 60%; animation-delay: 0.2s; }
+        @keyframes eqDance {
+            0% { height: 25%; }
+            50% { height: 100%; }
+            100% { height: 40%; }
+        }
+
+        /* -------------------------------------------------------------
+           LIVE HUD & WALLET BAR
+           ------------------------------------------------------------- */
+        .pb-hud-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px;
+        }
+
+        .pb-status-indicator {
+            font-size: 10px;
+            font-weight: 700;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00e676;
+            box-shadow: 0 0 8px #00e676;
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+        }
+
+        .pb-wallet-hud {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--pb-surface);
+            border: 1.5px solid var(--pb-border);
+            padding: 3px 8px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+        }
+        .wallet-bal {
+            font-family: var(--pb-font-mono);
+            font-weight: 900;
+            font-size: 11px;
+            color: #ffd700;
+        }
+
+        /* -------------------------------------------------------------
+           DIGITAL DOT MATRIX DISPLAY (DMD) SCOREBOARD
+           ------------------------------------------------------------- */
+        .pb-dmd-wrap {
+            background: #070308;
+            border: 2px solid #33202e;
+            border-radius: 8px;
+            padding: 5px 8px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 16px rgba(255, 0, 128, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        .pb-dmd-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.4) 0px,
+                rgba(0, 0, 0, 0.4) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+        .pb-dmd-score-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            z-index: 1;
+        }
+        .pb-dmd-label {
+            font-family: var(--pb-font-mono);
+            font-size: 9px;
+            font-weight: 800;
+            color: #f472b6;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .pb-dmd-mult {
+            font-family: var(--pb-font-mono);
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+        .pb-dmd-payout {
+            font-family: var(--pb-font-mono);
+            font-size: 11px;
+            font-weight: 900;
+            color: #00e676;
+            text-shadow: 0 0 8px rgba(0, 230, 118, 0.6);
+        }
+        .pb-dmd-marquee {
+            width: 100%;
+            text-align: center;
+            font-family: var(--pb-font-dmd);
+            font-size: 15px;
+            letter-spacing: 1px;
+            color: #ff9100;
+            text-shadow: 0 0 8px #ff9100;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            z-index: 1;
+            line-height: 1.1;
+        }
+        .pb-dmd-sub {
+            font-family: var(--pb-font-dmd);
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            color: #a5b4fc;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           PINBALL MACHINE CABINET STAGE & CANVAS
+           ------------------------------------------------------------- */
+        .pb-cabinet-card {
+            background: linear-gradient(180deg, #1e1b2e 0%, #0d0b17 100%);
+            border: 2.5px solid #4a3b5c;
+            border-radius: 14px;
+            padding: 6px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Metallic Corner Brackets */
+        .pb-corner {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 2.5px solid #d4af37;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .pb-corner.tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+        .pb-corner.tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+        .pb-corner.bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+        .pb-corner.br { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
+        .pb-canvas-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 340 / 540;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+            background: #04050a;
+        }
+
+        #pinball-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            touch-action: none;
+        }
+
+        /* Ergonomic On-Screen Flipper Triggers for Mobile */
+        .pb-flipper-triggers {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 6px;
+            margin-top: 5px;
+        }
+
+        .pb-flipper-btn {
+            flex: 1;
+            height: 38px;
+            background: linear-gradient(180deg, #2a2238 0%, #151120 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: var(--pb-font-mono);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.1s ease;
+        }
+        .pb-flipper-btn:active {
+            transform: translateY(2px);
+            background: linear-gradient(180deg, #ff007f 0%, #b30059 100%);
+            border-color: #ff80bf;
+            box-shadow: 0 0 14px rgba(255, 0, 128, 0.7);
+        }
+
+        /* -------------------------------------------------------------
+           BETTING CONTROL PANEL & 3D CASINO CHIPS
+           ------------------------------------------------------------- */
+        .pb-control-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: var(--pb-surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid var(--pb-border);
+            border-radius: 12px;
+            padding: 8px 7px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 3D Casino Chips */
+        .pb-chip-selector {
+            display: flex;
+            justify-content: space-between;
+            gap: 3px;
+        }
+        .casino-chip-3d {
+            flex: 1;
+            height: 27px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(255, 255, 255, 0.5);
+            font-family: var(--pb-font-mono);
+            font-weight: 900;
+            font-size: 8.5px;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .casino-chip-3d:active { transform: scale(0.92); }
+        .casino-chip-3d.active {
+            transform: translateY(-2px) scale(1.08);
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 12px var(--pb-accent-glow), 0 4px 10px rgba(0,0,0,0.6);
+        }
+        .chip-50 { background: radial-gradient(circle, #29b6f6 0%, #0288d1 100%); }
+        .chip-100 { background: radial-gradient(circle, #66bb6a 0%, #2e7d32 100%); }
+        .chip-250 { background: radial-gradient(circle, #ffa726 0%, #ef6c00 100%); }
+        .chip-500 { background: radial-gradient(circle, #ab47bc 0%, #6a1b9a 100%); }
+        .chip-1000 { background: radial-gradient(circle, #ef5350 0%, #c62828 100%); }
+        .chip-5000 { background: radial-gradient(circle, #ffd700 0%, #f57f17 100%); color: #000; }
+
+        /* Custom Stake Input Row */
+        .pb-bet-row {
+            display: flex;
+            gap: 4px;
+        }
+        .pb-input-wrap {
+            flex: 1;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            background: rgba(14, 18, 28, 0.88);
+            border: 1.5px solid var(--pb-border);
+            border-radius: 6px;
+            padding: 0 6px;
+        }
+        .pb-curr-prefix {
+            font-family: var(--pb-font-mono);
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+            margin-right: 3px;
+        }
+        .pb-bet-field {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: var(--pb-font-mono);
+            font-size: 12px;
+            font-weight: 900;
+        }
+        .pb-modifier-group {
+            display: flex;
+            gap: 3px;
+        }
+        .mod-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            font-family: var(--pb-font-mono);
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .mod-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--pb-accent);
+        }
+
+        /* Master Launch Button */
+        .pb-launch-btn {
+            position: relative;
+            width: 100%;
+            height: 38px;
+            background: linear-gradient(135deg, #ff007f 0%, #d8006c 45%, #99004d 100%);
+            border: 1.5px solid #ff80bf;
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-size: 12.5px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(255, 0, 127, 0.5), inset 0 2px 3px rgba(255,255,255,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.1;
+            overflow: hidden;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .pb-launch-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(255, 0, 127, 0.7);
+        }
+        .pb-launch-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: #2b3040;
+            border-color: #4b5568;
+            box-shadow: none;
+        }
+        .pb-btn-sub {
+            font-family: var(--pb-font-mono);
+            font-size: 8px;
+            font-weight: 900;
+            color: #ffe0eb;
+            letter-spacing: 0.5px;
+        }
+
+        /* -------------------------------------------------------------
+           MODALS (Theme, Rules, Win Payout)
+           ------------------------------------------------------------- */
+        .pb-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .pb-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .pb-modal-box {
+            background: #111422;
+            border: 2px solid var(--pb-border);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 320px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+        .pb-theme-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .pb-theme-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .pb-theme-card.selected {
+            border-color: var(--pb-accent);
+            background: rgba(0, 229, 255, 0.12);
+            box-shadow: 0 0 12px var(--pb-accent-glow);
+        }
+        .pb-theme-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pb-theme-title {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .pb-theme-badge {
+            font-size: 8.5px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid;
+        }
+
+        /* Win Modal */
+        .pb-win-card {
+            background: radial-gradient(circle at center, #23122c 0%, #0d0612 100%);
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            max-width: 290px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.5);
+            animation: winZoom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes winZoom {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .pb-win-amount {
+            font-family: var(--pb-font-mono);
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.8);
+        }
+        .pb-win-mult {
+            font-size: 11px;
+            font-weight: 800;
+            color: #00e676;
+            letter-spacing: 0.5px;
+        }
+        .pb-win-collect-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ff9100 100%);
+            color: #000;
+            font-weight: 900;
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 6px;
+            box-shadow: 0 4px 14px rgba(255, 215, 0, 0.6);
+        }
+
+        @media (max-width: 360px) {
+            .pb-app-container {
+                max-width: 315px;
+                padding: 4px 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body class="game-page bg-pinball theme-cyber">
+
+    <!-- Ambient Grid Layer -->
+    <div class="pb-ambient-bg"></div>
+
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loading-screen" class="pp-loader-screen" onclick="this.classList.add('pp-fade-out'); setTimeout(() => { if (this.parentNode) this.parentNode.removeChild(this); }, 400);" ontouchstart="this.classList.add('pp-fade-out'); setTimeout(() => { if (this.parentNode) this.parentNode.removeChild(this); }, 400);">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var ppScreen = document.getElementById('pp-loading-screen');
+            var ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) return;
+
+            var p = 0;
+            var timer = setInterval(function() {
+                p += Math.floor(Math.random() * 14) + 16;
+                if (p > 100) p = 100;
+                if (ppBar) ppBar.style.width = p + '%';
+                if (p >= 100) {
+                    clearInterval(timer);
+                    setTimeout(function() {
+                        if (ppScreen) {
+                            ppScreen.classList.add('pp-fade-out');
+                            setTimeout(function() {
+                                if (ppScreen && ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                            }, 450);
+                        }
+                    }, 140);
+                }
+            }, 30);
+
+            setTimeout(function() {
+                if (ppScreen && ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+            }, 1200);
+        })();
+    </script>
+
+    <!-- Native BGM Audio Element -->
+    <audio id="pb-bgm-audio" src="../assets/audio/slots_synth.wav" loop preload="auto"></audio>
+
+    <!-- Theme Modal -->
+    <div class="pb-modal-overlay" id="pb-themes-modal" onclick="window.pinball_deluxeGame.closeThemeModal()">
+        <div class="pb-modal-box" onclick="event.stopPropagation()">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3 style="font-size:13px; color:#ffd700;">🕹️ Pinball Machine Themes</h3>
+                <button style="background:transparent; border:none; color:#fff; font-size:16px; cursor:pointer;" onclick="window.pinball_deluxeGame.closeThemeModal()">✕</button>
+            </div>
+            <div class="pb-theme-cards-list" id="pb-theme-cards-list"></div>
+        </div>
+    </div>
+
+    <!-- Win Modal -->
+    <div class="pb-modal-overlay" id="pb-win-modal" onclick="window.pinball_deluxeGame.closeWinModal()">
+        <div class="pb-win-card" onclick="event.stopPropagation()">
+            <div style="font-size:32px;">🕹️ 🎰</div>
+            <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:900; color:#ffd700;">PINBALL PAYOUT!</div>
+            <div class="pb-win-amount" id="pb-win-modal-amount">Rs. 0.00</div>
+            <div class="pb-win-mult" id="pb-win-modal-mult">1.00× ARCADE MULTIPLIER</div>
+            <button class="pb-win-collect-btn" onclick="window.pinball_deluxeGame.closeWinModal()">COLLECT ARCADE WIN 💰</button>
+        </div>
+    </div>
+
+    <!-- Rules Modal -->
+    <div class="pb-modal-overlay" id="pb-rules-modal" onclick="document.getElementById('pb-rules-modal').classList.remove('open')">
+        <div class="pb-modal-box" onclick="event.stopPropagation()">
+            <h3 style="font-size:13px; color:#ffd700;">🕹️ Pinball Deluxe Rules</h3>
+            <p style="font-size:11px; color:#cbd5e1; line-height:1.4;">1. <b>Spring Plunger:</b> Pull down or tap <b>LAUNCH BALL</b> to fire the chrome ball into the arena.</p>
+            <p style="font-size:11px; color:#cbd5e1; line-height:1.4;">2. <b>Neon Pop Bumpers:</b> Bouncing off the 3 bumpers increases your multiplier (+0.20X to +0.40X per hit).</p>
+            <p style="font-size:11px; color:#cbd5e1; line-height:1.4;">3. <b>Top Rollovers:</b> Light up the 4 B-O-N-U-S lanes for instant multipliers and +3.00X Super Bonus!</p>
+            <p style="font-size:11px; color:#cbd5e1; line-height:1.4;">4. <b>Dual Flippers:</b> Use [A]/[D] keys, Arrow keys, or bottom trigger pads to keep the ball alive!</p>
+            <p style="font-size:11px; color:#cbd5e1; line-height:1.4;">5. <b>Payout:</b> When the ball drains, your accumulated multiplier times your stake is paid out directly!</p>
+
+            <div style="margin-top:8px; padding:8px; background:rgba(255,255,255,0.06); border-radius:6px; border:1px solid rgba(255,255,255,0.1);">
+                <div style="font-weight:800; font-size:10.5px; color:#ffd700; margin-bottom:4px;">🎵 Arcade Tracks:</div>
+                <div style="display:flex; gap:4px;">
+                    <button class="pb-ctrl-btn" style="flex:1;" onclick="window.pinball_deluxeGame.switchMusicTrack(0)">🕹️ Synth 80s</button>
+                    <button class="pb-ctrl-btn" style="flex:1;" onclick="window.pinball_deluxeGame.switchMusicTrack(1)">⚡ Topspin Tempo</button>
+                </div>
+            </div>
+
+            <p style="margin-top:6px; font-size:10px; color:#94a3b8;">• RTP: 96.8% | Certified RNG Physics Fair</p>
+            <button class="pb-ctrl-btn" style="width:100%; justify-content:center; margin-top:6px;" onclick="document.getElementById('pb-rules-modal').classList.remove('open')">Return to Arcade</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="pb-app-container">
+
+        <!-- VIP Navbar -->
+        <header class="pb-navbar">
+            <div class="pb-nav-left">
+                <a href="../casino.html" class="pb-back-btn">
+                    <span>←</span> Lobby
+                </a>
+                <div class="pb-title-badge">
+                    <div class="pb-title-row">
+                        <span style="font-size:13px;">🕹️</span>
+                        <span class="pb-title-text">PINBALL DELUXE</span>
+                        <span style="background:linear-gradient(135deg,#ff7700,#ffaa00); color:#000; font-size:7.5px; font-weight:900; padding:1px 4px; border-radius:3px; margin-left:2px; letter-spacing:0.4px;">PRAGMATIC</span>
+                    </div>
+                    <span class="pb-rtp-badge">96.8% VIP RTP</span>
+                </div>
+            </div>
+
+            <div class="pb-nav-right">
+                <!-- Theme Switcher -->
+                <button class="pb-ctrl-btn" onclick="window.pinball_deluxeGame.openThemeModal()" title="Switch Machine Themes">
+                    <span id="pb-current-theme-name">⚡ Cyber</span>
+                </button>
+                <!-- Music Toggle -->
+                <button class="pb-ctrl-btn" id="pb-music-btn" onclick="window.pinball_deluxeGame.toggleMusic()" title="Toggle Music">
+                    <span class="music-eq-bars" id="pb-music-eq">
+                        <span class="eq-bar bar-1"></span>
+                        <span class="eq-bar bar-2"></span>
+                        <span class="eq-bar bar-3"></span>
+                    </span>
+                    <span id="pb-music-label">Music</span>
+                </button>
+                <!-- Sound Toggle -->
+                <button class="pb-ctrl-btn" onclick="window.pinball_deluxeGame.toggleSound()" title="Toggle Sound FX">
+                    <span id="pb-sound-icon">🔊</span>
+                </button>
+                <!-- Rules -->
+                <button class="pb-ctrl-btn" onclick="document.getElementById('pb-rules-modal').classList.add('open')" title="Help & Rules">
+                    <span>ℹ️</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Live HUD & Balance Bar -->
+        <div class="pb-hud-row">
+            <div class="pb-status-indicator">
+                <span class="live-dot"></span>
+                <span>ARCADE LIVE</span>
+            </div>
+            <div class="pb-wallet-hud">
+                <span>🪙</span>
+                <span class="wallet-bal" id="pb-wallet-balance">Rs. 0.00</span>
+            </div>
+        </div>
+
+        <!-- Dot Matrix Display (DMD) Scoreboard -->
+        <div class="pb-dmd-wrap">
+            <div class="pb-dmd-score-row">
+                <span class="pb-dmd-label">MULTIPLIER:</span>
+                <span class="pb-dmd-mult" id="pb-live-mult">1.00×</span>
+                <span class="pb-dmd-payout" id="pb-live-payout">Rs. 100.00</span>
+            </div>
+            <div class="pb-dmd-marquee" id="pb-dmd-title">★ PINBALL DELUXE ★</div>
+            <div class="pb-dmd-sub" id="pb-dmd-sub">PULL PLUNGER OR TAP AUTO LAUNCH</div>
+        </div>
+
+        <!-- Heavy Pinball Cabinet Stage -->
+        <div class="pb-cabinet-card">
+            <div class="pb-corner tl"></div>
+            <div class="pb-corner tr"></div>
+            <div class="pb-corner bl"></div>
+            <div class="pb-corner br"></div>
+
+            <div class="pb-canvas-wrapper">
+                <canvas id="pinball-canvas"></canvas>
+            </div>
+
+            <!-- Ergonomic Mobile Dual Flipper Triggers -->
+            <div class="pb-flipper-triggers">
+                <button class="pb-flipper-btn" id="pb-btn-flip-left">
+                    <span>◀ FLIP [A]</span>
+                </button>
+                <button class="pb-flipper-btn" id="pb-btn-flip-right">
+                    <span>FLIP [D] ▶</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Betting Control Panel -->
+        <div class="pb-control-panel">
+            <!-- 3D Casino Chips -->
+            <div class="pb-chip-selector">
+                <button class="casino-chip-3d chip-50" data-chip="50" onclick="window.pinball_deluxeGame.setQuickBet(50)">50</button>
+                <button class="casino-chip-3d chip-100 active" data-chip="100" onclick="window.pinball_deluxeGame.setQuickBet(100)">100</button>
+                <button class="casino-chip-3d chip-250" data-chip="250" onclick="window.pinball_deluxeGame.setQuickBet(250)">250</button>
+                <button class="casino-chip-3d chip-500" data-chip="500" onclick="window.pinball_deluxeGame.setQuickBet(500)">500</button>
+                <button class="casino-chip-3d chip-1000" data-chip="1000" onclick="window.pinball_deluxeGame.setQuickBet(1000)">1K</button>
+                <button class="casino-chip-3d chip-5000" data-chip="5000" onclick="window.pinball_deluxeGame.setQuickBet(5000)">5K</button>
+            </div>
+
+            <!-- Custom Bet Input & Multipliers -->
+            <div class="pb-bet-row">
+                <div class="pb-input-wrap">
+                    <span class="pb-curr-prefix">Rs.</span>
+                    <input type="number" id="pb-bet-input" class="pb-bet-field" value="100" min="10" step="10" oninput="window.pinball_deluxeGame.updateMultiplierDisplay()">
+                </div>
+                <div class="pb-modifier-group">
+                    <button class="mod-btn" onclick="window.pinball_deluxeGame.modifyBet('half')">½</button>
+                    <button class="mod-btn" onclick="window.pinball_deluxeGame.modifyBet('double')">2×</button>
+                    <button class="mod-btn" onclick="window.pinball_deluxeGame.modifyBet('max')">MAX</button>
+                </div>
+            </div>
+
+            <!-- Master Launch Button -->
+            <button id="pb-launch-btn" class="pb-launch-btn" onclick="window.pinball_deluxeGame.autoLaunch()">
+                <span>LAUNCH BALL 🕹️</span>
+                <span class="pb-btn-sub">PULL SPRING OR AUTO FIRE</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Ensure guest/demo session is available so visitors can play right away
+        try {
+            if (!localStorage.getItem('bwn_session_user') && !localStorage.getItem('currentUser')) {
+                const demoUser = { id: 'guest_' + Math.floor(Math.random()*8999+1000), username: "VIP Explorer", balance_pkr: 5000, balancePKR: 5000 };
+                localStorage.setItem('bwn_session_user', JSON.stringify(demoUser));
+                if (!localStorage.getItem('BETWITHNET_balance')) {
+                    localStorage.setItem('BETWITHNET_balance', '5000');
+                }
+            }
+        } catch(e) {}
+    </script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/pinball_deluxe.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.core && typeof window.core.init === 'function') {
+                window.core.init('casino');
+            }
+            if (window.pinball_deluxeGame && typeof window.pinball_deluxeGame.init === 'function') {
+                window.pinball_deluxeGame.init();
+            }
+        });
+    </script>
+</body>
+</html>

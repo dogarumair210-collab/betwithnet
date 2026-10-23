@@ -1,0 +1,1042 @@
+/* ==========================================================================
+   JILI Games - Fortune Gems 2 Official Aztec Engine Stylesheet
+   Direct In-Game Buttons Connected to Bet With Net Real Wallet
+   ========================================================================== */
+
+:root {
+  --gold-primary: #ffd700;
+  --gold-bright: #fff5a6;
+  --gold-dark: #b8860b;
+  --gold-shadow: rgba(255, 215, 0, 0.4);
+  --brand-navy: #060b14;
+  --brand-cyan: #00e5ff;
+  --hud-height: 48px;
+  --reel-width: 92px;
+  --reel-height: 88px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --reel-width: 120px;
+    --reel-height: 110px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  background-color: #03060d;
+  color: #ffffff;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  position: fixed;
+}
+
+/* Luxury JILI Loading Splash Screen */
+.jili-loading-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #161e2e 0%, #060911 100%);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
+}
+
+.jili-loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.jili-splash-content {
+  width: 90%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.jili-logo-glow-wrapper {
+  position: relative;
+  width: 130px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.jili-logo-glow-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  animation: jiliPulseGlow 2s infinite ease-in-out;
+}
+
+.jili-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes jiliPulseGlow {
+  0%, 100% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 0.9; }
+}
+
+.jili-game-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(180deg, #fff9c4 0%, #ffd700 50%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  margin-bottom: 2px;
+}
+
+.jili-subtitle {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #00e5ff;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.jili-loading-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 10px;
+  padding: 2px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.2);
+  margin-bottom: 12px;
+}
+
+.jili-loading-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff8c00, #ffd700, #fff799);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px #ffd700;
+  transition: width 0.3s ease;
+}
+
+.jili-bar-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: shineMove 1.5s infinite;
+}
+
+@keyframes shineMove {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.jili-loading-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.jili-loading-pct {
+  color: #ffd700;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+}
+
+.jili-loading-footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.jili-pill {
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #ffd700;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.jili-fair {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #10b981;
+  letter-spacing: 0.5px;
+}
+
+/* Master Viewport Container */
+.game-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.14) 0%, rgba(2, 4, 8, 0.94) 85%),
+    url('../assets/games/fortunegems/fortunegems_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Top Sleek HUD */
+.ingame-top-hud {
+  position: relative;
+  width: 100%;
+  height: var(--hud-height);
+  background: linear-gradient(180deg, rgba(7, 13, 24, 0.96) 0%, rgba(7, 13, 24, 0.88) 85%, rgba(7, 13, 24, 0) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.hud-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
+  color: #ffd700;
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+}
+
+.hud-brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-brand-logo {
+  height: 24px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
+}
+
+.hud-brand-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-game-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #ffd700;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.hud-status-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: 0.8px;
+}
+
+/* Center Live Wallet */
+.hud-center {
+  display: flex;
+  align-items: center;
+}
+
+.hud-wallet-pill {
+  position: relative;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  border-radius: 20px;
+  padding: 4px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15), inset 0 1px 2px rgba(255, 215, 0, 0.2);
+}
+
+.wallet-icon {
+  font-size: 0.9rem;
+}
+
+.wallet-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.wallet-currency {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #00e5ff;
+}
+
+.wallet-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffd700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.wallet-refresh-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0 2px;
+  transition: transform 0.3s;
+}
+
+.wallet-refresh-btn:hover {
+  color: #ffd700;
+  transform: rotate(180deg);
+}
+
+/* Floating Delta Animation */
+.wallet-floating-delta {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 900;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  white-space: nowrap;
+}
+
+.wallet-floating-delta.deduct {
+  color: #ef4444;
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+  opacity: 1;
+  transform: translateX(-50%) translateY(14px);
+}
+
+.wallet-floating-delta.credit {
+  color: #10b981;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+  font-size: 1.05rem;
+  opacity: 1;
+  transform: translateX(-50%) translateY(16px);
+}
+
+/* Right HUD Buttons */
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deposit-btn {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  border: 1px solid #34d399;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.deposit-btn:hover {
+  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+}
+
+.fullscreen-btn {
+  width: 34px;
+  height: 34px;
+}
+
+/* Aztec Slot Machine Arena */
+.aztec-arena {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.aztec-cabinet {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: rgba(10, 18, 30, 0.82);
+  border: 2px solid #b8860b;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+/* Top Aztec Crest */
+.cabinet-top-crest {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 4px 10px 8px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+  margin-bottom: 8px;
+}
+
+.crest-wheel-preview {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crest-wheel-disc {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: crestWheelSpin 12s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes crestWheelSpin {
+  100% { transform: rotate(360deg); }
+}
+
+.crest-wheel-pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.crest-title-box {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.crest-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(180deg, #fff9c4 0%, #ffd700 60%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.crest-sub {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #00e5ff;
+  letter-spacing: 1px;
+}
+
+/* Reels Stage */
+.reels-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(3, 7, 14, 0.95);
+  border: 3px solid #ffd700;
+  border-radius: 14px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 215, 0, 0.35);
+  padding: 4px;
+  overflow: hidden;
+  height: calc(var(--reel-height) * 3 + 8px);
+}
+
+.cabinet-pillar {
+  width: 14px;
+  height: 100%;
+  background-image: url('../assets/games/fortunegems/aztec_pillar.png');
+  background-size: cover;
+  background-repeat: repeat-y;
+  z-index: 10;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8));
+}
+
+.cabinet-pillar.left { margin-right: 2px; }
+.cabinet-pillar.right { margin-left: 2px; }
+
+.reel-column {
+  width: var(--reel-width);
+  height: calc(var(--reel-height) * 3);
+  overflow: hidden;
+  position: relative;
+  background: rgba(8, 14, 26, 0.6);
+}
+
+.reel-column.special-reel {
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.reel-separator {
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+}
+
+.reel-tape {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transform: translateY(0);
+}
+
+.symbol-cell {
+  width: var(--reel-width);
+  height: var(--reel-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.symbol-cell img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+  transition: transform 0.2s ease;
+}
+
+.symbol-cell.win-hit img {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 15px #ffd700) brightness(1.3);
+  animation: pulseWin 0.6s infinite alternate;
+}
+
+@keyframes pulseWin {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.2); }
+}
+
+/* 4th Reel Center Golden Frame */
+.special-center-frame {
+  position: absolute;
+  top: var(--reel-height);
+  left: 0;
+  width: 100%;
+  height: var(--reel-height);
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  box-shadow: inset 0 0 12px rgba(255, 215, 0, 0.6), 0 0 15px rgba(255, 215, 0, 0.6);
+  pointer-events: none;
+  z-index: 6;
+  animation: pulseSpecialFrame 1.4s infinite alternate;
+}
+
+@keyframes pulseSpecialFrame {
+  0% { border-color: #b8860b; box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); }
+  100% { border-color: #fff5a6; box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+}
+
+/* Payline Canvas Overlay */
+#laserCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* In-Game Payout Ribbon */
+.payout-ribbon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: rgba(6, 12, 22, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.ribbon-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ribbon-item.center-ribbon {
+  text-align: center;
+}
+
+.ribbon-item.right-ribbon {
+  text-align: right;
+}
+
+.ribbon-label {
+  font-size: 0.58rem;
+  color: #94a3b8;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ribbon-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffd700;
+}
+
+.ribbon-val.bet-val {
+  color: #00e5ff;
+}
+
+.ribbon-val.win-val {
+  color: #10b981;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+/* In-Game Controls Dashboard */
+.controls-dashboard {
+  width: 100%;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.controls-left, .controls-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* In-Game Bet Box */
+.bet-box {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1.5px solid rgba(255, 215, 0, 0.4);
+  border-radius: 10px;
+  padding: 2px 4px;
+  gap: 4px;
+  height: 48px;
+}
+
+.bet-step-btn {
+  width: 32px;
+  height: 38px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.bet-step-btn:hover {
+  background: rgba(255, 215, 0, 0.25);
+}
+
+.bet-amount-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 65px;
+}
+
+.bet-sub-label {
+  font-size: 0.5rem;
+  color: #94a3b8;
+  font-weight: 800;
+}
+
+.bet-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+/* Toggle Buttons */
+.toggle-btn {
+  height: 48px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(180deg, #ffd700, #b8860b);
+  color: #000000;
+  font-weight: 900;
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.toggle-btn.extra-bet.active {
+  background: linear-gradient(180deg, #ff1744, #b71c1c);
+  color: #ffffff;
+  border-color: #ff8a80;
+  box-shadow: 0 0 12px rgba(255, 23, 68, 0.6);
+}
+
+.sound-toggle {
+  width: 44px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Center In-Game Golden Aztec Spin Button */
+.spin-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spin-btn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-image: url('../assets/games/fortunegems/aztec_spin_button.png');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #ffd700;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.2s;
+  outline: none;
+}
+
+.spin-btn:hover {
+  transform: scale(1.06);
+  filter: brightness(1.15);
+}
+
+.spin-btn:active {
+  transform: scale(0.95);
+}
+
+.spin-btn.spinning {
+  animation: rotateSpinBtn 1s linear infinite;
+  pointer-events: none;
+  filter: brightness(0.9);
+}
+
+@keyframes rotateSpinBtn {
+  100% { transform: rotate(360deg); }
+}
+
+/* Lucky Wheel Bonus Modal */
+.wheel-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.wheel-modal.show {
+  display: flex;
+}
+
+.wheel-header-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffd700;
+  margin-bottom: 16px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  text-align: center;
+}
+
+.wheel-container {
+  position: relative;
+  width: 310px;
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel-disc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.1s linear;
+  filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+}
+
+.wheel-pointer-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+}
+
+.wheel-btn-spin {
+  margin-top: 20px;
+  padding: 12px 36px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffd700, #b8860b);
+  color: #000000;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1rem;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Big Win Modal */
+.bigwin-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 210;
+  backdrop-filter: blur(8px);
+}
+
+.bigwin-modal.show {
+  display: flex;
+}
+
+.bigwin-shield-img {
+  max-width: 260px;
+  filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
+  animation: floatShield 2s infinite ease-in-out alternate;
+}
+
+@keyframes floatShield {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-12px) scale(1.05); }
+}
+
+.bigwin-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffd700;
+  margin-top: 10px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.bigwin-mult {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.2);
+  border: 1px solid #00e5ff;
+  padding: 2px 12px;
+  border-radius: 14px;
+  margin-top: 4px;
+}
+
+.bigwin-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #10b981;
+  text-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
+  margin-top: 8px;
+}
+
+.bigwin-collect-btn {
+  margin-top: 18px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffd700, #b8860b);
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+}
+
+/* 3D Coin Rain Canvas */
+#coinRainCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 180;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  :root {
+    --hud-height: 44px;
+    --reel-width: min(84px, 22vw);
+    --reel-height: min(80px, 21vw);
+  }
+
+  .hud-brand-tag .hud-brand-info {
+    display: none;
+  }
+
+  .wallet-label {
+    display: none;
+  }
+
+  .hud-wallet-pill {
+    padding: 3px 8px;
+  }
+
+  .wallet-amount {
+    font-size: 0.82rem;
+  }
+
+  .deposit-btn {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+
+  .fullscreen-btn {
+    display: none;
+  }
+
+  .spin-btn {
+    width: 68px;
+    height: 68px;
+  }
+
+  .bet-box {
+    height: 44px;
+  }
+
+  .bet-step-btn {
+    width: 28px;
+    height: 34px;
+  }
+
+  .bet-amount-box {
+    min-width: 55px;
+  }
+
+  .bet-amount {
+    font-size: 0.78rem;
+  }
+
+  .toggle-btn {
+    height: 44px;
+    padding: 0 6px;
+    font-size: 0.58rem;
+  }
+
+  .wheel-container {
+    width: 260px;
+    height: 260px;
+  }
+}

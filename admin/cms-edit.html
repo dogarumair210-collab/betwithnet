@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Edit CMS Page - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .editor-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 900px) {
+            .editor-split {
+                grid-template-columns: 1fr;
+            }
+        }
+        .preview-box {
+            background: #080d15;
+            border: 1px solid var(--lte-border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            min-height: 400px;
+            max-height: 650px;
+            overflow-y: auto;
+            color: #d1d5db;
+            line-height: 1.7;
+        }
+        .preview-box h2 {
+            color: #fff;
+            margin: 16px 0 8px;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 6px;
+        }
+        .preview-box p {
+            margin-bottom: 12px;
+        }
+        .preview-box ul {
+            padding-left: 24px;
+            margin-bottom: 12px;
+        }
+        .toolbar-btn {
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--lte-border);
+            border-radius: 4px;
+            color: #fff;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .toolbar-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span class="navbar-breadcrumb">
+                    CMS Pages / <a href="cms-pages.html" style="color:var(--lte-muted); text-decoration:none;">Directory</a> / <b style="color:#fff;" id="nav-action-title">Page Editor</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <a href="cms-pages.html" class="btn-lte btn-lte-secondary">
+                    <span>← Back to Pages</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title" id="page-heading">
+                        <span>✏️</span> Add / Edit CMS Page
+                    </h1>
+                    <p class="page-subtitle">
+                        Configure page title, URL routing slug, publishing status, and rich HTML contents.
+                    </p>
+                </div>
+            </div>
+
+            <form id="cms-editor-form" onsubmit="handleSavePage(event)">
+                <input type="hidden" id="page-id">
+
+                <!-- Meta Details Card -->
+                <div class="lte-card" style="margin-bottom:20px;">
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Page Title:</label>
+                            <input type="text" id="page-title" class="form-ctrl" placeholder="e.g. Terms of Service" required oninput="autoSlug(this.value)">
+                        </div>
+                        <div class="form-field">
+                            <label>URL Slug (Direct Link):</label>
+                            <div style="display:flex; align-items:center;">
+                                <span style="background:#111722; border:1px solid var(--lte-border); border-right:none; padding:10px 12px; border-radius:6px 0 0 6px; font-size:12px; color:#8e9bb0;">/pages.html?slug=</span>
+                                <input type="text" id="page-slug" class="form-ctrl" style="border-radius:0 6px 6px 0;" placeholder="terms" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Category:</label>
+                            <select id="page-category" class="form-ctrl">
+                                <option value="Legal & Compliance">Legal & Compliance</option>
+                                <option value="Player Protection">Player Protection</option>
+                                <option value="Promotions">Promotions & VIP</option>
+                                <option value="Support & Help">Support & Help</option>
+                                <option value="General Information">General Information</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Publishing Status:</label>
+                            <select id="page-status" class="form-ctrl">
+                                <option value="published" selected>Published (Visible to Players) 🟢</option>
+                                <option value="draft">Draft (Hidden) 🔴</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Split Editor & Live Preview -->
+                <div class="lte-card">
+                    <div class="lte-card-header">
+                        <div class="lte-card-title">
+                            <span>📝</span> Page Content & Live Preview
+                        </div>
+                        <div style="display:flex; gap:6px;">
+                            <button type="button" class="toolbar-btn" onclick="insertTag('h2')">&lt;H2&gt;</button>
+                            <button type="button" class="toolbar-btn" onclick="insertTag('p')">&lt;P&gt;</button>
+                            <button type="button" class="toolbar-btn" onclick="insertTag('strong')">&lt;B&gt;</button>
+                            <button type="button" class="toolbar-btn" onclick="insertTag('ul')">&lt;List&gt;</button>
+                        </div>
+                    </div>
+
+                    <div class="editor-split">
+                        <div>
+                            <label style="font-size:11px; color:var(--lte-muted); font-weight:700; text-transform:uppercase; margin-bottom:8px; display:block;">
+                                HTML Content Source:
+                            </label>
+                            <textarea id="page-content" class="form-ctrl" style="height:500px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6;" placeholder="<h2>Section Heading</h2><p>Page description and rules...</p>" oninput="updatePreview(this.value)"></textarea>
+                        </div>
+
+                        <div>
+                            <label style="font-size:11px; color:var(--lte-muted); font-weight:700; text-transform:uppercase; margin-bottom:8px; display:block;">
+                                Live Player View Preview:
+                            </label>
+                            <div class="preview-box" id="preview-container">
+                                <p style="color:#8e9bb0;">Type your content on the left to see instant preview.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-top:24px;">
+                        <button type="submit" class="btn-lte btn-lte-primary" style="padding:12px 28px; font-size:13px;">
+                            <span>💾 SAVE & PUBLISH PAGE</span>
+                        </button>
+                        <a href="cms-pages.html" class="btn-lte btn-lte-secondary" style="padding:12px 20px;">
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/cms_manager.js"></script>
+    <script>
+        let isEditing = false;
+
+        function loadPageData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageId = urlParams.get('id');
+
+            if (!pageId) {
+                // New page mode
+                document.getElementById('nav-action-title').innerText = 'Create New Page';
+                document.getElementById('page-heading').innerHTML = '<span>➕</span> Create New CMS Page';
+                document.getElementById('page-content').value = `<h2>1. Overview</h2>\n<p>Enter comprehensive description and details here...</p>\n\n<h2>2. Guidelines</h2>\n<ul>\n  <li>Standard clause 1</li>\n  <li>Standard clause 2</li>\n</ul>`;
+                updatePreview(document.getElementById('page-content').value);
+                return;
+            }
+
+            const page = window.cmsManager.getPageById(pageId);
+            if (!page) {
+                alert('CMS Page not found!');
+                window.location.href = 'cms-pages.html';
+                return;
+            }
+
+            isEditing = true;
+            document.getElementById('nav-action-title').innerText = `Edit: ${page.title}`;
+            document.getElementById('page-heading').innerHTML = `<span>✏️</span> Edit Page: ${page.title}`;
+            document.getElementById('page-id').value = page.id;
+            document.getElementById('page-title').value = page.title;
+            document.getElementById('page-slug').value = page.slug;
+            document.getElementById('page-category').value = page.category || 'General Information';
+            document.getElementById('page-status').value = page.status;
+            document.getElementById('page-content').value = page.content;
+
+            updatePreview(page.content);
+        }
+
+        function autoSlug(val) {
+            if (isEditing) return; // don't overwrite if editing existing page
+            const slug = val.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            document.getElementById('page-slug').value = slug;
+        }
+
+        function updatePreview(html) {
+            document.getElementById('preview-container').innerHTML = html || '<p style="color:#8e9bb0;">(Empty content)</p>';
+        }
+
+        function insertTag(tag) {
+            const textarea = document.getElementById('page-content');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selected = textarea.value.substring(start, end);
+
+            let replacement = '';
+            if (tag === 'h2') replacement = `\n<h2>${selected || 'Section Title'}</h2>\n`;
+            else if (tag === 'p') replacement = `\n<p>${selected || 'Paragraph text here...'}</p>\n`;
+            else if (tag === 'strong') replacement = `<strong>${selected || 'bold text'}</strong>`;
+            else if (tag === 'ul') replacement = `\n<ul>\n  <li>${selected || 'Item 1'}</li>\n  <li>Item 2</li>\n</ul>\n`;
+
+            textarea.setRangeText(replacement, start, end, 'end');
+            updatePreview(textarea.value);
+        }
+
+        function handleSavePage(e) {
+            e.preventDefault();
+            const id = document.getElementById('page-id').value;
+            const title = document.getElementById('page-title').value.trim();
+            const slug = document.getElementById('page-slug').value.trim();
+            const category = document.getElementById('page-category').value;
+            const status = document.getElementById('page-status').value;
+            const content = document.getElementById('page-content').value;
+
+            const payload = {
+                title,
+                slug,
+                category,
+                status,
+                content
+            };
+
+            if (id) {
+                window.cmsManager.updatePage(id, payload);
+                alert(`CMS Page "${title}" updated successfully!`);
+            } else {
+                window.cmsManager.addPage(payload);
+                alert(`New CMS Page "${title}" published!`);
+            }
+
+            window.location.href = 'cms-pages.html';
+        }
+
+        window.addEventListener('DOMContentLoaded', loadPageData);
+    </script>
+    <script src="js/adminlte.js"></script>
+</body>
+</html>

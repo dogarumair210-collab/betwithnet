@@ -1,0 +1,102 @@
+{
+  "grid": {
+    "rows": 3,
+    "columns": 3,
+    "multiplier_reel_index": 4,
+    "paylines_count": 5
+  },
+  "symbols": [
+    {
+      "id": "WILD",
+      "name": "Garuda Mask (Wild)",
+      "file": "symbols/sym_wild.png",
+      "type": "Wild",
+      "payout_multiplier_for_3": 25,
+      "description": "Substitutes for all symbols to form the highest winning combination"
+    },
+    {
+      "id": "RUBY",
+      "name": "Red Ruby Gem",
+      "file": "symbols/sym_ruby.png",
+      "type": "High Pay Gem",
+      "payout_multiplier_for_3": 20,
+      "description": "Ornate golden Aztec framed glowing red ruby"
+    },
+    {
+      "id": "SAPPHIRE",
+      "name": "Blue Sapphire Gem",
+      "file": "symbols/sym_sapphire.png",
+      "type": "High Pay Gem",
+      "payout_multiplier_for_3": 15,
+      "description": "Deep blue faceted oval sapphire set in solid gold"
+    },
+    {
+      "id": "EMERALD",
+      "name": "Green Emerald Gem",
+      "file": "symbols/sym_emerald.png",
+      "type": "High Pay Gem",
+      "payout_multiplier_for_3": 10,
+      "description": "Radiant green octagonal emerald set in Aztec jewelry"
+    },
+    {
+      "id": "A",
+      "name": "Golden Ace",
+      "file": "symbols/sym_a.png",
+      "type": "Royal",
+      "payout_multiplier_for_3": 5,
+      "description": "Chiseled solid gold Aztec glyph Ace"
+    },
+    {
+      "id": "K",
+      "name": "Golden King",
+      "file": "symbols/sym_k.png",
+      "type": "Royal",
+      "payout_multiplier_for_3": 4,
+      "description": "Chiseled solid gold Aztec glyph King"
+    },
+    {
+      "id": "Q",
+      "name": "Golden Queen",
+      "file": "symbols/sym_q.png",
+      "type": "Royal",
+      "payout_multiplier_for_3": 3,
+      "description": "Chiseled solid gold Aztec glyph Queen"
+    },
+    {
+      "id": "J",
+      "name": "Golden Jack",
+      "file": "symbols/sym_j.png",
+      "type": "Royal",
+      "payout_multiplier_for_3": 2,
+      "description": "Chiseled solid gold Aztec glyph Jack"
+    },
+    {
+      "id": "WHEEL",
+      "name": "Lucky Wheel Bonus Symbol",
+      "file": "symbols/sym_wheel.png",
+      "type": "Bonus Trigger",
+      "description": "Appears on Reel 4 center position to trigger the Giant Lucky Wheel Bonus"
+    }
+  ],
+  "multipliers_reel_4": [
+    { "multiplier": 1, "svg": "multipliers_svg/multiplier_1x.svg" },
+    { "multiplier": 2, "svg": "multipliers_svg/multiplier_2x.svg" },
+    { "multiplier": 3, "svg": "multipliers_svg/multiplier_3x.svg" },
+    { "multiplier": 5, "svg": "multipliers_svg/multiplier_5x.svg" },
+    { "multiplier": 10, "svg": "multipliers_svg/multiplier_10x.svg" },
+    { "multiplier": 15, "svg": "multipliers_svg/multiplier_15x.svg" },
+    { "trigger": "LUCKY_WHEEL", "icon": "symbols/sym_wheel.png" }
+  ],
+  "lucky_wheel_prizes": [
+    "20X", "25X", "30X", "50X", "100X", "200X", "500X", "1000X"
+  ],
+  "bonus_assets": [
+    { "file": "wheel_and_bonus/fortune_wheel_disc.png", "description": "Giant Aztec Sun Stone Lucky Wheel Disc" },
+    { "file": "wheel_and_bonus/wheel_eagle_pointer.png", "description": "Golden Aztec Eagle Head Center Pointer" },
+    { "file": "wheel_and_bonus/aztec_bigwin_shield.png", "description": "Golden Aztec Big Win Shield Banner" },
+    { "file": "cabinet_and_ui/aztec_pillar.png", "description": "Carved Stone Aztec Temple Pillars" },
+    { "file": "cabinet_and_ui/aztec_spin_button.png", "description": "Golden Ornate Aztec Spin Button" },
+    { "file": "backgrounds_and_covers/fortunegems_bg.jpg", "description": "1080p High-Resolution Golden Aztec Jungle Temple" },
+    { "file": "backgrounds_and_covers/fortunegems2.png", "description": "Official Game Cover Poster Art" }
+  ]
+}

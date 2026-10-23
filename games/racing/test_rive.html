@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test Rive</title><script src="rive.js"></script></head>
+<body>
+<canvas id="c" width="769" height="432"></canvas>
+<div id="res"></div>
+<script>
+try {
+    const r = new rive.Rive({
+        src: 'racing_desktop.riv',
+        canvas: document.getElementById('c'),
+        autoplay: true,
+        stateMachines: 'State Machine 1',
+        onLoad: () => {
+            const inputs = r.stateMachineInputs('State Machine 1');
+            document.getElementById('res').innerText = JSON.stringify(inputs.map(i => i.name));
+            document.title = 'DONE';
+        }
+    });
+} catch(err) {
+    document.title = 'ERR';
+}
+</script>
+</body>
+</html>

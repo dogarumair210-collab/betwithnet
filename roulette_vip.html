@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>RouletteX VIP 500x - European Roulette Studio | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+
+    <style>
+        :root {
+            --bg-deep: #050a12;
+            --bg-surface: #0a1320;
+            --bg-card: #111d30;
+            --border: #223755;
+            --border-glow: rgba(0, 220, 130, 0.4);
+            --accent: #00dc82;
+            --accent-gold: #ffbe2e;
+            --accent-red: #e73636;
+            --accent-blue: #1c8ffa;
+            --text-primary: #ffffff;
+            --text-secondary: #8fa3c0;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header */
+        header {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background: rgba(10, 19, 32, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 54px;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: #1a2b44;
+            border-color: var(--accent);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo-img {
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+
+        .badge-500x {
+            background: linear-gradient(135deg, #e73636, #ff4757);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            animation: pulse-red 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(231, 54, 54, 0.7); }
+            50% { box-shadow: 0 0 0 6px rgba(231, 54, 54, 0); }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .balance-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 190, 46, 0.4);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .balance-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .balance-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .deposit-btn {
+            background: linear-gradient(135deg, #ffbe2e, #f39c12);
+            color: #000;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .deposit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .ctrl-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            background: #1a2b44;
+            border-color: var(--accent-gold);
+        }
+
+        /* Main Game Layout */
+        .game-viewport {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            background: radial-gradient(circle at 50% 20%, #0d1a2d 0%, #050a12 100%);
+        }
+
+        /* Upper Stage: 3D Wheel + Multipliers Board */
+        .stage-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            padding: 8px 16px;
+            flex: 1;
+            min-height: 180px;
+            max-height: 280px;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, #101c2e 0%, #060c14 100%);
+            border-radius: 50%;
+            border: 5px solid #2a3e5c;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,190,46,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        #wheelCanvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .wheel-pin-top {
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 14px solid #ffbe2e;
+            z-index: 5;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+
+        .wheel-center-turret {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffbe2e 0%, #b8860b 60%, #4a3500 100%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.8), inset 0 0 5px rgba(255,255,255,0.6);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* Multipliers & History Display */
+        .stage-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 420px;
+            flex: 1;
+        }
+
+        .multipliers-card {
+            background: rgba(10, 19, 32, 0.85);
+            border: 1px solid rgba(255, 190, 46, 0.35);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        .mult-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mult-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--accent-gold);
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mult-boost-badge {
+            font-size: 10px;
+            background: rgba(255, 190, 46, 0.2);
+            color: var(--accent-gold);
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        .mult-numbers-row {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .mult-number-card {
+            flex: 1;
+            background: rgba(17, 29, 48, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 6px 4px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .mult-num-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .mult-mult-val {
+            font-size: 11px;
+            font-weight: 900;
+            color: var(--accent-gold);
+        }
+
+        /* History & Status */
+        .status-history-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(5, 10, 18, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            gap: 10px;
+        }
+
+        .history-pills {
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+        }
+
+        .history-chip {
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 50%;
+            min-width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-pill {
+            font-size: 11px;
+            font-weight: 800;
+            color: #00dc82;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Middle Section: Authentic Green Felt Table */
+        .felt-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 4px 12px;
+            overflow-x: auto;
+        }
+
+        .felt-board {
+            background: 
+                radial-gradient(ellipse at 50% 50%, rgba(13, 92, 52, 0.95) 0%, rgba(8, 56, 32, 0.98) 100%),
+                url('../game_assets/textures/Roulette_Table_BaseColor_Green.webp');
+            background-size: cover;
+            border-radius: 12px;
+            border: 3px solid #1a3826;
+            box-shadow: 0 0 0 2px #d4af37, 0 10px 30px rgba(0,0,0,0.85);
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 820px;
+            max-width: 1020px;
+        }
+
+        .board-top-row {
+            display: flex;
+            gap: 4px;
+        }
+
+        .zero-cell {
+            width: 52px;
+            background: linear-gradient(135deg, #0b7a42, #06542d);
+            border: 1.5px solid rgba(255,255,255,0.7);
+            border-radius: 8px 0 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.15s;
+        }
+
+        .zero-cell:hover {
+            filter: brightness(1.25);
+            border-color: #ffbe2e;
+        }
+
+        .grid-3x12 {
+            flex: 1;
+            display: grid;
+            grid-template-rows: repeat(3, 38px);
+            grid-template-columns: repeat(12, 1fr) 44px;
+            gap: 3px;
+        }
+
+        .num-cell {
+            border: 1.5px solid rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            border-radius: 3px;
+            transition: all 0.15s;
+        }
+
+        .num-cell.red {
+            background: linear-gradient(135deg, #c0292b, #8a1719);
+        }
+
+        .num-cell.black {
+            background: linear-gradient(135deg, #222222, #111111);
+        }
+
+        .num-cell:hover {
+            filter: brightness(1.3);
+            border-color: #ffbe2e;
+            box-shadow: 0 0 10px rgba(255, 190, 46, 0.6);
+            z-index: 2;
+        }
+
+        .col-bet-cell {
+            border: 1.5px solid rgba(255,255,255,0.6);
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.15s;
+        }
+
+        .col-bet-cell:hover {
+            filter: brightness(1.3);
+            border-color: #ffbe2e;
+        }
+
+        /* Outside Bets Rows */
+        .outside-row {
+            display: flex;
+            gap: 4px;
+            margin-left: 56px;
+            margin-right: 48px;
+        }
+
+        .outside-cell {
+            flex: 1;
+            height: 32px;
+            border: 1.5px solid rgba(255,255,255,0.6);
+            background: rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .outside-cell:hover {
+            filter: brightness(1.3);
+            border-color: #ffbe2e;
+            box-shadow: 0 0 8px rgba(255, 190, 46, 0.5);
+        }
+
+        .outside-cell.red {
+            background: linear-gradient(135deg, #c0292b, #8a1719);
+        }
+
+        .outside-cell.black {
+            background: linear-gradient(135deg, #222222, #111111);
+        }
+
+        /* 3D Chip Stack on Table */
+        .table-chip-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffbe2e 0%, #d4af37 60%, #8a6d10 100%);
+            border: 2px dashed #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.9), inset 0 1px 2px rgba(255,255,255,0.8);
+            color: #000;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 10;
+            animation: chip-drop 0.15s ease-out;
+        }
+
+        @keyframes chip-drop {
+            0% { transform: translate(-50%, -80%) scale(1.4); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        /* Chips Selector Bar (Directly below table, like screenshot) */
+        .chips-selector-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 6px 16px;
+            background: rgba(6, 12, 22, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+            overflow-x: auto;
+        }
+
+        .poker-chip {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-shrink: 0;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.5);
+        }
+
+        .poker-chip:hover {
+            transform: translateY(-4px) scale(1.08);
+        }
+
+        .poker-chip.selected {
+            transform: translateY(-8px) scale(1.15);
+            box-shadow: 0 0 16px var(--accent-gold), 0 8px 16px rgba(0,0,0,0.8);
+            border-color: #fff;
+            outline: 2px solid var(--accent-gold);
+        }
+
+        .chip-01 { background: radial-gradient(circle, #f5f6fa 40%, #7f8fa6 100%); color: #192a56; }
+        .chip-02 { background: radial-gradient(circle, #e67e22 40%, #d35400 100%); color: #fff; }
+        .chip-05 { background: radial-gradient(circle, #2ecc71 40%, #27ae60 100%); color: #000; }
+        .chip-1  { background: radial-gradient(circle, #3498db 40%, #2980b9 100%); color: #fff; }
+        .chip-2  { background: radial-gradient(circle, #34495e 40%, #1e272e 100%); color: #fff; }
+        .chip-5  { background: radial-gradient(circle, #9b59b6 40%, #8e44ad 100%); color: #fff; }
+        .chip-10 { background: radial-gradient(circle, #f1c40f 40%, #f39c12 100%); color: #000; }
+        .chip-25 { background: radial-gradient(circle, #e74c3c 40%, #c0392b 100%); color: #fff; }
+        .chip-50 { background: radial-gradient(circle, #1abc9c 40%, #16a085 100%); color: #000; }
+        .chip-100{ background: radial-gradient(circle, #2c3e50 30%, #ffbe2e 100%); color: #ffbe2e; border-color: #ffbe2e; }
+
+        /* Bottom Luxury Wooden Rail (Exact Copy of Screenshot) */
+        .luxury-wooden-rail {
+            width: 100%;
+            height: 64px;
+            background: 
+                linear-gradient(180deg, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0.1) 6%, transparent 12%),
+                linear-gradient(180deg, #42210b 0%, #241105 50%, #140902 100%);
+            border-top: 2px solid #ffbe2e;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            flex-shrink: 0;
+            z-index: 30;
+        }
+
+        .rail-left-stats {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .rail-stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .rail-stat-label {
+            font-size: 11px;
+            font-weight: 900;
+            color: #e0d0b0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .rail-stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 17px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .rail-stat-value.gold {
+            color: #ffbe2e;
+            text-shadow: 0 0 10px rgba(255, 190, 46, 0.5);
+        }
+
+        .rail-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Gold Circular Action Buttons */
+        .gold-action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f39c12 0%, #b8860b 70%, #5a4200 100%);
+            border: 2px solid #ffeaa7;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.7);
+            color: #000;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+
+        .gold-action-btn:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+            box-shadow: 0 0 15px rgba(255, 190, 46, 0.8);
+        }
+
+        .gold-action-btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-spin-gold {
+            background: linear-gradient(135deg, #ffbe2e 0%, #f39c12 50%, #d35400 100%);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 900;
+            padding: 10px 32px;
+            border-radius: 25px;
+            border: 2px solid #ffeaa7;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.6), inset 0 1px 2px rgba(255,255,255,0.8);
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-spin-gold:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.9);
+        }
+
+        .btn-spin-gold:active {
+            transform: scale(0.96);
+        }
+
+        .btn-spin-gold.spinning {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Win Toast Notification */
+        .win-toast {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-30px);
+            background: rgba(10, 19, 32, 0.96);
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 25px rgba(255,190,46,0.6);
+            border-radius: 30px;
+            padding: 10px 28px;
+            font-size: 16px;
+            font-weight: 900;
+            color: #fff;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        .win-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .stage-section {
+                gap: 12px;
+                padding: 4px;
+                max-height: 200px;
+            }
+            .wheel-container {
+                width: 170px;
+                height: 170px;
+            }
+            .luxury-wooden-rail {
+                padding: 0 12px;
+                height: 56px;
+            }
+            .rail-stat-value {
+                font-size: 14px;
+            }
+            .btn-spin-gold {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+            .poker-chip {
+                width: 38px;
+                height: 38px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="winToast" class="win-toast">🎉 YOU WON ₨ 0</div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <a href="../casino.html" class="back-btn">
+                ◀ Lobby
+            </a>
+            <div class="brand-container">
+                <img src="../game_assets/promo_and_branding/Astriona_logo.svg" alt="Astriona" class="brand-logo-img">
+                <span class="game-title">RouletteX VIP</span>
+                <span class="badge-500x">500X MULTIPLIER</span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="balance-badge" title="Live Account Balance">
+                <span class="balance-label">WALLET</span>
+                <span class="balance-val" id="topWalletBalance">₨ 0.00</span>
+                <span id="topWalletDualBalance" style="font-size: 10px; color: var(--text-secondary); font-family: 'JetBrains Mono';">($0.00)</span>
+            </div>
+            <a href="../deposit.html" class="deposit-btn" title="Add Funds to Wallet">+ Deposit</a>
+            <button class="ctrl-btn" id="soundBtn" onclick="toggleMute()" title="Mute/Unmute">🔊</button>
+            <button class="ctrl-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+        </div>
+    </header>
+
+    <!-- Main Game Viewport -->
+    <div class="game-viewport">
+        <!-- 1. Upper Stage: 3D Animated Wheel & 500x Boosters -->
+        <div class="stage-section">
+            <div class="wheel-container">
+                <div class="wheel-pin-top"></div>
+                <canvas id="wheelCanvas" width="600" height="600"></canvas>
+                <div class="wheel-center-turret"></div>
+            </div>
+
+            <div class="stage-info">
+                <div class="multipliers-card">
+                    <div class="mult-header">
+                        <span class="mult-title">⚡ Lucky Multipliers</span>
+                        <span class="mult-boost-badge">500X VIP</span>
+                    </div>
+                    <div class="mult-numbers-row" id="multRow">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <div class="status-history-bar">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="font-size:10px; color:var(--text-secondary); font-weight:800;">HISTORY:</span>
+                        <div class="history-pills" id="historyPills"></div>
+                    </div>
+                    <div class="status-pill" id="gameStatus">PLACE BETS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Green Felt Betting Table (Exact European Roulette Grid) -->
+        <div class="felt-section">
+            <div class="felt-board">
+                <div class="board-top-row">
+                    <div class="zero-cell" id="slot-0" onclick="placeBet(0)">0</div>
+                    <div class="grid-3x12" id="grid3x12">
+                        <!-- 1 to 36 + Column Bets Generated by JS -->
+                    </div>
+                </div>
+
+                <!-- 12s Row -->
+                <div class="outside-row">
+                    <div class="outside-cell" id="slot-1st12" onclick="placeOutsideBet('1st12')">1st 12</div>
+                    <div class="outside-cell" id="slot-2nd12" onclick="placeOutsideBet('2nd12')">2nd 12</div>
+                    <div class="outside-cell" id="slot-3rd12" onclick="placeOutsideBet('3rd12')">3rd 12</div>
+                </div>
+
+                <!-- Outside 1:1 Bets Row -->
+                <div class="outside-row">
+                    <div class="outside-cell" id="slot-low" onclick="placeOutsideBet('1-18')">1 - 18</div>
+                    <div class="outside-cell" id="slot-even" onclick="placeOutsideBet('even')">EVEN</div>
+                    <div class="outside-cell red" id="slot-red" onclick="placeOutsideBet('red')">♦ RED</div>
+                    <div class="outside-cell black" id="slot-black" onclick="placeOutsideBet('black')">♦ BLACK</div>
+                    <div class="outside-cell" id="slot-odd" onclick="placeOutsideBet('odd')">ODD</div>
+                    <div class="outside-cell" id="slot-high" onclick="placeOutsideBet('19-36')">19 - 36</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Chips Selector Bar (Directly below table, like screenshot) -->
+        <div class="chips-selector-bar">
+            <div class="poker-chip chip-01" onclick="selectChip(0.1, this)">0.1</div>
+            <div class="poker-chip chip-02" onclick="selectChip(0.2, this)">0.2</div>
+            <div class="poker-chip chip-05" onclick="selectChip(0.5, this)">0.5</div>
+            <div class="poker-chip chip-1 selected" onclick="selectChip(1, this)">1</div>
+            <div class="poker-chip chip-2" onclick="selectChip(2, this)">2</div>
+            <div class="poker-chip chip-5" onclick="selectChip(5, this)">5</div>
+            <div class="poker-chip chip-10" onclick="selectChip(10, this)">10</div>
+            <div class="poker-chip chip-25" onclick="selectChip(25, this)">25</div>
+            <div class="poker-chip chip-50" onclick="selectChip(50, this)">50</div>
+            <div class="poker-chip chip-100" onclick="selectChip(100, this)">100</div>
+        </div>
+
+        <!-- 4. Luxury Wooden Bottom Rail (Exact Copy of Screenshot) -->
+        <div class="luxury-wooden-rail">
+            <div class="rail-left-stats">
+                <div class="rail-stat-item">
+                    <span class="rail-stat-label">BALANCE</span>
+                    <strong class="rail-stat-value gold" id="railBalance">₨ 0.00</strong>
+                </div>
+                <div class="rail-stat-item">
+                    <span class="rail-stat-label">TOTAL BET</span>
+                    <strong class="rail-stat-value" id="railBet">₨ 0.00</strong>
+                </div>
+            </div>
+
+            <div class="rail-right-actions">
+                <button class="gold-action-btn" onclick="doubleBets()" title="Double Bets (2X)">2X</button>
+                <button class="gold-action-btn" onclick="undoLastBet()" title="Undo Last Bet">↶</button>
+                <button class="gold-action-btn" onclick="clearBets()" title="Clear Bets">🗑</button>
+                <button class="btn-spin-gold" id="spinBtn" onclick="spinWheel()">
+                    <span>SPIN</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+
+    <script>
+        // Wheel constants & European Roulette pockets
+        const WHEEL_NUMS = [
+            0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10,
+            5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+        ];
+
+        const RED_NUMS = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+
+        // State
+        let currentChip = 1;
+        let activeBets = {}; // key -> amount
+        let betHistoryStack = [];
+        let isSpinning = false;
+        let currentAngle = 0;
+        let luckyMultipliers = [];
+        let isMuted = false;
+
+        // Sounds
+        const sounds = {
+            chip: new Howl({ src: ['/roulette/assets/sounds/chip.mp3'], volume: 0.6 }),
+            spin: new Howl({ src: ['/roulette/assets/sounds/spin.mp3'], volume: 0.7 }),
+            win:  new Howl({ src: ['/common/assets/sounds/win.mp3'], volume: 0.8 }),
+            tick: new Howl({ src: ['/common/assets/sounds/time-tick.mp3'], volume: 0.4 })
+        };
+
+        // Wheel Image
+        const wheelImg = new Image();
+        wheelImg.src = '../game_assets/textures/Roulette_wheel_BaseColor.webp';
+        wheelImg.onload = () => drawWheel(0);
+
+        function drawWheel(angle) {
+            const canvas = document.getElementById('wheelCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angle);
+            if (wheelImg.complete && wheelImg.naturalWidth !== 0) {
+                ctx.drawImage(wheelImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+            }
+            ctx.restore();
+        }
+
+        // Initialize Table Grid
+        function initGrid() {
+            const grid = document.getElementById('grid3x12');
+            grid.innerHTML = '';
+
+            for (let r = 3; r >= 1; r--) {
+                for (let c = 0; c < 12; c++) {
+                    const num = c * 3 + r;
+                    const cell = document.createElement('div');
+                    cell.className = `num-cell ${RED_NUMS.includes(num) ? 'red' : 'black'}`;
+                    cell.textContent = num;
+                    cell.id = `slot-${num}`;
+                    cell.onclick = () => placeBet(num);
+                    grid.appendChild(cell);
+                }
+                // 2:1 Column Bet
+                const colCell = document.createElement('div');
+                colCell.className = 'col-bet-cell';
+                colCell.textContent = '2 to 1';
+                colCell.id = `slot-col-${r}`;
+                const colKey = `col${r}`;
+                colCell.onclick = () => placeOutsideBet(colKey);
+                grid.appendChild(colCell);
+            }
+        }
+
+        function refreshMultipliers() {
+            const row = document.getElementById('multRow');
+            if (!row) return;
+            row.innerHTML = '';
+
+            const pool = [...Array(37).keys()].sort(() => 0.5 - Math.random());
+            const chosen = pool.slice(0, 4);
+            const multValues = [50, 100, 150, 200, 250, 300, 500];
+
+            luckyMultipliers = chosen.map(n => ({
+                num: n,
+                mult: multValues[Math.floor(Math.random() * multValues.length)]
+            }));
+
+            luckyMultipliers.forEach(m => {
+                const color = m.num === 0 ? '#00dc82' : (RED_NUMS.includes(m.num) ? '#ff4757' : '#f1f2f6');
+                row.innerHTML += `
+                    <div class="mult-number-card">
+                        <span class="mult-num-val" style="color: ${color};">${m.num}</span>
+                        <span class="mult-mult-val">${m.mult}x</span>
+                    </div>
+                `;
+            });
+        }
+
+        // Chip selection
+        function selectChip(val, el) {
+            currentChip = val;
+            sounds.chip.play();
+            document.querySelectorAll('.poker-chip').forEach(c => c.classList.remove('selected'));
+            if (el) el.classList.add('selected');
+        }
+
+        // Wallet Balance Sync
+        function syncWallet() {
+            try {
+                let bal = 0;
+                let rate = (window.wallet && window.wallet.exchangeRate) ? window.wallet.exchangeRate : 280;
+
+                if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    bal = window.wallet.getBalance();
+                } else if (localStorage.getItem('bwn_session_user')) {
+                    const u = JSON.parse(localStorage.getItem('bwn_session_user'));
+                    bal = parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : (u.balancePKR || 0));
+                } else if (localStorage.getItem('bwn_wallet_state_v1')) {
+                    const st = JSON.parse(localStorage.getItem('bwn_wallet_state_v1'));
+                    bal = parseFloat(st.balancePKR || 0);
+                }
+
+                const balUSD = (bal / rate).toFixed(2);
+                const pkrFormatted = `₨ ${bal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+                const topBal = document.getElementById('topWalletBalance');
+                if (topBal) topBal.textContent = pkrFormatted;
+
+                const topDual = document.getElementById('topWalletDualBalance');
+                if (topDual) topDual.textContent = `($${balUSD})`;
+
+                const railBal = document.getElementById('railBalance');
+                if (railBal) railBal.textContent = pkrFormatted;
+            } catch(e) {
+                console.warn('syncWallet error:', e);
+            }
+        }
+
+        async function fetchServerBalance() {
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    if (u && (u.username || u.phone)) {
+                        const res = await fetch(`../api/get_profile.php?user=${encodeURIComponent(u.username || u.phone)}`);
+                        const json = await res.json();
+                        if (json && json.status === 'success' && json.data) {
+                            const balPkr = parseFloat(json.data.balance_pkr || 0);
+                            const balUsd = parseFloat(json.data.balance_usd || (balPkr / 280));
+                            if (window.wallet) {
+                                window.wallet.state.balancePKR = balPkr;
+                                window.wallet.state.balanceUSD = balUsd;
+                                window.wallet.saveState();
+                            }
+                        }
+                    }
+                }
+            } catch(e) {}
+            syncWallet();
+        }
+
+        function updateBetDisplay() {
+            let total = 0;
+            for (let k in activeBets) {
+                total += activeBets[k];
+            }
+            const formatted = `₨ ${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            const railBet = document.getElementById('railBet');
+            if (railBet) railBet.textContent = formatted;
+        }
+
+        function renderChipOnSlot(slotId, amount) {
+            const slot = document.getElementById(slotId);
+            if (!slot) return;
+
+            let badge = slot.querySelector('.table-chip-badge');
+            if (amount > 0) {
+                if (!badge) {
+                    badge = document.createElement('div');
+                    badge.className = 'table-chip-badge';
+                    slot.appendChild(badge);
+                }
+                badge.textContent = amount >= 1000 ? (amount / 1000).toFixed(1) + 'k' : amount;
+            } else if (badge) {
+                badge.remove();
+            }
+        }
+
+        // Place bets
+        function placeBet(num) {
+            if (isSpinning) return;
+
+            if (window.wallet && typeof window.wallet.hasBalance === 'function') {
+                if (!window.wallet.hasBalance(currentChip)) {
+                    showWinToast('❌ Insufficient balance in wallet!');
+                    return;
+                }
+                window.wallet.deductBet(currentChip, 'RouletteX VIP');
+                syncWallet();
+            }
+
+            activeBets[num] = (activeBets[num] || 0) + currentChip;
+            betHistoryStack.push({ type: 'num', key: num, amount: currentChip });
+            sounds.chip.play();
+            renderChipOnSlot(`slot-${num}`, activeBets[num]);
+            updateBetDisplay();
+        }
+
+        function placeOutsideBet(key) {
+            if (isSpinning) return;
+
+            if (window.wallet && typeof window.wallet.hasBalance === 'function') {
+                if (!window.wallet.hasBalance(currentChip)) {
+                    showWinToast('❌ Insufficient balance in wallet!');
+                    return;
+                }
+                window.wallet.deductBet(currentChip, 'RouletteX VIP');
+                syncWallet();
+            }
+
+            activeBets[key] = (activeBets[key] || 0) + currentChip;
+            betHistoryStack.push({ type: 'outside', key: key, amount: currentChip });
+            sounds.chip.play();
+
+            const keyMap = {
+                '1st12': 'slot-1st12',
+                '2nd12': 'slot-2nd12',
+                '3rd12': 'slot-3rd12',
+                '1-18':  'slot-low',
+                'even':  'slot-even',
+                'red':   'slot-red',
+                'black': 'slot-black',
+                'odd':   'slot-odd',
+                '19-36': 'slot-high',
+                'col1':  'slot-col-1',
+                'col2':  'slot-col-2',
+                'col3':  'slot-col-3'
+            };
+
+            const slotId = keyMap[key] || `slot-${key}`;
+            renderChipOnSlot(slotId, activeBets[key]);
+            updateBetDisplay();
+        }
+
+        function undoLastBet() {
+            if (isSpinning || !betHistoryStack.length) return;
+            const last = betHistoryStack.pop();
+            if (!last) return;
+
+            activeBets[last.key] -= last.amount;
+            if (activeBets[last.key] <= 0) delete activeBets[last.key];
+
+            // Refund to wallet
+            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                window.wallet.creditWin(last.amount, last.amount, 'RouletteX VIP', 1, 'Undo bet refund');
+                syncWallet();
+            }
+
+            const keyMap = {
+                '1st12': 'slot-1st12', '2nd12': 'slot-2nd12', '3rd12': 'slot-3rd12',
+                '1-18': 'slot-low', 'even': 'slot-even', 'red': 'slot-red',
+                'black': 'slot-black', 'odd': 'slot-odd', '19-36': 'slot-high',
+                'col1': 'slot-col-1', 'col2': 'slot-col-2', 'col3': 'slot-col-3'
+            };
+            const slotId = typeof last.key === 'number' ? `slot-${last.key}` : (keyMap[last.key] || `slot-${last.key}`);
+            renderChipOnSlot(slotId, activeBets[last.key] || 0);
+            updateBetDisplay();
+        }
+
+        function doubleBets() {
+            if (isSpinning) return;
+            let currentTotal = 0;
+            for (let k in activeBets) currentTotal += activeBets[k];
+            if (currentTotal <= 0) return;
+
+            if (window.wallet && typeof window.wallet.hasBalance === 'function') {
+                if (!window.wallet.hasBalance(currentTotal)) {
+                    showWinToast('❌ Insufficient balance to double!');
+                    return;
+                }
+                window.wallet.deductBet(currentTotal, 'RouletteX VIP');
+                syncWallet();
+            }
+
+            for (let k in activeBets) {
+                const add = activeBets[k];
+                activeBets[k] *= 2;
+                betHistoryStack.push({ type: 'double', key: k, amount: add });
+                const keyMap = {
+                    '1st12': 'slot-1st12', '2nd12': 'slot-2nd12', '3rd12': 'slot-3rd12',
+                    '1-18': 'slot-low', 'even': 'slot-even', 'red': 'slot-red',
+                    'black': 'slot-black', 'odd': 'slot-odd', '19-36': 'slot-high',
+                    'col1': 'slot-col-1', 'col2': 'slot-col-2', 'col3': 'slot-col-3'
+                };
+                const slotId = typeof k === 'number' || !isNaN(k) ? `slot-${k}` : (keyMap[k] || `slot-${k}`);
+                renderChipOnSlot(slotId, activeBets[k]);
+            }
+            sounds.chip.play();
+            updateBetDisplay();
+        }
+
+        function clearBets() {
+            if (isSpinning) return;
+            let refund = 0;
+            for (let k in activeBets) refund += activeBets[k];
+
+            if (refund > 0 && window.wallet && typeof window.wallet.creditWin === 'function') {
+                window.wallet.creditWin(refund, refund, 'RouletteX VIP', 1, 'Cleared unspun bets refund');
+                syncWallet();
+            }
+
+            activeBets = {};
+            betHistoryStack = [];
+            document.querySelectorAll('.table-chip-badge').forEach(b => b.remove());
+            updateBetDisplay();
+        }
+
+        // Spin Engine
+        function spinWheel() {
+            if (isSpinning) return;
+
+            let totalPlaced = 0;
+            for (let k in activeBets) totalPlaced += activeBets[k];
+            if (totalPlaced <= 0) {
+                showWinToast('⚠️ Please place your bets on the table first!');
+                return;
+            }
+
+            isSpinning = true;
+            document.getElementById('spinBtn').classList.add('spinning');
+            document.getElementById('gameStatus').textContent = 'SPINNING...';
+            document.getElementById('gameStatus').style.color = '#ffbe2e';
+            sounds.spin.play();
+
+            const winNum = WHEEL_NUMS[Math.floor(Math.random() * WHEEL_NUMS.length)];
+            const pocketIndex = WHEEL_NUMS.indexOf(winNum);
+            const pocketAngle = (pocketIndex / WHEEL_NUMS.length) * Math.PI * 2;
+
+            const extraRotations = 6 * Math.PI * 2;
+            const target = currentAngle + extraRotations + (Math.PI * 2 - (pocketAngle % (Math.PI * 2)));
+
+            let startTime = performance.now();
+            const duration = 4000;
+
+            function animate(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const a = currentAngle + (target - currentAngle) * easeOut;
+                drawWheel(a);
+
+                if (progress > 0.7 && Math.random() < 0.25) {
+                    sounds.tick.play();
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    currentAngle = target % (Math.PI * 2);
+                    isSpinning = false;
+                    document.getElementById('spinBtn').classList.remove('spinning');
+                    document.getElementById('gameStatus').textContent = 'ROUND SETTLED';
+                    document.getElementById('gameStatus').style.color = '#00dc82';
+                    resolvePayout(winNum, totalPlaced);
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function resolvePayout(winNum, totalPlaced) {
+            const isRed = RED_NUMS.includes(winNum);
+            addHistoryBadge(winNum, isRed);
+
+            let totalPayout = 0;
+            let luckyHit = null;
+
+            // Straight bet
+            if (activeBets[winNum]) {
+                const bet = activeBets[winNum];
+                const lucky = luckyMultipliers.find(m => m.num === winNum);
+                if (lucky) {
+                    luckyHit = lucky.mult;
+                    totalPayout += bet * lucky.mult;
+                } else {
+                    totalPayout += bet * 36;
+                }
+            }
+
+            // Outside bets
+            if (winNum !== 0) {
+                if (activeBets['red'] && isRed) totalPayout += activeBets['red'] * 2;
+                if (activeBets['black'] && !isRed) totalPayout += activeBets['black'] * 2;
+                if (activeBets['even'] && winNum % 2 === 0) totalPayout += activeBets['even'] * 2;
+                if (activeBets['odd'] && winNum % 2 === 1) totalPayout += activeBets['odd'] * 2;
+                if (activeBets['1-18'] && winNum >= 1 && winNum <= 18) totalPayout += activeBets['1-18'] * 2;
+                if (activeBets['19-36'] && winNum >= 19 && winNum <= 36) totalPayout += activeBets['19-36'] * 2;
+                if (activeBets['1st12'] && winNum >= 1 && winNum <= 12) totalPayout += activeBets['1st12'] * 3;
+                if (activeBets['2nd12'] && winNum >= 13 && winNum <= 24) totalPayout += activeBets['2nd12'] * 3;
+                if (activeBets['3rd12'] && winNum >= 25 && winNum <= 36) totalPayout += activeBets['3rd12'] * 3;
+
+                // Column bets
+                const rem = winNum % 3;
+                if (rem === 1 && activeBets['col1']) totalPayout += activeBets['col1'] * 3;
+                if (rem === 2 && activeBets['col2']) totalPayout += activeBets['col2'] * 3;
+                if (rem === 0 && activeBets['col3']) totalPayout += activeBets['col3'] * 3;
+            }
+
+            if (totalPayout > 0) {
+                sounds.win.play();
+                if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                    const multRatio = (totalPayout / totalPlaced).toFixed(1);
+                    window.wallet.creditWin(totalPlaced, totalPayout, 'RouletteX VIP', multRatio, `Pocket #${winNum}${luckyHit ? ' (' + luckyHit + 'x)' : ''}`);
+                    syncWallet();
+                }
+
+                if (luckyHit) {
+                    showWinToast(`⚡ 500X LUCKY MULTIPLIER! YOU WON ₨ ${totalPayout.toLocaleString()}`);
+                } else {
+                    showWinToast(`🎉 POCKET #${winNum}! YOU WON ₨ ${totalPayout.toLocaleString()}`);
+                }
+            } else {
+                showWinToast(`POCKET #${winNum} (${winNum === 0 ? 'GREEN 0' : (isRed ? 'RED' : 'BLACK')})`);
+            }
+
+            // Reset table for next round
+            activeBets = {};
+            betHistoryStack = [];
+            document.querySelectorAll('.table-chip-badge').forEach(b => b.remove());
+            updateBetDisplay();
+            refreshMultipliers();
+        }
+
+        function addHistoryBadge(num, isRed) {
+            const h = document.getElementById('historyPills');
+            if (!h) return;
+            const color = num === 0 ? '#00dc82' : (isRed ? '#e73636' : '#222222');
+            const pill = document.createElement('span');
+            pill.className = 'history-chip';
+            pill.style.background = color;
+            pill.textContent = num;
+            h.insertBefore(pill, h.firstChild);
+            if (h.children.length > 8) h.removeChild(h.lastChild);
+        }
+
+        function showWinToast(msg) {
+            const t = document.getElementById('winToast');
+            if (!t) return;
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3500);
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            Howler.mute(isMuted);
+            document.getElementById('soundBtn').textContent = isMuted ? '🔇' : '🔊';
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initGrid();
+            refreshMultipliers();
+            syncWallet();
+            fetchServerBalance();
+
+            // Sample history
+            [28, 7, 15, 0].forEach(n => addHistoryBadge(n, RED_NUMS.includes(n)));
+
+            if (window.wallet && window.wallet.on) {
+                window.wallet.on('balanceChange', () => syncWallet());
+                window.wallet.on('change', () => syncWallet());
+            }
+            window.addEventListener('storage', () => syncWallet());
+            setInterval(fetchServerBalance, 5000);
+        });
+    </script>
+</body>
+</html>

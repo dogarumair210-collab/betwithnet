@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "game_title": "Fortune Gems 2 (Customizable Reskin)",
+  "version": "2.0.0",
+  "theme_settings": {
+    "background_image": "../standalone_game/assets/backgrounds_and_covers/fortunegems_bg.jpg",
+    "cabinet_border_color": "#b8860b",
+    "primary_gold_highlight": "#ffd700",
+    "cabinet_glow": "0 0 40px rgba(255, 215, 0, 0.25)"
+  },
+  "reels_config": {
+    "rows": 3,
+    "columns": 3,
+    "has_4th_multiplier_reel": true,
+    "default_bet": 50,
+    "available_bets": [10, 20, 50, 100, 200, 500, 1000, 2000, 5000],
+    "spin_speeds": {
+      "normal_ms": 1200,
+      "turbo_ms": 500
+    }
+  },
+  "symbols": {
+    "WILD": { "name": "Garuda Mask", "payout": 25, "is_wild": true, "image": "../standalone_game/assets/symbols/sym_wild.png" },
+    "RUBY": { "name": "Red Ruby", "payout": 20, "image": "../standalone_game/assets/symbols/sym_ruby.png" },
+    "SAPPHIRE": { "name": "Blue Sapphire", "payout": 15, "image": "../standalone_game/assets/symbols/sym_sapphire.png" },
+    "EMERALD": { "name": "Green Emerald", "payout": 10, "image": "../standalone_game/assets/symbols/sym_emerald.png" },
+    "A": { "name": "Golden Ace", "payout": 5, "image": "../standalone_game/assets/symbols/sym_a.png" },
+    "K": { "name": "Golden King", "payout": 4, "image": "../standalone_game/assets/symbols/sym_k.png" },
+    "Q": { "name": "Golden Queen", "payout": 3, "image": "../standalone_game/assets/symbols/sym_q.png" },
+    "J": { "name": "Golden Jack", "payout": 2, "image": "../standalone_game/assets/symbols/sym_j.png" }
+  },
+  "multipliers_reel_4": [
+    { "id": "1X", "mult": 1, "image": "../standalone_game/assets/multipliers_svg/multiplier_1x.svg" },
+    { "id": "2X", "mult": 2, "image": "../standalone_game/assets/multipliers_svg/multiplier_2x.svg" },
+    { "id": "3X", "mult": 3, "image": "../standalone_game/assets/multipliers_svg/multiplier_3x.svg" },
+    { "id": "5X", "mult": 5, "image": "../standalone_game/assets/multipliers_svg/multiplier_5x.svg" },
+    { "id": "10X", "mult": 10, "image": "../standalone_game/assets/multipliers_svg/multiplier_10x.svg" },
+    { "id": "15X", "mult": 15, "image": "../standalone_game/assets/multipliers_svg/multiplier_15x.svg" },
+    { "id": "WHEEL", "is_wheel_bonus": true, "image": "../standalone_game/assets/symbols/sym_wheel.png" }
+  ],
+  "lucky_wheel_prizes": [20, 25, 30, 50, 100, 200, 500, 1000]
+}

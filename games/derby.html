@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Royal Derby Championship - Horse Racing | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preload" as="image" href="../assets/games/derby/derby_track_bg.jpg">
+    <link rel="preload" as="image" href="../assets/games/derby/horse_frame1.png">
+    <link rel="preload" as="image" href="../assets/games/derby/horse_frame2.png">
+    <style>
+        /* -------------------------------------------------------------
+           COMPLETE SUPPRESSION OF INJECTED TEMPLATE OVERLAYS
+           ------------------------------------------------------------- */
+        #bwn-sound-toggle-fixed,
+        .bwn-sound-toggle-btn,
+        #bwn-game-splash, 
+        #app-luxury-footer, 
+        #app-bottom-nav-slot,
+        #app-header-slot,
+        #vip-apk-modal,
+        #daily-bonus-modal-root,
+        .daily-bonus-overlay,
+        .daily-bonus-dialog,
+        .daily-bonus-floating-trigger,
+        .vip-apk-modal-overlay,
+        .vip-apk-modal-dialog,
+        .drawer-nav,
+        .side-drawer,
+        .app-header,
+        .app-bottom-nav,
+        .luxury-casino-footer,
+        .game-balance-hud,
+        .live-ticker,
+        .hero-banner,
+        .drawer-overlay {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            pointer-events: none !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --derby-turf: #0e2a16;
+            --derby-gold: #ffd700;
+            --derby-gold-dark: #b8860b;
+            --derby-panel: #07150b;
+            --derby-border: rgba(255, 215, 0, 0.25);
+            --font-serif: 'Cinzel', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body::before,
+        body::after {
+            display: none !important;
+            content: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            opacity: 0 !important;
+        }
+
+        html, body {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            min-height: 100% !important;
+            max-height: 100dvh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            position: fixed !important;
+            inset: 0 !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: #061209 !important;
+            color: #ffffff;
+            font-family: var(--font-main);
+            touch-action: manipulation;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+        }
+
+        /* -------------------------------------------------------------
+           ROYAL DERBY 100% FULL-SCREEN VIEWPORT CONTAINER (EDGE-TO-EDGE)
+           ------------------------------------------------------------- */
+        .derby-app-shell {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            min-height: 100% !important;
+            max-height: 100dvh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            position: absolute !important;
+            inset: 0 !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: var(--derby-panel) !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            overflow: hidden !important;
+            flex: 1 1 100% !important;
+        }
+
+        /* -------------------------------------------------------------
+           JILI OFFICIAL LOADING SCREEN OVERLAY
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 9999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .jili-splash-overlay.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: auto;
+            max-width: 90vw;
+        }
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 130px;
+            max-width: 42vw;
+            line-height: 0;
+        }
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+        }
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/limbo/jili_wordmark_tight.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/limbo/jili_wordmark_tight.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @keyframes jiliGlintAnim {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+        .jili-loadline-track {
+            width: 120px;
+            max-width: 38vw;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.85);
+            transition: width 0.08s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           1. TOP HEADER (SLIM DERBY GOLD & EMERALD ~38px)
+           ------------------------------------------------------------- */
+        /* -------------------------------------------------------------
+           1. TOP HEADER (DERBY GOLD & EMERALD ~42px)
+           ------------------------------------------------------------- */
+        .derby-top-bar {
+            height: 42px;
+            min-height: 42px;
+            background: linear-gradient(180deg, #102d18 0%, #081a0d 100%);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            z-index: 50;
+            flex-shrink: 0;
+        }
+
+        .derby-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #d4e8d8;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .derby-back-btn:active {
+            color: #ffd700;
+            border-color: #ffd700;
+        }
+
+        .derby-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .derby-brand-title {
+            font-family: var(--font-serif);
+            font-size: 14.5px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            color: #ffd700;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.45);
+            text-transform: uppercase;
+        }
+        .derby-rtp-badge {
+            font-size: 9px;
+            font-weight: 800;
+            color: #00e676;
+            background: rgba(0, 230, 118, 0.15);
+            border: 1px solid rgba(0, 230, 118, 0.35);
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .derby-top-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .derby-sound-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            color: #ffd700;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .derby-wallet-pill {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 4px 9px;
+            border-radius: 6px;
+        }
+        .derby-wallet-label {
+            font-size: 11px;
+            color: #ffd700;
+            font-weight: 700;
+        }
+        .derby-wallet-amt {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #00e676;
+        }
+
+        /* -------------------------------------------------------------
+           2. RECENT WINNERS HISTORY BAR (~26px)
+           ------------------------------------------------------------- */
+        .derby-history-bar {
+            height: 26px;
+            min-height: 26px;
+            background: #040d07;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 8px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            z-index: 40;
+            flex-shrink: 0;
+        }
+        .derby-history-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .history-horse-pill {
+            flex-shrink: 0;
+            font-size: 10px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: #d4e8d8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .pill-odds {
+            color: #ffd700;
+            font-family: var(--font-mono);
+            font-weight: 800;
+        }
+
+        /* -------------------------------------------------------------
+           3. RACE TRACK CANVAS (Grand Turf View ~42vh)
+           ------------------------------------------------------------- */
+        .derby-stage-wrapper {
+            height: 42vh;
+            min-height: 270px;
+            max-height: 48vh;
+            position: relative;
+            width: 100%;
+            background: #0d2e16;
+            overflow: hidden;
+            border-bottom: 2px solid #b8860b;
+            box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.7);
+            flex-shrink: 0;
+        }
+
+        #derby-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Live Race Status HUD */
+        .derby-live-hud {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(4, 13, 7, 0.90);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.45);
+            padding: 4px 14px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+            z-index: 30;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* -------------------------------------------------------------
+           4. BETTING BOARD (6 THOROUGHBRED CARDS - EXPANDED SIZES)
+           ------------------------------------------------------------- */
+        .derby-betting-stage {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 6px 10px;
+            overflow: hidden;
+            background: #061209;
+            width: 100%;
+        }
+        .derby-betting-stage::-webkit-scrollbar {
+            display: none;
+        }
+
+        .section-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #a4c8af;
+            text-transform: uppercase;
+        }
+        .section-sub {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        .derby-horses-grid {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .derby-horse-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+            height: 100%;
+            min-height: 40px;
+        }
+        .derby-horse-card:active {
+            transform: scale(0.98);
+        }
+        .derby-horse-card.selected {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(20, 50, 26, 0.95) 100%);
+            border-color: #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .card-lane-badge {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-info-col {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-horse-name {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.15;
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 1px;
+        }
+        .card-jockey {
+            font-size: 9.5px;
+            color: #8da2c0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card-stars {
+            font-size: 9px;
+            color: #ffd700;
+            letter-spacing: -1px;
+        }
+
+        .card-odds-pill {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.16);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 3px 7px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        /* -------------------------------------------------------------
+           5. CONTROL CONSOLE (BIGGER BET ROW + PROMINENT START BUTTON)
+           ------------------------------------------------------------- */
+        .derby-controls {
+            background: #051008;
+            border-top: 1px solid rgba(255, 215, 0, 0.25);
+            padding: 8px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            flex-shrink: 0 !important;
+            z-index: 45;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.7);
+            width: 100%;
+        }
+
+        .derby-bet-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .derby-bet-box {
+            flex: 1.1;
+            height: 38px;
+            background: #030804;
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 3px;
+        }
+        .bet-currency {
+            color: #ffd700;
+            font-size: 12.5px;
+            font-weight: 800;
+        }
+        .bet-number-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .bet-quick-chips {
+            display: flex;
+            gap: 4px;
+            flex: 1.9;
+        }
+        .bet-chip {
+            flex: 1;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #d4e8d8;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 800;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bet-chip:active {
+            transform: scale(0.92);
+            background: rgba(255, 215, 0, 0.22);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        /* Action Launch Button - Raised High and Extra Prominent */
+        .derby-start-btn {
+            width: 100%;
+            height: 48px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00e676 0%, #00a854 100%);
+            color: #031407;
+            box-shadow: 0 4px 16px rgba(0, 230, 118, 0.5);
+            flex-shrink: 0 !important;
+            transition: all 0.15s ease;
+        }
+        .derby-start-btn:active {
+            transform: scale(0.98);
+        }
+        .derby-start-btn.running {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(46, 125, 50, 0.5);
+            pointer-events: none;
+        }
+
+        /* -------------------------------------------------------------
+           6. PHOTO FINISH & PODIUM WINNER MODAL
+           ------------------------------------------------------------- */
+        .derby-result-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 10, 5, 0.88);
+            backdrop-filter: blur(6px);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+        .result-dialog-box {
+            background: linear-gradient(180deg, #12381e 0%, #081a0e 100%);
+            border: 2px solid #ffd700;
+            border-radius: 14px;
+            padding: 18px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 215, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .result-header-title {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 1px;
+        }
+        .result-winner-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+        .result-winner-name {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+        .result-payout {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 900;
+            color: #00e676;
+            text-shadow: 0 0 15px rgba(0, 230, 118, 0.6);
+        }
+        .result-close-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
+            color: #000;
+            font-weight: 900;
+            font-size: 12px;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay">
+        <div class="jili-center-stage">
+            <div class="jili-logo-box">
+                <img src="../assets/games/limbo/jili_wordmark_tight.png" alt="JILI" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+            <!-- Video-Style Yellow Loading Line -->
+            <div class="jili-loadline-track">
+                <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN ROYAL DERBY SHELL -->
+    <div class="derby-app-shell">
+        <!-- 1. Top Header -->
+        <header class="derby-top-bar">
+            <a href="../casino.html" class="derby-back-btn">← Casino</a>
+            <div class="derby-brand">
+                <span style="font-size: 14px;">🏇</span>
+                <span class="derby-brand-title">Royal Derby</span>
+                <span class="derby-rtp-badge">96.8%</span>
+            </div>
+            <div class="derby-top-right">
+                <button id="derby-sound-toggle" class="derby-sound-btn" title="Toggle Sound" onclick="window.derbyGame.toggleSound()">🔊</button>
+                <div class="derby-wallet-pill">
+                    <span class="derby-wallet-label">₨</span>
+                    <span id="derby-wallet-balance" class="derby-wallet-amt">0.00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Recent Winners History -->
+        <div id="derby-history-bar" class="derby-history-bar">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- 3. Turf Race Stage & Dynamic Canvas -->
+        <div class="derby-stage-wrapper">
+            <canvas id="derby-canvas"></canvas>
+            <div id="derby-status-hud" class="derby-live-hud">SELECT A CHAMPION & START RACE</div>
+        </div>
+
+        <!-- 4. Betting Board (Thoroughbred Cards) -->
+        <div class="derby-betting-stage">
+            <div class="section-header-row">
+                <span class="section-title">CHOOSE YOUR CHAMPION HORSE</span>
+                <span class="section-sub">WINNER TAKES ALL</span>
+            </div>
+            <div id="derby-horses-list" class="derby-horses-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+
+        <!-- 5. Controls (Bet Input + Launch Button) -->
+        <footer class="derby-controls">
+            <div class="derby-bet-row">
+                <div class="derby-bet-box">
+                    <span class="bet-currency">₨</span>
+                    <input type="number" id="derby-bet-input" class="bet-number-input" value="100" min="10" max="50000" step="10">
+                </div>
+                <div class="bet-quick-chips">
+                    <button type="button" class="bet-chip" onclick="window.derbyGame.adjustBet('half')">½</button>
+                    <button type="button" class="bet-chip" onclick="window.derbyGame.adjustBet('double')">2×</button>
+                    <button type="button" class="bet-chip" onclick="window.derbyGame.adjustBet('+100')">+100</button>
+                    <button type="button" class="bet-chip" onclick="window.derbyGame.adjustBet('+500')">+500</button>
+                    <button type="button" class="bet-chip" onclick="window.derbyGame.adjustBet('+1000')">+1K</button>
+                    <button type="button" class="bet-chip" onclick="window.derbyGame.adjustBet('max')">MAX</button>
+                </div>
+            </div>
+            <button id="derby-action-btn" type="button" class="derby-start-btn" onclick="window.derbyGame.startRace()">
+                <span>START DERBY SPRINT</span>
+                <span>🏇</span>
+            </button>
+        </footer>
+
+        <!-- 6. Winner Podium Result Overlay -->
+        <div id="derby-result-overlay" class="derby-result-overlay">
+            <div class="result-dialog-box">
+                <div id="result-title" class="result-header-title">🏆 YOU WON THE DERBY!</div>
+                <div id="result-winner-badge" class="result-winner-badge" style="background:#e74c3c;">#1</div>
+                <div id="result-winner-name" class="result-winner-name">Red Thunder (2.40x)</div>
+                <div id="result-payout-val" class="result-payout">+ ₨ 240</div>
+                <button type="button" class="result-close-btn" onclick="window.derbyGame.hideResultModal()">NEXT RACE 🏇</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/derby.js"></script>
+    <script>
+        // JILI Loading Splash
+        function runJiliSplash() {
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            if (!splash || !progressBar) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1800;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.8 ? (p * 1.05) : (0.84 + (p - 0.8) * 0.8);
+                const pct = Math.min(100, Math.round(ease * 100));
+                progressBar.style.width = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    setTimeout(() => {
+                        splash.classList.add('loaded');
+                        setTimeout(() => {
+                            splash.style.display = 'none';
+                        }, 500);
+                    }, 150);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            runJiliSplash();
+            const killBGM = (s) => {
+                if (!s) return;
+                try {
+                    if (typeof s.stopBGM === 'function') s.stopBGM();
+                    if (typeof s.stopCasinoThemeBGM === 'function') s.stopCasinoThemeBGM();
+                    if (typeof s.stopAviatorBGM === 'function') s.stopAviatorBGM();
+                    if (s.aviatorBgmAudio) { s.aviatorBgmAudio.pause(); s.aviatorBgmAudio.src = ''; }
+                    if (s.casinoThemeAudio) { s.casinoThemeAudio.pause(); }
+                    s.startBGM = () => {};
+                    s.startCasinoThemeBGM = () => {};
+                    s.startAviatorBGM = () => {};
+                    s.startLoadingMusic = () => {};
+                } catch(e) {}
+            };
+            killBGM(window.sound);
+            killBGM(window.soundManager);
+
+            if (window.core && window.core.init) {
+                window.core.init('casino');
+            }
+            if (window.derbyGame && window.derbyGame.init) {
+                window.derbyGame.init();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deposit Approvals - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">Cashier Desk / <b style="color:#fff;">Deposit Approvals Ledger</b></span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="loadDeposits()" class="btn-lte btn-lte-secondary">
+                    <span>🔄 Refresh Deposits</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>💳</span> EasyPaisa & JazzCash Deposit Approvals
+                    </h1>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-top:4px;">
+                        Verify TID transaction receipts and credit player wallets or configure instant auto-approval.
+                    </p>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; background:#111722; padding:8px 16px; border-radius:8px; border:1px solid var(--lte-border);">
+                    <input type="checkbox" id="chk-auto-dep" onchange="toggleAutoApprove(this.checked)" style="width:16px; height:16px; cursor:pointer;">
+                    <label for="chk-auto-dep" style="font-size:12px; font-weight:700; color:#fff; cursor:pointer;">
+                        ⚡ Auto-Approve Deposits Instant
+                    </label>
+                </div>
+            </div>
+
+            <!-- Stats Ribbon -->
+            <div class="metrics-grid" style="margin-bottom:20px;">
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(245,197,24,0.1); color:var(--lte-gold);">⏳</div>
+                    <div class="metric-label">Pending Verifications</div>
+                    <div class="metric-val" style="color:var(--lte-gold);" id="count-pending">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(0,231,0,0.1); color:var(--lte-green);">✅</div>
+                    <div class="metric-label">Approved Deposits</div>
+                    <div class="metric-val" style="color:var(--lte-green);" id="count-approved">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(0,207,232,0.1); color:var(--lte-cyan);">💰</div>
+                    <div class="metric-label">Total Volume Credited</div>
+                    <div class="metric-val" id="total-volume">₨ 0</div>
+                </div>
+            </div>
+
+            <!-- Table Card with Search Engine & Pagination -->
+            <div class="lte-card">
+                
+                <!-- Search Engine & Filter Toolbar -->
+                <div class="datatable-header-toolbar">
+                    <div class="datatable-search-wrap">
+                        <span class="datatable-search-icon">🔍</span>
+                        <input type="text" id="dep-search-input" class="form-ctrl datatable-search-input" placeholder="Search by Txn ID, sender, method, TID..." oninput="onDepSearchChange(this.value)">
+                    </div>
+
+                    <div class="datatable-filters">
+                        <!-- Status Filter -->
+                        <select id="dep-filter-status" class="datatable-select" onchange="onDepFilterChange('status', this.value)">
+                            <option value="all">All Statuses</option>
+                            <option value="Pending">Pending ⏳</option>
+                            <option value="Approved">Approved 🟢</option>
+                            <option value="Rejected">Rejected 🔴</option>
+                        </select>
+
+                        <!-- Method Filter -->
+                        <select id="dep-filter-method" class="datatable-select" onchange="onDepMethodChange(this.value)">
+                            <option value="all">All Gateways</option>
+                            <option value="EasyPaisa">EasyPaisa</option>
+                            <option value="JazzCash">JazzCash</option>
+                            <option value="USDT">USDT Crypto</option>
+                            <option value="Bank">Bank / Raast</option>
+                            <option value="Binance">Binance Pay</option>
+                        </select>
+
+                        <!-- Per Page -->
+                        <select id="dep-filter-pagesize" class="datatable-select" onchange="onDepPageSizeChange(this.value)">
+                            <option value="10" selected>10 per page</option>
+                            <option value="25">25 per page</option>
+                            <option value="50">50 per page</option>
+                        </select>
+
+                        <!-- Reset -->
+                        <button class="btn-lte btn-lte-secondary" style="padding:7px 12px; font-size:12px;" onclick="resetDepFilters()">
+                            ↺ Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Deposits Table -->
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th style="cursor:pointer;" onclick="depPager.setSort('id')">Txn ID ↕</th>
+                                <th>Method</th>
+                                <th style="cursor:pointer;" onclick="depPager.setSort('amountPKR')">Amount (USD / Local) ↕</th>
+                                <th>Sender Info</th>
+                                <th>TID / Reference</th>
+                                <th>Receipt Proof</th>
+                                <th>Status</th>
+                                <th style="cursor:pointer;" onclick="depPager.setSort('date')">Timestamp ↕</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deposits-table-body">
+                            <!-- Populated by LTEDataPager -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="datatable-footer" id="deposits-footer">
+                    <!-- Populated by LTEDataPager -->
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Receipt Screenshot Modal -->
+        <div id="proof-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; backdrop-filter:blur(6px);">
+            <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; width:90%; max-width:550px; padding:24px; max-height:90vh; overflow-y:auto; box-shadow:0 25px 60px rgba(0,0,0,0.35); color:#0f172a;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h3 style="margin:0; font-size:16px; color:#0f172a; font-weight:800; display:flex; align-items:center; gap:8px;">
+                        <span>📸</span> Payment Receipt Screenshot
+                    </h3>
+                    <button onclick="closeProofModal()" style="background:#f1f5f9; border:none; color:#475569; font-size:20px; cursor:pointer; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;">&times;</button>
+                </div>
+                <div id="modal-proof-details" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px; margin-bottom:16px; font-size:12.5px; line-height:1.6; color:#0f172a;">
+                    <!-- filled dynamically -->
+                </div>
+                <div style="text-align:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px; margin-bottom:16px;">
+                    <img id="modal-proof-img" src="" alt="Payment Receipt" style="max-width:100%; max-height:420px; border-radius:8px; object-fit:contain; display:block; margin:0 auto; box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+                </div>
+                <div id="modal-proof-actions" style="display:flex; gap:10px; justify-content:flex-end;">
+                    <!-- filled dynamically -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="js/adminlte.js?v=notify_v24"></script>
+    <script>
+        let depPager = null;
+        let allDeposits = [];
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        async function initDepositsTable() {
+            const chk = document.getElementById('chk-auto-dep');
+            if (chk) chk.checked = window.adminConfig ? window.adminConfig.config.autoApproveDeposits : false;
+
+            try {
+                const res = await fetch('/api/admin.php?action=transactions&type=deposit&limit=200&admin_pin=9824', { 
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    cache: 'no-store' 
+                });
+                const json = await res.json();
+                if (json && json.success && json.data && json.data.transactions) {
+                    allDeposits = json.data.transactions.map(t => ({
+                        id: t.id,
+                        userId: t.user_id,
+                        method: t.method,
+                        amountUSD: parseFloat(t.amount_usd || 0),
+                        amountPKR: parseFloat(t.amount_pkr || 0),
+                        sender: t.sender_account || t.user_id,
+                        trxId: t.trx_id || '-',
+                        proofImage: t.proof_image || '',
+                        status: t.status || 'Pending',
+                        date: t.transaction_date || t.created_at || '-'
+                    }));
+                } else {
+                    allDeposits = [];
+                }
+            } catch (e) {
+                console.error('Failed to load DB transactions:', e);
+                allDeposits = [];
+            }
+
+            // Stats
+            const pending = allDeposits.filter(t => t.status === 'Pending').length;
+            const approved = allDeposits.filter(t => t.status === 'Approved' || t.status === 'Completed').length;
+            const sumUSD = allDeposits.filter(t => t.status === 'Approved' || t.status === 'Completed').reduce((acc, t) => acc + (t.amountUSD || 0), 0);
+            const sumPKR = allDeposits.filter(t => t.status === 'Approved' || t.status === 'Completed').reduce((acc, t) => acc + (t.amountPKR || 0), 0);
+
+            document.getElementById('count-pending').innerText = pending;
+            document.getElementById('count-approved').innerText = approved;
+            document.getElementById('total-volume').innerText = `$ ${sumUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            // Prioritize Pending deposits at the top, then sort by latest date
+            allDeposits.sort((a, b) => {
+                if (a.status === 'Pending' && b.status !== 'Pending') return -1;
+                if (b.status === 'Pending' && a.status !== 'Pending') return 1;
+                return (new Date(b.date || 0)) - (new Date(a.date || 0));
+            });
+
+            if (!depPager) {
+                depPager = new LTEDataPager({
+                    refName: 'depPager',
+                    data: allDeposits,
+                    pageSize: 10,
+                    containerId: 'deposits-table-body',
+                    footerId: 'deposits-footer',
+                    defaultSortKey: 'date',
+                    defaultSortAsc: false,
+                    filterFn: (t, query, filters) => {
+                        if (query) {
+                            const q = query.toLowerCase();
+                            const matchId = (t.id || '').toLowerCase().includes(q);
+                            const matchSender = (t.sender || '').toLowerCase().includes(q);
+                            const matchMethod = (t.method || '').toLowerCase().includes(q);
+                            const matchTrx = (t.trxId || '').toLowerCase().includes(q);
+                            const matchUser = (t.userId || '').toLowerCase().includes(q);
+                            if (!matchId && !matchSender && !matchMethod && !matchTrx && !matchUser) return false;
+                        }
+                        if (filters.status) {
+                            if (filters.status === 'Approved' && !(t.status === 'Approved' || t.status === 'Completed')) return false;
+                            if (filters.status !== 'Approved' && t.status !== filters.status) return false;
+                        }
+                        if (filters.methodKeyword) {
+                            if (!t.method.toLowerCase().includes(filters.methodKeyword.toLowerCase())) return false;
+                        }
+                        return true;
+                    },
+                    renderRow: (t, idx) => {
+                        let badge = '<span class="badge-status badge-rigged">Pending ⏳</span>';
+                        if (t.status === 'Approved' || t.status === 'Completed') {
+                            badge = '<span class="badge-status badge-active">Approved 🟢</span>';
+                        } else if (t.status === 'Rejected') {
+                            badge = '<span class="badge-status badge-suspended">Rejected 🔴</span>';
+                        }
+
+                        const canAction = (t.status === 'Pending');
+                        const pkrVal = t.amountPKR || (t.amountUSD ? t.amountUSD * 278 : 0);
+                        const usdVal = t.amountUSD || (pkrVal / 278);
+
+                        let proofBtn = `<span style="color:#64748b; font-size:11px;">No Proof</span>`;
+                        if (t.proofImage && t.proofImage.length > 50) {
+                            proofBtn = `<button class="btn-lte btn-lte-secondary" style="padding:3px 8px; font-size:11px; color:var(--lte-cyan); font-weight:700;" onclick="viewProofModal('${t.id}')">📸 View Receipt</button>`;
+                        }
+
+                        return `
+                            <tr>
+                                <td style="font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:800; color:var(--lte-cyan); white-space:nowrap;">
+                                    ${escapeHtml(t.id)}
+                                </td>
+                                <td style="font-weight:800; color:#fff;">
+                                    ${escapeHtml(t.method)}
+                                </td>
+                                <td>
+                                    <div style="font-family:'JetBrains Mono',monospace; font-weight:900; color:var(--lte-green); font-size:13px;">
+                                        $ ${usdVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                    </div>
+                                    <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8e9bb0;">
+                                        ₨ ${Number(pkrVal).toLocaleString()}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-size:12px; color:#fff; font-weight:700;">${escapeHtml(t.sender)}</div>
+                                    <div style="font-size:10px; color:#64748b; font-family:monospace;">User: ${escapeHtml(t.userId)}</div>
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--lte-gold); font-weight:700;">${escapeHtml(t.trxId || '-')}</td>
+                                <td>${proofBtn}</td>
+                                <td>${badge}</td>
+                                <td style="font-size:11px; color:#8e9bb0; white-space:nowrap;">${escapeHtml(t.date)}</td>
+                                <td style="text-align:right; white-space:nowrap;">
+                                    ${canAction ? `
+                                        <button class="btn-lte btn-lte-primary" style="padding:4px 10px; font-size:11px;" onclick="approveDeposit('${t.id}')">✓ Approve</button>
+                                        <button class="btn-lte btn-lte-danger" style="padding:4px 10px; font-size:11px;" onclick="rejectDeposit('${t.id}')">✕ Reject</button>
+                                    ` : `<span style="font-size:11px; color:#64748b; font-weight:600;">Processed</span>`}
+                                </td>
+                            </tr>
+                        `;
+                    }
+                });
+            } else {
+                depPager.setData(allDeposits);
+            }
+
+            depPager.render();
+        }
+
+        function viewProofModal(id) {
+            const tx = allDeposits.find(t => t.id === id);
+            if (!tx || !tx.proofImage) {
+                alert('No screenshot proof uploaded for this transaction.');
+                return;
+            }
+
+            const img = document.getElementById('modal-proof-img');
+            img.src = tx.proofImage;
+
+            const details = document.getElementById('modal-proof-details');
+            details.innerHTML = `
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div><span style="color:#64748b;">Txn ID:</span> <b style="color:#0284c7; font-family:monospace;">${tx.id}</b></div>
+                    <div><span style="color:#64748b;">Method:</span> <b style="color:#0f172a;">${tx.method}</b></div>
+                    <div><span style="color:#64748b;">Sender:</span> <b style="color:#0f172a;">${tx.sender}</b></div>
+                    <div><span style="color:#64748b;">TID:</span> <b style="color:#d97706; font-family:monospace;">${tx.trxId}</b></div>
+                    <div><span style="color:#64748b;">Amount PKR:</span> <b style="color:#059669; font-size:14px;">₨ ${Number(tx.amountPKR).toLocaleString()}</b></div>
+                    <div><span style="color:#64748b;">Amount USD:</span> <b style="color:#059669; font-size:14px;">$ ${Number(tx.amountUSD).toFixed(2)}</b></div>
+                </div>
+            `;
+
+            const actions = document.getElementById('modal-proof-actions');
+            if (tx.status === 'Pending') {
+                actions.innerHTML = `
+                    <button class="btn-lte btn-lte-secondary" onclick="closeProofModal()">Close</button>
+                    <button class="btn-lte btn-lte-danger" onclick="rejectDeposit('${tx.id}')">Reject Deposit</button>
+                    <button class="btn-lte btn-lte-primary" onclick="approveDeposit('${tx.id}')">✓ Approve & Credit Balance</button>
+                `;
+            } else {
+                actions.innerHTML = `
+                    <span style="align-self:center; font-size:12px; color:#8e9bb0; margin-right:auto;">Status: <b>${tx.status}</b></span>
+                    <button class="btn-lte btn-lte-secondary" onclick="closeProofModal()">Close</button>
+                `;
+            }
+
+            document.getElementById('proof-modal').style.display = 'flex';
+        }
+
+        function closeProofModal() {
+            document.getElementById('proof-modal').style.display = 'none';
+        }
+
+        function onDepSearchChange(val) {
+            depPager.setSearch(val);
+        }
+
+        function onDepFilterChange(key, val) {
+            depPager.setFilter(key, val);
+        }
+
+        function onDepMethodChange(val) {
+            if (val === 'all') {
+                delete depPager.activeFilters.methodKeyword;
+            } else {
+                depPager.activeFilters.methodKeyword = val;
+            }
+            depPager.currentPage = 1;
+            depPager.render();
+        }
+
+        function onDepPageSizeChange(val) {
+            depPager.setPageSize(val);
+        }
+
+        function resetDepFilters() {
+            document.getElementById('dep-search-input').value = '';
+            document.getElementById('dep-filter-status').value = 'all';
+            document.getElementById('dep-filter-method').value = 'all';
+            document.getElementById('dep-filter-pagesize').value = '10';
+
+            depPager.searchQuery = '';
+            depPager.activeFilters = {};
+            depPager.pageSize = 10;
+            depPager.currentPage = 1;
+            depPager.render();
+        }
+
+        async function approveDeposit(id) {
+            try {
+                const res = await fetch('/api/admin.php?action=update_transaction', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, status: 'Approved' })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    if (window.wallet && window.wallet.approveDeposit) {
+                        window.wallet.approveDeposit(id);
+                    }
+                    closeProofModal();
+                    await loadDeposits();
+                    alert(`✓ Deposit ${id} Approved! Player wallet credited.`);
+                } else {
+                    alert('Approval failed: ' + (json.error || 'Unknown error'));
+                }
+            } catch (e) {
+                alert('Error processing approval: ' + e.message);
+            }
+        }
+
+        async function rejectDeposit(id) {
+            const reason = prompt('Rejection reason for player:', 'TID Invalid / Amount Mismatch');
+            if (reason !== null) {
+                try {
+                    const res = await fetch('/api/admin.php?action=update_transaction', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: id, status: 'Rejected' })
+                    });
+                    const json = await res.json();
+                    if (json && json.success) {
+                        if (window.wallet && window.wallet.rejectDeposit) {
+                            window.wallet.rejectDeposit(id, reason);
+                        }
+                        closeProofModal();
+                        await loadDeposits();
+                        alert(`Deposit ${id} marked as Rejected.`);
+                    } else {
+                        alert('Rejection failed: ' + (json.error || 'Unknown error'));
+                    }
+                } catch (e) {
+                    alert('Error processing rejection: ' + e.message);
+                }
+            }
+        }
+
+        function toggleAutoApprove(checked) {
+            if (window.adminConfig) {
+                window.adminConfig.config.autoApproveDeposits = checked;
+                window.adminConfig.save();
+            }
+        }
+
+        const loadDeposits = initDepositsTable;
+        window.addEventListener('DOMContentLoaded', () => {
+            initDepositsTable();
+            setInterval(initDepositsTable, 4000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,883 @@
+/* ============================================================
+   FORTUNE GARUDA 500 - JILI Authentic 1:1 Slot Machine Styling
+   Bet With Net VIP Edition
+   ============================================================ */
+
+:root {
+    --garuda-gold: #ffd700;
+    --garuda-gold-glow: rgba(255, 215, 0, 0.4);
+    --garuda-temple-dark: #120b06;
+    --garuda-stone: #2e2319;
+    --garuda-stone-border: #8c6239;
+    --garuda-accent-orange: #ff7700;
+    --garuda-ruby: #e61c38;
+    --garuda-sapphire: #1e88e5;
+    --garuda-emerald: #10b981;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #050811;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* JILI Loading Screen */
+.jili-splash-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: #000000 !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.jili-splash-overlay.loaded {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+.jili-center-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: auto;
+    max-width: 90vw;
+}
+.jili-logo-box {
+    position: relative;
+    display: inline-block;
+    width: 136px;
+    max-width: 42vw;
+    line-height: 0;
+}
+.jili-img-brand {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+}
+.jili-sheen-mask {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    -webkit-mask-image: url('../../assets/games/blackjack/jili_wordmark_tight.png');
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-image: url('../../assets/games/blackjack/jili_wordmark_tight.png');
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+.jili-glint-bar {
+    position: absolute;
+    top: -20%;
+    left: -120%;
+    width: 55%;
+    height: 140%;
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 100%
+    );
+    transform: skewX(-24deg);
+    mix-blend-mode: overlay;
+    animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes jiliGlintAnim {
+    0% { left: -120%; opacity: 0; }
+    12% { opacity: 1; }
+    60% { left: 160%; opacity: 1; }
+    66% { opacity: 0; }
+    100% { left: 160%; opacity: 0; }
+}
+.jili-loadline-track {
+    width: 128px;
+    max-width: 40vw;
+    height: 3.5px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+.jili-loadline-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.85);
+    transition: width 0.08s ease-out;
+}
+
+/* Master Ambient Temple Wallpaper */
+.fg-ambient-bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 20%, #1a2f4d 0%, #050811 85%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   1. Splash Screen & Intro Video Overlay (Frames 00:00 - 00:04)
+   ------------------------------------------------------------ */
+.fg-intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+.fg-splash-view {
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    max-height: 820px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px 40px;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 170, 0, 0.15) 0%, rgba(5, 8, 17, 0.98) 80%);
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+}
+
+.fg-splash-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.fg-splash-logo {
+    width: 220px;
+    max-width: 80%;
+    filter: drop-shadow(0 4px 15px rgba(255, 215, 0, 0.6));
+    animation: fgPulse 2s infinite ease-in-out;
+}
+
+.fg-splash-title {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #fff5a6 0%, #ffd700 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.fg-splash-volatility {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: #e2c08d;
+    font-weight: 700;
+}
+
+/* Feature Showcase Card Carousel */
+.fg-feature-carousel {
+    width: 100%;
+    background: rgba(20, 14, 10, 0.85);
+    border: 2px solid #8c6239;
+    border-radius: 16px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(255, 170, 0, 0.2);
+}
+
+.fg-feature-banner {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #ff3333;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 2px 4px #000;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.fg-feature-sub {
+    font-size: 14px;
+    color: #ffd700;
+    font-weight: 800;
+    text-align: center;
+}
+
+.fg-feature-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+.fg-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transition: all 0.3s;
+}
+.fg-dot.active {
+    background: #ffd700;
+    box-shadow: 0 0 8px #ffd700;
+    transform: scale(1.2);
+}
+
+/* Big Glowing PLAY Button */
+.fg-play-btn {
+    width: 220px;
+    height: 54px;
+    border: none;
+    border-radius: 27px;
+    background: linear-gradient(180deg, #ff9900 0%, #d45d00 50%, #802b00 100%);
+    box-shadow: 0 0 25px rgba(255, 136, 0, 0.8), inset 0 2px 2px #fff5a6;
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+    outline: none;
+}
+.fg-play-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 170, 0, 1);
+}
+.fg-play-btn:active {
+    transform: scale(0.96);
+}
+
+/* Rising Video Container */
+.fg-intro-video-wrap {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    display: none;
+    z-index: 10;
+}
+.fg-intro-video-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ------------------------------------------------------------
+   2. Main Game Cabinet (Frames 00:05 onwards)
+   ------------------------------------------------------------ */
+.fg-cabinet {
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    max-height: 900px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    z-index: 5;
+    overflow: hidden;
+}
+
+/* Top Floating Bar */
+.fg-top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    z-index: 20;
+}
+.fg-nav-btn {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 8px;
+    color: #ffd700;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.fg-nav-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    color: #fff;
+}
+
+/* Animated Golden Garuda Guardian Stage (Top Half) */
+.fg-guardian-stage {
+    width: 100%;
+    height: 230px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.fg-guardian-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.85));
+    pointer-events: none;
+}
+.fg-guardian-static-fallback {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: none;
+}
+
+/* Stone Arch Lintel */
+.fg-temple-lintel {
+    width: 100%;
+    height: 38px;
+    background: url('../../assets/games/garuda/table_lintel_hd.png') center/100% 100% no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 15;
+    margin-top: -6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+}
+.fg-temple-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 4px #000;
+}
+
+/* ------------------------------------------------------------
+   3. 3x3 Reels Grid + 4th Multiplier Reel Area
+   ------------------------------------------------------------ */
+.fg-reels-stage {
+    width: 100%;
+    padding: 0 8px;
+    position: relative;
+    z-index: 10;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fg-temple-frame {
+    width: 100%;
+    background: #170f09 url('../../assets/games/garuda/table_reels_bg_hd.png') center/cover no-repeat;
+    border: 3px solid #8c6239;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,0,0,0.9);
+    position: relative;
+    display: flex;
+    gap: 4px;
+}
+
+/* Canvas Paylines Overlay */
+#fgPaylineCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 25;
+}
+
+/* Left: 3x3 Symbol Reels */
+.fg-symbol-reels-wrap {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    background: rgba(10, 6, 3, 0.85);
+    border-radius: 8px;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.fg-reel-column {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fg-symbol-cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: radial-gradient(circle at center, #2e1d12 0%, #150a04 100%);
+    border: 1px solid rgba(140, 98, 57, 0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.fg-symbol-cell img {
+    width: 86%;
+    height: 86%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
+    transition: transform 0.2s ease;
+}
+
+.fg-symbol-cell.winning {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), inset 0 0 10px #ffd700;
+    animation: fgWinPulse 0.8s infinite alternate;
+}
+
+@keyframes fgWinPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.06); filter: brightness(1.3); }
+}
+
+/* Right: 4th Multiplier Wheel Reel */
+.fg-multiplier-reel-wrap {
+    flex: 1;
+    max-width: 95px;
+    background: linear-gradient(180deg, #2b1307 0%, #140702 100%);
+    border: 2px solid #ff9900;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(255, 153, 0, 0.3);
+}
+
+.fg-mult-cell {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fg-mult-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 900;
+    color: #ffd700;
+    background: radial-gradient(circle at center, #3d1c0b 0%, #180902 100%);
+    border: 1px solid #ffd700;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fg-mult-badge.active-win {
+    background: linear-gradient(135deg, #ffea00 0%, #ff6600 100%);
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 1);
+    transform: scale(1.15);
+}
+
+/* ------------------------------------------------------------
+   4. Bottom Controls & Wallet HUD (Frames 00:05 onwards)
+   ------------------------------------------------------------ */
+.fg-bottom-console {
+    width: 100%;
+    background: linear-gradient(180deg, rgba(20, 10, 5, 0.95) 0%, rgba(5, 2, 1, 0.98) 100%);
+    border-top: 2px solid #8c6239;
+    padding: 6px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 20;
+}
+
+/* Win Announce Line */
+.fg-win-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.fg-win-label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #e2c08d;
+    letter-spacing: 1px;
+}
+.fg-win-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+/* Main Action Bar (Spin, Bet, Auto, Turbo) */
+.fg-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+}
+
+/* Bet Selector (Left) */
+.fg-bet-chip-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    border-radius: 10px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.fg-bet-btn-adjust {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2b1810;
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fg-bet-btn-adjust:active { transform: scale(0.9); }
+.fg-bet-readout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fg-bet-sub {
+    font-size: 9px;
+    color: #a88a6d;
+    font-weight: 800;
+}
+.fg-bet-amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 900;
+    color: #fff;
+}
+
+/* Center Golden JILI Spin Button */
+.fg-spin-master-btn {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff2a1 0%, #f5a623 45%, #b86200 80%, #522500 100%);
+    border: 3px solid #ffea00;
+    box-shadow: 0 0 20px rgba(245, 166, 35, 0.8), inset 0 2px 4px #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    outline: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.fg-spin-master-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+}
+.fg-spin-master-btn:active {
+    transform: scale(0.95);
+}
+.fg-spin-master-btn.spinning {
+    animation: fgSpinAnim 0.8s infinite linear;
+    filter: brightness(0.9);
+}
+.fg-jili-logo-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 900;
+    color: #541d00;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+}
+
+@keyframes fgSpinAnim {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Right Controls (Turbo & Auto) */
+.fg-right-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.fg-toggle-pill {
+    padding: 4px 10px;
+    background: #170d06;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 6px;
+    color: #a88a6d;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+}
+.fg-toggle-pill.active {
+    background: rgba(255, 215, 0, 0.25);
+    border-color: #ffd700;
+    color: #ffd700;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+/* Very Bottom Footer Bar */
+.fg-footer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 11px;
+    color: #a88a6d;
+}
+.fg-balance-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    color: #2ecc71;
+}
+
+@keyframes fgPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+/* Extra Bet Switch on Left */
+.fg-extra-bet-switch {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(180deg, #1c1007 0%, #0d0603 100%);
+    border: 1.5px solid #d4af37;
+    border-radius: 10px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fg-extra-bet-switch:hover {
+    transform: translateY(-50%) scale(1.05);
+}
+.fg-extra-bet-switch.active {
+    background: linear-gradient(180deg, #b8860b 0%, #d4af37 50%, #8b6508 100%);
+    border-color: #fff2a3;
+    box-shadow: 0 0 16px rgba(255, 215, 0, 0.85);
+}
+.fg-extra-bet-switch.active .fg-extra-bet-title {
+    color: #1a0f00;
+    text-shadow: none;
+}
+.fg-extra-bet-switch.active .fg-extra-bet-status {
+    background: #00e676;
+    color: #000;
+}
+.fg-extra-bet-title {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+.fg-extra-bet-badge {
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #ff334b;
+    background: rgba(255, 51, 75, 0.15);
+    padding: 1px 4px;
+    border-radius: 4px;
+}
+.fg-extra-bet-status {
+    font-size: 9px;
+    font-weight: 900;
+    background: #332214;
+    color: #888;
+    padding: 2px 6px;
+    border-radius: 6px;
+    margin-top: 2px;
+}
+
+/* Big Win Celebration Modal */
+.fg-celebration-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: fgFadeIn 0.3s ease;
+}
+.fg-celebration-overlay.active {
+    display: flex;
+}
+.fg-celebration-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    animation: fgPopScale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.fg-celebration-type {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffd700 45%, #ff7700 80%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    animation: fgPulse 1.2s infinite ease-in-out;
+}
+.fg-celebration-amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 38px;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+}
+.fg-celebration-mult {
+    font-size: 16px;
+    font-weight: 800;
+    color: #00e676;
+    background: rgba(0, 230, 118, 0.15);
+    border: 1px solid rgba(0, 230, 118, 0.4);
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+.fg-celebration-collect {
+    margin-top: 10px;
+    padding: 10px 30px;
+    background: linear-gradient(135deg, #ffd700 0%, #ff8800 100%);
+    border: none;
+    border-radius: 24px;
+    color: #1a0f00;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 170, 0, 0.6);
+    transition: transform 0.15s;
+}
+.fg-celebration-collect:active {
+    transform: scale(0.95);
+}
+
+/* Gift of Garuda Blessing Alert */
+.fg-blessing-banner {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: linear-gradient(90deg, transparent, rgba(230, 28, 56, 0.95), rgba(255, 215, 0, 0.95), rgba(230, 28, 56, 0.95), transparent);
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 8px 30px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.9);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    border-top: 2px solid #ffd700;
+    border-bottom: 2px solid #ffd700;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fg-blessing-banner.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+@keyframes fgPopScale {
+    0% { transform: scale(0.4); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fgFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

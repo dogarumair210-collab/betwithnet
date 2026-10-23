@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator Dynamic Background Neon Light Effect (1xBet Spribe 1:1)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #040609;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .header-title {
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .header-title h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .header-title p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* =============================================================
+           OFFICIAL SPRIBE AVIATOR STAGE WITH BALANCED 1:1 NEON LIGHT
+           ============================================================= */
+        .stage-container {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            height: 360px;
+            background-color: #05070a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+        }
+
+        /* 1. BALANCED DYNAMIC NEON BACKLIGHT (BEHIND SUNBURST RAYS) */
+        .stage-neon-glow {
+            position: absolute;
+            inset: -22%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            background:
+                radial-gradient(
+                    ellipse 62% 58% at 50% 50%,
+                    rgba(var(--neon-core-r, 35), var(--neon-core-g, 175), var(--neon-core-b, 255), var(--neon-core-alpha, 0.65)) 0%,
+                    rgba(var(--neon-r, 0), var(--neon-g, 135), var(--neon-b, 250), var(--neon-mid-alpha, 0.42)) 36%,
+                    rgba(var(--neon-r2, 10), var(--neon-g2, 80), var(--neon-b2, 220), 0.18) 64%,
+                    transparent 88%
+                );
+            filter: blur(8px) saturate(1.15);
+            animation: neonPulseBreath 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulseBreath {
+            0% {
+                transform: scale(0.97);
+                filter: blur(8px) saturate(1.12) brightness(0.98);
+            }
+            100% {
+                transform: scale(1.05);
+                filter: blur(10px) saturate(1.22) brightness(1.08);
+            }
+        }
+
+        /* 2. ROTATING SUNBURST RAYS (Balanced transparency so rays & neon both look crisp) */
+        .stage-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 1800px;
+            height: 1800px;
+            margin-left: -900px;
+            margin-bottom: -900px;
+            border-radius: 50%;
+            background-image: repeating-conic-gradient(
+                from 0deg at 50% 50%,
+                rgba(20, 25, 34, 0.38) 0deg 7.5deg,
+                rgba(5, 7, 10, 0.84) 7.5deg 15deg
+            );
+            animation: aviatorSunburstSpin 38s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes aviatorSunburstSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 3. SOFT FRONT NEON BLOOM OVERLAY (Smooth 1xBet center aura, not harsh) */
+        .stage-neon-bloom {
+            position: absolute;
+            inset: -10%;
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            mix-blend-mode: screen;
+            background:
+                radial-gradient(
+                    ellipse 52% 48% at 50% 48%,
+                    rgba(var(--neon-core-r, 50), var(--neon-core-g, 185), var(--neon-core-b, 255), var(--neon-bloom-alpha, 0.28)) 0%,
+                    rgba(var(--neon-r, 0), var(--neon-g, 140), var(--neon-b, 255), 0.14) 45%,
+                    transparent 74%
+                );
+            filter: blur(10px);
+        }
+
+        /* 4. VIGNETTE SHADOW AROUND EDGES */
+        .stage-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 48%, rgba(2, 4, 7, 0.88) 100%);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* 5. MULTIPLIER READOUT */
+        .center-hud {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .center-hud.hidden {
+            opacity: 0;
+        }
+        .mult-readout {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: #ffffff;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+            line-height: 1;
+        }
+        .phase-badge {
+            margin-top: 8px;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* =============================================================
+           CONTROLS TO TEST FLIGHT PROGRESSION & NEON COLORS
+           ============================================================= */
+        .controls-panel {
+            margin-top: 18px;
+            width: 100%;
+            max-width: 680px;
+            background: #0d121b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .mode-btn {
+            background: #161f2e;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 9px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .mode-btn:hover {
+            transform: translateY(-1px);
+            color: #fff;
+        }
+        .mode-btn.active {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.22);
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">
+        <h2>✨ Balanced 1xBet Aviator Background Neon Light</h2>
+        <p>Smooth medium-bright neon light jo jahaz ke urne (1.00x &rarr; 2.00x &rarr; 10.00x+) ke sath change hoti hai:</p>
+    </div>
+
+    <!-- AVIATOR STAGE (ONLY BACKGROUND NEON LIGHT + RAYS) -->
+    <div class="stage-container" id="stageContainer">
+        <!-- Balanced Dynamic Neon Glow Behind Sunburst Rays -->
+        <div class="stage-neon-glow" id="stageNeonGlow"></div>
+        <!-- Soft Screen-Blend Neon Halo Over Rays -->
+        <div class="stage-neon-bloom" id="stageNeonBloom"></div>
+        <!-- Edge Vignette -->
+        <div class="stage-vignette"></div>
+
+        <!-- Multiplier Readout (Can be hidden with button below) -->
+        <div class="center-hud" id="centerHud">
+            <div class="mult-readout" id="multDisplay">1.00x</div>
+            <div class="phase-badge" id="phaseBadge">🔵 Blue Neon Stage (1.00x - 1.99x)</div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE CONTROLS -->
+    <div class="controls-panel">
+        <div class="btn-row">
+            <button class="mode-btn active" id="btnAuto" onclick="setMode('auto', this)">🚀 Auto Climbing Flight (1x &rarr; 25x)</button>
+            <button class="mode-btn" onclick="setMode('blue', this)">🔵 1.00x - 1.99x (Blue Neon)</button>
+            <button class="mode-btn" onclick="setMode('purple', this)">🟣 2.00x - 9.99x (Purple Neon)</button>
+            <button class="mode-btn" onclick="setMode('pink', this)">🩷 10.00x+ (Pink/Magenta Neon)</button>
+            <button class="mode-btn" onclick="toggleHud(this)">👁️ Hide/Show Text (Sirf Pure Light)</button>
+        </div>
+    </div>
+
+    <script>
+        const neonGlow = document.getElementById('stageNeonGlow');
+        const neonBloom = document.getElementById('stageNeonBloom');
+        const multDisplay = document.getElementById('multDisplay');
+        const phaseBadge = document.getElementById('phaseBadge');
+        const centerHud = document.getElementById('centerHud');
+
+        let mode = 'auto';
+        let startTime = performance.now();
+        let currentMult = 1.00;
+
+        function lerp(a, b, t) {
+            return a + (b - a) * Math.max(0, Math.min(1, t));
+        }
+
+        // Balanced 1xBet Spribe Aviator Background Neon Light Engine
+        function updateBackgroundNeonLight(mult) {
+            neonGlow.style.opacity = '1';
+            neonBloom.style.opacity = '1';
+
+            let cr, cg, cb, r1, g1, b1, r2, g2, b2, coreAlpha, midAlpha, bloomAlpha;
+            let label = '';
+
+            if (mult < 2.0) {
+                // Stage 1 (1.00x -> 1.99x): Smooth Neon Blue
+                const progress = (mult - 1.0) / 1.0;
+                cr = Math.round(lerp(25, 55, progress));
+                cg = Math.round(lerp(165, 195, progress));
+                cb = 255;
+
+                r1 = Math.round(lerp(0, 30, progress));
+                g1 = Math.round(lerp(135, 160, progress));
+                b1 = 250;
+
+                r2 = Math.round(lerp(0, 20, progress));
+                g2 = Math.round(lerp(80, 105, progress));
+                b2 = 230;
+
+                coreAlpha  = lerp(0.56, 0.72, progress).toFixed(2);
+                midAlpha   = lerp(0.32, 0.46, progress).toFixed(2);
+                bloomAlpha = lerp(0.22, 0.32, progress).toFixed(2);
+                label = '🔵 Blue Neon Light (1.00x – 1.99x)';
+
+            } else if (mult < 10.0) {
+                // Stage 2 (2.00x -> 9.99x): Balanced Neon Purple / Violet
+                const blend = Math.min(1, (mult - 2.0) / 1.0);
+                cr = Math.round(lerp(55, 185, blend));
+                cg = Math.round(lerp(195, 75, blend));
+                cb = 255;
+
+                r1 = Math.round(lerp(30, 155, blend));
+                g1 = Math.round(lerp(160, 40, blend));
+                b1 = 245;
+
+                r2 = Math.round(lerp(20, 110, blend));
+                g2 = Math.round(lerp(105, 15, blend));
+                b2 = Math.round(lerp(230, 195, blend));
+
+                coreAlpha  = lerp(0.70, 0.78, (mult - 2.0) / 8.0).toFixed(2);
+                midAlpha   = lerp(0.45, 0.52, (mult - 2.0) / 8.0).toFixed(2);
+                bloomAlpha = lerp(0.30, 0.36, (mult - 2.0) / 8.0).toFixed(2);
+                label = '🟣 Purple Neon Light (2.00x – 9.99x)';
+
+            } else {
+                // Stage 3 (10.00x+): Balanced Neon Magenta / Pink
+                const blend = Math.min(1, (mult - 10.0) / 2.5);
+                cr = Math.round(lerp(185, 240, blend));
+                cg = Math.round(lerp(75, 35, blend));
+                cb = Math.round(lerp(255, 175, blend));
+
+                r1 = Math.round(lerp(155, 225, blend));
+                g1 = Math.round(lerp(40, 15, blend));
+                b1 = Math.round(lerp(245, 145, blend));
+
+                r2 = Math.round(lerp(110, 175, blend));
+                g2 = Math.round(lerp(15, 5, blend));
+                b2 = Math.round(lerp(195, 110, blend));
+
+                coreAlpha  = '0.80';
+                midAlpha   = '0.55';
+                bloomAlpha = '0.38';
+                label = '🩷 Magenta / Pink Neon Light (10.00x+)';
+            }
+
+            const styleTarget = document.getElementById('stageContainer');
+            styleTarget.style.setProperty('--neon-core-r', cr);
+            styleTarget.style.setProperty('--neon-core-g', cg);
+            styleTarget.style.setProperty('--neon-core-b', cb);
+            styleTarget.style.setProperty('--neon-r', r1);
+            styleTarget.style.setProperty('--neon-g', g1);
+            styleTarget.style.setProperty('--neon-b', b1);
+            styleTarget.style.setProperty('--neon-r2', r2);
+            styleTarget.style.setProperty('--neon-g2', g2);
+            styleTarget.style.setProperty('--neon-b2', b2);
+            styleTarget.style.setProperty('--neon-core-alpha', coreAlpha);
+            styleTarget.style.setProperty('--neon-mid-alpha', midAlpha);
+            styleTarget.style.setProperty('--neon-bloom-alpha', bloomAlpha);
+
+            multDisplay.textContent = mult.toFixed(2) + 'x';
+            phaseBadge.textContent = label;
+        }
+
+        function setMode(newMode, btn) {
+            mode = newMode;
+            startTime = performance.now();
+            document.querySelectorAll('.mode-btn').forEach(b => {
+                if (!b.textContent.includes('Hide/Show')) b.classList.remove('active');
+            });
+            btn.classList.add('active');
+        }
+
+        function toggleHud(btn) {
+            centerHud.classList.toggle('hidden');
+            btn.classList.toggle('active');
+        }
+
+        function animateLoop(now) {
+            if (mode === 'auto') {
+                const elapsed = ((now - startTime) / 1000) % 16;
+                currentMult = Math.pow(Math.E, 0.21 * elapsed);
+            } else if (mode === 'blue') {
+                currentMult = 1.45 + Math.sin(now * 0.002) * 0.35;
+            } else if (mode === 'purple') {
+                currentMult = 4.80 + Math.sin(now * 0.002) * 2.50;
+            } else if (mode === 'pink') {
+                currentMult = 18.50 + Math.sin(now * 0.002) * 6.00;
+            }
+
+            updateBackgroundNeonLight(currentMult);
+            requestAnimationFrame(animateLoop);
+        }
+
+        requestAnimationFrame(animateLoop);
+    </script>
+</body>
+</html>

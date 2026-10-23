@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Player Profile & Bet History - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .stat-badge-box {
+            background: #111722;
+            border: 1px solid var(--lte-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+        .stat-badge-box .label {
+            font-size: 11px;
+            color: var(--lte-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .stat-badge-box .val {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .pill-tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: #151d2a;
+            border: 1px solid var(--lte-border);
+            color: #8e9bb0;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pill-tab.active {
+            background: rgba(0, 231, 0, 0.15);
+            border-color: var(--lte-green);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">User Management / <a href="users.html" style="color:#8e9bb0; text-decoration:none;">Users</a> / <b style="color:#fff;" id="nav-username">Player View</b></span>
+            </div>
+            <div class="navbar-right">
+                <a id="edit-user-btn" href="#" class="btn-lte btn-lte-warning">
+                    <span>✏️ Edit Profile</span>
+                </a>
+                <a href="users.html" class="btn-lte btn-lte-secondary">
+                    <span>← Users List</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div id="user-not-found" style="display:none;" class="lte-card">
+                <div style="text-align:center; padding:40px;">
+                    <div style="font-size:48px; margin-bottom:12px;">⚠️</div>
+                    <h3 style="font-size:18px; color:#fff; font-weight:800; margin-bottom:8px;">Player Not Found</h3>
+                    <p style="font-size:13px; color:#8e9bb0; margin-bottom:20px;">The requested user ID was not found in the database.</p>
+                    <a href="users.html" class="btn-lte btn-lte-primary">Back to Users Directory</a>
+                </div>
+            </div>
+
+            <div id="view-content" style="display:none;">
+
+                <!-- Hero Profile Card -->
+                <div class="lte-card" style="margin-bottom:20px;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;">
+                        <div style="display:flex; gap:18px; align-items:center;">
+                            <div style="width:68px; height:68px; border-radius:16px; background:linear-gradient(135deg, #1b2433 0%, #0e131b 100%); border:2px solid var(--lte-border); display:flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 6px 16px rgba(0,0,0,0.4);">
+                                👤
+                            </div>
+                            <div>
+                                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                                    <h1 style="font-size:22px; font-weight:900; color:#fff; margin:0;" id="user-display-name">Player Name</h1>
+                                    <span class="badge-status" id="user-status-badge">Active</span>
+                                    <span class="badge-status" id="user-vip-badge" style="background:rgba(245,197,24,0.15); color:var(--lte-gold); border:1px solid rgba(245,197,24,0.3);">VIP</span>
+                                </div>
+                                <div style="display:flex; gap:16px; font-size:12px; color:var(--lte-muted); margin-top:6px; flex-wrap:wrap;">
+                                    <span>ID: <b style="color:#fff; font-family:'JetBrains Mono',monospace;" id="user-id-text">USR-0000</b></span>
+                                    <span>Email: <b style="color:#fff;" id="user-email-text">-</b></span>
+                                    <span>Phone: <b style="color:#fff;" id="user-phone-text">-</b></span>
+                                    <span>PIN: <b style="color:#fff; font-family:'JetBrains Mono',monospace;" id="user-pin-text">****</b></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Bar -->
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <button type="button" class="btn-lte btn-lte-secondary" id="btn-suspend-toggle" onclick="toggleUserSuspension()">
+                                <span>⏸️ Suspend Account</span>
+                            </button>
+                            <button type="button" class="btn-lte btn-lte-primary" onclick="switchActiveUser()">
+                                <span>⚡ Set Active Player</span>
+                            </button>
+                            <button type="button" class="btn-lte btn-lte-danger" onclick="deleteCurrentUser()">
+                                <span>🗑️ Delete</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Rigging Controller Panel directly on Profile -->
+                    <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--lte-border); background:rgba(255,255,255,0.02); padding:16px; border-radius:8px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
+                        <div>
+                            <div style="font-size:11px; font-weight:800; color:var(--lte-gold); text-transform:uppercase; letter-spacing:0.5px;">
+                                🎯 Outcome Rigging / Loss Average Setting:
+                            </div>
+                            <div style="font-size:13px; color:#fff; font-weight:700; margin-top:2px;" id="current-rigging-label">
+                                Status: Fair Standard (98% RTP)
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                            <select id="quick-bias-select" class="form-ctrl" style="width:auto; padding:6px 12px; font-size:12px;" onchange="handleQuickBiasChange(this.value)">
+                                <option value="fair">⚖️ Fair Standard (98% RTP)</option>
+                                <option value="force_loss">💀 Force Loss (Always Lose)</option>
+                                <option value="force_win">👑 Force Win (Always Win)</option>
+                                <option value="custom">⚙️ Custom Win Rate %</option>
+                            </select>
+                            <input type="number" id="quick-winrate-input" class="form-ctrl" style="width:75px; display:none; padding:6px 10px; font-size:12px;" min="1" max="99" value="25" placeholder="%">
+                            <button class="btn-lte btn-lte-primary" style="padding:6px 14px; font-size:12px;" onclick="saveQuickBias()">
+                                Apply Rig
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Financial Metrics -->
+                <div class="metrics-grid" style="margin-bottom:24px;">
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background:rgba(0, 231, 0, 0.1); color:var(--lte-green);">💰</div>
+                        <div class="metric-label">Current Balance</div>
+                        <div class="metric-val" style="color:var(--lte-green);" id="card-balance">₨ 0</div>
+                        <div style="margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+                            <div style="display:flex; gap:4px;">
+                                <input type="number" id="view-adj-amount" class="form-ctrl" placeholder="Amount (PKR)" min="1" step="any" style="padding:4px 8px; font-size:11px; width:110px;">
+                                <button onclick="adjustUserBalanceFromView('add')" class="btn-lte btn-lte-primary" style="padding:4px 8px; font-size:11px; background:#00e700; color:#000; font-weight:800;">+ Add</button>
+                                <button onclick="adjustUserBalanceFromView('deduct')" class="btn-lte btn-lte-danger" style="padding:4px 8px; font-size:11px; background:#ff4757; color:#fff; font-weight:800;">- Minus</button>
+                            </div>
+                            <div style="display:flex; gap:4px;">
+                                <button onclick="quickAddFunds()" class="btn-lte btn-lte-secondary" style="padding:3px 8px; font-size:10px;">+ ₨ 5,000</button>
+                                <button onclick="quickZeroFunds()" class="btn-lte btn-lte-danger" style="padding:3px 8px; font-size:10px;">Reset 0</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background:rgba(0, 207, 232, 0.1); color:var(--lte-cyan);">🎲</div>
+                        <div class="metric-label">Total Wagered</div>
+                        <div class="metric-val" id="card-wagered">₨ 0</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background:rgba(245, 197, 24, 0.1); color:var(--lte-gold);">🏆</div>
+                        <div class="metric-label">Total Won</div>
+                        <div class="metric-val" style="color:var(--lte-gold);" id="card-won">₨ 0</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background:rgba(255, 71, 87, 0.1); color:var(--lte-red);">📊</div>
+                        <div class="metric-label">Net Profit / House Margin</div>
+                        <div class="metric-val" id="card-profit">₨ 0</div>
+                    </div>
+                </div>
+
+                <!-- User Bet History Section -->
+                <div class="lte-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+                        <div>
+                            <h2 style="font-size:16px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+                                <span>📜</span> Player Bet Slips & Gaming History
+                            </h2>
+                            <p style="font-size:11px; color:var(--lte-muted); margin-top:2px;">
+                                Real-time audited log of every bet, round multiplier, and payout for this account.
+                            </p>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <select id="game-filter" class="form-ctrl" style="width:auto; padding:6px 12px; font-size:11px;" onchange="renderBetHistory()">
+                                <option value="all">All Games</option>
+                                <option value="Crash">Crash</option>
+                                <option value="Mines">Mines</option>
+                                <option value="Roulette">Roulette</option>
+                                <option value="Plinko">Plinko</option>
+                                <option value="Keno">Keno</option>
+                                <option value="Bingo">Bingo</option>
+                                <option value="Blackjack">Blackjack</option>
+                                <option value="Poker">Poker</option>
+                                <option value="Lucky Numbers">Lucky Numbers</option>
+                                <option value="Scratch Card">Scratch Card</option>
+                                <option value="Coin Flip">Coin Flip</option>
+                                <option value="Hi-Lo">Hi-Lo</option>
+                            </select>
+                            <button onclick="injectSimulatedBet()" class="btn-lte btn-lte-secondary" style="font-size:11px; padding:6px 12px;">
+                                <span>➕ Simulate Test Bet</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table-lte">
+                            <thead>
+                                <tr>
+                                    <th>Bet ID</th>
+                                    <th>Game</th>
+                                    <th>Stake (PKR)</th>
+                                    <th>Multiplier</th>
+                                    <th>Payout (PKR)</th>
+                                    <th>Result</th>
+                                    <th>Profit</th>
+                                    <th>Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bets-table-body">
+                                <tr>
+                                    <td colspan="8" style="text-align:center; padding:30px; color:#8e9bb0;">Loading bet records...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/user_manager.js"></script>
+    <script>
+        let currentUserId = null;
+        let currentUser = null;
+
+        async function loadUserProfile() {
+            const urlParams = new URLSearchParams(window.location.search);
+            currentUserId = urlParams.get('id') || '';
+
+            try {
+                const res = await fetch(`../api/admin.php?action=user_detail&id=${encodeURIComponent(currentUserId)}&admin_pin=9824`, {
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include'
+                });
+                if (res.ok) {
+                    const json = await res.json();
+                    if (json && json.success && json.data && json.data.user) {
+                        const u = json.data.user;
+                        currentUser = {
+                            id: String(u.id),
+                            username: String(u.username || ''),
+                            fullName: String(u.full_name || u.username || ''),
+                            email: String(u.email || ''),
+                            phone: String(u.phone || ''),
+                            balanceUSD: parseFloat(u.balance_usd || 0),
+                            balancePKR: parseFloat(u.balance_pkr || 0),
+                            vipTier: String(u.vip_tier || 'Bronze VIP'),
+                            status: String(u.status || 'active'),
+                            outcomeBias: String(u.outcome_bias || 'fair'),
+                            customWinRate: parseInt(u.custom_win_rate || 48, 10),
+                            totalWagered: parseFloat(u.total_wagered || 0),
+                            totalWon: parseFloat(u.total_won || 0),
+                            betHistory: (json.data.bets || []).map(b => ({
+                                id: b.id,
+                                game: b.game,
+                                bet: parseFloat(b.bet_amount_pkr !== undefined ? b.bet_amount_pkr : (b.bet_amount ? b.bet_amount * 280 : 0)),
+                                payout: parseFloat(b.payout_pkr !== undefined ? b.payout_pkr : (b.payout ? b.payout * 280 : 0)),
+                                multiplier: parseFloat(b.multiplier || 0),
+                                status: String(b.status || '').toUpperCase(),
+                                profit: parseFloat(b.profit_pkr !== undefined ? b.profit_pkr : (b.profit ? b.profit * 280 : 0)),
+                                time: b.played_at || b.bet_time || ''
+                            }))
+                        };
+                        currentUserId = currentUser.id;
+                    }
+                }
+            } catch (e) {
+                console.error('Error fetching user profile from DB:', e);
+            }
+
+            if (!currentUser && window.userManager) {
+                currentUser = window.userManager.getUser(currentUserId);
+            }
+
+            if (!currentUser) {
+                document.getElementById('user-not-found').style.display = 'block';
+                document.getElementById('view-content').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('user-not-found').style.display = 'none';
+            document.getElementById('view-content').style.display = 'block';
+
+            // Navbar & title
+            document.getElementById('nav-username').innerText = `${currentUser.username} (View)`;
+            document.getElementById('edit-user-btn').href = `user-edit.html?id=${encodeURIComponent(currentUser.id)}`;
+
+            // Profile header
+            document.getElementById('user-display-name').innerText = `${currentUser.fullName} (@${currentUser.username})`;
+            document.getElementById('user-id-text').innerText = currentUser.id;
+            document.getElementById('user-email-text').innerText = currentUser.email;
+            document.getElementById('user-phone-text').innerText = currentUser.phone;
+            document.getElementById('user-pin-text').innerText = currentUser.securityPin || '1234';
+
+            // Status Badge
+            const isSuspended = currentUser.status === 'suspended';
+            const statusEl = document.getElementById('user-status-badge');
+            statusEl.className = `badge-status ${isSuspended ? 'badge-suspended' : 'badge-active'}`;
+            statusEl.innerText = isSuspended ? 'Suspended / Banned' : 'Active Account';
+
+            const suspBtn = document.getElementById('btn-suspend-toggle');
+            suspBtn.innerHTML = isSuspended ? '<span>▶️ Unsuspend Player</span>' : '<span>⏸️ Suspend Account</span>';
+
+            // VIP Badge
+            document.getElementById('user-vip-badge').innerText = currentUser.vipTier || 'Bronze VIP';
+
+            // Rigging Label & Quick Control
+            updateRiggingDisplay();
+
+            // Financial Metrics
+            document.getElementById('card-balance').innerText = `₨ ${Number(currentUser.balancePKR || 0).toLocaleString()}`;
+            document.getElementById('card-wagered').innerText = `₨ ${Number(currentUser.totalWagered || 0).toLocaleString()}`;
+            document.getElementById('card-won').innerText = `₨ ${Number(currentUser.totalWon || 0).toLocaleString()}`;
+            
+            const netProfit = (currentUser.totalWon || 0) - (currentUser.totalWagered || 0);
+            const profitEl = document.getElementById('card-profit');
+            if (netProfit >= 0) {
+                profitEl.innerText = `+₨ ${netProfit.toLocaleString()} (Player Up)`;
+                profitEl.style.color = 'var(--lte-green)';
+            } else {
+                profitEl.innerText = `-₨ ${Math.abs(netProfit).toLocaleString()} (House Profit)`;
+                profitEl.style.color = 'var(--lte-red)';
+            }
+
+            // Bet History
+            renderBetHistory();
+        }
+
+        function updateRiggingDisplay() {
+            const bias = currentUser.outcomeBias || 'fair';
+            const rate = currentUser.customWinRate || 48;
+            const labelEl = document.getElementById('current-rigging-label');
+            const selectEl = document.getElementById('quick-bias-select');
+            const inputEl = document.getElementById('quick-winrate-input');
+
+            selectEl.value = bias;
+            inputEl.value = rate;
+            inputEl.style.display = (bias === 'custom') ? 'inline-block' : 'none';
+
+            if (bias === 'force_loss') {
+                labelEl.innerHTML = '<span style="color:var(--lte-red); font-weight:800;">💀 Force Loss (100% Guaranteed Loss / Full House Profit)</span>';
+            } else if (bias === 'force_win') {
+                labelEl.innerHTML = '<span style="color:var(--lte-gold); font-weight:800;">👑 Force Win (100% Guaranteed Win / Demo Mode)</span>';
+            } else if (bias === 'custom') {
+                labelEl.innerHTML = `<span style="color:var(--lte-cyan); font-weight:800;">⚙️ Custom Win Rate (${rate}% Win Ratio)</span>`;
+            } else {
+                labelEl.innerHTML = '<span style="color:var(--lte-green); font-weight:800;">⚖️ Fair Standard (98% Global Casino RTP)</span>';
+            }
+        }
+
+        function handleQuickBiasChange(val) {
+            const inputEl = document.getElementById('quick-winrate-input');
+            inputEl.style.display = (val === 'custom') ? 'inline-block' : 'none';
+        }
+
+        async function saveQuickBias() {
+            if (!currentUser) return;
+            const bias = document.getElementById('quick-bias-select').value;
+            const rate = parseInt(document.getElementById('quick-winrate-input').value, 10) || 48;
+
+            try {
+                await fetch('../api/admin.php?action=update_user&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        admin_pin: '9824',
+                        id: currentUser.id,
+                        outcome_bias: bias,
+                        custom_win_rate: rate
+                    })
+                });
+            } catch (e) {}
+
+            currentUser.outcomeBias = bias;
+            currentUser.customWinRate = rate;
+            updateRiggingDisplay();
+            alert(`Outcome rigging updated for ${currentUser.username} to: ${bias.toUpperCase()}!`);
+        }
+
+        async function toggleUserSuspension() {
+            if (!currentUser) return;
+            const newStatus = currentUser.status === 'suspended' ? 'active' : 'suspended';
+            try {
+                await fetch('../api/admin.php?action=update_user&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        admin_pin: '9824',
+                        id: currentUser.id,
+                        status: newStatus
+                    })
+                });
+            } catch (e) {}
+            alert(`Account status updated to: ${newStatus.toUpperCase()}`);
+            loadUserProfile();
+        }
+
+        function switchActiveUser() {
+            if (!currentUser) return;
+            window.userManager.setActiveUser(currentUser.id);
+            alert(`Player ${currentUser.username} is now the active playing session!`);
+        }
+
+        async function adjustUserBalanceFromView(type) {
+            if (!currentUser) return;
+            const inp = document.getElementById('view-adj-amount');
+            const amt = inp ? parseFloat(inp.value) : 0;
+            if (isNaN(amt) || amt <= 0) {
+                alert('Please enter an amount greater than 0.');
+                return;
+            }
+            try {
+                const res = await fetch('../api/admin.php?action=adjust_balance&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        admin_pin: '9824',
+                        user_id: currentUser.id,
+                        type: type,
+                        currency: 'PKR',
+                        amount: amt,
+                        reason: 'Admin Profile View Adjustment'
+                    })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    if (inp) inp.value = '';
+                    alert(`✅ Balance ${type === 'deduct' ? 'Deducted (-)' : 'Added (+)'} Successfully!\nNew Balance: ₨ ${Number(json.data.balance_pkr).toLocaleString()}`);
+                    loadUserProfile();
+                } else {
+                    alert('Failed: ' + ((json && json.message) || 'Error'));
+                }
+            } catch (e) {
+                alert('Network error: ' + e.message);
+            }
+        }
+
+        async function quickZeroFunds() {
+            if (!currentUser) return;
+            try {
+                const res = await fetch('../api/admin.php?action=adjust_balance&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        admin_pin: '9824',
+                        user_id: currentUser.id,
+                        type: 'set',
+                        currency: 'PKR',
+                        amount: 0,
+                        reason: 'Admin Reset Balance to 0'
+                    })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    alert(`✅ ${currentUser.username}'s balance reset to ₨ 0!`);
+                    loadUserProfile();
+                }
+            } catch (e) {}
+        }
+
+        async function quickAddFunds() {
+            if (!currentUser) return;
+            try {
+                const res = await fetch('../api/admin.php?action=adjust_balance&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        admin_pin: '9824',
+                        user_id: currentUser.id,
+                        type: 'add',
+                        currency: 'PKR',
+                        amount: 5000,
+                        reason: 'Admin Quick Add 5000 Funds'
+                    })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    alert(`✅ Added ₨ 5,000 to ${currentUser.username}'s wallet in database!\nNew Balance: ₨ ${Number(json.data.balance_pkr).toLocaleString()}`);
+                } else {
+                    alert('Failed to add funds: ' + ((json && json.message) || (json && json.error) || 'Error'));
+                }
+            } catch(e) {
+                alert('Network error: ' + e.message);
+            }
+            loadUserProfile();
+        }
+
+        async function deleteCurrentUser() {
+            if (!currentUser) return;
+            if (confirm(`Are you sure you want to permanently delete player ${currentUser.username} (${currentUser.id})? This cannot be undone!`)) {
+                await fetch('../api/admin.php?action=delete_user&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({ admin_pin: '9824', id: currentUser.id })
+                });
+                alert(`Player ${currentUser.username} deleted.`);
+                window.location.href = 'users.html';
+            }
+        }
+
+        function renderBetHistory() {
+            if (!currentUser) return;
+            const tbody = document.getElementById('bets-table-body');
+            const filterGame = document.getElementById('game-filter').value;
+
+            let bets = currentUser.betHistory || [];
+
+            if (filterGame !== 'all') {
+                bets = bets.filter(b => b.game.toLowerCase().includes(filterGame.toLowerCase()));
+            }
+
+            if (bets.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align:center; padding:36px; color:#8e9bb0;">
+                            <div style="font-size:28px; margin-bottom:8px;">🎲</div>
+                            <div>No bet history recorded for this player yet.</div>
+                            <div style="font-size:11px; margin-top:6px; color:#526175;">Bets made during active gameplay will automatically appear here.</div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = bets.map(b => {
+                const isWin = (b.status === 'WIN' || b.status === 'win' || Number(b.profit) > 0);
+                const stakeAmt = Number(b.stake || b.bet || 0);
+                const payoutAmt = Number(b.payout || 0);
+                const profit = b.profit !== undefined ? Number(b.profit) : (payoutAmt - stakeAmt);
+                const profitText = profit >= 0 
+                    ? `+₨ ${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}` 
+                    : `-₨ ${Math.abs(profit).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                const profitColor = profit >= 0 ? 'var(--lte-green)' : 'var(--lte-red)';
+                const multText = (typeof b.multiplier === 'string') ? b.multiplier : `${Number(b.multiplier || 1).toFixed(2)}x`;
+                const dateText = b.timestamp ? new Date(b.timestamp).toLocaleString() : (b.time || 'Today');
+
+                return `
+                    <tr>
+                        <td style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8e9bb0;">${b.id || 'BET-000'}</td>
+                        <td style="font-weight:700; color:#fff;">${b.game}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--lte-gold);">₨ ${stakeAmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; color:var(--lte-cyan); font-weight:800;">${multText}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${isWin ? 'var(--lte-green)' : '#8e9bb0'};">₨ ${payoutAmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                        <td>
+                            <span class="badge-status ${isWin ? 'badge-active' : 'badge-suspended'}" style="font-size:10px; padding:2px 8px;">
+                                ${isWin ? 'WIN 🏆' : 'LOSS 💀'}
+                            </span>
+                        </td>
+                        <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${profitColor};">${profitText}</td>
+                        <td style="font-size:11px; color:#8e9bb0;">${dateText}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function injectSimulatedBet() {
+            if (!currentUser) return;
+            const games = ['Crash', 'Mines', 'Roulette', 'Plinko', 'Blackjack', 'Poker', 'Keno', 'Bingo'];
+            const game = games[Math.floor(Math.random() * games.length)];
+            const stake = [100, 500, 1000, 2500, 5000][Math.floor(Math.random() * 5)];
+            
+            // Bias test
+            const won = window.userManager.shouldUserWin(game.toLowerCase(), currentUser.id);
+            const mult = won ? +(1.5 + Math.random() * 4).toFixed(2) : 0;
+            const payout = won ? Math.round(stake * mult) : 0;
+
+            window.userManager.recordBet(currentUser.id, {
+                game,
+                stake,
+                payout,
+                multiplier: won ? mult : 0,
+                status: won ? 'WIN' : 'LOSS'
+            });
+
+            loadUserProfile();
+        }
+
+        window.addEventListener('DOMContentLoaded', loadUserProfile);
+    </script>
+    <script src="js/adminlte.js"></script>
+</body>
+</html>

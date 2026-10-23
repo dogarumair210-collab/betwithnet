@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#03000a">
+    <title>Mines 5x5 VIP Studio - Authentic 4K Casino Edition | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT (0-SCROLL)
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        :root {
+            --mines-bg: #03050c;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #b347ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff3344;
+            --tile-bg: rgba(14, 22, 40, 0.88);
+            --tile-border: rgba(0, 240, 255, 0.25);
+            --tile-shadow: rgba(0, 240, 255, 0.15);
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background: #020308;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            position: fixed;
+            inset: 0;
+        }
+
+        /* -------------------------------------------------------------
+           4 DISTINCT CASINO THEMES & TEMPLATES
+           ------------------------------------------------------------- */
+        body.theme-cyber {
+            --mines-bg: #03050c;
+            --tile-bg: rgba(15, 23, 42, 0.92);
+            --tile-border: rgba(0, 240, 255, 0.35);
+            --tile-shadow: rgba(0, 240, 255, 0.2);
+            --accent-main: #00f0ff;
+        }
+
+        body.theme-gold {
+            --mines-bg: #090600;
+            --tile-bg: rgba(30, 22, 10, 0.92);
+            --tile-border: rgba(255, 215, 0, 0.4);
+            --tile-shadow: rgba(255, 215, 0, 0.25);
+            --accent-main: #ffd700;
+        }
+
+        body.theme-inferno {
+            --mines-bg: #0d0204;
+            --tile-bg: rgba(36, 12, 16, 0.92);
+            --tile-border: rgba(255, 68, 68, 0.4);
+            --tile-shadow: rgba(255, 68, 68, 0.25);
+            --accent-main: #ff4444;
+        }
+
+        body.theme-arctic {
+            --mines-bg: #020812;
+            --tile-bg: rgba(12, 28, 48, 0.92);
+            --tile-border: rgba(120, 220, 255, 0.4);
+            --tile-shadow: rgba(120, 220, 255, 0.25);
+            --accent-main: #78dcff;
+        }
+
+        /* Dynamic Template Background Layers */
+        .mines-bg-layer {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            transition: opacity 0.5s ease, filter 0.5s ease;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(2px) brightness(0.65);
+        }
+
+        body.theme-cyber .mines-bg-layer { background-image: url('../assets/games/mines/img_3.png'); opacity: 0.38; }
+        body.theme-gold .mines-bg-layer { background-image: url('../assets/games/mines/img_4.png'); opacity: 0.32; filter: hue-rotate(40deg) brightness(0.7); }
+        body.theme-inferno .mines-bg-layer { background-image: url('../assets/games/mines/img_1.png'); opacity: 0.35; filter: hue-rotate(140deg) brightness(0.75); }
+        body.theme-arctic .mines-bg-layer { background-image: url('../assets/games/mines/img_2.png'); opacity: 0.38; filter: hue-rotate(200deg) brightness(0.7); }
+
+        .mines-vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(2, 3, 8, 0.85) 80%, #010205 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* -------------------------------------------------------------
+           MAIN APP CONTAINER (DESKTOP & MOBILE 100% RESPONSIVE)
+           ------------------------------------------------------------- */
+        .mines-studio-shell {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Studio Top Navigation Bar */
+        .mines-topbar {
+            height: 52px;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(5, 10, 20, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-lobby-back {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:active { transform: scale(0.95); }
+
+        .mines-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mines-brand-icon {
+            font-size: 20px;
+            filter: drop-shadow(0 0 8px var(--accent-main, #00f0ff));
+        }
+        .mines-brand-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 14px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+        .mines-brand-sub {
+            font-size: 9.5px;
+            color: var(--accent-main, #00f0ff);
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hud-icon-btn {
+            height: 32px;
+            padding: 0 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .hud-icon-btn:active { transform: scale(0.94); }
+
+        /* Music Equalizer Bars */
+        .hud-music-btn {
+            gap: 6px;
+        }
+        .music-eq-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 14px;
+            width: 14px;
+            overflow: hidden;
+        }
+        .music-eq-bars .eq-bar {
+            width: 3px;
+            background: var(--accent-main, #00f0ff);
+            border-radius: 1px;
+            height: 4px;
+            transition: height 0.2s ease;
+        }
+        .music-eq-bars.playing .bar-1 {
+            animation: eqAnim1 0.65s infinite ease-in-out alternate;
+        }
+        .music-eq-bars.playing .bar-2 {
+            animation: eqAnim2 0.5s infinite ease-in-out alternate 0.15s;
+        }
+        .music-eq-bars.playing .bar-3 {
+            animation: eqAnim3 0.75s infinite ease-in-out alternate 0.3s;
+        }
+        @keyframes eqAnim1 { 0% { height: 3px; } 100% { height: 14px; } }
+        @keyframes eqAnim2 { 0% { height: 13px; } 100% { height: 4px; } }
+        @keyframes eqAnim3 { 0% { height: 5px; } 100% { height: 12px; } }
+
+        .theme-select-mines {
+            height: 32px;
+            padding: 0 10px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--accent-main, rgba(0, 240, 255, 0.4));
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Wallet Display Pill */
+        .mines-wallet-chip {
+            display: flex;
+            align-items: center;
+            background: rgba(11, 19, 34, 0.95);
+            border: 1.5px solid rgba(0, 231, 0, 0.4);
+            border-radius: 10px;
+            padding: 3px 4px 3px 10px;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .wallet-chip-info {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            line-height: 1.15;
+        }
+        .wallet-chip-label {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #8e9bb0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .wallet-chip-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #00e700;
+        }
+        .btn-chip-deposit {
+            background: linear-gradient(135deg, #00e700, #00b000);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 5px 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: transform 0.15s;
+        }
+        .btn-chip-deposit:active { transform: scale(0.92); }
+
+        .user-avatar-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(0, 240, 255, 0.3));
+            border: 1.5px solid rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* -------------------------------------------------------------
+           STUDIO ARENA MAIN BODY
+           ------------------------------------------------------------- */
+        .mines-arena-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 16px;
+            padding: 10px 16px;
+            max-width: 960px;
+            width: 100%;
+            height: calc(100vh - 52px);
+            height: calc(100dvh - 52px);
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* LEFT DOCK: BET & MINES CONTROLS */
+        .mines-control-dock {
+            background: rgba(11, 18, 32, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(14px);
+            overflow: visible;
+        }
+
+        .dock-inputs-cluster {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-group-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #8e9bb0;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Bet Input Box */
+        .bet-input-container {
+            display: flex;
+            align-items: center;
+            background: rgba(4, 8, 16, 0.95);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            padding: 4px 10px;
+            transition: border-color 0.2s;
+        }
+        .bet-input-container:focus-within {
+            border-color: var(--accent-main, #00f0ff);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+        }
+        .bet-currency-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 14px;
+            color: #ffd700;
+            margin-right: 6px;
+        }
+        .bet-amount-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 900;
+            outline: none;
+            width: 100%;
+        }
+
+        /* Bet Quick Modifiers */
+        .bet-modifiers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .btn-mod {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 6px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-mod:active { transform: scale(0.92); background: rgba(255, 255, 255, 0.12); }
+
+        /* Mines Count Quick Selector */
+        .mines-quick-pills {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            margin-bottom: 6px;
+        }
+        .mine-pill-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .mine-pill-btn.active {
+            background: linear-gradient(135deg, rgba(255, 51, 68, 0.3), rgba(255, 51, 68, 0.1));
+            border-color: #ff3344;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 51, 68, 0.35);
+        }
+
+        .mines-select-full {
+            width: 100%;
+            height: 38px;
+            background: rgba(4, 8, 16, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 10px;
+            color: #fff;
+            padding: 0 10px;
+            font-weight: 800;
+            font-size: 12px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Action Buttons */
+        .mines-action-panel {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn-mines-action {
+            width: 100%;
+            padding: 15px 12px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+            transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        }
+        .btn-mines-action.state-start {
+            background: linear-gradient(135deg, #00f0ff, #0088ff);
+            color: #030814;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        .btn-mines-action.state-start:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+        .btn-mines-action.state-cashout {
+            background: linear-gradient(135deg, #00e700, #00b300);
+            color: #031405;
+            box-shadow: 0 0 25px rgba(0, 231, 0, 0.5);
+            animation: cashoutPulse 1.2s infinite;
+        }
+        @keyframes cashoutPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 231, 0, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 35px rgba(0, 231, 0, 0.7); }
+        }
+        .btn-mines-action:active { transform: scale(0.97); }
+
+        .btn-auto-pick {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-auto-pick:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .btn-auto-pick:active { transform: scale(0.95); }
+
+        /* RIGHT STAGE: 5x5 MINES MATRIX & STATS */
+        .mines-stage-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Top Multiplier Progress Ladder Strip */
+        .mines-multiplier-strip {
+            width: 100%;
+            max-width: 410px;
+            background: rgba(8, 14, 26, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            gap: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+        .strip-stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .strip-stat-badge.gems { color: #00f0ff; }
+        .strip-stat-badge.mines { color: #ff3344; }
+
+        .strip-ladder-scroll {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 2px 4px;
+        }
+        .strip-ladder-scroll::-webkit-scrollbar { display: none; }
+        .ladder-step {
+            padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #8e9bb0;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .ladder-step.active {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(179, 71, 255, 0.3));
+            border-color: #00f0ff;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            transform: scale(1.06);
+        }
+
+        /* 5x5 GRID MATRIX */
+        .mines-grid-frame {
+            position: relative;
+            background: rgba(6, 12, 22, 0.88);
+            border: 2px solid var(--tile-border, rgba(0, 240, 255, 0.3));
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--tile-shadow, rgba(0, 240, 255, 0.15));
+            backdrop-filter: blur(16px);
+            width: 100%;
+            max-width: min(58vh, 410px);
+            max-height: min(58vh, 410px);
+            aspect-ratio: 1 / 1;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        /* 3D TILE WITH FLIP ANIMATION */
+        .mines-tile {
+            position: relative;
+            border-radius: 10px;
+            background: var(--tile-bg, rgba(15, 23, 42, 0.92));
+            border: 1.5px solid var(--tile-border, rgba(0, 240, 255, 0.2));
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 4px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden;
+            perspective: 800px;
+        }
+        .mines-tile:hover {
+            transform: translateY(-2px) scale(1.02);
+            border-color: var(--accent-main, #00f0ff);
+            box-shadow: 0 0 14px var(--tile-shadow, rgba(0, 240, 255, 0.3));
+        }
+        .mines-tile:active {
+            transform: scale(0.94);
+        }
+
+        /* Tile State: Uncovered Gem */
+        .mines-tile.is-gem {
+            background: radial-gradient(circle at 50% 35%, rgba(0, 240, 255, 0.35) 0%, rgba(10, 25, 50, 0.95) 75%);
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.3);
+            cursor: default;
+            animation: gemRevealPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes gemRevealPop {
+            0% { transform: scale(0.7) rotate(-15deg); opacity: 0; }
+            70% { transform: scale(1.15) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .gem-icon-render {
+            width: 60%;
+            height: 60%;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+            animation: gemGlowPulse 2s infinite ease-in-out;
+        }
+        @keyframes gemGlowPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.7)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 14px rgba(0, 240, 255, 1)); }
+        }
+
+        /* Tile State: Detonated Mine */
+        .mines-tile.is-mine {
+            background: radial-gradient(circle at 50% 40%, rgba(255, 51, 68, 0.5) 0%, rgba(45, 8, 12, 0.95) 80%);
+            border-color: #ff3344;
+            box-shadow: 0 0 25px rgba(255, 51, 68, 0.8), inset 0 0 15px rgba(255, 51, 68, 0.5);
+            animation: mineDetonateShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+        @keyframes mineDetonateShake {
+            10%, 90% { transform: translate3d(-2px, 0, 0) scale(1.05); }
+            20%, 80% { transform: translate3d(3px, 0, 0) scale(1.1); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .mine-icon-render {
+            width: 62%;
+            height: 62%;
+            filter: drop-shadow(0 0 10px rgba(255, 51, 68, 0.9));
+        }
+
+        /* Idle Tile Shimmer Light Beam */
+        .mines-tile::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -130%;
+            width: 70%;
+            height: 220%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+            transform: rotate(25deg);
+            pointer-events: none;
+            transition: none;
+        }
+        .mines-tile.tile-shimmer::before {
+            animation: tileShimmerSweep 1.2s ease-in-out forwards;
+        }
+        @keyframes tileShimmerSweep {
+            0% { left: -130%; opacity: 0; }
+            30% { opacity: 1; }
+            100% { left: 160%; opacity: 0; }
+        }
+
+        /* Sequential Cascade Reveal */
+        .mines-tile.cascade-flip {
+            animation: cascadePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        }
+        @keyframes cascadePop {
+            0% { transform: scale(0.7) rotateY(90deg); opacity: 0; }
+            100% { transform: scale(1) rotateY(0deg); opacity: 0.55; }
+        }
+
+        /* Canvas FX Layer */
+        #fxCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 150;
+        }
+
+        /* Screen Shake on Mine Explosion */
+        @keyframes screenShakeHeavy {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-8px, -6px) rotate(-1.2deg); }
+            20% { transform: translate(9px, 5px) rotate(1.2deg); }
+            30% { transform: translate(-10px, 4px) rotate(-1deg); }
+            40% { transform: translate(8px, -4px) rotate(1deg); }
+            50% { transform: translate(-6px, 2px) rotate(-0.5deg); }
+            60% { transform: translate(6px, -2px) rotate(0.5deg); }
+            70% { transform: translate(-3px, 1px); }
+            80% { transform: translate(3px, -1px); }
+            90% { transform: translate(-1px, 0); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .screen-shake-intense {
+            animation: screenShakeHeavy 0.55s cubic-bezier(.36,.07,.19,.97) both !important;
+        }
+
+        /* Red Detonation Flash */
+        .detonate-flash-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255, 30, 60, 0.7) 0%, rgba(180, 0, 20, 0.35) 60%, transparent 100%);
+            z-index: 400;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.05s ease-out;
+        }
+        .detonate-flash-overlay.active {
+            opacity: 1;
+            animation: flashFadeOut 0.65s forwards ease-out;
+        }
+        @keyframes flashFadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; }
+            100% { opacity: 0; transform: scale(1.05); }
+        }
+
+        /* Floating Multiplier Badge Popup */
+        .floating-mult-popup {
+            position: fixed;
+            pointer-events: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 15px;
+            color: #00f0ff;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.9), 0 2px 4px #000;
+            z-index: 300;
+            animation: floatUpAndFade 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes floatUpAndFade {
+            0% { opacity: 0; transform: translate(-50%, 0) scale(0.6); }
+            25% { opacity: 1; transform: translate(-50%, -18px) scale(1.2); }
+            70% { opacity: 1; transform: translate(-50%, -32px) scale(1.05); }
+            100% { opacity: 0; transform: translate(-50%, -48px) scale(0.9); }
+        }
+
+        /* -------------------------------------------------------------
+           BIG CASHOUT WIN CELEBRATION MODAL
+           ------------------------------------------------------------- */
+        .cashout-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .cashout-modal-overlay.active { display: flex; }
+        .cashout-modal-card {
+            background: radial-gradient(circle at 50% 30%, #152238 0%, #0a1120 70%, #03060d 100%);
+            border: 2px solid #00e700;
+            border-radius: 20px;
+            padding: 24px 18px;
+            max-width: 320px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 231, 0, 0.35);
+            animation: modalPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes modalPopIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .modal-win-mult {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            margin: 6px 0;
+        }
+        .modal-win-amt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            font-weight: 900;
+            color: #00e700;
+            margin-bottom: 20px;
+        }
+        .btn-modal-claim {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #00e700, #00b300);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 240px;
+        }
+        .pp-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
+        .pp-bar-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #ffcc00;
+            box-shadow: 0 0 10px #ffcc00;
+            border-radius: 3px;
+            transition: width 0.15s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           MOBILE SCREEN RESPONSIVENESS (100% 0-SCROLL VIEWPORT)
+           ------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .mines-topbar {
+                height: 44px;
+                padding: 0 6px;
+                gap: 4px;
+                overflow: hidden;
+            }
+            .topbar-left {
+                gap: 5px;
+                flex-shrink: 0;
+            }
+            .btn-lobby-back {
+                padding: 4px 6px;
+                font-size: 11px;
+                border-radius: 6px;
+            }
+            .btn-lobby-text {
+                display: none; /* Hide CASINO word on mobile, keep clean ← */
+            }
+            .mines-brand {
+                gap: 4px;
+            }
+            .mines-brand-icon {
+                font-size: 15px;
+            }
+            .mines-brand-title {
+                font-size: 11px;
+                letter-spacing: 0;
+            }
+            .mines-brand-sub {
+                display: none;
+            }
+            .topbar-right {
+                gap: 3px;
+                flex-shrink: 0;
+            }
+            .theme-select-mines {
+                height: 27px;
+                padding: 0 3px;
+                font-size: 9px;
+                max-width: 66px;
+                border-radius: 6px;
+            }
+            .hud-icon-btn {
+                height: 27px;
+                padding: 0 5px;
+                font-size: 10.5px;
+                border-radius: 6px;
+            }
+            #musicLabel {
+                display: none; /* Hide BGM text on mobile to save space */
+            }
+            .mines-wallet-chip {
+                padding: 2px 5px;
+                gap: 4px;
+                border-radius: 8px;
+                flex-shrink: 0;
+            }
+            .wallet-chip-label {
+                font-size: 7px;
+                letter-spacing: 0;
+            }
+            .wallet-chip-val {
+                font-size: 10.5px !important;
+            }
+            .btn-chip-deposit {
+                padding: 2px 5px;
+                font-size: 8px;
+                border-radius: 5px;
+            }
+            .user-avatar-btn {
+                width: 27px;
+                height: 27px;
+                flex-shrink: 0;
+            }
+
+            .mines-arena-layout {
+                display: flex;
+                flex-direction: column;
+                height: calc(100vh - 46px);
+                height: calc(100dvh - 46px);
+                padding: 4px 8px;
+                gap: 4px;
+                overflow: hidden;
+            }
+            .mines-stage-wrap {
+                order: 1;
+                flex: 1;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+            .mines-multiplier-strip {
+                width: 100%;
+                max-width: min(80vw, calc(100dvh - 230px), 260px);
+                margin-bottom: 4px;
+                padding: 3px 8px;
+                flex-shrink: 0;
+            }
+            .strip-stat-badge {
+                font-size: 9.5px;
+            }
+            .ladder-step {
+                padding: 2px 5px;
+                font-size: 9px;
+            }
+            .mines-grid-frame {
+                width: 100%;
+                max-width: min(80vw, calc(100dvh - 230px), 260px);
+                max-height: min(80vw, calc(100dvh - 230px), 260px);
+                aspect-ratio: 1 / 1;
+                padding: 5px;
+                gap: 4px;
+            }
+            .mines-tile {
+                border-radius: 6px;
+            }
+            .mines-control-dock {
+                order: 2;
+                max-width: min(92vw, 330px);
+                margin: 0 auto;
+                width: 100%;
+                padding: 6px 8px;
+                gap: 5px;
+                border-radius: 12px;
+                max-height: none;
+                overflow: visible;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            .dock-inputs-cluster {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .control-group-title {
+                font-size: 9.5px;
+                margin-bottom: 2px;
+            }
+            .bet-input-container {
+                padding: 2px 7px;
+                border-radius: 8px;
+            }
+            .bet-currency-tag {
+                font-size: 12px;
+                margin-right: 4px;
+            }
+            .bet-amount-input {
+                font-size: 13.5px;
+            }
+            .bet-modifiers-grid {
+                gap: 3px;
+                margin-top: 3px;
+            }
+            .btn-mod {
+                padding: 3px 0;
+                font-size: 9px;
+                border-radius: 5px;
+            }
+            .mines-quick-pills {
+                gap: 3px;
+                margin-bottom: 3px;
+            }
+            .mine-pill-btn {
+                padding: 3px 0;
+                font-size: 10px;
+                border-radius: 5px;
+            }
+            .mines-select-full {
+                height: 27px;
+                font-size: 10px;
+                padding: 0 5px;
+                border-radius: 5px;
+            }
+            .mines-action-panel {
+                margin-top: 2px;
+                gap: 4px;
+            }
+            .btn-mines-action {
+                padding: 11px 8px;
+                font-size: 14px;
+                border-radius: 12px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            }
+            .btn-auto-pick {
+                padding: 5px;
+                font-size: 10px;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body class="theme-cyber">
+
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4K Background Graphic Layer -->
+    <div class="mines-bg-layer" id="minesBgLayer"></div>
+    <div class="mines-vignette"></div>
+    <div id="detonateFlash" class="detonate-flash-overlay"></div>
+    <canvas id="fxCanvas"></canvas>
+    <audio id="bgmAudio" src="../assets/audio/card/casino_bgm.mp3" loop preload="auto" autoplay></audio>
+
+    <div class="mines-studio-shell">
+        <!-- TOP STUDIO BAR -->
+        <header class="mines-topbar">
+            <div class="topbar-left">
+                <a href="../casino.html" class="btn-lobby-back">
+                    <span>←</span> <span class="btn-lobby-text">CASINO</span>
+                </a>
+                <div class="mines-brand">
+                    <span class="mines-brand-icon">💣</span>
+                    <div>
+                        <div class="mines-brand-title">MINES 5×5</div>
+                        <div class="mines-brand-sub">VIP 4K STUDIO</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <!-- Theme Selector (4 Distinct Mines Themes) -->
+                <select id="themeSelectMines" class="theme-select-mines" onchange="switchMinesTheme(this.value)">
+                    <option value="theme-cyber">🌌 Cyber</option>
+                    <option value="theme-gold">👑 Gold</option>
+                    <option value="theme-inferno">🌋 Inferno</option>
+                    <option value="theme-arctic">❄️ Arctic</option>
+                </select>
+
+                <!-- Music BGM Toggle -->
+                <button id="btnMusicToggle" class="hud-icon-btn hud-music-btn" onclick="toggleMinesMusic()" title="Background Music">
+                    <span class="music-eq-bars" id="musicEqBars">
+                        <span class="eq-bar bar-1"></span>
+                        <span class="eq-bar bar-2"></span>
+                        <span class="eq-bar bar-3"></span>
+                    </span>
+                    <span id="musicLabel">BGM</span>
+                </button>
+
+                <!-- Sound FX Toggle -->
+                <button id="btnSoundToggle" class="hud-icon-btn" onclick="toggleMinesSound()" title="Sound FX">
+                    <span id="soundIcon">🔊</span>
+                </button>
+
+                <!-- Balance Pill -->
+                <div class="mines-wallet-chip">
+                    <div class="wallet-chip-info">
+                        <span class="wallet-chip-label">BALANCE</span>
+                        <span id="headerBalance" class="wallet-chip-val wallet-balance-display">₨ 0.00</span>
+                    </div>
+                    <a href="../deposit.html" class="btn-chip-deposit">+ DEPOSIT</a>
+                </div>
+
+                <!-- User Profile Avatar (Avatar Only - No Name Popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar" title="My Profile">
+                    <span id="headerAvatarIcon" style="font-size:16px;">👑</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- ARENA LAYOUT -->
+        <main class="mines-arena-layout">
+            <!-- LEFT CONTROL DOCK -->
+            <section class="mines-control-dock">
+                <div class="dock-inputs-cluster">
+                    <!-- Bet Amount -->
+                    <div class="dock-input-group">
+                        <div class="control-group-title">
+                            <span>BET AMOUNT</span>
+                            <span id="betLimitLabel" style="font-size:9.5px; color:#8e9bb0;">MIN: ₨ 10 • MAX: ₨ 250,000</span>
+                        </div>
+                        <div class="bet-input-container">
+                            <span class="bet-currency-tag" id="betCurrencyTag">₨</span>
+                            <input type="number" id="betInput" class="bet-amount-input" value="100" min="10" max="250000" step="10">
+                        </div>
+                        <div class="bet-modifiers-grid">
+                            <button class="btn-mod" onclick="adjustBet('min')">MIN</button>
+                            <button class="btn-mod" onclick="adjustBet('half')">½</button>
+                            <button class="btn-mod" onclick="adjustBet('double')">2×</button>
+                            <button class="btn-mod" onclick="adjustBet('max')">MAX</button>
+                        </div>
+                    </div>
+
+                    <!-- Mines Count Selector -->
+                    <div class="dock-input-group">
+                        <div class="control-group-title">
+                            <span>NUMBER OF MINES</span>
+                            <span id="minesDifficultyTag" style="font-size:10px; color:#ff3344; font-weight:800;">3 MINES</span>
+                        </div>
+                        <!-- Quick Pills -->
+                        <div class="mines-quick-pills">
+                            <button class="mine-pill-btn" onclick="selectMinesCount(1)">1</button>
+                            <button class="mine-pill-btn active" onclick="selectMinesCount(3)">3</button>
+                            <button class="mine-pill-btn" onclick="selectMinesCount(5)">5</button>
+                            <button class="mine-pill-btn" onclick="selectMinesCount(10)">10</button>
+                            <button class="mine-pill-btn" onclick="selectMinesCount(20)">20</button>
+                        </div>
+                        <!-- Full Range Dropdown (1 to 24 Mines) -->
+                        <select id="minesFullSelect" class="mines-select-full" onchange="selectMinesCount(this.value)">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Action Launch / Cashout -->
+                <div class="mines-action-panel">
+                    <button id="btnAutoPick" class="btn-auto-pick" onclick="pickRandomSafeTile()" style="display:none;">
+                        <span>🎲</span> <span>PICK RANDOM TILE</span>
+                    </button>
+
+                    <button id="btnMainAction" class="btn-mines-action state-start" onclick="handleMainAction()">
+                        <span>START GAME 💣</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- RIGHT STAGE: 5x5 MINES MATRIX -->
+            <section class="mines-stage-wrap">
+                <!-- Top Multiplier Progress Ladder -->
+                <div class="mines-multiplier-strip">
+                    <div class="strip-stat-badge mines">
+                        <span>💣</span> <span id="minesCountBadge">3</span>
+                    </div>
+
+                    <div class="strip-ladder-scroll" id="ladderScrollTrack">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <div class="strip-stat-badge gems">
+                        <span>💎</span> <span id="gemsFoundBadge">0/22</span>
+                    </div>
+                </div>
+
+                <!-- 5x5 Tiles Matrix -->
+                <div class="mines-grid-frame" id="minesGrid">
+                    <!-- 25 Tiles Generated Dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- CASHOUT WIN CELEBRATION MODAL -->
+    <div id="cashoutModal" class="cashout-modal-overlay">
+        <div class="cashout-modal-card">
+            <div style="font-size:42px; margin-bottom:8px;">💎</div>
+            <h2 style="font-size:20px; font-weight:900; color:#fff;">CASHOUT SUCCESS!</h2>
+            <div class="modal-win-mult" id="modalWinMult">1.45×</div>
+            <div class="modal-win-amt" id="modalWinAmt">₨ 1,450.00</div>
+            <button class="btn-modal-claim" onclick="closeCashoutModal()">PLAY NEXT ROUND ⚡</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+
+    <script>
+        /* -------------------------------------------------------------
+           AUDIO SYNTHESIZER ENGINE (Web Audio API - 0 Latency)
+           ------------------------------------------------------------- */
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) audioCtx = new AudioContextClass();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        const sfx = {
+            click() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.04);
+            },
+            gem(step = 1) {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                // Pentatonic crystal bell pitch scaling with each revealed gem
+                const baseFreq = 523.25; // C5
+                const notes = [1, 1.125, 1.25, 1.333, 1.5, 1.666, 1.875, 2, 2.25, 2.5, 2.666, 3];
+                const pitch = baseFreq * (notes[(step - 1) % notes.length]);
+
+                const osc = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.type = 'triangle';
+                osc2.type = 'sine';
+                osc.frequency.setValueAtTime(pitch, now);
+                osc2.frequency.setValueAtTime(pitch * 2, now);
+
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+                osc.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start(now);
+                osc2.start(now);
+                osc.stop(now + 0.35);
+                osc2.stop(now + 0.35);
+            },
+            mine() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+
+                // Deep sub-bass boom
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(140, now);
+                osc.frequency.exponentialRampToValueAtTime(30, now + 0.45);
+                gain.gain.setValueAtTime(0.35, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.5);
+            },
+            cashout() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const chords = [523.25, 659.25, 783.99, 1046.50]; // C Major Fanfare
+                chords.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+                    gain.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.35);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + idx * 0.08);
+                    osc.stop(ctx.currentTime + idx * 0.08 + 0.35);
+                });
+            }
+        };
+
+        function toggleMinesSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (icon) icon.textContent = soundEnabled ? '🔊' : '🔇';
+        }
+
+        /* -------------------------------------------------------------
+           BACKGROUND MUSIC CONTROLLER (BGM)
+           ------------------------------------------------------------- */
+        let musicEnabled = true; // Default ON for vibrant casino atmosphere
+        const bgm = document.getElementById('bgmAudio');
+
+        function initMusicPreference() {
+            const saved = localStorage.getItem('bwn_mines_music');
+            if (saved !== null) {
+                musicEnabled = (saved === '1');
+            } else {
+                musicEnabled = true;
+            }
+            updateMusicUI();
+        }
+
+        function updateMusicUI() {
+            const bars = document.getElementById('musicEqBars');
+            const label = document.getElementById('musicLabel');
+            if (musicEnabled) {
+                if (bars) bars.classList.add('playing');
+                if (label) label.textContent = 'BGM';
+            } else {
+                if (bars) bars.classList.remove('playing');
+                if (label) label.textContent = 'OFF';
+            }
+        }
+
+        function playBGM() {
+            if (!bgm || !musicEnabled) return;
+            bgm.volume = 0.35;
+            const p = bgm.play();
+            if (p !== undefined) {
+                p.then(() => {
+                    updateMusicUI();
+                }).catch(() => {
+                    // Browser waiting for user gesture
+                });
+            }
+        }
+
+        function pauseBGM() {
+            if (bgm) bgm.pause();
+            updateMusicUI();
+        }
+
+        function toggleMinesMusic() {
+            musicEnabled = !musicEnabled;
+            localStorage.setItem('bwn_mines_music', musicEnabled ? '1' : '0');
+            updateMusicUI();
+            if (musicEnabled) {
+                playBGM();
+            } else {
+                pauseBGM();
+            }
+            sfx.click();
+        }
+
+        // Auto-unlock audio and BGM on any user gesture
+        function unlockAudio() {
+            getAudioContext();
+            if (musicEnabled && bgm && bgm.paused) {
+                playBGM();
+            }
+        }
+        ['click', 'touchstart', 'touchend', 'pointerdown', 'keydown'].forEach(evt => {
+            window.addEventListener(evt, unlockAudio, { passive: true });
+        });
+
+        /* -------------------------------------------------------------
+           60 FPS CANVAS PARTICLE FX & AMBIENT ENGINE
+           ------------------------------------------------------------- */
+        const canvas = document.getElementById('fxCanvas');
+        const fxCtx = canvas ? canvas.getContext('2d') : null;
+        let particles = [];
+        let ambientParticles = [];
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, vx, vy, color, size, life, decay, isCoin = false, isRing = false) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.color = color;
+                this.size = size;
+                this.life = life;
+                this.maxLife = life;
+                this.decay = decay;
+                this.isCoin = isCoin;
+                this.isRing = isRing;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.rotation += this.rotSpeed;
+                if (!this.isRing) {
+                    this.vy += 0.18; // gravity
+                    this.vx *= 0.98;
+                } else {
+                    this.size += 6; // expanding shockwave ring
+                }
+                this.life -= this.decay;
+            }
+            draw(c) {
+                c.save();
+                const alpha = Math.max(0, this.life / this.maxLife);
+                c.globalAlpha = alpha;
+                if (this.isRing) {
+                    c.beginPath();
+                    c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    c.strokeStyle = this.color;
+                    c.lineWidth = 3.5;
+                    c.shadowColor = this.color;
+                    c.shadowBlur = 10;
+                    c.stroke();
+                } else if (this.isCoin) {
+                    c.translate(this.x, this.y);
+                    c.rotate(this.rotation);
+                    c.beginPath();
+                    c.arc(0, 0, this.size, 0, Math.PI * 2);
+                    c.fillStyle = this.color;
+                    c.shadowColor = '#ffd700';
+                    c.shadowBlur = 8;
+                    c.fill();
+                    c.strokeStyle = '#fff';
+                    c.lineWidth = 1;
+                    c.stroke();
+                } else {
+                    c.translate(this.x, this.y);
+                    c.rotate(this.rotation);
+                    c.fillStyle = this.color;
+                    c.shadowColor = this.color;
+                    c.shadowBlur = 8;
+                    c.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                }
+                c.restore();
+            }
+        }
+
+        function initAmbientMotes() {
+            ambientParticles = [];
+            const w = canvas ? canvas.width : window.innerWidth;
+            const h = canvas ? canvas.height : window.innerHeight;
+            for (let i = 0; i < 35; i++) {
+                ambientParticles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: -0.2 - Math.random() * 0.45,
+                    size: Math.random() * 2.5 + 1,
+                    alpha: Math.random() * 0.45 + 0.15
+                });
+            }
+        }
+        initAmbientMotes();
+
+        function getThemeAccentColor() {
+            if (gameState.theme === 'theme-gold') return '#ffd700';
+            if (gameState.theme === 'theme-inferno') return '#ff3344';
+            if (gameState.theme === 'theme-arctic') return '#78dcff';
+            return '#00f0ff';
+        }
+
+        const fx = {
+            spawnGemSparkles(x, y) {
+                if (!canvas) return;
+                const themeCol = getThemeAccentColor();
+                const colors = [themeCol, '#ffffff', '#00f0ff', '#b347ff', '#ffd700'];
+                for (let i = 0; i < 30; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 7 + 2;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particles.push(new Particle(
+                        x, y,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed - 2.5,
+                        color,
+                        Math.random() * 5 + 2.5,
+                        1.0,
+                        0.022 + Math.random() * 0.02
+                    ));
+                }
+            },
+            spawnMineBlast(x, y) {
+                if (!canvas) return;
+                // Expanding shockwave ring
+                particles.push(new Particle(x, y, 0, 0, '#ff3344', 12, 1.0, 0.04, false, true));
+                // Fireball explosion sparks
+                const colors = ['#ff0022', '#ff4400', '#ffd700', '#ffffff', '#ff6600'];
+                for (let i = 0; i < 50; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 10 + 3;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particles.push(new Particle(
+                        x, y,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed - 1.5,
+                        color,
+                        Math.random() * 7 + 3,
+                        1.0,
+                        0.02 + Math.random() * 0.02
+                    ));
+                }
+            },
+            spawnCashoutCelebration() {
+                if (!canvas) return;
+                const cx = canvas.width / 2;
+                const cy = canvas.height * 0.65;
+                const colors = ['#00e700', '#ffd700', '#00f0ff', '#ffffff', '#ffaa00'];
+                for (let i = 0; i < 80; i++) {
+                    const angle = -Math.PI / 2 + (Math.random() - 0.5) * 1.6;
+                    const speed = Math.random() * 14 + 6;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const isCoin = Math.random() > 0.45;
+                    particles.push(new Particle(
+                        cx + (Math.random() - 0.5) * 260,
+                        cy,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed,
+                        color,
+                        isCoin ? (Math.random() * 5 + 4) : (Math.random() * 5 + 3),
+                        1.2,
+                        0.012 + Math.random() * 0.01,
+                        isCoin
+                    ));
+                }
+            }
+        };
+
+        function fxRenderLoop() {
+            if (fxCtx && canvas) {
+                fxCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw ambient theme motes
+                const themeCol = getThemeAccentColor();
+                fxCtx.fillStyle = themeCol;
+                for (let i = 0; i < ambientParticles.length; i++) {
+                    const p = ambientParticles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+
+                    fxCtx.save();
+                    fxCtx.globalAlpha = p.alpha;
+                    fxCtx.beginPath();
+                    fxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    fxCtx.shadowColor = themeCol;
+                    fxCtx.shadowBlur = 6;
+                    fxCtx.fill();
+                    fxCtx.restore();
+                }
+
+                // Draw active particle explosions
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.update();
+                    p.draw(fxCtx);
+                    if (p.life <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+            requestAnimationFrame(fxRenderLoop);
+        }
+        requestAnimationFrame(fxRenderLoop);
+
+        /* Floating Multiplier Popup */
+        function showFloatingMultiplier(x, y, text) {
+            const el = document.createElement('div');
+            el.className = 'floating-mult-popup';
+            el.textContent = text;
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
+            document.body.appendChild(el);
+            setTimeout(() => {
+                if (el.parentNode) el.parentNode.removeChild(el);
+            }, 850);
+        }
+
+        /* Detonation VFX: Screen Shake & Red Flash */
+        function triggerDetonationVFX() {
+            const shell = document.querySelector('.mines-studio-shell');
+            const flash = document.getElementById('detonateFlash');
+            if (shell) {
+                shell.classList.remove('screen-shake-intense');
+                void shell.offsetWidth;
+                shell.classList.add('screen-shake-intense');
+                setTimeout(() => shell.classList.remove('screen-shake-intense'), 600);
+            }
+            if (flash) {
+                flash.classList.remove('active');
+                void flash.offsetWidth;
+                flash.classList.add('active');
+                setTimeout(() => flash.classList.remove('active'), 650);
+            }
+        }
+
+        /* Idle tile shimmer effect every few seconds */
+        setInterval(() => {
+            if (!gameState.isPlaying) {
+                const tiles = document.querySelectorAll('.mines-tile:not(.is-gem):not(.is-mine):not(.revealed-end)');
+                if (tiles.length > 0) {
+                    const randTile = tiles[Math.floor(Math.random() * tiles.length)];
+                    randTile.classList.add('tile-shimmer');
+                    setTimeout(() => randTile.classList.remove('tile-shimmer'), 1300);
+                }
+            }
+        }, 2200);
+
+        /* -------------------------------------------------------------
+           GAME LOGIC & PROBABILITY ENGINE
+           ------------------------------------------------------------- */
+        const gameState = {
+            gridSize: 25,
+            minesCount: 3,
+            betAmount: 100,
+            isPlaying: false,
+            mines: [],
+            revealed: [],
+            currentMult: 1.00,
+            theme: 'theme-cyber'
+        };
+
+        // Standard fair RTP (98.0%) Stake/Spribe formula
+        function getMultiplierForGems(gemsCount, minesCount) {
+            const total = 25;
+            const safe = total - minesCount;
+            if (gemsCount <= 0 || gemsCount > safe) return 1.00;
+
+            let prob = 1;
+            for (let i = 0; i < gemsCount; i++) {
+                prob *= (safe - i) / (total - i);
+            }
+            const mult = (0.98 / prob);
+            return +(Math.max(1.01, mult).toFixed(2));
+        }
+
+        /* -------------------------------------------------------------
+           INITIALIZATION & DOM BUILD
+           ------------------------------------------------------------- */
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Populate full mines dropdown 1 to 24
+            const fullSelect = document.getElementById('minesFullSelect');
+            if (fullSelect) {
+                fullSelect.innerHTML = '';
+                for (let i = 1; i <= 24; i++) {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = `${i} Mines (${(25 - i)} Safe Gems)`;
+                    if (i === 3) opt.selected = true;
+                    fullSelect.appendChild(opt);
+                }
+            }
+
+            buildBoard();
+            updateLadder();
+            await syncWalletSession();
+            initMusicPreference();
+
+            // Load saved theme if any
+            const savedTheme = localStorage.getItem('bwn_mines_theme') || 'theme-cyber';
+            switchMinesTheme(savedTheme, false);
+            const themeSel = document.getElementById('themeSelectMines');
+            if (themeSel) themeSel.value = savedTheme;
+        });
+
+        function switchMinesTheme(themeName, playSound = true) {
+            document.body.className = '';
+            document.body.classList.add(themeName);
+            gameState.theme = themeName;
+            localStorage.setItem('bwn_mines_theme', themeName);
+            if (playSound) sfx.click();
+        }
+
+        function buildBoard() {
+            const grid = document.getElementById('minesGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            for (let i = 0; i < 25; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'mines-tile';
+                tile.id = `tile-${i}`;
+                tile.setAttribute('data-idx', i);
+                tile.onclick = () => handleTileClick(i);
+                grid.appendChild(tile);
+            }
+        }
+
+        function updateLadder() {
+            const track = document.getElementById('ladderScrollTrack');
+            const minesBadge = document.getElementById('minesCountBadge');
+            const gemsBadge = document.getElementById('gemsFoundBadge');
+            if (!track) return;
+
+            const safeTotal = 25 - gameState.minesCount;
+            if (minesBadge) minesBadge.textContent = gameState.minesCount;
+            if (gemsBadge) gemsBadge.textContent = `${gameState.revealed.length}/${safeTotal}`;
+
+            track.innerHTML = '';
+            // Show ladder steps
+            const maxShow = Math.min(10, safeTotal);
+            for (let k = 1; k <= maxShow; k++) {
+                const mult = getMultiplierForGems(k, gameState.minesCount);
+                const step = document.createElement('span');
+                const isAct = (gameState.revealed.length === k);
+                step.className = `ladder-step ${isAct ? 'active' : ''}`;
+                step.textContent = `${mult.toFixed(2)}x`;
+                track.appendChild(step);
+                if (isAct) {
+                    setTimeout(() => {
+                        step.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }, 40);
+                }
+            }
+        }
+
+        function selectMinesCount(count) {
+            if (gameState.isPlaying) return;
+            const n = parseInt(count);
+            if (isNaN(n) || n < 1 || n > 24) return;
+            gameState.minesCount = n;
+
+            // Sync quick pills
+            document.querySelectorAll('.mine-pill-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.textContent) === n);
+            });
+
+            // Sync select
+            const fullSelect = document.getElementById('minesFullSelect');
+            if (fullSelect && parseInt(fullSelect.value) !== n) {
+                fullSelect.value = n;
+            }
+
+            const diffTag = document.getElementById('minesDifficultyTag');
+            if (diffTag) {
+                diffTag.textContent = `${n} ${n === 1 ? 'MINE' : 'MINES'}`;
+            }
+
+            sfx.click();
+            updateLadder();
+        }
+
+        function adjustBet(type) {
+            const input = document.getElementById('betInput');
+            if (!input || gameState.isPlaying) return;
+            let val = parseFloat(input.value) || 10;
+            const curr = getActiveCurrency();
+            const minBet = (curr === 'USD') ? 0.50 : 10;
+            const maxBet = (curr === 'USD') ? 2500 : 250000;
+
+            if (type === 'min') val = minBet;
+            else if (type === 'half') val = Math.max(minBet, val / 2);
+            else if (type === 'double') val = Math.min(maxBet, val * 2);
+            else if (type === 'max') val = maxBet;
+
+            input.value = (curr === 'USD') ? val.toFixed(2) : Math.round(val);
+            sfx.click();
+        }
+
+        /* -------------------------------------------------------------
+           GAME ACTIONS: START, TILE CLICK, CASHOUT
+           ------------------------------------------------------------- */
+        function handleMainAction() {
+            if (gameState.isPlaying) {
+                cashOut();
+            } else {
+                startRound();
+            }
+        }
+
+        function startRound() {
+            if (gameState.isPlaying) return;
+            const input = document.getElementById('betInput');
+            const bet = parseFloat(input ? input.value : 100) || 10;
+            gameState.betAmount = bet;
+
+            const w = getWallet();
+            if (w && typeof w.placeBet === 'function') {
+                if (!w.placeBet(gameState.betAmount, 'Mines')) {
+                    if (window.core && typeof window.core.showToast === 'function') {
+                        window.core.showToast('Insufficient wallet balance!', 'error');
+                    } else {
+                        alert('Insufficient wallet balance! Please deposit to play.');
+                    }
+                    return;
+                }
+            }
+
+            updateBalanceUI();
+
+            gameState.isPlaying = true;
+            gameState.revealed = [];
+            gameState.currentMult = 1.00;
+
+            // Generate unique random mine positions
+            gameState.mines = [];
+            while (gameState.mines.length < gameState.minesCount) {
+                const r = Math.floor(Math.random() * 25);
+                if (!gameState.mines.includes(r)) {
+                    gameState.mines.push(r);
+                }
+            }
+
+            // Reset Board UI
+            buildBoard();
+            updateLadder();
+
+            // Auto-start BGM if enabled
+            if (musicEnabled && bgm && bgm.paused) {
+                playBGM();
+            }
+
+            // Toggle Action Button into CASHOUT mode
+            const btn = document.getElementById('btnMainAction');
+            if (btn) {
+                btn.className = 'btn-mines-action state-cashout';
+                btn.innerHTML = `<span>CASHOUT (1.00×)</span>`;
+            }
+
+            // Show Auto Pick Button
+            const autoBtn = document.getElementById('btnAutoPick');
+            if (autoBtn) autoBtn.style.display = 'flex';
+
+            sfx.click();
+        }
+
+        function handleTileClick(idx) {
+            if (!gameState.isPlaying || gameState.revealed.includes(idx)) return;
+            gameState.revealed.push(idx);
+
+            const tile = document.getElementById(`tile-${idx}`);
+            if (!tile) return;
+
+            const rect = tile.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+
+            // HIT A MINE!
+            if (gameState.mines.includes(idx)) {
+                handleMineExplosion(idx);
+                return;
+            }
+
+            // HIT A SAFE GEM!
+            tile.classList.add('is-gem');
+            tile.innerHTML = `
+                <svg class="gem-icon-render" viewBox="0 0 24 24" fill="none">
+                    <polygon points="12,2 22,8.5 12,22 2,8.5" fill="url(#gemGrad)" stroke="#00f0ff" stroke-width="1.2"/>
+                    <polygon points="12,2 22,8.5 17,8.5 12,4" fill="rgba(255,255,255,0.7)"/>
+                    <defs>
+                        <linearGradient id="gemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="35%" stop-color="#00f0ff"/>
+                            <stop offset="100%" stop-color="#0055ff"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            `;
+
+            sfx.gem(gameState.revealed.length);
+
+            // Update Multiplier
+            gameState.currentMult = getMultiplierForGems(gameState.revealed.length, gameState.minesCount);
+            updateLadder();
+
+            // Trigger Sparkling Gem Particle Burst & Floating Text
+            fx.spawnGemSparkles(cx, cy);
+            showFloatingMultiplier(cx, cy, `+${gameState.currentMult.toFixed(2)}×`);
+
+            const curWin = gameState.betAmount * gameState.currentMult;
+            const btn = document.getElementById('btnMainAction');
+            if (btn) {
+                btn.innerHTML = `<span>CASHOUT ${formatCurrency(curWin)} (${gameState.currentMult.toFixed(2)}×)</span>`;
+            }
+
+            // Check if all gems uncovered
+            const safeTotal = 25 - gameState.minesCount;
+            if (gameState.revealed.length === safeTotal) {
+                cashOut();
+            }
+        }
+
+        function pickRandomSafeTile() {
+            if (!gameState.isPlaying) return;
+            const unopened = [];
+            for (let i = 0; i < 25; i++) {
+                if (!gameState.revealed.includes(i)) unopened.push(i);
+            }
+            if (unopened.length === 0) return;
+            const chosen = unopened[Math.floor(Math.random() * unopened.length)];
+            handleTileClick(chosen);
+        }
+
+        function cashOut() {
+            if (!gameState.isPlaying || gameState.revealed.length === 0) return;
+            gameState.isPlaying = false;
+
+            const winAmount = gameState.betAmount * gameState.currentMult;
+            const w = getWallet();
+            if (w && typeof w.creditWin === 'function') {
+                w.creditWin(gameState.betAmount, winAmount, 'Mines', gameState.currentMult, `Gems: ${gameState.revealed.length}`);
+            }
+
+            updateBalanceUI();
+            sfx.cashout();
+
+            // Fullscreen Golden Coin & Confetti Celebration Burst
+            fx.spawnCashoutCelebration();
+
+            // Reveal all remaining tiles in dimmed state with cascade
+            revealRemainingTiles(false);
+
+            // Show celebratory cashout modal
+            const modal = document.getElementById('cashoutModal');
+            const multEl = document.getElementById('modalWinMult');
+            const amtEl = document.getElementById('modalWinAmt');
+            if (multEl) multEl.textContent = `${gameState.currentMult.toFixed(2)}×`;
+            if (amtEl) amtEl.textContent = formatCurrency(winAmount);
+            if (modal) modal.classList.add('active');
+
+            resetActionButtons();
+        }
+
+        function handleMineExplosion(mineIdx) {
+            gameState.isPlaying = false;
+            sfx.mine();
+
+            const tile = document.getElementById(`tile-${mineIdx}`);
+            const rect = tile ? tile.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+
+            if (tile) {
+                tile.classList.add('is-mine');
+                tile.innerHTML = `
+                    <svg class="mine-icon-render" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="7" fill="url(#mineGrad)" stroke="#ff3344" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" r="3" fill="#ff0022"/>
+                        <!-- Spikes -->
+                        <line x1="12" y1="2" x2="12" y2="5" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="12" y1="19" x2="12" y2="22" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="2" y1="12" x2="5" y2="12" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="19" y1="12" x2="22" y2="12" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="5" y1="5" x2="7.5" y2="7.5" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="16.5" y1="16.5" x2="19" y2="19" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="5" y1="19" x2="7.5" y2="16.5" stroke="#ff3344" stroke-width="2"/>
+                        <line x1="16.5" y1="7.5" x2="19" y2="5" stroke="#ff3344" stroke-width="2"/>
+                        <defs>
+                            <radialGradient id="mineGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#ff3344"/>
+                                <stop offset="100%" stop-color="#2a0005"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                `;
+            }
+
+            // Mine Explosion Shockwave & Screen Shake with Red Flash
+            fx.spawnMineBlast(cx, cy);
+            triggerDetonationVFX();
+
+            const w = getWallet();
+            if (w && typeof w.creditWin === 'function') {
+                w.creditWin(gameState.betAmount, 0, 'Mines', 0, 'Hit Mine');
+            }
+
+            updateBalanceUI();
+            revealRemainingTiles(true);
+            resetActionButtons();
+        }
+
+        function revealRemainingTiles(detonated) {
+            let delay = 0;
+            for (let i = 0; i < 25; i++) {
+                if (!gameState.revealed.includes(i)) {
+                    delay += 25;
+                    const tileIdx = i;
+                    setTimeout(() => {
+                        const tile = document.getElementById(`tile-${tileIdx}`);
+                        if (!tile) return;
+                        tile.classList.add('revealed-end', 'cascade-flip');
+                        if (gameState.mines.includes(tileIdx)) {
+                            tile.innerHTML = `<span style="font-size:18px;">💣</span>`;
+                        } else {
+                            tile.innerHTML = `<span style="font-size:16px; opacity:0.65;">💎</span>`;
+                        }
+                    }, delay);
+                }
+            }
+        }
+
+        function resetActionButtons() {
+            const btn = document.getElementById('btnMainAction');
+            if (btn) {
+                btn.className = 'btn-mines-action state-start';
+                btn.innerHTML = `<span>START GAME 💣</span>`;
+            }
+            const autoBtn = document.getElementById('btnAutoPick');
+            if (autoBtn) autoBtn.style.display = 'none';
+        }
+
+        function closeCashoutModal() {
+            const modal = document.getElementById('cashoutModal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        /* -------------------------------------------------------------
+           WALLET SYNCHRONIZATION & MULTI-CURRENCY
+           ------------------------------------------------------------- */
+        function getWallet() {
+            return window.wallet || null;
+        }
+
+        function getActiveCurrency() {
+            const w = getWallet();
+            return (w && typeof w.getCurrency === 'function') ? w.getCurrency() : 'PKR';
+        }
+
+        function formatCurrency(amt) {
+            const curr = getActiveCurrency();
+            const sym = (curr === 'USD') ? '$ ' : '₨ ';
+            return sym + Number(amt || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function updateBalanceUI() {
+            const w = getWallet();
+            const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 0;
+            const el = document.getElementById('headerBalance');
+            if (el) el.textContent = formatCurrency(bal);
+
+            const curr = getActiveCurrency();
+            const tag = document.getElementById('betCurrencyTag');
+            if (tag) tag.textContent = (curr === 'USD') ? '$' : '₨';
+
+            const limit = document.getElementById('betLimitLabel');
+            if (limit) {
+                limit.textContent = (curr === 'USD') ? 'MIN: $ 0.50 • MAX: $ 2,500' : 'MIN: ₨ 10 • MAX: ₨ 250,000';
+            }
+        }
+
+        async function syncWalletSession() {
+            const w = getWallet();
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) activeUser = JSON.parse(sess);
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                    }
+                }
+            } catch(e) {}
+
+            // Sync user avatar
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                if (avWrap && activeUser) {
+                    if (activeUser.avatar && (activeUser.avatar.startsWith('http') || activeUser.avatar.startsWith('data:') || activeUser.avatar.includes('/'))) {
+                        avWrap.innerHTML = `<img src="${activeUser.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" alt="Avatar">`;
+                    } else if (activeUser.avatar) {
+                        avWrap.innerHTML = `<span style="font-size:16px;">${activeUser.avatar}</span>`;
+                    }
+                }
+            } catch(e) {}
+
+            updateBalanceUI();
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY LOADING FLOW (Fade-out direct into game)
+           ------------------------------------------------------------- */
+        (function initLoading() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) return;
+
+            let pct = 0;
+            let finished = false;
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+                    // Automatically trigger casino background music immediately after loading screen!
+                    playBGM();
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 200);
+            }
+
+            const step = () => {
+                if (finished) return;
+                pct += Math.floor(Math.random() * 15) + 12;
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+                if (pct < 100) setTimeout(step, 70);
+                else finish();
+            };
+
+            setTimeout(finish, 2000);
+            setTimeout(step, 80);
+        })();
+    </script>
+</body>
+</html>

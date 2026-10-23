@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>1xGames Official Card Studio - Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="../js/wallet.js?v=4.0"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html, body {
+            width: 100%; height: 100%; height: 100dvh; overflow: hidden; background: #030710; color: #fff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            user-select: none;
+        }
+
+        /* Ambient Casino Surround Backdrop */
+        .casino-arena {
+            width: 100vw; height: 100vh; height: 100dvh; display: flex; flex-direction: column;
+            background: #050b16; position: relative; overflow: hidden;
+        }
+
+        /* 1xBet Official Top Navigation Header */
+        .arena-top-bar {
+            height: 54px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between;
+            background: rgba(3, 7, 16, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100; backdrop-filter: blur(10px); flex-shrink: 0;
+        }
+        .arena-left { display: flex; align-items: center; gap: 12px; }
+        .btn-lobby-back {
+            background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 999px;
+            cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:hover { background: #f5a623; color: #000; border-color: #f5a623; }
+        .game-header-info { display: flex; align-items: center; gap: 10px; }
+        .game-mini-thumb {
+            width: 44px; height: 32px; border-radius: 6px; object-fit: cover;
+            border: 1.5px solid #ffd700; box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .game-title-group { display: flex; flex-direction: column; }
+        .game-heading {
+            font-size: 15px; font-weight: 900; color: #ffffff; letter-spacing: 0.3px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .game-tag-badge {
+            background: linear-gradient(135deg, #f5a623, #d48806); color: #000;
+            font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .game-sub-text { font-size: 11px; color: #8e9bb0; font-weight: 600; }
+
+        .arena-right { display: flex; align-items: center; gap: 10px; }
+        .balance-widget {
+            display: flex; align-items: center; background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(245, 166, 35, 0.5); border-radius: 10px;
+            padding: 4px 12px; gap: 8px; cursor: pointer; transition: all 0.2s;
+        }
+        .balance-widget:hover { border-color: #ffd700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.3); }
+        .mode-pill {
+            font-size: 9px; font-weight: 900; padding: 2px 6px; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .mode-pill.real { background: #00e700; color: #000; }
+        .mode-pill.demo { background: #f5a623; color: #000; }
+        .balance-amount {
+            font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 800;
+            color: #00e700; letter-spacing: 0.3px;
+        }
+        .hud-icon-btn {
+            width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; font-size: 15px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .hud-icon-btn:hover { background: rgba(255, 255, 255, 0.18); transform: scale(1.05); }
+
+        /* Paytable Ticker Bar (for Poker / Hi-Lo / War) */
+        .paytable-ticker {
+            background: rgba(2, 6, 12, 0.9); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5px 16px; display: none; align-items: center; justify-content: center;
+            gap: 10px; overflow-x: auto; white-space: nowrap; font-size: 11px; font-weight: 700;
+            z-index: 90; flex-shrink: 0;
+        }
+        .pay-step {
+            background: rgba(255, 255, 255, 0.05); padding: 3px 9px; border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1); color: #94a3b8; transition: all 0.2s;
+        }
+        .pay-step.active {
+            background: rgba(245, 166, 35, 0.25); border-color: #ffd700; color: #ffd700;
+            font-weight: 900; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        /* =========================================================
+           OFFICIAL 1xBET CASINO FELT TABLE (REAL GRAPHICS STAGE)
+           ========================================================= */
+        .table-viewport {
+            flex: 1; margin: 8px 12px; position: relative; display: flex; flex-direction: column;
+            justify-content: space-between; overflow: hidden;
+            border-radius: 26px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), inset 0 0 100px rgba(0, 0, 0, 0.9);
+            border: 10px solid #23140a;
+            background-color: #0b2244;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: all 0.4s ease;
+        }
+        .table-wood-inlay {
+            position: absolute; inset: 0; pointer-events: none;
+            border: 2px solid rgba(255, 215, 0, 0.35); border-radius: 16px; z-index: 2;
+        }
+
+        /* Center Official 1xBet Logo & Arch Watermark */
+        .table-center-crest {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            pointer-events: none; z-index: 5; width: 90%; text-align: center;
+        }
+        .table-official-logo {
+            max-width: clamp(140px, 24vw, 220px); height: auto; object-fit: contain;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.8)); margin-bottom: 8px;
+        }
+        .table-arch-rule {
+            font-family: 'Cinzel', serif; font-size: clamp(10px, 1.8vw, 13px); font-weight: 900;
+            color: rgba(255, 215, 0, 0.6); letter-spacing: 2px; text-transform: uppercase;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+        }
+
+        /* Deck Shoe (Top Right Official 3D Stack) */
+        .deck-shoe {
+            position: absolute; top: 16px; right: 18px; width: 62px; height: 86px;
+            background: linear-gradient(135deg, #1c2b42, #0b1422); border-radius: 8px;
+            border: 2px solid rgba(255, 215, 0, 0.5); box-shadow: -4px 6px 16px rgba(0,0,0,0.8);
+            display: flex; align-items: center; justify-content: center; z-index: 20;
+        }
+        .deck-shoe::before {
+            content: ''; position: absolute; inset: 3px; border-radius: 6px;
+            background: linear-gradient(135deg, #0e2a5c, #07152e); border: 1.5px solid #f5a623;
+        }
+        .deck-shoe-logo {
+            position: relative; font-size: 16px; font-weight: 900; color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); z-index: 2; font-family: 'Cinzel', serif;
+        }
+        .shoe-card-lip {
+            position: absolute; bottom: -4px; left: 4px; right: 4px; height: 5px;
+            background: #fff; border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Dealer Chip Tray (Top Center) */
+        .dealer-tray {
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px; padding: 4px 14px; background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px;
+            backdrop-filter: blur(4px); z-index: 10;
+        }
+        .tray-chip-stack {
+            width: 20px; height: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* =========================================================
+           OFFICIAL 1xBET PLAYING CARDS (FROM 21-cards-sprite)
+           ========================================================= */
+        .game-zone {
+            position: relative; z-index: 25; display: flex; flex-direction: column;
+            align-items: center; padding: 10px 16px; min-height: 125px;
+        }
+        .dealer-zone { margin-top: 8px; }
+        .player-zone { margin-bottom: 4px; }
+
+        .zone-header-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 215, 0, 0.35);
+            padding: 3px 14px; border-radius: 999px; font-size: 11px; font-weight: 800;
+            color: #ffd700; letter-spacing: 1px; text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6); margin-bottom: 8px;
+        }
+        .zone-score-pill {
+            background: #00e700; color: #000; font-size: 11px; font-weight: 900;
+            padding: 1px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 0 10px rgba(0, 231, 0, 0.6); display: none;
+        }
+        .zone-score-pill.dealer { background: #ffd700; }
+        .zone-score-pill.bust { background: #ff4757; color: #fff; }
+
+        .cards-row {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            perspective: 1000px; min-height: 116px; flex-wrap: wrap;
+        }
+
+        :root {
+            --card-w: 80px;
+            --card-h: 120px;
+        }
+        @media (max-width: 480px) {
+            :root {
+                --card-w: 68px;
+                --card-h: 102px;
+            }
+        }
+
+        /* Authentic 1xBet Playing Card Piece */
+        .official-card-item {
+            width: var(--card-w); height: var(--card-h); border-radius: 8px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.4);
+            position: relative; transform-origin: center bottom;
+            animation: cardSlideFromShoe 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transition: transform 0.25s, box-shadow 0.25s;
+            background-repeat: no-repeat;
+            background-color: #fff;
+            background-image: url('../assets/games/card_games/twenty_one/21-cards-sprite@1x.17d59ade8df6.png');
+            background-size: calc(var(--card-w) * 9) calc(var(--card-h) * 4);
+            background-position: calc(var(--col, 0) * -1 * var(--card-w)) calc(var(--row, 0) * -1 * var(--card-h));
+        }
+        @keyframes cardSlideFromShoe {
+            0% { transform: translate(120px, -180px) scale(0.3) rotate(25deg); opacity: 0; }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        }
+        .official-card-item:hover { transform: translateY(-6px) scale(1.04); }
+
+        /* Face-Down Official 1xBet Card Back */
+        .official-card-item.face-down {
+            background-image: url('../assets/games/card_games/card_war/card-back@1x.829223d08c32.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            border: 1.5px solid #ffd700;
+        }
+
+        /* =========================================================
+           OFFICIAL 1xBET RESULT BANNERS & WIN SHINE
+           ========================================================= */
+        .result-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 60; display: flex; flex-direction: column; align-items: center; gap: 8px;
+            pointer-events: none; width: 92%; max-width: 420px;
+        }
+        .official-win-box {
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            animation: popResultBanner 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .official-win-img {
+            max-width: 240px; height: auto; filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.9));
+        }
+        .official-win-val {
+            font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 900;
+            color: #00e700; text-shadow: 0 0 15px rgba(0, 231, 0, 0.9); margin-top: -12px;
+        }
+        .official-lose-img {
+            max-width: 200px; height: auto; filter: drop-shadow(0 0 30px rgba(255, 71, 87, 0.8));
+        }
+        @keyframes popResultBanner {
+            0% { transform: scale(0.3); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* =========================================================
+           1xBET OFFICIAL BETTING DASHBOARD (BOTTOM CONTROLS)
+           ========================================================= */
+        .arena-controls {
+            background: rgba(3, 7, 16, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 16px 14px 16px; display: flex; flex-direction: column; gap: 10px;
+            z-index: 100; flex-shrink: 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+        }
+
+        /* Row 1: Stake Adjustment & Casino Chips */
+        .controls-top-row {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            flex-wrap: wrap;
+        }
+        .bet-adjust-box {
+            display: flex; align-items: center; background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px;
+            padding: 2px 4px; gap: 4px;
+        }
+        .btn-step {
+            width: 32px; height: 32px; border-radius: 8px; background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; font-size: 16px;
+            font-weight: 900; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .btn-step:hover { background: #f5a623; color: #000; }
+        .bet-input-display {
+            padding: 0 10px; font-family: 'JetBrains Mono', monospace; font-size: 15px;
+            font-weight: 900; color: #ffd700; min-width: 90px; text-align: center;
+        }
+
+        .bet-multiplier-group {
+            display: flex; align-items: center; gap: 4px;
+        }
+        .btn-quick-mult {
+            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1; font-size: 11px; font-weight: 800; padding: 6px 10px; border-radius: 8px;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .btn-quick-mult:hover { background: rgba(255, 255, 255, 0.16); color: #fff; }
+
+        /* Casino Chips Row */
+        .chips-carousel {
+            display: flex; align-items: center; gap: 8px; overflow-x: auto; padding: 4px 0;
+            scrollbar-width: none;
+        }
+        .chips-carousel::-webkit-scrollbar { display: none; }
+        .casino-chip {
+            width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+            font-weight: 900; color: #fff; cursor: pointer; position: relative; flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 0 0 2px rgba(255,255,255,0.4);
+            transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+        }
+        .casino-chip::after {
+            content: ''; position: absolute; inset: 4px; border-radius: 50%;
+            border: 1px dashed rgba(255,255,255,0.6); pointer-events: none;
+        }
+        .casino-chip:hover { transform: translateY(-4px) scale(1.08); filter: brightness(1.15); }
+        .casino-chip.active {
+            transform: translateY(-6px) scale(1.12);
+            box-shadow: 0 0 0 3px #ffd700, 0 8px 18px rgba(0,0,0,0.8);
+        }
+        .chip-10 { background: radial-gradient(circle, #718093, #2f3640); color: #fff; }
+        .chip-50 { background: radial-gradient(circle, #e84118, #c23616); color: #fff; }
+        .chip-100 { background: radial-gradient(circle, #0097e6, #00a8ff); color: #fff; }
+        .chip-500 { background: radial-gradient(circle, #44bd32, #4cd137); color: #000; }
+        .chip-1000 { background: radial-gradient(circle, #2f3542, #1e272e); color: #ffd700; border: 1px solid #ffd700; }
+        .chip-5000 { background: radial-gradient(circle, #9c88ff, #8c7ae6); color: #fff; }
+        .chip-10000 { background: radial-gradient(circle, #ffd700, #e1b12c); color: #000; border: 1.5px solid #fff; }
+
+        /* Row 2: Main Dynamic Action Buttons */
+        .controls-action-row {
+            display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%;
+        }
+        .btn-action-main {
+            flex: 1; max-width: 320px; height: 50px; border-radius: 12px; border: none;
+            font-size: 15px; font-weight: 900; letter-spacing: 0.8px; text-transform: uppercase;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6); transition: all 0.15s; outline: none;
+        }
+        .btn-action-main:active { transform: scale(0.96); }
+
+        .btn-deal-gold {
+            background: url('../assets/games/card_games/twenty_one/21-bet-btn@1x.f92c17e6ebdc.png') no-repeat center center / 100% 100%, linear-gradient(135deg, #1b3d6d, #0b2244) !important;
+            border: 1.5px solid rgba(255, 215, 0, 0.6) !important;
+            color: #ffd700 !important;
+            font-size: 14px !important;
+            font-weight: 900 !important;
+            letter-spacing: 1px !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0, 168, 255, 0.7);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.4) !important;
+        }
+        .btn-deal-gold:hover {
+            filter: brightness(1.18);
+            box-shadow: 0 0 22px rgba(0, 168, 255, 0.6), 0 8px 25px rgba(0,0,0,0.9) !important;
+        }
+
+        /* 1xBet Official Hit & Stand Graphic Buttons */
+        .btn-official-graphic {
+            background-color: transparent !important; border: none !important;
+            box-shadow: none !important; height: 54px; padding: 0; cursor: pointer;
+            transition: transform 0.15s, filter 0.15s;
+        }
+        .btn-official-graphic:hover { transform: scale(1.04); filter: brightness(1.1); }
+        .btn-official-graphic:active { transform: scale(0.96); }
+        .btn-official-graphic img { height: 100%; object-fit: contain; }
+
+        .btn-double-yellow {
+            background: linear-gradient(135deg, #f5a623, #e67e22); color: #000;
+            box-shadow: 0 8px 25px rgba(245, 166, 35, 0.4);
+        }
+        .btn-cashout-gold {
+            background: linear-gradient(135deg, #ffd700, #f39c12); color: #000;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Table Corner VIP Decors (Champagne & Dollars) */
+        .table-corner-decor {
+            position: absolute; bottom: 0; pointer-events: none; z-index: 3;
+            max-height: 120px; width: auto; object-fit: contain;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.8));
+            transition: opacity 0.3s;
+        }
+        .decor-left { left: 0; }
+        .decor-right { right: 0; }
+        @media (max-width: 600px) {
+            .table-corner-decor { max-height: 75px; opacity: 0.65; }
+        }
+
+        /* Win Celebration Rays */
+        .official-win-shine {
+            position: absolute; width: 340px; height: auto; top: -50px; left: 50%;
+            transform: translateX(-50%); animation: pulseShine 1.5s infinite alternate ease-in-out;
+            pointer-events: none; opacity: 0.9;
+        }
+        @keyframes pulseShine {
+            0% { transform: translateX(-50%) scale(0.9); opacity: 0.6; }
+            100% { transform: translateX(-50%) scale(1.15); opacity: 1; }
+        }
+
+        /* =========================================================
+           1xGAMES CINEMATIC GAME OPENING / TRAILER SPLASH SCREEN
+           ========================================================= */
+        .game-opening-splash {
+            position: fixed; inset: 0; z-index: 10000;
+            background: radial-gradient(circle at 50% 35%, #0d1e3d 0%, #050b17 65%, #020409 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 24px 20px; text-align: center; color: #fff;
+            transition: opacity 0.45s ease, visibility 0.45s ease;
+        }
+        .game-opening-splash.fade-out {
+            opacity: 0; visibility: hidden; pointer-events: none;
+        }
+        .splash-ambient-glow {
+            position: absolute; width: 450px; height: 450px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.18) 0%, transparent 70%);
+            pointer-events: none; animation: pulseGlow 3s infinite alternate ease-in-out;
+        }
+        @keyframes pulseGlow {
+            0% { transform: scale(0.85); opacity: 0.5; }
+            100% { transform: scale(1.15); opacity: 0.9; }
+        }
+
+        .splash-header-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 5px 16px; border-radius: 999px; margin-bottom: 20px;
+            font-size: 11px; font-weight: 900; letter-spacing: 1.5px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.6); position: relative; z-index: 2;
+        }
+        .badge-logo-1x { color: #f5a623; }
+        .badge-divider { color: rgba(255,255,255,0.3); }
+        .badge-vip-studio { color: #ffd700; text-transform: uppercase; }
+
+        .splash-trailer-card-wrap {
+            position: relative; z-index: 2; margin-bottom: 20px; perspective: 1000px;
+        }
+        .splash-trailer-card {
+            width: clamp(240px, 70vw, 320px); aspect-ratio: 16/10; border-radius: 18px;
+            border: 2px solid #ffd700; box-shadow: 0 16px 45px rgba(0,0,0,0.9), 0 0 30px rgba(245, 166, 35, 0.4);
+            overflow: hidden; position: relative; background: #071124;
+            transform: rotateX(4deg); transition: transform 0.3s;
+        }
+        .splash-trailer-img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .splash-card-glare {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+        }
+        .splash-live-tag {
+            position: absolute; top: 10px; left: 10px;
+            background: rgba(0,0,0,0.75); border: 1px solid rgba(0,231,0,0.6);
+            color: #00e700; font-size: 9.5px; font-weight: 900; padding: 2px 8px;
+            border-radius: 999px; display: flex; align-items: center; gap: 5px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .live-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: #00e700;
+            box-shadow: 0 0 6px #00e700; animation: blinkLive 1s infinite alternate;
+        }
+        @keyframes blinkLive { from { opacity: 0.3; } to { opacity: 1; } }
+
+        .splash-mult-tag {
+            position: absolute; bottom: 10px; right: 10px;
+            background: linear-gradient(135deg, #f5a623, #d48806);
+            color: #000; font-size: 11px; font-weight: 900; padding: 3px 9px;
+            border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .splash-info-block {
+            position: relative; z-index: 2; margin-bottom: 22px; max-width: 440px;
+        }
+        .splash-game-title {
+            font-family: 'Cinzel', serif; font-size: clamp(22px, 5vw, 30px);
+            font-weight: 900; color: #ffffff; letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9); margin-bottom: 6px;
+        }
+        .splash-game-desc {
+            font-size: 13px; color: #94a3b8; font-weight: 600; line-height: 1.4;
+        }
+
+        .splash-loader-wrap {
+            position: relative; z-index: 2; width: clamp(220px, 60vw, 280px);
+            display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 18px;
+        }
+        .splash-loader-bar {
+            width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px; overflow: hidden; position: relative;
+        }
+        .splash-loader-fill {
+            width: 0%; height: 100%;
+            background: linear-gradient(90deg, #f5a623, #ffd700, #00e700);
+            border-radius: 999px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        .splash-loader-text {
+            font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+            font-weight: 800; color: #ffd700; letter-spacing: 0.5px;
+        }
+
+        .splash-btn-play {
+            position: relative; z-index: 2;
+            background: linear-gradient(135deg, #f5a623 0%, #d48806 100%);
+            border: 1.5px solid #fff; color: #000; font-size: 15px; font-weight: 900;
+            padding: 13px 38px; border-radius: 999px; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.55), 0 0 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s; letter-spacing: 0.5px; text-transform: uppercase;
+            animation: pulseBtn 1.8s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { transform: scale(1); box-shadow: 0 10px 30px rgba(245, 166, 35, 0.55); }
+            50% { transform: scale(1.04); box-shadow: 0 12px 36px rgba(245, 166, 35, 0.8), 0 0 25px #ffd700; }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(245, 166, 35, 0.55); }
+        }
+        .splash-btn-play:hover { transform: scale(1.07); filter: brightness(1.15); }
+        .splash-btn-icon { font-size: 14px; }
+
+        /* Rules & Info Modal */
+        .info-modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+            z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .info-modal.show { display: flex; }
+        .info-box {
+            background: #0c182c; border: 1.5px solid #ffd700; border-radius: 18px;
+            padding: 24px; max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+        }
+        .info-title { font-family: 'Cinzel', serif; font-size: 20px; color: #ffd700; margin-bottom: 12px; }
+        .info-body { font-size: 13px; line-height: 1.6; color: #cbd5e1; margin-bottom: 18px; }
+        .info-close-btn {
+            background: #f5a623; color: #000; border: none; font-weight: 900;
+            padding: 8px 20px; border-radius: 8px; cursor: pointer; float: right;
+        }
+    </style>
+</head>
+<body>
+
+<!-- =========================================================
+     OFFICIAL 1xGAMES CINEMATIC OPENING / TRAILER SPLASH SCREEN
+     ========================================================= -->
+<div class="game-opening-splash" id="gameOpeningSplash">
+    <div class="splash-ambient-glow"></div>
+    <div class="splash-header-badge">
+        <span class="badge-logo-1x">1xGAMES</span>
+        <span class="badge-divider">•</span>
+        <span class="badge-vip-studio">VIP CARD STUDIO</span>
+    </div>
+    
+    <div class="splash-trailer-card-wrap">
+        <div class="splash-trailer-card">
+            <img id="splashTrailerImg" class="splash-trailer-img" src="../assets/covers/card_games/game-58.webp" alt="Trailer">
+            <div class="splash-card-glare"></div>
+            <div class="splash-live-tag">
+                <span class="live-dot"></span> LIVE TABLE
+            </div>
+            <div class="splash-mult-tag" id="splashMultTag">2.0X MAX</div>
+        </div>
+    </div>
+
+    <div class="splash-info-block">
+        <h1 class="splash-game-title" id="splashGameTitle">21 (Twenty-One)</h1>
+        <div class="splash-game-desc" id="splashGameDesc">1xBet Official VIP Russian Blackjack • Payout 3:2</div>
+    </div>
+
+    <div class="splash-loader-wrap" id="splashLoaderWrap">
+        <div class="splash-loader-bar">
+            <div class="splash-loader-fill" id="splashLoaderFill"></div>
+        </div>
+        <div class="splash-loader-text" id="splashLoaderText">LOADING 1xBET ASSETS... 100%</div>
+    </div>
+
+    <button class="splash-btn-play" id="splashBtnPlay" onclick="dismissSplash()">
+        <span class="splash-btn-icon">▶</span>
+        <span>START GAME • گیم کھیلیں</span>
+    </button>
+</div>
+
+<div class="casino-arena" id="casinoArena">
+    <!-- Top 1xBet Navigation Bar -->
+    <header class="arena-top-bar">
+        <div class="arena-left">
+            <a href="../index.html" class="btn-lobby-back">
+                <span>◀ LOBBY</span>
+            </a>
+            <div class="game-header-info">
+                <img id="gamePosterIcon" src="../assets/covers/card_games/game-58.webp" class="game-mini-thumb" alt="Game">
+                <div class="game-title-group">
+                    <div class="game-heading">
+                        <span id="gameTitle">21 (Twenty-One)</span>
+                        <span class="game-tag-badge" id="gameTagBadge">HOT 🔥</span>
+                    </div>
+                    <span class="game-sub-text" id="gameSubText">1xBet Official VIP Blackjack</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="arena-right">
+            <div class="balance-widget" onclick="toggleWalletMode()" title="Click to toggle Real/Demo balance">
+                <span class="mode-pill demo" id="modePill">DEMO</span>
+                <span class="balance-amount" id="userBalanceDisplay">PKR 10,000.00</span>
+            </div>
+            <button class="hud-icon-btn" onclick="openRulesModal()" title="Game Rules">ℹ</button>
+            <button class="hud-icon-btn" id="soundBtn" onclick="toggleSound()" title="Sound On/Off">🔊</button>
+            <button class="hud-icon-btn" onclick="toggleFullScreen()" title="Fullscreen">⛶</button>
+        </div>
+    </header>
+
+    <!-- Paytable Strip -->
+    <div class="paytable-ticker" id="paytableStrip"></div>
+
+    <!-- Luxury Casino Felt Table with Authentic 1xBet Graphics -->
+    <main class="table-viewport" id="tableViewport">
+        <div class="table-wood-inlay"></div>
+
+        <!-- 1xBet Table VIP Corner Decors (Champagne & Dollars) -->
+        <img src="../assets/games/card_games/twenty_one/21-decor-l-l@1x.0026a15c1032.png" class="table-corner-decor decor-left" id="tableDecorLeft" alt="">
+        <img src="../assets/games/card_games/twenty_one/21-decor-r-l@1x.54b5e89ded6e.png" class="table-corner-decor decor-right" id="tableDecorRight" alt="">
+
+        <!-- 3D Deck Shoe -->
+        <div class="deck-shoe" title="1xBet Official 6-Deck Shoe">
+            <span class="deck-shoe-logo">1X</span>
+            <div class="shoe-card-lip"></div>
+        </div>
+
+        <!-- Dealer Chip Tray -->
+        <div class="dealer-tray">
+            <div class="tray-chip-stack chip-10"></div>
+            <div class="tray-chip-stack chip-50"></div>
+            <div class="tray-chip-stack chip-100"></div>
+            <div class="tray-chip-stack chip-500"></div>
+            <div class="tray-chip-stack chip-1000"></div>
+        </div>
+
+        <!-- Center Official 1xBet Logo & Arch Watermark -->
+        <div class="table-center-crest">
+            <img id="tableOfficialLogo" class="table-official-logo" src="../assets/games/card_games/twenty_one/21-logo-l@1x.6f336167a376.png" alt="Logo">
+            <div class="table-arch-rule" id="tableArchRule">BLACKJACK PAYS 3 TO 2 • DEALER MUST STAND ON 17</div>
+        </div>
+
+        <!-- Result Celebration Overlays (Official 1xBet Graphics) -->
+        <div class="result-overlay">
+            <div class="official-win-box" id="officialWinBox">
+                <img src="../assets/games/card_games/twenty_one/21-win-shine@1x.5715b20ab73e.png" class="official-win-shine" alt="">
+                <img src="../assets/games/card_games/twenty_one/21-win-money@1x.6645c7878fc7.png" class="official-win-img" alt="Win">
+                <div class="official-win-val" id="winAmountVal">+PKR 200.00</div>
+            </div>
+            <div class="official-win-box" id="officialLoseBox">
+                <img src="../assets/games/card_games/twenty_one/21-lose@1x.8158059005d3.png" class="official-lose-img" alt="Lose">
+            </div>
+        </div>
+
+        <!-- Dealer Hand Area -->
+        <div class="game-zone dealer-zone">
+            <div class="zone-header-pill">
+                <span id="dealerLabel">DEALER'S HAND</span>
+                <span class="zone-score-pill dealer" id="dealerScorePill">18</span>
+            </div>
+            <div class="cards-row" id="dealerCardsRow"></div>
+        </div>
+
+        <!-- Player Hand Area -->
+        <div class="game-zone player-zone">
+            <div class="cards-row" id="playerCardsRow"></div>
+            <div class="zone-header-pill">
+                <span id="playerLabel">YOUR HAND</span>
+                <span class="zone-score-pill" id="playerScorePill">21</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- 1xBet Betting Deck & Controls -->
+    <footer class="arena-controls">
+        <!-- Row 1: Stake Adjustment & Casino Chips -->
+        <div class="controls-top-row">
+            <div class="bet-adjust-box">
+                <button class="btn-step" onclick="adjustBet(-50)">-</button>
+                <div class="bet-input-display" id="betDisplay">PKR 100</div>
+                <button class="btn-step" onclick="adjustBet(50)">+</button>
+            </div>
+
+            <div class="bet-multiplier-group">
+                <button class="btn-quick-mult" onclick="quickBet('min')">MIN</button>
+                <button class="btn-quick-mult" onclick="quickBet('half')">1/2</button>
+                <button class="btn-quick-mult" onclick="quickBet('double')">2X</button>
+                <button class="btn-quick-mult" onclick="quickBet('max')">MAX</button>
+            </div>
+
+            <div class="chips-carousel">
+                <div class="casino-chip chip-10" onclick="selectChip(10)">10</div>
+                <div class="casino-chip chip-50" onclick="selectChip(50)">50</div>
+                <div class="casino-chip chip-100 active" onclick="selectChip(100)">100</div>
+                <div class="casino-chip chip-500" onclick="selectChip(500)">500</div>
+                <div class="casino-chip chip-1000" onclick="selectChip(1000)">1K</div>
+                <div class="casino-chip chip-5000" onclick="selectChip(5000)">5K</div>
+                <div class="casino-chip chip-10000" onclick="selectChip(10000)">10K</div>
+            </div>
+        </div>
+
+        <!-- Row 2: Dynamic Action Buttons (With Official 1xBet Graphics) -->
+        <div class="controls-action-row" id="actionButtonsRow">
+            <!-- Initial Place Bet Button -->
+            <button class="btn-action-main btn-deal-gold" id="btnPlaceBet" onclick="handlePlaceBet()">
+                <span>🃏 PLACE A BET (PKR <span id="btnBetVal">100</span>)</span>
+            </button>
+
+            <!-- 21 Active Official Graphic Buttons -->
+            <button class="btn-official-graphic" id="btnHit" onclick="actionHit()" style="display:none;" title="Hit (Draw Card)">
+                <img src="../assets/games/card_games/twenty_one/21-btn-more@1x.b0c2ed62339a.png" alt="+ HIT">
+            </button>
+            <button class="btn-official-graphic" id="btnStand" onclick="actionStand()" style="display:none;" title="Stand (Stop)">
+                <img src="../assets/games/card_games/twenty_one/21-btn-stop@1x.172d30f35ae4.png" alt="✋ STAND">
+            </button>
+            <button class="btn-action-main btn-double-yellow" id="btnDouble" onclick="actionDouble()" style="display:none; max-width:140px;">
+                <span>2X DOUBLE</span>
+            </button>
+
+            <!-- Hi-Lo Prediction Buttons -->
+            <button class="btn-action-main btn-deal-gold" id="btnHigher" onclick="actionHiLo('higher')" style="display:none;">
+                <span>▲ HIGHER</span>
+            </button>
+            <button class="btn-action-main btn-double-yellow" id="btnLower" onclick="actionHiLo('lower')" style="display:none;">
+                <span>▼ LOWER</span>
+            </button>
+            <button class="btn-action-main btn-cashout-gold" id="btnCashout" onclick="actionCashout()" style="display:none;">
+                <span>💰 TAKE WINNINGS</span>
+            </button>
+
+            <!-- Andar Bahar Buttons -->
+            <button class="btn-action-main btn-deal-gold" id="btnAndar" onclick="actionAndarBahar('andar')" style="display:none;">
+                <span>🔵 ANDAR (1.98X)</span>
+            </button>
+            <button class="btn-action-main btn-double-yellow" id="btnBahar" onclick="actionAndarBahar('bahar')" style="display:none;">
+                <span>🟡 BAHAR (1.98X)</span>
+            </button>
+        </div>
+    </footer>
+</div>
+
+<!-- Rules Modal -->
+<div class="info-modal" id="rulesModal">
+    <div class="info-box">
+        <h3 class="info-title" id="rulesTitle">Game Rules</h3>
+        <div class="info-body" id="rulesBody">Loading rules...</div>
+        <button class="info-close-btn" onclick="closeRulesModal()">GOT IT</button>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // 20 OFFICIAL 1xBET CARD GAMES CONFIGURATIONS & ASSETS
+    // ============================================================
+    const GAME_THEMES = {
+        "58": {
+            slug: "twenty-one", name: "21 (Twenty-One)", id: 58, mult: 2.0, type: "21",
+            sub: "1xBet Official VIP Blackjack", badge: "HOT 🔥",
+            bg: "url('../assets/games/card_games/twenty_one/21-bg-l@1x.d55fd340372e.jpg')",
+            logo: "../assets/games/card_games/twenty_one/21-logo-l@1x.6f336167a376.png",
+            ruleText: "BLACKJACK PAYS 3 TO 2 • DEALER MUST STAND ON 17",
+            rules: "Aim for a hand value of 21. Dealer draws to 16 and stands on 17. Aces count as 1 or 11. Blackjack pays 3:2!"
+        },
+        "158": {
+            slug: "solitaire", name: "Solitaire", id: 158, mult: 2.0, type: "solitaire",
+            sub: "Classic Klondike Solitaire Arena", badge: "POPULAR",
+            bg: "url('../assets/games/card_games/solitaire/bg@1x.5b06b911ba6e.jpg')",
+            logo: "../assets/games/card_games/solitaire/logo@1x.81d98f9a2cc8.png",
+            ruleText: "CLEAR THE TABLEAU • ROYAL SUIT RUNS WIN 2X",
+            rules: "Arrange cards into ascending suit foundation piles. Complete runs to win double your bet!"
+        },
+        "184": {
+            slug: "indian-poker", name: "Indian Poker", id: 184, mult: 75.0, type: "highcard",
+            sub: "Maharaja Royal High-Card Stakes", badge: "75X WIN",
+            bg: "url('../assets/games/card_games/twenty_one/21-bg-l@1x.d55fd340372e.jpg')",
+            logo: "../assets/games/card_games/indian_poker/logo@1x.4ba74466fd0f.webp",
+            ruleText: "MAHARAJA ROYAL CARD CHALLENGE • HIGH CARD WINS",
+            rules: "Compare your dealt card against the dealer. High card wins! Special Maharaja hands pay up to 75x!"
+        },
+        "270": {
+            slug: "killer-clubs", name: "Killer Clubs", id: 270, mult: 1782.0, type: "hilo",
+            sub: "Cyberpunk Syndicate High Stakes", badge: "1782X MAX",
+            bg: "url('../assets/games/card_games/killer_clubs/bg@1x.fb3d66ad6240.jpg')",
+            logo: "../assets/covers/card_games/game-270.webp",
+            ruleText: "PREDICT HIGHER OR LOWER • MULTIPLIER RISES TO 1,782X",
+            rules: "Predict if the next card will be Higher or Lower. Each correct pick multiplies your winnings! Cash out anytime!"
+        },
+        "569": {
+            slug: "solitaire-battle-arena", name: "Solitaire Battle Arena", id: 569, mult: 2.0, type: "solitaire",
+            sub: "Coliseum Gladiator Card Arena", badge: "ARENA",
+            bg: "url('../assets/games/card_games/solitaire/bg@1x.5b06b911ba6e.jpg')",
+            logo: "../assets/games/card_games/solitaire/logo@1x.81d98f9a2cc8.png",
+            ruleText: "GLADIATOR PVP ARENA • CLEAR TABLEAU FOR VICTORY",
+            rules: "Battle the dealer in a fast-paced Solitaire face-off. Complete sequences to overpower the opponent!"
+        },
+        "90": {
+            slug: "card-odds", name: "Card Odds", id: 90, mult: 17.0, type: "hilo",
+            sub: "Probability Matrix Challenge", badge: "17X ODDS",
+            bg: "url('../assets/games/card_games/card_odds/bg@1x.4dc2f2c084fc.jpg')",
+            logo: "../assets/games/card_games/card_odds/logo@1x.39f4e3290d98.png",
+            ruleText: "CALCULATED PROBABILITY MATRIX • WIN UP TO 17X",
+            rules: "Predict the upcoming card rank against probability odds. Streaks earn exponential multipliers up to 17x!"
+        },
+        "122": {
+            slug: "lucky-card", name: "Lucky Card", id: 122, mult: 4.0, type: "hilo",
+            sub: "Emerald Horseshoe & Clover Reveal", badge: "4X LUCK",
+            bg: "url('../assets/games/card_games/twenty_one/21-bg-l@1x.d55fd340372e.jpg')",
+            logo: "../assets/games/card_games/lucky_card/logo@1x.7671347d84fe.png",
+            ruleText: "FIND THE GOLDEN LUCKY CARDS • INSTANT 4X PAYOUT",
+            rules: "Match the hidden Lucky Card or streak your predictions to win instant 4x multipliers!"
+        },
+        "71": {
+            slug: "pf-pokerlight", name: "PF Poker Light", id: 71, mult: 1000.0, type: "poker",
+            sub: "Retro Synthwave Video Poker", badge: "1000X FLUSH",
+            bg: "url('../assets/games/card_games/pf_poker/bg-l@1x.1a46bc9e962e.jpg')",
+            logo: "../assets/games/card_games/pf_poker/logo@1x.02245c2f545c.png",
+            ruleText: "ROYAL FLUSH PAYS 1,000X • STRAIGHT FLUSH PAYS 400X",
+            rules: "Get dealt 5 cards. Royal Flush pays 1,000x, Straight Flush 400x, 4 of a Kind 200x, Full House 80x, Flush 50x!"
+        },
+        "207": {
+            slug: "royal-hi-lo", name: "Royal Hi-Lo", id: 207, mult: 12.5, type: "hilo",
+            sub: "Imperial Sovereign Hi-Lo Crown", badge: "ROYAL 12X",
+            bg: "url('../assets/games/card_games/royal_hilo/bg@1x.91fa5c739fd5.webp')",
+            logo: "../assets/games/card_games/royal_hilo/logo@1x.81d98f9a2cc8.png",
+            ruleText: "IMPERIAL STREAK LADDER • PREDICT HIGH OR LOW",
+            rules: "Climb the Sovereign ladder by guessing higher or lower cards. Take your winnings at any point!"
+        },
+        "195": {
+            slug: "truth-or-lie", name: "Truth or Lie", id: 195, mult: 3.9, type: "hilo",
+            sub: "Noir Mystery Bluff Challenge", badge: "3.9X BLUFF",
+            bg: "url('../assets/games/card_games/twenty_one/21-bg-l@1x.d55fd340372e.jpg')",
+            logo: "../assets/covers/card_games/game-195.webp",
+            ruleText: "CALL THE DEALER'S BLUFF • TRUTH OR LIE",
+            rules: "Dealer makes a statement about the hidden card. Call Truth or Lie to win 3.9x!"
+        },
+        "345": {
+            slug: "deluxe-cards", name: "Deluxe Cards", id: 345, mult: 100.0, type: "poker",
+            sub: "Monte Carlo Salon Privé Luxury", badge: "VIP 100X",
+            bg: "url('../assets/games/card_games/twenty_one/21-bg-l@1x.d55fd340372e.jpg')",
+            logo: "../assets/covers/card_games/game-345.webp",
+            ruleText: "MONTE CARLO VIP SALON PRIVÉ • UP TO 100X",
+            rules: "Exclusive luxury poker hands with premium VIP multipliers up to 100x!"
+        },
+        "517": {
+            slug: "flip-card", name: "Flip Card", id: 517, mult: 10.0, type: "hilo",
+            sub: "Turbo Carbon Fiber Speed", badge: "10X TURBO",
+            bg: "url('../assets/games/card_games/flip_card/game_table@1x.a16fc266fbdd.jpg')",
+            logo: "../assets/covers/card_games/game-517.webp",
+            ruleText: "RAPID HIGH-SPEED FLIP • PREDICT INSTANT STREAK",
+            rules: "Fast-action card flip. Keep picking Higher or Lower to build an instant 10x multiplier!"
+        },
+        "432": {
+            slug: "twenty-one-hots", name: "Heroes of the Storm 21", id: 432, mult: 2.0, type: "21",
+            sub: "Blizzard Nexus Obsidian Battleground", badge: "NEXUS 21",
+            bg: "url('../assets/games/card_games/twenty_one/21-bg-l@1x.d55fd340372e.jpg')",
+            logo: "../assets/covers/card_games/game-432.webp",
+            ruleText: "NEXUS HEROES CHALLENGE • PLAY TO 21 VICTORY",
+            rules: "Battle the Nexus Boss in classic 21 Blackjack with Blizzard theme graphics!"
+        },
+        "431": {
+            slug: "twenty-one-dota", name: "DOTA 21", id: 431, mult: 2.0, type: "21",
+            sub: "Radiant Verdant vs Dire Hellfire", badge: "DOTA 21",
+            bg: "url('../assets/games/card_games/twenty_one_dota/bg-l@1x.cbb33b471f5f.jpg')",
+            logo: "../assets/games/card_games/twenty_one_dota/logo@1x.d149af129d75.png",
+            ruleText: "DEFENSE OF THE ANCIENTS • RADIANT VS DIRE 21",
+            rules: "Play Blackjack on the ancient battlefield. Match or beat the Dire Dealer's hand to win!"
+        },
+        "265": {
+            slug: "card-war", name: "Card War", id: 265, mult: 12.0, type: "war",
+            sub: "Dragon vs Tiger War Arena", badge: "WAR 12X",
+            bg: "url('../assets/games/card_games/card_war/bg@1x.86c3ca9bc0cb.jpg')",
+            logo: "../assets/games/card_games/card_war/war-logo@1x.48c4d0c67518.webp",
+            ruleText: "HIGH CARD WINS • GO TO WAR ON TIE FOR 12X BONUS",
+            rules: "One card dealt to Player, one to Dealer. High card wins! If cards match, Go to War for a 12x payout!"
+        },
+        "377": {
+            slug: "triple-pocket-holdem-poker", name: "Triple Pocket Holdem", id: 377, mult: 50.0, type: "poker",
+            sub: "World Series 3-Hand Texas Challenge", badge: "50X HOLDEM",
+            bg: "url('../assets/games/card_games/circus_poker/bg@1x.82d22de2dffc.jpg')",
+            logo: "../assets/covers/card_games/game-377.webp",
+            ruleText: "TEXAS 3-POCKET TOURNAMENT • WIN UP TO 50X",
+            rules: "Choose your pocket hand from 3 dealt options. Match with community cards for up to 50x!"
+        },
+        "363": {
+            slug: "andar-bahar", name: "Andar Bahar", id: 363, mult: 1.98, type: "andarbahar",
+            sub: "Authentic Indian Live Casino Experience", badge: "ANDAR BAHAR",
+            bg: "url('../assets/games/card_games/andar_bahar/overlay-bg@1x.2404031bfa58.jpg')",
+            logo: "../assets/covers/card_games/game-363.webp",
+            ruleText: "ANDAR (INSIDE) VS BAHAR (OUTSIDE) • JOKER MATCH",
+            rules: "Dealer cuts the Joker card. Bet on Andar or Bahar. The side where the Joker rank lands first wins 1.98x!"
+        },
+        "210": {
+            slug: "red-dog", name: "Red Dog", id: 210, mult: 12.0, type: "hilo",
+            sub: "Wild West High-Spread Saloon", badge: "RED DOG 12X",
+            bg: "url('../assets/games/card_games/red_dog/bg@1x.14daded3f6f9.jpg')",
+            logo: "../assets/games/card_games/red_dog/logo@1x.94e32ad4f86f.png",
+            ruleText: "WILD WEST SPREAD BETTING • PAYOUT BASED ON GAP",
+            rules: "Two cards are dealt. Bet whether the third card falls between the first two! Smaller spreads pay up to 12x!"
+        },
+        "519": {
+            slug: "circus-poker", name: "Circus Poker", id: 519, mult: 250.0, type: "poker",
+            sub: "Grand Carnival Big Top Challenge", badge: "250X CIRCUS",
+            bg: "url('../assets/games/card_games/circus_poker/bg@1x.82d22de2dffc.jpg')",
+            logo: "../assets/covers/card_games/game-519.webp",
+            ruleText: "CARNIVAL JOKER POKER • WILD BONUS 250X",
+            rules: "Wild Carnival cards boost winning hands. Trigger the Big Top Jackpot for 250x payouts!"
+        },
+        "362": {
+            slug: "wonderland", name: "Wonderland", id: 362, mult: 12.5, type: "hilo",
+            sub: "Fantasy Fairytale Tea Table", badge: "MAGIC 12.5X",
+            bg: "radial-gradient(circle at 50% 30%, #0a212e 0%, #041017 60%, #010609 100%)",
+            logo: "../assets/covers/card_games/game-362.webp",
+            ruleText: "ALICE'S TEA TABLE • PREDICT HIGH OR LOW 12.5X",
+            rules: "Follow the White Rabbit through progressive card guesses. Cash out anytime up to 12.5x!"
+        }
+    };
+
+    const SLUG_TO_ID = {
+        "solitaire": "158", "twenty-one": "58", "twenty_one": "58", "21": "58",
+        "indian-poker": "184", "indian_poker": "184", "killer-clubs": "270", "killer_clubs": "270",
+        "solitaire-battle-arena": "569", "solitaire_arena": "569", "card-odds": "90", "card_odds": "90",
+        "lucky-card": "122", "lucky_card": "122", "pf-pokerlight": "71", "pf_poker": "71",
+        "royal-hi-lo": "207", "royal_hilo": "207", "truth-or-lie": "195", "truth_or_lie": "195",
+        "deluxe-cards": "345", "deluxe_cards": "345", "flip-card": "517", "flip_card": "517",
+        "twenty-one-hots": "432", "twenty_one_hots": "432", "twenty-one-dota": "431", "twenty_one_dota": "431",
+        "card-war": "265", "card_war": "265", "triple-pocket-holdem-poker": "377", "triple_pocket_holdem": "377",
+        "andar-bahar": "363", "andarbahar": "363", "red-dog": "210", "red_dog": "210",
+        "circus-poker": "519", "circus_poker": "519", "wonderland": "362"
+    };
+
+    // Determine Active Game
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawId = urlParams.get('id') || urlParams.get('game') || '58';
+    const activeGameId = SLUG_TO_ID[rawId.toLowerCase()] || rawId;
+    const currentGame = GAME_THEMES[activeGameId] || GAME_THEMES["58"];
+
+    // Initialize Active Game UI
+    document.title = `${currentGame.name} - 1xGames Official`;
+    document.getElementById('gameTitle').textContent = currentGame.name;
+    document.getElementById('gameTagBadge').textContent = currentGame.badge;
+    document.getElementById('gameSubText').textContent = currentGame.sub;
+    document.getElementById('tableArchRule').textContent = currentGame.ruleText;
+
+    const posterImg = document.getElementById('gamePosterIcon');
+    posterImg.src = `../assets/covers/card_games/game-${currentGame.id}.webp`;
+    posterImg.onerror = () => { posterImg.style.display = 'none'; };
+
+    // Apply 1xBet Official Table Background & Logo
+    const tableViewport = document.getElementById('tableViewport');
+    tableViewport.style.backgroundImage = currentGame.bg;
+
+    const officialLogoImg = document.getElementById('tableOfficialLogo');
+    officialLogoImg.src = currentGame.logo;
+    officialLogoImg.onerror = () => { officialLogoImg.style.display = 'none'; };
+
+    // Initialize 1xGames Cinematic Opening Splash / Trailer Screen
+    const splashEl = document.getElementById('gameOpeningSplash');
+    const splashTrailer = document.getElementById('splashTrailerImg');
+    const splashMult = document.getElementById('splashMultTag');
+    const splashTitle = document.getElementById('splashGameTitle');
+    const splashDesc = document.getElementById('splashGameDesc');
+    const splashBar = document.getElementById('splashLoaderFill');
+
+    if (splashTrailer) splashTrailer.src = `../assets/covers/card_games/game-${currentGame.id}.webp`;
+    if (splashMult) splashMult.textContent = `${currentGame.mult}X MAX`;
+    if (splashTitle) splashTitle.textContent = currentGame.name;
+    if (splashDesc) splashDesc.textContent = `${currentGame.sub} • ${currentGame.ruleText}`;
+
+    setTimeout(() => {
+        if (splashBar) splashBar.style.width = '100%';
+    }, 80);
+
+    let splashDismissed = false;
+    function dismissSplash() {
+        if (splashDismissed) return;
+        splashDismissed = true;
+        if (splashEl) {
+            splashEl.classList.add('fade-out');
+            setTimeout(() => { splashEl.style.display = 'none'; }, 480);
+        }
+        playBeep(587, 'sine', 0.12);
+    }
+    setTimeout(dismissSplash, 1400);
+
+    // Table Decors check (Champagne & Dollars for 21)
+    const decorLeft = document.getElementById('tableDecorLeft');
+    const decorRight = document.getElementById('tableDecorRight');
+    if (currentGame.type !== '21') {
+        if (decorLeft) decorLeft.style.display = 'none';
+        if (decorRight) decorRight.style.display = 'none';
+    } else {
+        if (decorLeft) decorLeft.style.display = 'block';
+        if (decorRight) decorRight.style.display = 'block';
+    }
+
+    // Rules Modal Content
+    document.getElementById('rulesTitle').textContent = currentGame.name + " Rules";
+    document.getElementById('rulesBody').innerHTML = `
+        <p><strong>Game:</strong> ${currentGame.name} (1xGames #${currentGame.id})</p>
+        <p style="margin-top:8px;"><strong>Gameplay Type:</strong> ${currentGame.type.toUpperCase()}</p>
+        <p style="margin-top:8px;"><strong>Max Multiplier:</strong> ${currentGame.mult}x</p>
+        <p style="margin-top:12px; line-height:1.6;">${currentGame.rules}</p>
+    `;
+
+    // Dynamic Paytable strip setup
+    const payStrip = document.getElementById('paytableStrip');
+    if (currentGame.type === 'poker') {
+        payStrip.style.display = 'flex';
+        payStrip.innerHTML = `
+            <span class="pay-step active">👑 ROYAL FLUSH: ${currentGame.mult}X</span>
+            <span class="pay-step">STRAIGHT FLUSH: ${(currentGame.mult*0.4).toFixed(0)}X</span>
+            <span class="pay-step">4 OF A KIND: ${(currentGame.mult*0.2).toFixed(0)}X</span>
+            <span class="pay-step">FULL HOUSE: ${(currentGame.mult*0.08).toFixed(0)}X</span>
+            <span class="pay-step">FLUSH: 50X</span>
+            <span class="pay-step">STRAIGHT: 20X</span>
+            <span class="pay-step">3 OF A KIND: 5X</span>
+            <span class="pay-step">2 PAIR: 2X</span>
+        `;
+    } else if (currentGame.type === 'hilo') {
+        payStrip.style.display = 'flex';
+        payStrip.innerHTML = `
+            <span class="pay-step" id="streakPill1">LEVEL 1: 1.50X</span>
+            <span class="pay-step" id="streakPill2">LEVEL 2: 2.30X</span>
+            <span class="pay-step" id="streakPill3">LEVEL 3: 4.80X</span>
+            <span class="pay-step" id="streakPill4">LEVEL 4: 9.50X</span>
+            <span class="pay-step" id="streakPill5">LEVEL 5: 18.0X</span>
+            <span class="pay-step active">JACKPOT: ${currentGame.mult}X</span>
+        `;
+    }
+
+    // ============================================================
+    // DUAL WALLET ENGINE (REAL + SEAMLESS FREE DEMO)
+    // ============================================================
+    let isDemoMode = false;
+    let demoBalance = 10000.00;
+    let currentBet = 100;
+    let inRound = false;
+
+    function getWalletBalance() {
+        if (isDemoMode) return demoBalance;
+        try {
+            if (typeof getRealWalletBalance === 'function') {
+                const b = getRealWalletBalance();
+                if (b > 0) return b;
+            }
+        } catch(e) {}
+        return demoBalance;
+    }
+
+    function deductBet(amount) {
+        if (isDemoMode) {
+            demoBalance = Math.max(0, demoBalance - amount);
+            updateBalanceUI();
+            return true;
+        }
+        try {
+            if (typeof placeBet === 'function') {
+                const ok = placeBet(amount);
+                if (ok) {
+                    updateBalanceUI();
+                    return true;
+                }
+            }
+        } catch(e) {}
+        demoBalance = Math.max(0, demoBalance - amount);
+        updateBalanceUI();
+        return true;
+    }
+
+    function creditWin(amount, mult) {
+        const winVal = parseFloat((amount * mult).toFixed(2));
+        if (isDemoMode) {
+            demoBalance += winVal;
+            updateBalanceUI();
+            return;
+        }
+        try {
+            if (typeof winBet === 'function') {
+                winBet(amount, mult);
+                updateBalanceUI();
+                return;
+            }
+        } catch(e) {}
+        demoBalance += winVal;
+        updateBalanceUI();
+    }
+
+    function toggleWalletMode() {
+        isDemoMode = !isDemoMode;
+        const pill = document.getElementById('modePill');
+        pill.className = `mode-pill ${isDemoMode ? 'demo' : 'real'}`;
+        pill.textContent = isDemoMode ? 'DEMO' : 'REAL';
+        updateBalanceUI();
+        playBeep(440, 'sine', 0.1);
+    }
+
+    function updateBalanceUI() {
+        const bal = getWalletBalance();
+        document.getElementById('userBalanceDisplay').textContent = `PKR ${bal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+    updateBalanceUI();
+
+    // ============================================================
+    // WEB AUDIO CASINO SOUND SYNTHESIZER
+    // ============================================================
+    let soundEnabled = true;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function playBeep(freq, type = 'sine', duration = 0.1) {
+        if (!soundEnabled) return;
+        try {
+            if (!audioCtx) audioCtx = new AudioContextClass();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch(e) {}
+    }
+
+    function soundDealCard() {
+        playBeep(650, 'triangle', 0.08);
+        setTimeout(() => playBeep(450, 'triangle', 0.06), 40);
+    }
+    function soundChipClick() { playBeep(900, 'sine', 0.05); }
+    function soundWinChime() {
+        playBeep(523, 'sine', 0.15);
+        setTimeout(() => playBeep(659, 'sine', 0.15), 100);
+        setTimeout(() => playBeep(784, 'sine', 0.2), 200);
+        setTimeout(() => playBeep(1046, 'sine', 0.35), 320);
+    }
+    function soundLoseThud() {
+        playBeep(240, 'sawtooth', 0.2);
+        setTimeout(() => playBeep(180, 'sawtooth', 0.3), 120);
+    }
+
+    function toggleSound() {
+        soundEnabled = !soundEnabled;
+        document.getElementById('soundBtn').textContent = soundEnabled ? '🔊' : '🔇';
+    }
+
+    // ============================================================
+    // BET & CHIP ADJUSTMENTS
+    // ============================================================
+    function selectChip(val) {
+        if (inRound) return;
+        currentBet = val;
+        renderBetUI();
+        document.querySelectorAll('.casino-chip').forEach(c => c.classList.remove('active'));
+        const activeChip = Array.from(document.querySelectorAll('.casino-chip')).find(c => parseInt(c.textContent.replace('K','000')) === val);
+        if (activeChip) activeChip.classList.add('active');
+        soundChipClick();
+    }
+
+    function adjustBet(delta) {
+        if (inRound) return;
+        currentBet = Math.max(10, currentBet + delta);
+        renderBetUI();
+        soundChipClick();
+    }
+
+    function quickBet(type) {
+        if (inRound) return;
+        const bal = getWalletBalance();
+        if (type === 'min') currentBet = 10;
+        else if (type === 'half') currentBet = Math.max(10, Math.floor(currentBet / 2));
+        else if (type === 'double') currentBet = Math.min(bal > 0 ? bal : 50000, currentBet * 2);
+        else if (type === 'max') currentBet = Math.min(bal > 0 ? bal : 50000, 25000);
+        renderBetUI();
+        soundChipClick();
+    }
+
+    function renderBetUI() {
+        document.getElementById('betDisplay').textContent = `PKR ${currentBet.toLocaleString()}`;
+        document.getElementById('btnBetVal').textContent = currentBet.toLocaleString();
+    }
+    renderBetUI();
+
+    // ============================================================
+    // OFFICIAL 1xBET 21-CARDS-SPRITE DECK ENGINE
+    // ============================================================
+    // Sprite Dimensions: 1656px x 1096px (184px x 274px per card)
+    const SPRITE_URL = '../assets/games/card_games/twenty_one/21-cards-sprite@1x.17d59ade8df6.png';
+    const SUIT_ROWS = { '♠': 0, '♥': 1, '♣': 2, '♦': 3 };
+    const RANK_COLS = { '6': 0, '7': 1, '8': 2, '9': 3, '10': 4, 'J': 5, 'Q': 6, 'K': 7, 'A': 8 };
+
+    const CARD_SUITS = ['♠', '♥', '♣', '♦'];
+    const CARD_RANKS = [
+        { r: '6', v: 6 }, { r: '7', v: 7 }, { r: '8', v: 8 }, { r: '9', v: 9 },
+        { r: '10', v: 10 }, { r: 'J', v: 10 }, { r: 'Q', v: 10 }, { r: 'K', v: 10 }, { r: 'A', v: 11 }
+    ];
+
+    let deck = [];
+    let playerHand = [];
+    let dealerHand = [];
+    let currentMultiplier = 1.0;
+    let hiloStreak = 0;
+
+    function buildShuffledDeck() {
+        const d = [];
+        // 4 standard 36-card Russian 21 decks
+        for (let shoe = 0; shoe < 4; shoe++) {
+            for (const s of CARD_SUITS) {
+                for (const r of CARD_RANKS) {
+                    d.push({ suit: s, rank: r.r, val: r.v });
+                }
+            }
+        }
+        for (let i = d.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [d[i], d[j]] = [d[j], d[i]];
+        }
+        return d;
+    }
+
+    function createOfficialCardElement(card, faceDown = false) {
+        const el = document.createElement('div');
+        el.className = `official-card-item ${faceDown ? 'face-down' : ''}`;
+        
+        const col = RANK_COLS[card.rank] !== undefined ? RANK_COLS[card.rank] : 0;
+        const row = SUIT_ROWS[card.suit] !== undefined ? SUIT_ROWS[card.suit] : 0;
+        el.style.setProperty('--col', col);
+        el.style.setProperty('--row', row);
+
+        return el;
+    }
+
+    function renderDealtCard(card, container, faceDown = false) {
+        const el = createOfficialCardElement(card, faceDown);
+        container.appendChild(el);
+        soundDealCard();
+        return el;
+    }
+
+    function calculateBlackjackScore(hand) {
+        let score = 0;
+        let aces = 0;
+        for (const c of hand) {
+            score += c.val;
+            if (c.rank === 'A') aces++;
+        }
+        // If 2 Aces at start = instant Golden 21 in Russian 21
+        if (hand.length === 2 && aces === 2) return 21;
+        while (score > 21 && aces > 0) {
+            score -= 10;
+            aces--;
+        }
+        return score;
+    }
+
+    // ============================================================
+    // UNIVERSAL PLAYABLE GAME STATE MACHINE
+    // ============================================================
+    function handlePlaceBet() {
+        if (inRound) return;
+        const bal = getWalletBalance();
+        if (bal < currentBet && !isDemoMode) {
+            toggleWalletMode();
+        }
+
+        deductBet(currentBet);
+        inRound = true;
+        deck = buildShuffledDeck();
+        playerHand = [];
+        dealerHand = [];
+        hiloStreak = 0;
+        currentMultiplier = 1.0;
+
+        // Reset Table
+        document.getElementById('playerCardsRow').innerHTML = '';
+        document.getElementById('dealerCardsRow').innerHTML = '';
+        hideBanners();
+
+        // Control State
+        document.getElementById('btnPlaceBet').style.display = 'none';
+
+        if (currentGame.type === '21') {
+            startTwentyOneGame();
+        } else if (currentGame.type === 'hilo') {
+            startHiLoGame();
+        } else if (currentGame.type === 'poker') {
+            startPokerGame();
+        } else if (currentGame.type === 'war') {
+            startWarGame();
+        } else if (currentGame.type === 'andarbahar') {
+            startAndarBaharGame();
+        } else if (currentGame.type === 'highcard') {
+            startHighCardGame();
+        } else {
+            startTwentyOneGame();
+        }
+    }
+
+    // -------------------------------------------------------------
+    // 1. TWENTY-ONE (BLACKJACK #58, #431, #432)
+    // -------------------------------------------------------------
+    function startTwentyOneGame() {
+        document.getElementById('dealerLabel').textContent = "DEALER'S HAND";
+        document.getElementById('playerLabel').textContent = "YOUR HAND";
+
+        // Deal 2 cards to player, 2 to dealer (1 face down)
+        setTimeout(() => dealToPlayer(), 150);
+        setTimeout(() => dealToDealer(false), 380);
+        setTimeout(() => dealToPlayer(), 600);
+        setTimeout(() => {
+            dealToDealer(true); // Face down dealer hole card
+            updateTwentyOneScores(false);
+
+            const pScore = calculateBlackjackScore(playerHand);
+            if (pScore === 21) {
+                // Natural 21 Blackjack!
+                setTimeout(() => actionStand(), 500);
+            } else {
+                document.getElementById('btnHit').style.display = 'inline-block';
+                document.getElementById('btnStand').style.display = 'inline-block';
+                document.getElementById('btnDouble').style.display = 'inline-block';
+            }
+        }, 850);
+    }
+
+    function dealToPlayer() {
+        const c = deck.pop();
+        playerHand.push(c);
+        renderDealtCard(c, document.getElementById('playerCardsRow'));
+        updateTwentyOneScores(false);
+    }
+
+    function dealToDealer(faceDown = false) {
+        const c = deck.pop();
+        dealerHand.push(c);
+        renderDealtCard(c, document.getElementById('dealerCardsRow'), faceDown);
+    }
+
+    function updateTwentyOneScores(revealDealer = false) {
+        const pScore = calculateBlackjackScore(playerHand);
+        const pPill = document.getElementById('playerScorePill');
+        pPill.style.display = 'inline-block';
+        pPill.textContent = pScore;
+        pPill.className = `zone-score-pill ${pScore > 21 ? 'bust' : ''}`;
+
+        const dPill = document.getElementById('dealerScorePill');
+        if (revealDealer) {
+            const dScore = calculateBlackjackScore(dealerHand);
+            dPill.style.display = 'inline-block';
+            dPill.textContent = dScore;
+            dPill.className = `zone-score-pill dealer ${dScore > 21 ? 'bust' : ''}`;
+        } else if (dealerHand.length > 0) {
+            dPill.style.display = 'inline-block';
+            dPill.textContent = dealerHand[0].val;
+            dPill.className = 'zone-score-pill dealer';
+        }
+    }
+
+    function actionHit() {
+        if (!inRound) return;
+        document.getElementById('btnDouble').style.display = 'none';
+        dealToPlayer();
+        const pScore = calculateBlackjackScore(playerHand);
+        if (pScore > 21) {
+            finishTwentyOneRound('lose', 0);
+        } else if (pScore === 21) {
+            actionStand();
+        }
+    }
+
+    function actionDouble() {
+        if (!inRound) return;
+        deductBet(currentBet);
+        currentBet *= 2;
+        renderBetUI();
+        dealToPlayer();
+        const pScore = calculateBlackjackScore(playerHand);
+        if (pScore > 21) {
+            finishTwentyOneRound('lose', 0);
+        } else {
+            actionStand();
+        }
+    }
+
+    function actionStand() {
+        if (!inRound) return;
+        hideActionButtons();
+
+        // Reveal Dealer Hole Card
+        const dealerRow = document.getElementById('dealerCardsRow');
+        dealerRow.innerHTML = '';
+        for (const c of dealerHand) {
+            renderDealtCard(c, dealerRow, false);
+        }
+        updateTwentyOneScores(true);
+
+        // Dealer draws until 17 or higher
+        const dealerInterval = setInterval(() => {
+            let dScore = calculateBlackjackScore(dealerHand);
+            if (dScore < 17) {
+                dealToDealer(false);
+                updateTwentyOneScores(true);
+            } else {
+                clearInterval(dealerInterval);
+                const pScore = calculateBlackjackScore(playerHand);
+                dScore = calculateBlackjackScore(dealerHand);
+
+                if (dScore > 21) {
+                    finishTwentyOneRound('win', 2.0);
+                } else if (pScore > dScore) {
+                    const isNatural = (playerHand.length === 2 && pScore === 21);
+                    const mult = isNatural ? 2.5 : 2.0;
+                    finishTwentyOneRound('win', mult);
+                } else if (pScore < dScore) {
+                    finishTwentyOneRound('lose', 0);
+                } else {
+                    finishTwentyOneRound('push', 1.0);
+                }
+            }
+        }, 500);
+    }
+
+    function finishTwentyOneRound(outcome, mult = 0) {
+        inRound = false;
+        hideActionButtons();
+
+        if (outcome === 'win') {
+            const winAmt = currentBet * mult;
+            creditWin(currentBet, mult);
+            soundWinChime();
+            launchConfetti();
+
+            document.getElementById('winAmountVal').textContent = `+PKR ${winAmt.toLocaleString()}`;
+            document.getElementById('officialWinBox').style.display = 'flex';
+        } else if (outcome === 'push') {
+            creditWin(currentBet, 1.0);
+            playBeep(440, 'sine', 0.2);
+            document.getElementById('winAmountVal').textContent = `PUSH +PKR ${currentBet.toLocaleString()}`;
+            document.getElementById('officialWinBox').style.display = 'flex';
+        } else {
+            soundLoseThud();
+            document.getElementById('officialLoseBox').style.display = 'flex';
+        }
+
+        setTimeout(() => {
+            document.getElementById('btnPlaceBet').style.display = 'flex';
+        }, 2200);
+    }
+
+    // -------------------------------------------------------------
+    // 2. HI-LO & MULTIPLIER LADDER (#270, #90, #122, #207, #517, #210, #362)
+    // -------------------------------------------------------------
+    function startHiLoGame() {
+        document.getElementById('dealerLabel').textContent = "CURRENT BASE CARD";
+        document.getElementById('playerLabel').textContent = "NEXT CARD PREDICTION";
+
+        setTimeout(() => {
+            const base = deck.pop();
+            dealerHand.push(base);
+            renderDealtCard(base, document.getElementById('dealerCardsRow'));
+
+            document.getElementById('btnHigher').style.display = 'flex';
+            document.getElementById('btnLower').style.display = 'flex';
+            document.getElementById('btnCashout').style.display = 'none';
+        }, 300);
+    }
+
+    function actionHiLo(direction) {
+        if (!inRound) return;
+        const curCard = dealerHand[dealerHand.length - 1];
+        const nextCard = deck.pop();
+        playerHand.push(nextCard);
+        renderDealtCard(nextCard, document.getElementById('playerCardsRow'));
+
+        let won = false;
+        if (direction === 'higher' && nextCard.val >= curCard.val) won = true;
+        if (direction === 'lower' && nextCard.val <= curCard.val) won = true;
+
+        if (won) {
+            hiloStreak++;
+            const multSteps = [1.5, 2.3, 4.8, 9.5, 18.0, currentGame.mult];
+            currentMultiplier = multSteps[Math.min(hiloStreak - 1, multSteps.length - 1)];
+
+            const winAmt = (currentBet * currentMultiplier).toFixed(2);
+            soundWinChime();
+
+            // Shift next card to base
+            dealerHand.push(nextCard);
+
+            document.getElementById('btnCashout').style.display = 'flex';
+            document.getElementById('btnCashout').innerHTML = `<span>💰 TAKE PKR ${winAmt} (${currentMultiplier}X)</span>`;
+        } else {
+            finishTwentyOneRound('lose', 0);
+        }
+    }
+
+    function actionCashout() {
+        if (!inRound) return;
+        finishTwentyOneRound('win', currentMultiplier);
+    }
+
+    // -------------------------------------------------------------
+    // 3. ANDAR BAHAR (#363)
+    // -------------------------------------------------------------
+    function startAndarBaharGame() {
+        document.getElementById('dealerLabel').textContent = "JOKER TRUMP PEDESTAL";
+        document.getElementById('playerLabel').textContent = "ANDAR (BLUE) / BAHAR (GOLD)";
+
+        setTimeout(() => {
+            const joker = deck.pop();
+            dealerHand.push(joker);
+            renderDealtCard(joker, document.getElementById('dealerCardsRow'));
+
+            document.getElementById('btnAndar').style.display = 'flex';
+            document.getElementById('btnBahar').style.display = 'flex';
+        }, 300);
+    }
+
+    function actionAndarBahar(choice) {
+        hideActionButtons();
+        const jokerRank = dealerHand[0].rank;
+        let side = 'andar';
+
+        const dealInterval = setInterval(() => {
+            const next = deck.pop();
+            const targetRow = (side === 'andar') ? document.getElementById('playerCardsRow') : document.getElementById('dealerCardsRow');
+            renderDealtCard(next, targetRow);
+
+            if (next.rank === jokerRank) {
+                clearInterval(dealInterval);
+                if (choice === side) {
+                    finishTwentyOneRound('win', 1.98);
+                } else {
+                    finishTwentyOneRound('lose', 0);
+                }
+            }
+            side = (side === 'andar') ? 'bahar' : 'andar';
+        }, 360);
+    }
+
+    // -------------------------------------------------------------
+    // 4. VIDEO POKER (#71, #345, #377, #519)
+    // -------------------------------------------------------------
+    function startPokerGame() {
+        document.getElementById('playerLabel').textContent = "YOUR 5-CARD POKER HAND";
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const c = deck.pop();
+                playerHand.push(c);
+                renderDealtCard(c, document.getElementById('playerCardsRow'));
+                if (i === 4) evaluatePokerOutcome();
+            }, 180 * (i + 1));
+        }
+    }
+
+    function evaluatePokerOutcome() {
+        const ranks = playerHand.map(c => c.val).sort((a,b) => a-b);
+        const suits = playerHand.map(c => c.suit);
+        const isFlush = suits.every(s => s === suits[0]);
+        const counts = {};
+        ranks.forEach(r => { counts[r] = (counts[r] || 0) + 1; });
+        const cVals = Object.values(counts).sort((a,b) => b-a);
+
+        let winMult = 0;
+
+        if (isFlush && ranks.join(',') === '10,10,10,10,11') {
+            winMult = currentGame.mult;
+        } else if (isFlush) {
+            winMult = 50.0;
+        } else if (cVals[0] === 4) {
+            winMult = Math.min(currentGame.mult, 200.0);
+        } else if (cVals[0] === 3 && cVals[1] === 2) {
+            winMult = 80.0;
+        } else if (cVals[0] === 3) {
+            winMult = 5.0;
+        } else if (cVals[0] === 2 && cVals[1] === 2) {
+            winMult = 2.0;
+        } else if (cVals[0] === 2) {
+            winMult = 1.5;
+        }
+
+        if (winMult > 0) {
+            finishTwentyOneRound('win', winMult);
+        } else {
+            finishTwentyOneRound('lose', 0);
+        }
+    }
+
+    // -------------------------------------------------------------
+    // 5. CASINO WAR (#265) & HIGH CARD (#184)
+    // -------------------------------------------------------------
+    function startWarGame() {
+        document.getElementById('dealerLabel').textContent = "DEALER'S CARD";
+        document.getElementById('playerLabel').textContent = "YOUR CARD";
+
+        setTimeout(() => dealToPlayer(), 200);
+        setTimeout(() => {
+            dealToDealer(false);
+            const pVal = playerHand[0].val;
+            const dVal = dealerHand[0].val;
+
+            if (pVal > dVal) {
+                finishTwentyOneRound('win', 2.0);
+            } else if (pVal < dVal) {
+                finishTwentyOneRound('lose', 0);
+            } else {
+                finishTwentyOneRound('win', 12.0);
+            }
+        }, 600);
+    }
+
+    function startHighCardGame() {
+        startWarGame();
+    }
+
+    // ============================================================
+    // UTILITIES & POPUPS
+    // ============================================================
+    function hideActionButtons() {
+        document.getElementById('btnHit').style.display = 'none';
+        document.getElementById('btnStand').style.display = 'none';
+        document.getElementById('btnDouble').style.display = 'none';
+        document.getElementById('btnHigher').style.display = 'none';
+        document.getElementById('btnLower').style.display = 'none';
+        document.getElementById('btnCashout').style.display = 'none';
+        document.getElementById('btnAndar').style.display = 'none';
+        document.getElementById('btnBahar').style.display = 'none';
+    }
+
+    function hideBanners() {
+        document.getElementById('officialWinBox').style.display = 'none';
+        document.getElementById('officialLoseBox').style.display = 'none';
+    }
+
+    function launchConfetti() {
+        if (typeof confetti === 'function') {
+            confetti({ particleCount: 85, spread: 75, origin: { y: 0.6 } });
+        }
+    }
+
+    function openRulesModal() { document.getElementById('rulesModal').classList.add('show'); }
+    function closeRulesModal() { document.getElementById('rulesModal').classList.remove('show'); }
+
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+</script>
+</body>
+</html>

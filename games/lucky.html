@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#060c14">
+    <title>Lucky Number 777 VIP Studio - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT (0-SCROLL)
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        :root {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #0d3822 0%, #051a0f 65%, #020b06 100%);
+            --table-rim: #d4af37;
+            --table-border: rgba(255, 215, 0, 0.4);
+            --accent-glow: rgba(0, 231, 0, 0.6);
+            --cylinder-gold: #ffd700;
+            --cylinder-core: radial-gradient(circle at 35% 35%, #184c28 0%, #0a2613 65%, #020b05 100%);
+            --neon-color: #00ffcc;
+        }
+
+        /* 4 SELECTABLE CASINO THEMES */
+        body.theme-emerald {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #0d3822 0%, #051a0f 65%, #020b06 100%);
+            --table-rim: #d4af37;
+            --table-border: rgba(255, 215, 0, 0.4);
+            --accent-glow: rgba(0, 231, 0, 0.6);
+            --cylinder-gold: #ffd700;
+            --cylinder-core: radial-gradient(circle at 35% 35%, #184c28 0%, #0a2613 65%, #020b05 100%);
+            --neon-color: #00ffcc;
+        }
+
+        body.theme-ruby {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #3e0e18 0%, #1f050b 65%, #0a0104 100%);
+            --table-rim: #ff4757;
+            --table-border: rgba(255, 71, 87, 0.4);
+            --accent-glow: rgba(255, 71, 87, 0.6);
+            --cylinder-gold: #ff6b81;
+            --cylinder-core: radial-gradient(circle at 35% 35%, #590d19 0%, #2b050c 65%, #0a0104 100%);
+            --neon-color: #ff4757;
+        }
+
+        body.theme-sapphire {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #0a2540 0%, #051329 65%, #020712 100%);
+            --table-rim: #00f0ff;
+            --table-border: rgba(0, 240, 255, 0.4);
+            --accent-glow: rgba(0, 240, 255, 0.6);
+            --cylinder-gold: #00e5ff;
+            --cylinder-core: radial-gradient(circle at 35% 35%, #0a3356 0%, #051a2e 65%, #020b14 100%);
+            --neon-color: #00f0ff;
+        }
+
+        body.theme-onyx {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #1e2026 0%, #101216 65%, #060709 100%);
+            --table-rim: #ffd700;
+            --table-border: rgba(255, 215, 0, 0.35);
+            --accent-glow: rgba(255, 215, 0, 0.5);
+            --cylinder-gold: #ffd700;
+            --cylinder-core: radial-gradient(circle at 35% 35%, #2a313d 0%, #13171e 65%, #050608 100%);
+            --neon-color: #ffd700;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background-color: #03060a;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* -------------------------------------------------------------
+           DESKTOP & STAGE 3D ANIMATED VIDEO BACKGROUNDS
+           ------------------------------------------------------------- */
+        .desktop-ambient-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background: #020408;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .desktop-ambient-video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            opacity: 0.45;
+            filter: blur(12px) brightness(0.65) saturate(1.3);
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .desktop-ambient-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(2, 6, 12, 0.25) 0%, rgba(2, 6, 12, 0.95) 100%);
+        }
+
+        /* 3D Animated Video inside the Casino Stage Table */
+        .stage-3d-bg-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+            filter: brightness(0.9) saturate(1.4) contrast(1.1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .stage-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(5, 12, 22, 0.2) 0%, rgba(2, 6, 12, 0.85) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* -------------------------------------------------------------
+           1:1 MOBILE APP SHELL (ROYAL CASINO TABLE)
+           ------------------------------------------------------------- */
+        .lucky-shell {
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #070d18 0%, #03060c 100%);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            border-left: 1px solid rgba(255, 215, 0, 0.2);
+            border-right: 1px solid rgba(255, 215, 0, 0.2);
+            margin: 0 auto;
+        }
+
+        /* 1. TOP HEADER BAR */
+        .lucky-topbar {
+            width: 100%;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            background: linear-gradient(180deg, #131c2e 0%, #09101d 100%);
+            border-bottom: 1.5px solid var(--table-border);
+            flex-shrink: 0;
+            z-index: 30;
+        }
+
+        .btn-lobby-back {
+            color: #ffd700;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 3px 7px;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:active {
+            transform: scale(0.95);
+            background: rgba(255, 215, 0, 0.25);
+        }
+
+        .lucky-brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .topbar-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wallet-badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #00ffcc;
+            background: rgba(0, 255, 204, 0.12);
+            border: 1px solid rgba(0, 255, 204, 0.4);
+            padding: 2px 7px;
+            border-radius: 5px;
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+            cursor: pointer;
+        }
+
+        .top-btn-icon {
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            font-size: 12px;
+            width: 26px;
+            height: 26px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .top-btn-icon:active { transform: scale(0.92); }
+
+        /* User Profile Avatar (Avatar Only - No Name Popup) */
+        .user-avatar-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1.5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            overflow: hidden;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.15s, border-color 0.2s;
+        }
+        .user-avatar-btn:active { transform: scale(0.92); }
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        @media (max-width: 380px) {
+            .lucky-topbar { padding: 0 4px; }
+            .lucky-brand-title { font-size: 11px; letter-spacing: 0.2px; }
+            .wallet-badge-pill { font-size: 9px; padding: 2px 4px; }
+            .top-btn-icon, .user-avatar-btn { width: 23px; height: 23px; font-size: 11px; }
+            .topbar-right-actions { gap: 3px; }
+        }
+
+        /* 2. HISTORY STRIP */
+        .lucky-substrip {
+            width: 100%;
+            height: 30px;
+            background: #060b14;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            flex-shrink: 0;
+            gap: 6px;
+        }
+
+        .history-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #8fa0be;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .history-ribbon {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 3px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .history-ribbon::-webkit-scrollbar { display: none; }
+
+        .hist-chip {
+            padding: 1.5px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+            font-weight: 900;
+            flex-shrink: 0;
+            animation: histPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes histPop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .hist-chip.pill-ultra {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.4));
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+        .hist-chip.pill-high {
+            background: rgba(0, 231, 0, 0.2);
+            border: 1px solid #00e700;
+            color: #00ffcc;
+        }
+        .hist-chip.pill-med {
+            background: rgba(245, 166, 35, 0.2);
+            border: 1px solid #f5a623;
+            color: #ffd700;
+        }
+        .hist-chip.pill-low {
+            background: rgba(142, 155, 176, 0.2);
+            border: 1px solid #8e9bb0;
+            color: #ccd6e8;
+        }
+
+        /* 3. ROYAL TABLE CASINO STAGE */
+        .lucky-stage-wrap {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4px 6px;
+            overflow: hidden;
+        }
+
+        .casino-felt-table {
+            width: 100%;
+            height: 100%;
+            max-height: 290px;
+            border-radius: 18px;
+            background: var(--table-felt-bg);
+            border: 2.5px solid var(--table-rim);
+            box-shadow: 
+                0 0 25px rgba(0, 0, 0, 0.95),
+                inset 0 0 25px rgba(0, 0, 0, 0.85),
+                0 0 12px var(--accent-glow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 4px 8px 6px;
+        }
+
+        /* Felt Texture & Golden Ring Pattern */
+        .felt-decor-circle {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 215, 0, 0.2);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .felt-brand-watermark {
+            position: absolute;
+            top: 6px;
+            font-family: 'Cinzel', serif;
+            font-size: 8.5px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: rgba(255, 215, 0, 0.35);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Table Status Instruction Banner */
+        .table-status-bubble {
+            background: rgba(5, 12, 22, 0.88);
+            border: 1.2px solid var(--table-border);
+            border-radius: 16px;
+            padding: 2.5px 10px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            z-index: 5;
+            backdrop-filter: blur(8px);
+        }
+
+        .table-status-text {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #ffd700;
+            text-align: center;
+            letter-spacing: 0.2px;
+        }
+
+        /* -------------------------------------------------------------
+           ULTRA-VIP 3D ANIMATED LUCKY REEL CYLINDER (THE CENTERPIECE)
+           ------------------------------------------------------------- */
+        .lucky-stage-hud {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .lucky-cylinder-wrap {
+            position: relative;
+            width: 146px;
+            height: 146px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        /* 3D Chasing Neon LED Track */
+        .cylinder-neon-track {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: neonTrackSpin 12s linear infinite;
+            pointer-events: none;
+            z-index: 8;
+        }
+        @keyframes neonTrackSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 3D Golden Cylinder Rim */
+        .lucky-reel-cylinder {
+            width: 136px;
+            height: 136px;
+            border-radius: 50%;
+            background: var(--cylinder-core);
+            border: 3.5px solid var(--cylinder-gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 35px rgba(0, 0, 0, 0.95),
+                inset 0 0 25px rgba(0, 0, 0, 0.9),
+                0 0 20px var(--accent-glow);
+            position: relative;
+            z-index: 10;
+            transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        /* Specular Golden Glint Passing across the Cylinder */
+        .lucky-reel-cylinder::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+            transform: skewX(-25deg);
+            animation: cylinderGlintPass 4s infinite;
+            pointer-events: none;
+        }
+        @keyframes cylinderGlintPass {
+            0%, 65% { left: -120%; }
+            100% { left: 160%; }
+        }
+
+        /* Rapid Spinning Vibration */
+        .lucky-reel-cylinder.spinning {
+            animation: luckyReelSpin 0.1s infinite alternate ease-in-out;
+            border-color: #00e5ff;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.8), inset 0 0 30px rgba(0, 229, 255, 0.4);
+        }
+        .lucky-reel-cylinder.spinning .cylinder-neon-track {
+            animation: neonTrackSpin 1.2s linear infinite;
+        }
+        @keyframes luckyReelSpin {
+            0% { transform: scale(1.03) rotate(-3.5deg); }
+            100% { transform: scale(1.07) rotate(3.5deg); }
+        }
+
+        .lucky-reel-cylinder.won {
+            transform: scale(1.14);
+            border-color: #00e700;
+            box-shadow: 0 0 50px rgba(0, 231, 0, 0.95), inset 0 0 25px rgba(0, 231, 0, 0.6);
+            animation: cylinderVictoryPulse 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes cylinderVictoryPulse {
+            0% { transform: scale(1.1); filter: drop-shadow(0 0 10px #00e700); }
+            100% { transform: scale(1.15); filter: drop-shadow(0 0 25px #ffd700); }
+        }
+
+        .lucky-reel-cylinder.lost {
+            transform: scale(0.96);
+            border-color: #ff3344;
+            box-shadow: 0 0 25px rgba(255, 51, 68, 0.6);
+        }
+
+        /* 3D Razor-Sharp Digital Numbers */
+        .lucky-cylinder-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 8px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+            margin-bottom: -2px;
+            z-index: 5;
+        }
+
+        .lucky-number-digits {
+            font-size: 52px;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 2px 5px rgba(0, 0, 0, 0.9);
+            letter-spacing: -2px;
+            line-height: 1;
+            z-index: 5;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .lucky-number-digits.won {
+            color: #00ffcc;
+            text-shadow: 0 0 35px #00ffcc, 0 0 20px #00e700;
+        }
+        .lucky-number-digits.lost {
+            color: #ff4757;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.8);
+        }
+
+        .lucky-cylinder-sub {
+            font-size: 11px;
+            z-index: 5;
+            margin-top: 1px;
+        }
+
+        /* Sub HUD Details Pill */
+        .lucky-sub-hud {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #ccd6e8;
+            background: rgba(10, 20, 14, 0.85);
+            padding: 4px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* -------------------------------------------------------------
+           4. PREDICTION MODES & BETTING TABS
+           ------------------------------------------------------------- */
+        .lucky-options-panel {
+            background: rgba(10, 18, 28, 0.92);
+            border-top: 1.5px solid var(--table-border);
+            border-bottom: 1.5px solid var(--table-border);
+            padding: 6px 8px;
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .lucky-bet-modes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 100%;
+            margin-bottom: 6px;
+        }
+
+        .lucky-mode-tab {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            color: #ccd6e8;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 5px 2px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .lucky-mode-tab:active { transform: scale(0.95); }
+        .lucky-mode-tab.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(0, 231, 0, 0.35));
+            border-color: #ffd700;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Prediction Choice Cards */
+        .lucky-choice-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .lucky-choice-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .btn-choice {
+            padding: 6px 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            font-size: 10.5px;
+            font-weight: 800;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            text-align: center;
+        }
+        .btn-choice span { font-size: 9.5px; }
+        .btn-choice b { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+        .btn-choice.active {
+            background: linear-gradient(135deg, rgba(0, 231, 0, 0.3), rgba(0, 180, 0, 0.4));
+            border-color: #00e700;
+            box-shadow: 0 0 12px rgba(0, 231, 0, 0.5);
+            color: #ffffff;
+        }
+
+        /* Exact Number Picker Slider & Chips */
+        .exact-picker-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .exact-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .exact-btn-step {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-weight: 900;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .exact-number-field {
+            width: 50px;
+            height: 28px;
+            background: #060c16;
+            border: 1px solid #ffd700;
+            border-radius: 6px;
+            color: #00ffcc;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            text-align: center;
+            outline: none;
+        }
+
+        .lucky-quick-chips {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .lucky-quick-chips::-webkit-scrollbar { display: none; }
+        .btn-exact-chip {
+            padding: 3px 7px;
+            background: rgba(19, 29, 46, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            color: #ffd700;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 800;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.15s ease;
+        }
+        .btn-exact-chip:active, .btn-exact-chip.active {
+            background: #ffd700;
+            color: #0b0701;
+            box-shadow: 0 0 8px #ffd700;
+        }
+
+        /* -------------------------------------------------------------
+           5. THREE HUD STATUS STRIP (WALLET / BET / WIN)
+           ------------------------------------------------------------- */
+        .lucky-hud-row {
+            width: 100%;
+            height: 38px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            padding: 2px 8px;
+            background: linear-gradient(180deg, #09101d 0%, #050b14 100%);
+            border-top: 1.5px solid var(--table-border);
+            border-bottom: 1.5px solid var(--table-border);
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .lucky-hud-box {
+            background: rgba(14, 23, 38, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1px 3px;
+        }
+
+        .hud-title-tag {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #8fa0be;
+            letter-spacing: 0.5px;
+        }
+
+        .hud-value-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        .hud-value-display.gold-win {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        /* -------------------------------------------------------------
+           6. CONTROL DECK & BETTING CONSOLE
+           ------------------------------------------------------------- */
+        .lucky-deck {
+            width: 100%;
+            padding: 6px 8px 8px;
+            background: linear-gradient(180deg, #0d1624 0%, #050912 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        /* Main Action Row */
+        .deck-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .bet-adjuster-bar {
+            flex: 1;
+            height: 38px;
+            background: rgba(14, 23, 38, 0.95);
+            border: 1.5px solid rgba(255, 215, 0, 0.35);
+            border-radius: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .btn-bet-step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 16px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-bet-step:active { transform: scale(0.9); background: rgba(255, 215, 0, 0.35); }
+
+        .bet-text-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .bet-label-small {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #8fa0be;
+        }
+        .bet-amount-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+
+        /* Master Start / Roll Button */
+        .btn-master-roll {
+            height: 38px;
+            padding: 0 16px;
+            border-radius: 19px;
+            background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ffd700 45%, #e67e22 80%, #a04000 100%);
+            border: 1.5px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #0b0701;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+        .btn-master-roll:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .btn-master-roll:active { transform: scale(0.95); }
+        .btn-master-roll.disabled {
+            filter: grayscale(0.8) opacity(0.5);
+            pointer-events: none;
+        }
+
+        /* Chip Tray Row */
+        .lucky-chiptray-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3px;
+            padding-top: 1px;
+        }
+
+        .chip-button {
+            flex: 1;
+            padding: 3px 0;
+            background: rgba(19, 29, 46, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 5px;
+            color: #ccd6e8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .chip-button:active, .chip-button.active {
+            background: rgba(255, 215, 0, 0.25);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        /* Win Confetti Canvas */
+        #confettiCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        /* Big Win Banner Overlay */
+        .win-pop-banner {
+            position: absolute;
+            top: 25%;
+            left: 8%;
+            right: 8%;
+            background: linear-gradient(135deg, rgba(16, 28, 48, 0.98), rgba(6, 12, 22, 0.98));
+            border: 2.5px solid #ffd700;
+            border-radius: 16px;
+            padding: 16px 10px;
+            text-align: center;
+            z-index: 80;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: winBannerPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .win-pop-banner.active { display: flex; }
+
+        @keyframes winBannerPop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* -------------------------------------------------------------
+           THEME PICKER & RULES MODAL
+           ------------------------------------------------------------- */
+        .modal-wrap {
+            position: fixed;
+            inset: 0;
+            background: rgba(1, 4, 8, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+        .modal-wrap.open { display: flex; }
+
+        .modal-card {
+            width: 100%;
+            max-width: 420px;
+            max-height: 85vh;
+            background: linear-gradient(180deg, #101c30 0%, #060c16 100%);
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .modal-card-header {
+            padding: 12px 14px;
+            background: #15243d;
+            border-bottom: 1.5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-card-body {
+            padding: 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .theme-select-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .theme-option-card {
+            background: rgba(14, 23, 38, 0.8);
+            border: 1.5px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .theme-option-card:hover, .theme-option-card.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY VIP LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 240px;
+        }
+        .pp-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
+        .pp-bar-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #ffcc00;
+            box-shadow: 0 0 10px #ffcc00;
+            border-radius: 3px;
+            transition: width 0.15s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           RESPONSIVE MOBILE VIEWPORT ENGINE (ZERO SCROLL FIT)
+           ------------------------------------------------------------- */
+        @media (max-height: 720px) {
+            .casino-felt-table { max-height: 250px; }
+            .lucky-cylinder-wrap { width: 126px; height: 126px; }
+            .lucky-reel-cylinder { width: 118px; height: 118px; }
+            .lucky-number-digits { font-size: 44px; }
+            .lucky-sub-hud { padding: 3px 10px; font-size: 9px; }
+            .table-status-bubble { padding: 2px 8px; margin-bottom: 3px; }
+            .btn-master-roll { height: 35px; font-size: 11px; }
+            .bet-adjuster-bar { height: 35px; }
+        }
+
+        @media (max-height: 620px) {
+            .lucky-topbar { height: 34px; padding: 0 6px; }
+            .lucky-brand-title { font-size: 11px; }
+            .lucky-substrip { height: 26px; }
+            .casino-felt-table { max-height: 210px; border-radius: 14px; }
+            .felt-decor-circle { width: 170px; height: 170px; }
+            .lucky-cylinder-wrap { width: 108px; height: 108px; }
+            .lucky-reel-cylinder { width: 100px; height: 100px; }
+            .lucky-number-digits { font-size: 38px; }
+            .lucky-sub-hud { font-size: 8.5px; padding: 2px 8px; }
+            .lucky-options-panel { padding: 4px 6px; }
+            .lucky-mode-tab { font-size: 9px; padding: 4px 2px; }
+            .btn-choice { padding: 4px 2px; font-size: 9.5px; }
+            .lucky-hud-row { height: 32px; }
+            .lucky-deck { padding: 4px 6px 6px; gap: 4px; }
+            .btn-master-roll { height: 33px; font-size: 10px; }
+            .bet-adjuster-bar { height: 33px; }
+            .btn-bet-step { width: 26px; height: 26px; font-size: 14px; }
+            .chip-button { padding: 2px 0; font-size: 8px; }
+        }
+
+        @media (max-height: 520px) {
+            .lucky-topbar { height: 30px; }
+            .lucky-substrip { height: 22px; }
+            .casino-felt-table { max-height: 170px; }
+            .lucky-cylinder-wrap { width: 90px; height: 90px; }
+            .lucky-reel-cylinder { width: 84px; height: 84px; }
+            .lucky-number-digits { font-size: 30px; }
+            .lucky-hud-row { height: 28px; }
+            .lucky-deck { padding: 3px 5px 5px; gap: 3px; }
+        }
+    </style>
+</head>
+<body class="theme-emerald">
+
+    <!-- 1. PRAGMATIC PLAY VIP LOADING SCREEN -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DESKTOP AMBIENT BACKGROUND (3D ANIMATED VIDEO) -->
+    <div class="desktop-ambient-wrap">
+        <video class="desktop-ambient-video" autoplay loop muted playsinline poster="../assets/games/slots777/vegas_ambient.jpg">
+            <source src="../assets/games/slots777/vegas_ambient_loop.mp4" type="video/mp4">
+            <source src="../assets/games/slots777/vegas_ambient_loop.webm" type="video/webm">
+        </video>
+        <div class="desktop-ambient-vignette"></div>
+    </div>
+
+    <!-- Background Audio Element -->
+    <audio id="casinoBgm" src="../assets/audio/card/casino_bgm.mp3" loop preload="auto"></audio>
+
+    <!-- 3. MAIN ROYAL APP SHELL (100% 0-SCROLL VIEWPORT) -->
+    <div class="lucky-shell">
+
+        <!-- Top Navigation Bar -->
+        <header class="lucky-topbar">
+            <a href="../index.html" class="btn-lobby-back">
+                <span>◀</span> LOBBY
+            </a>
+            <div class="lucky-brand-title">
+                <span>🍀</span> LUCKY 777 VIP
+            </div>
+            <div class="topbar-right-actions">
+                <div id="topWalletDisplay" class="wallet-badge-pill" title="Tap to sync Wallet">₨ 0.00</div>
+                <button class="top-btn-icon" id="soundBtn" onclick="luckyEngine.toggleAudio()" title="Sound FX">🔊</button>
+                <button class="top-btn-icon" id="voiceBtn" onclick="luckyEngine.toggleVoice()" title="Voice Announcer">🗣️</button>
+                <button class="top-btn-icon" onclick="luckyEngine.toggleThemeModal()" title="Themes & Rules">🎨</button>
+                <!-- Profile Avatar Only - No Name Popup -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar" aria-label="Profile">
+                    <span id="headerAvatarIcon" style="font-size:13px;">👑</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Recent History Ribbon -->
+        <div class="lucky-substrip">
+            <div class="history-tag">
+                <span>📊</span> RECENT:
+            </div>
+            <div class="history-ribbon" id="historyRibbon">
+                <span class="hist-chip pill-ultra">77 🍀</span>
+                <span class="hist-chip pill-med">14</span>
+                <span class="hist-chip pill-ultra">7 ⭐</span>
+                <span class="hist-chip pill-low">42</span>
+                <span class="hist-chip pill-high">88</span>
+                <span class="hist-chip pill-low">3</span>
+                <span class="hist-chip pill-med">21</span>
+            </div>
+        </div>
+
+        <!-- Felt Casino Stage Arena -->
+        <div class="lucky-stage-wrap">
+            <div class="casino-felt-table">
+                <!-- 3D Animated Background Video Loop Inside Felt Stage -->
+                <video class="stage-3d-bg-video" autoplay loop muted playsinline poster="../assets/games/slots777/vegas_ambient.jpg">
+                    <source src="../assets/games/slots777/vegas_ambient_loop.mp4" type="video/mp4">
+                    <source src="../assets/games/slots777/vegas_ambient_loop.webm" type="video/webm">
+                </video>
+                <div class="stage-video-overlay"></div>
+                <div class="felt-decor-circle"></div>
+                <div class="felt-brand-watermark">BET WITH NET • PROVABLY FAIR 98%</div>
+
+                <!-- Table Status Bubble -->
+                <div class="table-status-bubble" id="statusBubble">
+                    <span id="statusIcon">✨</span>
+                    <span id="statusMsg" class="table-status-text">Select Prediction & Tap ROLL</span>
+                </div>
+
+                <!-- 3D Animated Lucky Reel Cylinder (The Centerpiece) -->
+                <div class="lucky-stage-hud">
+                    <div class="lucky-cylinder-wrap">
+                        <div class="cylinder-neon-track"></div>
+                        <div id="luckyCylinder" class="lucky-reel-cylinder">
+                            <span class="lucky-cylinder-tag">LUCKY 777</span>
+                            <div id="luckyNumberDisplay" class="lucky-number-digits">77</div>
+                            <span class="lucky-cylinder-sub">🍀</span>
+                        </div>
+                    </div>
+
+                    <!-- Sub HUD Prediction Details -->
+                    <div class="lucky-sub-hud">
+                        <span>Target: <b id="hudTargetText" style="color:#ffd700;">Lucky 7 or 77</b></span>
+                        <span>•</span>
+                        <span>Payout: <b id="hudPayoutMultiplier" style="color:#00ffcc;">12.00×</b></span>
+                    </div>
+                </div>
+
+                <!-- Canvas for Win Particles -->
+                <canvas id="confettiCanvas"></canvas>
+
+                <!-- Big Win Alert Popup -->
+                <div class="win-pop-banner" id="winBanner">
+                    <span style="font-family:'Cinzel',serif; font-size:17px; font-weight:900; color:#ffd700;">💎 LUCKY 777 WIN! 💎</span>
+                    <span id="winBannerAmt" style="font-family:'JetBrains Mono',monospace; font-size:23px; font-weight:900; color:#00ffcc;">+₨ 1,200.00</span>
+                    <button class="chip-button" style="width:110px; padding:6px; font-size:11px; margin-top:4px;" onclick="luckyEngine.dismissWinBanner()">CONTINUE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Options Panel -->
+        <div class="lucky-options-panel">
+            <!-- Mode Selection Tabs -->
+            <div class="lucky-bet-modes">
+                <button class="lucky-mode-tab active" id="tabModeLucky7" onclick="luckyEngine.setMode('lucky7')">🍀 Lucky 7s (12×)</button>
+                <button class="lucky-mode-tab" id="tabModeExact" onclick="luckyEngine.setMode('exact')">🎯 Exact # (95×)</button>
+                <button class="lucky-mode-tab" id="tabModeEvenOdd" onclick="luckyEngine.setMode('evenodd')">⚖️ Even / Odd (1.96×)</button>
+            </div>
+
+            <!-- Mode 1: Lucky 7s Predictions -->
+            <div id="panelModeLucky7">
+                <div class="lucky-choice-grid-3">
+                    <button class="btn-choice" id="choiceUnder" onclick="luckyEngine.setChoice('under')">
+                        <span>Low (1 - 49)</span>
+                        <b style="color:#ffd700;">1.96×</b>
+                    </button>
+                    <button class="btn-choice active" id="choiceLucky7" onclick="luckyEngine.setChoice('lucky7')">
+                        <span style="color:#00ffcc;">🍀 7 or 77</span>
+                        <b style="color:#00ffcc;">12.00×</b>
+                    </button>
+                    <button class="btn-choice" id="choiceOver" onclick="luckyEngine.setChoice('over')">
+                        <span>High (50 - 99)</span>
+                        <b style="color:#ffd700;">1.96×</b>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mode 2: Exact Number (0 to 99) -->
+            <div id="panelModeExact" style="display:none;">
+                <div class="exact-picker-box">
+                    <div style="font-size:10px; font-weight:800; color:#8fa0be;">PICK EXACT NUMBER (0 - 99):</div>
+                    <div class="exact-input-wrap">
+                        <button class="exact-btn-step" onclick="luckyEngine.stepExactNumber(-1)">-</button>
+                        <input type="number" id="exactNumberInput" class="exact-number-field" value="7" min="0" max="99" oninput="luckyEngine.setExactNumber(this.value)">
+                        <button class="exact-btn-step" onclick="luckyEngine.stepExactNumber(1)">+</button>
+                    </div>
+                </div>
+                <div class="lucky-quick-chips">
+                    <button class="btn-exact-chip active" id="chipExact7" onclick="luckyEngine.setExactNumber(7)">#7 🍀</button>
+                    <button class="btn-exact-chip" id="chipExact77" onclick="luckyEngine.setExactNumber(77)">#77 ⭐</button>
+                    <button class="btn-exact-chip" id="chipExact8" onclick="luckyEngine.setExactNumber(8)">#8</button>
+                    <button class="btn-exact-chip" id="chipExact88" onclick="luckyEngine.setExactNumber(88)">#88</button>
+                    <button class="btn-exact-chip" id="chipExact21" onclick="luckyEngine.setExactNumber(21)">#21</button>
+                    <button class="btn-exact-chip" id="chipExact3" onclick="luckyEngine.setExactNumber(3)">#3</button>
+                    <button class="btn-exact-chip" id="chipExact99" onclick="luckyEngine.setExactNumber(99)">#99</button>
+                </div>
+            </div>
+
+            <!-- Mode 3: Even / Odd Predictions -->
+            <div id="panelModeEvenOdd" style="display:none;">
+                <div class="lucky-choice-grid-2">
+                    <button class="btn-choice active" id="choiceEven" onclick="luckyEngine.setChoice('even')">
+                        <span>EVEN NUMBER (2, 4, 6, ...)</span>
+                        <b style="color:#ffd700;">1.96×</b>
+                    </button>
+                    <button class="btn-choice" id="choiceOdd" onclick="luckyEngine.setChoice('odd')">
+                        <span>ODD NUMBER (1, 3, 5, ...)</span>
+                        <b style="color:#ffd700;">1.96×</b>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Three HUD Status Boxes -->
+        <div class="lucky-hud-row">
+            <div class="lucky-hud-box">
+                <span class="hud-title-tag">BALANCE</span>
+                <span id="hudBalanceVal" class="hud-value-display">0.00</span>
+            </div>
+            <div class="lucky-hud-box">
+                <span class="hud-title-tag">BET AMOUNT</span>
+                <span id="hudBetVal" class="hud-value-display">100.00</span>
+            </div>
+            <div class="lucky-hud-box">
+                <span class="hud-title-tag">LAST WIN</span>
+                <span id="hudWinVal" class="hud-value-display gold-win">0.00</span>
+            </div>
+        </div>
+
+        <!-- Control Deck & Chips Console -->
+        <div class="lucky-deck">
+            <div class="deck-action-row">
+                <!-- Bet Adjuster Pill -->
+                <div class="bet-adjuster-bar">
+                    <button class="btn-bet-step" onclick="luckyEngine.adjustBet(-1)">-</button>
+                    <div class="bet-text-center">
+                        <span class="bet-label-small">BET AMOUNT</span>
+                        <span id="betDisplayNumber" class="bet-amount-display">₨ 100.00</span>
+                    </div>
+                    <button class="btn-bet-step" onclick="luckyEngine.adjustBet(1)">+</button>
+                </div>
+
+                <!-- Grand Master Roll Button -->
+                <button id="mainRollBtn" class="btn-master-roll" onclick="luckyEngine.roll()">
+                    <span>🎲</span>
+                    <span id="btnRollText">ROLL NUMBER</span>
+                </button>
+            </div>
+
+            <!-- Chip Tray Presets & Bet Multipliers -->
+            <div class="lucky-chiptray-row">
+                <div class="chip-button" onclick="luckyEngine.setBetModifier('half')">½</div>
+                <div class="chip-button" onclick="luckyEngine.setBetModifier('double')">2×</div>
+                <div class="chip-button active" onclick="luckyEngine.setBet(100)">100</div>
+                <div class="chip-button" onclick="luckyEngine.setBet(500)">500</div>
+                <div class="chip-button" onclick="luckyEngine.setBet(1000)">1K</div>
+                <div class="chip-button" onclick="luckyEngine.setBet(5000)">5K</div>
+                <div class="chip-button" onclick="luckyEngine.setBetModifier('max')">MAX</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Theme Picker & Rules Modal -->
+    <div id="themeModal" class="modal-wrap">
+        <div class="modal-card">
+            <div class="modal-card-header">
+                <span style="font-family:'Cinzel',serif; font-size:14px; font-weight:900; color:#ffd700;">🎨 THEMES & GAME RULES</span>
+                <button class="top-btn-icon" onclick="luckyEngine.toggleThemeModal()">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <span style="font-size:11px; font-weight:800; color:#ffd700; letter-spacing:0.5px;">CHOOSE TABLE FELT THEME:</span>
+                <div class="theme-select-grid">
+                    <div class="theme-option-card active" onclick="luckyEngine.switchTheme('theme-emerald')">
+                        <span style="font-size:22px;">🟢</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Vegas Emerald</div>
+                            <div style="font-size:9.5px; color:#00ffcc;">Gold & Velvet 777</div>
+                        </div>
+                    </div>
+                    <div class="theme-option-card" onclick="luckyEngine.switchTheme('theme-ruby')">
+                        <span style="font-size:22px;">🔴</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Ruby Vegas</div>
+                            <div style="font-size:9.5px; color:#ff6b81;">Imperial Crimson</div>
+                        </div>
+                    </div>
+                    <div class="theme-option-card" onclick="luckyEngine.switchTheme('theme-sapphire')">
+                        <span style="font-size:22px;">🔵</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Sapphire Cyber</div>
+                            <div style="font-size:9.5px; color:#00f0ff;">Neon Platinum</div>
+                        </div>
+                    </div>
+                    <div class="theme-option-card" onclick="luckyEngine.switchTheme('theme-onyx')">
+                        <span style="font-size:22px;">⚫</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Onyx VIP</div>
+                            <div style="font-size:9.5px; color:#ffd700;">Pure 24K Gold</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px; padding:10px; background:rgba(0,0,0,0.5); border-radius:8px; border:1px solid rgba(255,215,0,0.2); font-size:11px; line-height:1.5;">
+                    <div style="font-weight:900; color:#ffd700; margin-bottom:4px;">🍀 GAMEPLAY RULES:</div>
+                    <p>1. The cylinder reel rolls a Provably Fair number from <strong>0 to 99</strong>.</p>
+                    <p>2. <strong>Lucky 7s Mode:</strong> Bet on <strong>Lucky 7 or 77 (12.00×)</strong>, Low 1-49 (1.96×), or High 50-99 (1.96×).</p>
+                    <p>3. <strong>Exact Number Mode:</strong> Pick any single number for an enormous <strong>95.00× Jackpot</strong>.</p>
+                    <p>4. <strong>Even / Odd Mode:</strong> Double your stake with <strong>1.96×</strong> payouts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO SYNTHESIS & ENGINE LOGIC -->
+    <script>
+        class SoundSynth {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) this.ctx = new AudioCtx();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+
+            playClick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            }
+
+            playTick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(260 + Math.random() * 80, now);
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.06);
+            }
+
+            playWinChime() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const chord = [523.25, 659.25, 783.99, 1046.50]; // C Major arpeggio
+                chord.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + (idx * 0.07));
+                    gain.gain.setValueAtTime(0.25, now + (idx * 0.07));
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + (idx * 0.07) + 0.35);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + (idx * 0.07));
+                    osc.stop(now + (idx * 0.07) + 0.36);
+                });
+            }
+
+            playJackpotFanfare() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const fanfare = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
+                fanfare.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + (idx * 0.08));
+                    gain.gain.setValueAtTime(0.3, now + (idx * 0.08));
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + (idx * 0.08) + 0.5);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + (idx * 0.08));
+                    osc.stop(now + (idx * 0.08) + 0.52);
+                });
+            }
+
+            playLoss() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.exponentialRampToValueAtTime(70, now + 0.18);
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.21);
+            }
+        }
+
+        const sound = new SoundSynth();
+
+        /* -------------------------------------------------------------
+           CASINO LIVE VOICE ANNOUNCER (SPEECH SYNTHESIS & COMMENTARY)
+           ------------------------------------------------------------- */
+        class CasinoVoiceAnnouncer {
+            constructor() {
+                this.enabled = true;
+                this.synth = window.speechSynthesis || null;
+                this.voice = null;
+
+                if (this.synth) {
+                    const loadVoices = () => {
+                        try {
+                            const voices = this.synth.getVoices();
+                            this.voice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Female') || v.name.includes('Jenny') || v.name.includes('Online')))
+                                         || voices.find(v => v.lang.startsWith('en')) 
+                                         || voices[0] || null;
+                        } catch(e) {}
+                    };
+                    loadVoices();
+                    if (this.synth.onvoiceschanged !== undefined) {
+                        this.synth.onvoiceschanged = loadVoices;
+                    }
+                }
+
+                const saved = localStorage.getItem('bwn_lucky_voice');
+                if (saved !== null) {
+                    this.enabled = (saved === 'true');
+                }
+            }
+
+            toggle() {
+                this.enabled = !this.enabled;
+                localStorage.setItem('bwn_lucky_voice', this.enabled);
+                this.updateBtnUI();
+                if (this.enabled) {
+                    this.speak("Voice enabled", true);
+                } else {
+                    if (this.synth) this.synth.cancel();
+                }
+            }
+
+            updateBtnUI() {
+                const btn = document.getElementById('voiceBtn');
+                if (btn) {
+                    btn.textContent = this.enabled ? '🗣️' : '🔇';
+                    btn.title = this.enabled ? 'Voice: ON' : 'Voice: OFF';
+                    btn.style.opacity = this.enabled ? '1' : '0.55';
+                }
+            }
+
+            speak(text, cancelCurrent = false) {
+                if (!this.enabled || !this.synth) return;
+                try {
+                    if (cancelCurrent) {
+                        this.synth.cancel();
+                    }
+                    const utter = new SpeechSynthesisUtterance(text);
+                    if (this.voice) utter.voice = this.voice;
+                    utter.rate = 1.05;
+                    utter.pitch = 1.05;
+                    utter.volume = 1.0;
+                    this.synth.speak(utter);
+                } catch(e) {}
+            }
+        }
+
+        const voiceAnnouncer = new CasinoVoiceAnnouncer();
+
+        /* -------------------------------------------------------------
+           LUCKY NUMBER 777 ENGINE
+           ------------------------------------------------------------- */
+        class LuckyNumberEngine {
+            constructor() {
+                this.mode = 'lucky7'; // 'lucky7' | 'exact' | 'evenodd'
+                this.choice = 'lucky7'; // 'under' | 'lucky7' | 'over' | 'even' | 'odd'
+                this.exactNumber = 7;
+                this.betAmount = 100;
+                this.balance = 5000;
+                this.isSpinning = false;
+                this.history = [77, 14, 7, 42, 88, 3, 21, 7];
+                this.confettiCanvas = null;
+                this.confettiCtx = null;
+                this.particles = [];
+            }
+
+            init() {
+                this.confettiCanvas = document.getElementById('confettiCanvas');
+                if (this.confettiCanvas) {
+                    this.confettiCtx = this.confettiCanvas.getContext('2d');
+                    this.resizeCanvas();
+                    window.addEventListener('resize', () => this.resizeCanvas());
+                }
+                voiceAnnouncer.updateBtnUI();
+                this.updateUI();
+                this.renderHistory();
+            }
+
+            resizeCanvas() {
+                if (!this.confettiCanvas) return;
+                this.confettiCanvas.width = this.confettiCanvas.offsetWidth || 360;
+                this.confettiCanvas.height = this.confettiCanvas.offsetHeight || 290;
+            }
+
+            formatCurrency(amt) {
+                return '₨ ' + Number(amt).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+
+            updateUI() {
+                const betDisplay = document.getElementById('betDisplayNumber');
+                const hudBet = document.getElementById('hudBetVal');
+                const hudBal = document.getElementById('hudBalanceVal');
+                const topWallet = document.getElementById('topWalletDisplay');
+
+                if (betDisplay) betDisplay.textContent = this.formatCurrency(this.betAmount);
+                if (hudBet) hudBet.textContent = Number(this.betAmount).toFixed(2);
+                if (hudBal) hudBal.textContent = Number(this.balance).toFixed(2);
+                if (topWallet) topWallet.textContent = this.formatCurrency(this.balance);
+
+                this.updateTargetHUD();
+            }
+
+            updateTargetHUD() {
+                const hudTarget = document.getElementById('hudTargetText');
+                const hudPayout = document.getElementById('hudPayoutMultiplier');
+
+                let targetDesc = 'Lucky 7 or 77';
+                let mult = '12.00×';
+
+                if (this.mode === 'lucky7') {
+                    if (this.choice === 'lucky7') { targetDesc = '🍀 Lucky 7 or 77'; mult = '12.00×'; }
+                    else if (this.choice === 'under') { targetDesc = 'Low (1 - 49)'; mult = '1.96×'; }
+                    else if (this.choice === 'over') { targetDesc = 'High (50 - 99)'; mult = '1.96×'; }
+                } else if (this.mode === 'exact') {
+                    targetDesc = `🎯 Exact #${this.exactNumber}`;
+                    mult = '95.00×';
+                } else if (this.mode === 'evenodd') {
+                    targetDesc = this.choice === 'even' ? '⚖️ Even Numbers' : '🎲 Odd Numbers';
+                    mult = '1.96×';
+                }
+
+                if (hudTarget) hudTarget.textContent = targetDesc;
+                if (hudPayout) hudPayout.textContent = mult;
+            }
+
+            setStatus(icon, msg) {
+                const sIcon = document.getElementById('statusIcon');
+                const sMsg = document.getElementById('statusMsg');
+                if (sIcon) sIcon.textContent = icon;
+                if (sMsg) sMsg.textContent = msg;
+            }
+
+            setMode(mode) {
+                if (this.isSpinning) return;
+                sound.playClick();
+                this.mode = mode;
+
+                if (mode === 'lucky7') voiceAnnouncer.speak("Lucky Sevens", true);
+                else if (mode === 'exact') voiceAnnouncer.speak("Exact Number", true);
+                else if (mode === 'evenodd') voiceAnnouncer.speak("Even or Odd", true);
+
+                // Update mode tabs
+                document.querySelectorAll('.lucky-mode-tab').forEach(t => t.classList.remove('active'));
+                if (mode === 'lucky7') document.getElementById('tabModeLucky7')?.classList.add('active');
+                if (mode === 'exact') document.getElementById('tabModeExact')?.classList.add('active');
+                if (mode === 'evenodd') document.getElementById('tabModeEvenOdd')?.classList.add('active');
+
+                // Toggle mode panels
+                document.getElementById('panelModeLucky7').style.display = (mode === 'lucky7') ? 'block' : 'none';
+                document.getElementById('panelModeExact').style.display = (mode === 'exact') ? 'block' : 'none';
+                document.getElementById('panelModeEvenOdd').style.display = (mode === 'evenodd') ? 'block' : 'none';
+
+                if (mode === 'lucky7' && !['under', 'lucky7', 'over'].includes(this.choice)) {
+                    this.choice = 'lucky7';
+                } else if (mode === 'evenodd' && !['even', 'odd'].includes(this.choice)) {
+                    this.choice = 'even';
+                }
+
+                this.updateChoiceButtons();
+                this.updateTargetHUD();
+            }
+
+            setChoice(choice) {
+                if (this.isSpinning) return;
+                sound.playClick();
+                this.choice = choice;
+
+                if (choice === 'under') voiceAnnouncer.speak("Low Numbers");
+                else if (choice === 'over') voiceAnnouncer.speak("High Numbers");
+                else if (choice === 'lucky7') voiceAnnouncer.speak("Lucky Seven");
+                else if (choice === 'even') voiceAnnouncer.speak("Even");
+                else if (choice === 'odd') voiceAnnouncer.speak("Odd");
+
+                this.updateChoiceButtons();
+                this.updateTargetHUD();
+            }
+
+            updateChoiceButtons() {
+                // Lucky 7 choices
+                document.getElementById('choiceUnder')?.classList.toggle('active', this.choice === 'under');
+                document.getElementById('choiceLucky7')?.classList.toggle('active', this.choice === 'lucky7');
+                document.getElementById('choiceOver')?.classList.toggle('active', this.choice === 'over');
+
+                // Even/Odd choices
+                document.getElementById('choiceEven')?.classList.toggle('active', this.choice === 'even');
+                document.getElementById('choiceOdd')?.classList.toggle('active', this.choice === 'odd');
+            }
+
+            setExactNumber(num) {
+                if (this.isSpinning) return;
+                let val = parseInt(num, 10);
+                if (isNaN(val)) val = 7;
+                val = Math.max(0, Math.min(99, val));
+                this.exactNumber = val;
+
+                const input = document.getElementById('exactNumberInput');
+                if (input && input.value != val) input.value = val;
+
+                sound.playClick();
+                this.updateTargetHUD();
+
+                // Highlight active quick chip
+                document.querySelectorAll('.btn-exact-chip').forEach(c => c.classList.remove('active'));
+                const matched = document.getElementById(`chipExact${val}`);
+                if (matched) matched.classList.add('active');
+            }
+
+            stepExactNumber(delta) {
+                let current = parseInt(this.exactNumber, 10) || 0;
+                current += delta;
+                if (current < 0) current = 99;
+                if (current > 99) current = 0;
+                this.setExactNumber(current);
+            }
+
+            setBet(amt) {
+                if (this.isSpinning) return;
+                sound.playClick();
+                this.betAmount = Math.max(10, Math.min(this.balance, amt));
+                this.updateUI();
+
+                document.querySelectorAll('.lucky-chiptray-row .chip-button').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent.trim() === String(amt) || (amt === 1000 && btn.textContent.includes('1K')) || (amt === 5000 && btn.textContent.includes('5K'))) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            adjustBet(step) {
+                if (this.isSpinning) return;
+                sound.playClick();
+                let delta = 50;
+                if (this.betAmount >= 1000) delta = 500;
+                else if (this.betAmount >= 500) delta = 100;
+
+                this.betAmount = Math.max(10, Math.min(this.balance, this.betAmount + (step * delta)));
+                this.updateUI();
+            }
+
+            setBetModifier(mod) {
+                if (this.isSpinning) return;
+                sound.playClick();
+                if (mod === 'half') this.betAmount = Math.max(10, Math.floor(this.betAmount / 2));
+                else if (mod === 'double') this.betAmount = Math.min(this.balance, this.betAmount * 2);
+                else if (mod === 'max') this.betAmount = Math.max(10, this.balance);
+                this.updateUI();
+            }
+
+            renderHistory() {
+                const ribbon = document.getElementById('historyRibbon');
+                if (!ribbon) return;
+
+                ribbon.innerHTML = this.history.map(num => {
+                    let pillClass = 'pill-med';
+                    let suffix = '';
+                    if (num === 7 || num === 77) {
+                        pillClass = 'pill-ultra';
+                        suffix = ' 🍀';
+                    } else if (num >= 70) {
+                        pillClass = 'pill-high';
+                    } else if (num < 30) {
+                        pillClass = 'pill-low';
+                    }
+                    return `<span class="hist-chip ${pillClass}">${num}${suffix}</span>`;
+                }).join('');
+            }
+
+            addHistory(num) {
+                this.history.unshift(num);
+                if (this.history.length > 10) this.history.pop();
+                this.renderHistory();
+            }
+
+            async roll() {
+                if (this.isSpinning) return;
+
+                // Check balance
+                if (this.balance < this.betAmount) {
+                    this.setStatus('⚠️', 'Insufficient Balance! Please deposit.');
+                    sound.playLoss();
+                    voiceAnnouncer.speak("Insufficient balance. Please deposit funds.", true);
+                    return;
+                }
+
+                this.dismissWinBanner();
+                this.isSpinning = true;
+
+                // Deduct wager
+                this.balance -= this.betAmount;
+                this.updateUI();
+
+                const rollBtn = document.getElementById('mainRollBtn');
+                if (rollBtn) rollBtn.classList.add('disabled');
+
+                const cylinder = document.getElementById('luckyCylinder');
+                const numberDisplay = document.getElementById('luckyNumberDisplay');
+
+                if (cylinder) {
+                    cylinder.classList.remove('won', 'lost');
+                    cylinder.classList.add('spinning');
+                }
+                if (numberDisplay) {
+                    numberDisplay.classList.remove('won', 'lost');
+                }
+
+                this.setStatus('🎲', 'Rolling Cylinder... Watch the Numbers!');
+
+                const rollVoiceLines = [
+                    "Rolling the lucky wheel, good luck!",
+                    "Rolling the cylinder!",
+                    "Spinning for the lucky win!"
+                ];
+                voiceAnnouncer.speak(rollVoiceLines[Math.floor(Math.random() * rollVoiceLines.length)], true);
+
+                // Fast High-Roller Ticks
+                let ticks = 0;
+                const maxTicks = 18;
+                const spinInterval = setInterval(() => {
+                    const fakeNum = Math.floor(Math.random() * 100);
+                    if (numberDisplay) numberDisplay.textContent = fakeNum;
+                    sound.playTick();
+                    ticks++;
+
+                    if (ticks >= maxTicks) {
+                        clearInterval(spinInterval);
+                        this.finishRoll();
+                    }
+                }, 65);
+            }
+
+            async finishRoll() {
+                // Determine Provably Fair Roll (0 to 99)
+                let roll = Math.floor(Math.random() * 100);
+
+                // Admin win rate hook if present
+                if (window.adminConfig && typeof window.adminConfig.shouldWin === 'function' && window.adminConfig.shouldWin('lucky')) {
+                    if (this.mode === 'exact') roll = this.exactNumber;
+                    else if (this.mode === 'lucky7') {
+                        if (this.choice === 'lucky7') roll = Math.random() < 0.5 ? 7 : 77;
+                        else if (this.choice === 'under') roll = Math.floor(1 + Math.random() * 48);
+                        else roll = Math.floor(50 + Math.random() * 49);
+                    } else if (this.mode === 'evenodd') {
+                        roll = this.choice === 'even' ? (Math.floor(Math.random() * 49) * 2 + 2) : (Math.floor(Math.random() * 50) * 2 + 1);
+                    }
+                }
+
+                const cylinder = document.getElementById('luckyCylinder');
+                const numberDisplay = document.getElementById('luckyNumberDisplay');
+
+                if (cylinder) cylinder.classList.remove('spinning');
+                if (numberDisplay) numberDisplay.textContent = roll;
+
+                // Evaluate Win
+                let won = false;
+                let multiplier = 0;
+
+                if (this.mode === 'lucky7') {
+                    if (this.choice === 'lucky7' && (roll === 7 || roll === 77)) {
+                        won = true;
+                        multiplier = 12.00;
+                    } else if (this.choice === 'under' && (roll >= 1 && roll <= 49)) {
+                        won = true;
+                        multiplier = 1.96;
+                    } else if (this.choice === 'over' && (roll >= 50 && roll <= 99)) {
+                        won = true;
+                        multiplier = 1.96;
+                    }
+                } else if (this.mode === 'exact') {
+                    if (roll === this.exactNumber) {
+                        won = true;
+                        multiplier = 95.00;
+                    }
+                } else if (this.mode === 'evenodd') {
+                    if (this.choice === 'even' && (roll % 2 === 0)) {
+                        won = true;
+                        multiplier = 1.96;
+                    } else if (this.choice === 'odd' && (roll % 2 !== 0)) {
+                        won = true;
+                        multiplier = 1.96;
+                    }
+                }
+
+                const payout = won ? (this.betAmount * multiplier) : 0;
+                const hudWin = document.getElementById('hudWinVal');
+
+                if (won) {
+                    this.balance += payout;
+                    if (hudWin) hudWin.textContent = Number(payout).toFixed(2);
+                    if (cylinder) cylinder.classList.add('won');
+                    if (numberDisplay) numberDisplay.classList.add('won');
+
+                    this.setStatus('🎉', `WINNER! Rolled #${roll}! (${multiplier}×)`);
+
+                    if (multiplier >= 12) {
+                        sound.playJackpotFanfare();
+                        this.showWinBanner(payout);
+                        this.triggerConfetti();
+                        voiceAnnouncer.speak(`Lucky Seven! Number ${roll}! Jackpot winner!`, true);
+                    } else {
+                        sound.playWinChime();
+                        this.triggerConfetti();
+                        voiceAnnouncer.speak(`Number ${roll}! Winner!`, true);
+                    }
+                } else {
+                    if (hudWin) hudWin.textContent = '0.00';
+                    if (cylinder) cylinder.classList.add('lost');
+                    if (numberDisplay) numberDisplay.classList.add('lost');
+                    this.setStatus('❌', `Rolled #${roll}. Better luck next roll!`);
+                    sound.playLoss();
+                    voiceAnnouncer.speak(`Number ${roll}. Better luck next roll.`, true);
+                }
+
+                this.addHistory(roll);
+                this.updateUI();
+
+                this.isSpinning = false;
+                const rollBtn = document.getElementById('mainRollBtn');
+                if (rollBtn) rollBtn.classList.remove('disabled');
+
+                // Backend wallet sync
+                if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                    window.wallet.creditWin(this.betAmount, payout, 'Lucky Number 777', multiplier, `Rolled #${roll}`);
+                }
+            }
+
+            triggerConfetti() {
+                if (!this.confettiCtx || !this.confettiCanvas) return;
+                const colors = ['#ffd700', '#00ffcc', '#00e700', '#ffffff', '#ff9900'];
+                this.particles = [];
+                for (let i = 0; i < 45; i++) {
+                    this.particles.push({
+                        x: this.confettiCanvas.width / 2,
+                        y: this.confettiCanvas.height / 2,
+                        vx: (Math.random() - 0.5) * 8,
+                        vy: (Math.random() - 0.7) * 8,
+                        size: Math.random() * 4 + 2,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        alpha: 1,
+                        decay: Math.random() * 0.02 + 0.015
+                    });
+                }
+                this.animateParticles();
+            }
+
+            animateParticles() {
+                if (!this.confettiCtx || !this.confettiCanvas) return;
+                this.confettiCtx.clearRect(0, 0, this.confettiCanvas.width, this.confettiCanvas.height);
+                this.particles = this.particles.filter(p => p.alpha > 0);
+
+                this.particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.2; // gravity
+                    p.alpha -= p.decay;
+
+                    this.confettiCtx.fillStyle = p.color;
+                    this.confettiCtx.globalAlpha = Math.max(0, p.alpha);
+                    this.confettiCtx.beginPath();
+                    this.confettiCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.confettiCtx.fill();
+                });
+
+                if (this.particles.length > 0) {
+                    requestAnimationFrame(() => this.animateParticles());
+                } else {
+                    this.confettiCtx.clearRect(0, 0, this.confettiCanvas.width, this.confettiCanvas.height);
+                }
+            }
+
+            showWinBanner(amt) {
+                const banner = document.getElementById('winBanner');
+                const amtEl = document.getElementById('winBannerAmt');
+                if (amtEl) amtEl.textContent = `+${this.formatCurrency(amt)}`;
+                if (banner) banner.classList.add('active');
+            }
+
+            dismissWinBanner() {
+                const banner = document.getElementById('winBanner');
+                if (banner) banner.classList.remove('active');
+            }
+
+            toggleAudio() {
+                sound.muted = !sound.muted;
+                const sBtn = document.getElementById('soundBtn');
+                const bgm = document.getElementById('casinoBgm');
+                if (sBtn) sBtn.textContent = sound.muted ? '🔇' : '🔊';
+
+                if (bgm) {
+                    if (sound.muted) bgm.pause();
+                    else bgm.play().catch(() => {});
+                }
+            }
+
+            toggleVoice() {
+                voiceAnnouncer.toggle();
+            }
+
+            toggleThemeModal() {
+                const modal = document.getElementById('themeModal');
+                if (modal) modal.classList.toggle('open');
+            }
+
+            switchTheme(themeName) {
+                document.body.className = themeName;
+                document.querySelectorAll('.theme-option-card').forEach(c => c.classList.remove('active'));
+                const active = Array.from(document.querySelectorAll('.theme-option-card')).find(c => c.getAttribute('onclick')?.includes(themeName));
+                if (active) active.classList.add('active');
+                this.toggleThemeModal();
+            }
+        }
+
+        const luckyEngine = new LuckyNumberEngine();
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY LOADING FLOW & DIRECT MUSIC PLAY
+           ------------------------------------------------------------- */
+        (function initLoader() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            const bgm = document.getElementById('casinoBgm');
+            if (!ppScreen || !ppBar) return;
+
+            let pct = 0;
+            let finished = false;
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+
+                    if (bgm && !sound.muted) {
+                        bgm.volume = 0.45;
+                        bgm.play().catch(() => {
+                            document.addEventListener('click', () => {
+                                if (bgm.paused && !sound.muted) bgm.play().catch(() => {});
+                            }, { once: true });
+                        });
+                    }
+
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 200);
+            }
+
+            const step = () => {
+                if (finished) return;
+                pct += Math.floor(Math.random() * 15) + 12;
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+                if (pct < 100) setTimeout(step, 70);
+                else finish();
+            };
+
+            setTimeout(finish, 2000);
+            setTimeout(step, 80);
+        })();
+
+        // Wallet Session Sync
+        async function syncWalletSession() {
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) activeUser = JSON.parse(sess);
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                        if (activeUser.balance !== undefined) {
+                            luckyEngine.balance = parseFloat(activeUser.balance);
+                        }
+                    }
+                }
+            } catch(e) {}
+
+            // User Profile Avatar Sync (Clean Avatar Only - No Name Popup)
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                if (avWrap && activeUser) {
+                    if (activeUser.avatar && (activeUser.avatar.startsWith('http') || activeUser.avatar.startsWith('data:') || activeUser.avatar.includes('/'))) {
+                        avWrap.innerHTML = `<img src="${activeUser.avatar}" alt="Avatar">`;
+                    } else if (activeUser.avatar) {
+                        avWrap.innerHTML = `<span style="font-size:14px;">${activeUser.avatar}</span>`;
+                    }
+                }
+            } catch(e) {}
+
+            luckyEngine.updateUI();
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await syncWalletSession();
+            luckyEngine.init();
+
+            // Ensure 3D background videos play continuously
+            const playBgVideos = () => {
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid.paused) vid.play().catch(() => {});
+                });
+            };
+            playBgVideos();
+            document.addEventListener('click', playBgVideos, { once: true });
+            document.addEventListener('touchstart', playBgVideos, { once: true });
+        });
+    </script>
+</body>
+</html>

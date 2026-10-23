@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>JILI Games Official Ultra-HD Loading Screen | Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --gold: #ffd700;
+            --gold-bright: #fff275;
+            --gold-dark: #b45309;
+            --jili-glow: rgba(255, 215, 0, 0.45);
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #ffffff;
+        }
+
+        /* -------------------------------------------------------------
+           ULTRA-HD LUXURY JILI OFFICIAL INTRO SCREEN
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 45%, #111827 0%, #07090e 55%, #020306 100%);
+            z-index: 9999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .jili-splash-overlay.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Background Animated Hexagonal Grid & Ambient Glow */
+        .jili-bg-ambient {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background-image: 
+                radial-gradient(circle at 50% 45%, rgba(255, 215, 0, 0.12) 0%, transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 36px 36px, 36px 36px;
+            background-position: center;
+        }
+
+        /* Floating Golden Sparkle Particles Canvas */
+        #jiliParticleCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Center Stage */
+        .jili-center-stage {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            width: auto;
+            max-width: 90vw;
+            padding: 20px;
+        }
+
+        /* JILI Golden Ambient Backlight Halo */
+        .jili-logo-halo {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 120px;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.35) 0%, rgba(245, 158, 11, 0.15) 45%, transparent 75%);
+            filter: blur(28px);
+            pointer-events: none;
+            animation: haloPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes haloPulse {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+            100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.95; }
+        }
+
+        /* Logo Box */
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 156px;
+            max-width: 48vw;
+            line-height: 0;
+            filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.35));
+            animation: logoFloat 3.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-4px); }
+        }
+
+        /* Logo Brand Image */
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* 100% Letterform-Masked Metallic Sheen (No Light Bleeds Outside Letters) */
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/limbo/jili_wordmark_tight.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/limbo/jili_wordmark_tight.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        /* Sweeping Dual Glint Bars */
+        .jili-glint-bar {
+            position: absolute;
+            top: -30%;
+            left: -130%;
+            width: 60%;
+            height: 160%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 20%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 240, 150, 0.6) 65%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes jiliGlintAnim {
+            0% { left: -130%; opacity: 0; }
+            10% { opacity: 1; }
+            55% { left: 170%; opacity: 1; }
+            62% { opacity: 0; }
+            100% { left: 170%; opacity: 0; }
+        }
+
+        /* JILI Brand Slogan & Subtitle */
+        .jili-brand-sub {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            margin-top: -4px;
+        }
+
+        .jili-brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: #ffd700;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6), 0 2px 4px rgba(0,0,0,0.9);
+        }
+
+        .jili-tagline {
+            font-size: 8.5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        /* Progress Control Wrap */
+        .jili-progress-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        /* Dual-Rail Video-Style Laser Loading Track */
+        .jili-loadline-track {
+            width: 170px;
+            max-width: 55vw;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 6px;
+            overflow: visible;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 70%, #fff7c2 100%);
+            border-radius: 6px;
+            box-shadow: 0 0 12px rgba(251, 191, 36, 0.95), 0 0 20px rgba(245, 158, 11, 0.6);
+            transition: width 0.08s ease-out;
+            position: relative;
+        }
+
+        /* Leading Laser Spark Dot */
+        .jili-load-spark {
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 9px;
+            height: 9px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700, 0 0 18px #ffaa00;
+            pointer-events: none;
+        }
+
+        /* Percentage and Status Message */
+        .jili-status-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 170px;
+            max-width: 55vw;
+            font-size: 10px;
+        }
+
+        .jili-status-text {
+            color: #94a3b8;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 9px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 125px;
+        }
+
+        .jili-percent-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            color: #ffd700;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Regulatory & Trust Badges Footer */
+        .jili-cert-footer {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 10;
+            opacity: 0.75;
+        }
+
+        .cert-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            color: #cbd5e1;
+            letter-spacing: 0.4px;
+        }
+
+        .cert-badge .icon {
+            color: #ffd700;
+        }
+
+        /* Demo Controls Panel (For testing and user verification) */
+        .demo-control-bar {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10000000;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            padding: 6px 12px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+        }
+
+        .demo-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            border-radius: 16px;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .demo-btn:hover {
+            background: #ffd700;
+            color: #000000;
+            transform: translateY(-1px);
+        }
+
+        .demo-btn.active {
+            background: #ffd700;
+            color: #000000;
+        }
+
+        @media (max-width: 480px) {
+            .jili-logo-box { width: 136px; }
+            .jili-loadline-track { width: 145px; }
+            .jili-status-row { width: 145px; }
+            .jili-cert-footer { gap: 8px; bottom: 14px; }
+            .cert-badge { font-size: 8px; padding: 3px 6px; }
+            .demo-control-bar { bottom: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ULTRA-HD JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay">
+        <!-- Ambient Grid Background -->
+        <div class="jili-bg-ambient"></div>
+
+        <!-- Floating Golden Particles Canvas -->
+        <canvas id="jiliParticleCanvas"></canvas>
+
+        <div class="jili-center-stage">
+            <!-- Golden Glow Halo behind Logo -->
+            <div class="jili-logo-halo"></div>
+
+            <!-- JILI Logo with Masked Sheen Glint -->
+            <div class="jili-logo-box">
+                <img src="../assets/games/limbo/jili_wordmark_tight.png" alt="JILI Games" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+
+            <!-- Brand Slogan -->
+            <div class="jili-brand-sub">
+                <span class="jili-brand-name">JILI GAMES</span>
+                <span class="jili-tagline">Fair • Certified • Official</span>
+            </div>
+
+            <!-- Laser Progress Bar & Status -->
+            <div class="jili-progress-wrap">
+                <div class="jili-loadline-track">
+                    <div id="jiliLoadProgress" class="jili-loadline-bar">
+                        <div class="jili-load-spark"></div>
+                    </div>
+                </div>
+                <div class="jili-status-row">
+                    <span id="jiliStatusText" class="jili-status-text">INITIALIZING RNG...</span>
+                    <span id="jiliPercentText" class="jili-percent-text">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Official Certifications & Compliance Footer -->
+        <div class="jili-cert-footer">
+            <div class="cert-badge">
+                <span class="icon">🛡️</span> GLI CERTIFIED
+            </div>
+            <div class="cert-badge">
+                <span class="icon">🔞</span> 18+ PLAY RESPONSIBLY
+            </div>
+            <div class="cert-badge">
+                <span class="icon">⚡</span> 256-BIT SSL
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Controls Bar -->
+    <div class="demo-control-bar">
+        <button class="demo-btn" onclick="startLoading(1200)">⚡ Fast</button>
+        <button class="demo-btn active" onclick="startLoading(2400)">↻ Normal (2.4s)</button>
+        <button class="demo-btn" onclick="startLoading(4000)">🎬 Cinematic</button>
+    </div>
+
+    <script>
+        // ====================================================================
+        // 1. WEB AUDIO SYNTHESIZER (CINEMATIC JILI SOUND FX)
+        // ====================================================================
+        class JiliAudio {
+            constructor() {
+                this.ctx = null;
+            }
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) this.ctx = new AudioContext();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+            playIntroRiser() {
+                if (!this.ctx) return;
+                try {
+                    const now = this.ctx.currentTime;
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(80, now);
+                    osc.frequency.exponentialRampToValueAtTime(320, now + 1.2);
+                    gain.gain.setValueAtTime(0.01, now);
+                    gain.gain.linearRampToValueAtTime(0.18, now + 0.5);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 1.2);
+                } catch(e) {}
+            }
+            playUnlockChime() {
+                if (!this.ctx) return;
+                try {
+                    const now = this.ctx.currentTime;
+                    // JILI Major Pentatonic Victory Chime
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0.2, now + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.4);
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 0.4);
+                    });
+                } catch(e) {}
+            }
+        }
+        const jiliAudio = new JiliAudio();
+
+        // ====================================================================
+        // 2. AMBIENT GOLD SPARKLE CANVAS ENGINE
+        // ====================================================================
+        const pCanvas = document.getElementById('jiliParticleCanvas');
+        const pCtx = pCanvas.getContext('2d');
+        let pWidth = 0, pHeight = 0;
+        let particles = [];
+
+        function resizeParticleCanvas() {
+            pWidth = window.innerWidth;
+            pHeight = window.innerHeight;
+            pCanvas.width = pWidth;
+            pCanvas.height = pHeight;
+        }
+        window.addEventListener('resize', resizeParticleCanvas);
+        resizeParticleCanvas();
+
+        class GoldSparkle {
+            constructor() {
+                this.reset(true);
+            }
+            reset(initial = false) {
+                this.x = Math.random() * pWidth;
+                this.y = initial ? Math.random() * pHeight : pHeight + 10;
+                this.size = 1.2 + Math.random() * 2.5;
+                this.vy = -(0.4 + Math.random() * 0.8);
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.alpha = 0.2 + Math.random() * 0.6;
+                this.fadeSpeed = 0.002 + Math.random() * 0.003;
+                this.color = Math.random() > 0.3 ? '#ffd700' : '#fef08a';
+            }
+            update() {
+                this.y += this.vy;
+                this.x += this.vx;
+                this.alpha -= this.fadeSpeed;
+                if (this.y < -10 || this.alpha <= 0) this.reset();
+            }
+            draw(ctx) {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color;
+                ctx.shadowColor = '#ffd700';
+                ctx.shadowBlur = 6;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        particles = Array.from({ length: 35 }, () => new GoldSparkle());
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, pWidth, pHeight);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw(pCtx);
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ====================================================================
+        // 3. JILI LOADING SEQUENCE CONTROLLER
+        // ====================================================================
+        let currentAnimFrame = null;
+
+        const STATUS_MESSAGES = [
+            { threshold: 0.15, text: "INITIALIZING RNG SYSTEMS..." },
+            { threshold: 0.40, text: "CONNECTING TO SECURE CASINO NETWORK..." },
+            { threshold: 0.70, text: "VERIFYING ENCRYPTED WALLET..." },
+            { threshold: 0.90, text: "LOADING ULTRA-HD GRAPHICS..." },
+            { threshold: 1.00, text: "READY TO PLAY!" }
+        ];
+
+        function startLoading(duration = 2400) {
+            if (currentAnimFrame) cancelAnimationFrame(currentAnimFrame);
+
+            jiliAudio.init();
+            jiliAudio.playIntroRiser();
+
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            const statusText = document.getElementById('jiliStatusText');
+            const percentText = document.getElementById('jiliPercentText');
+
+            if (!splash || !progressBar) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            progressBar.style.width = '0%';
+            if (statusText) statusText.innerText = "INITIALIZING RNG SYSTEMS...";
+            if (percentText) percentText.innerText = "0%";
+
+            const startTime = performance.now();
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / duration);
+
+                // Smooth luxury easing
+                const ease = p < 0.75 
+                    ? Math.pow(p / 0.75, 1.2) * 0.78 
+                    : 0.78 + Math.pow((p - 0.75) / 0.25, 0.85) * 0.22;
+
+                const pct = Math.min(100, Math.round(ease * 100));
+                progressBar.style.width = pct + '%';
+                if (percentText) percentText.innerText = pct + '%';
+
+                // Update status text
+                if (statusText) {
+                    const match = STATUS_MESSAGES.find(m => ease <= m.threshold) || STATUS_MESSAGES[STATUS_MESSAGES.length - 1];
+                    statusText.innerText = match.text;
+                }
+
+                if (p < 1) {
+                    currentAnimFrame = requestAnimationFrame(step);
+                } else {
+                    jiliAudio.playUnlockChime();
+                    setTimeout(() => {
+                        splash.classList.add('loaded');
+                        setTimeout(() => {
+                            splash.style.display = 'none';
+                        }, 700);
+                    }, 280);
+                }
+            }
+
+            currentAnimFrame = requestAnimationFrame(step);
+        }
+
+        // Run automatically on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            startLoading(2400);
+        });
+    </script>
+</body>
+</html>

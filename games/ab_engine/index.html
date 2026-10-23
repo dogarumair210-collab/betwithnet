@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Speedy Andar Bahar | King Midas Games</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="full-screen" content="yes" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="360-fullscreen" content="true" />
+  <meta name="x5-page-mode" content="app">
+  <link rel="stylesheet" type="text/css" href="style-mobile.css" />
+  <style>
+    /* Fullscreen untouched native King Midas canvas */
+    html, body {
+      background: #000000;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #GameCanvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+  </style>
+  <script>
+    (function () {
+      // 1. Ensure sound/music are not stuck muted in localStorage
+      try {
+        localStorage.setItem('isBGMMuted', 'false');
+        localStorage.setItem('isSoundMuted', 'false');
+      } catch (e) {}
+
+      // 2. Track all AudioContext instances & auto-resume on any user interaction
+      window._abAudioContexts = [];
+      var OrigAudioContext = window.AudioContext || window.webkitAudioContext;
+      if (OrigAudioContext) {
+        var WrappedAudioContext = function () {
+          var ctx = new OrigAudioContext();
+          window._abAudioContexts.push(ctx);
+          return ctx;
+        };
+        WrappedAudioContext.prototype = OrigAudioContext.prototype;
+        window.AudioContext = WrappedAudioContext;
+        if (window.webkitAudioContext) window.webkitAudioContext = WrappedAudioContext;
+      }
+
+      function unlockAllAudio() {
+        try {
+          for (var i = 0; i < window._abAudioContexts.length; i++) {
+            var ctx = window._abAudioContexts[i];
+            if (ctx && ctx.state === 'suspended') {
+              ctx.resume().catch(function () {});
+            }
+          }
+          if (window.cc && cc.sys && cc.audioEngine) {
+            if (cc.audioEngine._context && cc.audioEngine._context.state === 'suspended') {
+              cc.audioEngine._context.resume().catch(function () {});
+            }
+          }
+          if (window.__require) {
+            try {
+              var am = window.__require('audio_manager');
+              if (am && am.default && am.default.Instance) {
+                var inst = am.default.Instance;
+                inst.isTempMute = false;
+                inst.isTabOut = false;
+                if (inst.audioContext && inst.audioContext.state === 'suspended') {
+                  inst.audioContext.resume().catch(function () {});
+                }
+                if (!inst.isBGMMuted) {
+                  inst.SetMusicGainNodeValue(inst.musicVolume || 1);
+                  if (!inst.isBGMPlaying) {
+                    inst.playMusic('bgm', true);
+                  }
+                }
+                if (!inst.isSoundMuted) {
+                  inst.SetEffectGainNodeValue(inst.soundVolume || 1);
+                }
+              }
+            } catch (e) {}
+          }
+        } catch (e) {}
+      }
+
+      ['pointerdown', 'touchstart', 'touchend', 'mousedown', 'click', 'keydown'].forEach(function (ev) {
+        window.addEventListener(ev, unlockAllAudio, { capture: true, passive: true });
+        document.addEventListener(ev, unlockAllAudio, { capture: true, passive: true });
+      });
+
+      // Also listen for parent frame messages to unlock audio
+      window.addEventListener('message', function (e) {
+        if (e && e.data === 'BWN_UNLOCK_AUDIO') {
+          unlockAllAudio();
+        }
+      });
+
+      // 3. Bust cache on assets/main/index.js
+      var origAppend = Element.prototype.appendChild;
+      Element.prototype.appendChild = function (child) {
+        try {
+          if (child && child.tagName === 'SCRIPT' && child.src && child.src.indexOf('assets/main/index.js') !== -1 && child.src.indexOf('v=') === -1) {
+            child.src = child.src + '?v=20261012_smooth_v1';
+          }
+        } catch (e) {}
+        return origAppend.call(this, child);
+      };
+    })();
+  </script>
+</head>
+<body>
+  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+  <div id="splash">
+    <div class="progress-bar stripes">
+      <span style="width: 0%"></span>
+    </div>
+  </div>
+
+  <script src="src/settings.js?v=20261007_audio2" charset="utf-8"></script>
+  <script src="main.js?v=20261007_audio2" charset="utf-8"></script>
+  <script type="text/javascript">
+    (function () {
+      var splash = document.getElementById('splash');
+      if (splash) splash.style.display = 'block';
+      window.startLoadingTime = new Date();
+
+      function loadScript(moduleName, cb) {
+        function scriptLoaded() {
+          if (domScript.parentNode) {
+            domScript.parentNode.removeChild(domScript);
+          }
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+        }
+        var domScript = document.createElement('script');
+        domScript.async = true;
+        domScript.src = moduleName;
+        domScript.addEventListener('load', scriptLoaded, false);
+        document.body.appendChild(domScript);
+      }
+
+      loadScript('cocos2d-js-min.js?v=20261007_audio2', function () {
+        if (typeof window.boot === 'function') {
+          window.boot();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

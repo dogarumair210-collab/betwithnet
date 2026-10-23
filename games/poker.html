@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Caribbean Poker Royal Flush Jackpot - 7777 Gaming / 1xBet Edition | Bet With Net VIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #07110f;
+            --felt-green: #0a4d3c;
+            --gold: #d4af37;
+            --gold-bright: #ffe066;
+            --accent: #00f0ff;
+            --win-green: #00e700;
+            --lose-red: #ff334b;
+            --text-muted: #8b9bb4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: #040908;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Fullscreen Game Canvas & Table Container */
+        .table-viewport {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #000 url('../assets/games/caribbean_poker/table_bg.jpg') center top / cover no-repeat;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .table-viewport {
+                background-image: url('../assets/games/caribbean_poker/table_mobile_bg.jpg');
+            }
+        }
+
+        /* Automatic Landscape Rotation on Mobile Portrait */
+        @media screen and (orientation: portrait) and (max-width: 992px) {
+            .table-viewport {
+                position: fixed !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: 100vh !important;
+                width: 100dvh !important;
+                height: 100vw !important;
+                height: 100dvw !important;
+                transform: translate(-50%, -50%) rotate(90deg) !important;
+                transform-origin: center center !important;
+                overflow: hidden !important;
+                z-index: 10;
+            }
+        }
+
+        /* Rotation & Landscape Orientation Support */
+        html.mobile-auto-rotated .table-viewport,
+        body.mobile-auto-rotated .table-viewport,
+        body.manual-rotate .table-viewport {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 100vh !important;
+            width: 100dvh !important;
+            height: 100vw !important;
+            height: 100dvw !important;
+            transform: translate(-50%, -50%) rotate(90deg) !important;
+            transform-origin: center center !important;
+            overflow: hidden !important;
+            z-index: 10;
+        }
+
+        /* Top Header Bar (Compact) */
+        .header-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.4) 80%, transparent 100%);
+            z-index: 50;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        .game-title-box h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: var(--gold-bright);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .provider-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 8px;
+            font-weight: 800;
+            padding: 1px 5px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 5px;
+            color: #ffdb4d;
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            max-width: 65%;
+        }
+
+        /* Wallet Pill */
+        .wallet-pill {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 16px;
+            padding: 4px 10px;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            white-space: nowrap;
+        }
+        .wallet-label {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .wallet-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 8px;
+            padding: 5px 9px;
+            font-size: 10.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .header-btn:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.2);
+        }
+        .header-btn.active {
+            border-color: var(--gold-bright);
+            background: rgba(255, 224, 102, 0.25);
+            color: var(--gold-bright);
+        }
+
+        /* Royal Flush Progressive Jackpot HUD (Compact) */
+        .jackpot-hud {
+            position: absolute;
+            top: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(20, 10, 5, 0.95), rgba(40, 20, 5, 0.9));
+            border: 1.5px solid var(--gold);
+            border-radius: 12px;
+            padding: 2px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
+            z-index: 25;
+            animation: jackpotGlow 3s infinite alternate;
+        }
+        @keyframes jackpotGlow {
+            0% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); }
+            100% { box-shadow: 0 0 22px rgba(255, 224, 102, 0.7); }
+        }
+        .jackpot-hud-title {
+            font-family: 'Cinzel', serif;
+            font-size: 8.5px;
+            font-weight: 900;
+            color: #ffdb4d;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .jackpot-hud-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ffe066, #fff, #ffe066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 1px 6px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Paytable Badge (Compact) */
+        .paytable-badge {
+            position: absolute;
+            top: 48px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 5px 8px;
+            font-size: 9px;
+            z-index: 30;
+            backdrop-filter: blur(8px);
+            max-width: 175px;
+        }
+        .paytable-title {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .paytable-row {
+            display: flex;
+            justify-content: space-between;
+            color: #d1d5db;
+            line-height: 1.3;
+            font-size: 8.5px;
+        }
+
+        /* Main Game Table Felt Area (Scaled down to fit single screen) */
+        .felt-play-area {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 58px 10px 88px 10px;
+            z-index: 10;
+        }
+
+        /* Dealer Zone */
+        .dealer-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .zone-label {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: uppercase;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        }
+        .zone-status {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-bright);
+            min-height: 20px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        .card-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        /* Playing Card Item (Compact & Responsive) */
+        .playing-card {
+            width: 50px;
+            height: 74px;
+            border-radius: 6px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3px 4px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s;
+            animation: cardDealAnim 0.35s ease-out;
+        }
+        .playing-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes cardDealAnim {
+            0% { transform: translateY(-30px) scale(0.7); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        /* Face-Down Card */
+        .playing-card.facedown {
+            background: radial-gradient(circle, #85121b 0%, #4a050b 100%);
+            border: 1.5px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+        }
+        .playing-card.facedown::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px dashed rgba(255, 215, 0, 0.5);
+            border-radius: 3px;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 3px, transparent 3px, transparent 6px);
+        }
+
+        .card-val {
+            font-size: 11px;
+            font-weight: 900;
+            line-height: 1;
+            font-family: 'Cinzel', serif;
+        }
+        .card-suit {
+            font-size: 11px;
+            line-height: 1;
+        }
+        .card-center-suit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        .card-red { color: #dc2626; }
+        .card-black { color: #111827; }
+
+        /* Player Zone */
+        .player-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 540px;
+        }
+
+        /* Table Betting Spots (Ante, Call, and Jackpot) */
+        .bet-spots-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 2px;
+        }
+
+        .bet-spot {
+            width: 82px;
+            height: 50px;
+            border: 1.5px dashed rgba(212, 175, 55, 0.5);
+            border-radius: 9px;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .bet-spot:hover {
+            border-color: var(--gold-bright);
+            background: rgba(212, 175, 55, 0.18);
+            transform: scale(1.03);
+        }
+        .bet-spot.active {
+            border-color: var(--gold-bright);
+            border-style: solid;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
+        }
+        .bet-spot.side-bet {
+            border-color: rgba(255, 60, 60, 0.5);
+        }
+        .bet-spot.side-bet.active {
+            border-color: #ff334b;
+            box-shadow: 0 0 12px rgba(255, 51, 75, 0.45);
+        }
+
+        .spot-label {
+            font-family: 'Cinzel', serif;
+            font-size: 8.5px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .spot-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 1px;
+        }
+
+        /* Bottom Floating Control Bar (Chips & Actions) */
+        .bottom-controls-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.98) 0%, rgba(5, 12, 10, 0.92) 70%, transparent 100%);
+            padding: 6px 12px 10px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            z-index: 40;
+        }
+
+        /* Action Buttons (Compact) */
+        .action-btns-row {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .btn-game-action {
+            flex: 1;
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+        }
+        .btn-game-action:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .btn-deal {
+            background: linear-gradient(135deg, #00e700, #00a800);
+            color: #000;
+        }
+        .btn-deal:hover:not(:disabled) {
+            box-shadow: 0 0 16px rgba(0, 231, 0, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-call {
+            background: linear-gradient(135deg, #d4af37, #ffe066);
+            color: #000;
+        }
+        .btn-call:hover:not(:disabled) {
+            box-shadow: 0 0 16px rgba(255, 224, 102, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-fold {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: #fff;
+        }
+        .btn-fold:hover:not(:disabled) {
+            box-shadow: 0 0 16px rgba(220, 38, 38, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-rebet {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #fff;
+        }
+        .btn-clear {
+            background: rgba(255, 255, 255, 0.12);
+            color: #e5e7eb;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Chips Selection Row (Compact) */
+        .chips-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+            padding: 2px;
+        }
+
+        .chip-token {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 900;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+            border: 2px dashed rgba(255, 255, 255, 0.6);
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+        .chip-token:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
+        .chip-token.selected {
+            transform: scale(1.15) translateY(-4px);
+            border-style: solid;
+            border-color: #fff;
+            box-shadow: 0 0 14px rgba(255, 224, 102, 0.8);
+        }
+
+        .chip-1, .chip-10 { background: radial-gradient(circle, #2563eb, #1e3a8a); }
+        .chip-5, .chip-50 { background: radial-gradient(circle, #9333ea, #581c87); }
+        .chip-25, .chip-100 { background: radial-gradient(circle, #1f2937, #030712); border-color: var(--gold); color: var(--gold-bright); }
+        .chip-500 { background: radial-gradient(circle, #d97706, #78350f); border-color: #fff; }
+        .chip-1000 { background: radial-gradient(circle, #0284c7, #0369a1); border-color: #38bdf8; }
+        .chip-5000 { background: radial-gradient(circle, #b91c1c, #450a0a); border-color: #ffd700; color: #ffd700; }
+
+        .custom-bwn-toast {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.96);
+            border: 1.5px solid #f59e0b;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 15px rgba(245, 158, 11, 0.4);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 999999;
+            pointer-events: none;
+            animation: toastPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes toastPopIn {
+            from { opacity: 0; transform: translate(-50%, -15px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        /* Notification Toast Modal */
+        .win-announcement {
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(10, 20, 16, 0.95);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.6), 0 20px 50px rgba(0,0,0,0.9);
+            border-radius: 20px;
+            padding: 24px 36px;
+            text-align: center;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .win-announcement.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .win-announcement h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            color: var(--gold-bright);
+            margin-bottom: 6px;
+        }
+        .win-announcement p {
+            font-size: 15px;
+            color: #e5e7eb;
+        }
+
+        /* Generic Modal (Rules / Stats) */
+        .info-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .info-modal-backdrop.open { display: flex; }
+        .info-modal-card {
+            background: #0d1a16;
+            border: 1.5px solid var(--gold);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 520px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 22px 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+        .info-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        .info-modal-header h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-bright);
+            font-size: 18px;
+        }
+        .btn-modal-close {
+            background: none;
+            border: none;
+            color: #8b9bb4;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .btn-modal-close:hover { color: #fff; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .stat-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 4px;
+        }
+
+        /* Provider Live Iframe Overlay */
+        .provider-frame-modal {
+            position: absolute;
+            inset: 0;
+            background: #000;
+            z-index: 999999;
+            display: none;
+            flex-direction: column;
+        }
+        .provider-frame-modal.open {
+            display: flex;
+        }
+        .provider-frame-header {
+            height: 48px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .provider-frame-iframe {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Mobile & Rotation Responsive Sizing (Single-Screen Fit) */
+        @media (max-width: 600px) {
+            .felt-play-area {
+                padding: 48px 6px 76px 6px;
+            }
+            .playing-card {
+                width: 46px;
+                height: 68px;
+                padding: 2px 3px;
+            }
+            .card-val { font-size: 10px; }
+            .card-suit { font-size: 10px; }
+            .card-center-suit { font-size: 15px; }
+            .bet-spots-row { gap: 6px; }
+            .bet-spot { width: 76px; height: 44px; }
+            .spot-label { font-size: 7.5px; }
+            .spot-amount { font-size: 10px; }
+            .action-btns-row { gap: 4px; }
+            .btn-game-action { padding: 6px 8px; font-size: 10px; }
+            .chips-row { gap: 6px; }
+            .chip-token { width: 31px; height: 31px; font-size: 9px; }
+            .paytable-badge { display: none; }
+            .jackpot-hud { top: 46px; padding: 2px 10px; }
+            .jackpot-hud-title { font-size: 7.5px; }
+            .jackpot-hud-num { font-size: 12px; }
+        }
+
+        /* Compact Scaling for Landscape, Rotated, and Mobile Devices */
+        @media screen and (max-height: 520px), screen and (orientation: portrait) and (max-width: 992px), html.mobile-auto-rotated, body.mobile-auto-rotated, body.manual-rotate {
+            .felt-play-area {
+                padding: 40px 8px 62px 8px !important;
+            }
+            .jackpot-hud {
+                top: 36px !important;
+                padding: 1px 10px !important;
+            }
+            .jackpot-hud-title { font-size: 7px !important; }
+            .jackpot-hud-num { font-size: 11px !important; }
+            .paytable-badge { display: none !important; }
+            .dealer-zone { gap: 2px !important; }
+            .zone-label { font-size: 8px !important; }
+            .zone-status { font-size: 10px !important; min-height: 14px !important; }
+            .playing-card {
+                width: 42px !important;
+                height: 60px !important;
+                padding: 2px !important;
+            }
+            .card-val { font-size: 8.5px !important; }
+            .card-suit { font-size: 8.5px !important; }
+            .card-center-suit { font-size: 13px !important; }
+            .bet-spots-row { gap: 5px !important; }
+            .bet-spot {
+                width: 68px !important;
+                height: 38px !important;
+            }
+            .spot-label { font-size: 7px !important; }
+            .spot-amount { font-size: 9px !important; }
+            .bottom-controls-bar {
+                padding: 3px 6px 5px 6px !important;
+                gap: 3px !important;
+            }
+            .action-btns-row { gap: 4px !important; }
+            .btn-game-action {
+                padding: 5px 6px !important;
+                font-size: 9px !important;
+            }
+            .chips-row { gap: 5px !important; }
+            .chip-token {
+                width: 28px !important;
+                height: 28px !important;
+                font-size: 8.5px !important;
+            }
+        }
+    </style>
+    <script>
+        (function() {
+            function checkOrientation() {
+                var isPortrait = window.innerHeight > window.innerWidth || (window.matchMedia && window.matchMedia('(orientation: portrait)').matches);
+                var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 992);
+                if (isPortrait && isMobile) {
+                    document.documentElement.classList.add('mobile-auto-rotated');
+                    if (document.body) document.body.classList.add('mobile-auto-rotated');
+                } else {
+                    document.documentElement.classList.remove('mobile-auto-rotated');
+                    if (document.body) document.body.classList.remove('mobile-auto-rotated');
+                }
+            }
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(function(){});
+                }
+            } catch(e){}
+            checkOrientation();
+            window.addEventListener('resize', checkOrientation);
+            window.addEventListener('orientationchange', checkOrientation);
+            document.addEventListener('DOMContentLoaded', checkOrientation);
+            window.addEventListener('load', checkOrientation);
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="table-viewport">
+        <!-- Top Header Navigation -->
+        <header class="header-bar">
+            <div class="brand-group">
+                <a href="../index.html" class="btn-back" title="Back to Lobby">←</a>
+                <img src="../assets/covers/poker.png" style="width:28px; height:28px; border-radius:6px; object-fit:cover; border:1px solid rgba(212,175,55,0.6); box-shadow:0 0 8px rgba(212,175,55,0.3);" alt="Poker">
+                <div class="game-title-box">
+                    <h1>CARIBBEAN POKER <span class="provider-badge">7777 GAMING</span></h1>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="wallet-pill">
+                    <span class="wallet-label">Balance</span>
+                    <span id="playerBalanceTxt" class="wallet-val">₨ 0.00</span>
+                </div>
+                <button id="btnRotateToggle" class="header-btn" onclick="toggleScreenRotation(event)" title="Rotate Screen">🔄 Rotate</button>
+                <button id="btnCurrencyToggle" class="header-btn" onclick="toggleCurrency()" title="Switch Currency">₨ PKR ⇄ $</button>
+                <a href="../deposit.html" class="header-btn" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#000; font-weight:800; text-decoration:none;" title="Deposit Funds">+ Deposit</a>
+                <button id="btnTurboToggle" class="header-btn" onclick="toggleTurbo()">⚡ Turbo</button>
+                <button class="header-btn" onclick="openStatsModal()">📊 Stats</button>
+                <button class="header-btn" onclick="openRulesModal()">ℹ️ Rules</button>
+                <button id="btnSoundToggle" class="header-btn" onclick="toggleAudio()">🔊 Music</button>
+                <button class="header-btn" onclick="openProviderDemo()" title="Open official 7777 Gaming HTML5 Engine">🎮 Engine</button>
+            </div>
+        </header>
+
+        <!-- Royal Flush Progressive Jackpot Display -->
+        <div class="jackpot-hud">
+            <span class="jackpot-hud-title">★ ROYAL FLUSH JACKPOT ★</span>
+            <span id="jackpotHudVal" class="jackpot-hud-num">$54,892.50</span>
+        </div>
+
+        <!-- Paytable Overlay Card -->
+        <div class="paytable-badge">
+            <div class="paytable-title">Payouts (Call Bet)</div>
+            <div class="paytable-row"><span>Royal Flush</span><b>100:1</b></div>
+            <div class="paytable-row"><span>Straight Flush</span><b>50:1</b></div>
+            <div class="paytable-row"><span>Four of a Kind</span><b>20:1</b></div>
+            <div class="paytable-row"><span>Full House</span><b>7:1</b></div>
+            <div class="paytable-row"><span>Flush</span><b>5:1</b></div>
+            <div class="paytable-row"><span>Straight</span><b>4:1</b></div>
+            <div class="paytable-row"><span>Three of a Kind</span><b>3:1</b></div>
+            <div class="paytable-row"><span>Two Pair</span><b>2:1</b></div>
+            <div class="paytable-row"><span>Pair / Ace-King</span><b>1:1</b></div>
+        </div>
+
+        <!-- Felt Play Field -->
+        <main class="felt-play-area">
+            <!-- Dealer Hand Zone -->
+            <div class="dealer-zone">
+                <div class="zone-label">DEALER (QUALIFIES WITH ACE-KING OR HIGHER)</div>
+                <div id="dealerCards" class="card-row">
+                    <!-- Cards dealt dynamically -->
+                </div>
+                <div id="dealerRankTxt" class="zone-status"></div>
+            </div>
+
+            <!-- Player Hand Zone -->
+            <div class="player-zone">
+                <div id="playerRankTxt" class="zone-status"></div>
+                <div id="playerCards" class="card-row">
+                    <!-- Cards dealt dynamically -->
+                </div>
+
+                <!-- Betting Spots (Ante, Call, and Jackpot) -->
+                <div class="bet-spots-row">
+                    <div id="spotAnte" class="bet-spot active" onclick="placeAnteBet()">
+                        <span class="spot-label">ANTE</span>
+                        <span id="anteAmountTxt" class="spot-amount">₨ 0</span>
+                    </div>
+                    <div id="spotJackpot" class="bet-spot side-bet" onclick="toggleJackpotBet()">
+                        <span id="jackpotSpotLabel" class="spot-label">JACKPOT (₨ 100)</span>
+                        <span id="jackpotAmountTxt" class="spot-amount">₨ 0</span>
+                    </div>
+                    <div id="spotCall" class="bet-spot">
+                        <span class="spot-label">CALL (2X)</span>
+                        <span id="callAmountTxt" class="spot-amount">₨ 0</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Controller Bar -->
+        <footer class="bottom-controls-bar">
+            <!-- Action Buttons Row -->
+            <div class="action-btns-row">
+                <button id="btnDeal" class="btn-game-action btn-deal" onclick="dealHand()">Deal</button>
+                <button id="btnCall" class="btn-game-action btn-call" onclick="callHand()" disabled>Call</button>
+                <button id="btnFold" class="btn-game-action btn-fold" onclick="foldHand()" disabled>Fold</button>
+                <button id="btnRebet" class="btn-game-action btn-rebet" onclick="rebetLastHand()">Rebet</button>
+                <button id="btnClear" class="btn-game-action btn-clear" onclick="clearBets()">Clear</button>
+            </div>
+
+            <!-- Chips Selector Row (Rendered Dynamically Based on Currency) -->
+            <div id="chipsRow" class="chips-row">
+                <!-- Dynamically populated tokens -->
+            </div>
+        </footer>
+
+        <!-- Big Win / Result Modal Alert -->
+        <div id="winAlert" class="win-announcement">
+            <h2 id="winTitle">YOU WIN!</h2>
+            <p id="winDesc">Dealer didn't qualify. You win $50.00!</p>
+        </div>
+
+        <!-- Statistics Modal (Inside Table Viewport for perfect landscape rotation) -->
+        <div id="statsModal" class="info-modal-backdrop" onclick="if(event.target===this)closeStatsModal()">
+            <div class="info-modal-card">
+                <div class="info-modal-header">
+                    <h3>Session Statistics</h3>
+                    <button class="btn-modal-close" onclick="closeStatsModal()">✕</button>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Hands Played</div>
+                        <div id="statHands" class="stat-val">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Hands Won</div>
+                        <div id="statWins" class="stat-val">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Win Rate</div>
+                        <div id="statWinRate" class="stat-val">0%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Net Profit</div>
+                        <div id="statProfit" class="stat-val">$0.00</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Dealer Qualified %</div>
+                        <div id="statDealerQual" class="stat-val">0%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Best Hand</div>
+                        <div id="statBestHand" class="stat-val" style="font-size:14px;">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rules & Paytable Modal -->
+        <div id="rulesModal" class="info-modal-backdrop" onclick="if(event.target===this)closeRulesModal()">
+            <div class="info-modal-card">
+                <div class="info-modal-header">
+                    <h3>Caribbean Poker Rules</h3>
+                    <button class="btn-modal-close" onclick="closeRulesModal()">✕</button>
+                </div>
+                <div style="font-size:13px; line-height:1.6; color:#d1d5db;">
+                    <p style="margin-bottom:10px;"><strong style="color:var(--gold-bright);">1. Placing Bets:</strong> Select chips and click <strong>ANTE</strong> to place your initial bet. Optionally click <strong>JACKPOT ($1)</strong> to participate in the Progressive Jackpot pool.</p>
+                    <p style="margin-bottom:10px;"><strong style="color:var(--gold-bright);">2. Dealing:</strong> Click Deal. You receive 5 face-up cards; the Dealer receives 4 face-down cards and 1 face-up card.</p>
+                    <p style="margin-bottom:10px;"><strong style="color:var(--gold-bright);">3. Play Decision:</strong>
+                        <br>• <strong>CALL:</strong> Place an additional bet equal to <strong>2X your Ante</strong> to contest the hand.
+                        <br>• <strong>FOLD:</strong> Surrender your cards and forfeit your Ante bet.
+                    </p>
+                    <p style="margin-bottom:10px;"><strong style="color:var(--gold-bright);">4. Dealer Qualification:</strong> The Dealer must hold at least an <strong>Ace and a King</strong>, a pair, or better.
+                        <br>• If Dealer <em>does not qualify</em>: Ante pays <strong>1:1</strong>, and your Call bet pushes (returned).
+                        <br>• If Dealer <em>qualifies</em>: Hands are compared. If you beat the dealer, Ante pays <strong>1:1</strong>, and your Call bet pays according to the paytable!
+                    </p>
+                    <p><strong style="color:var(--gold-bright);">5. Jackpot Side Bet:</strong> A Royal Flush with the Jackpot active wins <strong>100% of the Progressive Pool</strong>! Straight Flushes win 10% of the pool.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Official 7777 Gaming HTML5 Engine Modal -->
+        <div id="providerModal" class="provider-frame-modal">
+            <div class="provider-frame-header">
+                <span style="font-weight:700; color:var(--gold);">7777 Gaming Engine - Caribbean Poker</span>
+                <button class="header-btn" onclick="closeProviderDemo()">✕ Close Engine</button>
+            </div>
+            <iframe id="providerIframe" class="provider-frame-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div> <!-- /.table-viewport -->
+
+    <!-- Audio Elements: Poker Jazz Background Music & SFX -->
+    <audio id="pokerMusic" src="../assets/audio/table_jazz.wav" loop preload="auto"></audio>
+    <audio id="sfxDeal" src="../assets/audio/card/card_deal.mp3" preload="auto"></audio>
+    <audio id="sfxFlip" src="../assets/audio/card/card_flip.mp3" preload="auto"></audio>
+    <audio id="sfxChip" src="../assets/audio/card/chip_bet.mp3" preload="auto"></audio>
+    <audio id="sfxClean" src="../assets/audio/card/chip_clean.mp3" preload="auto"></audio>
+    <audio id="sfxWinFly" src="../assets/audio/card/chip_win_fly.mp3" preload="auto"></audio>
+    <audio id="sfxWin" src="../assets/audio/card/win.mp3" preload="auto"></audio>
+
+    <!-- Bet With Net Enterprise Core Client Stack -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/user_manager.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/api_bridge.js"></script>
+    <script src="../js/core.js"></script>
+    <script>
+        // -------------------------------------------------------------
+        // SCREEN ROTATION & LANDSCAPE ORIENTATION
+        // -------------------------------------------------------------
+        let isFullscreenPending = false;
+        function enforceLandscapeOrientation() {
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                } else if (screen.lockOrientation) {
+                    screen.lockOrientation('landscape');
+                } else if (screen.mozLockOrientation) {
+                    screen.mozLockOrientation('landscape');
+                } else if (screen.msLockOrientation) {
+                    screen.msLockOrientation('landscape');
+                }
+            } catch(e) {}
+        }
+
+        function requestFullScreenLandscape() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || isFullscreenPending) {
+                enforceLandscapeOrientation();
+                return;
+            }
+            const docEl = document.documentElement;
+            const req = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+            if (req) {
+                isFullscreenPending = true;
+                let prom;
+                try {
+                    prom = req.call(docEl, { navigationUI: 'hide' });
+                } catch(err) {
+                    try { prom = req.call(docEl); } catch(err2) {}
+                }
+                if (prom && prom.then) {
+                    prom.then(() => {
+                        isFullscreenPending = false;
+                        enforceLandscapeOrientation();
+                    }).catch(() => {
+                        isFullscreenPending = false;
+                    });
+                } else {
+                    setTimeout(() => { isFullscreenPending = false; }, 400);
+                    enforceLandscapeOrientation();
+                }
+            } else {
+                enforceLandscapeOrientation();
+            }
+        }
+
+        function toggleScreenRotation(e) {
+            if (e) e.stopPropagation();
+            requestFullScreenLandscape();
+            document.body.classList.toggle('manual-rotate');
+            const isRot = document.body.classList.contains('manual-rotate');
+            showToast(isRot ? 'Screen Rotated to Landscape' : 'Portrait Mode');
+        }
+
+        // Automatically enforce landscape orientation when game is opened
+        try { enforceLandscapeOrientation(); } catch(e) {}
+        window.addEventListener('load', () => {
+            try { requestFullScreenLandscape(); } catch(e) {}
+        });
+        window.addEventListener('pointerdown', () => {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                requestFullScreenLandscape();
+            }
+        }, { capture: true, passive: true });
+
+        // -------------------------------------------------------------
+        // GAME STATE & AUDIO CONTROLLER
+        // -------------------------------------------------------------
+        const state = {
+            balance: 10000,
+            selectedChip: 25,
+            anteBet: 0,
+            callBet: 0,
+            jackpotBet: 0,
+            lastAnte: 25,
+            lastJackpot: 0,
+            turboMode: false,
+            phase: 'betting', // 'betting', 'player_turn', 'showdown', 'finished'
+            deck: [],
+            playerCards: [],
+            dealerCards: [],
+            soundEnabled: true,
+            jackpotPool: 54892.50,
+            stats: {
+                handsPlayed: 0,
+                handsWon: 0,
+                dealerQualified: 0,
+                netProfit: 0,
+                bestHandRank: -1,
+                bestHandName: '-'
+            }
+        };
+
+        const pokerMusic = document.getElementById('pokerMusic');
+
+        function playAudioClip(id) {
+            if (!state.soundEnabled) return;
+            try {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.currentTime = 0;
+                    el.volume = 0.75;
+                    el.play().catch(()=>{});
+                }
+            } catch(e) {}
+        }
+
+        function playSfx(name) {
+            if (!state.soundEnabled) return;
+            switch(name) {
+                case 'deal_card':
+                    playAudioClip('sfxDeal');
+                    break;
+                case 'flip_card':
+                    playAudioClip('sfxFlip');
+                    break;
+                case 'click':
+                case 'chip':
+                    playAudioClip('sfxChip');
+                    break;
+                case 'rebet':
+                case 'remove_cards':
+                    playAudioClip('sfxClean');
+                    break;
+                case 'win':
+                    playAudioClip('sfxWin');
+                    playAudioClip('sfxWinFly');
+                    break;
+                case 'bust':
+                    playAudioClip('sfxClean');
+                    break;
+                default:
+                    playAudioClip('sfxChip');
+                    break;
+            }
+        }
+
+        // Realistic Casino Dealer Voice Synthesizer
+        function speakDealerVoice(phrase) {
+            if (!state.soundEnabled) return;
+            if (!('speechSynthesis' in window)) return;
+            try {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(phrase);
+                utter.rate = 1.05;
+                utter.pitch = 0.95;
+                utter.lang = 'en-US';
+                const voices = window.speechSynthesis.getVoices();
+                if (voices && voices.length > 0) {
+                    const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Google') || v.name.includes('Zira') || v.name.includes('Jenny') || v.name.includes('David')));
+                    if (preferred) utter.voice = preferred;
+                }
+                window.speechSynthesis.speak(utter);
+            } catch(e) {}
+        }
+
+        function toggleAudio() {
+            state.soundEnabled = !state.soundEnabled;
+            const btn = document.getElementById('btnSoundToggle');
+            btn.textContent = state.soundEnabled ? '🔊 Music' : '🔇 Muted';
+            if (state.soundEnabled) {
+                if (pokerMusic) {
+                    pokerMusic.volume = 0.35;
+                    pokerMusic.play().catch(()=>{});
+                }
+            } else {
+                if (pokerMusic) pokerMusic.pause();
+                if (window.speechSynthesis) window.speechSynthesis.cancel();
+            }
+        }
+
+        function toggleTurbo() {
+            state.turboMode = !state.turboMode;
+            document.getElementById('btnTurboToggle').classList.toggle('active', state.turboMode);
+            playSfx('click');
+        }
+
+        // Live incrementing jackpot ticker
+        setInterval(() => {
+            state.jackpotPool += +(Math.random() * 0.45).toFixed(2);
+            document.getElementById('jackpotHudVal').textContent = '$' + state.jackpotPool.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }, 3200);
+
+        // Auto unlock poker music & voices on first touch
+        window.addEventListener('pointerdown', () => {
+            if (state.soundEnabled && pokerMusic && pokerMusic.paused) {
+                pokerMusic.volume = 0.35;
+                pokerMusic.play().catch(()=>{});
+            }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.getVoices();
+            }
+        }, { once: true });
+
+        // -------------------------------------------------------------
+        // DECK ENGINE & HAND EVALUATION
+        // -------------------------------------------------------------
+        const SUITS = ['♠', '♥', '♦', '♣'];
+        const VALUES = [
+            { label: '2', val: 2 },
+            { label: '3', val: 3 },
+            { label: '4', val: 4 },
+            { label: '5', val: 5 },
+            { label: '6', val: 6 },
+            { label: '7', val: 7 },
+            { label: '8', val: 8 },
+            { label: '9', val: 9 },
+            { label: '10', val: 10 },
+            { label: 'J', val: 11 },
+            { label: 'Q', val: 12 },
+            { label: 'K', val: 13 },
+            { label: 'A', val: 14 }
+        ];
+
+        function createDeck() {
+            const deck = [];
+            for (const s of SUITS) {
+                for (const v of VALUES) {
+                    deck.push({
+                        suit: s,
+                        label: v.label,
+                        val: v.val,
+                        color: (s === '♥' || s === '♦') ? 'card-red' : 'card-black'
+                    });
+                }
+            }
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            return deck;
+        }
+
+        function evaluateHand(cards) {
+            const sorted = [...cards].sort((a, b) => b.val - a.val);
+            const vals = sorted.map(c => c.val);
+            const suits = sorted.map(c => c.suit);
+
+            const isFlush = suits.every(s => s === suits[0]);
+            
+            let isStraight = false;
+            let isRoyal = false;
+            if (
+                vals[0] - vals[1] === 1 &&
+                vals[1] - vals[2] === 1 &&
+                vals[2] - vals[3] === 1 &&
+                vals[3] - vals[4] === 1
+            ) {
+                isStraight = true;
+            } else if (vals[0] === 14 && vals[1] === 5 && vals[2] === 4 && vals[3] === 3 && vals[4] === 2) {
+                isStraight = true; // Ace-low wheel
+            }
+
+            if (isStraight && isFlush && vals[0] === 14 && vals[1] === 13) {
+                isRoyal = true;
+            }
+
+            const counts = {};
+            vals.forEach(v => counts[v] = (counts[v] || 0) + 1);
+            const countArr = Object.entries(counts).map(([v, count]) => ({ val: Number(v), count })).sort((a, b) => b.count - a.count || b.val - a.val);
+
+            const isAceKing = vals[0] === 14 && vals[1] === 13;
+
+            if (isRoyal) return { rank: 10, name: 'Royal Flush', multiplier: 100, qualifies: true };
+            if (isStraight && isFlush) return { rank: 9, name: 'Straight Flush', multiplier: 50, qualifies: true };
+            if (countArr[0].count === 4) return { rank: 8, name: 'Four of a Kind', multiplier: 20, qualifies: true };
+            if (countArr[0].count === 3 && countArr[1].count === 2) return { rank: 7, name: 'Full House', multiplier: 7, qualifies: true };
+            if (isFlush) return { rank: 6, name: 'Flush', multiplier: 5, qualifies: true };
+            if (isStraight) return { rank: 5, name: 'Straight', multiplier: 4, qualifies: true };
+            if (countArr[0].count === 3) return { rank: 4, name: 'Three of a Kind', multiplier: 3, qualifies: true };
+            if (countArr[0].count === 2 && countArr[1].count === 2) return { rank: 3, name: 'Two Pair', multiplier: 2, qualifies: true };
+            if (countArr[0].count === 2) return { rank: 2, name: 'One Pair', multiplier: 1, qualifies: true };
+            if (isAceKing) return { rank: 1, name: 'Ace & King', multiplier: 1, qualifies: true };
+            return { rank: 0, name: 'High Card ' + sorted[0].label, multiplier: 1, qualifies: false };
+        }
+
+        // -------------------------------------------------------------
+        // WALLET ENGINE & MULTI-CURRENCY BRIDGE
+        // -------------------------------------------------------------
+        function getWallet() {
+            return window.wallet || null;
+        }
+
+        function getActiveCurrency() {
+            const w = getWallet();
+            return (w && typeof w.getCurrency === 'function') ? w.getCurrency() : 'PKR';
+        }
+
+        function getCurrencySymbol() {
+            const curr = getActiveCurrency();
+            return (curr === 'USD') ? '$' : '₨ ';
+        }
+
+        function getLiveBalance() {
+            const w = getWallet();
+            if (w && typeof w.getBalance === 'function') {
+                return w.getBalance();
+            }
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    const curr = getActiveCurrency();
+                    if (curr === 'USD') {
+                        return parseFloat(u.balance_usd || (parseFloat(u.balance_pkr || 0) / 280) || 0);
+                    }
+                    return parseFloat(u.balance_pkr || (parseFloat(u.balance_usd || 0) * 280) || 0);
+                }
+            } catch(e) {}
+            return parseFloat(localStorage.getItem('user_balance')) || 0;
+        }
+
+        function formatMoney(amount) {
+            const sym = getCurrencySymbol();
+            return sym + Number(amount || 0).toLocaleString('en-US', {
+                minimumFractionDigits: (getActiveCurrency() === 'PKR' && amount >= 100) ? 0 : 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function showToast(msg) {
+            if (window.core && window.core.showToast) {
+                window.core.showToast(msg);
+            } else {
+                const existing = document.querySelector('.custom-bwn-toast');
+                if (existing) existing.remove();
+                const toast = document.createElement('div');
+                toast.className = 'custom-bwn-toast';
+                toast.textContent = msg;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2800);
+            }
+        }
+
+        function getChipValues() {
+            return getActiveCurrency() === 'USD' ? [1, 5, 25, 50, 100, 500] : [10, 50, 100, 500, 1000, 5000];
+        }
+
+        function getJackpotUnit() {
+            return getActiveCurrency() === 'USD' ? 1 : 100;
+        }
+
+        function renderChips() {
+            const chipsRow = document.getElementById('chipsRow');
+            if (!chipsRow) return;
+            const chips = getChipValues();
+            const sym = getCurrencySymbol();
+
+            if (!chips.includes(state.selectedChip)) {
+                state.selectedChip = chips[2] || chips[0];
+            }
+
+            chipsRow.innerHTML = '';
+            chips.forEach(val => {
+                const div = document.createElement('div');
+                div.className = 'chip-token chip-' + val + (state.selectedChip === val ? ' selected' : '');
+                div.textContent = sym.trim() + (val >= 1000 ? (val / 1000) + 'K' : val);
+                div.onclick = () => selectChip(val);
+                chipsRow.appendChild(div);
+            });
+
+            const jpLabel = document.getElementById('jackpotSpotLabel');
+            if (jpLabel) {
+                jpLabel.textContent = `JACKPOT (${sym.trim()}${getJackpotUnit()})`;
+            }
+
+            const btnCurr = document.getElementById('btnCurrencyToggle');
+            if (btnCurr) {
+                btnCurr.textContent = (getActiveCurrency() === 'PKR') ? '₨ PKR ⇄ $' : '$ USD ⇄ ₨';
+            }
+        }
+
+        function toggleCurrency() {
+            const w = getWallet();
+            const current = getActiveCurrency();
+            const next = (current === 'PKR') ? 'USD' : 'PKR';
+            if (w && typeof w.setCurrency === 'function') {
+                w.setCurrency(next);
+            }
+            clearBets();
+            renderChips();
+            updateUI();
+            showToast(`Currency switched to ${next}`);
+        }
+
+        // -------------------------------------------------------------
+        // CHIPS & BETTING CONTROLLER
+        // -------------------------------------------------------------
+        function selectChip(amount) {
+            state.selectedChip = amount;
+            playSfx('click');
+            renderChips();
+        }
+
+        function placeAnteBet() {
+            if (state.phase !== 'betting') return;
+            const currentPending = state.anteBet + state.jackpotBet;
+            const proposedTotal = currentPending + state.selectedChip;
+            const available = getLiveBalance();
+
+            if (available < proposedTotal) {
+                playSfx('limit');
+                showToast('Insufficient wallet balance! Please deposit to continue.');
+                return;
+            }
+
+            state.anteBet += state.selectedChip;
+            state.lastAnte = state.anteBet;
+            playSfx('click');
+            updateUI();
+        }
+
+        function toggleJackpotBet() {
+            if (state.phase !== 'betting') return;
+            const unit = getJackpotUnit();
+            if (state.jackpotBet === 0) {
+                const proposed = state.anteBet + unit;
+                if (getLiveBalance() < proposed) {
+                    playSfx('limit');
+                    showToast('Insufficient wallet balance for Jackpot side-bet!');
+                    return;
+                }
+                state.jackpotBet = unit;
+                state.lastJackpot = unit;
+                document.getElementById('spotJackpot').classList.add('active');
+            } else {
+                state.jackpotBet = 0;
+                state.lastJackpot = 0;
+                document.getElementById('spotJackpot').classList.remove('active');
+            }
+            playSfx('click');
+            updateUI();
+        }
+
+        function rebetLastHand() {
+            if (state.phase !== 'betting') return;
+            clearBets();
+            const needed = (state.lastAnte || 0) + (state.lastJackpot || 0);
+            if (needed === 0) return;
+
+            if (getLiveBalance() < needed) {
+                playSfx('limit');
+                showToast('Insufficient balance to rebet!');
+                return;
+            }
+
+            state.anteBet = state.lastAnte;
+            if (state.lastJackpot > 0) {
+                state.jackpotBet = state.lastJackpot;
+                document.getElementById('spotJackpot').classList.add('active');
+            }
+            playSfx('rebet');
+            updateUI();
+        }
+
+        function clearBets() {
+            if (state.phase !== 'betting') return;
+            state.anteBet = 0;
+            state.jackpotBet = 0;
+            document.getElementById('spotJackpot').classList.remove('active');
+            playSfx('click');
+            updateUI();
+        }
+
+        function updateUI() {
+            const sym = getCurrencySymbol();
+            const liveBal = getLiveBalance();
+            const pendingBet = (state.phase === 'betting') ? (state.anteBet + state.jackpotBet) : 0;
+            const displayBal = Math.max(0, liveBal - pendingBet);
+
+            const balEl = document.getElementById('playerBalanceTxt');
+            if (balEl) {
+                balEl.textContent = sym + Number(displayBal).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+
+            const anteEl = document.getElementById('anteAmountTxt');
+            if (anteEl) anteEl.textContent = sym + state.anteBet.toLocaleString();
+
+            const callEl = document.getElementById('callAmountTxt');
+            if (callEl) callEl.textContent = sym + state.callBet.toLocaleString();
+
+            const jpEl = document.getElementById('jackpotAmountTxt');
+            if (jpEl) jpEl.textContent = sym + state.jackpotBet.toLocaleString();
+
+            const btnDeal = document.getElementById('btnDeal');
+            const btnCall = document.getElementById('btnCall');
+            const btnFold = document.getElementById('btnFold');
+            const btnClear = document.getElementById('btnClear');
+            const btnRebet = document.getElementById('btnRebet');
+
+            if (btnDeal) btnDeal.disabled = state.phase !== 'betting' || state.anteBet === 0;
+            if (btnCall) btnCall.disabled = state.phase !== 'player_turn';
+            if (btnFold) btnFold.disabled = state.phase !== 'player_turn';
+            if (btnClear) btnClear.disabled = state.phase !== 'betting' || (state.anteBet === 0 && state.jackpotBet === 0);
+            if (btnRebet) btnRebet.disabled = state.phase !== 'betting' || (state.lastAnte === 0 && state.lastJackpot === 0);
+        }
+
+        // -------------------------------------------------------------
+        // DEALING & GAMEPLAY FLOW
+        // -------------------------------------------------------------
+        function dealHand() {
+            if (state.phase !== 'betting' || state.anteBet === 0) return;
+            const totalBet = state.anteBet + state.jackpotBet;
+            const w = getWallet();
+
+            if (w) {
+                if (!w.hasBalance(totalBet)) {
+                    playSfx('limit');
+                    showToast('Insufficient wallet balance! Please deposit.');
+                    return;
+                }
+                const placed = w.placeBet(totalBet, 'Caribbean Poker');
+                if (!placed) {
+                    playSfx('limit');
+                    showToast('Failed to place bet. Please check balance.');
+                    return;
+                }
+            }
+
+            speakDealerVoice("Cards dealt. Good luck!");
+            state.deck = createDeck();
+            state.playerCards = [];
+            state.dealerCards = [];
+            state.callBet = 0;
+            state.phase = 'dealing';
+            updateUI();
+
+            for (let i = 0; i < 5; i++) {
+                state.playerCards.push(state.deck.pop());
+                state.dealerCards.push(state.deck.pop());
+            }
+
+            renderInitialCards();
+        }
+
+        function renderInitialCards() {
+            const playerCont = document.getElementById('playerCards');
+            const dealerCont = document.getElementById('dealerCards');
+            playerCont.innerHTML = '';
+            dealerCont.innerHTML = '';
+
+            const speed = state.turboMode ? 60 : 130;
+
+            state.playerCards.forEach((card, idx) => {
+                setTimeout(() => {
+                    const el = createCardElement(card, false);
+                    playerCont.appendChild(el);
+                    playSfx('deal_card');
+                }, idx * speed);
+            });
+
+            state.dealerCards.forEach((card, idx) => {
+                setTimeout(() => {
+                    const isFaceUp = idx === 0;
+                    const el = createCardElement(card, !isFaceUp);
+                    el.id = 'dealerCard_' + idx;
+                    dealerCont.appendChild(el);
+                }, (idx + 5) * speed);
+            });
+
+            setTimeout(() => {
+                const playerEval = evaluateHand(state.playerCards);
+                document.getElementById('playerRankTxt').textContent = 'Your Hand: ' + playerEval.name;
+                document.getElementById('dealerRankTxt').textContent = 'Dealer showing: ' + state.dealerCards[0].label + state.dealerCards[0].suit;
+                state.phase = 'player_turn';
+                speakDealerVoice("Call or fold.");
+                updateUI();
+            }, 10 * speed + 80);
+        }
+
+        function createCardElement(card, isFacedown) {
+            const div = document.createElement('div');
+            div.className = 'playing-card' + (isFacedown ? ' facedown' : '');
+            if (!isFacedown) {
+                div.innerHTML = `
+                    <div class="card-val ${card.color}">${card.label}</div>
+                    <div class="card-center-suit ${card.color}">${card.suit}</div>
+                    <div class="card-suit ${card.color}" style="align-self:flex-end;">${card.suit}</div>
+                `;
+            }
+            return div;
+        }
+
+        function foldHand() {
+            if (state.phase !== 'player_turn') return;
+            state.phase = 'finished';
+            state.stats.handsPlayed++;
+            const totalLost = state.anteBet + state.jackpotBet;
+            state.stats.netProfit -= totalLost;
+            updateStatsUI();
+
+            speakDealerVoice("Player folds.");
+            playSfx('bust');
+            showAnnouncement('YOU FOLDED', 'You surrendered your Ante of ' + formatMoney(state.anteBet), false);
+            setTimeout(resetRound, state.turboMode ? 1400 : 2500);
+        }
+
+        function callHand() {
+            if (state.phase !== 'player_turn') return;
+            const requiredCall = state.anteBet * 2;
+            const w = getWallet();
+
+            if (w) {
+                if (!w.hasBalance(requiredCall)) {
+                    playSfx('limit');
+                    showToast('Insufficient balance to Call (2x Ante: ' + formatMoney(requiredCall) + ')!');
+                    return;
+                }
+                const placed = w.placeBet(requiredCall, 'Caribbean Poker');
+                if (!placed) {
+                    playSfx('limit');
+                    showToast('Failed to place Call bet.');
+                    return;
+                }
+            }
+
+            speakDealerVoice("Player calls.");
+            state.callBet = requiredCall;
+            state.phase = 'showdown';
+            playSfx('click');
+            updateUI();
+
+            revealDealerCards();
+        }
+
+        function revealDealerCards() {
+            const speed = state.turboMode ? 100 : 220;
+            state.dealerCards.forEach((card, idx) => {
+                if (idx > 0) {
+                    setTimeout(() => {
+                        const el = document.getElementById('dealerCard_' + idx);
+                        if (el) {
+                            el.classList.remove('facedown');
+                            el.innerHTML = `
+                                <div class="card-val ${card.color}">${card.label}</div>
+                                <div class="card-center-suit ${card.color}">${card.suit}</div>
+                                <div class="card-suit ${card.color}" style="align-self:flex-end;">${card.suit}</div>
+                            `;
+                            playSfx('flip_card');
+                        }
+                    }, idx * speed);
+                }
+            });
+
+            setTimeout(evaluateShowdown, 5 * speed + 150);
+        }
+
+        function evaluateShowdown() {
+            state.stats.handsPlayed++;
+            const playerEval = evaluateHand(state.playerCards);
+            const dealerEval = evaluateHand(state.dealerCards);
+
+            document.getElementById('dealerRankTxt').textContent = 'Dealer: ' + dealerEval.name;
+
+            if (playerEval.rank > state.stats.bestHandRank) {
+                state.stats.bestHandRank = playerEval.rank;
+                state.stats.bestHandName = playerEval.name;
+            }
+
+            // Check Progressive Jackpot Win
+            let jackpotWin = 0;
+            if (state.jackpotBet > 0) {
+                const pool = state.jackpotPool;
+                if (playerEval.rank === 10) { // Royal Flush
+                    jackpotWin = pool;
+                    state.jackpotPool = 10000;
+                    speakDealerVoice("Royal Flush Progressive Jackpot winner! Congratulations!");
+                    showAnnouncement('JACKPOT WON!!', '★ 100% ROYAL FLUSH JACKPOT: +' + formatMoney(jackpotWin) + ' ★', true);
+                } else if (playerEval.rank === 9) { // Straight Flush
+                    jackpotWin = pool * 0.10;
+                    state.jackpotPool -= jackpotWin;
+                } else if (playerEval.rank === 8) { // 4 of a Kind
+                    jackpotWin = state.jackpotBet * 500;
+                } else if (playerEval.rank === 7) { // Full House
+                    jackpotWin = state.jackpotBet * 100;
+                } else if (playerEval.rank === 6) { // Flush
+                    jackpotWin = state.jackpotBet * 50;
+                }
+            }
+
+            const totalBetPlaced = state.anteBet + state.callBet + state.jackpotBet;
+            const w = getWallet();
+
+            if (!dealerEval.qualifies) {
+                // Dealer does not qualify (needs Ace-King or higher):
+                // Ante pays 1:1, Call bet pushes (returned)
+                const anteReturn = state.anteBet * 2;
+                const callReturn = state.callBet;
+                const totalPayout = anteReturn + callReturn + jackpotWin;
+                const netProfit = totalPayout - totalBetPlaced;
+
+                if (w && typeof w.creditWin === 'function') {
+                    const mult = totalBetPlaced > 0 ? (totalPayout / totalBetPlaced) : 1;
+                    w.creditWin(totalBetPlaced, totalPayout, 'Caribbean Poker', mult, 'Dealer did not qualify (Ante 1:1 + Call Push)');
+                }
+
+                state.stats.handsWon++;
+                state.stats.netProfit += netProfit;
+                playSfx('win');
+                speakDealerVoice("Dealer does not qualify. Player wins!");
+                showAnnouncement(
+                    'DEALER DOES NOT QUALIFY',
+                    'Dealer needs Ace-King or higher! Ante pays 1:1 (+' + formatMoney(state.anteBet) + (jackpotWin > 0 ? ' | Jackpot +' + formatMoney(jackpotWin) : '') + ')',
+                    true
+                );
+            } else {
+                state.stats.dealerQualified++;
+                if (playerEval.rank > dealerEval.rank) {
+                    playerWins(playerEval, jackpotWin, totalBetPlaced);
+                } else if (playerEval.rank < dealerEval.rank) {
+                    dealerWins(dealerEval, jackpotWin, totalBetPlaced);
+                } else {
+                    // Tie-break
+                    let tieResult = 0;
+                    const pVals = [...state.playerCards].map(c => c.val).sort((a,b)=>b-a);
+                    const dVals = [...state.dealerCards].map(c => c.val).sort((a,b)=>b-a);
+                    for (let i = 0; i < 5; i++) {
+                        if (pVals[i] > dVals[i]) { tieResult = 1; break; }
+                        if (pVals[i] < dVals[i]) { tieResult = -1; break; }
+                    }
+
+                    if (tieResult > 0) {
+                        playerWins(playerEval, jackpotWin, totalBetPlaced);
+                    } else if (tieResult < 0) {
+                        dealerWins(dealerEval, jackpotWin, totalBetPlaced);
+                    } else {
+                        // Push / Tie: Return bets
+                        const totalPayout = state.anteBet + state.callBet + jackpotWin;
+                        if (w && typeof w.creditWin === 'function') {
+                            w.creditWin(totalBetPlaced, totalPayout, 'Caribbean Poker', 1.0, 'Push / Tie');
+                        }
+                        speakDealerVoice("Push. Bets returned.");
+                        showAnnouncement('PUSH / TIE', 'Bets returned: ' + formatMoney(totalPayout), false);
+                    }
+                }
+            }
+
+            updateStatsUI();
+            state.phase = 'finished';
+            updateUI();
+            setTimeout(resetRound, state.turboMode ? 2000 : 3500);
+        }
+
+        function playerWins(evalData, jackpotWin, totalBetPlaced) {
+            const anteWin = state.anteBet * 2;
+            const callWin = state.callBet + (state.callBet * evalData.multiplier);
+            const totalReturn = anteWin + callWin + jackpotWin;
+            const profit = totalReturn - totalBetPlaced;
+
+            const w = getWallet();
+            if (w && typeof w.creditWin === 'function') {
+                const mult = totalBetPlaced > 0 ? (totalReturn / totalBetPlaced) : evalData.multiplier;
+                w.creditWin(totalBetPlaced, totalReturn, 'Caribbean Poker', mult, evalData.name);
+            }
+
+            state.stats.handsWon++;
+            state.stats.netProfit += profit;
+
+            playSfx('win');
+            speakDealerVoice("Player wins with " + evalData.name + "!");
+            showAnnouncement(
+                'YOU WIN!',
+                evalData.name + ' pays ' + evalData.multiplier + ':1! Profit: +' + formatMoney(profit) + (jackpotWin > 0 ? ' (Jackpot +' + formatMoney(jackpotWin) + ')' : ''),
+                true
+            );
+        }
+
+        function dealerWins(evalData, jackpotWin, totalBetPlaced) {
+            state.stats.netProfit -= totalBetPlaced;
+            const w = getWallet();
+
+            if (jackpotWin > 0) {
+                if (w && typeof w.creditWin === 'function') {
+                    w.creditWin(totalBetPlaced, jackpotWin, 'Caribbean Poker', 1.0, 'Jackpot Side-Bet Win');
+                }
+                playSfx('win');
+                speakDealerVoice("Dealer: " + evalData.name + ", but you won Jackpot!");
+                showAnnouncement('DEALER WINS', 'Dealer: ' + evalData.name + '. But you won Jackpot: +' + formatMoney(jackpotWin) + '!', true);
+            } else {
+                playSfx('bust');
+                speakDealerVoice("Dealer wins with " + evalData.name + ".");
+                showAnnouncement('DEALER WINS', 'Dealer wins with ' + evalData.name + '. Lost: ' + formatMoney(totalBetPlaced), false);
+            }
+        }
+
+        function showAnnouncement(title, desc, isWin) {
+            const alertBox = document.getElementById('winAlert');
+            const t = document.getElementById('winTitle');
+            const d = document.getElementById('winDesc');
+            t.textContent = title;
+            t.style.color = isWin ? 'var(--gold-bright)' : 'var(--lose-red)';
+            d.textContent = desc;
+            alertBox.classList.add('show');
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, state.turboMode ? 1800 : 3000);
+        }
+
+        function resetRound() {
+            playSfx('remove_cards');
+            state.anteBet = 0;
+            state.callBet = 0;
+            state.jackpotBet = 0;
+            document.getElementById('spotJackpot').classList.remove('active');
+            state.phase = 'betting';
+            document.getElementById('playerRankTxt').textContent = '';
+            document.getElementById('dealerRankTxt').textContent = '';
+            document.getElementById('playerCards').innerHTML = '';
+            document.getElementById('dealerCards').innerHTML = '';
+            updateUI();
+            setTimeout(() => speakDealerVoice("Place your bets, please."), 500);
+        }
+
+        // -------------------------------------------------------------
+        // STATS & MODALS
+        // -------------------------------------------------------------
+        function updateStatsUI() {
+            const s = state.stats;
+            document.getElementById('statHands').textContent = s.handsPlayed;
+            document.getElementById('statWins').textContent = s.handsWon;
+            const rate = s.handsPlayed > 0 ? Math.round((s.handsWon / s.handsPlayed) * 100) : 0;
+            document.getElementById('statWinRate').textContent = rate + '%';
+            const prof = document.getElementById('statProfit');
+            prof.textContent = (s.netProfit >= 0 ? '+$' : '-$') + Math.abs(s.netProfit).toFixed(2);
+            prof.style.color = s.netProfit >= 0 ? 'var(--win-green)' : 'var(--lose-red)';
+            const dq = s.handsPlayed > 0 ? Math.round((s.dealerQualified / s.handsPlayed) * 100) : 0;
+            document.getElementById('statDealerQual').textContent = dq + '%';
+            document.getElementById('statBestHand').textContent = s.bestHandName;
+        }
+
+        function openStatsModal() {
+            playSfx('click');
+            updateStatsUI();
+            document.getElementById('statsModal').classList.add('open');
+        }
+        function closeStatsModal() {
+            playSfx('click');
+            document.getElementById('statsModal').classList.remove('open');
+        }
+
+        function openRulesModal() {
+            playSfx('click');
+            document.getElementById('rulesModal').classList.add('open');
+        }
+        function closeRulesModal() {
+            playSfx('click');
+            document.getElementById('rulesModal').classList.remove('open');
+        }
+
+        // -------------------------------------------------------------
+        // 7777 GAMING OFFICIAL ENGINE IFRAME LAUNCHER
+        // -------------------------------------------------------------
+        function openProviderDemo() {
+            const modal = document.getElementById('providerModal');
+            const iframe = document.getElementById('providerIframe');
+            iframe.src = 'https://ngt-mrk-7777gaming-s.7777gaming.xyz/game.html?operator_game_id=81&game=69&currency_label=EUR&demo=1&lang_label=EN&market_label=7777gaming';
+            modal.classList.add('open');
+            if (ambientAudio) ambientAudio.pause();
+        }
+
+        function closeProviderDemo() {
+            const modal = document.getElementById('providerModal');
+            const iframe = document.getElementById('providerIframe');
+            iframe.src = '';
+            modal.classList.remove('open');
+            if (state.soundEnabled && ambientAudio) ambientAudio.play().catch(()=>{});
+        }
+
+        // -------------------------------------------------------------
+        // INITIALIZATION & REALTIME WALLET EVENT LISTENERS
+        // -------------------------------------------------------------
+        async function initGameSession() {
+            // 1. Fetch authenticated session user from server API
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data) {
+                        const u = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(u));
+                        if (window.wallet && window.wallet.state) {
+                            if (u.balance_pkr !== undefined) window.wallet.state.balancePKR = parseFloat(u.balance_pkr);
+                            if (u.balance_usd !== undefined) window.wallet.state.balanceUSD = parseFloat(u.balance_usd);
+                            window.wallet.saveState();
+                        }
+                    }
+                }
+            } catch(e) {}
+
+            // 2. Attach wallet listeners for instant updates
+            if (window.wallet && typeof window.wallet.on === 'function') {
+                window.wallet.on('change', () => updateUI());
+                window.wallet.on('balanceChange', () => updateUI());
+                window.wallet.on('balanceChanged', () => updateUI());
+            }
+
+            // 3. Render chips based on active currency
+            renderChips();
+            updateUI();
+        }
+
+        document.addEventListener('DOMContentLoaded', initGameSession);
+        renderChips();
+        updateUI();
+    </script>
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Win/Loss Financial Statement - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script src="js/adminlte.js"></script>
+    <style>
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            background: #090e17;
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--lte-border);
+            margin-bottom: 20px;
+        }
+        .filter-select {
+            padding: 8px 12px;
+            background: #111722;
+            border: 1px solid var(--lte-border-light);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:var(--lte-green); font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="betslips.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📋</span>
+                        <span style="font-weight:700;">Player Bet Slips</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#00e700; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">REAL PKR</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar with 3-Dot Sidebar Toggle Button -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar Fold (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    Financial Reports / <b style="color:#fff;">Win & Loss Statement (GGR Ledger)</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="exportStatementCSV()" class="btn-lte btn-lte-secondary">
+                    <span>📥 Export CSV</span>
+                </button>
+                <button onclick="window.print()" class="btn-lte btn-lte-secondary">
+                    <span>🖨️ Print Statement</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>📈</span> Casino Win / Loss Statement & PnL Ledger
+                    </h1>
+                    <p class="page-subtitle">
+                        Audited financial statement tracking gross gaming revenue (GGR), player wagers, payouts, and net house profitability in USD.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Financial Summary Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Total Bets Handle (Turnover)</div>
+                        <div class="metric-icon" style="color:var(--lte-cyan);">🎲</div>
+                    </div>
+                    <div class="metric-val" id="kpi-turnover">$ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;">Total Gross Player Bets</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Total Player Payouts</div>
+                        <div class="metric-icon" style="color:var(--lte-gold);">🏆</div>
+                    </div>
+                    <div class="metric-val" id="kpi-payouts" style="color:var(--lte-gold);">$ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;">Disbursed Winnings</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Gross Gaming Revenue (GGR PnL)</div>
+                        <div class="metric-icon" style="color:var(--lte-green);">💰</div>
+                    </div>
+                    <div class="metric-val" id="kpi-ggr" style="color:var(--lte-green);">$ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;" id="kpi-margin-label">House Margin: 0.0%</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Net Cashier Flow</div>
+                        <div class="metric-icon" style="color:var(--lte-green);">💳</div>
+                    </div>
+                    <div class="metric-val" id="kpi-cashflow">$ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;" id="kpi-cashflow-sub">Deposits vs Withdrawals</div>
+                </div>
+            </div>
+
+            <!-- Statement Filter Bar -->
+            <div class="filter-bar">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:var(--lte-muted); font-weight:700;">DATE:</span>
+                    <select id="filter-date" class="filter-select" onchange="applyFilters()">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="yesterday">Yesterday</option>
+                        <option value="week">Last 7 Days</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:var(--lte-muted); font-weight:700;">GAME:</span>
+                    <select id="filter-game" class="filter-select" onchange="applyFilters()">
+                        <option value="all">All Games</option>
+                        <option value="Crash">Crash</option>
+                        <option value="Limbo">Limbo</option>
+                        <option value="Mines">Mines</option>
+                        <option value="Roulette">Roulette</option>
+                        <option value="Blackjack">Blackjack</option>
+                        <option value="Poker">Poker</option>
+                        <option value="Plinko">Plinko</option>
+                        <option value="Slots">Slots</option>
+                        <option value="Dice">Dice</option>
+                        <option value="Keno">Keno</option>
+                        <option value="Bingo">Bingo</option>
+                    </select>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="font-size:11px; color:var(--lte-muted); font-weight:700;">TYPE:</span>
+                    <select id="filter-type" class="filter-select" onchange="applyFilters()">
+                        <option value="all">All Events</option>
+                        <option value="bets">Bets Only</option>
+                        <option value="deposits">Deposits Only</option>
+                        <option value="withdrawals">Withdrawals Only</option>
+                    </select>
+                </div>
+
+                <div style="flex:1; min-width:180px;">
+                    <input type="text" id="filter-search" class="form-ctrl" placeholder="🔍 Search Txn ID / Player..." oninput="applyFilters()" style="padding:7px 12px; font-size:12px;">
+                </div>
+            </div>
+
+            <!-- Games PnL Breakdown Table -->
+            <div class="lte-card" style="margin-bottom:24px;">
+                <div class="lte-card-header">
+                    <div class="lte-card-title">
+                        <span>🎰</span> Studio PnL Breakdown by Game
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th>Game Studio</th>
+                                <th>Rounds Count</th>
+                                <th>Turnover Volume (USD)</th>
+                                <th>Payouts Returned (USD)</th>
+                                <th>House GGR Margin (USD)</th>
+                                <th>RTP Realized %</th>
+                            </tr>
+                        </thead>
+                        <tbody id="games-pnl-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Detailed Statement Ledger Table -->
+            <div class="lte-card">
+                <div class="lte-card-header">
+                    <div class="lte-card-title">
+                        <span>📜</span> Audited Statement Records Ledger
+                    </div>
+                    <div style="font-size:11px; color:var(--lte-muted);" id="statement-count-label">
+                        Showing 0 transactions
+                    </div>
+                </div>
+
+                <!-- Ledger Toolbar -->
+                <div class="datatable-header-toolbar" style="margin-bottom:14px;">
+                    <div class="datatable-search-wrap">
+                        <span class="datatable-search-icon">🔍</span>
+                        <input type="text" id="stmt-search-input" class="form-ctrl datatable-search-input" placeholder="Search ledger by ID, player, game, activity..." oninput="onStmtSearchChange(this.value)">
+                    </div>
+                    <div class="datatable-filters">
+                        <select id="stmt-filter-type" class="datatable-select" onchange="onStmtTypeChange(this.value)">
+                            <option value="all">All Types</option>
+                            <option value="BET">Casino Bets</option>
+                            <option value="DEPOSIT">Deposits</option>
+                            <option value="WITHDRAWAL">Cashouts</option>
+                        </select>
+                        <select id="stmt-filter-pagesize" class="datatable-select" onchange="onStmtPageSizeChange(this.value)">
+                            <option value="10" selected>10 per page</option>
+                            <option value="25">25 per page</option>
+                            <option value="50">50 per page</option>
+                        </select>
+                        <button class="btn-lte btn-lte-secondary" style="padding:7px 12px; font-size:12px;" onclick="resetStmtFilters()">
+                            ↺ Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th style="cursor:pointer;" onclick="stmtPager.setSort('id')">Statement ID ↕</th>
+                                <th style="cursor:pointer;" onclick="stmtPager.setSort('timeStr')">Date & Time ↕</th>
+                                <th style="cursor:pointer;" onclick="stmtPager.setSort('player')">Player ↕</th>
+                                <th>Activity Type</th>
+                                <th>Channel / Game</th>
+                                <th>Debit (-USD)</th>
+                                <th>Credit (+USD)</th>
+                                <th style="cursor:pointer;" onclick="stmtPager.setSort('netPnL')">Net PnL ↕</th>
+                                <th>Balance ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statement-tbody">
+                            <!-- Populated by LTEDataPager -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="datatable-footer" id="statement-footer">
+                    <!-- Populated by LTEDataPager -->
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/user_manager.js"></script>
+    <script src="../js/payment_manager.js"></script>
+    <script>
+        let allRecords = [];
+
+        function loadStatementData() {
+            allRecords = [];
+
+            // Gathers transactions and bets from all users
+            const users = window.userManager ? window.userManager.getUsers() : [];
+            const activeWallet = window.wallet ? window.wallet.state : null;
+
+            // 1. Gather all bets
+            users.forEach(u => {
+                const bets = u.betHistory || [];
+                bets.forEach(b => {
+                    const betUSD = parseFloat(b.betUSD || (b.stake ? b.stake / 280 : (b.bet ? b.bet / 280 : 0)));
+                    const payoutUSD = parseFloat(b.payoutUSD || (b.payout ? b.payout / 280 : 0));
+                    const profitUSD = payoutUSD - betUSD;
+
+                    allRecords.push({
+                        id: b.id || ('BET-' + Math.floor(100000 + Math.random() * 900000)),
+                        timestamp: b.timestamp ? new Date(b.timestamp) : new Date(),
+                        timeStr: b.time || (b.timestamp ? new Date(b.timestamp).toLocaleTimeString() : 'Recent'),
+                        player: u.username || 'player',
+                        type: 'BET',
+                        game: b.game || 'Casino Studio',
+                        debit: betUSD,
+                        credit: payoutUSD,
+                        netPnL: -profitUSD, // From house perspective: player loss is house profit!
+                        balance: b.runningBalanceUSD || u.balancePKR / 280 || 0
+                    });
+                });
+            });
+
+            // 2. Gather cashier transactions
+            if (activeWallet && activeWallet.transactions) {
+                activeWallet.transactions.forEach(t => {
+                    const isDep = t.type === 'deposit';
+                    const amountUSD = parseFloat(t.amountUSD || (t.amountPKR ? t.amountPKR / 280 : 0));
+                    allRecords.push({
+                        id: t.id,
+                        timestamp: t.timestamp ? new Date(t.timestamp) : new Date(),
+                        timeStr: t.date || 'Recent',
+                        player: 'Active Session',
+                        type: isDep ? 'DEPOSIT' : 'WITHDRAWAL',
+                        game: t.method || 'Cashier',
+                        debit: isDep ? 0 : amountUSD,
+                        credit: isDep ? amountUSD : 0,
+                        netPnL: isDep ? amountUSD : -amountUSD,
+                        balance: activeWallet.balanceUSD || 0
+                    });
+                });
+            }
+
+            // Sort by latest first
+            allRecords.sort((a, b) => b.timestamp - a.timestamp);
+
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const dateFilter = document.getElementById('filter-date').value;
+            const gameFilter = document.getElementById('filter-game').value;
+            const typeFilter = document.getElementById('filter-type').value;
+            const search = document.getElementById('filter-search').value.toLowerCase().trim();
+
+            const now = new Date();
+            const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+            let filtered = allRecords.filter(r => {
+                // Date filter
+                if (dateFilter === 'today' && r.timestamp < startOfToday) return false;
+                if (dateFilter === 'yesterday') {
+                    const yest = new Date(startOfToday.getTime() - 86400000);
+                    if (r.timestamp < yest || r.timestamp >= startOfToday) return false;
+                }
+                if (dateFilter === 'week') {
+                    const weekAgo = new Date(startOfToday.getTime() - 7 * 86400000);
+                    if (r.timestamp < weekAgo) return false;
+                }
+                if (dateFilter === 'month') {
+                    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                    if (r.timestamp < startOfMonth) return false;
+                }
+
+                // Game filter
+                if (gameFilter !== 'all' && !r.game.toLowerCase().includes(gameFilter.toLowerCase())) return false;
+
+                // Type filter
+                if (typeFilter === 'bets' && r.type !== 'BET') return false;
+                if (typeFilter === 'deposits' && r.type !== 'DEPOSIT') return false;
+                if (typeFilter === 'withdrawals' && r.type !== 'WITHDRAWAL') return false;
+
+                // Search
+                if (search && !r.id.toLowerCase().includes(search) && !r.player.toLowerCase().includes(search) && !r.game.toLowerCase().includes(search)) return false;
+
+                return true;
+            });
+
+            renderKPIs(filtered);
+            renderGamesPnL(filtered);
+            renderStatementTable(filtered);
+        }
+
+        function renderKPIs(records) {
+            let turnover = 0;
+            let payouts = 0;
+            let deposits = 0;
+            let withdrawals = 0;
+
+            records.forEach(r => {
+                if (r.type === 'BET') {
+                    turnover += r.debit;
+                    payouts += r.credit;
+                } else if (r.type === 'DEPOSIT') {
+                    deposits += r.credit;
+                } else if (r.type === 'WITHDRAWAL') {
+                    withdrawals += r.debit;
+                }
+            });
+
+            const ggr = turnover - payouts;
+            const margin = turnover > 0 ? ((ggr / turnover) * 100).toFixed(1) : '0.0';
+            const cashflow = deposits - withdrawals;
+
+            document.getElementById('kpi-turnover').innerText = `$ ${turnover.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            document.getElementById('kpi-payouts').innerText = `$ ${payouts.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            const ggrEl = document.getElementById('kpi-ggr');
+            ggrEl.innerText = `${ggr >= 0 ? '+' : ''}$ ${ggr.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            ggrEl.style.color = ggr >= 0 ? 'var(--lte-green)' : 'var(--lte-red)';
+            document.getElementById('kpi-margin-label').innerText = `House Margin: ${margin}% (GGR)`;
+
+            const cfEl = document.getElementById('kpi-cashflow');
+            cfEl.innerText = `${cashflow >= 0 ? '+' : ''}$ ${cashflow.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            cfEl.style.color = cashflow >= 0 ? 'var(--lte-cyan)' : 'var(--lte-red)';
+            document.getElementById('kpi-cashflow-sub').innerText = `Deposits: $${deposits.toFixed(0)} | Withdrawals: $${withdrawals.toFixed(0)}`;
+        }
+
+        function renderGamesPnL(records) {
+            const tbody = document.getElementById('games-pnl-tbody');
+            const gameStats = {};
+
+            records.filter(r => r.type === 'BET').forEach(r => {
+                const g = r.game || 'Other';
+                if (!gameStats[g]) {
+                    gameStats[g] = { count: 0, turnover: 0, payouts: 0 };
+                }
+                gameStats[g].count += 1;
+                gameStats[g].turnover += r.debit;
+                gameStats[g].payouts += r.credit;
+            });
+
+            const keys = Object.keys(gameStats);
+            if (keys.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:#8e9bb0;">No game rounds recorded in this filter window.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = keys.map(k => {
+                const s = gameStats[k];
+                const houseProfit = s.turnover - s.payouts;
+                const rtp = s.turnover > 0 ? ((s.payouts / s.turnover) * 100).toFixed(1) : '0.0';
+
+                return `
+                    <tr>
+                        <td style="font-weight:800; color:#fff;">${k}</td>
+                        <td style="font-family:'JetBrains Mono',monospace;">${s.count}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; color:var(--lte-cyan);">$ ${s.turnover.toFixed(2)}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; color:var(--lte-gold);">$ ${s.payouts.toFixed(2)}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${houseProfit >= 0 ? 'var(--lte-green)' : 'var(--lte-red)'};">
+                            ${houseProfit >= 0 ? '+' : ''}$ ${houseProfit.toFixed(2)}
+                        </td>
+                        <td style="font-family:'JetBrains Mono',monospace;">
+                            <span class="badge-status ${parseFloat(rtp) <= 98 ? 'badge-active' : 'badge-suspended'}" style="font-size:10px;">${rtp}% RTP</span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        let stmtPager = null;
+
+        function renderStatementTable(records) {
+            document.getElementById('statement-count-label').innerText = `Showing ${records.length} transactions`;
+
+            if (!stmtPager) {
+                stmtPager = new LTEDataPager({
+                    refName: 'stmtPager',
+                    data: records,
+                    pageSize: 10,
+                    containerId: 'statement-tbody',
+                    footerId: 'statement-footer',
+                    defaultSortKey: 'timeStr',
+                    defaultSortAsc: false,
+                    filterFn: (r, query, filters) => {
+                        if (query) {
+                            const q = query.toLowerCase();
+                            const matchId = (r.id || '').toLowerCase().includes(q);
+                            const matchPlayer = (r.player || '').toLowerCase().includes(q);
+                            const matchGame = (r.game || '').toLowerCase().includes(q);
+                            const matchType = (r.type || '').toLowerCase().includes(q);
+                            if (!matchId && !matchPlayer && !matchGame && !matchType) return false;
+                        }
+                        if (filters.type && filters.type !== 'all') {
+                            if (r.type !== filters.type) return false;
+                        }
+                        return true;
+                    },
+                    renderRow: (r, idx) => {
+                        let typeBadge = '<span class="badge-status badge-cyan">Bet</span>';
+                        if (r.type === 'DEPOSIT') typeBadge = '<span class="badge-status badge-active">Deposit</span>';
+                        if (r.type === 'WITHDRAWAL') typeBadge = '<span class="badge-status badge-suspended">Cashout</span>';
+
+                        const netColor = r.netPnL >= 0 ? 'var(--lte-green)' : 'var(--lte-red)';
+                        const netPrefix = r.netPnL >= 0 ? '+' : '';
+
+                        return `
+                            <tr>
+                                <td style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8e9bb0;">${r.id}</td>
+                                <td style="font-size:11px; color:#cbd5e1;">${r.timeStr}</td>
+                                <td style="font-weight:700; color:#fff;">${r.player}</td>
+                                <td>${typeBadge}</td>
+                                <td style="font-weight:600; color:#fff;">${r.game}</td>
+                                <td style="font-family:'JetBrains Mono',monospace; color:${r.debit > 0 ? 'var(--lte-red)' : '#8e9bb0'};">
+                                    ${r.debit > 0 ? '-$ ' + r.debit.toFixed(2) : '-'}
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; color:${r.credit > 0 ? 'var(--lte-green)' : '#8e9bb0'};">
+                                    ${r.credit > 0 ? '+$ ' + r.credit.toFixed(2) : '-'}
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${netColor};">
+                                    ${netPrefix}$ ${r.netPnL.toFixed(2)}
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-weight:700; color:#fff;">
+                                    $ ${Number(r.balance || 0).toFixed(2)}
+                                </td>
+                            </tr>
+                        `;
+                    }
+                });
+            } else {
+                stmtPager.setData(records);
+            }
+
+            stmtPager.render();
+        }
+
+        function onStmtSearchChange(val) {
+            if (stmtPager) stmtPager.setSearch(val);
+        }
+
+        function onStmtTypeChange(val) {
+            if (stmtPager) stmtPager.setFilter('type', val);
+        }
+
+        function onStmtPageSizeChange(val) {
+            if (stmtPager) stmtPager.setPageSize(val);
+        }
+
+        function resetStmtFilters() {
+            document.getElementById('stmt-search-input').value = '';
+            document.getElementById('stmt-filter-type').value = 'all';
+            document.getElementById('stmt-filter-pagesize').value = '10';
+            if (stmtPager) {
+                stmtPager.searchQuery = '';
+                stmtPager.activeFilters = {};
+                stmtPager.pageSize = 10;
+                stmtPager.currentPage = 1;
+                stmtPager.render();
+            }
+        }
+
+        function exportStatementCSV() {
+            if (allRecords.length === 0) {
+                alert('No records to export!');
+                return;
+            }
+
+            let csv = 'StatementID,Date,Player,Type,Game,DebitUSD,CreditUSD,NetPnL,BalanceUSD\n';
+            allRecords.forEach(r => {
+                csv += `"${r.id}","${r.timeStr}","${r.player}","${r.type}","${r.game}",${r.debit.toFixed(2)},${r.credit.toFixed(2)},${r.netPnL.toFixed(2)},${Number(r.balance).toFixed(2)}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `casino_win_loss_statement_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        window.addEventListener('DOMContentLoaded', loadStatementData);
+    </script>
+</body>
+</html>

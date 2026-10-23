@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050a10">
+    <title>⚽ Penalty Shootout Pro - World Cup Stadium | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css?v=29.0_wa_nogame">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="stylesheet" href="../css/games/penalty.css?v=2.3_pragmatic_loader">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="game-page penalty-game-body">
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bet With Net Universal Header HUD Slot -->
+    <div id="app-header-slot"></div>
+
+    <main class="penalty-main-container">
+        <!-- Top Title Navigation Bar -->
+        <div class="penalty-header-bar">
+            <div class="penalty-title-wrap">
+                <a href="../casino.html" class="penalty-back-btn">← Casino Lobby</a>
+                <h1>⚽ Penalty Shootout Pro</h1>
+            </div>
+            <div class="penalty-badge-rtp">⭐ 96.8% RTP VIP</div>
+        </div>
+
+        <!-- Heavy Realistic Football Park / Stadium Arena -->
+        <div class="penalty-stadium-arena" id="stadium-arena">
+            <!-- Volumetric Stadium Floodlight Beams -->
+            <div class="stadium-lighting-overlay"></div>
+            <!-- Atmospheric Crowd Flashes in the Stadium Stands -->
+            <div class="crowd-flashes"></div>
+
+            <!-- Stadium Electronic Scoreboard HUD (Top) -->
+            <div class="stadium-scoreboard">
+                <div class="scoreboard-section">
+                    <span class="scoreboard-label">STAKE</span>
+                    <span class="scoreboard-value" id="hud-stake-val">₨ 0</span>
+                </div>
+                <div class="scoreboard-section">
+                    <span class="scoreboard-label">MULTIPLIER</span>
+                    <span class="scoreboard-value gold" id="hud-mult-val">1.00x</span>
+                </div>
+                <div class="scoreboard-section">
+                    <span class="scoreboard-label">STREAK (5 GOALS)</span>
+                    <div class="scoreboard-streak-dots" id="scoreboard-streak-wrap">
+                        <!-- Dynamically filled with 5 dots -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Big In-Arena 3D Announcement Banner (GOAL! / SAVED!) -->
+            <div class="stadium-event-announcer" id="stadium-announcer">
+                <h2 class="banner-text-primary banner-goal-style">GOAL! ⚽</h2>
+                <span class="banner-text-sub">1 In A Row • 1.92x</span>
+            </div>
+
+            <!-- Interactive Goal Frame & 5 Precision Shot Targets -->
+            <div class="goal-target-matrix">
+                <!-- Top-Left Corner -->
+                <div class="penalty-target-zone zone-tl" onclick="window.penaltyGame.shoot('tl')" title="Top Left Corner (High Risk, High Glory)">
+                    <div class="target-reticle">
+                        <div class="target-crosshair"></div>
+                    </div>
+                    <span class="target-label">TOP L</span>
+                </div>
+
+                <!-- Top-Right Corner -->
+                <div class="penalty-target-zone zone-tr" onclick="window.penaltyGame.shoot('tr')" title="Top Right Corner (Upper 90)">
+                    <div class="target-reticle">
+                        <div class="target-crosshair"></div>
+                    </div>
+                    <span class="target-label">TOP R</span>
+                </div>
+
+                <!-- Center High / Crossbar -->
+                <div class="penalty-target-zone zone-m" onclick="window.penaltyGame.shoot('m')" title="Center Under Crossbar (Panenka)">
+                    <div class="target-reticle">
+                        <div class="target-crosshair"></div>
+                    </div>
+                    <span class="target-label">CENTER</span>
+                </div>
+
+                <!-- Bottom-Left Low Corner -->
+                <div class="penalty-target-zone zone-bl" onclick="window.penaltyGame.shoot('bl')" title="Bottom Left (Low Driven Shot)">
+                    <div class="target-reticle">
+                        <div class="target-crosshair"></div>
+                    </div>
+                    <span class="target-label">LOW L</span>
+                </div>
+
+                <!-- Bottom-Right Low Corner -->
+                <div class="penalty-target-zone zone-br" onclick="window.penaltyGame.shoot('br')" title="Bottom Right (Low Driven Shot)">
+                    <div class="target-reticle">
+                        <div class="target-crosshair"></div>
+                    </div>
+                    <span class="target-label">LOW R</span>
+                </div>
+            </div>
+
+            <!-- Animated Goalkeeper Layer (Bouncing Idle on Toes & Dynamic Diving AI) -->
+            <div class="penalty-keeper-layer" id="penalty-keeper-layer">
+                <img id="keeper-sprite-img" class="keeper-sprite keeper-idle-anim" src="../assets/games/penalty/keeper_idle.png" alt="Penalty Goalkeeper" draggable="false">
+                <div class="keeper-shadow"></div>
+            </div>
+
+            <!-- 3D Official Match Soccer Ball & Penalty Spot -->
+            <div class="penalty-ball-wrapper" id="penalty-ball-wrapper">
+                <img id="penalty-ball-img" class="ball-sprite" src="../assets/games/penalty/ball.png" alt="FIFA Soccer Ball" draggable="false">
+                <div class="ball-ground-shadow" id="ball-ground-shadow"></div>
+            </div>
+
+            <!-- Turf Grass Burst VFX on Kick -->
+            <div class="turf-burst-particle" id="turf-kick-burst"></div>
+
+            <!-- Multiplier Step Ladder (Bottom of Arena) -->
+            <div class="penalty-ladder-container" id="penalty-ladder-wrap">
+                <!-- Dynamically filled with Goal 1 to 5 steps -->
+            </div>
+        </div>
+
+        <!-- Golden Cashout Button Bar (Reveals on 1st Goal) -->
+        <div class="penalty-cashout-bar">
+            <button id="btn-penalty-cashout" class="btn-penalty-cashout" style="display:none;" onclick="window.penaltyGame.cashOut()">
+                <span>💰 TAKE CASH</span>
+                <span>₨ 0</span>
+            </button>
+        </div>
+
+        <!-- Authentic Casino Bet Control Panel -->
+        <div class="penalty-bet-panel">
+            <div class="bet-panel-row">
+                <div class="bet-input-container">
+                    <span class="bet-pkr-prefix">₨</span>
+                    <input type="number" id="penalty-bet-input" class="bet-number-input" value="100" min="10" step="10">
+                </div>
+                <div class="bet-modifiers-group">
+                    <button type="button" class="btn-mod" onclick="window.penaltyGame.modifyBet('half')">½</button>
+                    <button type="button" class="btn-mod" onclick="window.penaltyGame.modifyBet('double')">2×</button>
+                    <button type="button" class="btn-mod" onclick="window.penaltyGame.modifyBet('max')">MAX</button>
+                </div>
+            </div>
+
+            <!-- Quick Bet Chip Presets -->
+            <div class="quick-bet-chips-row">
+                <button type="button" class="chip-preset-btn" onclick="window.penaltyGame.setQuickBet(50)">₨ 50</button>
+                <button type="button" class="chip-preset-btn" onclick="window.penaltyGame.setQuickBet(100)">₨ 100</button>
+                <button type="button" class="chip-preset-btn" onclick="window.penaltyGame.setQuickBet(250)">₨ 250</button>
+                <button type="button" class="chip-preset-btn" onclick="window.penaltyGame.setQuickBet(500)">₨ 500</button>
+                <button type="button" class="chip-preset-btn" onclick="window.penaltyGame.setQuickBet(1000)">₨ 1,000</button>
+                <button type="button" class="chip-preset-btn" onclick="window.penaltyGame.setQuickBet(5000)">₨ 5,000</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Platform Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js?v=6.0"></script>
+    <script src="../js/api_bridge.js?v=2.5"></script>
+    <script src="../js/core.js?v=6.4_frontpage_only"></script>
+    <script src="../js/games/penalty.js?v=2.1_crowd_roar"></script>
+    <script>
+        // Pragmatic Play Loading Screen Controller
+        (function initPPLoader() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) return;
+
+            let pct = 0;
+            let finished = false;
+
+            function finishLoading() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 550);
+                }, 220);
+            }
+
+            const stepLoading = () => {
+                if (finished) return;
+                if (pct < 30) {
+                    pct += Math.floor(Math.random() * 9) + 15;
+                } else if (pct < 70) {
+                    pct += Math.floor(Math.random() * 12) + 12;
+                } else if (pct < 95) {
+                    pct += Math.floor(Math.random() * 8) + 8;
+                } else {
+                    pct = 100;
+                }
+
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+
+                if (pct < 100) {
+                    const delay = pct > 60 ? (Math.random() * 90 + 70) : (Math.random() * 60 + 40);
+                    setTimeout(stepLoading, delay);
+                } else {
+                    finishLoading();
+                }
+            };
+
+            setTimeout(stepLoading, 100);
+            setTimeout(finishLoading, 2200);
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.core && window.core.init) {
+                window.core.init('casino');
+            }
+            if (window.penaltyGame && window.penaltyGame.init) {
+                window.penaltyGame.init();
+            }
+        });
+    </script>
+</body>
+</html>

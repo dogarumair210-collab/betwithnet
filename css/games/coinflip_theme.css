@@ -1,0 +1,271 @@
+/* ==========================================================================
+   1xBet / Astriona Games - Coin Flip Official Theme
+   Extracted from: https://1x-betpk.mobi/en/casino-search?game=190173
+   Game ID: 190173 (Provider: Astriona Games - Mini Games "Coin Flip")
+   ========================================================================== */
+
+:root {
+    /* Background Hierarchy */
+    --bg-deep: #020a16;
+    --bg-app: #020a16;
+    --bg-surface: #031125;
+    --bg-card: #172436;
+    --bg-input: #031023;
+    --bg-elevated: #212e3f;
+
+    /* Border System */
+    --border: #303c4c;
+    --border-light: #424d5c;
+
+    /* Accent & Brand Colors */
+    --accent: #1c8ffa;
+    --accent-dim: #187ad5;
+    --accent-rgb: 28, 143, 250;
+    --cashout-rgb: 245, 158, 11;
+
+    /* Typography Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Status Colors */
+    --win-green: #019a10;
+    --lose-red: #a90202;
+    --gold-grad: linear-gradient(135deg, #ffd700, #f59e0b);
+}
+
+/* Base Container & Wrappers */
+.coinflip-main-wrapper {
+    background-color: var(--bg-deep) !important;
+    min-height: 100vh;
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.coinflip-game-wrapper {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.coinflip-sidebar-wrapper {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Balance Widget */
+.coinflip-balance-wrapper {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.coinflip-balance-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.coinflip-balance-value {
+    background: linear-gradient(135deg, #e8edf5, #57acfb) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* Bet UI Input */
+.coinflip-bet-ui {
+    width: 100%;
+    align-items: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-sizing: border-box;
+    color: var(--text-primary);
+    display: flex;
+    font-size: 16px;
+    gap: 6px;
+    margin-top: 5px;
+    padding: 6px 6px 6px 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coinflip-bet-ui:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1), 0 0 20px rgba(var(--accent-rgb), 0.08);
+}
+
+.coinflip-currency-badge {
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
+    border-radius: 6px;
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    padding: 4px 8px;
+}
+
+.coinflip-bet-input {
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: 800;
+    height: 100%;
+    min-width: 0;
+    padding: 0;
+    width: 80px;
+}
+
+.coinflip-bet-input:focus {
+    outline: none;
+}
+
+.coinflip-bet-actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: 4px;
+}
+
+.coinflip-bet-actions button {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+.coinflip-bet-actions button:hover {
+    background: var(--border-light);
+    border-color: var(--border-light);
+    color: var(--text-primary);
+}
+
+/* Mode / Risk Selector Pills */
+.coinflip-mode-selector {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 4px;
+    margin-top: 5px;
+    padding: 4px;
+    width: 100%;
+}
+
+.coinflip-mode-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--text-muted);
+    cursor: pointer;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 10px 0;
+    text-align: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coinflip-mode-btn.selected {
+    background: var(--bg-elevated);
+    border-color: var(--border-light);
+    color: var(--text-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Primary Action Bet Button */
+.coinflip-bet-button {
+    align-items: center;
+    background: linear-gradient(180deg, #1b88ee, #125da3) !important;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.25), 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 24px;
+    font-weight: 800;
+    gap: 10px;
+    height: 64px;
+    justify-content: center;
+    letter-spacing: -0.02em;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.coinflip-bet-button:before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    content: "";
+    height: 100%;
+    left: -100%;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: left 0.6s ease;
+    width: 60%;
+}
+
+.coinflip-bet-button:hover {
+    box-shadow: 0 0 35px rgba(var(--accent-rgb), 0.45), 0 8px 24px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+}
+
+.coinflip-bet-button:hover:before {
+    left: 120%;
+}
+
+/* Cashout Button */
+.coinflip-cashout-button {
+    animation: coinflip-cashout-glow 1.5s ease-in-out infinite alternate;
+    background: linear-gradient(180deg, #d8ad16, #ea7522) !important;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(var(--cashout-rgb), 0.25), 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 800;
+    height: 64px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+@keyframes coinflip-cashout-glow {
+    0% { box-shadow: 0 0 20px rgba(var(--cashout-rgb), 0.25); }
+    100% { box-shadow: 0 0 32px rgba(var(--cashout-rgb), 0.5); }
+}

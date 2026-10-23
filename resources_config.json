@@ -1,0 +1,41 @@
+﻿{
+    "paths":  {
+                  "0":  [
+                            "json/config_dev",
+                            0
+                        ]
+              },
+    "types":  [
+                  "cc.JsonAsset"
+              ],
+    "uuids":  [
+                  "37n0Op125Hb4QgXGGrXWcZ"
+              ],
+    "scenes":  {
+
+               },
+    "redirect":  [
+
+                 ],
+    "deps":  [
+
+             ],
+    "packs":  {
+
+              },
+    "name":  "resources",
+    "importBase":  "import",
+    "nativeBase":  "native",
+    "debug":  false,
+    "isZip":  false,
+    "encrypted":  false,
+    "versions":  {
+                     "import":  [
+                                    0,
+                                    "5ce91"
+                                ],
+                     "native":  [
+
+                                ]
+                 }
+}

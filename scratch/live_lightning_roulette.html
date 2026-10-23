@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ Quantum 500x Roulette - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .active-pick { border-color: #00e700 !important; background: rgba(0, 231, 0, 0.2) !important; color: #00e700 !important; }
+    </style>
+</head>
+<body class="game-page bg-roulette">
+    <div id="app-header-slot"></div>
+    <main class="main-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <a href="../casino.html" class="btn-secondary" style="padding:6px 12px; font-size:12px; text-decoration:none;">← Casino</a>
+                <h1 style="font-size:18px; font-weight:800;">⚡ Quantum 500x Roulette</h1>
+            </div>
+            <div style="font-size:11px; color:#00e700; background:rgba(0,231,0,0.15); padding:4px 10px; border-radius:12px; font-weight:700;">97.3% RTP</div>
+        </div>
+        <div class="game-stage-wrapper">
+            <div style="width:100%; height:260px; background:radial-gradient(circle at center, #1b1638 0%, #090616 100%); border-radius:16px; border:2px solid #9b59b6; position:relative; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:15px;">
+        <div style="font-size:12px; font-weight:800; color:#00e5ff; letter-spacing:1px; margin-bottom:8px;">QUANTUM LIGHTNING MULTIPLIERS</div>
+        <div id="lr-lucky" style="display:flex; gap:10px; margin-bottom:12px;">
+            <div style="background:#140e2b; border:2px solid #00e5ff; padding:6px 12px; border-radius:8px; font-size:13px; font-weight:800; color:#00e5ff;">⚡ 7 (100x)</div>
+            <div style="background:#140e2b; border:2px solid #ffd700; padding:6px 12px; border-radius:8px; font-size:13px; font-weight:800; color:#ffd700;">⚡ 18 (250x)</div>
+            <div style="background:#140e2b; border:2px solid #ff4757; padding:6px 12px; border-radius:8px; font-size:13px; font-weight:800; color:#ff4757;">⚡ 24 (500x)</div>
+        </div>
+        <div id="lr-wheel" style="font-size:48px; font-weight:900; color:#fff; font-family:var(--font-mono); text-shadow:0 0 20px #9b59b6;">-</div>
+        <div id="lr-status" style="font-size:13px; font-weight:700; color:#ffd700; margin-top:6px;">Pick a number (0-36) or Red/Black & Spin!</div>
+    </div>
+    <div style="display:flex; gap:8px; margin-top:10px;">
+        <button class="lr-bet-pick active-pick" onclick="window.lightning_rouletteGame.pickBet('red')" id="lr-b-red" style="flex:1; background:#c0392b; color:#fff; padding:6px; border-radius:6px; border:1px solid #ff4757;">RED (2x)</button>
+        <button class="lr-bet-pick" onclick="window.lightning_rouletteGame.pickBet('black')" id="lr-b-black" style="flex:1; background:#111; color:#fff; padding:6px; border-radius:6px; border:1px solid #777;">BLACK (2x)</button>
+        <button class="lr-bet-pick" onclick="window.lightning_rouletteGame.pickBet('straight')" id="lr-b-str" style="flex:1; background:#2980b9; color:#fff; padding:6px; border-radius:6px; border:1px solid #00e5ff;">STRAIGHT (36x-500x)</button>
+    </div>
+        </div>
+        <div class="game-control-panel">
+            <div class="bet-amount-row"><div class="bet-input-wrap"><span class="bet-currency-prefix">₨</span><input type="number" id="lr-bet-input" class="bet-input" value="100"></div><div class="bet-quick-btn-group"><button class="btn-bet-modifier" onclick="window.app.modifyBet('lr-bet-input', 'half')">½</button><button class="btn-bet-modifier" onclick="window.app.modifyBet('lr-bet-input', 'double')">2×</button><button class="btn-bet-modifier" onclick="window.app.modifyBet('lr-bet-input', 'max')">MAX</button></div></div>
+    <button id="lr-spin-btn" class="btn-action-primary" onclick="window.lightning_rouletteGame.spin()">QUANTUM SPIN ⚡</button>
+        </div>
+    </main>
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/lightning_roulette.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.core.init('casino');
+            if (window.lightning_rouletteGame && window.lightning_rouletteGame.init) window.lightning_rouletteGame.init();
+        });
+    </script>
+
+<!-- AUTO-INJECTED UNIVERSAL WALLET ENGINE v4.0 -->
+<script src="../js/universal_wallet_bridge.js?v=universal_v4"></script>
+<!-- END AUTO-INJECTED WALLET -->
+</body>
+</html>

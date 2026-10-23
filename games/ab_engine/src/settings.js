@@ -1,0 +1,1 @@
+window._CCSettings={platform:"web-mobile",groupList:["default"],collisionMatrix:[[true]],hasResourcesBundle:true,hasStartSceneBundle:false,remoteBundles:[],subpackages:[],launchScene:"db://assets/resources/scenes/lobby.fire",orientation:"portait",jsList:["assets/scripts/standard/plugin/crypto-js.min.js"]};

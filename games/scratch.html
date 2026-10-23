@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#071224">
+    <title>Scratch Card VIP (Game #104989) - Bet With Net VIP</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT (0-SCROLL)
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        :root {
+            /* Iconic BWN Navy & Cyan Theme */
+            --theme-bg: radial-gradient(circle at 50% 25%, #0d223f 0%, #071324 60%, #020710 100%);
+            --theme-card-bg: linear-gradient(160deg, #102544 0%, #081528 50%, #050d1a 100%);
+            --theme-accent: #00d2ff;
+            --theme-accent-glow: rgba(0, 210, 255, 0.65);
+            --theme-gold: #ffc400;
+            --theme-gold-glow: rgba(255, 196, 0, 0.7);
+            --theme-border: rgba(0, 210, 255, 0.45);
+            --theme-cell-bg: #061122;
+        }
+
+        /* 4 SELECTABLE CASINO THEMES */
+        body.theme-bwn {
+            --theme-bg: radial-gradient(circle at 50% 25%, #0d223f 0%, #071324 60%, #020710 100%);
+            --theme-card-bg: linear-gradient(160deg, #102544 0%, #081528 50%, #050d1a 100%);
+            --theme-accent: #00d2ff;
+            --theme-accent-glow: rgba(0, 210, 255, 0.65);
+            --theme-gold: #ffc400;
+            --theme-gold-glow: rgba(255, 196, 0, 0.7);
+            --theme-border: rgba(0, 210, 255, 0.45);
+            --theme-cell-bg: #061122;
+        }
+
+        body.theme-emerald {
+            --theme-bg: radial-gradient(circle at 50% 25%, #0d3822 0%, #051a0f 65%, #020b06 100%);
+            --theme-card-bg: linear-gradient(160deg, #12452a 0%, #072214 50%, #03130a 100%);
+            --theme-accent: #00ffaa;
+            --theme-accent-glow: rgba(0, 255, 170, 0.65);
+            --theme-gold: #ffd700;
+            --theme-gold-glow: rgba(255, 215, 0, 0.7);
+            --theme-border: rgba(0, 255, 170, 0.45);
+            --theme-cell-bg: #04170d;
+        }
+
+        body.theme-ruby {
+            --theme-bg: radial-gradient(circle at 50% 25%, #3e0e18 0%, #1f050b 65%, #0a0104 100%);
+            --theme-card-bg: linear-gradient(160deg, #4f1120 0%, #26070e 50%, #120306 100%);
+            --theme-accent: #ff4757;
+            --theme-accent-glow: rgba(255, 71, 87, 0.65);
+            --theme-gold: #ffbe0b;
+            --theme-gold-glow: rgba(255, 190, 11, 0.7);
+            --theme-border: rgba(255, 71, 87, 0.45);
+            --theme-cell-bg: #1c050a;
+        }
+
+        body.theme-onyx {
+            --theme-bg: radial-gradient(circle at 50% 25%, #1e2026 0%, #101216 65%, #060709 100%);
+            --theme-card-bg: linear-gradient(160deg, #2a2d36 0%, #14161a 50%, #090a0c 100%);
+            --theme-accent: #ffd700;
+            --theme-accent-glow: rgba(255, 215, 0, 0.65);
+            --theme-gold: #ffd700;
+            --theme-gold-glow: rgba(255, 215, 0, 0.7);
+            --theme-border: rgba(255, 215, 0, 0.45);
+            --theme-cell-bg: #0f1013;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background-color: #020710;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ambient Video / Backdrop */
+        .ambient-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background: #02060f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ambient-video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            opacity: 0.35;
+            filter: blur(14px) brightness(0.6) saturate(1.4);
+            transform: scale(1.1);
+        }
+
+        .ambient-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(2, 7, 16, 0.3) 0%, rgba(2, 7, 16, 0.95) 100%);
+        }
+
+        /* -------------------------------------------------------------
+           CONTAINER (MAX-WIDTH 480PX MOBILE VIEWPORT)
+           ------------------------------------------------------------- */
+        .scratch-app-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            max-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: var(--theme-bg);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+        }
+
+        /* 1. TOPBAR */
+        .scratch-topbar {
+            height: 44px;
+            background: rgba(5, 14, 28, 0.95);
+            border-bottom: 1.5px solid var(--theme-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-lobby-back {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 210, 255, 0.12);
+            border: 1px solid var(--theme-accent);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:active {
+            transform: scale(0.95);
+            background: rgba(0, 210, 255, 0.25);
+        }
+
+        .scratch-brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 0 0 10px var(--theme-accent-glow);
+        }
+
+        .brand-bwn-badge {
+            background: linear-gradient(135deg, #00d2ff, #0072ff);
+            color: #020710;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            box-shadow: 0 0 8px var(--theme-accent-glow);
+        }
+
+        .topbar-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wallet-badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #00ffcc;
+            background: rgba(0, 255, 204, 0.12);
+            border: 1px solid rgba(0, 255, 204, 0.45);
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+            cursor: pointer;
+        }
+
+        .top-btn-icon {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 13px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .top-btn-icon:active { transform: scale(0.92); }
+
+        .btn-top-deposit {
+            background: linear-gradient(135deg, #00ffaa, #00b377);
+            color: #020710;
+            font-size: 14px;
+            font-weight: 900;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 0 10px rgba(0, 255, 170, 0.4);
+            transition: transform 0.15s;
+        }
+        .btn-top-deposit:active { transform: scale(0.92); }
+
+        /* User Profile Avatar (Avatar Only - No Name Popup) */
+        .user-avatar-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1.5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            overflow: hidden;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.15s, border-color 0.2s;
+        }
+        .user-avatar-btn:active { transform: scale(0.92); }
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Hip Hop Music Equalizer Visualizer */
+        .music-eq-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 13px;
+            width: 13px;
+        }
+        .music-eq-bars .eq-bar {
+            width: 2.5px;
+            background: #ffd700;
+            border-radius: 1px;
+            height: 3px;
+            transition: height 0.2s;
+        }
+        .music-eq-bars.playing .bar-1 { animation: eqAnim1 0.65s infinite ease-in-out alternate; }
+        .music-eq-bars.playing .bar-2 { animation: eqAnim2 0.5s infinite ease-in-out alternate 0.15s; }
+        .music-eq-bars.playing .bar-3 { animation: eqAnim3 0.75s infinite ease-in-out alternate 0.3s; }
+        @keyframes eqAnim1 { 0% { height: 3px; } 100% { height: 12px; } }
+        @keyframes eqAnim2 { 0% { height: 11px; } 100% { height: 4px; } }
+        @keyframes eqAnim3 { 0% { height: 4px; } 100% { height: 13px; } }
+
+        @media (max-width: 420px) {
+            .scratch-brand-title span:last-child { display: none; }
+            .topbar-right-actions { gap: 4px; }
+            .top-btn-icon, .user-avatar-btn, .btn-top-deposit { width: 25px; height: 25px; font-size: 11px; }
+        }
+
+        /* 2. HISTORY / PAYTABLE STRIP */
+        .scratch-substrip {
+            height: 26px;
+            background: #030a16;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            flex-shrink: 0;
+            gap: 6px;
+        }
+
+        .history-tag {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: var(--theme-accent);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            white-space: nowrap;
+        }
+
+        .history-ribbon {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .history-ribbon::-webkit-scrollbar { display: none; }
+
+        .hist-chip {
+            padding: 1.5px 5px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            font-weight: 900;
+            flex-shrink: 0;
+            animation: histPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes histPop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .hist-chip.pill-jackpot {
+            background: linear-gradient(135deg, rgba(255, 196, 0, 0.3), rgba(255, 60, 0, 0.4));
+            border: 1px solid #ffbe0b;
+            color: #ffd700;
+            box-shadow: 0 0 8px rgba(255, 196, 0, 0.6);
+        }
+        .hist-chip.pill-win {
+            background: rgba(0, 210, 255, 0.2);
+            border: 1px solid var(--theme-accent);
+            color: #00ffcc;
+        }
+        .hist-chip.pill-loss {
+            background: rgba(100, 120, 150, 0.2);
+            border: 1px solid rgba(150, 170, 200, 0.3);
+            color: #8fa0be;
+        }
+
+        /* 3. TICKET STAGE AREA */
+        .scratch-stage-wrap {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4px 10px;
+            overflow: hidden;
+        }
+
+        /* Floating Status Announcement */
+        .stage-status-bubble {
+            background: rgba(5, 14, 28, 0.95);
+            border: 1.2px solid var(--theme-border);
+            border-radius: 14px;
+            padding: 3px 12px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            z-index: 15;
+            backdrop-filter: blur(8px);
+        }
+
+        .status-badge-pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--theme-accent);
+            box-shadow: 0 0 8px var(--theme-accent);
+            animation: pulseGlow 1.5s infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .status-text-msg {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        /* -------------------------------------------------------------
+           THE AUTHENTIC VIP LOTTERY SCRATCH TICKET CARD (#104989)
+           ------------------------------------------------------------- */
+        .scratch-ticket-card {
+            width: 100%;
+            max-width: 360px;
+            background: var(--theme-card-bg);
+            border: 2.5px solid var(--theme-gold);
+            border-radius: 16px;
+            padding: 8px 10px 8px;
+            box-shadow: 
+                0 0 35px rgba(0, 0, 0, 0.95),
+                inset 0 0 15px rgba(255, 196, 0, 0.15),
+                0 0 20px var(--theme-accent-glow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-image: 
+                radial-gradient(circle at 100% 50%, transparent 12px, #102544 13px),
+                radial-gradient(circle at 0% 50%, transparent 12px, #102544 13px);
+            background-size: 100% 100%;
+        }
+
+        /* Perforated ticket circular notches on sides */
+        .ticket-notch-left, .ticket-notch-right {
+            position: absolute;
+            top: 50%;
+            width: 16px;
+            height: 24px;
+            background: var(--theme-bg);
+            border: 2px solid var(--theme-gold);
+            z-index: 5;
+            transform: translateY(-50%);
+        }
+        .ticket-notch-left {
+            left: -10px;
+            border-radius: 0 14px 14px 0;
+            border-left: none;
+        }
+        .ticket-notch-right {
+            right: -10px;
+            border-radius: 14px 0 0 14px;
+            border-right: none;
+        }
+
+        /* Guilloche security watermarks & corner filigrees */
+        .card-corner-filigree {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 196, 0, 0.6);
+            pointer-events: none;
+            z-index: 4;
+        }
+        .filigree-tl { top: 4px; left: 4px; border-right: none; border-bottom: none; border-radius: 4px 0 0 0; }
+        .filigree-tr { top: 4px; right: 4px; border-left: none; border-bottom: none; border-radius: 0 4px 0 0; }
+        .filigree-bl { bottom: 4px; left: 4px; border-right: none; border-top: none; border-radius: 0 0 0 4px; }
+        .filigree-br { bottom: 4px; right: 4px; border-left: none; border-top: none; border-radius: 0 0 4px 0; }
+
+        /* Ticket Top Banner Header */
+        .ticket-header-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            border-bottom: 1.5px solid rgba(255, 196, 0, 0.4);
+            position: relative;
+            z-index: 6;
+        }
+
+        .ticket-header-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ticket-bwn-logo {
+            background: linear-gradient(135deg, #00d2ff 0%, #0055ff 100%);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 13px;
+            padding: 2px 7px;
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+            letter-spacing: -0.5px;
+        }
+
+        .ticket-title-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ticket-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.6px;
+            line-height: 1.1;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .ticket-sub-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            font-weight: 800;
+            color: #8da6c9;
+            letter-spacing: 0.5px;
+        }
+
+        .ticket-header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1px;
+        }
+
+        .ticket-jackpot-pill {
+            background: linear-gradient(135deg, #ffbe0b, #ff0055);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 9px;
+            padding: 2px 7px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.6);
+            letter-spacing: 0.4px;
+        }
+
+        .ticket-stars {
+            font-size: 8px;
+            color: #ffd700;
+            letter-spacing: 1px;
+        }
+
+        /* 3x3 Scratch Field Box */
+        .scratch-field-frame {
+            background: rgba(3, 10, 22, 0.7);
+            border: 1.5px solid rgba(0, 210, 255, 0.35);
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.95);
+            position: relative;
+            z-index: 6;
+        }
+
+        .scratch-grid-3x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            position: relative;
+            touch-action: none;
+        }
+
+        /* Individual Scratch Cell */
+        .scratch-cell {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background: var(--theme-cell-bg);
+            border: 1.5px solid rgba(255, 196, 0, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 0 15px rgba(0, 0, 0, 0.9),
+                0 2px 6px rgba(0, 0, 0, 0.6);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .scratch-cell.matched {
+            border-color: #ffd700 !important;
+            box-shadow: 
+                0 0 25px rgba(255, 215, 0, 0.95), 
+                inset 0 0 20px rgba(255, 215, 0, 0.6) !important;
+            animation: matchPulse 1s infinite alternate ease-in-out;
+            z-index: 8;
+        }
+        @keyframes matchPulse {
+            0% { transform: scale(1); filter: brightness(1); }
+            100% { transform: scale(1.06); filter: brightness(1.3); }
+        }
+
+        /* Underlying Symbol & Prize Display */
+        .cell-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 40%, rgba(0, 210, 255, 0.12) 0%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        .symbol-icon-img {
+            font-size: 28px;
+            line-height: 1;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9));
+        }
+
+        .symbol-prize-cash {
+            margin-top: 2px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #00ffcc;
+            text-shadow: 0 0 6px rgba(0, 255, 204, 0.7);
+            line-height: 1;
+        }
+
+        .symbol-mult-badge {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-top: 2px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Realistic Scratch Canvas Foil Layer */
+        .scratch-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            cursor: pointer;
+            transition: opacity 0.3s ease-out;
+            touch-action: none;
+        }
+
+        .scratch-canvas.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Floating 3D Gold Coin Cursor Tool */
+        #scratchCoinTool {
+            position: fixed;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff1a8 0%, #ffd700 45%, #b8860b 80%, #5c4300 100%);
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #5c4300;
+            transform: translate(-50%, -50%) rotate(25deg);
+            transition: transform 0.08s ease-out;
+        }
+        #scratchCoinTool.scratching {
+            transform: translate(-50%, -50%) rotate(45deg) scale(0.92);
+        }
+
+        /* Ticket Bottom Paytable Bar */
+        .ticket-mini-paytable {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 4px;
+            border-top: 1px dashed rgba(255, 196, 0, 0.35);
+            font-size: 8px;
+            color: #8da6c9;
+            font-weight: 700;
+            position: relative;
+            z-index: 6;
+        }
+        .mini-pay-item {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            color: #ffd700;
+        }
+
+        /* -------------------------------------------------------------
+           WIN OVERLAY CELEBRATION MODAL
+           ------------------------------------------------------------- */
+        .win-splash-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 7, 16, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 15px;
+            text-align: center;
+            border-radius: 14px;
+        }
+        .win-splash-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .win-title-big {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            margin-bottom: 3px;
+            animation: bounceIn 0.5s;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.4); opacity: 0; }
+            70% { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .win-symbol-showcase {
+            font-size: 50px;
+            margin: 6px 0;
+            animation: pulseSymbol 1s infinite alternate;
+        }
+        @keyframes pulseSymbol {
+            0% { transform: scale(1) rotate(-6deg); }
+            100% { transform: scale(1.15) rotate(6deg); }
+        }
+
+        .win-amount-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            color: #00ffcc;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+            margin-bottom: 3px;
+        }
+
+        .win-mult-badge {
+            font-size: 12px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffbe0b, #ff007f);
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+        }
+
+        .btn-claim-win {
+            background: linear-gradient(135deg, #00d2ff, #0072ff);
+            color: #020710;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            padding: 8px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--theme-accent-glow);
+            transition: transform 0.15s;
+        }
+        .btn-claim-win:active { transform: scale(0.95); }
+
+        /* -------------------------------------------------------------
+           HUD STATS STRIP
+           ------------------------------------------------------------- */
+        .scratch-hud-strip {
+            height: 38px;
+            background: rgba(5, 14, 28, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 0 8px;
+            gap: 6px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .scratch-hud-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hud-title-tag {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #7d96b8;
+            letter-spacing: 0.4px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .hud-value-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+        }
+        .hud-value-display.gold-win {
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        /* -------------------------------------------------------------
+           CONTROL DECK & CHIP TRAY
+           ------------------------------------------------------------- */
+        .scratch-deck {
+            background: #040c18;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            flex-shrink: 0;
+            border-top: 1.5px solid var(--theme-border);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .deck-action-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* Bet Stepper Pill */
+        .bet-adjuster-bar {
+            flex: 1;
+            height: 40px;
+            background: #08172c;
+            border: 1.5px solid rgba(0, 210, 255, 0.35);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px;
+        }
+
+        .btn-bet-step {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: rgba(0, 210, 255, 0.15);
+            border: 1px solid var(--theme-accent);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-bet-step:active { transform: scale(0.9); }
+
+        .bet-text-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.1;
+        }
+        .bet-label-small {
+            font-size: 8px;
+            font-weight: 800;
+            color: #7d96b8;
+            letter-spacing: 0.5px;
+        }
+        .bet-amount-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #00ffcc;
+        }
+
+        /* Master Play & Scratch All Buttons */
+        .btn-master-play {
+            flex: 1.3;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #ffc400 0%, #ff7700 100%);
+            border: 1.5px solid #ffd700;
+            color: #020710;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 196, 0, 0.65);
+            transition: transform 0.15s, filter 0.15s;
+        }
+        .btn-master-play:active { transform: scale(0.96); }
+        .btn-master-play.disabled {
+            opacity: 0.5;
+            filter: grayscale(0.8);
+            pointer-events: none;
+        }
+
+        .btn-master-scratchall {
+            height: 40px;
+            padding: 0 12px;
+            border-radius: 8px;
+            background: rgba(0, 210, 255, 0.18);
+            border: 1.5px solid var(--theme-accent);
+            color: #00d2ff;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-master-scratchall:active { transform: scale(0.95); }
+        .btn-master-scratchall.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* Chip Tray */
+        .scratch-chiptray-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+        }
+
+        .chip-button {
+            flex: 1;
+            height: 25px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #a0b6d4;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .chip-button:active { transform: scale(0.92); }
+        .chip-button.active {
+            background: rgba(0, 210, 255, 0.25);
+            border-color: var(--theme-accent);
+            color: #ffffff;
+            box-shadow: 0 0 8px var(--theme-accent-glow);
+        }
+
+        /* -------------------------------------------------------------
+           PAYTABLE / THEME MODAL
+           ------------------------------------------------------------- */
+        .modal-wrap {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 7, 16, 0.88);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-wrap.open { display: flex; }
+
+        .modal-card {
+            width: 100%;
+            max-width: 400px;
+            background: #09172c;
+            border: 2px solid var(--theme-border);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .paytable-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .paytable-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 5px 8px;
+        }
+
+        .theme-select-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .theme-option-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .theme-option-card.active {
+            border-color: var(--theme-accent);
+            background: rgba(0, 210, 255, 0.15);
+        }
+
+        /* -------------------------------------------------------------
+           JILI OFFICIAL LOADING SCREEN
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 9999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .jili-splash-overlay.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: auto;
+            max-width: 90vw;
+            padding: 0;
+            background: transparent;
+        }
+
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 105px;
+            max-width: 35vw;
+            line-height: 0;
+        }
+
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.95));
+        }
+
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/slots777/jili_logo.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/slots777/jili_logo.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes jiliGlintAnim {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+
+        .jili-loadline-track {
+            width: 110px;
+            max-width: 35vw;
+            height: 3.5px;
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.95);
+            transition: width 0.08s ease-out;
+        }
+
+        .jili-load-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .jili-load-pct {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+
+        .jili-load-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.45);
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="theme-bwn">
+
+    <!-- Scratch Coin Cursor Tool -->
+    <div id="scratchCoinTool">🪙</div>
+
+    <!-- JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay" onclick="kickstartHipHopAudio()" ontouchstart="kickstartHipHopAudio()">
+        <div class="jili-center-stage">
+            <div class="jili-logo-box">
+                <img src="../assets/games/slots777/jili_logo.png" alt="JILI" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+            <!-- Video-Style Yellow Loading Line -->
+            <div class="jili-loadline-track">
+                <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+            </div>
+            <div class="jili-load-meta">
+                <span id="jiliLoadPct" class="jili-load-pct">0%</span>
+                <span class="jili-load-sub">JILI GAMES • VIP LOTTERY STUDIO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Hip Hop Music Audio Player -->
+    <audio id="scratchBgmAudio" src="../assets/games/slots777/audio/bgm_hiphop.mp3" loop preload="auto"></audio>
+
+    <!-- Ambient Backdrop Video -->
+    <div class="ambient-backdrop">
+        <video class="ambient-video" autoplay loop muted playsinline>
+            <source src="../assets/games/slots777/vegas_ambient_loop.mp4" type="video/mp4">
+        </video>
+        <div class="ambient-vignette"></div>
+    </div>
+
+    <!-- Main Mobile Frame -->
+    <div class="scratch-app-wrapper">
+
+        <!-- 1. Header Topbar -->
+        <header class="scratch-topbar">
+            <a href="../index.html" class="btn-lobby-back">
+                <span>◀</span> LOBBY
+            </a>
+
+            <div class="scratch-brand-title">
+                <span class="brand-bwn-badge">BWN VIP</span>
+                <span>SCRATCH CARD</span>
+            </div>
+
+            <div class="topbar-right-actions">
+                <div id="walletBalancePill" class="wallet-badge-pill" onclick="scratchEngine.refreshWallet()" title="Click to Refresh">
+                    ₨ <span id="headerBalanceVal">0.00</span>
+                </div>
+                <a href="../deposit.html" class="btn-top-deposit" title="Deposit Funds">+</a>
+                <!-- Hip Hop Music Toggle Button -->
+                <button class="top-btn-icon" onclick="scratchEngine.toggleMusic()" id="musicToggleBtn" title="Hip Hop Music">
+                    <span class="music-eq-bars playing" id="musicEqBars">
+                        <span class="eq-bar bar-1"></span>
+                        <span class="eq-bar bar-2"></span>
+                        <span class="eq-bar bar-3"></span>
+                    </span>
+                </button>
+                <!-- Sound Effects Toggle -->
+                <button class="top-btn-icon" onclick="scratchEngine.toggleSound()" id="soundToggleBtn" title="Sound Effects">
+                    🔊
+                </button>
+                <button class="top-btn-icon" onclick="scratchEngine.toggleModal()" title="Paytable & Themes">
+                    ⚙️
+                </button>
+                <!-- User Profile Avatar (Avatar Only - No Name Popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar">
+                    <span id="headerAvatarIcon" style="font-size:13px;">👑</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- 2. History & Recent Rounds Ribbon -->
+        <div class="scratch-substrip">
+            <div class="history-tag">
+                <span>📈 HISTORY:</span>
+            </div>
+            <div id="historyRibbon" class="history-ribbon">
+                <span class="hist-chip pill-jackpot">100x 👑</span>
+                <span class="hist-chip pill-win">25x 🏆</span>
+                <span class="hist-chip pill-win">10x 🔔</span>
+                <span class="hist-chip pill-loss">0x ✕</span>
+                <span class="hist-chip pill-win">5x 🍀</span>
+            </div>
+        </div>
+
+        <!-- 3. Scratch Ticket Stage Area -->
+        <main class="scratch-stage-wrap">
+            
+            <!-- Floating Status Bubble -->
+            <div class="stage-status-bubble">
+                <div class="status-badge-pulse" id="statusPulseDot"></div>
+                <span id="stageStatusText" class="status-text-msg">Buy Ticket & Scratch 3 Matching Symbols to Win!</span>
+            </div>
+
+            <!-- The Authentic VIP Scratch Ticket Card (#104989) -->
+            <div class="scratch-ticket-card" id="scratchTicketCard">
+                
+                <!-- Perforated Cutout Notches on Sides -->
+                <div class="ticket-notch-left"></div>
+                <div class="ticket-notch-right"></div>
+
+                <!-- Filigree Corner Brackets -->
+                <div class="card-corner-filigree filigree-tl"></div>
+                <div class="card-corner-filigree filigree-tr"></div>
+                <div class="card-corner-filigree filigree-bl"></div>
+                <div class="card-corner-filigree filigree-br"></div>
+
+                <!-- Ticket Header Strip -->
+                <div class="ticket-header-strip">
+                    <div class="ticket-header-left">
+                        <div class="ticket-bwn-logo">BWN</div>
+                        <div class="ticket-title-group">
+                            <span class="ticket-main-title">SCRATCH CARD</span>
+                            <span id="ticketSerialNo" class="ticket-sub-id">GAME ID: #104989 • SER. PK-777</span>
+                        </div>
+                    </div>
+                    <div class="ticket-header-right">
+                        <div class="ticket-jackpot-pill">WIN UP TO 100×</div>
+                        <div class="ticket-stars">★ ★ ★ ★ ★</div>
+                    </div>
+                </div>
+
+                <!-- 3x3 Scratch Field Box -->
+                <div class="scratch-field-frame">
+                    <div class="scratch-grid-3x3" id="scratchGrid">
+                        <!-- 9 Scratch Cells dynamically generated with Canvas foils -->
+                    </div>
+                </div>
+
+                <!-- Ticket Mini Paytable Strip -->
+                <div class="ticket-mini-paytable">
+                    <span class="mini-pay-item">👑 100×</span>
+                    <span class="mini-pay-item">💎 50×</span>
+                    <span class="mini-pay-item">🏆 25×</span>
+                    <span class="mini-pay-item">💰 15×</span>
+                    <span class="mini-pay-item">🔔 10×</span>
+                    <span class="mini-pay-item">🍀 5×</span>
+                    <span class="mini-pay-item">🧲 3×</span>
+                    <span class="mini-pay-item">🍒 2×</span>
+                </div>
+
+                <!-- Win Overlay Celebration -->
+                <div id="winOverlay" class="win-splash-overlay">
+                    <div class="win-title-big">🎉 BIG WINNER! 🎉</div>
+                    <div id="winSymbolIcon" class="win-symbol-showcase">👑</div>
+                    <div id="winAmountDisplay" class="win-amount-text">₨ 10,000.00</div>
+                    <div id="winMultTag" class="win-mult-badge">MATCH 3 • 100× PAYOUT</div>
+                    <button class="btn-claim-win" onclick="scratchEngine.dismissWin()">CLAIM PRIZE ▶</button>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- 4. HUD Strip (Balance, Bet, Last Win) -->
+        <div class="scratch-hud-strip">
+            <div class="scratch-hud-box">
+                <span class="hud-title-tag">BALANCE</span>
+                <span id="hudBalanceVal" class="hud-value-display">0.00</span>
+            </div>
+            <div class="scratch-hud-box">
+                <span class="hud-title-tag">TICKET STAKE</span>
+                <span id="hudBetVal" class="hud-value-display">100.00</span>
+            </div>
+            <div class="scratch-hud-box">
+                <span class="hud-title-tag">LAST WIN</span>
+                <span id="hudWinVal" class="hud-value-display gold-win">0.00</span>
+            </div>
+        </div>
+
+        <!-- 5. Control Deck (Chips, Buy Ticket, Scratch All) -->
+        <footer class="scratch-deck">
+            <div class="deck-action-row">
+                <!-- Bet Adjuster -->
+                <div class="bet-adjuster-bar">
+                    <button class="btn-bet-step" onclick="scratchEngine.adjustBet(-1)">-</button>
+                    <div class="bet-text-center">
+                        <span class="bet-label-small">TICKET PRICE</span>
+                        <span id="betDisplayNumber" class="bet-amount-display">₨ 100.00</span>
+                    </div>
+                    <button class="btn-bet-step" onclick="scratchEngine.adjustBet(1)">+</button>
+                </div>
+
+                <!-- Play / Buy Ticket Button -->
+                <button id="mainPlayBtn" class="btn-master-play" onclick="scratchEngine.buyTicket()">
+                    <span>🎟️</span>
+                    <span id="btnPlayText">BUY TICKET</span>
+                </button>
+
+                <!-- Scratch All Button -->
+                <button id="scratchAllBtn" class="btn-master-scratchall disabled" onclick="scratchEngine.scratchAll()">
+                    <span>⚡</span>
+                    <span>SCRATCH ALL</span>
+                </button>
+            </div>
+
+            <!-- Quick Chip Buttons -->
+            <div class="scratch-chiptray-row">
+                <div class="chip-button" onclick="scratchEngine.setBetModifier('half')">½</div>
+                <div class="chip-button" onclick="scratchEngine.setBetModifier('double')">2×</div>
+                <div class="chip-button active" onclick="scratchEngine.setBet(100)">100</div>
+                <div class="chip-button" onclick="scratchEngine.setBet(500)">500</div>
+                <div class="chip-button" onclick="scratchEngine.setBet(1000)">1K</div>
+                <div class="chip-button" onclick="scratchEngine.setBet(5000)">5K</div>
+                <div class="chip-button" onclick="scratchEngine.setBetModifier('max')">MAX</div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Themes & Paytable Modal -->
+    <div id="paytableModal" class="modal-wrap">
+        <div class="modal-card">
+            <div class="modal-card-header">
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:900; color:#ffd700; display:flex; align-items:center; gap:6px;">
+                    <span>📜</span> PAYTABLE & THEMES (GAME #104989)
+                </div>
+                <button class="top-btn-icon" onclick="scratchEngine.toggleModal()">✕</button>
+            </div>
+
+            <div style="font-size:11px; font-weight:800; color:#00d2ff; letter-spacing:0.5px;">MATCH 3 PAYTABLE (BASED ON STAKE):</div>
+            
+            <div class="paytable-grid" id="paytableGrid">
+                <!-- Dynamically generated paytable items -->
+            </div>
+
+            <div style="margin-top:6px; font-size:11px; font-weight:800; color:#ffd700; letter-spacing:0.5px;">SELECT STUDIO THEME:</div>
+            <div class="theme-select-grid">
+                <div class="theme-option-card active" onclick="scratchEngine.switchTheme('theme-bwn')">
+                    <span style="font-size:22px;">🔵</span>
+                    <div>
+                        <div style="font-size:11.5px; font-weight:800; color:#fff;">BWN Royal Blue</div>
+                        <div style="font-size:9.5px; color:#00d2ff;">Navy & Cyan VIP</div>
+                    </div>
+                </div>
+                <div class="theme-option-card" onclick="scratchEngine.switchTheme('theme-emerald')">
+                    <span style="font-size:22px;">🟢</span>
+                    <div>
+                        <div style="font-size:11.5px; font-weight:800; color:#fff;">Emerald Vegas</div>
+                        <div style="font-size:9.5px; color:#00ffaa;">Royal Velvet</div>
+                    </div>
+                </div>
+                <div class="theme-option-card" onclick="scratchEngine.switchTheme('theme-ruby')">
+                    <span style="font-size:22px;">🔴</span>
+                    <div>
+                        <div style="font-size:11.5px; font-weight:800; color:#fff;">Imperial Ruby</div>
+                        <div style="font-size:9.5px; color:#ff4757;">Crimson Gold</div>
+                    </div>
+                </div>
+                <div class="theme-option-card" onclick="scratchEngine.switchTheme('theme-onyx')">
+                    <span style="font-size:22px;">⚫</span>
+                    <div>
+                        <div style="font-size:11.5px; font-weight:800; color:#fff;">Onyx VIP</div>
+                        <div style="font-size:9.5px; color:#ffd700;">Black & 24K Gold</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:6px; padding:10px; background:rgba(0,0,0,0.5); border-radius:8px; border:1px solid rgba(0,210,255,0.25); font-size:10px; line-height:1.5; color:#a0b6d4;">
+                <div style="font-weight:900; color:#00d2ff; margin-bottom:4px;">🎯 BWN LOTTERY RULES:</div>
+                <p>1. Tap <strong>BUY TICKET</strong> to generate an official 3x3 scratch card.</p>
+                <p>2. Drag your golden scratch coin or finger across the silver latex foils to reveal prizes.</p>
+                <p>3. Tap <strong>SCRATCH ALL</strong> at any time to instantly uncover all 9 cells.</p>
+                <p>4. If any <strong>3 identical prize symbols</strong> match anywhere on the card, you win the prize amount instantly!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Central Bet With Net Platform Engine Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+
+    <!-- -------------------------------------------------------------
+         SOUND SYNTHESIZER (WEB AUDIO API ZERO-LATENCY CASINO AUDIO)
+         ------------------------------------------------------------- -->
+    <script>
+        class SoundSynth {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) this.ctx = new AudioCtx();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+
+            playClick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(900, now);
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.04);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            }
+
+            playScratch() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const bufferSize = this.ctx.sampleRate * 0.04;
+                const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = (Math.random() * 2 - 1) * 0.15;
+                }
+                const noise = this.ctx.createBufferSource();
+                noise.buffer = buffer;
+
+                const filter = this.ctx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(1400 + Math.random() * 600, now);
+                filter.Q.setValueAtTime(3.0, now);
+
+                const gain = this.ctx.createGain();
+                gain.gain.setValueAtTime(0.09, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.04);
+
+                noise.connect(filter);
+                filter.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                noise.start(now);
+            }
+
+            playRevealCell() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(520, now);
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.11);
+            }
+
+            playCardDeal() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(350, now);
+                osc.frequency.exponentialRampToValueAtTime(650, now + 0.15);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.16);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.18);
+            }
+
+            playWin() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                    gain.gain.setValueAtTime(0.12, now + idx * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.08 + 0.35);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.08);
+                    osc.stop(now + idx * 0.08 + 0.38);
+                });
+            }
+
+            playJackpot() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const fanfare = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
+                fanfare.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+                    gain.gain.setValueAtTime(0.18, now + idx * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.1 + 0.4);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + idx * 0.1);
+                    osc.stop(now + idx * 0.1 + 0.45);
+                });
+            }
+
+            playLoss() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(320, now);
+                osc.frequency.exponentialRampToValueAtTime(160, now + 0.25);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.28);
+            }
+        }
+
+        const sound = new SoundSynth();
+
+        /* -------------------------------------------------------------
+           SCRATCH LOTTERY ENGINE (VIP GAME #104989 SPECIFICATION)
+           ------------------------------------------------------------- */
+        const SYMBOLS = [
+            { id: 'jackpot777', name: '777 Wild', icon: '👑', mult: 100, weight: 2 },
+            { id: 'diamond', name: 'Diamond', icon: '💎', mult: 50, weight: 5 },
+            { id: 'crown', name: 'Gold Trophy', icon: '🏆', mult: 25, weight: 10 },
+            { id: 'moneybag', name: 'Cash Bag', icon: '💰', mult: 15, weight: 18 },
+            { id: 'bell', name: 'Gold Bell', icon: '🔔', mult: 10, weight: 25 },
+            { id: 'clover', name: 'Lucky Clover', icon: '🍀', mult: 5, weight: 40 },
+            { id: 'horseshoe', name: 'Horseshoe', icon: '🧲', mult: 3, weight: 60 },
+            { id: 'cherry', name: 'Cherry', icon: '🍒', mult: 2, weight: 80 }
+        ];
+
+        class ScratchEngine {
+            constructor() {
+                this.balance = 50000.00;
+                this.betAmount = 100.00;
+                this.lastWin = 0.00;
+                this.isPlaying = false;
+                this.gameId = 104989;
+                this.ticketSeries = 8492019;
+                this.currentCells = [];
+                this.hasCheckedResult = false;
+                this.coinTool = null;
+                this.musicEnabled = true;
+                this.musicPlaying = false;
+            }
+
+            init() {
+                this.coinTool = document.getElementById('scratchCoinTool');
+                this.populatePaytable();
+                this.initWalletEngine();
+                this.renderInitialBoard();
+                this.updateUI();
+                this.setupCoinCursorTracking();
+            }
+
+            initWalletEngine() {
+                if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    this.balance = window.wallet.getBalance();
+                    window.wallet.on('balanceChange', (newBal) => {
+                        this.balance = newBal;
+                        this.updateUI();
+                    });
+                    window.wallet.on('change', () => {
+                        this.balance = window.wallet.getBalance();
+                        this.updateUI();
+                    });
+                } else {
+                    this.loadSavedState();
+                }
+            }
+
+            setupCoinCursorTracking() {
+                const stage = document.querySelector('.scratch-stage-wrap');
+                if (!stage || !this.coinTool) return;
+
+                const moveCoin = (clientX, clientY) => {
+                    this.coinTool.style.left = `${clientX}px`;
+                    this.coinTool.style.top = `${clientY}px`;
+                };
+
+                stage.addEventListener('mouseenter', () => {
+                    if (this.isPlaying && this.coinTool) this.coinTool.style.display = 'flex';
+                });
+                stage.addEventListener('mouseleave', () => {
+                    if (this.coinTool) this.coinTool.style.display = 'none';
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!this.isPlaying) {
+                        if (this.coinTool) this.coinTool.style.display = 'none';
+                        return;
+                    }
+                    const r = stage.getBoundingClientRect();
+                    if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+                        this.coinTool.style.display = 'flex';
+                        moveCoin(e.clientX, e.clientY);
+                    } else {
+                        this.coinTool.style.display = 'none';
+                    }
+                });
+
+                window.addEventListener('touchmove', (e) => {
+                    if (!this.isPlaying || !e.touches || !e.touches[0]) return;
+                    const touch = e.touches[0];
+                    moveCoin(touch.clientX, touch.clientY);
+                }, { passive: true });
+            }
+
+            loadSavedState() {
+                try {
+                    const savedBal = localStorage.getItem('bwn_wallet_balance');
+                    if (savedBal !== null && !isNaN(parseFloat(savedBal))) {
+                        this.balance = parseFloat(savedBal);
+                    }
+                    const sess = localStorage.getItem('bwn_session_user');
+                    if (sess) {
+                        const user = JSON.parse(sess);
+                        if (user && user.balance !== undefined && !isNaN(parseFloat(user.balance))) {
+                            this.balance = parseFloat(user.balance);
+                        }
+                    }
+                } catch(e) {}
+            }
+
+            saveBalance() {
+                try {
+                    localStorage.setItem('bwn_wallet_balance', this.balance.toFixed(2));
+                    const sess = localStorage.getItem('bwn_session_user');
+                    if (sess) {
+                        const user = JSON.parse(sess);
+                        user.balance = this.balance.toFixed(2);
+                        localStorage.setItem('bwn_session_user', JSON.stringify(user));
+                    }
+                } catch(e) {}
+            }
+
+            populatePaytable() {
+                const grid = document.getElementById('paytableGrid');
+                if (!grid) return;
+                grid.innerHTML = SYMBOLS.map(sym => `
+                    <div class="paytable-row">
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <span style="font-size:18px;">${sym.icon}</span>
+                            <span style="font-size:9.5px; font-weight:800; color:#fff;">${sym.name}</span>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:900; color:#ffd700;">${sym.mult}×</div>
+                            <div style="font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:800; color:#00ffcc;">₨ ${(this.betAmount * sym.mult).toLocaleString()}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderInitialBoard() {
+                const grid = document.getElementById('scratchGrid');
+                if (!grid) return;
+                grid.innerHTML = '';
+                this.currentCells = [];
+
+                for (let i = 0; i < 9; i++) {
+                    const dummySym = SYMBOLS[i % SYMBOLS.length];
+                    const prizeCash = this.betAmount * dummySym.mult;
+
+                    const cellEl = document.createElement('div');
+                    cellEl.className = 'scratch-cell';
+                    cellEl.id = `cell_${i}`;
+
+                    cellEl.innerHTML = `
+                        <div class="cell-content">
+                            <div class="symbol-icon-img">${dummySym.icon}</div>
+                            <div class="symbol-prize-cash">₨ ${prizeCash.toLocaleString()}</div>
+                            <div class="symbol-mult-badge">${dummySym.mult}×</div>
+                        </div>
+                        <canvas class="scratch-canvas" id="canvas_${i}"></canvas>
+                    `;
+
+                    grid.appendChild(cellEl);
+
+                    const canvas = cellEl.querySelector('canvas');
+                    this.initCanvasFoil(canvas, i, false);
+                }
+            }
+
+            initCanvasFoil(canvas, index, interactive = true) {
+                const rect = canvas.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                const width = rect.width || 100;
+                const height = rect.height || 100;
+
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                const ctx = canvas.getContext('2d');
+                ctx.scale(dpr, dpr);
+
+                // Authentic Brushed Silver-Platinum Latex Foil Gradient
+                const grad = ctx.createLinearGradient(0, 0, width, height);
+                grad.addColorStop(0, '#98afc7');
+                grad.addColorStop(0.25, '#dbe5f0');
+                grad.addColorStop(0.5, '#f5f8fc');
+                grad.addColorStop(0.75, '#829bb5');
+                grad.addColorStop(1, '#a0b6cd');
+
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, width, height);
+
+                // Brushed Metal Texture Lines
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.lineWidth = 1;
+                for (let y = 0; y < height; y += 4) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y + 2);
+                    ctx.stroke();
+                }
+
+                // Centered Embossed Golden Security Stamp with BWN Crest
+                const cx = width / 2;
+                const cy = height / 2;
+                const radius = Math.min(width, height) * 0.32;
+
+                // Gold Seal Outer Shadow
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+                ctx.beginPath();
+                ctx.arc(cx, cy + 2, radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Gold Seal Background
+                const sealGrad = ctx.createLinearGradient(cx - radius, cy - radius, cx + radius, cy + radius);
+                sealGrad.addColorStop(0, '#ffe894');
+                sealGrad.addColorStop(0.5, '#d4af37');
+                sealGrad.addColorStop(1, '#8c6b16');
+                ctx.fillStyle = sealGrad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Inner Navy Emblem
+                ctx.fillStyle = '#061328';
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius - 3.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Golden "BWN" and Stars
+                ctx.fillStyle = '#ffd700';
+                ctx.font = 'bold 15px "Cinzel", serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('BWN', cx, cy - 2);
+
+                ctx.font = 'bold 7px "Inter", sans-serif';
+                ctx.fillText('★ SCRATCH ★', cx, cy + 9);
+
+                const cellData = {
+                    index,
+                    symbol: null,
+                    isRevealed: false,
+                    scratchedPoints: 0,
+                    canvas,
+                    ctx,
+                    width,
+                    height
+                };
+
+                this.currentCells[index] = cellData;
+
+                if (interactive) {
+                    this.bindScratchEvents(canvas, cellData);
+                }
+            }
+
+            bindScratchEvents(canvas, cellData) {
+                let isDown = false;
+                let lastPos = null;
+
+                const getPos = (e) => {
+                    const r = canvas.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    return {
+                        x: clientX - r.left,
+                        y: clientY - r.top
+                    };
+                };
+
+                const scratch = (pos) => {
+                    if (cellData.isRevealed) return;
+                    const ctx = cellData.ctx;
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.beginPath();
+                    ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    if (lastPos) {
+                        ctx.lineWidth = 36;
+                        ctx.lineCap = 'round';
+                        ctx.beginPath();
+                        ctx.moveTo(lastPos.x, lastPos.y);
+                        ctx.lineTo(pos.x, pos.y);
+                        ctx.stroke();
+                    }
+
+                    sound.playScratch();
+                    cellData.scratchedPoints++;
+
+                    // Threshold: After ~15 scratch strokes, reveal cell completely
+                    if (cellData.scratchedPoints > 14) {
+                        this.revealCell(cellData);
+                    }
+                };
+
+                const onPointerDown = (e) => {
+                    if (!this.isPlaying || cellData.isRevealed) return;
+                    isDown = true;
+                    if (this.coinTool) this.coinTool.classList.add('scratching');
+                    lastPos = getPos(e);
+                    scratch(lastPos);
+                };
+
+                const onPointerMove = (e) => {
+                    if (!isDown || !this.isPlaying || cellData.isRevealed) return;
+                    const pos = getPos(e);
+                    scratch(pos);
+                    lastPos = pos;
+                };
+
+                const onPointerUp = () => {
+                    isDown = false;
+                    lastPos = null;
+                    if (this.coinTool) this.coinTool.classList.remove('scratching');
+                };
+
+                canvas.addEventListener('mousedown', onPointerDown);
+                window.addEventListener('mousemove', onPointerMove);
+                window.addEventListener('mouseup', onPointerUp);
+
+                canvas.addEventListener('touchstart', onPointerDown, { passive: true });
+                window.addEventListener('touchmove', onPointerMove, { passive: true });
+                window.addEventListener('touchend', onPointerUp);
+            }
+
+            revealCell(cellData) {
+                if (cellData.isRevealed) return;
+                cellData.isRevealed = true;
+                sound.playRevealCell();
+
+                if (cellData.canvas) {
+                    cellData.canvas.classList.add('fade-out');
+                }
+
+                this.checkIfAllRevealed();
+            }
+
+            checkIfAllRevealed() {
+                const allDone = this.currentCells.every(c => c.isRevealed);
+                if (allDone && !this.hasCheckedResult) {
+                    this.hasCheckedResult = true;
+                    this.evaluateOutcome();
+                }
+            }
+
+            generateOutcomeSymbols() {
+                // Balanced 30% win / 70% loss probability
+                const willWin = Math.random() < 0.30;
+
+                let winningSym = null;
+                if (willWin) {
+                    const totalWeight = SYMBOLS.reduce((acc, s) => acc + s.weight, 0);
+                    let rand = Math.random() * totalWeight;
+                    for (const s of SYMBOLS) {
+                        if (rand < s.weight) {
+                            winningSym = s;
+                            break;
+                        }
+                        rand -= s.weight;
+                    }
+                    if (!winningSym) winningSym = SYMBOLS[SYMBOLS.length - 1];
+                }
+
+                const outcome = [];
+                if (winningSym) {
+                    const winPositions = new Set();
+                    while (winPositions.size < 3) {
+                        winPositions.add(Math.floor(Math.random() * 9));
+                    }
+
+                    for (let i = 0; i < 9; i++) {
+                        if (winPositions.has(i)) {
+                            outcome.push(winningSym);
+                        } else {
+                            let otherSym;
+                            do {
+                                otherSym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                            } while (otherSym.id === winningSym.id);
+                            outcome.push(otherSym);
+                        }
+                    }
+                } else {
+                    const counts = {};
+                    for (let i = 0; i < 9; i++) {
+                        let sym;
+                        let tries = 0;
+                        do {
+                            sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                            tries++;
+                        } while ((counts[sym.id] || 0) >= 2 && tries < 20);
+
+                        counts[sym.id] = (counts[sym.id] || 0) + 1;
+                        outcome.push(sym);
+                    }
+                }
+
+                return { outcome, winningSym };
+            }
+
+            buyTicket() {
+                if (this.isPlaying) return;
+
+                sound.init();
+
+                // Validate and Deduct Bet via Central Platform Wallet
+                if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                    if (!window.wallet.placeBet(this.betAmount, 'Scratch VIP')) {
+                        this.setStatus('⚠️', 'Insufficient Wallet Balance! Please deposit.');
+                        sound.playLoss();
+                        if (window.core && window.core.showToast) {
+                            window.core.showToast('Insufficient wallet balance! Please deposit.', 'error');
+                        }
+                        return;
+                    }
+                    this.balance = window.wallet.getBalance();
+                } else {
+                    if (this.balance < this.betAmount) {
+                        this.setStatus('⚠️', 'Insufficient Balance! Please adjust bet.');
+                        sound.playLoss();
+                        return;
+                    }
+                    this.balance -= this.betAmount;
+                    this.saveBalance();
+                }
+                this.updateUI();
+
+                sound.playCardDeal();
+                this.isPlaying = true;
+                this.hasCheckedResult = false;
+                this.ticketSeries += Math.floor(Math.random() * 8) + 1;
+
+                // Animate card slide/deal
+                const card = document.getElementById('scratchTicketCard');
+                if (card) {
+                    card.style.transform = 'scale(0.96) translateY(-5px)';
+                    setTimeout(() => { card.style.transform = 'scale(1) translateY(0)'; }, 150);
+                }
+
+                // Update ticket serial text
+                const serialEl = document.getElementById('ticketSerialNo');
+                if (serialEl) serialEl.textContent = `GAME ID: #104989 • SER. #${this.ticketSeries}-PK`;
+
+                // Update buttons
+                const playBtn = document.getElementById('mainPlayBtn');
+                const scratchAllBtn = document.getElementById('scratchAllBtn');
+                if (playBtn) playBtn.classList.add('disabled');
+                if (scratchAllBtn) scratchAllBtn.classList.remove('disabled');
+
+                this.setStatus('🪙', 'Use Golden Coin or swipe to scratch foils!');
+
+                // Generate symbols
+                const { outcome, winningSym } = this.generateOutcomeSymbols();
+                this.winningSym = winningSym;
+
+                // Render grid
+                const grid = document.getElementById('scratchGrid');
+                if (!grid) return;
+                grid.innerHTML = '';
+                this.currentCells = [];
+
+                for (let i = 0; i < 9; i++) {
+                    const sym = outcome[i];
+                    const prizeCash = this.betAmount * sym.mult;
+
+                    const cellEl = document.createElement('div');
+                    cellEl.className = 'scratch-cell';
+                    cellEl.id = `cell_${i}`;
+
+                    cellEl.innerHTML = `
+                        <div class="cell-content">
+                            <div class="symbol-icon-img">${sym.icon}</div>
+                            <div class="symbol-prize-cash">₨ ${prizeCash.toLocaleString()}</div>
+                            <div class="symbol-mult-badge">${sym.mult}×</div>
+                        </div>
+                        <canvas class="scratch-canvas" id="canvas_${i}"></canvas>
+                    `;
+
+                    grid.appendChild(cellEl);
+
+                    const canvas = cellEl.querySelector('canvas');
+                    this.initCanvasFoil(canvas, i, true);
+                    this.currentCells[i].symbol = sym;
+                }
+            }
+
+            scratchAll() {
+                if (!this.isPlaying) return;
+                const scratchAllBtn = document.getElementById('scratchAllBtn');
+                if (scratchAllBtn) scratchAllBtn.classList.add('disabled');
+
+                sound.init();
+
+                this.currentCells.forEach((c, idx) => {
+                    setTimeout(() => {
+                        this.revealCell(c);
+                    }, idx * 90);
+                });
+            }
+
+            evaluateOutcome() {
+                this.isPlaying = false;
+                if (this.coinTool) this.coinTool.style.display = 'none';
+
+                const playBtn = document.getElementById('mainPlayBtn');
+                const scratchAllBtn = document.getElementById('scratchAllBtn');
+                if (playBtn) playBtn.classList.remove('disabled');
+                if (scratchAllBtn) scratchAllBtn.classList.add('disabled');
+
+                const counts = {};
+                this.currentCells.forEach(c => {
+                    if (c.symbol) {
+                        counts[c.symbol.id] = (counts[c.symbol.id] || 0) + 1;
+                    }
+                });
+
+                let matchSym = null;
+                for (const sym of SYMBOLS) {
+                    if (counts[sym.id] >= 3) {
+                        matchSym = sym;
+                        break;
+                    }
+                }
+
+                if (matchSym) {
+                    // Highlight the 3 matched cells
+                    this.currentCells.forEach(c => {
+                        if (c.symbol && c.symbol.id === matchSym.id) {
+                            const el = document.getElementById(`cell_${c.index}`);
+                            if (el) el.classList.add('matched');
+                        }
+                    });
+
+                    const winAmt = this.betAmount * matchSym.mult;
+                    this.lastWin = winAmt;
+
+                    if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                        window.wallet.creditWin(this.betAmount, winAmt, 'Scratch VIP', matchSym.mult, `Match 3 ${matchSym.name}`);
+                        this.balance = window.wallet.getBalance();
+                    } else {
+                        this.balance += winAmt;
+                        this.saveBalance();
+                    }
+                    this.updateUI();
+
+                    this.setStatus('🎉', `MATCH 3! WON ₨ ${winAmt.toLocaleString('en-US', { minimumFractionDigits: 2 })}!`);
+
+                    if (matchSym.mult >= 50) {
+                        sound.playJackpot();
+                    } else {
+                        sound.playWin();
+                    }
+
+                    this.showWinModal(matchSym, winAmt);
+                    this.addHistory(matchSym.mult, matchSym.icon, true);
+
+                } else {
+                    if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                        window.wallet.creditWin(this.betAmount, 0, 'Scratch VIP', 0, 'No Match');
+                        this.balance = window.wallet.getBalance();
+                    }
+                    this.setStatus('❌', 'No 3-of-a-kind match. Better luck next ticket!');
+                    sound.playLoss();
+                    this.addHistory(0, '✕', false);
+                    this.updateUI();
+                }
+            }
+
+            showWinModal(sym, amount) {
+                const overlay = document.getElementById('winOverlay');
+                const iconEl = document.getElementById('winSymbolIcon');
+                const amtEl = document.getElementById('winAmountDisplay');
+                const multEl = document.getElementById('winMultTag');
+
+                if (iconEl) iconEl.textContent = sym.icon;
+                if (amtEl) amtEl.textContent = `₨ ${amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                if (multEl) multEl.textContent = `MATCH 3 ${sym.name.toUpperCase()} • ${sym.mult}× PAYOUT`;
+
+                if (overlay) overlay.classList.add('show');
+            }
+
+            dismissWin() {
+                sound.playClick();
+                const overlay = document.getElementById('winOverlay');
+                if (overlay) overlay.classList.remove('show');
+            }
+
+            addHistory(mult, icon, isWin) {
+                const ribbon = document.getElementById('historyRibbon');
+                if (!ribbon) return;
+
+                let pillClass = isWin ? (mult >= 50 ? 'pill-jackpot' : 'pill-win') : 'pill-loss';
+                const chip = document.createElement('span');
+                chip.className = `hist-chip ${pillClass}`;
+                chip.textContent = `${mult}x ${icon}`;
+
+                ribbon.insertBefore(chip, ribbon.firstChild);
+                if (ribbon.children.length > 8) {
+                    ribbon.removeChild(ribbon.lastChild);
+                }
+            }
+
+            setBet(amt) {
+                if (this.isPlaying) return;
+                sound.playClick();
+                this.betAmount = Math.max(10, Math.min(this.balance, amt));
+                this.populatePaytable();
+                this.renderInitialBoard();
+                this.updateUI();
+
+                document.querySelectorAll('.scratch-chiptray-row .chip-button').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent.trim() === String(amt) || (amt === 1000 && btn.textContent.includes('1K')) || (amt === 5000 && btn.textContent.includes('5K'))) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            adjustBet(delta) {
+                if (this.isPlaying) return;
+                sound.playClick();
+                let step = 50;
+                if (this.betAmount >= 1000) step = 500;
+                else if (this.betAmount >= 500) step = 100;
+
+                this.betAmount = Math.max(10, Math.min(this.balance, this.betAmount + (delta * step)));
+                this.populatePaytable();
+                this.renderInitialBoard();
+                this.updateUI();
+            }
+
+            setBetModifier(mod) {
+                if (this.isPlaying) return;
+                sound.playClick();
+                if (mod === 'half') this.betAmount = Math.max(10, Math.floor(this.betAmount / 2));
+                else if (mod === 'double') this.betAmount = Math.min(this.balance, this.betAmount * 2);
+                else if (mod === 'max') this.betAmount = Math.max(10, this.balance);
+                this.populatePaytable();
+                this.renderInitialBoard();
+                this.updateUI();
+            }
+
+            setStatus(emoji, msg) {
+                const textEl = document.getElementById('stageStatusText');
+                if (textEl) textEl.textContent = `${emoji} ${msg}`;
+            }
+
+            updateUI() {
+                const balFormatted = this.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const betFormatted = `₨ ${this.betAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                const winFormatted = this.lastWin.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                const hBal = document.getElementById('headerBalanceVal');
+                const hudBal = document.getElementById('hudBalanceVal');
+                const hudBet = document.getElementById('hudBetVal');
+                const betDisp = document.getElementById('betDisplayNumber');
+                const hudWin = document.getElementById('hudWinVal');
+
+                if (hBal) hBal.textContent = balFormatted;
+                if (hudBal) hudBal.textContent = balFormatted;
+                if (hudBet) hudBet.textContent = this.betAmount.toFixed(2);
+                if (betDisp) betDisp.textContent = betFormatted;
+                if (hudWin) hudWin.textContent = winFormatted;
+            }
+
+            playBgm() {
+                if (!this.musicEnabled) return;
+                const bgm = document.getElementById('scratchBgmAudio');
+                const eq = document.getElementById('musicEqBars');
+                if (bgm) {
+                    bgm.volume = 0.35;
+                    const p = bgm.play();
+                    if (p !== undefined) {
+                        p.then(() => {
+                            this.musicPlaying = true;
+                            if (eq) eq.classList.add('playing');
+                        }).catch(() => {
+                            this.musicPlaying = false;
+                            if (eq) eq.classList.remove('playing');
+                        });
+                    }
+                }
+            }
+
+            pauseBgm() {
+                const bgm = document.getElementById('scratchBgmAudio');
+                const eq = document.getElementById('musicEqBars');
+                if (bgm) bgm.pause();
+                this.musicPlaying = false;
+                if (eq) eq.classList.remove('playing');
+            }
+
+            toggleMusic() {
+                sound.playClick();
+                this.musicEnabled = !this.musicEnabled;
+                if (this.musicEnabled) {
+                    this.playBgm();
+                } else {
+                    this.pauseBgm();
+                }
+            }
+
+            toggleSound() {
+                sound.muted = !sound.muted;
+                const btn = document.getElementById('soundToggleBtn');
+                if (btn) btn.textContent = sound.muted ? '🔇' : '🔊';
+            }
+
+            toggleModal() {
+                sound.playClick();
+                const m = document.getElementById('paytableModal');
+                if (m) m.classList.toggle('open');
+            }
+
+            switchTheme(themeName) {
+                sound.playClick();
+                document.body.className = themeName;
+                document.querySelectorAll('.theme-option-card').forEach(c => c.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+            }
+
+            async refreshWallet() {
+                sound.playClick();
+                if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                    const sess = localStorage.getItem('bwn_session_user');
+                    if (sess) {
+                        try { window.wallet.syncWithUser(JSON.parse(sess)); } catch(e) {}
+                    }
+                    this.balance = window.wallet.getBalance();
+                    this.updateUI();
+                }
+                try {
+                    const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && data.success && data.data && data.data.balance !== undefined) {
+                            if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                                window.wallet.syncWithUser(data.data);
+                                this.balance = window.wallet.getBalance();
+                            } else {
+                                this.balance = parseFloat(data.data.balance);
+                            }
+                            this.updateUI();
+                        }
+                    }
+                } catch(e) {}
+            }
+        }
+
+        const scratchEngine = new ScratchEngine();
+
+        // Audio & Hip Hop Music Kickstart on user gesture
+        function kickstartHipHopAudio() {
+            sound.init();
+            if (scratchEngine && scratchEngine.musicEnabled && !scratchEngine.musicPlaying) {
+                scratchEngine.playBgm();
+            }
+        }
+
+        // Official JILI Splash Loading Screen Animation
+        function startJiliLoader() {
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            const pctEl = document.getElementById('jiliLoadPct');
+            if (!splash || !progressBar) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1850;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.7 ? (p * 1.15) : (0.805 + (p - 0.7) * 0.65);
+                const pct = Math.min(100, Math.round(ease * 100));
+                progressBar.style.width = pct + '%';
+                if (pctEl) pctEl.innerText = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    setTimeout(() => {
+                        splash.classList.add('loaded');
+                        kickstartHipHopAudio();
+                        setTimeout(() => {
+                            splash.style.display = 'none';
+                        }, 600);
+                    }, 140);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startJiliLoader);
+        } else {
+            startJiliLoader();
+        }
+
+        // Wallet Session Sync with Backend & Central Wallet Engine
+        async function syncWalletSession() {
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) activeUser = JSON.parse(sess);
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                        if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                            window.wallet.syncWithUser(activeUser);
+                        }
+                    }
+                }
+            } catch(e) {}
+
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                scratchEngine.balance = window.wallet.getBalance();
+            } else if (activeUser && activeUser.balance !== undefined) {
+                scratchEngine.balance = parseFloat(activeUser.balance);
+            }
+
+            // User Profile Avatar Sync (Clean Picture Only - No Name Popup)
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                if (avWrap && activeUser) {
+                    if (activeUser.avatar && (activeUser.avatar.startsWith('http') || activeUser.avatar.startsWith('data:') || activeUser.avatar.includes('/') || activeUser.avatar.includes('.'))) {
+                        avWrap.innerHTML = `<img src="${activeUser.avatar}" alt="">`;
+                    } else if (activeUser.avatar) {
+                        avWrap.innerHTML = `<span style="font-size:13px;">${activeUser.avatar}</span>`;
+                    }
+                }
+            } catch(e) {}
+
+            scratchEngine.updateUI();
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await syncWalletSession();
+            scratchEngine.init();
+
+            // Background Video Auto-play Guard
+            const playBgVideos = () => {
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid.paused) vid.play().catch(() => {});
+                });
+            };
+            playBgVideos();
+            document.addEventListener('click', playBgVideos, { once: true });
+            document.addEventListener('touchstart', playBgVideos, { once: true });
+
+            // User Gesture Kickstart for Web Audio and Hip Hop BGM
+            document.addEventListener('pointerdown', kickstartHipHopAudio, { once: true });
+            document.addEventListener('click', kickstartHipHopAudio, { once: true });
+            document.addEventListener('touchstart', kickstartHipHopAudio, { once: true });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Trades & Escrow Ledger • Bet With Net VIP Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+</head>
+<body class="adminlte-layout">
+
+    <!-- Sidebar Backdrop for Mobile -->
+    <div class="sidebar-backdrop" onclick="toggleSidebarFold()"></div>
+
+    <!-- AdminLTE Luxury Sidebar -->
+    <aside class="adminlte-sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-logo">👑</span>
+            <div class="brand-info">
+                <div class="brand-text">BET WITH NET</div>
+                <span class="brand-badge">VIP ADMINLTE</span>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="adminlte-main">
+
+        <!-- Top Navigation Bar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    P2P OTC Liquidity / <b style="color:#fff;">Trades & Escrow Ledger</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>LIVE ESCROW ENGINE</span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <!-- Page Title -->
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>🔄</span> P2P Trades & Escrow Transaction Ledger
+                    </h1>
+                    <p class="page-subtitle">
+                        Monitor live peer-to-peer buy and sell orders, inspect payment slips, release escrow locks, or arbitrate disputes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- KPI Summary Cards -->
+            <div class="stat-cards-grid" style="margin-bottom:24px;">
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-primary">🔄</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-total-orders">2</div>
+                        <div class="stat-label">Total P2P Orders</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-warning">🔒</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-escrow-locked" style="color:var(--lte-gold);">0</div>
+                        <div class="stat-label">Escrow In Progress</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-success">✅</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-completed-orders" style="color:var(--lte-green);">2</div>
+                        <div class="stat-label">Completed Trades</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-danger">⚖️</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-disputes-count" style="color:var(--lte-red);">0</div>
+                        <div class="stat-label">Disputed Orders</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Filter Toolbar -->
+            <div class="table-search-bar">
+                <div class="search-input-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="order-search-input" class="search-input" placeholder="Search Order ID, Merchant, Channel, or TRX ID..." oninput="filterOrders()">
+                </div>
+                <div class="filter-group">
+                    <select id="type-filter" class="filter-select" onchange="filterOrders()">
+                        <option value="all">All Trade Types</option>
+                        <option value="BUY">BUY USD</option>
+                        <option value="SELL">SELL USD</option>
+                    </select>
+                    <select id="status-filter" class="filter-select" onchange="filterOrders()">
+                        <option value="all">All Order Statuses</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="ESCROW_LOCKED">Escrow Locked</option>
+                        <option value="PENDING_PAYMENT">Waiting Payment</option>
+                        <option value="DISPUTED">Disputed</option>
+                        <option value="CANCELLED">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="lte-card">
+                <div class="lte-table-responsive">
+                    <table class="lte-table">
+                        <thead>
+                            <tr>
+                                <th>ORDER ID</th>
+                                <th>TYPE</th>
+                                <th>MERCHANT</th>
+                                <th>AMOUNT (USD)</th>
+                                <th>FIAT (PKR)</th>
+                                <th>CHANNEL</th>
+                                <th>STATUS</th>
+                                <th>CREATED</th>
+                                <th style="text-align:right;">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <div class="table-info" id="orders-table-info">Showing 1 to 2 of 2 trades</div>
+                    <div class="pagination" id="orders-pagination">
+                        <button class="page-btn active">1</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal: View Order Receipt & Escrow Controls -->
+    <div id="order-details-modal" class="lte-modal-overlay" style="display:none;">
+        <div class="lte-modal-window" style="max-width:540px;">
+            <div class="lte-modal-header">
+                <div class="lte-modal-title"><span>📋</span> P2P Escrow Receipt Details</div>
+                <button class="lte-modal-close" onclick="closeModal('order-details-modal')">✕</button>
+            </div>
+            <div class="lte-modal-body" id="order-details-body">
+                <!-- Injected via JS -->
+            </div>
+            <div style="padding:16px 20px; border-top:1px solid var(--lte-border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div id="modal-order-actions" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+                <button class="btn-lte btn-lte-secondary" onclick="closeModal('order-details-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/p2p_manager.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        let allOrders = [];
+        let filteredOrders = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrdersData();
+        });
+
+        function loadOrdersData() {
+            if (!window.p2pManager) return;
+            allOrders = window.p2pManager.state.orders || [];
+            filteredOrders = [...allOrders];
+            renderTable();
+            updateKPIs();
+        }
+
+        function updateKPIs() {
+            const total = allOrders.length;
+            const escrow = allOrders.filter(o => o.status === 'ESCROW_LOCKED' || o.status === 'WAITING_MERCHANT_TRANSFER').length;
+            const completed = allOrders.filter(o => o.status === 'COMPLETED').length;
+            const disputed = allOrders.filter(o => o.status === 'DISPUTED').length;
+
+            document.getElementById('kpi-total-orders').innerText = total;
+            document.getElementById('kpi-escrow-locked').innerText = escrow;
+            document.getElementById('kpi-completed-orders').innerText = completed;
+            document.getElementById('kpi-disputes-count').innerText = disputed;
+        }
+
+        function filterOrders() {
+            const q = (document.getElementById('order-search-input').value || '').toLowerCase().trim();
+            const type = document.getElementById('type-filter').value;
+            const status = document.getElementById('status-filter').value;
+
+            filteredOrders = allOrders.filter(o => {
+                const matchQ = !q || o.id.toLowerCase().includes(q) || (o.merchantName && o.merchantName.toLowerCase().includes(q)) || (o.channel && o.channel.toLowerCase().includes(q)) || (o.trxId && o.trxId.toLowerCase().includes(q));
+                const matchType = type === 'all' || o.type === type;
+                const matchStatus = status === 'all' || o.status === status;
+                return matchQ && matchType && matchStatus;
+            });
+
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('orders-table-body');
+            if (!tbody) return;
+
+            if (filteredOrders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:32px; color:var(--lte-muted);">No P2P trades found matching your criteria.</td></tr>`;
+                document.getElementById('orders-table-info').innerText = 'Showing 0 of 0 trades';
+                return;
+            }
+
+            let html = '';
+            filteredOrders.forEach(o => {
+                const isBuy = o.type === 'BUY';
+                let statusBadge = '<span class="status-pill status-approved">Completed</span>';
+                if (o.status === 'PENDING_PAYMENT') statusBadge = '<span class="status-pill status-pending" style="background:rgba(245,166,35,0.15); color:#f5a623;">Waiting Pay</span>';
+                if (o.status === 'ESCROW_LOCKED') statusBadge = '<span class="status-pill status-pending" style="background:rgba(0,229,255,0.15); color:#00e5ff;">Escrow Locked</span>';
+                if (o.status === 'WAITING_MERCHANT_TRANSFER') statusBadge = '<span class="status-pill status-pending" style="background:rgba(245,166,35,0.15); color:#f5a623;">Waiting Transfer</span>';
+                if (o.status === 'DISPUTED') statusBadge = '<span class="status-pill status-rejected">Disputed</span>';
+                if (o.status === 'CANCELLED') statusBadge = '<span class="status-pill status-rejected" style="background:rgba(255,255,255,0.08); color:var(--lte-muted);">Cancelled</span>';
+
+                html += `
+                    <tr>
+                        <td><b style="color:var(--lte-gold); font-family:var(--font-mono);">${o.id}</b></td>
+                        <td>
+                            <span style="font-weight:800; font-size:11px; padding:3px 8px; border-radius:4px; ${isBuy ? 'background:rgba(0,231,0,0.15); color:#00e700;' : 'background:rgba(255,71,87,0.15); color:#ff4757;'}">
+                                ${isBuy ? '🟢 BUY' : '🔴 SELL'}
+                            </span>
+                        </td>
+                        <td><b style="color:#fff;">${o.merchantName || 'OTC Desk'}</b></td>
+                        <td><b style="color:#00e700; font-family:var(--font-mono);">$ ${parseFloat(o.amountUSD || 0).toFixed(2)}</b></td>
+                        <td><span style="font-family:var(--font-mono); color:#cbd5e1;">₨ ${parseInt(o.amountPKR || 0).toLocaleString()}</span></td>
+                        <td><span style="font-size:11px; font-weight:700; color:#fff;">${o.channel || 'EasyPaisa'}</span></td>
+                        <td>${statusBadge}</td>
+                        <td style="font-size:11px; color:var(--lte-muted);">${(o.createdAt || o.date || '').slice(0, 16)}</td>
+                        <td style="text-align:right;">
+                            <div style="display:inline-flex; gap:6px;">
+                                <button onclick="viewOrderSlip('${o.id}')" class="btn-action-icon" title="View Order Slip">👁️</button>
+                                ${o.status !== 'COMPLETED' && o.status !== 'CANCELLED' ? `
+                                    <button onclick="forceCompleteOrder('${o.id}')" class="btn-action-icon" style="color:var(--lte-green);" title="Force Release Escrow">⚡</button>
+                                    <button onclick="forceCancelOrder('${o.id}')" class="btn-action-icon" style="color:var(--lte-red);" title="Force Cancel Order">🛑</button>
+                                ` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+            document.getElementById('orders-table-info').innerText = `Showing 1 to ${filteredOrders.length} of ${filteredOrders.length} trades`;
+        }
+
+        function viewOrderSlip(orderId) {
+            const o = window.p2pManager.getOrderById(orderId);
+            if (!o) return;
+
+            const isBuy = o.type === 'BUY';
+            const body = document.getElementById('order-details-body');
+            body.innerHTML = `
+                <div style="background:#090e17; border:1px solid var(--lte-border); border-radius:8px; padding:16px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--lte-border); padding-bottom:10px; margin-bottom:12px;">
+                        <div>
+                            <span style="font-size:11px; color:var(--lte-muted);">ORDER IDENTIFIER</span>
+                            <div style="font-weight:900; color:var(--lte-gold); font-size:15px; font-family:var(--font-mono);">${o.id}</div>
+                        </div>
+                        <span style="font-weight:800; font-size:12px; padding:4px 10px; border-radius:4px; ${isBuy ? 'background:rgba(0,231,0,0.15); color:#00e700;' : 'background:rgba(255,71,87,0.15); color:#ff4757;'}">
+                            ${isBuy ? 'BUY USDT' : 'SELL USDT'}
+                        </span>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px; line-height:1.6; color:#cbd5e1;">
+                        <div>Merchant: <b style="color:#fff;">${o.merchantName}</b></div>
+                        <div>Payment Method: <b style="color:#fff;">${o.channel}</b></div>
+                        <div>USD Crypto Amount: <b style="color:#00e700; font-size:14px;">$ ${parseFloat(o.amountUSD).toFixed(2)}</b></div>
+                        <div>Local Fiat Equivalent: <b style="color:#fff; font-size:14px;">₨ ${parseInt(o.amountPKR).toLocaleString()}</b></div>
+                        <div>Agreed Rate: <b>₨ ${o.price || o.rate} / USD</b></div>
+                        <div>Status: <b style="color:var(--lte-gold);">${o.status}</b></div>
+                        <div>TRX / Sender Ref: <b>${o.trxId || o.senderName || 'N/A'}</b></div>
+                        <div>Created At: <b>${(o.createdAt || o.date || '').slice(0, 16)}</b></div>
+                    </div>
+
+                    ${o.adminNote ? `
+                        <div style="margin-top:12px; padding:8px 12px; background:rgba(245,166,35,0.1); border-left:3px solid var(--lte-gold); font-size:11.5px; color:#ffd074;">
+                            Admin Note: ${o.adminNote}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            const actionsDiv = document.getElementById('modal-order-actions');
+            actionsDiv.innerHTML = '';
+            if (o.status !== 'COMPLETED' && o.status !== 'CANCELLED') {
+                actionsDiv.innerHTML = `
+                    <button onclick="forceCompleteOrder('${o.id}')" class="btn-lte btn-lte-success" style="padding:6px 12px; font-size:11px;">
+                        <span>⚡</span> Force Complete
+                    </button>
+                    <button onclick="forceCancelOrder('${o.id}')" class="btn-lte btn-lte-danger" style="padding:6px 12px; font-size:11px;">
+                        <span>🛑</span> Force Cancel
+                    </button>
+                `;
+            }
+
+            document.getElementById('order-details-modal').style.display = 'flex';
+        }
+
+        function forceCompleteOrder(orderId) {
+            const note = prompt('Enter admin release authorization reason (optional):', 'Verified by Admin Supervisor');
+            if (note !== null) {
+                const res = window.p2pManager.adminForceComplete(orderId, note);
+                if (res.success) {
+                    alert(`Order ${orderId} marked COMPLETED. Escrow released.`);
+                    closeModal('order-details-modal');
+                    loadOrdersData();
+                } else {
+                    alert(res.message);
+                }
+            }
+        }
+
+        function forceCancelOrder(orderId) {
+            const note = prompt('Enter cancellation and refund reason:', 'Payment not received within escrow window');
+            if (note !== null) {
+                const res = window.p2pManager.adminForceCancel(orderId, note);
+                if (res.success) {
+                    alert(`Order ${orderId} has been CANCELLED.`);
+                    closeModal('order-details-modal');
+                    loadOrdersData();
+                } else {
+                    alert(res.message);
+                }
+            }
+        }
+
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Install Bet With Net for iPhone & iPad (iOS)</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Bet With Net">
+    <link rel="apple-touch-icon" href="assets/icons/apple_touch_icon_180.png">
+    <link rel="stylesheet" href="css/app.css?v=26.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #060207;
+            color: #fff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .ios-page-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 24px 18px 48px 18px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .ios-hero-card {
+            background: linear-gradient(165deg, #161220 0%, #0d0816 55%, #050208 100%);
+            border: 1px solid rgba(255, 215, 0, 0.45);
+            border-radius: 24px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .ios-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(90deg, #ffd700, #ffaa00);
+            color: #000;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .ios-icon-wrap {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 16px auto;
+            position: relative;
+        }
+        .ios-icon-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.35);
+            object-fit: cover;
+        }
+        .ios-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 0 6px 0;
+            background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ios-sub {
+            font-size: 13px;
+            color: #a09cb0;
+            margin: 0 0 22px 0;
+            line-height: 1.5;
+        }
+        .ios-steps-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: left;
+            margin-bottom: 22px;
+        }
+        .ios-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .ios-step:last-child {
+            margin-bottom: 0;
+        }
+        .ios-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffd700;
+            color: #000;
+            font-weight: 900;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .ios-step-content b {
+            display: block;
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        .ios-step-content span {
+            font-size: 12px;
+            color: #8fa3c0;
+            line-height: 1.4;
+        }
+        .ios-share-ico {
+            display: inline-block;
+            background: #007aff;
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .btn-install-profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff9100 100%);
+            color: #000;
+            border: none;
+            border-radius: 14px;
+            font-weight: 900;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(255, 170, 0, 0.4);
+            transition: all 0.2s;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+        }
+        .btn-install-profile:active {
+            transform: scale(0.98);
+        }
+        .btn-back-lobby {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ios-page-container">
+
+        <div style="text-align:center; margin-bottom: 18px;">
+            <a href="index.html" style="text-decoration:none;">
+                <span style="font-size: 20px; font-weight: 900; color: #ffd700; letter-spacing: 1px;">BET WITH NET</span>
+            </a>
+        </div>
+
+        <div class="ios-hero-card">
+            <div class="ios-badge">🍏 iOS VERSION DOWNLOAD</div>
+
+            <div class="ios-icon-wrap">
+                <img src="assets/icons/apple_touch_icon_180.png" alt="Bet With Net iOS Icon" class="ios-icon-img">
+            </div>
+
+            <h1 class="ios-title">iOS VERSION DOWNLOAD</h1>
+            <p class="ios-sub">iPhone & iPad par Baghair App Store ke 100% Free Fullscreen VIP App Install Karein</p>
+
+            <!-- Method 1: Safari Add to Home Screen (Apple Official Method) -->
+            <div class="ios-steps-box">
+                <div style="font-size:12px; font-weight:800; color:#ffd700; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">
+                    ⭐ Tareeqa 1: Safari "Add to Home Screen" (Recommended)
+                </div>
+
+                <div class="ios-step">
+                    <div class="ios-step-num">1</div>
+                    <div class="ios-step-content">
+                        <b>Safari ke Share Button par tap karein</b>
+                        <span>iPhone Safari ke neechay <span class="ios-share-ico">⎋ Share</span> icon par click karein.</span>
+                    </div>
+                </div>
+
+                <div class="ios-step">
+                    <div class="ios-step-num">2</div>
+                    <div class="ios-step-content">
+                        <b>"Add to Home Screen" select karein</b>
+                        <span>Menu ko thora scroll karein aur <b>➕ Add to Home Screen</b> par tap karein.</span>
+                    </div>
+                </div>
+
+                <div class="ios-step">
+                    <div class="ios-step-num">3</div>
+                    <div class="ios-step-content">
+                        <b>Upar "Add" par tap karein</b>
+                        <span>Screen ke top-right corner par <b>Add</b> click karein.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Method 2: iOS Profile Download -->
+            <div style="margin-bottom: 20px;">
+                <a href="download_ios.php" class="btn-install-profile">
+                    <span>📲</span>
+                    <span>DOWNLOAD iOS PROFILE (.mobileconfig)</span>
+                </a>
+                <span style="font-size:11px; color:#8fa3c0; display:block;">
+                    Download karne ke baad iPhone Settings ➔ "Profile Downloaded" mein ja kar Install karein.
+                </span>
+            </div>
+
+            <a href="index.html" class="btn-back-lobby">
+                ⬅ Back to Casino Lobby
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

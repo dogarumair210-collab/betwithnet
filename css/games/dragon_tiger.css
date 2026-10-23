@@ -1,0 +1,2614 @@
+/* ============================================================
+   Bet With Net - Dragon vs Tiger VIP Live Casino Table
+   Exact 1:1 Pixel-Perfect Replica of Official Video Client
+   ============================================================ */
+
+:root {
+    --dvt-gold: #ffd700;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #020306;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Force-hide global website injected footers & headers */
+body.dragon-tiger-page .site-footer,
+body.dragon-tiger-page #app-header-slot,
+body.dragon-tiger-page .app-bottom-nav,
+body.dragon-tiger-page .app-drawer,
+body.dragon-tiger-page footer.footer {
+    display: none !important;
+}
+
+/* Outer Master Screen Frame (60 FPS GPU Composition Layer) */
+.dvt-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Fullscreen Mode Optimization */
+:fullscreen, :-webkit-full-screen, :-moz-full-screen, :-ms-fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #000 !important;
+    overflow: hidden !important;
+}
+:fullscreen .dvt-screen, :-webkit-full-screen .dvt-screen {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+:fullscreen .dvt-canvas, :-webkit-full-screen .dvt-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+}
+
+/* Game Table Viewport (Edge-to-Edge 100% Fullscreen on all devices) */
+.dvt-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    aspect-ratio: unset !important;
+    background: radial-gradient(ellipse at 50% 36%, rgba(2, 4, 8, 0.48) 0%, rgba(1, 2, 4, 0.82) 100%), url('../../assets/backgrounds/dragontiger_bg.jpg?v=dark_hd') no-repeat center center !important;
+    background-size: cover !important;
+    box-shadow: none;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    contain: layout paint;
+}
+
+/* Mobile Portrait Auto-Rotate to Fullscreen Landscape */
+@media screen and (orientation: portrait) and (max-width: 900px) {
+    html, body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+    body.dragon-tiger-page .dvt-screen {
+        width: 100vh !important;
+        width: 100dvh !important;
+        height: 100vw !important;
+        height: 100dvw !important;
+        transform: translate(-50%, -50%) rotate(90deg);
+        transform-origin: center center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        overflow: hidden;
+    }
+    body.dragon-tiger-page .dvt-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        aspect-ratio: unset !important;
+        background-size: cover !important;
+    }
+}
+
+.dvt-btn-rotate {
+    right: 14%;
+    top: 3.5%;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(0, 0, 0, 0.85));
+    border: 1.5px solid #ffd700;
+    color: #ffd700;
+    font-size: 18px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: dvtRotateGlow 2s infinite alternate;
+}
+@keyframes dvtRotateGlow {
+    0% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); transform: scale(1); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.85); transform: scale(1.08); }
+}
+
+/* Top Navigation & Controls Overlay */
+.dvt-top-btn {
+    position: absolute;
+    width: 4.2%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    opacity: 0.9;
+}
+.dvt-top-btn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.dvt-btn-back {
+    left: 2.8%;
+    top: 3.5%;
+    background: transparent;
+    text-decoration: none;
+}
+
+.dvt-btn-shop {
+    right: 8.6%;
+    top: 3.5%;
+    background: transparent;
+    border: none;
+}
+
+.dvt-btn-sound {
+    right: 3.2%;
+    top: 3.5%;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #ffd700;
+}
+
+/* VIP Winner Showcase Clickable Zone */
+.dvt-vip-winner-zone {
+    position: absolute;
+    right: 2.5%;
+    top: 15%;
+    width: 21%;
+    height: 18%;
+    cursor: pointer;
+    z-index: 20;
+}
+
+
+
+/* Top Center Dealt Cards & Countdown Timer - HD Luxury Sizing */
+.dvt-card-slot {
+    position: absolute;
+    width: 8.4%;
+    height: 22.2%;
+    perspective: 1000px;
+    z-index: 22;
+    top: 3.2%;
+}
+
+#dragon-card-slot {
+    left: 37.2%;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.85), inset 0 0 10px rgba(0, 240, 255, 0.45);
+    animation: cardSlotBlueGlow 1.8s infinite alternate ease-in-out;
+}
+
+#tiger-card-slot {
+    left: 54.4%;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 120, 0, 0.9), inset 0 0 10px rgba(255, 200, 0, 0.45);
+    animation: cardSlotGoldGlow 1.8s infinite alternate ease-in-out;
+}
+
+.dvt-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.85);
+    border-radius: 8px;
+}
+
+.dvt-card-inner.flipped {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+.dvt-card-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dvt-card-face.back {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    z-index: 2;
+    background: 
+        radial-gradient(circle at center, #991b1b 0%, #450a0a 75%, #180202 100%),
+        repeating-linear-gradient(45deg, rgba(255, 215, 0, 0.12) 0px, rgba(255, 215, 0, 0.12) 2px, transparent 2px, transparent 7px),
+        repeating-linear-gradient(-45deg, rgba(255, 215, 0, 0.12) 0px, rgba(255, 215, 0, 0.12) 2px, transparent 2px, transparent 7px);
+    border: 2px solid #ffd700;
+    box-shadow: inset 0 0 12px rgba(255, 215, 0, 0.5), 0 6px 18px rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: opacity 0.25s ease;
+}
+.dvt-card-face.back::after {
+    content: "VIP";
+    font-size: 13px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.dvt-card-face.front {
+    background: #ffffff !important;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    border: 1.5px solid #cbd5e1;
+    border-radius: 7px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+/* Guarantee front visibility when flipped */
+.dvt-card-inner.flipped .dvt-card-face.front {
+    z-index: 6 !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+}
+
+.dvt-card-inner.flipped .dvt-card-face.back {
+    z-index: 1 !important;
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+.dvt-real-taash-img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+    border-radius: 6px;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Center Clock / HD Luxury Timepiece */
+.dvt-center-clock-wrap {
+    position: absolute;
+    left: 50%;
+    top: 14.3%;
+    transform: translate(-50%, -50%);
+    width: 58px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 23;
+    pointer-events: none;
+}
+
+/* Luxury HD Animated Timepiece Widget */
+.dvt-timepiece-widget {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hanging Ring / Loop at Top */
+.tp-top-loop {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 9px;
+    border: 2px solid #fbbf24;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 5px rgba(251, 191, 36, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    z-index: 1;
+}
+
+/* Pocket Watch Winder Crown */
+.tp-crown {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9px;
+    height: 5px;
+    background: linear-gradient(90deg, #92400e, #fef08a 45%, #f59e0b 65%, #78350f);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    z-index: 2;
+}
+
+/* Outer Gold Case / Multi-Bevel Bezel */
+.tp-case {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 180deg,
+        #f59e0b 0deg,
+        #fef08a 45deg,
+        #b45309 90deg,
+        #fef08a 135deg,
+        #92400e 180deg,
+        #fef08a 225deg,
+        #b45309 270deg,
+        #fef08a 315deg,
+        #f59e0b 360deg
+    );
+    padding: 2.5px;
+    box-shadow: 
+        0 4px 14px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(245, 158, 11, 0.5),
+        inset 0 1px 2px rgba(255, 255, 255, 0.75);
+    box-sizing: border-box;
+}
+
+/* Inner Dial Face */
+.tp-dial {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #181c2e 0%, #080c18 65%, #02040a 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.95);
+}
+
+/* 12 Hour Dial Ticks */
+.tp-ticks {
+    position: absolute;
+    inset: 1px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(254, 240, 138, 0.5) 0deg 2deg,
+        transparent 2deg 30deg
+    );
+    -webkit-mask: radial-gradient(circle, transparent 15px, black 16px);
+    mask: radial-gradient(circle, transparent 15px, black 16px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* SVG Progress Ring */
+.tp-ring-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.tp-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 2.6;
+}
+
+.tp-progress {
+    fill: none;
+    stroke: url(#tp-gold-grad);
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-dasharray: 122.52;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.85s linear, stroke 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.85));
+}
+
+/* Animated Sweeper Needle */
+.tp-sweeper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.5px;
+    height: 16px;
+    background: linear-gradient(to top, rgba(234, 179, 8, 0.2), #fbbf24 75%, #ffffff 100%);
+    transform-origin: 50% 100%;
+    transform: translate(-50%, -100%) rotate(0deg);
+    animation: tpSweep 1s linear infinite;
+    z-index: 4;
+    box-shadow: 0 0 4px rgba(251, 191, 36, 0.8);
+    pointer-events: none;
+}
+
+@keyframes tpSweep {
+    0% { transform: translate(-50%, -100%) rotate(0deg); }
+    100% { transform: translate(-50%, -100%) rotate(360deg); }
+}
+
+/* Center Pivot Gem */
+.tp-pivot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #fef08a 25%, #dc2626 70%, #991b1b 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(220, 38, 38, 0.9);
+    z-index: 6;
+    pointer-events: none;
+}
+
+/* 3D Glass Crystal Glare */
+.tp-glass-glare {
+    position: absolute;
+    top: 1px;
+    left: 3px;
+    right: 3px;
+    height: 44%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.03) 80%, transparent 100%);
+    border-radius: 40px 40px 16px 16px;
+    transform: skewX(-7deg);
+    pointer-events: none;
+    z-index: 7;
+}
+
+/* Digital Time Display */
+.tp-display {
+    position: relative;
+    z-index: 5;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 900;
+    color: #fef08a;
+    text-shadow: 
+        0 0 6px rgba(251, 191, 36, 0.9),
+        0 1px 3px rgba(0, 0, 0, 0.95);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* VS Badge Mode */
+.tp-display.is-vs {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    background: linear-gradient(180deg, #ffffff 0%, #fef08a 40%, #f59e0b 80%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+    animation: tpVsPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes tpVsPulse {
+    0% { transform: scale(0.95); filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.6)); }
+    100% { transform: scale(1.08); filter: drop-shadow(0 0 8px rgba(245, 158, 11, 1)); }
+}
+
+/* Urgent Mode (Last 3 Seconds) */
+.dvt-timepiece-widget.urgent {
+    animation: tpUrgentHeartbeat 0.5s ease-in-out infinite;
+}
+
+.dvt-timepiece-widget.urgent .tp-case {
+    box-shadow: 
+        0 4px 14px rgba(0, 0, 0, 0.9),
+        0 0 16px rgba(239, 68, 68, 0.9),
+        inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.dvt-timepiece-widget.urgent .tp-display {
+    color: #fca5a5;
+    text-shadow: 
+        0 0 8px rgba(239, 68, 68, 1),
+        0 0 14px rgba(220, 38, 38, 0.9),
+        0 1px 3px rgba(0, 0, 0, 0.95);
+}
+
+.dvt-timepiece-widget.urgent .tp-progress {
+    stroke: #ef4444;
+    filter: drop-shadow(0 0 5px rgba(239, 68, 68, 1));
+}
+
+@keyframes tpUrgentHeartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* ============================================================
+   VIP Table Chassis & Betting Layout (Matching User Reference)
+   ============================================================ */
+.dvt-table-chassis {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58%;
+    height: 48%;
+    max-width: 800px;
+    background: linear-gradient(180deg, #091732 0%, #061024 100%);
+    border: 3px solid #9a5f1e;
+    outline: 2px solid #eab308;
+    border-radius: 18px;
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.92),
+        inset 0 0 0 2px #0f3460,
+        inset 0 3px 6px rgba(255, 255, 255, 0.18),
+        0 0 25px rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    padding: 7px 9px 9px 9px;
+    box-sizing: border-box;
+    z-index: 10;
+    gap: 7px;
+}
+
+/* Side Filigree / Gold corner details */
+.dvt-chassis-decor {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    width: 6px;
+    pointer-events: none;
+    background: linear-gradient(180deg, #fef08a 0%, #ca8a04 50%, #854d0e 100%);
+    border-radius: 3px;
+    opacity: 0.85;
+}
+.dvt-chassis-decor.left { left: -5px; }
+.dvt-chassis-decor.right { right: -5px; }
+
+/* Top Road Map Bar */
+.dvt-table-road-bar {
+    width: 100%;
+    height: 33px;
+    min-height: 33px;
+    background: #061126;
+    border: 1.5px solid #1a3a6c;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    gap: 6px;
+    box-sizing: border-box;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+}
+
+/* Scrollable Bead Pills Strip */
+.dvt-road-pills-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex: 1;
+    height: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 0;
+}
+.dvt-road-pills-wrap::-webkit-scrollbar {
+    display: none;
+}
+
+/* Road Pill Tile (Matching User Image: D, T, T square rounded pills) */
+.dvt-road-pill {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    border-radius: 5px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-sizing: border-box;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    user-select: none;
+    transition: transform 0.15s ease;
+}
+
+/* Blue Dragon Pill */
+.dvt-road-pill.pill-d,
+.dvt-road-pill.pill-dragon {
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    border: 1px solid #93c5fd;
+    text-shadow: 0 1px 2px #0f172a;
+}
+
+/* Red Tiger Pill */
+.dvt-road-pill.pill-t,
+.dvt-road-pill.pill-tiger {
+    background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+    border: 1px solid #fca5a5;
+    text-shadow: 0 1px 2px #450a0a;
+}
+
+/* Green Tie Pill */
+.dvt-road-pill.pill-tie {
+    background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+    border: 1px solid #6ee7b7;
+    text-shadow: 0 1px 2px #022c22;
+}
+
+.dvt-road-pill.new-pulse {
+    animation: pillNewPulse 0.8s ease-in-out infinite alternate;
+}
+@keyframes pillNewPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.15); filter: brightness(1.35) drop-shadow(0 0 6px #ffd700); }
+}
+
+/* Golden Trend Button on Top Bar Right */
+.dvt-road-trend-btn {
+    width: 32px;
+    height: 24px;
+    min-width: 32px;
+    background: linear-gradient(180deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+    border: 1px solid #fef9c3;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    padding: 0;
+    transition: transform 0.1s ease, filter 0.1s ease;
+}
+.dvt-road-trend-btn:active {
+    transform: scale(0.94);
+}
+.dvt-road-trend-btn svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* 3 Main Betting Cards Row */
+.dvt-table-cards-row {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    height: calc(100% - 40px);
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Interactive Zone Columns inside Chassis */
+.dvt-table-cards-row .dvt-zone {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    height: 100% !important;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.12s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.dvt-table-cards-row .dvt-zone:hover {
+    filter: brightness(1.08);
+}
+.dvt-table-cards-row .dvt-zone:active {
+    transform: scale(0.985);
+    filter: brightness(0.96);
+}
+
+/* Column Flex Proportions matching image (Dragon 1, Tie 1, Tiger 1) */
+.dvt-table-cards-row #dvt-bet-dragon {
+    flex: 1;
+}
+.dvt-table-cards-row #dvt-bet-tie {
+    flex: 1;
+}
+.dvt-table-cards-row #dvt-bet-tiger {
+    flex: 1;
+}
+
+/* Dragon Betting Card Theme (Rich Royal Blue) */
+.dvt-card-dragon {
+    background: radial-gradient(circle at 50% 35%, #2563eb 0%, #1e40af 55%, #172554 100%);
+    border: 2px solid #3b82f6;
+    box-shadow: 
+        inset 0 0 20px rgba(37, 99, 235, 0.45),
+        0 4px 12px rgba(0, 0, 0, 0.75);
+}
+
+/* Tie Betting Card Theme (Rich Emerald Green) */
+.dvt-card-tie {
+    background: radial-gradient(circle at 50% 35%, #16a34a 0%, #15803d 55%, #052e16 100%);
+    border: 2px solid #22c55e;
+    box-shadow: 
+        inset 0 0 20px rgba(22, 163, 74, 0.45),
+        0 4px 12px rgba(0, 0, 0, 0.75);
+}
+
+/* Tiger Betting Card Theme (Rich Crimson Red) */
+.dvt-card-tiger {
+    background: radial-gradient(circle at 50% 35%, #dc2626 0%, #b91c1c 55%, #450a0a 100%);
+    border: 2px solid #ef4444;
+    box-shadow: 
+        inset 0 0 20px rgba(220, 38, 38, 0.45),
+        0 4px 12px rgba(0, 0, 0, 0.75);
+}
+
+/* Watermark in Upper Section of Card */
+.dvt-zone-watermark {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 52%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+.dvt-zone-watermark .svg-watermark {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+}
+.watermark-dragon { color: #93c5fd; }
+.watermark-tie { color: #86efac; }
+.watermark-tiger { color: #fca5a5; }
+
+/* Zone Title & Multiplier Group - Flat Table Felt Imprint (Below Chips) */
+.dvt-zone-title-group {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.42;
+}
+.dvt-zone-name {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+.dvt-zone-payout {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-top: 3px;
+}
+
+/* Subtle, Muted Table-Felt Colors for DRAGON / TIE / TIGER */
+.dvt-card-dragon .dvt-zone-name {
+    color: rgba(224, 242, 254, 0.55);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+.dvt-card-dragon .dvt-zone-payout {
+    color: rgba(186, 230, 253, 0.48);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dvt-card-tie .dvt-zone-name {
+    color: rgba(220, 252, 231, 0.55);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+.dvt-card-tie .dvt-zone-payout {
+    color: rgba(187, 247, 208, 0.48);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dvt-card-tiger .dvt-zone-name {
+    color: rgba(255, 228, 230, 0.55);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+.dvt-card-tiger .dvt-zone-payout {
+    color: rgba(254, 205, 211, 0.48);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Hide 360Cr / Zone Counter headers per user request */
+.dvt-zone-counter {
+    display: none !important;
+}
+
+/* Chips Pool inside Zone - Layered ON TOP of Text & Watermark */
+.dvt-chips-pool {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.dvt-scattered-chip {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.85));
+    opacity: 1 !important;
+    animation: chipDropSettle 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes chipDropSettle {
+    0% { transform: translate(-50%, -50%) scale(1.35); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* My Bet Badge - Layered Above Chips */
+.dvt-my-bet-tag {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 35% 35%, #ffd700, #b8860b);
+    color: #2b1700;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #fff5cc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    z-index: 20;
+    display: none;
+    white-space: nowrap;
+}
+
+/* Winning Box Golden Neon Border Flash */
+.dvt-zone.winner-highlight {
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.95), inset 0 0 20px rgba(255, 215, 0, 0.8) !important;
+    border: 2px solid #ffd700 !important;
+    animation: winBoxGlow 0.8s ease-in-out infinite alternate;
+}
+@keyframes winBoxGlow {
+    0% { filter: brightness(1.1); }
+    100% { filter: brightness(1.45); }
+}
+
+/* Winning Beast Roaring Overlay */
+.dvt-beast-win-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 8;
+    animation: beastRoar 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.dvt-beast-win-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+}
+@keyframes beastRoar {
+    0% { transform: scale(0.4); opacity: 0; }
+    30% { transform: scale(1.12); opacity: 1; }
+    70% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.05); opacity: 0.9; }
+}
+
+/* Percentage Ratio Bar below table */
+.dvt-ratio-bar-zone {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80.8%;
+    width: 22%;
+    height: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    z-index: 12;
+}
+
+.dvt-ratio-bar {
+    width: 100%;
+    height: 7px;
+    border-radius: 4px;
+    background: #0f172a;
+    display: flex;
+    overflow: hidden;
+    border: 0.5px solid rgba(255, 215, 0, 0.4);
+}
+.dvt-ratio-d {
+    background: #2563eb;
+    height: 100%;
+    transition: width 0.4s ease;
+}
+.dvt-ratio-t {
+    background: #ea580c;
+    height: 100%;
+    transition: width 0.4s ease;
+}
+.dvt-ratio-labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #94a3b8;
+}
+
+/* 6 Seated Online AI Betting Bots */
+.dvt-seat {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    z-index: 12;
+    transition: transform 0.2s ease;
+}
+
+.dvt-seat-avatar-wrap {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.45);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.dvt-seat-avatar-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    user-select: none;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.dvt-seat-vip-tag {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    background: linear-gradient(135deg, #ffd700 0%, #b45309 100%);
+    color: #000;
+    font-size: 7px;
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    white-space: nowrap;
+}
+
+.dvt-seat-name {
+    position: absolute;
+    bottom: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8.5px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px #000, 0 0 4px #000;
+}
+
+.dvt-seat-bal {
+    position: absolute;
+    bottom: -27px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    font-weight: 800;
+    color: #4ade80;
+    background: rgba(10, 15, 25, 0.9);
+    padding: 1px 6px;
+    border-radius: 5px;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    white-space: nowrap;
+    text-shadow: 0 1px 2px #000;
+    font-family: 'JetBrains Mono', monospace;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.dvt-seat-bet-badge {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.9);
+    z-index: 15;
+    animation: dvtBadgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes dvtBadgePop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.dvt-seat-bet-badge.dragon {
+    background: #dc2626;
+    color: #fff;
+    border: 1px solid #f87171;
+}
+.dvt-seat-bet-badge.tiger {
+    background: #ea580c;
+    color: #fff;
+    border: 1px solid #fb923c;
+}
+.dvt-seat-bet-badge.tie {
+    background: #16a34a;
+    color: #fff;
+    border: 1px solid #86efac;
+}
+
+.dvt-seat-gain {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #4ade80;
+    font-size: 12px;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.95), 0 2px 4px #000;
+    animation: seatGainFly 2.2s ease-out forwards;
+    pointer-events: none;
+    opacity: 0;
+    white-space: nowrap;
+    z-index: 25;
+}
+@keyframes seatGainFly {
+    0% { transform: translate(-50%, 0px) scale(0.7); opacity: 0; }
+    20% { transform: translate(-50%, -10px) scale(1.15); opacity: 1; }
+    75% { transform: translate(-50%, -20px) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -32px) scale(0.9); opacity: 0; }
+}
+
+.dvt-seat-win-bounce {
+    animation: dvtBotWinPulse 1.2s ease-in-out;
+}
+@keyframes dvtBotWinPulse {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.22); filter: drop-shadow(0 0 16px #4ade80); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 10px #4ade80); }
+    75% { transform: scale(1.18); filter: drop-shadow(0 0 14px #4ade80); }
+    100% { transform: scale(1); filter: none; }
+}
+
+/* Seat Coordinates (Symmetrically balanced outside betting chassis) */
+#seat-1 { display: none !important; }
+#seat-2 { left: 8.5%; top: 43%; }
+#seat-3 { left: 8.5%; top: 67%; }
+
+#seat-4 { left: 87.5%; top: 19%; }
+#seat-5 { left: 87.5%; top: 43%; }
+#seat-6 { left: 87.5%; top: 67%; }
+
+/* Bottom Left User Profile & Balance (Avatar Removed, Balance Highlighted) */
+.dvt-user-avatar-zone {
+    display: none !important;
+}
+
+.dvt-user-bal-zone {
+    position: absolute;
+    left: 2.8%;
+    top: 86.5%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 900;
+    color: #ffd700;
+    font-family: 'JetBrains Mono', 'Inter', monospace;
+    z-index: 15;
+    text-shadow: 0 1px 4px #000;
+    background: linear-gradient(180deg, #111827 0%, #030712 100%);
+    border-radius: 10px;
+    border: 2px solid #eab308;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.85), inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 0 12px rgba(234, 179, 8, 0.35);
+    padding: 5px 12px;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.dvt-ub-icon {
+    font-size: 15px;
+    filter: drop-shadow(0 0 4px rgba(234, 179, 8, 0.8));
+}
+
+.dvt-ub-label {
+    font-size: 9px;
+    font-weight: 800;
+    color: #94a3b8;
+    letter-spacing: 1px;
+}
+
+.dvt-ub-val {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: #fef08a;
+    letter-spacing: 0.5px;
+}
+
+/* Bottom Chips Selector Rack */
+.dvt-chips-rack-zone {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 85.5%;
+    width: 48%;
+    height: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2%;
+    z-index: 20;
+}
+
+.dvt-chip-item {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.7));
+}
+
+.dvt-chip-item:hover {
+    transform: translateY(-4px) scale(1.08);
+}
+
+.dvt-chip-item.active {
+    transform: translateY(-6px) scale(1.15);
+    filter: drop-shadow(0 0 10px #ffd700);
+}
+
+.dvt-chip-item.active::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    animation: activeChipGlow 1s ease-in-out infinite alternate;
+}
+@keyframes activeChipGlow {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.dvt-chip-item img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Watching Mode Bar (Low Balance) */
+.dvt-watching-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 85.5%;
+    width: 48%;
+    height: 12.5%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #e2e8f0;
+    font-weight: 700;
+    z-index: 20;
+    text-shadow: 0 1px 3px #000;
+}
+.dvt-watching-bar.show {
+    display: flex;
+}
+
+.dvt-btn-topup {
+    background: radial-gradient(circle at 35% 35%, #ffd700, #b8860b);
+    border: 1.5px solid #fff5cc;
+    color: #2b1700;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 6px 16px;
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+/* Rebet Button */
+.dvt-rebet-zone {
+    position: absolute;
+    left: 76%;
+    top: 86.1%;
+    width: 8.5%;
+    height: 10.0%;
+    cursor: pointer;
+    z-index: 20;
+    background: transparent;
+    border: none;
+    border-radius: 20px;
+    opacity: 0;
+}
+.dvt-rebet-zone:hover {
+    opacity: 0.15;
+    background: #ffffff;
+}
+
+/* ============================================================
+   ANIMATED FULL HD LUXURY CASINO STOP BETTING BANNER
+   ============================================================ */
+.dvt-stop-betting-banner {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3) rotateX(-20deg);
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.3), opacity 0.24s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 560px;
+    perspective: 1000px;
+}
+
+.dvt-stop-betting-banner.show {
+    transform: translate(-50%, -50%) scale(1) rotateX(0deg);
+    opacity: 1;
+}
+
+/* Spinning Golden Sunburst Rays behind banner */
+.dvt-sb-sunburst {
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 215, 0, 0.25) 0deg 10deg,
+        transparent 10deg 20deg
+    );
+    -webkit-mask: radial-gradient(circle, black 30%, transparent 70%);
+    mask: radial-gradient(circle, black 30%, transparent 70%);
+    animation: sbSpinRays 12s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes sbSpinRays {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Main Luxury Shield Card */
+.dvt-sb-card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(220, 38, 38, 0.75));
+    animation: sbFloatPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes sbFloatPulse {
+    0% { transform: scale(0.985); }
+    100% { transform: scale(1.02); }
+}
+
+/* Central Red & Gold Shield */
+.dvt-sb-shield {
+    position: relative;
+    background: 
+        radial-gradient(ellipse at 50% 20%, #dc2626 0%, #991b1b 45%, #450a0a 85%, #180202 100%);
+    border: 3px solid #ffd700;
+    outline: 2px solid #b45309;
+    border-radius: 18px;
+    padding: 14px 34px 16px 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.65),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.85),
+        0 0 35px rgba(239, 68, 68, 0.85),
+        0 0 65px rgba(245, 158, 11, 0.5);
+    overflow: hidden;
+    min-width: 380px;
+}
+
+/* Top Round Closed Ribbon */
+.dvt-sb-top-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 900;
+    color: #fef08a;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(250, 204, 21, 0.9), 0 1px 2px #000;
+    margin-bottom: 2px;
+}
+
+.dvt-sb-star {
+    color: #fbbf24;
+    font-size: 13px;
+    animation: sbStarTwinkle 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes sbStarTwinkle {
+    0% { transform: scale(0.85); opacity: 0.7; }
+    100% { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 0 6px #fff); }
+}
+
+/* 3D Metallic Gold Typography */
+.dvt-sb-main-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: 3.5px;
+    line-height: 1;
+    margin: 4px 0 8px 0;
+    white-space: nowrap;
+}
+
+.dvt-sb-word.stop {
+    background: linear-gradient(180deg, #ffffff 0%, #fee2e2 25%, #ef4444 65%, #991b1b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0 #450a0a) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px rgba(239, 68, 68, 0.9));
+}
+
+.dvt-sb-word.betting {
+    background: linear-gradient(180deg, #ffffff 0%, #fef08a 25%, #f59e0b 60%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0 #78350f) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px rgba(245, 158, 11, 0.9));
+}
+
+/* Subtitle Bar with Locks */
+.dvt-sb-sub-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(254, 240, 138, 0.35);
+    border-radius: 20px;
+    padding: 3px 14px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.dvt-sb-lock-icon {
+    font-size: 11px;
+}
+
+.dvt-sb-sub-txt {
+    font-size: 10px;
+    font-weight: 800;
+    color: #fef08a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Shimmer Light Sweep Effect */
+.dvt-sb-shimmer {
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 40%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.15) 60%,
+        transparent 100%
+    );
+    transform: skewX(-25deg);
+    animation: sbShimmerPass 1.4s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes sbShimmerPass {
+    0% { left: -150%; }
+    100% { left: 200%; }
+}
+
+/* ============================================================
+   ANIMATED FULL HD DRAGON VS TIGER CLASH ARENA
+   ============================================================ */
+.dvt-vs-clash-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 998;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    background: 
+        radial-gradient(ellipse at 30% 50%, rgba(0, 195, 255, 0.45) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(255, 120, 0, 0.45) 0%, transparent 60%),
+        rgba(5, 8, 16, 0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: opacity 0.22s ease;
+}
+
+.dvt-vs-clash-overlay.active {
+    opacity: 1;
+}
+
+/* Background Lightning Clash Flash */
+.dvt-clash-bg-lightning {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+}
+.dvt-vs-clash-overlay.active .dvt-clash-bg-lightning {
+    animation: clashLightFlash 0.5s ease-out;
+}
+
+@keyframes clashLightFlash {
+    0% { opacity: 0; }
+    25% { opacity: 0.9; }
+    50% { opacity: 0.3; }
+    75% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Main Arena Frame */
+.dvt-clash-arena {
+    position: relative;
+    width: 96%;
+    max-width: 900px;
+    height: 60%;
+    max-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* Dragon & Tiger Beast Sides */
+.dvt-clash-beast-side {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.dvt-clash-beast-img {
+    width: 100%;
+    max-width: 330px;
+    height: 190px;
+    object-fit: contain;
+    mix-blend-mode: normal !important;
+    image-rendering: -webkit-optimize-contrast;
+    transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+}
+
+/* Dragon Clash Charge */
+.dvt-clash-beast-side.dragon-side .dragon-clash-img {
+    filter: contrast(1.2) brightness(1.15) drop-shadow(0 0 25px rgba(0, 210, 255, 0.95)) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.9));
+    transform: translateX(-140px) scale(0.7) rotate(-5deg);
+}
+.dvt-vs-clash-overlay.active .dvt-clash-beast-side.dragon-side .dragon-clash-img {
+    animation: dragonClashEntry 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+}
+
+@keyframes dragonClashEntry {
+    0% { transform: translateX(-140px) scale(0.7) rotate(-5deg); opacity: 0; }
+    65% { transform: translateX(15px) scale(1.08) rotate(1deg); opacity: 1; }
+    100% { transform: translateX(0px) scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Tiger Clash Charge */
+.dvt-clash-beast-side.tiger-side .tiger-clash-img {
+    filter: contrast(1.2) brightness(1.15) drop-shadow(0 0 25px rgba(255, 120, 0, 0.95)) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.9));
+    transform: translateX(140px) scale(0.7) rotate(5deg);
+}
+.dvt-vs-clash-overlay.active .dvt-clash-beast-side.tiger-side .tiger-clash-img {
+    animation: tigerClashEntry 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+}
+
+@keyframes tigerClashEntry {
+    0% { transform: translateX(140px) scale(0.7) rotate(5deg); opacity: 0; }
+    65% { transform: translateX(-15px) scale(1.08) rotate(-1deg); opacity: 1; }
+    100% { transform: translateX(0px) scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Beast Glowing Labels */
+.dvt-clash-beast-label {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-top: -5px;
+    text-transform: uppercase;
+}
+
+.dvt-clash-beast-label.dragon-txt {
+    background: linear-gradient(180deg, #ffffff 0%, #38bdf8 50%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0 #082f49) drop-shadow(0 0 16px rgba(14, 165, 233, 0.95));
+}
+
+.dvt-clash-beast-label.tiger-txt {
+    background: linear-gradient(180deg, #ffffff 0%, #fb923c 50%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0 #431407) drop-shadow(0 0 16px rgba(249, 115, 22, 0.95));
+}
+
+/* Center VS Emblem & Shockwave */
+.dvt-clash-center-zone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    padding: 0 15px;
+}
+
+.dvt-clash-shockwave {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 215, 0, 0.85);
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.9), inset 0 0 25px rgba(255, 215, 0, 0.5);
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+.dvt-vs-clash-overlay.active .dvt-clash-shockwave {
+    animation: shockwaveExpand 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes shockwaveExpand {
+    0% { transform: scale(0.2); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.8; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Metallic 3D VS Emblem Badge */
+.dvt-clash-vs-emblem {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fef08a 0%, #f59e0b 45%, #b45309 80%, #78350f 100%);
+    border: 3px solid #fef08a;
+    outline: 2px solid #b45309;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.95),
+        0 0 40px rgba(255, 215, 0, 0.95),
+        0 0 75px rgba(239, 68, 68, 0.85),
+        inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    transform: scale(0) rotate(-30deg);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.35);
+}
+
+.dvt-vs-clash-overlay.active .dvt-clash-vs-emblem {
+    transform: scale(1) rotate(0deg);
+    animation: vsEmblemRumble 0.5s 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes vsEmblemRumble {
+    0% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)); }
+    100% { transform: scale(1.08); filter: drop-shadow(0 0 35px rgba(255, 215, 0, 1)); }
+}
+
+.dvt-clash-vs-txt {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    color: #450a0a;
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.8),
+        0 -1px 0 #180202,
+        0 2px 6px rgba(0, 0, 0, 0.85);
+    letter-spacing: 1px;
+}
+
+.dvt-clash-sub-title {
+    font-size: 10px;
+    font-weight: 900;
+    color: #fef08a;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.9), 0 2px 4px #000;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+/* Winner Box Blazing Flame Glow */
+.dvt-zone.winner-highlight {
+    animation: winBoxFlame 0.6s ease-in-out infinite alternate !important;
+    border: 3px solid #ffd700 !important;
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.95), inset 0 0 25px rgba(255, 215, 0, 0.6) !important;
+    z-index: 25;
+}
+@keyframes winBoxFlame {
+    0% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); }
+    100% { box-shadow: 0 0 45px rgba(255, 140, 0, 1), inset 0 0 30px rgba(255, 215, 0, 0.8); }
+}
+
+/* Beast Win Animation Overlay */
+.dvt-beast-win-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    pointer-events: none;
+    animation: beastRoarZoom 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.dvt-beast-win-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.95));
+}
+@keyframes beastRoarZoom {
+    0% { transform: scale(0.6); opacity: 0; }
+    60% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* High Definition Flying Casino Chip (60 FPS GPU Acceleration) */
+.dvt-flying-chip {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    z-index: 9999 !important;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.85));
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.dvt-flying-chip.dvt-win-chip-fly {
+    z-index: 10000 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.95)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85));
+    transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.34s ease;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* ============================================================
+   ANIMATED UPPER BEASTS (DRAGON & TIGER) & CARD FIRE FX
+   ============================================================ */
+
+/* Top Beasts Container (60 FPS GPU Composition Layer) */
+.dvt-top-beast {
+    position: absolute;
+    top: 0%;
+    width: 29%;
+    height: 27%;
+    z-index: 18;
+    pointer-events: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+    perspective: 900px;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.dvt-top-dragon {
+    left: 7.5%;
+    transform-origin: 75% 50%;
+    animation: dragonFloatLive 5.2s ease-in-out infinite;
+}
+
+.dvt-top-tiger {
+    right: 8.5%;
+    transform-origin: 25% 50%;
+    animation: tigerStalkLive 4.6s ease-in-out infinite;
+}
+
+/* Elemental Living Auras behind beasts */
+.dvt-beast-aura {
+    position: absolute;
+    inset: 6%;
+    border-radius: 50%;
+    filter: blur(26px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.65;
+    mix-blend-mode: screen;
+}
+.dragon-aura {
+    background: radial-gradient(circle, rgba(0, 220, 255, 0.75) 0%, rgba(14, 116, 144, 0.4) 55%, transparent 80%);
+    animation: dragonAuraPulse 3.8s ease-in-out infinite alternate;
+}
+.tiger-aura {
+    background: radial-gradient(circle, rgba(255, 140, 0, 0.8) 0%, rgba(194, 65, 12, 0.4) 55%, transparent 80%);
+    animation: tigerAuraPulse 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes dragonAuraPulse {
+    0% { transform: scale(0.85); opacity: 0.45; filter: blur(20px); }
+    100% { transform: scale(1.15); opacity: 0.85; filter: blur(32px); }
+}
+
+@keyframes tigerAuraPulse {
+    0% { transform: scale(0.88); opacity: 0.5; filter: blur(20px); }
+    100% { transform: scale(1.18); opacity: 0.9; filter: blur(32px); }
+}
+
+/* Full High-Definition Beast Sprites (No screen washout, ultra HD clarity) */
+.dvt-beast-sprite {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: normal !important;
+    pointer-events: none;
+    z-index: 2;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform, filter;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Dragon Spine Undulation & Deep Organic Breathing */
+.dragon-sprite-live, .dvt-top-dragon .dvt-beast-sprite {
+    filter: contrast(1.18) brightness(1.1) saturate(1.25) drop-shadow(0 0 18px rgba(0, 210, 255, 0.92)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.9));
+    animation: dragonSpineBreath 4.4s ease-in-out infinite;
+    transform-origin: 65% 45%;
+}
+
+/* Tiger Prowling Muscle Flex & Predatory Ribcage Expansion */
+.tiger-sprite-live, .dvt-top-tiger .dvt-beast-sprite {
+    filter: contrast(1.18) brightness(1.1) saturate(1.25) drop-shadow(0 0 18px rgba(255, 125, 0, 0.95)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.9));
+    animation: tigerProwlMuscle 4.0s ease-in-out infinite;
+    transform-origin: 35% 55%;
+}
+
+/* Eye Glow Flares */
+.dvt-beast-flare {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: 3;
+}
+
+.dragon-eye-flare {
+    top: 26.5%;
+    right: 10.5%;
+    background: #ffffff;
+    box-shadow: 0 0 12px #00ffff, 0 0 24px #0088ff;
+    animation: eyeGlowPulse 1.8s infinite alternate ease-in-out;
+}
+
+.tiger-eye-flare {
+    top: 32%;
+    left: 23%;
+    background: #fffbeb;
+    box-shadow: 0 0 12px #fbbf24, 0 0 24px #ea580c;
+    animation: eyeGlowPulse 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes eyeGlowPulse {
+    0% { transform: scale(0.8); opacity: 0.75; }
+    50% { transform: scale(1.4); opacity: 1; filter: brightness(1.6); }
+    100% { transform: scale(0.8); opacity: 0.75; }
+}
+
+/* Beast Continuous Movement Keyframes - Floating/Stalking */
+@keyframes dragonFloatLive {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-8px) rotate(1.4deg) translateX(4px);
+    }
+    50% {
+        transform: translateY(-2px) rotate(-0.8deg) translateX(0px);
+    }
+    75% {
+        transform: translateY(-9px) rotate(1.8deg) translateX(-3px);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Dragon Spine Living Motion: Body breathes and undulates from neck to tail */
+@keyframes dragonSpineBreath {
+    0% {
+        transform: scale(1, 1) skewY(0deg) rotate(0deg);
+    }
+    22% {
+        transform: scale(1.038, 0.972) skewY(-2.8deg) rotate(-1.4deg);
+    }
+    48% {
+        transform: scale(0.972, 1.042) skewY(2.4deg) rotate(1.6deg);
+    }
+    72% {
+        transform: scale(1.042, 0.978) skewY(-1.9deg) rotate(-0.9deg);
+    }
+    100% {
+        transform: scale(1, 1) skewY(0deg) rotate(0deg);
+    }
+}
+
+/* Tiger Predatory Prowling: Weight shifting, stealth crouching */
+@keyframes tigerStalkLive {
+    0% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(6px) translateX(-5px) rotate(-1.2deg);
+    }
+    50% {
+        transform: translateY(-5px) translateX(3px) rotate(1.4deg);
+    }
+    75% {
+        transform: translateY(4px) translateX(-2px) rotate(-0.7deg);
+    }
+    100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+}
+
+/* Tiger Muscle Flex: Powerful shoulders rolling, chest inhaling and exhaling */
+@keyframes tigerProwlMuscle {
+    0% {
+        transform: scale(1, 1) skewX(0deg) rotate(0deg);
+    }
+    22% {
+        transform: scale(1.045, 0.962) skewX(-2.6deg) skewY(1.4deg) rotate(-1.2deg);
+    }
+    48% {
+        transform: scale(0.965, 1.038) skewX(2.4deg) skewY(-1.5deg) rotate(1.4deg);
+    }
+    74% {
+        transform: scale(1.04, 0.972) skewX(-1.8deg) skewY(0.9deg) rotate(-0.7deg);
+    }
+    100% {
+        transform: scale(1, 1) skewX(0deg) rotate(0deg);
+    }
+}
+
+/* Dealing Phase Lean-in: Beasts focus and lean intently toward cards */
+.dvt-top-beast.beast-focus-lean {
+    transform: scale(1.08) translateY(6px) !important;
+    filter: brightness(1.22) !important;
+}
+
+/* Beast Victory & Defeat States */
+.dvt-top-dragon.beast-win-surge {
+    animation: dragonWinSurge 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+    z-index: 28;
+}
+
+.dvt-top-tiger.beast-win-surge {
+    animation: tigerWinSurge 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+    z-index: 28;
+}
+
+.dvt-top-beast.beast-lose-fade {
+    filter: grayscale(0.65) brightness(0.55);
+    opacity: 0.5;
+    transform: scale(0.92) !important;
+    transition: all 0.6s ease;
+}
+
+@keyframes dragonWinSurge {
+    0% {
+        transform: scale(1) translateX(0);
+        filter: drop-shadow(0 0 18px #00c3ff);
+    }
+    25% {
+        transform: scale(1.28) translateX(24px) translateY(-8px) rotate(3deg);
+        filter: drop-shadow(0 0 55px #00f0ff) brightness(1.4);
+    }
+    60% {
+        transform: scale(1.2) translateX(16px) translateY(-5px) rotate(1.5deg);
+        filter: drop-shadow(0 0 40px #38bdf8) brightness(1.3);
+    }
+    100% {
+        transform: scale(1) translateX(0);
+        filter: drop-shadow(0 0 18px #00c3ff);
+    }
+}
+
+@keyframes tigerWinSurge {
+    0% {
+        transform: scale(1) translateX(0);
+        filter: drop-shadow(0 0 18px #ff7a00);
+    }
+    25% {
+        transform: scale(1.28) translateX(-24px) translateY(-8px) rotate(-3deg);
+        filter: drop-shadow(0 0 55px #ff4500) brightness(1.4);
+    }
+    60% {
+        transform: scale(1.2) translateX(-16px) translateY(-5px) rotate(-1.5deg);
+        filter: drop-shadow(0 0 40px #fbbf24) brightness(1.3);
+    }
+    100% {
+        transform: scale(1) translateX(0);
+        filter: drop-shadow(0 0 18px #ff7a00);
+    }
+}
+
+/* User Interactive Beast Tap */
+.dvt-top-beast:active, .dvt-top-beast.beast-tap-roar {
+    transform: scale(1.18) !important;
+    filter: brightness(1.35) drop-shadow(0 0 35px gold) !important;
+}
+
+/* ============================================================
+   CARD ANIMATED FIRE FLAMES & EMBERS
+   ============================================================ */
+
+.dvt-card-fire-fx {
+    position: absolute;
+    width: 10%;
+    height: 24.5%;
+    top: 2%;
+    pointer-events: none;
+    z-index: 21;
+    overflow: visible;
+}
+
+#dragon-card-fire {
+    left: 36.4%;
+}
+
+#tiger-card-fire {
+    left: 53.6%;
+}
+
+/* Burning base flame layer */
+.dvt-card-fire-fx .flame-base {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 115%;
+    height: 52%;
+    border-radius: 40% 40% 25% 25%;
+    filter: blur(3px);
+    mix-blend-mode: screen;
+}
+
+.dvt-fire-dragon .flame-base {
+    background: radial-gradient(ellipse at 50% 85%, rgba(255, 255, 255, 0.98) 0%, rgba(0, 245, 255, 0.95) 25%, rgba(0, 140, 255, 0.75) 55%, transparent 78%);
+    animation: flamePulseBlue 1.1s infinite alternate ease-in-out;
+}
+
+.dvt-fire-tiger .flame-base {
+    background: radial-gradient(ellipse at 50% 85%, rgba(255, 255, 220, 0.98) 0%, rgba(255, 175, 0, 0.95) 25%, rgba(255, 45, 0, 0.8) 55%, transparent 78%);
+    animation: flamePulseGold 1.1s infinite alternate ease-in-out;
+}
+
+@keyframes flamePulseBlue {
+    0% { transform: translateX(-50%) scale(0.95, 0.9); opacity: 0.85; filter: blur(3px) brightness(1); }
+    100% { transform: translateX(-50%) scale(1.14, 1.2); opacity: 1; filter: blur(2px) brightness(1.35); }
+}
+
+@keyframes flamePulseGold {
+    0% { transform: translateX(-50%) scale(0.95, 0.9); opacity: 0.85; filter: blur(3px) brightness(1); }
+    100% { transform: translateX(-50%) scale(1.14, 1.2); opacity: 1; filter: blur(2px) brightness(1.35); }
+}
+
+/* Flame Tongues */
+.dvt-card-fire-fx .flame-tongue {
+    position: absolute;
+    bottom: 2%;
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    mix-blend-mode: screen;
+    transform-origin: bottom center;
+}
+
+.dvt-fire-dragon .flame-tongue {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(0, 240, 255, 0.9) 35%, rgba(0, 130, 255, 0.7) 70%, transparent 100%);
+    filter: drop-shadow(0 0 8px #00e5ff);
+}
+
+.dvt-fire-tiger .flame-tongue {
+    background: linear-gradient(to top, rgba(255, 255, 200, 0.95) 0%, rgba(255, 190, 0, 0.92) 35%, rgba(255, 60, 0, 0.75) 70%, transparent 100%);
+    filter: drop-shadow(0 0 8px #ff6a00);
+}
+
+.flame-tongue.t1 {
+    left: 8%;
+    width: 32%;
+    height: 48%;
+    animation: fireTongue1 0.75s infinite alternate ease-in-out;
+}
+.flame-tongue.t2 {
+    left: 33%;
+    width: 36%;
+    height: 64%;
+    animation: fireTongue2 0.65s infinite alternate ease-in-out;
+}
+.flame-tongue.t3 {
+    left: 58%;
+    width: 34%;
+    height: 52%;
+    animation: fireTongue3 0.85s infinite alternate ease-in-out;
+}
+
+@keyframes fireTongue1 {
+    0% { transform: scale(0.9, 0.85) rotate(-2deg); }
+    100% { transform: scale(1.15, 1.25) translateY(-5px) rotate(3deg); }
+}
+@keyframes fireTongue2 {
+    0% { transform: scale(1.1, 0.9) rotate(2deg); }
+    100% { transform: scale(0.92, 1.3) translateY(-7px) rotate(-3deg); }
+}
+@keyframes fireTongue3 {
+    0% { transform: scale(0.95, 0.88) rotate(1deg); }
+    100% { transform: scale(1.18, 1.22) translateY(-6px) rotate(-2deg); }
+}
+
+/* Rising Embers */
+.flame-embers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.flame-embers .ember {
+    position: absolute;
+    bottom: 8%;
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dvt-fire-dragon .ember {
+    background: #e0f2fe;
+    box-shadow: 0 0 6px #38bdf8, 0 0 12px #0284c7;
+}
+
+.dvt-fire-tiger .ember {
+    background: #fef9c3;
+    box-shadow: 0 0 6px #f59e0b, 0 0 12px #ea580c;
+}
+
+.ember.e1 { left: 18%; animation: emberFloat 1.7s infinite linear; }
+.ember.e2 { left: 42%; animation: emberFloat 1.4s infinite linear 0.35s; }
+.ember.e3 { left: 68%; animation: emberFloat 1.9s infinite linear 0.75s; }
+.ember.e4 { left: 32%; animation: emberFloat 1.5s infinite linear 1.1s; }
+.ember.e5 { left: 55%; animation: emberFloat 1.8s infinite linear 0.5s; }
+
+@keyframes emberFloat {
+    0% { transform: translateY(0) scale(0.6); opacity: 0; }
+    20% { opacity: 1; transform: translateY(-16px) translateX(-2px) scale(1); }
+    80% { opacity: 0.85; transform: translateY(-55px) translateX(3px) scale(0.85); }
+    100% { opacity: 0; transform: translateY(-80px) translateX(-4px) scale(0.2); }
+}
+
+/* Fire Win Burst Effect */
+.fire-win-burst {
+    animation: fireWinBurstPulse 1.2s infinite alternate ease-in-out !important;
+}
+
+@keyframes fireWinBurstPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.28); filter: brightness(1.8) drop-shadow(0 0 25px currentColor); }
+}
+
+/* ============================================================
+   PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN (100% PURE PITCH DARK)
+   ============================================================ */
+.pp-loader-screen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    width: 100dvw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s ease;
+    overflow: hidden !important;
+    pointer-events: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.pp-loader-screen.pp-fade-out {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.pp-loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+    box-sizing: border-box;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s ease;
+}
+
+/* Rotate screen during loading when mobile is in portrait */
+@media screen and (orientation: portrait) and (max-width: 900px) {
+    .pp-loader-container {
+        transform: rotate(90deg) scale(1.05) !important;
+        transform-origin: center center !important;
+    }
+}
+
+body.manual-rotate .pp-loader-container {
+    transform: rotate(90deg) scale(1.05) !important;
+    transform-origin: center center !important;
+}
+
+.pp-logo-wrap {
+    width: 100%;
+    max-width: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pp-logo-img {
+    width: 100%;
+    max-width: 290px;
+    height: auto;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    filter: drop-shadow(0 0 10px rgba(255, 130, 0, 0.35));
+}
+
+.pp-bar-track {
+    width: 100%;
+    max-width: 290px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.pp-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff9500 0%, #ffb700 50%, #ffd000 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 14px rgba(255, 190, 0, 0.95), 0 0 6px #ffe066;
+    transition: width 0.16s ease-out;
+}
+
+/* Step 2: Cinematic Video Screen (100% Pure Pitch Black) */
+.dt-intro-screen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    width: 100dvw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    z-index: 2147483640 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.dt-intro-screen.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.dt-intro-screen.intro-fade-out {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.4s ease;
+}
+
+.dt-intro-wrapper {
+    position: relative;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Rotate video on mobile portrait (matching loading screen, clash template, and game table) */
+@media screen and (orientation: portrait) and (max-width: 900px) {
+    .dt-intro-wrapper {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        width: 100vh !important;
+        width: 100dvh !important;
+        height: 100vw !important;
+        height: 100dvw !important;
+        transform: translate(-50%, -50%) rotate(90deg) !important;
+        transform-origin: center center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+}
+
+body.manual-rotate .dt-intro-wrapper {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100vh !important;
+    width: 100dvh !important;
+    height: 100vw !important;
+    height: 100dvw !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+    transform-origin: center center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+.dt-intro-video {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    background: #000000;
+    display: block;
+}
+
+.dt-skip-intro-btn {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(0, 0, 0, 0.72);
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.dt-skip-intro-btn:active {
+    transform: scale(0.94);
+    background: rgba(255, 215, 0, 0.25);
+}
+
+.dt-unmute-prompt {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.82);
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 7px 18px;
+    border-radius: 20px;
+    z-index: 20;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    animation: dtPulsePrompt 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes dtPulsePrompt {
+    from { transform: translateX(-50%) scale(0.96); opacity: 0.85; }
+    to { transform: translateX(-50%) scale(1.04); opacity: 1; }
+}
+
+/* Step 3: End-of-Video Clash Transition Template */
+.dt-clash-template {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    width: 100dvw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: radial-gradient(ellipse at center, rgba(20, 14, 6, 0.96) 0%, rgba(2, 2, 4, 0.99) 80%, #000000 100%) !important;
+    z-index: 2147483645 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0;
+    overflow: hidden !important;
+    pointer-events: auto;
+    transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.dt-clash-template.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.dt-clash-template.clash-fade-out {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.dt-trans-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 180, 0, 0.28) 0%, rgba(255, 80, 0, 0.12) 40%, transparent 70%);
+    animation: dtGlowBurst 0.8s ease-out forwards;
+    pointer-events: none;
+}
+
+.dt-trans-card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+    padding: 20px;
+    animation: dtCardEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media screen and (orientation: portrait) and (max-width: 900px) {
+    .dt-trans-card {
+        transform: rotate(90deg) scale(1.05) !important;
+        transform-origin: center center !important;
+    }
+}
+body.manual-rotate .dt-trans-card {
+    transform: rotate(90deg) scale(1.05) !important;
+    transform-origin: center center !important;
+}
+
+.dt-trans-badge {
+    font-size: clamp(11px, 2vw, 13px);
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+.dt-trans-title {
+    font-size: clamp(34px, 7vw, 64px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    line-height: 1;
+    font-family: 'JetBrains Mono', 'Inter', sans-serif;
+}
+
+.dt-trans-d {
+    color: #38bdf8;
+    text-shadow: 0 0 25px rgba(56, 189, 248, 0.9), 0 0 50px rgba(56, 189, 248, 0.4);
+}
+
+.dt-trans-vs {
+    font-size: 0.6em;
+    color: #ffd700;
+    font-style: italic;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+}
+
+.dt-trans-t {
+    color: #f97316;
+    text-shadow: 0 0 25px rgba(249, 115, 22, 0.9), 0 0 50px rgba(249, 115, 22, 0.4);
+}
+
+.dt-trans-tag {
+    font-size: clamp(12px, 2.2vw, 16px);
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffd700;
+    background: linear-gradient(90deg, rgba(255,215,0,0.05), rgba(255,215,0,0.22), rgba(255,215,0,0.05));
+    border: 1px solid rgba(255, 215, 0, 0.55);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.28), inset 0 0 15px rgba(255, 215, 0, 0.15);
+    padding: 8px 24px;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+.dt-trans-sub {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+@keyframes dtCardEnter {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes dtGlowBurst {
+    0% { transform: scale(0.4); opacity: 0; }
+    40% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0.7; }
+}
+
+
+

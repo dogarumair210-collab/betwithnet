@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Russian Chamber Survival VIP | Bet With Net</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        casino: {
+                            gold: '#ffd700',
+                            amber: '#f59e0b',
+                            crimson: '#dc2626',
+                            noir: '#080205',
+                            metal: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        action: ['Russo One', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* Base Reset */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            height: 100dvh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #060205;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Atmospheric Smoke & Particle Canvas */
+        #ambientCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.6;
+        }
+
+        /* Realistic VIP Casino Ambient Background */
+        .casino-live-bg {
+            position: fixed;
+            inset: 0;
+            background-image: url('../assets/games/russian_roulette/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            filter: contrast(135%) saturate(130%) brightness(0.55);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .casino-vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(35, 8, 14, 0.4) 0%, rgba(6, 2, 5, 0.97) 80%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN (DARK + YELLOW BAR)
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            width: 100dvw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: #000000 !important;
+            background-color: #000000 !important;
+            z-index: 2147483647 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s ease;
+            overflow: hidden !important;
+            pointer-events: auto;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            max-width: 240px;
+            padding: 16px;
+            box-sizing: border-box;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .pp-logo-wrap {
+            width: 100%;
+            max-width: 165px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pp-logo-img {
+            width: 100%;
+            max-width: 165px;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.3));
+        }
+
+        .pp-bar-track {
+            width: 100%;
+            max-width: 180px;
+            height: 3.5px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+        }
+
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff9500 0%, #ffb700 50%, #ffd000 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(255, 190, 0, 0.9), 0 0 4px #ffe066;
+            transition: width 0.16s ease-out;
+        }
+
+        /* 3D Realistic Compact Russian VIP Arena Stage */
+        .rr-compact-stage {
+            background: radial-gradient(circle at center, rgba(54, 12, 22, 0.95) 0%, rgba(20, 5, 10, 0.98) 75%, rgba(10, 2, 5, 1) 100%);
+            border: 2px solid #b91c1c;
+            box-shadow: 0 0 35px rgba(185, 28, 28, 0.35), 0 20px 50px -10px rgba(0, 0, 0, 0.95), inset 0 0 40px rgba(0, 0, 0, 0.85);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gold Corners */
+        .gold-corner-tl, .gold-corner-tr, .gold-corner-bl, .gold-corner-br {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            z-index: 15;
+            border-color: #ffd700;
+            opacity: 0.8;
+        }
+        .gold-corner-tl { top: 8px; left: 8px; border-top: 2px solid #ffd700; border-left: 2px solid #ffd700; border-top-left-radius: 8px; }
+        .gold-corner-tr { top: 8px; right: 8px; border-top: 2px solid #ffd700; border-right: 2px solid #ffd700; border-top-right-radius: 8px; }
+        .gold-corner-bl { bottom: 8px; left: 8px; border-bottom: 2px solid #ffd700; border-left: 2px solid #ffd700; border-bottom-left-radius: 8px; }
+        .gold-corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid #ffd700; border-right: 2px solid #ffd700; border-bottom-right-radius: 8px; }
+
+        /* Multiplier Streak Ladder */
+        .rr-ladder-step {
+            flex: 1;
+            padding: 6px 2px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(32, 8, 16, 0.9) 0%, rgba(14, 3, 7, 0.95) 100%);
+            border: 1px solid rgba(220, 38, 38, 0.35);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 3px 6px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease;
+        }
+
+        .rr-ladder-step.active {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.65) 0%, rgba(245, 158, 11, 0.65) 100%);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), inset 0 0 8px rgba(255, 215, 0, 0.45);
+            transform: scale(1.05);
+        }
+
+        .rr-ladder-step.completed {
+            background: linear-gradient(180deg, rgba(6, 78, 59, 0.65) 0%, rgba(2, 44, 34, 0.85) 100%);
+            border-color: rgba(16, 185, 129, 0.75);
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+
+        /* 3D Revolver Showcase Card */
+        .revolver-card-wrap {
+            position: relative;
+            width: 140px;
+            height: 95px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.45);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85), 0 0 15px rgba(245, 158, 11, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .revolver-card-wrap {
+                width: 170px;
+                height: 110px;
+            }
+        }
+
+        .revolver-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .revolver-card-wrap.recoil .revolver-card-img {
+            animation: revolverKick 0.5s ease-out;
+        }
+
+        @keyframes revolverKick {
+            0% { transform: scale(1) rotate(0deg); }
+            15% { transform: scale(1.15) rotate(-14deg) translateY(-8px); filter: brightness(1.7); }
+            60% { transform: scale(0.95) rotate(4deg) translateY(2px); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Revolver Cylinder Spinner with Crosshair Sight */
+        .cylinder-hud-wrap {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #2e0c14 0%, #0a0306 100%);
+            border: 2.5px solid rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.95), 0 0 20px rgba(220, 38, 38, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.9);
+        }
+
+        @media (min-width: 640px) {
+            .cylinder-hud-wrap {
+                width: 125px;
+                height: 125px;
+            }
+        }
+
+        /* Top Firing Notch Indicator */
+        .cylinder-fire-notch {
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(180deg, #ffd700 0%, #dc2626 100%);
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 20;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.95));
+            animation: notchPulse 1.2s infinite ease-in-out;
+        }
+
+        @keyframes notchPulse {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(2px); }
+        }
+
+        .cylinder-wheel-img {
+            width: 95px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.65s cubic-bezier(0.2, 0.85, 0.35, 1.15);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.35));
+        }
+
+        @media (min-width: 640px) {
+            .cylinder-wheel-img {
+                width: 110px;
+                height: 110px;
+            }
+        }
+
+        .cylinder-hud-wrap.spinning .cylinder-wheel-img {
+            animation: spinCylinderRatchet 0.75s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+        }
+
+        @keyframes spinCylinderRatchet {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(1080deg); }
+        }
+
+        /* Chamber Slots Indicators */
+        .chamber-pip {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 11px;
+            background: linear-gradient(135deg, #1c080e 0%, #0d0306 100%);
+            border: 1.5px solid rgba(220, 38, 38, 0.45);
+            color: #9ca3af;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+        }
+
+        .chamber-pip.active-target {
+            border-color: #ffd700;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(220, 38, 38, 0.45) 100%);
+            color: #ffd700;
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.85);
+            transform: scale(1.15);
+            animation: targetPulse 1.1s infinite ease-in-out;
+        }
+
+        @keyframes targetPulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 18px rgba(255, 215, 0, 1); }
+        }
+
+        .chamber-pip.survived {
+            border-color: #10b981;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, rgba(6, 78, 59, 0.7) 100%);
+            color: #34d399;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.65);
+        }
+
+        .chamber-pip.deadly {
+            border-color: #ef4444;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.7) 0%, rgba(153, 27, 27, 0.95) 100%);
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 1);
+            animation: deadlyShake 0.4s ease-in-out;
+        }
+
+        @keyframes deadlyShake {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        /* Heartbeat EKG Monitor Wave */
+        .heartbeat-monitor {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            background: rgba(10, 2, 5, 0.85);
+            border: 1px solid rgba(220, 38, 38, 0.5);
+            box-shadow: 0 0 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .heart-icon-pulse {
+            color: #ef4444;
+            animation: heartThump 1s infinite ease-in-out;
+        }
+
+        .heart-icon-pulse.fast { animation-duration: 0.5s !important; }
+        .heart-icon-pulse.panic { animation-duration: 0.3s !important; }
+
+        @keyframes heartThump {
+            0%, 100% { transform: scale(1); }
+            20% { transform: scale(1.3); }
+            40% { transform: scale(1.1); }
+            60% { transform: scale(1.25); }
+        }
+
+        /* Gunshot Screen Flash */
+        #gunshotOverlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 240, 1) 0%, rgba(239, 68, 68, 0.95) 45%, rgba(10, 2, 5, 0.98) 100%);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.08s ease-out;
+        }
+
+        #gunshotOverlay.bang {
+            opacity: 1;
+            animation: bangFlashHeavy 0.8s ease-out forwards;
+        }
+
+        @keyframes bangFlashHeavy {
+            0% { opacity: 1; filter: brightness(2.4); }
+            25% { opacity: 0.92; filter: brightness(1.7); }
+            60% { opacity: 0.55; filter: brightness(1.25); }
+            100% { opacity: 0; filter: brightness(1); }
+        }
+
+        /* Screen Recoil Shake */
+        .stage-shake {
+            animation: heavyRecoilShake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes heavyRecoilShake {
+            10%, 90% { transform: translate3d(-7px, 0, 0) rotate(-1deg); }
+            20%, 80% { transform: translate3d(8px, 0, 0) rotate(1.5deg); }
+            30%, 50%, 70% { transform: translate3d(-9px, 0, 0) rotate(-1.5deg); }
+            40%, 60% { transform: translate3d(9px, 0, 0) rotate(1deg); }
+        }
+
+        /* Compact Casino Chips */
+        .casino-chip-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 9px;
+            line-height: 1;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1.5px dashed rgba(255, 255, 255, 0.45);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.75), inset 0 1px 3px rgba(255, 255, 255, 0.35);
+        }
+
+        @media (min-width: 640px) {
+            .casino-chip-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 10px;
+            }
+        }
+
+        .casino-chip-btn:hover { transform: translateY(-2px) scale(1.08); }
+        .casino-chip-btn.active {
+            transform: translateY(-3px) scale(1.12);
+            border-style: solid;
+            border-color: #ffd700;
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.9), inset 0 1px 4px rgba(255, 255, 255, 0.6);
+        }
+
+        .chip-100 { background: radial-gradient(circle, #2563eb 40%, #1e40af 100%); color: #ffffff; }
+        .chip-500 { background: radial-gradient(circle, #dc2626 40%, #991b1b 100%); color: #ffffff; }
+        .chip-1k  { background: radial-gradient(circle, #059669 40%, #047857 100%); color: #ffffff; }
+        .chip-5k  { background: radial-gradient(circle, #7c3aed 40%, #5b21b6 100%); color: #ffffff; }
+        .chip-10k { background: radial-gradient(circle, #d97706 40%, #b45309 100%); color: #000000; }
+
+        /* Compact Action Trigger Button */
+        .btn-trigger-glow {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 40%, #991b1b 100%);
+            border: 2px solid #f87171;
+            color: #ffffff;
+            font-family: 'Russo One', sans-serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            border-radius: 16px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-trigger-glow:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 35px rgba(239, 68, 68, 1);
+        }
+
+        .btn-trigger-glow:active:not(:disabled) {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Compact Cashout Button */
+        .btn-cashout-glow {
+            background: linear-gradient(135deg, #00e676 0%, #00b34d 50%, #00e676 100%);
+            color: #07030d;
+            font-weight: 900;
+            font-size: 13px;
+            font-family: 'Russo One', sans-serif;
+            border: 1.5px solid #00ff88;
+            border-radius: 14px;
+            box-shadow: 0 0 30px rgba(0, 230, 118, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            animation: pulseCashoutCompact 1.6s infinite ease-in-out;
+        }
+
+        @keyframes pulseCashoutCompact {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.6)); }
+            50% { filter: drop-shadow(0 0 25px rgba(0, 230, 118, 1)); }
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between selection:bg-red-500 selection:text-white">
+
+    <!-- Atmospheric Smoke & Dust Canvas -->
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- Gunshot Screen Flash Overlay -->
+    <div id="gunshotOverlay"></div>
+
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Realistic VIP Casino Background Image & Vignette -->
+    <div class="casino-live-bg"></div>
+    <div class="casino-vignette"></div>
+
+    <!-- VIP HEADER (Compact) -->
+    <header class="relative z-30 w-full px-3 py-1.5 sm:py-2 flex items-center justify-between select-none bg-gradient-to-b from-[#060205]/98 via-[#140409]/92 to-transparent backdrop-blur-md border-b border-red-500/30 shadow-md">
+        <div class="flex items-center gap-2">
+            <a href="../casino.html" class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-950/70 hover:bg-red-900/90 border border-red-500/50 text-red-200 hover:text-white transition-all text-xs font-bold text-decoration-none">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span class="hidden sm:inline">Casino</span>
+            </a>
+
+            <div class="flex items-center gap-1.5">
+                <div class="w-7 h-7 rounded-lg overflow-hidden border border-amber-400/70 shadow-sm">
+                    <img src="../assets/games/russian_roulette/revolver.jpg" alt="Icon" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <div class="flex items-center gap-1">
+                        <span class="font-display font-black text-xs sm:text-sm tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-100 via-amber-300 to-yellow-400">
+                            RUSSIAN CHAMBER
+                        </span>
+                        <span class="px-1 py-0.2 rounded text-[8px] sm:text-[9px] font-black uppercase bg-red-900/90 text-yellow-300 border border-amber-500/50">
+                            VIP
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: Tension Heartbeat Monitor -->
+        <div class="flex items-center gap-2">
+            <div class="heartbeat-monitor">
+                <svg id="heartbeatIcon" class="heart-icon-pulse w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <span id="heartbeatBpm" class="text-[10px] sm:text-xs font-mono font-bold text-red-300">72 BPM</span>
+            </div>
+            <div class="px-2.5 py-1 rounded-lg bg-black/60 border border-red-500/40 text-[10px] sm:text-xs font-mono font-black text-amber-400">
+                <span class="text-gray-400 font-bold hidden sm:inline">CH: </span><span id="headerChamberVal">0/6</span>
+            </div>
+        </div>
+
+        <!-- Right: Wallet & Controls -->
+        <div class="flex items-center gap-1.5 sm:gap-2">
+            <div id="walletBadgeWrap" class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-gradient-to-r from-red-950/90 to-black/90 border border-yellow-500/50 shadow">
+                <span class="text-yellow-400 font-bold text-xs">₨</span>
+                <span id="headerBalanceVal" class="font-mono font-black text-xs text-yellow-300">0.00</span>
+            </div>
+
+            <!-- Dealer Voice Toggle -->
+            <button id="voiceToggleBtn" onclick="toggleVoice()" class="p-1.5 rounded-lg border border-red-500/40 bg-red-950/70 text-red-300 hover:text-white" title="Toggle Dealer Voice">
+                <span id="voiceIconOn" class="text-xs">🗣️</span>
+                <span id="voiceIconOff" class="hidden text-xs opacity-40">🔇</span>
+            </button>
+
+            <!-- Music BGM Toggle -->
+            <button id="musicToggleBtn" onclick="toggleMusic()" class="p-1.5 rounded-lg border border-red-500/40 bg-red-950/70 text-red-300 hover:text-white" title="Toggle Music">
+                <svg id="musicIconOn" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                <svg id="musicIconOff" class="hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v9"></path><circle cx="6" cy="18" r="3"></circle><path d="M12 5l9-2v6"></path><circle cx="18" cy="16" r="3"></circle></svg>
+            </button>
+
+            <!-- Sound FX Toggle -->
+            <button id="soundToggleBtn" onclick="toggleSound()" class="p-1.5 rounded-lg border border-red-500/40 bg-red-950/70 text-red-300 hover:text-white" title="Toggle Sound">
+                <svg id="soundIconOn" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <svg id="soundIconOff" class="hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+            </button>
+
+            <!-- Rules Modal Toggle -->
+            <button onclick="toggleRulesModal(true)" class="p-1.5 rounded-lg bg-red-950/70 hover:bg-red-900/90 border border-red-500/40 text-red-300 hover:text-white" title="Game Rules">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN BATTLE STAGE (Compact, Fits 100vh) -->
+    <main class="relative z-10 flex-1 w-full max-w-xl mx-auto px-2 py-1.5 sm:py-2 flex flex-col justify-around items-center gap-1.5 sm:gap-2 overflow-hidden">
+        
+        <!-- Multiplier Survival Ladder (Slim Compact) -->
+        <div id="rrLadder" class="w-full flex items-center justify-between gap-1">
+            <!-- Dynamically populated steps -->
+        </div>
+
+        <!-- 3D Realistic Compact Russian Chamber Stage -->
+        <div id="stageContainer" class="rr-compact-stage w-full relative p-2.5 sm:p-4 flex flex-col items-center">
+            
+            <div class="gold-corner-tl"></div>
+            <div class="gold-corner-tr"></div>
+            <div class="gold-corner-bl"></div>
+            <div class="gold-corner-br"></div>
+
+            <!-- Gun & Cylinder Stage Display -->
+            <div class="w-full flex items-center justify-around gap-2 z-10 my-0.5">
+                
+                <!-- Left: Colt .357 Magnum Showcase -->
+                <div class="flex flex-col items-center">
+                    <div id="revolverCardWrap" class="revolver-card-wrap">
+                        <img id="revolverImg" src="../assets/games/russian_roulette/revolver.jpg" alt="Colt .357 Revolver" class="revolver-card-img" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex items-end justify-between p-1.5">
+                            <span class="text-[9px] font-black uppercase tracking-wider text-amber-300">
+                                .357 MAGNUM
+                            </span>
+                            <span class="text-[8px] font-mono text-emerald-400 font-bold bg-emerald-950/80 px-1 rounded border border-emerald-500/40">
+                                6 SHOTS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: 3D Cylinder HUD & Chamber Slots -->
+                <div class="flex flex-col items-center gap-1.5">
+                    <div id="cylinderHudWrap" class="cylinder-hud-wrap">
+                        <div class="cylinder-fire-notch"></div>
+                        <img id="cylinderImg" src="../assets/games/russian_roulette/cylinder.jpg" alt="Cylinder" class="cylinder-wheel-img" />
+                    </div>
+
+                    <!-- Visual Chamber Pips (1 to 6) -->
+                    <div class="flex items-center gap-1">
+                        <div id="pip-1" class="chamber-pip">1</div>
+                        <div id="pip-2" class="chamber-pip">2</div>
+                        <div id="pip-3" class="chamber-pip">3</div>
+                        <div id="pip-4" class="chamber-pip">4</div>
+                        <div id="pip-5" class="chamber-pip">5</div>
+                        <div id="pip-6" class="chamber-pip">6</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Multiplier & Potential Payout (Compact Line) -->
+            <div class="flex items-center justify-between w-full max-w-sm mt-1 bg-black/60 px-3 py-1 rounded-xl border border-red-500/30 text-xs">
+                <div class="flex items-center gap-1.5">
+                    <span class="text-[10px] uppercase font-bold text-gray-400">Multiplier:</span>
+                    <span id="multiplierDisplay" class="font-mono font-black text-sm sm:text-base text-yellow-300">
+                        1.00×
+                    </span>
+                </div>
+                <div class="w-px h-3.5 bg-red-500/40"></div>
+                <div class="flex items-center gap-1.5">
+                    <span class="text-[10px] uppercase font-bold text-gray-400">Potential:</span>
+                    <span id="potentialWinDisplay" class="font-mono font-black text-xs sm:text-sm text-emerald-400">
+                        ₨ 0
+                    </span>
+                </div>
+            </div>
+
+            <!-- Russian Dealer Host Announcement -->
+            <div id="statusWrap" class="relative z-10 mt-1.5 px-3 py-1.5 rounded-xl bg-black/85 border border-red-500/50 text-center font-bold text-[11px] sm:text-xs drop-shadow w-full max-w-sm backdrop-blur-md flex items-center justify-center gap-1.5">
+                <span class="text-amber-400 font-black">🎙️</span>
+                <span id="statusText" class="text-yellow-300 truncate">
+                    "6 chambers, 1 bullet. Dare you pull?"
+                </span>
+            </div>
+
+            <!-- Cash Out Button (Compact Glow) -->
+            <button id="cashoutBtn" onclick="cashOut()" style="display:none;" class="btn-cashout-glow relative z-10 w-full max-w-sm mt-2 py-2.5 px-4 uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all">
+                <span>💰 TAKE CASH ₨ 0</span>
+            </button>
+        </div>
+
+        <!-- Main Action Trigger Button -->
+        <div class="w-full max-w-sm">
+            <button id="triggerBtn" onclick="pullTrigger()" class="btn-trigger-glow w-full py-2.5 sm:py-3 px-6 text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer select-none">
+                <span>PULL TRIGGER 🔫</span>
+            </button>
+        </div>
+
+        <!-- History Ribbon -->
+        <div id="historyBar" class="flex items-center gap-1 text-[10px] text-gray-400">
+            <span class="uppercase font-bold text-gray-500">History:</span>
+            <div id="historyItems" class="flex items-center gap-1"></div>
+        </div>
+
+    </main>
+
+    <!-- VIP FOOTER (Compact Betting Panel) -->
+    <footer class="relative z-30 w-full px-2 sm:px-4 py-2 bg-gradient-to-t from-[#060205] via-[#0e0308] to-transparent border-t border-red-500/30 backdrop-blur-md select-none">
+        <div class="max-w-xl mx-auto flex flex-col gap-1.5">
+            
+            <!-- Quick Chips & Modifiers -->
+            <div class="flex items-center justify-between gap-1.5 bg-red-950/50 p-1.5 rounded-xl border border-red-500/40">
+                <!-- Chips -->
+                <div class="flex items-center gap-1.5">
+                    <button onclick="setBet(100)" class="casino-chip-btn chip-100 active" data-val="100"><span>₨</span><span>100</span></button>
+                    <button onclick="setBet(500)" class="casino-chip-btn chip-500" data-val="500"><span>₨</span><span>500</span></button>
+                    <button onclick="setBet(1000)" class="casino-chip-btn chip-1k" data-val="1000"><span>₨</span><span>1K</span></button>
+                    <button onclick="setBet(5000)" class="casino-chip-btn chip-5k" data-val="5000"><span>₨</span><span>5K</span></button>
+                    <button onclick="setBet(10000)" class="casino-chip-btn chip-10k" data-val="10000"><span>₨</span><span>10K</span></button>
+                </div>
+
+                <!-- Input & Modifiers -->
+                <div class="flex items-center gap-1">
+                    <div class="relative flex items-center">
+                        <span class="absolute left-1.5 text-gray-400 font-bold text-[10px]">₨</span>
+                        <input id="betInput" type="number" min="10" step="10" value="100" onchange="onManualBetChange()" class="w-18 pl-4 pr-1 py-1 rounded bg-black/70 border border-red-500/50 font-mono font-bold text-xs text-yellow-300 outline-none focus:border-yellow-400" />
+                    </div>
+                    <button onclick="modifyBet('half')" class="px-2 py-1 rounded bg-black/60 hover:bg-red-900/70 border border-red-500/40 text-[10px] font-mono font-bold text-gray-300">½</button>
+                    <button onclick="modifyBet('double')" class="px-2 py-1 rounded bg-black/60 hover:bg-red-900/70 border border-red-500/40 text-[10px] font-mono font-bold text-gray-300">2×</button>
+                    <button onclick="modifyBet('max')" class="px-2 py-1 rounded bg-gradient-to-r from-red-600 to-amber-600 border border-amber-400/50 text-[10px] font-mono font-black text-black">MAX</button>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="flex items-center justify-between text-[10px] text-gray-400 px-1">
+                <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Provably Fair SHA-256
+                </span>
+                <span class="text-gray-500">© Bet With Net VIP • 18+ ONLY</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RULES MODAL -->
+    <div id="rulesModal" style="display:none;" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="bg-[#140409] border border-red-500/50 rounded-2xl max-w-sm w-full p-4 shadow-2xl relative">
+            <button onclick="toggleRulesModal(false)" class="absolute top-3 right-3 p-1 rounded bg-black/50 hover:bg-black/80 text-gray-400 hover:text-white">
+                ✕
+            </button>
+            <h3 class="font-display font-black text-lg text-yellow-400 mb-2 flex items-center gap-2">
+                🔫 Russian Chamber VIP Rules
+            </h3>
+            <div class="space-y-2 text-xs text-gray-300 leading-relaxed">
+                <p>• The revolver has a <b>6-chamber cylinder</b> with exactly <b>1 live bullet</b> randomly placed.</p>
+                <p>• Every time you pull the trigger, the cylinder advances to the next chamber.</p>
+                <p>• <b>Survive</b> an empty chamber to climb the Multiplier Ladder:</p>
+                <div class="bg-black/60 p-2.5 rounded-xl border border-red-500/40 font-mono text-[11px] text-amber-300 space-y-1">
+                    <div class="flex justify-between"><span>Chamber 1:</span> <b class="text-white">1.20×</b></div>
+                    <div class="flex justify-between"><span>Chamber 2:</span> <b class="text-white">1.60×</b></div>
+                    <div class="flex justify-between"><span>Chamber 3:</span> <b class="text-white">2.50×</b></div>
+                    <div class="flex justify-between"><span>Chamber 4:</span> <b class="text-white">4.50×</b></div>
+                    <div class="flex justify-between text-yellow-400 font-bold"><span>Chamber 5:</span> <b>15.00× JACKPOT!</b></div>
+                </div>
+                <p>• <b>Cash Out:</b> You can take your profit anytime after surviving any chamber!</p>
+                <p>• <b>Gunshot (BANG):</b> If the chamber contains the bullet, round ends.</p>
+            </div>
+            <button onclick="toggleRulesModal(false)" class="w-full mt-3 py-2 rounded-xl bg-gradient-to-r from-red-700 to-amber-700 hover:from-red-600 hover:to-amber-600 text-white font-bold text-xs cursor-pointer">
+                Understood, Let's Play!
+            </button>
+        </div>
+    </div>
+
+    <!-- GAME ENGINE SCRIPT -->
+    <script>
+        const MULTIPLIERS = [1.20, 1.60, 2.50, 4.50, 15.00];
+
+        let currentBet = 100;
+        let isPlaying = false;
+        let chamber = 0;
+        let bullet = 1;
+        let soundEnabled = true;
+        let musicEnabled = true;
+        let voiceEnabled = true;
+        let bgmAudio = null;
+        let hasInteracted = false;
+        let audioCtx = null;
+        let historyList = [];
+
+        // --- AUTHENTIC GUN AUDIO SYSTEM ---
+        const AUDIO_FILES = {
+            bgm: '../assets/games/russian_roulette/audio/bgm.mp3',
+            spin: '../assets/games/russian_roulette/audio/spin.wav',
+            cock: '../assets/games/russian_roulette/audio/cock.wav',
+            click: '../assets/games/russian_roulette/audio/click.wav',
+            bang: '../assets/games/russian_roulette/audio/bang.wav',
+            win: '../assets/games/russian_roulette/audio/win.mp3',
+            cashout: '../assets/games/russian_roulette/audio/cashout.mp3',
+            chip: '../assets/games/russian_roulette/audio/chip.mp3'
+        };
+
+        // Preload sound instances
+        const audioCache = {};
+        function preloadSounds() {
+            Object.entries(AUDIO_FILES).forEach(([key, src]) => {
+                if (key !== 'bgm') {
+                    const a = new Audio(src);
+                    a.preload = 'auto';
+                    audioCache[key] = a;
+                }
+            });
+        }
+        preloadSounds();
+
+        // --- RUSSIAN CASINO DEALER VOICE SYSTEM ---
+        function speakDealer(text) {
+            if (!voiceEnabled || !('speechSynthesis' in window)) return;
+            try {
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                const voices = window.speechSynthesis.getVoices();
+                const russianOrDeep = voices.find(v => v.lang.includes('ru') || (v.lang.includes('en') && (v.name.includes('Male') || v.name.includes('David') || v.name.includes('George') || v.name.includes('UK'))));
+                if (russianOrDeep) u.voice = russianOrDeep;
+                u.pitch = 0.78;
+                u.rate = 0.88;
+                u.volume = 1.0;
+                window.speechSynthesis.speak(u);
+            } catch(e) {}
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled;
+            if (!voiceEnabled && 'speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            const iconOn = document.getElementById('voiceIconOn');
+            const iconOff = document.getElementById('voiceIconOff');
+            if (iconOn) iconOn.classList.toggle('hidden', !voiceEnabled);
+            if (iconOff) iconOff.classList.toggle('hidden', voiceEnabled);
+            if (voiceEnabled) speakDealer("Dealer voice online.");
+        }
+
+        function initBGM() {
+            if (!bgmAudio) {
+                bgmAudio = new Audio(AUDIO_FILES.bgm);
+                bgmAudio.loop = true;
+                bgmAudio.volume = 0.3;
+            }
+        }
+
+        function playBGM() {
+            initBGM();
+            if (musicEnabled && bgmAudio) {
+                bgmAudio.play().catch(() => {});
+            }
+        }
+
+        function stopBGM() {
+            if (bgmAudio) bgmAudio.pause();
+        }
+
+        function unlockAudioOnGesture() {
+            if (!hasInteracted) {
+                hasInteracted = true;
+                if (musicEnabled) playBGM();
+                speakDealer("Russian Roulette VIP. Place your bet.");
+            }
+        }
+
+        ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
+            document.addEventListener(evt, unlockAudioOnGesture, { once: true, passive: true });
+        });
+
+        function toggleMusic() {
+            unlockAudioOnGesture();
+            musicEnabled = !musicEnabled;
+            if (musicEnabled) playBGM();
+            else stopBGM();
+            const iconOn = document.getElementById('musicIconOn');
+            const iconOff = document.getElementById('musicIconOff');
+            if (iconOn) iconOn.classList.toggle('hidden', !musicEnabled);
+            if (iconOff) iconOff.classList.toggle('hidden', musicEnabled);
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const iconOn = document.getElementById('soundIconOn');
+            const iconOff = document.getElementById('soundIconOff');
+            if (iconOn) iconOn.classList.toggle('hidden', !soundEnabled);
+            if (iconOff) iconOff.classList.toggle('hidden', soundEnabled);
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            const src = AUDIO_FILES[type];
+            if (src) {
+                try {
+                    const snd = new Audio(src);
+                    snd.volume = type === 'bang' ? 1.0 : (type === 'click' ? 0.9 : 0.75);
+                    const p = snd.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch(() => playSynthFallback(type));
+                    }
+                    return;
+                } catch(e) {}
+            }
+            playSynthFallback(type);
+        }
+
+        // Web Audio Synthesizer Fallback
+        function playSynthFallback(type) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const now = audioCtx.currentTime;
+
+                if (type === 'bang') {
+                    const bufferSize = audioCtx.sampleRate * 0.5;
+                    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                    const output = buffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+                    const whiteNoise = audioCtx.createBufferSource();
+                    whiteNoise.buffer = buffer;
+
+                    const filter = audioCtx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(1400, now);
+                    filter.frequency.exponentialRampToValueAtTime(60, now + 0.45);
+
+                    const gain = audioCtx.createGain();
+                    gain.gain.setValueAtTime(1.0, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+
+                    whiteNoise.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    whiteNoise.start(now);
+                } else if (type === 'click') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(2200, now);
+                    osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
+                    gain.gain.setValueAtTime(0.6, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'cock') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(1200, now);
+                    osc.frequency.exponentialRampToValueAtTime(450, now + 0.08);
+                    gain.gain.setValueAtTime(0.5, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'heartbeat') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(70, now);
+                    osc.frequency.exponentialRampToValueAtTime(40, now + 0.12);
+                    gain.gain.setValueAtTime(0.5, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } else if (type === 'win') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    osc.frequency.setValueAtTime(783.99, now + 0.16);
+                    gain.gain.setValueAtTime(0.35, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'cashout') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.22);
+                    gain.gain.setValueAtTime(0.4, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'chip' || type === 'spin') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(850, now);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.04);
+                }
+            } catch(e) {}
+        }
+
+        function toggleRulesModal(open) {
+            document.getElementById('rulesModal').style.display = open ? 'flex' : 'none';
+        }
+
+        // Wallet Balance Retrieval & Sync
+        function getRealBalance() {
+            let bal = 0;
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                bal = window.wallet.getBalance();
+            } else {
+                try {
+                    const u = JSON.parse(localStorage.getItem('bwn_session_user') || localStorage.getItem('currentUser') || 'null');
+                    if (u && (u.balance_pkr !== undefined || u.balancePKR !== undefined)) {
+                        bal = parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : u.balancePKR);
+                    } else if (u && u.balance !== undefined) {
+                        bal = parseFloat(u.balance);
+                    } else {
+                        const l = localStorage.getItem("BETWITHNET_balance");
+                        if (l !== null) bal = parseFloat(l);
+                    }
+                } catch(e) {}
+            }
+            if (isNaN(bal) || bal < 0) bal = 0;
+            return bal;
+        }
+
+        function updateBalanceUI() {
+            const bal = getRealBalance();
+            const el = document.getElementById('headerBalanceVal');
+            if (el) el.innerText = bal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Multiplier Ladder Renderer
+        function renderLadder() {
+            const ladder = document.getElementById('rrLadder');
+            ladder.innerHTML = '';
+            MULTIPLIERS.forEach((m, idx) => {
+                const isCompleted = chamber > idx + 1;
+                const isActive = chamber === idx + 1;
+                const div = document.createElement('div');
+                div.className = `rr-ladder-step ${isActive ? 'active' : isCompleted ? 'completed' : ''}`;
+                div.innerHTML = `
+                    <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400">CH ${idx + 1}</span>
+                    <span class="font-mono font-black text-xs ${
+                        isActive ? 'text-yellow-300' : isCompleted ? 'text-emerald-300' : 'text-gray-300'
+                    }">${m.toFixed(2)}×</span>
+                `;
+                ladder.appendChild(div);
+            });
+
+            document.getElementById('headerChamberVal').innerText = `${chamber}/6`;
+            const multVal = chamber > 0 ? MULTIPLIERS[Math.min(chamber - 1, MULTIPLIERS.length - 1)] : 1.0;
+            document.getElementById('multiplierDisplay').innerText = `${multVal.toFixed(2)}×`;
+            const potWin = currentBet * multVal;
+            document.getElementById('potentialWinDisplay').innerText = chamber > 0 ? `₨ ${potWin.toFixed(0)}` : '₨ 0';
+
+            const bpmValues = [72, 95, 125, 155, 185];
+            const bpm = chamber > 0 ? bpmValues[Math.min(chamber - 1, bpmValues.length - 1)] : 72;
+            const bpmEl = document.getElementById('heartbeatBpm');
+            const iconEl = document.getElementById('heartbeatIcon');
+            if (bpmEl) bpmEl.innerText = `${bpm} BPM`;
+            if (iconEl) {
+                iconEl.className = 'heart-icon-pulse w-3.5 h-3.5 ' + (chamber >= 4 ? 'panic' : chamber >= 2 ? 'fast' : '');
+            }
+        }
+
+        function setBet(amt) {
+            if (isPlaying) return;
+            currentBet = amt;
+            document.getElementById('betInput').value = amt;
+            document.querySelectorAll('.casino-chip-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.val) === amt);
+            });
+            playSound('chip');
+        }
+
+        function onManualBetChange() {
+            if (isPlaying) return;
+            let val = parseFloat(document.getElementById('betInput').value) || 100;
+            val = Math.max(10, Math.min(50000, val));
+            currentBet = val;
+            document.getElementById('betInput').value = val;
+            document.querySelectorAll('.casino-chip-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.val) === val);
+            });
+        }
+
+        function modifyBet(mode) {
+            if (isPlaying) return;
+            const bal = getRealBalance();
+            if (mode === 'half') currentBet = Math.max(10, Math.floor(currentBet / 2));
+            else if (mode === 'double') currentBet = Math.min(bal, currentBet * 2);
+            else if (mode === 'max') currentBet = Math.min(bal, 50000);
+            setBet(currentBet);
+        }
+
+        function updateChamberPips() {
+            for (let i = 1; i <= 6; i++) {
+                const pip = document.getElementById(`pip-${i}`);
+                if (!pip) continue;
+                pip.className = 'chamber-pip';
+
+                if (i < chamber) {
+                    pip.classList.add('survived');
+                    pip.innerText = '✓';
+                } else if (i === chamber) {
+                    if (chamber === bullet) {
+                        pip.classList.add('deadly');
+                        pip.innerText = '💀';
+                    } else {
+                        pip.classList.add('survived');
+                        pip.innerText = '✓';
+                    }
+                } else if (i === chamber + 1 && isPlaying) {
+                    pip.classList.add('active-target');
+                    pip.innerText = i;
+                } else {
+                    pip.innerText = i;
+                }
+            }
+        }
+
+        function initAmbientCanvas() {
+            const canvas = document.getElementById('ambientCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = window.innerWidth;
+            let h = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            });
+
+            const particles = [];
+            for (let i = 0; i < 25; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 2 + 0.8,
+                    alpha: Math.random() * 0.45 + 0.15,
+                    speedY: -Math.random() * 0.5 - 0.15,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    color: Math.random() > 0.4 ? 'rgba(255, 180, 50, ' : 'rgba(220, 38, 38, '
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    if (p.y < 0) {
+                        p.y = h + 10;
+                        p.x = Math.random() * w;
+                    }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color + p.alpha + ')';
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Gameplay Execution: Pull Trigger with Authentic Gun Sounds
+        async function pullTrigger() {
+            const triggerBtn = document.getElementById('triggerBtn');
+            const cashoutBtn = document.getElementById('cashoutBtn');
+            const statusText = document.getElementById('statusText');
+            const cylinderHudWrap = document.getElementById('cylinderHudWrap');
+            const cylinderImg = document.getElementById('cylinderImg');
+            const revolverCardWrap = document.getElementById('revolverCardWrap');
+            const stageContainer = document.getElementById('stageContainer');
+            const gunshotOverlay = document.getElementById('gunshotOverlay');
+
+            triggerBtn.disabled = true;
+
+            // Start of Round: Deduct stake
+            if (!isPlaying) {
+                const bal = getRealBalance();
+                if (currentBet > bal) {
+                    statusText.innerText = '"Insufficient balance in your wallet!"';
+                    speakDealer("You do not have enough balance.");
+                    triggerBtn.disabled = false;
+                    return;
+                }
+
+                let ok = false;
+                if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                    ok = window.wallet.placeBet(currentBet, 'Russian Chamber');
+                } else {
+                    const newBal = Math.max(0, bal - currentBet);
+                    localStorage.setItem("BETWITHNET_balance", newBal.toString());
+                    ok = true;
+                }
+                if (!ok) {
+                    triggerBtn.disabled = false;
+                    return;
+                }
+
+                isPlaying = true;
+                chamber = 0;
+                bullet = Math.floor(Math.random() * 6) + 1; // 1 fatal bullet in chambers 1-6
+                updateBalanceUI();
+
+                // Spin cylinder animation with authentic ratchet sound
+                cylinderHudWrap.classList.add('spinning');
+                playSound('spin');
+                speakDealer("Cylinder spinning... Test your destiny.");
+                await new Promise(r => setTimeout(r, 650));
+                cylinderHudWrap.classList.remove('spinning');
+            }
+
+            // Authentic Revolver Hammer Cocking sound & tension
+            playSound('cock');
+            chamber++;
+            const rotationDeg = chamber * 60;
+            cylinderImg.style.transform = `rotate(${rotationDeg}deg)`;
+
+            await new Promise(r => setTimeout(r, 220));
+
+            if (chamber === bullet) {
+                // BANG! DEADLY CHAMBER DISCHARGED
+                isPlaying = false;
+                playSound('bang');
+
+                revolverCardWrap.classList.add('recoil');
+                setTimeout(() => revolverCardWrap.classList.remove('recoil'), 500);
+
+                gunshotOverlay.classList.remove('bang');
+                void gunshotOverlay.offsetWidth;
+                gunshotOverlay.classList.add('bang');
+                stageContainer.classList.add('stage-shake');
+                setTimeout(() => stageContainer.classList.remove('stage-shake'), 600);
+
+                if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                    window.wallet.creditWin(currentBet, 0, 'Russian Chamber', 0, `Bullet fired at chamber ${chamber}`);
+                }
+
+                statusText.innerHTML = `<span class="text-red-400 font-black">"💥 BANG! Bullet fired at chamber ${chamber}!"</span>`;
+                speakDealer("Bang! The bullet found you... Game over, comrade.");
+                cashoutBtn.style.display = 'none';
+                triggerBtn.innerText = 'PULL TRIGGER 🔫';
+                triggerBtn.disabled = false;
+
+                updateChamberPips();
+                renderLadder();
+                addHistory('LOSS', chamber);
+                chamber = 0;
+            } else {
+                // SURVIVED! CRISP DRY METALLIC FIRING PIN CLICK
+                playSound('click');
+                playSound('win');
+
+                const mult = MULTIPLIERS[Math.min(chamber - 1, MULTIPLIERS.length - 1)];
+                const winValue = currentBet * mult;
+
+                const dealerSurvivalLines = [
+                    "Click! Chamber one is clear... You survived.",
+                    "Click! Chamber two empty! Will you take your cash?",
+                    "Click! Three chambers down! The danger is rising!",
+                    "Unbelievable nerve! Chamber four survived! One step from jackpot!"
+                ];
+                const dealerLine = dealerSurvivalLines[chamber - 1] || "Empty chamber! You survive!";
+
+                statusText.innerHTML = `<span class="text-emerald-400 font-black">"${dealerLine}" (${mult.toFixed(2)}× = ₨ ${winValue.toFixed(0)})</span>`;
+                speakDealer(dealerLine);
+                
+                cashoutBtn.style.display = 'flex';
+                cashoutBtn.innerHTML = `<span>💰 TAKE CASH ₨ ${winValue.toFixed(0)} (${mult.toFixed(2)}×)</span>`;
+
+                if (chamber >= 5) {
+                    if (window.confetti) confetti({ particleCount: 160, spread: 90, origin: { y: 0.6 } });
+                    speakDealer("JACKPOT! Five chambers cleared! You conquered death itself!");
+                    await new Promise(r => setTimeout(r, 850));
+                    cashOut();
+                    triggerBtn.disabled = false;
+                    return;
+                } else {
+                    triggerBtn.innerText = `PULL AGAIN (CHAMBER ${chamber + 1}/6) 🔫`;
+                    triggerBtn.disabled = false;
+                }
+
+                updateChamberPips();
+                renderLadder();
+                addHistory('SURVIVED', chamber);
+            }
+
+            updateBalanceUI();
+        }
+
+        // Cash out current survival profit
+        function cashOut() {
+            if (!isPlaying || chamber === 0) return;
+            isPlaying = false;
+
+            const mult = MULTIPLIERS[Math.min(chamber - 1, MULTIPLIERS.length - 1)];
+            const winAmt = currentBet * mult;
+
+            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                window.wallet.creditWin(currentBet, winAmt, 'Russian Chamber', mult, `Survived chamber ${chamber}`);
+            } else {
+                const bal = getRealBalance();
+                localStorage.setItem("BETWITHNET_balance", (bal + winAmt).toString());
+            }
+
+            const statusText = document.getElementById('statusText');
+            statusText.innerHTML = `<span class="text-emerald-400 font-black">"A wise decision! Won ₨ ${winAmt.toFixed(0)} (${mult.toFixed(2)}×)!"</span>`;
+            speakDealer("A wise decision... Enjoy your payout, survivor.");
+            playSound('cashout');
+            if (window.confetti) confetti({ particleCount: 120, spread: 75 });
+
+            document.getElementById('cashoutBtn').style.display = 'none';
+            document.getElementById('triggerBtn').innerText = 'PULL TRIGGER 🔫';
+            document.getElementById('triggerBtn').disabled = false;
+
+            chamber = 0;
+            renderLadder();
+            updateChamberPips();
+            updateBalanceUI();
+        }
+
+        function addHistory(result, ch) {
+            historyList.unshift({ result, ch });
+            if (historyList.length > 6) historyList.pop();
+            const container = document.getElementById('historyItems');
+            container.innerHTML = historyList.map(h => `
+                <span class="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold ${
+                    h.result === 'SURVIVED' ? 'bg-emerald-950/90 border border-emerald-500/50 text-emerald-300' :
+                    'bg-red-950/90 border border-red-500/50 text-red-300'
+                }">${h.result === 'SURVIVED' ? `CH${h.ch}✓` : `CH${h.ch}💀`}</span>
+            `).join('');
+        }
+
+        // ---------------------------------------------------------
+        // PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN LOGIC
+        // ---------------------------------------------------------
+        (function initPPLoader() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) {
+                unlockAudioOnGesture();
+                return;
+            }
+
+            const unlockEarlyAudio = () => {
+                unlockAudioOnGesture();
+            };
+            window.addEventListener('pointerdown', unlockEarlyAudio, { capture: true, passive: true, once: true });
+            window.addEventListener('touchstart', unlockEarlyAudio, { capture: true, passive: true, once: true });
+            window.addEventListener('mousedown', unlockEarlyAudio, { capture: true, passive: true, once: true });
+
+            let pct = 0;
+            let finished = false;
+
+            function finishLoading() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+
+                unlockAudioOnGesture();
+
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 220);
+            }
+
+            const stepLoading = () => {
+                if (finished) return;
+                if (pct < 30) {
+                    pct += Math.floor(Math.random() * 8) + 14;
+                } else if (pct < 70) {
+                    pct += Math.floor(Math.random() * 10) + 12;
+                } else if (pct < 95) {
+                    pct += Math.floor(Math.random() * 8) + 8;
+                } else {
+                    pct = 100;
+                }
+
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+
+                if (pct < 100) {
+                    const delay = pct > 60 ? (Math.random() * 80 + 60) : (Math.random() * 50 + 35);
+                    setTimeout(stepLoading, delay);
+                } else {
+                    finishLoading();
+                }
+            };
+
+            setTimeout(finishLoading, 2200);
+            setTimeout(stepLoading, 50);
+        })();
+
+        // Initialize on Load
+        window.addEventListener('load', () => {
+            initAmbientCanvas();
+            renderLadder();
+            updateChamberPips();
+            updateBalanceUI();
+            setInterval(updateBalanceUI, 3000);
+            window.addEventListener('focus', updateBalanceUI);
+            if (window.wallet && typeof window.wallet.on === 'function') {
+                window.wallet.on('balanceChange', updateBalanceUI);
+                window.wallet.on('change', updateBalanceUI);
+            }
+        });
+    </script>
+</body>
+</html>

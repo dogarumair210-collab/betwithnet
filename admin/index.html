@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AdminLTE Master Back-Office - Bet With Net</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="crash-control.html#andarbahar-radar" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🃏</span>
+                        <span style="color:#ffd700; font-weight:800;">Andar Bahar Radar</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#ffd700; color:#000; font-weight:800;">LIVE</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="betslips.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📋</span>
+                        <span style="font-weight:700;">Player Bet Slips</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#00e700; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">REAL PKR</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">Casino Operations / <b style="color:#fff;">Master Overview</b></span>
+            </div>
+            <div class="navbar-right">
+                <a href="../index.html" target="_blank" class="btn-lte btn-lte-secondary" style="color:var(--lte-green);">
+                    <span>🎮 Open Player Casino</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>📊</span> Master Executive Dashboard
+                    </h1>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-top:4px;">
+                        Enterprise back-office real-time monitoring, live game rigging, player management & cashier approvals.
+                    </p>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <a href="user-add.html" class="btn-lte btn-lte-primary">
+                        <span>➕ Add Player</span>
+                    </a>
+                    <a href="crash-control.html" class="btn-lte btn-lte-danger">
+                        <span>🚀 Crash Radar</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Active User Banner -->
+            <div class="lte-card" style="background:linear-gradient(135deg, rgba(0,231,0,0.08) 0%, rgba(17,23,34,0.95) 100%); border:1px solid rgba(0,231,0,0.3); margin-bottom:12px; padding:10px 16px; border-radius:8px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="font-size:22px;">🎮</div>
+                        <div>
+                            <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:var(--lte-muted); font-weight:700;">Active Player Session:</div>
+                            <div style="font-size:15px; font-weight:900; color:#fff; display:flex; align-items:center; gap:6px;">
+                                <span id="dash-active-username">Loading...</span>
+                                <span id="dash-active-bias-badge" class="badge-status badge-active" style="padding:1px 6px; font-size:10px;">Fair</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <div style="text-align:right; margin-right:6px;">
+                            <div style="font-size:10px; color:var(--lte-muted);">Active Wallet:</div>
+                            <div style="font-size:14px; font-weight:800; color:var(--lte-green); font-family:'JetBrains Mono',monospace;" id="dash-active-balance">₨ 0</div>
+                        </div>
+                        <a id="dash-active-view-btn" href="users.html" class="btn-lte btn-lte-secondary" style="padding:4px 10px; font-size:11px;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metric Counters Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(0, 207, 232, 0.1); color:var(--lte-cyan);">👥</div>
+                    <div class="metric-label">Total Registered Users</div>
+                    <div class="metric-val" id="stat-total-users">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(0, 231, 0, 0.1); color:var(--lte-green);">🟢</div>
+                    <div class="metric-label">Active Players</div>
+                    <div class="metric-val" style="color:var(--lte-green);" id="stat-active-users">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(255, 71, 87, 0.1); color:var(--lte-red);">⛔</div>
+                    <div class="metric-label">Suspended Users</div>
+                    <div class="metric-val" style="color:var(--lte-red);" id="stat-suspended-users">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(245, 197, 24, 0.1); color:var(--lte-gold);">🎰</div>
+                    <div class="metric-label">Games In Studio</div>
+                    <div class="metric-val" style="color:var(--lte-gold);">17 Games</div>
+                </div>
+            </div>
+
+            <!-- Quick Navigation Control Center -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:24px;">
+                
+                <!-- Users Card -->
+                <div class="lte-card">
+                    <div style="font-size:26px; margin-bottom:8px;">👥</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:6px;">Player Management</h3>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-bottom:14px;">
+                        Add, edit, delete players, suspend rogue accounts, set custom loss averages, and inspect full bet history logs.
+                    </p>
+                    <div style="display:flex; gap:8px;">
+                        <a href="users.html" class="btn-lte btn-lte-primary" style="flex:1;">Directory</a>
+                        <a href="user-add.html" class="btn-lte btn-lte-secondary">➕ Add</a>
+                    </div>
+                </div>
+
+                <!-- Crash Control Card -->
+                <div class="lte-card">
+                    <div style="font-size:26px; margin-bottom:8px;">🚀</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:6px;">Live Crash Controller</h3>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-bottom:14px;">
+                        Radar monitor live rocket multipliers, predetermine next crash point, or hit the instant manual crash trigger!
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.3); border:1px solid rgba(0,229,255,0.25); border-radius:6px; padding:7px 12px; margin-bottom:12px; font-size:12px;">
+                        <span style="color:var(--lte-cyan); font-weight:700;">ðŸ“¡ Real Bets on Radar:</span>
+                        <span id="dash-crash-real-bets" style="color:#ffd700; font-weight:800; font-family:'JetBrains Mono',monospace;">0 Bets (â‚¨ 0)</span>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <a href="crash-control.html" class="btn-lte btn-lte-danger" style="flex:1;">Open Radar & Rig</a>
+                    </div>
+                </div>
+
+                <!-- RTP Matrix Card -->
+                <div class="lte-card">
+                    <div style="font-size:26px; margin-bottom:8px;">🎯</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:6px;">17 Games RTP Matrix</h3>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-bottom:14px;">
+                        Configure win/loss return-to-player ratios for Mines, Roulette, Plinko, Keno, Bingo, Blackjack, Poker & all games.
+                    </p>
+                    <div style="display:flex; gap:8px;">
+                        <a href="game-rates.html" class="btn-lte btn-lte-warning" style="flex:1;">RTP Matrix</a>
+                    </div>
+                </div>
+
+                
+                <!-- WhatsApp Community & Support Card -->
+                <div class="lte-card" style="border: 1px solid rgba(37,211,102,0.4); background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, rgba(17,23,34,0.95) 100%);">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div style="font-size:26px; margin-bottom:8px;">💬</div>
+                        <span class="badge-status" style="background:#25D366; color:#000; font-weight:800; font-size:11px; padding:3px 8px; border-radius:4px;">LIVE WIDGET</span>
+                    </div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:6px;">WhatsApp Group & Community</h3>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-bottom:14px;">
+                        Configure official WhatsApp group invite link, support hotline, or test the live player floating button.
+                    </p>
+                    <div style="display:flex; gap:8px;">
+                        <a href="whatsapp.html" class="btn-lte btn-lte-primary" style="flex:1; background:#25D366; color:#000; font-weight:800; border:none; text-align:center;">⚙️ Manage WhatsApp Link</a>
+                        <a href="whatsapp.html" class="btn-lte btn-lte-secondary">Test</a>
+                    </div>
+                </div>
+
+<!-- Cashier Ledger Card -->
+                <div class="lte-card">
+                    <div style="font-size:26px; margin-bottom:8px;">💳</div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:6px;">Cashier Approvals</h3>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-bottom:14px;">
+                        Approve or reject real-time EasyPaisa & JazzCash deposits and player cash-out requests.
+                    </p>
+                    <div style="display:flex; gap:8px;">
+                        <a href="deposits.html" class="btn-lte btn-lte-secondary" style="flex:1;">Deposits</a>
+                        <a href="withdrawals.html" class="btn-lte btn-lte-secondary" style="flex:1;">Withdrawals</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Recent Players Table Preview -->
+            <div class="lte-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <div>
+                        <h2 style="font-size:16px; font-weight:800; color:#fff;">Recent Players</h2>
+                        <div style="font-size:11px; color:var(--lte-muted);">Latest registered players and their outcome rigging configurations.</div>
+                    </div>
+                    <a href="users.html" class="btn-lte btn-lte-secondary" style="font-size:11px;">View All Users →</a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Username</th>
+                                <th>Balance (PKR)</th>
+                                <th>VIP Rank</th>
+                                <th>Outcome Rig</th>
+                                <th>Status</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dash-users-table">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/user_manager.js"></script>
+    <script>
+        async function loadDashboard() {
+            let users = [];
+            let stats = null;
+
+            try {
+                const sRes = await fetch('../api/admin.php?action=stats&admin_pin=9824', {
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    cache: 'no-store'
+                });
+                const sJson = await sRes.json();
+                if (sJson && sJson.success && sJson.data) {
+                    stats = sJson.data;
+                    document.getElementById('stat-total-users').innerText = stats.total_users;
+                    document.getElementById('stat-active-users').innerText = stats.active_users;
+                    document.getElementById('stat-suspended-users').innerText = Math.max(0, stats.total_users - stats.active_users);
+                }
+            } catch (e) {}
+
+            try {
+                const uRes = await fetch('../api/admin.php?action=users&limit=10&admin_pin=9824', {
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    cache: 'no-store'
+                });
+                const uJson = await uRes.json();
+                if (uJson && uJson.success && uJson.data && uJson.data.users) {
+                    users = uJson.data.users.map(u => ({
+                        id: u.id,
+                        username: u.username,
+                        fullName: u.full_name || u.username,
+                        balanceUSD: parseFloat(u.balance_usd || 0),
+                        balancePKR: parseFloat(u.balance_pkr || 0),
+                        vipTier: u.vip_tier || 'VIP 1 Bronze',
+                        outcomeBias: u.outcome_bias || 'fair',
+                        customWinRate: u.custom_win_rate || 48,
+                        status: u.status || 'active',
+                        isPlaying: Boolean(u.is_playing),
+                        activeGame: u.active_game || ''
+                    }));
+                }
+            } catch (e) {}
+
+            const activeUser = users[0] || null;
+
+            // Active User Card
+            if (activeUser) {
+                document.getElementById('dash-active-username').innerText = `${activeUser.fullName || activeUser.username} (@${activeUser.username})`;
+                const pkrAmt = activeUser.balancePKR !== undefined ? activeUser.balancePKR : (activeUser.balanceUSD * 280);
+                document.getElementById('dash-active-balance').innerText = `₨ ${Number(pkrAmt || 0).toLocaleString()}`;
+                document.getElementById('dash-active-view-btn').href = `user-view.html?id=${encodeURIComponent(activeUser.id)}`;
+
+                const biasBadge = document.getElementById('dash-active-bias-badge');
+                if (activeUser.outcomeBias === 'force_loss') {
+                    biasBadge.innerText = '💀 Force Loss';
+                    biasBadge.className = 'badge-status badge-suspended';
+                } else if (activeUser.outcomeBias === 'force_win') {
+                    biasBadge.innerText = '👑 Force Win';
+                    biasBadge.className = 'badge-status';
+                    biasBadge.style.background = 'rgba(245,197,24,0.2)';
+                    biasBadge.style.color = 'var(--lte-gold)';
+                } else if (activeUser.outcomeBias === 'custom') {
+                    biasBadge.innerText = `⚙️ ${activeUser.customWinRate}% Rig`;
+                    biasBadge.className = 'badge-status badge-rigged';
+                } else {
+                    biasBadge.innerText = '⚖️ Fair 98%';
+                    biasBadge.className = 'badge-status badge-active';
+                }
+            }
+
+            // Render top 5 users
+            const tbody = document.getElementById('dash-users-table');
+            const recent = users.slice(0, 5);
+            tbody.innerHTML = recent.map(u => {
+                let biasBadge = '';
+                if (u.outcomeBias === 'force_loss') {
+                    biasBadge = '<span class="badge-status badge-suspended" style="font-size:10px;">💀 100% Loss</span>';
+                } else if (u.outcomeBias === 'force_win') {
+                    biasBadge = '<span class="badge-status" style="font-size:10px; background:rgba(245,197,24,0.2); color:var(--lte-gold);">👑 100% Win</span>';
+                } else if (u.outcomeBias === 'custom') {
+                    biasBadge = `<span class="badge-status badge-rigged" style="font-size:10px;">⚙️ ${u.customWinRate}%</span>`;
+                } else {
+                    biasBadge = '<span class="badge-status badge-active" style="font-size:10px;">⚖️ Fair</span>';
+                }
+
+                const isSusp = u.status === 'suspended';
+                const balPKR = u.balancePKR !== undefined ? u.balancePKR : (u.balanceUSD * 280);
+
+                let playingPill = '';
+                if (u.isPlaying && u.activeGame) {
+                    playingPill = `<span style="background:linear-gradient(135deg,#00ff88,#00b4d8); color:#011c1e; font-weight:900; font-size:9.5px; padding:2px 7px; border-radius:10px; margin-right:6px; display:inline-flex; align-items:center; gap:4px; box-shadow:0 0 10px rgba(0,255,136,0.6);"><span style="width:5px; height:5px; background:#011c1e; border-radius:50%; display:inline-block;"></span>🎮 PLAYING: ${u.activeGame}</span>`;
+                }
+
+                return `
+                    <tr>
+                        <td style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8e9bb0;">${u.id}</td>
+                        <td style="font-weight:700; color:#fff; display:flex; align-items:center; flex-wrap:wrap;">${playingPill}${u.username}</td>
+                        <td style="font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--lte-green);">₨ ${Number(balPKR || 0).toLocaleString()}</td>
+                        <td style="font-size:12px; color:var(--lte-gold);">${u.vipTier || 'Bronze VIP'}</td>
+                        <td>${biasBadge}</td>
+                        <td><span class="badge-status ${isSusp ? 'badge-suspended' : 'badge-active'}" style="font-size:10px;">${u.status}</span></td>
+                        <td style="text-align:right;">
+                            <a href="user-view.html?id=${encodeURIComponent(u.id)}" class="btn-lte btn-lte-secondary" style="padding:4px 8px; font-size:11px;">View</a>
+                            <a href="user-edit.html?id=${encodeURIComponent(u.id)}" class="btn-lte btn-lte-primary" style="padding:4px 8px; font-size:11px;">Edit</a>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+                async function updateDashCrashBets() {
+            try {
+                const res = await fetch('/api/games.php?action=crash_state', { cache: 'no-store' });
+                const json = await res.json();
+                if (json && json.success && json.data) {
+                    const count = json.data.real_bet_count || (json.data.real_active_bets ? json.data.real_active_bets.length : 0);
+                    const total = json.data.real_bet_total_pkr || 0;
+                    const el = document.getElementById('dash-crash-real-bets');
+                    if (el) {
+                        el.innerText = `${count} ${count === 1 ? 'Bet' : 'Bets'} (â‚¨ ${total.toLocaleString()})`;
+                    }
+                }
+            } catch(e) {}
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+            updateDashCrashBets();
+            setInterval(updateDashCrashBets, 3000);
+        });
+    </script>
+    <script src="js/adminlte.js?v=notify_v24"></script>
+</body>
+</html>

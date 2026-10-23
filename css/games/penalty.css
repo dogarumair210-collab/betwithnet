@@ -1,0 +1,853 @@
+/* ============================================================
+   Bet With Net - Penalty Shootout Pro: Heavy Realistic Stadium Park
+   Authentic European Football Arena, Animated Goalkeeper & 3D Ball Physics
+   ============================================================ */
+
+/* Hide WhatsApp Floating Widget completely on Penalty Game */
+#whatsapp-floating-root,
+.whatsapp-floating-widget {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* -------------------------------------------------------------
+   PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN (DARK + YELLOW BAR)
+   ------------------------------------------------------------- */
+.pp-loader-screen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    width: 100dvw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s ease;
+    overflow: hidden !important;
+    pointer-events: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.pp-loader-screen.pp-fade-out {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.pp-loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 250px;
+    padding: 16px;
+    box-sizing: border-box;
+    transform: translate3d(0, 0, 0);
+}
+
+.pp-logo-wrap {
+    width: 100%;
+    max-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pp-logo-img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    filter: drop-shadow(0 0 10px rgba(255, 122, 0, 0.35));
+}
+
+.pp-bar-track {
+    width: 100%;
+    max-width: 190px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.pp-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff9500 0%, #ffb700 50%, #ffd000 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(255, 190, 0, 0.95), 0 0 5px #ffe066;
+    transition: width 0.16s ease-out;
+}
+
+@media screen and (max-width: 600px) {
+    .pp-loader-container {
+        max-width: 210px !important;
+        gap: 14px !important;
+        padding: 12px !important;
+    }
+    .pp-logo-wrap, .pp-logo-img {
+        max-width: 155px !important;
+    }
+    .pp-bar-track {
+        max-width: 165px !important;
+        height: 3.5px !important;
+    }
+}
+
+:root {
+    --penalty-gold: #ffd700;
+    --penalty-green: #00e700;
+    --penalty-red: #ff3b30;
+    --penalty-cyan: #00d2ff;
+    --penalty-bg: #070d14;
+}
+
+body.penalty-game-body {
+    background: #050a10 !important;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.penalty-main-container {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 8px 10px 24px;
+}
+
+/* Header & Bar */
+.penalty-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 4px 0;
+}
+.penalty-back-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 6px 11px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+.penalty-back-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateX(-2px);
+}
+.penalty-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.penalty-title-wrap h1 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.penalty-badge-rtp {
+    font-size: 10px;
+    color: #00e700;
+    background: rgba(0, 231, 0, 0.12);
+    border: 1px solid rgba(0, 231, 0, 0.3);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Stadium Park Arena Stage */
+.penalty-stadium-arena {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 250px;
+    max-height: 330px;
+    background: #02070c url('../../assets/games/penalty/stadium_pitch.jpg') center center / cover no-repeat;
+    border-radius: 14px;
+    border: 1.5px solid rgba(255, 215, 0, 0.25);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), inset 0 0 70px rgba(0, 0, 0, 0.65);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Volumetric Stadium Floodlights Flare */
+.stadium-lighting-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 82% 10%, rgba(255, 255, 255, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 50% 100%, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 2;
+}
+
+/* Atmospheric Crowd Flash Animation */
+.crowd-flashes {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    height: 25%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: radial-gradient(2px 2px at 20% 30%, #fff, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 40% 70%, #fff, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 60% 40%, #fff, rgba(0,0,0,0)),
+                      radial-gradient(3px 3px at 80% 20%, #fff, rgba(0,0,0,0));
+    animation: crowdCameraFlashes 3s infinite;
+}
+@keyframes crowdCameraFlashes {
+    0%, 100% { opacity: 0.2; }
+    45% { opacity: 0.2; }
+    50% { opacity: 0.7; }
+    55% { opacity: 0.3; }
+    80% { opacity: 0.65; }
+    85% { opacity: 0.2; }
+}
+
+/* Stadium Electronic Scoreboard HUD (Top of arena) */
+.stadium-scoreboard {
+    position: relative;
+    z-index: 10;
+    margin: 8px auto 0;
+    background: rgba(10, 16, 26, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 10px;
+    padding: 5px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 12px rgba(255, 215, 0, 0.15);
+}
+.scoreboard-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.scoreboard-label {
+    font-size: 8.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #94a3b8;
+}
+.scoreboard-value {
+    font-size: 14px;
+    font-weight: 900;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
+}
+.scoreboard-value.gold {
+    color: #ffd700;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+.scoreboard-streak-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.streak-ball-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.streak-ball-dot.goal {
+    background: linear-gradient(135deg, #00e700, #009900);
+    border-color: #00ff66;
+    box-shadow: 0 0 10px #00e700;
+    transform: scale(1.15);
+}
+.streak-ball-dot.miss {
+    background: linear-gradient(135deg, #ff3b30, #aa1111);
+    border-color: #ff4d4d;
+    box-shadow: 0 0 8px #ff3b30;
+}
+.streak-ball-dot.active {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px #ffd700;
+    animation: dotPulse 1.2s infinite alternate;
+}
+@keyframes dotPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+/* Interactive Goal Frame & Target Net Matrix (Calibrated to Close-Up 3D Net) */
+.goal-target-matrix {
+    position: absolute;
+    top: 17%;
+    left: 10%;
+    width: 80%;
+    height: 56.5%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* 5 Precision Interactive Shot Targets */
+.penalty-target-zone {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    pointer-events: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 7;
+}
+
+/* Animated Target Reticle */
+.target-reticle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 215, 0, 0.9);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.25);
+    animation: reticleSpin 8s linear infinite;
+    transition: all 0.2s ease;
+}
+@keyframes reticleSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.target-crosshair {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+}
+.target-crosshair::before, .target-crosshair::after {
+    content: '';
+    position: absolute;
+    background: #ffd700;
+}
+.target-crosshair::before {
+    left: 5px; top: 0; width: 2px; height: 12px;
+}
+.target-crosshair::after {
+    left: 0; top: 5px; width: 12px; height: 2px;
+}
+
+.target-label {
+    position: absolute;
+    bottom: -15px;
+    font-size: 8px;
+    font-weight: 900;
+    color: #ffd700;
+    background: rgba(0, 0, 0, 0.88);
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    padding: 1.5px 5px;
+    border-radius: 6px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* Zone Positions Inside Large Realistic Goal Net */
+.zone-tl { top: 8px; left: 10px; }
+.zone-tr { top: 8px; right: 10px; }
+.zone-m  { top: 10px; left: calc(50% - 20px); }
+.zone-bl { bottom: 10px; left: 10px; }
+.zone-br { bottom: 10px; right: 10px; }
+
+/* Target Hover & Active States */
+.penalty-target-zone:hover .target-reticle {
+    border: 2px solid #00ff66;
+    background: rgba(0, 231, 0, 0.4);
+    box-shadow: 0 0 22px #00ff66, inset 0 0 14px #00ff66;
+    transform: scale(1.15);
+}
+.penalty-target-zone:hover .target-label {
+    color: #00ff66;
+    border-color: #00ff66;
+}
+.penalty-target-zone:active .target-reticle {
+    transform: scale(0.95);
+}
+
+/* Goalkeeper Master Layer (Proportionate to Goal Net) */
+.penalty-keeper-layer {
+    position: absolute;
+    bottom: 25%;
+    left: calc(50% - 62px);
+    width: 124px;
+    height: 136px;
+    z-index: 6;
+    pointer-events: none;
+    transform-origin: 50% 90%;
+    transition: transform 0.44s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.2s ease;
+}
+
+/* Animated Goalkeeper Image */
+.keeper-sprite {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.75));
+    display: block;
+}
+
+/* Realistic Idle Animation (Bouncing on toes ready for penalty) */
+.keeper-idle-anim {
+    animation: keeperBounceIdle 1.5s ease-in-out infinite;
+}
+@keyframes keeperBounceIdle {
+    0%, 100% {
+        transform: translateY(0) scaleY(1);
+    }
+    30% {
+        transform: translateY(-5px) scaleY(1.02);
+    }
+    60% {
+        transform: translateY(1px) scaleY(0.98);
+    }
+    85% {
+        transform: translateY(-3px) scaleY(1.01);
+    }
+}
+
+/* Goalkeeper Shadow on Turf */
+.keeper-shadow {
+    position: absolute;
+    bottom: -6px;
+    left: 20%;
+    width: 60%;
+    height: 12px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: all 0.42s ease;
+}
+
+/* 3D Soccer Ball & Penalty Spot */
+.penalty-ball-wrapper {
+    position: absolute;
+    bottom: 5%;
+    left: calc(50% - 19px);
+    width: 38px;
+    height: 38px;
+    z-index: 8;
+    pointer-events: none;
+    transform-origin: center center;
+    transition: transform 0.52s cubic-bezier(0.25, 1, 0.4, 1);
+}
+
+.ball-sprite {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.85));
+    transition: transform 0.52s linear;
+}
+
+/* Shadow underneath the ball */
+.ball-ground-shadow {
+    position: absolute;
+    bottom: -4px;
+    left: 10%;
+    width: 80%;
+    height: 14px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.52s ease;
+}
+
+/* Grass Turf Kick Burst */
+.turf-burst-particle {
+    position: absolute;
+    bottom: 9%;
+    left: 50%;
+    width: 40px;
+    height: 20px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 7;
+}
+.turf-burst-particle.active {
+    animation: turfKickFX 0.4s ease-out forwards;
+}
+@keyframes turfKickFX {
+    0% { opacity: 0.9; transform: translateX(-50%) scale(0.6); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-25px) scale(1.5); }
+}
+
+/* Big Dramatic In-Arena Announcement Banner (GOAL / SAVED) */
+.stadium-event-announcer {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stadium-event-announcer.show-goal {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.stadium-event-announcer.show-saved {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.banner-text-primary {
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+    line-height: 1;
+}
+.banner-goal-style {
+    background: linear-gradient(180deg, #fff 0%, #ffd700 40%, #ff8800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.85)) drop-shadow(0 6px 12px #000);
+}
+.banner-saved-style {
+    background: linear-gradient(180deg, #fff 0%, #ff4d4d 40%, #aa0000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 59, 48, 0.85)) drop-shadow(0 6px 12px #000);
+}
+.banner-text-sub {
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 3px 10px;
+    border-radius: 16px;
+    display: inline-block;
+    margin-top: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Multiplier Step Ladder (Bottom Bar Inside Arena) */
+.penalty-ladder-container {
+    position: relative;
+    z-index: 10;
+    margin: 0 10px 8px;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+.ladder-cell {
+    flex: 1;
+    max-width: 110px;
+    background: rgba(10, 16, 26, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 5px 4px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.ladder-cell .step-name {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 1px;
+}
+.ladder-cell .step-mult {
+    font-size: 13px;
+    font-weight: 900;
+    color: #cbd5e1;
+    font-family: 'JetBrains Mono', monospace;
+    display: block;
+}
+.ladder-cell.completed {
+    background: rgba(0, 231, 0, 0.18);
+    border-color: #00e700;
+    box-shadow: 0 0 15px rgba(0, 231, 0, 0.35);
+}
+.ladder-cell.completed .step-name { color: #00ff66; }
+.ladder-cell.completed .step-mult { color: #ffffff; }
+
+.ladder-cell.active-target {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 140, 0, 0.2) 100%);
+    border-color: #ffd700;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+.ladder-cell.active-target .step-name { color: #ffd700; }
+.ladder-cell.active-target .step-mult {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+/* Golden Cashout Button */
+.penalty-cashout-bar {
+    margin-top: 10px;
+}
+.btn-penalty-cashout {
+    width: 100%;
+    background: linear-gradient(135deg, #ffd700 0%, #ff9900 50%, #e67e22 100%);
+    color: #0b1118;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: cashoutGlow 1.8s infinite ease-in-out;
+    transition: all 0.2s ease;
+}
+@keyframes cashoutGlow {
+    0%, 100% { box-shadow: 0 5px 16px rgba(255, 215, 0, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.7); transform: scale(1.02); }
+}
+.btn-penalty-cashout:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(255, 215, 0, 0.75);
+}
+.btn-penalty-cashout:active {
+    transform: scale(0.98);
+}
+
+/* Bet Control Panel */
+.penalty-bet-panel {
+    background: rgba(14, 21, 33, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+.bet-panel-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.bet-input-container {
+    flex: 1;
+    position: relative;
+}
+.bet-pkr-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffd700;
+    pointer-events: none;
+}
+.bet-number-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: #080d14;
+    border: 1px solid #1a2838;
+    border-radius: 8px;
+    padding: 10px 12px 10px 32px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.bet-number-input:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+}
+
+.bet-modifiers-group {
+    display: flex;
+    gap: 5px;
+}
+.btn-mod {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.btn-mod:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.quick-bet-chips-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+}
+.chip-preset-btn {
+    flex: 1;
+    background: rgba(20, 29, 44, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.chip-preset-btn:hover {
+    background: rgba(255, 215, 0, 0.15);
+    border-color: #ffd700;
+    color: #ffd700;
+    transform: translateY(-1px);
+}
+
+/* Mobile Responsive Optimizations */
+@media (max-width: 768px) {
+    .penalty-main-container {
+        padding: 4px 6px 20px;
+        max-width: 100%;
+    }
+    .penalty-stadium-arena {
+        aspect-ratio: 16 / 10;
+        min-height: 210px;
+        max-height: 275px;
+        border-radius: 12px;
+    }
+    .stadium-scoreboard {
+        margin: 4px 4px 0;
+        padding: 4px 8px;
+        gap: 8px;
+    }
+    .scoreboard-label {
+        font-size: 7.5px;
+    }
+    .scoreboard-value {
+        font-size: 12px;
+    }
+    .streak-ball-dot {
+        width: 15px;
+        height: 15px;
+        font-size: 8px;
+    }
+    .goal-target-matrix {
+        top: 16%;
+        left: 9%;
+        width: 82%;
+        height: 57%;
+    }
+    .penalty-target-zone {
+        width: 34px;
+        height: 34px;
+    }
+    .target-crosshair {
+        width: 10px;
+        height: 10px;
+    }
+    .target-label {
+        font-size: 7.5px;
+        bottom: -13px;
+    }
+    .zone-tl { top: 6px; left: 6px; }
+    .zone-tr { top: 6px; right: 6px; }
+    .zone-m  { top: 8px; left: calc(50% - 17px); }
+    .zone-bl { bottom: 8px; left: 6px; }
+    .zone-br { bottom: 8px; right: 6px; }
+
+    .penalty-keeper-layer {
+        bottom: 24.5%;
+        left: calc(50% - 48px);
+        width: 96px;
+        height: 106px;
+    }
+    .penalty-ball-wrapper {
+        bottom: 4%;
+        left: calc(50% - 16px);
+        width: 32px;
+        height: 32px;
+    }
+    .banner-text-primary {
+        font-size: 24px;
+    }
+    .ladder-cell .step-name {
+        font-size: 7px;
+    }
+    .ladder-cell .step-mult {
+        font-size: 11px;
+    }
+    .bet-panel-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .bet-modifiers-group {
+        width: 100%;
+    }
+    .btn-mod {
+        flex: 1;
+        text-align: center;
+        padding: 8px;
+    }
+}

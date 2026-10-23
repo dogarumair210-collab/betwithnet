@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Fortune Gems 2 - Bet With Net Official Aztec Slot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/games/fortunegems/sym_wild.png" type="image/png">
+    <script src="../js/wallet.js?v=3.0"></script>
+    <style>
+        :root {
+            --gold-primary: #ffd700;
+            --gold-bright: #fff5a6;
+            --gold-dark: #b8860b;
+            --gold-shadow: rgba(255, 215, 0, 0.45);
+            --aztec-wood-1: #2c1a0e;
+            --aztec-wood-2: #190c05;
+            --aztec-stone-border: #4a2d13;
+            --reel-col-width: 78px;
+            --reel-row-height: 76px;
+            --special-col-width: 72px;
+        }
+
+        @media (min-width: 440px) {
+            :root {
+                --reel-col-width: 86px;
+                --reel-row-height: 84px;
+                --special-col-width: 80px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Portrait Master Cabinet Container */
+        .game-master-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000000;
+        }
+
+        .fortune-cabinet {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: 100%;
+            max-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #0c0603;
+            background-image: 
+                radial-gradient(circle at 50% 25%, rgba(255, 200, 50, 0.15) 0%, transparent 60%),
+                url('../assets/games/fortunegems/fortunegems_bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+        }
+
+        /* Top Corner Jungle Foliage / Vines */
+        .vine-corner {
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 70px;
+            pointer-events: none;
+            z-index: 12;
+            opacity: 0.9;
+        }
+        .vine-corner.left {
+            left: 0;
+            background: radial-gradient(circle at 10% 10%, rgba(34, 139, 34, 0.75) 0%, transparent 70%);
+        }
+        .vine-corner.right {
+            right: 0;
+            background: radial-gradient(circle at 90% 10%, rgba(34, 139, 34, 0.75) 0%, transparent 70%);
+        }
+
+        /* Sleek Floating Navigation Bar */
+        .top-nav-bar {
+            position: relative;
+            width: 100%;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            z-index: 40;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+        }
+
+        .nav-btn {
+            background: rgba(20, 10, 4, 0.85);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .nav-btn:hover {
+            border-color: #ffd700;
+            background: rgba(45, 25, 10, 0.95);
+        }
+
+        .nav-deposit-btn {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            border-color: #34d399;
+            color: #ffffff;
+        }
+
+        /* Top Fortune Header: Authentic Golden Typography + Aztec Lucky Wheel Arch */
+        .fortune-top-stage {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: -2px;
+            z-index: 10;
+        }
+
+        /* 3D Fortune Gems 2 Typography Crest */
+        .fg2-title-crest {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 2px 0 0 0;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+        }
+
+        .fg2-brand-text {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            background: linear-gradient(180deg, #fffde7 0%, #fff176 25%, #ffd700 55%, #b8860b 85%, #5d4037 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .fg2-num {
+            font-size: 32px;
+            background: linear-gradient(180deg, #ff8a80 0%, #ff1744 45%, #b71c1c 85%, #4a0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 6px rgba(255, 23, 68, 0.8));
+            margin-left: 2px;
+        }
+
+        /* Aztec Lucky Wheel Arch Showcase */
+        .aztec-wheel-arch {
+            position: relative;
+            width: 220px;
+            height: 80px;
+            margin-top: -12px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+            border-bottom: none;
+            border-radius: 110px 110px 0 0;
+            background: radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.2) 0%, rgba(15, 7, 2, 0.9) 75%);
+            box-shadow: inset 0 2px 8px rgba(255, 215, 0, 0.4), 0 -2px 10px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+        }
+
+        .arch-wheel-disc {
+            position: absolute;
+            bottom: -95px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 15px rgba(255, 180, 0, 0.7));
+            transition: transform 0.1s linear;
+        }
+
+        .arch-eagle-pointer {
+            position: absolute;
+            top: 2px;
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            z-index: 8;
+            filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.8));
+        }
+
+        /* Extra Bet Pill (Matches authentic screenshot [EX] Extra Bet [OFF] (?)) */
+        .extra-bet-bar {
+            width: 100%;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 2px;
+            z-index: 15;
+        }
+
+        .extra-bet-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(180deg, #3d1b06 0%, #1a0b02 100%);
+            border: 1.5px solid #d4af37;
+            border-radius: 20px;
+            padding: 3px 8px 3px 4px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+            transition: all 0.2s;
+        }
+
+        .ex-badge {
+            background: linear-gradient(135deg, #ff1744 0%, #b71c1c 100%);
+            border: 1px solid #ff8a80;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 900;
+            font-style: italic;
+            padding: 2px 5px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .ex-text {
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.3px;
+        }
+
+        .ex-toggle-switch {
+            background: #000000;
+            border: 1px solid #774d1c;
+            border-radius: 10px;
+            padding: 1px 7px;
+            font-size: 9px;
+            font-weight: 900;
+            color: #ff5252;
+            transition: all 0.2s;
+        }
+
+        .extra-bet-pill.active .ex-toggle-switch {
+            background: #10b981;
+            color: #000000;
+            border-color: #34d399;
+        }
+
+        .extra-bet-pill.active {
+            border-color: #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Aztec Slot Reels Cabinet Stage */
+        .reels-stage-wrapper {
+            position: relative;
+            width: 100%;
+            padding: 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* Marquee Lintel Header Banner above reels */
+        .reels-lintel-header {
+            width: 100%;
+            max-width: 440px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            background: linear-gradient(180deg, #3d1b06 0%, #200e03 100%);
+            border: 2px solid #8e5c23;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            padding: 4px 10px;
+            box-shadow: inset 0 2px 4px rgba(255, 215, 0, 0.25);
+        }
+
+        .lintel-bonus-hint {
+            font-size: 10px;
+            font-weight: 900;
+            color: #ffcc80;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .lintel-mini-wheel {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+        }
+
+        .lintel-special-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: 900;
+            color: #ffd700;
+            text-align: center;
+            line-height: 1;
+            padding: 2px 8px;
+            background: #140802;
+            border: 1px solid #ffd700;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* The Main 4-Column Reel Frame */
+        .reels-cabinet-frame {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            background: #090401;
+            border: 3px solid #b8860b;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.9),
+                inset 0 0 25px rgba(0, 0, 0, 0.95),
+                0 0 20px rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 4px;
+            gap: 4px;
+            overflow: hidden;
+        }
+
+        /* Payline Laser Overlay Canvas */
+        #laserCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        /* Aztec Stone Carved Pillar Borders */
+        .cabinet-pillar {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 24px;
+            background-image: url('../assets/games/fortunegems/aztec_pillar.png');
+            background-size: contain;
+            background-repeat: repeat-y;
+            pointer-events: none;
+            opacity: 0.65;
+            z-index: 6;
+        }
+        .cabinet-pillar.left { left: 0; }
+        .cabinet-pillar.right { right: 0; transform: scaleX(-1); }
+
+        /* Reel Column Containers */
+        .reel-column {
+            position: relative;
+            width: var(--reel-col-width);
+            height: calc(var(--reel-row-height) * 3);
+            overflow: hidden;
+            background: rgba(14, 7, 2, 0.92);
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .reel-column.special-col {
+            width: var(--special-col-width);
+            background: linear-gradient(180deg, #1c0803 0%, #2f0d04 50%, #1c0803 100%);
+            border: 1.5px solid #ff9800;
+            box-shadow: inset 0 0 12px rgba(255, 87, 34, 0.4);
+        }
+
+        .reel-separator-line {
+            width: 2px;
+            height: calc(var(--reel-row-height) * 3);
+            background: linear-gradient(180deg, #ffd700 0%, #3d1a03 50%, #ffd700 100%);
+            opacity: 0.7;
+        }
+
+        /* Vertical Reel Strip (Tape) */
+        .reel-tape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+
+        /* Symbol Cell Tile */
+        .symbol-tile {
+            width: 100%;
+            height: var(--reel-row-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4px;
+        }
+
+        /* Authentic Aztec Golden Ornate Beveled Frame */
+        .tile-plate {
+            width: 96%;
+            height: 96%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #382009 0%, #180c03 100%);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        .tile-plate::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 5px;
+            pointer-events: none;
+        }
+
+        .tile-plate img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.75));
+            transition: transform 0.2s ease;
+        }
+
+        .symbol-tile.winning-hit .tile-plate {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px #ffd700, inset 0 0 15px rgba(255, 215, 0, 0.6);
+            animation: pulseWinPlate 0.55s infinite alternate ease-in-out;
+        }
+
+        .symbol-tile.winning-hit img {
+            animation: pulseWinSym 0.55s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseWinPlate {
+            0% { transform: scale(1); filter: brightness(1); }
+            100% { transform: scale(1.04); filter: brightness(1.3); }
+        }
+
+        @keyframes pulseWinSym {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* 4th Column Multiplier Center Active Target Frame */
+        .special-target-box {
+            position: absolute;
+            top: var(--reel-row-height);
+            left: 0;
+            width: 100%;
+            height: var(--reel-row-height);
+            border: 3.5px solid #ffd700;
+            border-radius: 8px;
+            box-shadow: 
+                0 0 22px rgba(255, 215, 0, 0.8),
+                inset 0 0 15px rgba(255, 215, 0, 0.55);
+            pointer-events: none;
+            z-index: 10;
+            animation: pulseSpecialFrame 1.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseSpecialFrame {
+            0% { border-color: #ffd700; box-shadow: 0 0 14px rgba(255, 215, 0, 0.5); }
+            100% { border-color: #fff9c4; box-shadow: 0 0 28px rgba(255, 215, 0, 0.95); }
+        }
+
+        /* Bottom Controls Console (Aztec Carved Wooden Tier Steps) */
+        .bottom-console-deck {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #241207 0%, #170a04 40%, #0d0502 100%);
+            border-top: 3px solid #6b3e14;
+            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.85);
+            padding: 8px 12px 6px 12px;
+            z-index: 30;
+        }
+
+        /* WIN 0.00 Display Row */
+        .win-display-banner {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 3px 0 6px 0;
+        }
+
+        .win-banner-title {
+            font-size: 17px;
+            font-weight: 900;
+            color: #ff9800;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
+        }
+
+        .win-banner-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            min-width: 90px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Action Buttons Row: [- Bet +] | [SPIN] | [Auto / Turbo / Settings] */
+        .deck-action-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 0 6px 0;
+        }
+
+        /* Left: Aztec Wooden Bet Pill */
+        .bet-control-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 96px;
+        }
+
+        .wooden-bet-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(180deg, #44220b 0%, #200f04 100%);
+            border: 2px solid #8e5c23;
+            border-radius: 18px;
+            padding: 2px 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7), inset 0 1px 3px rgba(255, 215, 0, 0.3);
+            width: 100px;
+        }
+
+        .bet-adjust-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 15px;
+            font-weight: 900;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .bet-adjust-btn:active {
+            transform: scale(0.9);
+            background: #ffd700;
+            color: #000000;
+        }
+
+        .bet-center-label {
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+
+        .bet-value-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 2px;
+            text-align: center;
+        }
+
+        /* Center: Huge Round Aztec Spin Button */
+        .spin-master-stage {
+            position: relative;
+            width: 84px;
+            height: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .aztec-spin-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffe082 0%, #ffa000 45%, #e65100 80%, #5d2502 100%);
+            border: 3.5px solid #fff5a6;
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.9),
+                0 0 25px rgba(255, 170, 0, 0.6),
+                inset 0 0 12px rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.12s ease, filter 0.2s;
+            position: relative;
+        }
+
+        .aztec-spin-circle::after {
+            content: '';
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 3px dashed #fff9c4;
+            opacity: 0.75;
+        }
+
+        .spin-swirl-arrow {
+            font-size: 32px;
+            color: #2c1202;
+            font-weight: 900;
+            transform: rotate(-30deg);
+            filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+            transition: transform 0.2s;
+        }
+
+        .aztec-spin-circle:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .aztec-spin-circle:active {
+            transform: scale(0.93);
+        }
+
+        .aztec-spin-circle.spinning {
+            animation: spinBtnAnim 0.9s linear infinite;
+            pointer-events: none;
+            filter: brightness(0.9);
+        }
+
+        @keyframes spinBtnAnim {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Right: Circular Control Trio (Auto / Turbo / Audio) */
+        .deck-side-trio {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .round-tool-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #44220b 0%, #1e0d03 100%);
+            border: 1.5px solid #8e5c23;
+            color: #d7ccc8;
+            font-size: 13px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+            transition: all 0.2s;
+        }
+
+        .round-tool-btn:hover {
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        .round-tool-btn.active {
+            background: linear-gradient(180deg, #ff9800, #e65100);
+            border-color: #ffd700;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 152, 0, 0.7);
+        }
+
+        /* Bottom Floor Balance Bar (Clean Aztec Floor, Connected to REAL Wallet) */
+        .bottom-cabinet-floor {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 12px 4px 12px;
+            border-top: 1px solid rgba(255, 152, 0, 0.2);
+            background: #080301;
+            font-size: 12px;
+        }
+
+        .real-wallet-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .balance-tag {
+            color: #ff9800;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            font-size: 12px;
+        }
+
+        .balance-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            color: #ffffff;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .wifi-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #10b981;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* No-Balance Alert Modal (Shows ONLY when user bets without balance) */
+        .no-balance-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 16px;
+        }
+
+        .no-balance-modal.show {
+            display: flex;
+        }
+
+        .no-balance-card {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            background: linear-gradient(145deg, #1f1106 0%, #0d0602 100%);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 24px 20px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 215, 0, 0.3);
+            animation: popInModal 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes popInModal {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #94a3b8;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 12.5px;
+            color: #e2e8f0;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .modal-deposit-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: 1px solid #34d399;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .modal-cancel-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 7px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Aztec Sun Stone Lucky Wheel Bonus Modal */
+        .wheel-bonus-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .wheel-bonus-overlay.show {
+            display: flex;
+        }
+
+        .bonus-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .bonus-wheel-box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bonus-wheel-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 30px rgba(255, 200, 0, 0.8));
+            transition: transform 0.1s linear;
+        }
+
+        .bonus-eagle-pointer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .wheel-trigger-spin-btn {
+            margin-top: 22px;
+            padding: 12px 32px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, #ffd700 0%, #b8860b 100%);
+            border: 2px solid #fff5a6;
+            color: #1a0b02;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Big Win Shield Celebration Modal */
+        .bigwin-celebration-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10000;
+        }
+
+        .bigwin-celebration-overlay.show {
+            display: flex;
+        }
+
+        .bigwin-shield-img {
+            width: 250px;
+            height: auto;
+            filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.85));
+            animation: bounceShield 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounceShield {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-12px) scale(1.06); }
+        }
+
+        .bigwin-win-number {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+            margin-top: 14px;
+        }
+    </style>
+<body>
+
+    <!-- ======================================================= -->
+    <!-- OFFICIAL HD GAME MAINTENANCE SCREEN (LOCKED)            -->
+    <!-- ======================================================= -->
+    <div id="game-maint-lock-overlay" style="position:fixed; inset:0; background:rgba(3, 7, 18, 0.92); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); z-index:99999999; display:flex; align-items:center; justify-content:center; padding:16px; font-family:'Poppins', sans-serif;">
+        <div style="background:linear-gradient(170deg, rgba(20, 28, 45, 0.98) 0%, rgba(10, 14, 24, 0.99) 100%); border:1.5px solid rgba(255, 71, 87, 0.5); border-radius:24px; max-width:440px; width:100%; box-shadow:0 25px 70px rgba(0,0,0,0.95), 0 0 45px rgba(255, 71, 87, 0.3); overflow:hidden; text-align:center; position:relative;">
+            
+            <!-- Top Alert Badge -->
+            <div style="background:linear-gradient(90deg, #ff4757, #ff6b81); padding:8px 12px; font-size:11px; font-weight:900; letter-spacing:1px; color:#ffffff; text-transform:uppercase;">
+                ⚠️ SCHEDULED GAME MAINTENANCE
+            </div>
+
+            <div style="padding:28px 24px 24px 24px;">
+                <!-- Animated Pulsing Icon -->
+                <div style="position:relative; width:80px; height:80px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+                    <div style="position:absolute; inset:0; border-radius:50%; border:2px solid #ff4757; animation:pulseMaint 2s infinite ease-in-out;"></div>
+                    <div style="width:68px; height:68px; border-radius:50%; background:linear-gradient(135deg, rgba(255, 71, 87, 0.25), rgba(255, 107, 129, 0.1)); border:1.5px solid rgba(255, 71, 87, 0.5); display:flex; align-items:center; justify-content:center; font-size:32px;">
+                        💎
+                    </div>
+                    <span style="position:absolute; bottom:-4px; background:#ff4757; color:#fff; font-size:9px; font-weight:900; padding:2px 8px; border-radius:10px; letter-spacing:0.5px;">OFFLINE</span>
+                </div>
+
+                <!-- Title & Messages -->
+                <h2 style="font-size:20px; font-weight:900; color:#ffffff; margin-bottom:4px; font-family:'Cinzel', serif; letter-spacing:0.5px;">Fortune Gems 2</h2>
+                <div style="font-size:14px; font-weight:800; color:#ff6b81; margin-bottom:8px;">گیم پر مینٹیننس کا کام جاری ہے</div>
+                <p style="font-size:12.5px; color:#94a3b8; line-height:1.5; margin-bottom:18px;">
+                    <b>Fortune Gems 2 (Aztec Slot)</b> is currently undergoing essential server maintenance, payout verification, and game engine optimization. Access is temporarily locked.
+                </p>
+
+                <!-- Safe Wallet Notice Card -->
+                <div style="background:rgba(255, 255, 255, 0.04); border:1px solid rgba(255, 255, 255, 0.08); border-radius:12px; padding:12px 14px; margin-bottom:20px; text-align:left; display:flex; align-items:center; gap:12px;">
+                    <span style="font-size:24px;">🛡️</span>
+                    <div>
+                        <div style="font-size:12px; font-weight:800; color:#00ff87;">Funds & Balance 100% Safe</div>
+                        <div style="font-size:11px; color:#64748b;">Your wallet balance and winnings remain completely secure.</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <a href="../index.html" style="background:linear-gradient(135deg, #ffd700 0%, #f5a623 100%); color:#000000; text-decoration:none; font-size:13.5px; font-weight:900; padding:12px; border-radius:12px; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 16px rgba(245, 166, 35, 0.35);">
+                        <span>🏠</span> <span>Return to Main Lobby</span>
+                    </a>
+                    <a href="../games/crash.html" style="background:linear-gradient(135deg, #ff3b30 0%, #ff6b6b 100%); color:#ffffff; text-decoration:none; font-size:13.5px; font-weight:900; padding:12px; border-radius:12px; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 16px rgba(255, 59, 48, 0.35);">
+                        <span>🚀</span> <span>Play Aviator Crash Studio</span>
+                    </a>
+                    <a href="../casino.html" style="background:rgba(255, 255, 255, 0.06); border:1px solid rgba(255, 255, 255, 0.15); color:#cbd5e1; text-decoration:none; font-size:12.5px; font-weight:700; padding:10px; border-radius:10px; display:flex; align-items:center; justify-content:center; gap:6px;">
+                        <span>🎰</span> <span>Explore 40+ Other Games</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Security Footer -->
+            <div style="background:rgba(0,0,0,0.4); border-top:1px solid rgba(255, 255, 255, 0.04); padding:8px; font-size:10px; font-weight:700; color:#64748b;">
+                🔒 Bet With Net • 256-Bit SSL Encrypted • 24/7 OTC Liquidity
+            </div>
+        </div>
+    </div>
+    <style>
+        @keyframes pulseMaint {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(1.35); opacity: 0; }
+        }
+    </style>
+
+    <!-- Master Viewport Wrapper -->
+    <div class="game-master-wrapper">
+        <div class="fortune-cabinet" id="fortuneCabinet">
+
+            <!-- Top Corner Vines -->
+            <div class="vine-corner left"></div>
+            <div class="vine-corner right"></div>
+
+            <!-- Top Floating Navigation Bar -->
+            <header class="top-nav-bar">
+                <a href="../casino.html" class="nav-btn" title="Back to Lobby">
+                    ◀ LOBBY
+                </a>
+                <div style="font-family:'Cinzel', serif; font-size:12px; font-weight:900; color:#ffd700; letter-spacing:1px;">
+                    JILI #223
+                </div>
+                <div style="display:flex; gap:6px;">
+                    <a href="../deposit.html?redirect=games/fortunegems2.html" class="nav-btn nav-deposit-btn">
+                        + DEPOSIT
+                    </a>
+                </div>
+            </header>
+
+            <!-- Top Stage: 3D Fortune Gems 2 Logo Crest & Aztec Lucky Wheel Arch -->
+            <div class="fortune-top-stage">
+                <div class="fg2-title-crest">
+                    <span class="fg2-brand-text">FORTUNE GEMS<span class="fg2-num">2</span></span>
+                </div>
+                <div class="aztec-wheel-arch">
+                    <img src="../assets/games/fortunegems/fortune_wheel_disc.png" alt="Lucky Wheel" class="arch-wheel-disc" id="archWheelDisc">
+                    <img src="../assets/games/fortunegems/wheel_eagle_pointer.png" alt="Pointer" class="arch-eagle-pointer">
+                </div>
+            </div>
+
+            <!-- Extra Bet Toggle Bar -->
+            <div class="extra-bet-bar">
+                <div class="extra-bet-pill" id="extraBetPill" onclick="toggleExtraBet()">
+                    <span class="ex-badge">EX</span>
+                    <span class="ex-text">Extra Bet</span>
+                    <span class="ex-toggle-switch" id="exSwitchText">OFF</span>
+                </div>
+            </div>
+
+            <!-- 3x3 + 4th Reel Slot Cabinet Stage -->
+            <div class="reels-stage-wrapper">
+                <!-- Lintel Header Banner -->
+                <div class="reels-lintel-header">
+                    <div class="lintel-bonus-hint">
+                        <span>LUCKY WHEEL: LAND</span>
+                        <img src="../assets/games/fortunegems/sym_wheel.png" class="lintel-mini-wheel" alt="WHEEL">
+                        <span>ON 4TH REEL</span>
+                    </div>
+                    <div class="lintel-special-tag">
+                        SPECIAL<br>WHEEL
+                    </div>
+                </div>
+
+                <!-- Main Reel Cabinet Frame -->
+                <div class="reels-cabinet-frame" id="reelsCabinetFrame">
+                    <canvas id="laserCanvas"></canvas>
+                    <div class="cabinet-pillar left"></div>
+
+                    <!-- Reel Column 0 -->
+                    <div class="reel-column" id="col0">
+                        <div class="reel-tape" id="tape0"></div>
+                    </div>
+                    <div class="reel-separator-line"></div>
+
+                    <!-- Reel Column 1 -->
+                    <div class="reel-column" id="col1">
+                        <div class="reel-tape" id="tape1"></div>
+                    </div>
+                    <div class="reel-separator-line"></div>
+
+                    <!-- Reel Column 2 -->
+                    <div class="reel-column" id="col2">
+                        <div class="reel-tape" id="tape2"></div>
+                    </div>
+                    <div class="reel-separator-line"></div>
+
+                    <!-- Reel Column 3 (Special Multiplier / Lucky Wheel Reel) -->
+                    <div class="reel-column special-col" id="col3">
+                        <div class="special-target-box"></div>
+                        <div class="reel-tape" id="tape3"></div>
+                    </div>
+
+                    <div class="cabinet-pillar right"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Console Deck (Carved Wooden Step Tiers) -->
+            <footer class="bottom-console-deck">
+                <!-- WIN 0.00 Row -->
+                <div class="win-display-banner">
+                    <span class="win-banner-title">WIN</span>
+                    <span class="win-banner-amount" id="winAmountDisplay">0.00</span>
+                </div>
+
+                <!-- Action Deck Row -->
+                <div class="deck-action-row">
+                    <!-- Left: Bet Adjust Pill -->
+                    <div class="bet-control-container">
+                        <div class="wooden-bet-pill">
+                            <button class="bet-adjust-btn" onclick="adjustBet(-1)" title="Decrease Bet">−</button>
+                            <span class="bet-center-label">Bet</span>
+                            <button class="bet-adjust-btn" onclick="adjustBet(1)" title="Increase Bet">+</button>
+                        </div>
+                        <div class="bet-value-display" id="betValueDisplay">10.00</div>
+                    </div>
+
+                    <!-- Center: Master Aztec Spin Button -->
+                    <div class="spin-master-stage">
+                        <button class="aztec-spin-circle" id="spinButton" onclick="handleSpin()" title="SPIN">
+                            <span class="spin-swirl-arrow">↻</span>
+                        </button>
+                    </div>
+
+                    <!-- Right: Tool Trio -->
+                    <div class="deck-side-trio">
+                        <button class="round-tool-btn" id="autoBtn" onclick="toggleAutoSpin()" title="Auto Spin">
+                            <span>🔄</span>
+                        </button>
+                        <button class="round-tool-btn" id="turboBtn" onclick="toggleTurbo()" title="Turbo Mode">
+                            <span>⚡</span>
+                        </button>
+                        <button class="round-tool-btn" id="soundBtn" onclick="toggleSound()" title="Sound On/Off">
+                            <span id="soundIcon">🔊</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bottom Cabinet Floor Bar (Real Wallet Connected, NO 2,000 DEMO) -->
+                <div class="bottom-cabinet-floor">
+                    <div class="real-wallet-box">
+                        <span class="balance-tag">Balance</span>
+                        <span class="balance-number" id="balanceDisplay">Rs. 0.00</span>
+                    </div>
+                    <div class="wifi-indicator">
+                        <span>● ONLINE</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.74 0 7.15 1.48 9.68 3.9L12 18.49 2.32 11.4C4.85 8.98 8.26 7.5 12 7.5z"/>
+                        </svg>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Centered No-Balance Modal (Shows ONLY when user tries to bet without funds) -->
+    <div class="no-balance-modal" id="noBalanceModal">
+        <div class="no-balance-card">
+            <button class="modal-close-btn" onclick="closeNoBalanceModal()" title="Close">✕</button>
+            <div class="modal-icon">⚠️</div>
+            <h3 class="modal-title">Balance Nahi Hai!</h3>
+            <p class="modal-desc">Aap ke account mein balance nahi hai. Game khelne ke liye balance deposit karein.</p>
+            <a href="../deposit.html?redirect=games/fortunegems2.html" class="modal-deposit-btn">+ DEPOSIT NOW</a>
+            <button class="modal-cancel-btn" onclick="closeNoBalanceModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Aztec Sun Stone Lucky Wheel Bonus Modal -->
+    <div class="wheel-bonus-overlay" id="wheelBonusOverlay">
+        <div class="bonus-title">AZTEC SUN STONE LUCKY WHEEL</div>
+        <div class="bonus-wheel-box">
+            <img src="../assets/games/fortunegems/fortune_wheel_disc.png" alt="Lucky Wheel" class="bonus-wheel-img" id="bonusWheelDisc">
+            <img src="../assets/games/fortunegems/wheel_eagle_pointer.png" alt="Pointer" class="bonus-eagle-pointer">
+        </div>
+        <button class="wheel-trigger-spin-btn" id="bonusWheelSpinBtn" onclick="spinBonusWheel()">SPIN LUCKY WHEEL</button>
+    </div>
+
+    <!-- Big Win Celebration Modal -->
+    <div class="bigwin-celebration-overlay" id="bigWinOverlay">
+        <img src="../assets/games/fortunegems/aztec_bigwin_shield.png" alt="Big Win Shield" class="bigwin-shield-img">
+        <div class="bigwin-win-number" id="bigWinNumber">Rs. 0.00</div>
+    </div>
+
+    <!-- Hidden Audio Elements with Fallback Web Audio Synthesizer -->
+    <audio id="sfxSpin" src="../assets/games/fortunegems/audio/spin.mp3" preload="auto"></audio>
+    <audio id="sfxStop" src="../assets/games/fortunegems/audio/reel_stop.mp3" preload="auto"></audio>
+    <audio id="sfxWin" src="../assets/games/fortunegems/audio/win.mp3" preload="auto"></audio>
+    <audio id="sfxJackpot" src="../assets/games/fortunegems/audio/jackpot_fanfare.mp3" preload="auto"></audio>
+    <audio id="sfxWheelSpin" src="../assets/games/fortunegems/audio/wheel_spin.mp3" preload="auto"></audio>
+    <audio id="sfxWheelTick" src="../assets/games/fortunegems/audio/wheel_tick.mp3" preload="auto"></audio>
+
+    <script>
+        // ==================================================================
+        // 1. SYMBOLS, MULTIPLIERS & 5 FIXED PAYLINES CONFIGURATION
+        // ==================================================================
+        const SYMBOLS = {
+            WILD:     { id: 'WILD',     name: 'Garuda Wild', payout: 25, src: '../assets/games/fortunegems/sym_wild.png' },
+            RUBY:     { id: 'RUBY',     name: 'Red Ruby',    payout: 20, src: '../assets/games/fortunegems/sym_ruby.png' },
+            SAPPHIRE: { id: 'SAPPHIRE', name: 'Blue Gem',    payout: 15, src: '../assets/games/fortunegems/sym_sapphire.png' },
+            EMERALD:  { id: 'EMERALD',  name: 'Green Gem',   payout: 10, src: '../assets/games/fortunegems/sym_emerald.png' },
+            A:        { id: 'A',        name: 'Royal A',     payout: 8,  src: '../assets/games/fortunegems/sym_a.png' },
+            K:        { id: 'K',        name: 'Royal K',     payout: 6,  src: '../assets/games/fortunegems/sym_k.png' },
+            Q:        { id: 'Q',        name: 'Royal Q',     payout: 4,  src: '../assets/games/fortunegems/sym_q.png' },
+            J:        { id: 'J',        name: 'Royal J',     payout: 2.5, src: '../assets/games/fortunegems/sym_j.png' }
+        };
+
+        const SYMBOL_KEYS = ['WILD', 'RUBY', 'SAPPHIRE', 'EMERALD', 'A', 'K', 'Q', 'J'];
+
+        // Authentic JILI Reel Weighting
+        const REEL_WEIGHTS = [
+            'WILD',
+            'RUBY', 'RUBY',
+            'SAPPHIRE', 'SAPPHIRE',
+            'EMERALD', 'EMERALD', 'EMERALD',
+            'A', 'A', 'A',
+            'K', 'K', 'K', 'K',
+            'Q', 'Q', 'Q', 'Q',
+            'J', 'J', 'J', 'J', 'J'
+        ];
+
+        const MULTIPLIERS = [
+            { id: '1X',    mult: 1,  src: '../assets/games/fortunegems/multiplier_1x.svg' },
+            { id: '2X',    mult: 2,  src: '../assets/games/fortunegems/multiplier_2x.svg' },
+            { id: '3X',    mult: 3,  src: '../assets/games/fortunegems/multiplier_3x.svg' },
+            { id: '5X',    mult: 5,  src: '../assets/games/fortunegems/multiplier_5x.svg' },
+            { id: '10X',   mult: 10, src: '../assets/games/fortunegems/multiplier_10x.svg' },
+            { id: '15X',   mult: 15, src: '../assets/games/fortunegems/multiplier_15x.svg' },
+            { id: 'WHEEL', mult: 1,  isWheel: true, src: '../assets/games/fortunegems/sym_wheel.png' }
+        ];
+
+        // 5 Fixed Paylines: [row, col]
+        const PAYLINES = [
+            { id: 1, coords: [[1,0], [1,1], [1,2]], color: '#ffd700' }, // Middle Row
+            { id: 2, coords: [[0,0], [0,1], [0,2]], color: '#00e5ff' }, // Top Row
+            { id: 3, coords: [[2,0], [2,1], [2,2]], color: '#ff1744' }, // Bottom Row
+            { id: 4, coords: [[0,0], [1,1], [2,2]], color: '#00e676' }, // Diagonal TL-BR
+            { id: 5, coords: [[2,0], [1,1], [0,2]], color: '#d500f9' }  // Diagonal BL-TR
+        ];
+
+        const BET_STEPS = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000];
+
+        // ==================================================================
+        // 2. GAME STATE & REAL WALLET CONNECTION
+        // ==================================================================
+        let baseBet = 10;
+        let isExtraBet = false;
+        let isTurbo = false;
+        let isAuto = false;
+        let autoCount = 0;
+        let isSpinning = false;
+        let soundEnabled = true;
+
+        let grid = [
+            ['RUBY', 'WILD', 'SAPPHIRE'],
+            ['EMERALD', 'WILD', 'EMERALD'],
+            ['A', 'K', 'RUBY']
+        ];
+        let currentMultiplier = MULTIPLIERS[1]; // default 2X
+
+        // Sound Engine with Web Audio Synthesizer Fallback
+        const audioSpin = document.getElementById('sfxSpin');
+        const audioStop = document.getElementById('sfxStop');
+        const audioWin = document.getElementById('sfxWin');
+        const audioJackpot = document.getElementById('sfxJackpot');
+        const audioWheelSpin = document.getElementById('sfxWheelSpin');
+        const audioWheelTick = document.getElementById('sfxWheelTick');
+
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume().catch(() => {});
+            }
+            return audioCtx;
+        }
+
+        function playSfx(audioEl, synthType) {
+            if (!soundEnabled) return;
+            getAudioContext();
+            if (audioEl) {
+                try {
+                    audioEl.currentTime = 0;
+                    audioEl.play().catch(() => playSynth(synthType));
+                    return;
+                } catch(e) {}
+            }
+            playSynth(synthType);
+        }
+
+        function playSynth(type) {
+            if (!soundEnabled) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            try {
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (type === 'spin') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(160, now);
+                    osc.frequency.exponentialRampToValueAtTime(320, now + 0.3);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'stop') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(180, now + 0.12);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'win') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.1);
+                    osc.frequency.setValueAtTime(783.99, now + 0.2);
+                    osc.frequency.setValueAtTime(1046.50, now + 0.3);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                    osc.start(now);
+                    osc.stop(now + 0.6);
+                }
+            } catch(e) {}
+        }
+
+        // ------------------------------------------------------------------
+        // AUTHORITATIVE REAL WALLET READER & SYNC
+        // ------------------------------------------------------------------
+        function getRealBalance() {
+            // 1. Check logged-in user session first
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    if (u) {
+                        const b = (u.balance_pkr !== undefined) ? u.balance_pkr : (u.balancePKR !== undefined ? u.balancePKR : u.balance);
+                        if (b !== undefined && b !== null && !isNaN(parseFloat(b))) {
+                            return parseFloat(b);
+                        }
+                    }
+                }
+            } catch(e) {}
+
+            // 2. Check window.wallet instance
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                const b = window.wallet.getBalance('PKR');
+                if (b !== undefined && b !== null && !isNaN(parseFloat(b))) {
+                    return parseFloat(b);
+                }
+            }
+
+            // 3. Check wallet_balance storage
+            const saved = localStorage.getItem('wallet_balance');
+            if (saved !== null && saved !== undefined && saved !== '' && !isNaN(parseFloat(saved))) {
+                return parseFloat(saved);
+            }
+
+            // 4. Check BETWITHNET_balance storage
+            const bwnSaved = localStorage.getItem('BETWITHNET_balance');
+            if (bwnSaved !== null && bwnSaved !== undefined && bwnSaved !== '' && !isNaN(parseFloat(bwnSaved))) {
+                return parseFloat(bwnSaved);
+            }
+
+            return 0.00;
+        }
+
+        async function fetchServerBalance() {
+            try {
+                const res = await fetch('/api/wallet.php?action=balance');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.balance !== undefined) {
+                        const val = parseFloat(data.balance);
+                        if (!isNaN(val)) {
+                            localStorage.setItem('wallet_balance', val);
+                            updateBalanceUI(val);
+                            return val;
+                        }
+                    }
+                }
+            } catch(e) {}
+            return getRealBalance();
+        }
+
+        function updateBalanceUI(val) {
+            const el = document.getElementById('balanceDisplay');
+            if (el) {
+                el.innerText = 'Rs. ' + Number(val).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        function getEffectiveBet() {
+            return isExtraBet ? Math.round(baseBet * 1.5) : baseBet;
+        }
+
+        function updateBetUI() {
+            const el = document.getElementById('betValueDisplay');
+            if (el) {
+                el.innerText = Number(getEffectiveBet()).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        function adjustBet(delta) {
+            if (isSpinning) return;
+            let idx = BET_STEPS.indexOf(baseBet);
+            if (idx === -1) idx = 3;
+            idx = Math.max(0, Math.min(BET_STEPS.length - 1, idx + delta));
+            baseBet = BET_STEPS[idx];
+            updateBetUI();
+            playSynth('stop');
+        }
+
+        function toggleExtraBet() {
+            if (isSpinning) return;
+            isExtraBet = !isExtraBet;
+            const pill = document.getElementById('extraBetPill');
+            const txt = document.getElementById('exSwitchText');
+            if (pill) pill.classList.toggle('active', isExtraBet);
+            if (txt) txt.innerText = isExtraBet ? 'ON' : 'OFF';
+            updateBetUI();
+            playSynth('stop');
+        }
+
+        function toggleTurbo() {
+            isTurbo = !isTurbo;
+            const btn = document.getElementById('turboBtn');
+            if (btn) btn.classList.toggle('active', isTurbo);
+        }
+
+        function toggleAutoSpin() {
+            const btn = document.getElementById('autoBtn');
+            if (isAuto) {
+                isAuto = false;
+                autoCount = 0;
+                if (btn) btn.classList.remove('active');
+            } else {
+                isAuto = true;
+                autoCount = 20;
+                if (btn) btn.classList.add('active');
+                if (!isSpinning) handleSpin();
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (icon) icon.innerText = soundEnabled ? '🔊' : '🔇';
+        }
+
+        // ------------------------------------------------------------------
+        // NO-BALANCE MODAL POPUP
+        // ------------------------------------------------------------------
+        function showNoBalanceModal() {
+            const modal = document.getElementById('noBalanceModal');
+            if (modal) modal.classList.add('show');
+            if (isAuto) {
+                isAuto = false;
+                autoCount = 0;
+                const btn = document.getElementById('autoBtn');
+                if (btn) btn.classList.remove('active');
+            }
+        }
+
+        function closeNoBalanceModal() {
+            const modal = document.getElementById('noBalanceModal');
+            if (modal) modal.classList.remove('show');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeNoBalanceModal();
+        });
+
+        // ------------------------------------------------------------------
+        // REELS DOM INITIALIZATION
+        // ------------------------------------------------------------------
+        function buildReelCell(symKey, row, col) {
+            const cell = document.createElement('div');
+            cell.className = 'symbol-tile';
+            cell.id = `cell_${row}_${col}`;
+            cell.innerHTML = `
+                <div class="tile-plate">
+                    <img src="${SYMBOLS[symKey].src}" alt="${symKey}">
+                </div>
+            `;
+            return cell;
+        }
+
+        function buildSpecialCell(item, idx) {
+            const cell = document.createElement('div');
+            cell.className = 'symbol-tile';
+            cell.id = `spec_cell_${idx}`;
+            cell.innerHTML = `
+                <div class="tile-plate" style="background: radial-gradient(circle, #4a1506 0%, #200701 100%);">
+                    <img src="${item.src}" alt="${item.id}">
+                </div>
+            `;
+            return cell;
+        }
+
+        function renderInitialReels() {
+            for (let c = 0; c < 3; c++) {
+                const tape = document.getElementById(`tape${c}`);
+                if (tape) {
+                    tape.innerHTML = '';
+                    for (let r = 0; r < 3; r++) {
+                        tape.appendChild(buildReelCell(grid[r][c], r, c));
+                    }
+                }
+            }
+
+            const tape3 = document.getElementById('tape3');
+            if (tape3) {
+                tape3.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const item = i === 1 ? currentMultiplier : MULTIPLIERS[(i * 2 + 1) % MULTIPLIERS.length];
+                    tape3.appendChild(buildSpecialCell(item, i));
+                }
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // 3. SPIN EXECUTION & AUTHORITATIVE DEDUCTION
+        // ------------------------------------------------------------------
+        async function handleSpin() {
+            alert('🛠️ Fortune Gems 2 is currently under maintenance. Access is locked.');
+            return;
+            if (isSpinning) return;
+
+            const curBalance = getRealBalance();
+            const betAmt = getEffectiveBet();
+
+            // When user tries to spin without balance -> SHOW REQUESTED POPUP!
+            if (curBalance < betAmt) {
+                showNoBalanceModal();
+                return;
+            }
+
+            isSpinning = true;
+            const spinBtn = document.getElementById('spinButton');
+            if (spinBtn) spinBtn.classList.add('spinning');
+
+            // 1. Deduct Real Bet from central wallet
+            const newBal = Math.max(0, curBalance - betAmt);
+            updateBalanceUI(newBal);
+            localStorage.setItem('wallet_balance', newBal);
+
+            if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                try { window.wallet.placeBet(betAmt, 'Fortune Gems 2'); } catch(e) {}
+            }
+
+            try {
+                fetch('/api/wallet.php?action=bet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        game: 'Fortune Gems 2',
+                        amount_pkr: betAmt,
+                        currency: 'PKR'
+                    })
+                }).catch(() => {});
+            } catch(e) {}
+
+            // Reset WIN display
+            const winEl = document.getElementById('winAmountDisplay');
+            if (winEl) winEl.innerText = '0.00';
+            clearPaylines();
+
+            playSfx(audioSpin, 'spin');
+
+            // 2. Compute Provably Fair RNG outcome
+            const nextGrid = [
+                [randomReelSymbol(), randomReelSymbol(), randomReelSymbol()],
+                [randomReelSymbol(), randomReelSymbol(), randomReelSymbol()],
+                [randomReelSymbol(), randomReelSymbol(), randomReelSymbol()]
+            ];
+
+            const availableMults = isExtraBet ? MULTIPLIERS.filter(m => m.id !== '1X') : MULTIPLIERS;
+            const nextMult = availableMults[Math.floor(Math.random() * availableMults.length)];
+
+            // Subtle rotation of top Aztec arch wheel
+            const archWheel = document.getElementById('archWheelDisc');
+            if (archWheel) {
+                archWheel.style.transition = 'transform 1.2s cubic-bezier(0.2, 0.8, 0.3, 1)';
+                const curRot = parseInt(archWheel.getAttribute('data-rot') || '0', 10);
+                const nextRot = curRot + 720 + Math.floor(Math.random() * 360);
+                archWheel.setAttribute('data-rot', nextRot);
+                archWheel.style.transform = `rotate(${nextRot}deg)`;
+            }
+
+            // 3. Animate Reels
+            const spinDuration = isTurbo ? 450 : 1100;
+            await animateReels(nextGrid, nextMult, spinDuration);
+
+            grid = nextGrid;
+            currentMultiplier = nextMult;
+            if (spinBtn) spinBtn.classList.remove('spinning');
+
+            // 4. Evaluate Paylines and Multipliers
+            await evaluateOutcome(betAmt);
+
+            isSpinning = false;
+
+            // Auto Spin loop handling
+            if (isAuto && autoCount > 0) {
+                autoCount--;
+                if (autoCount <= 0) {
+                    isAuto = false;
+                    const btn = document.getElementById('autoBtn');
+                    if (btn) btn.classList.remove('active');
+                } else {
+                    setTimeout(() => { if (isAuto) handleSpin(); }, isTurbo ? 250 : 700);
+                }
+            }
+        }
+
+        function randomReelSymbol() {
+            return REEL_WEIGHTS[Math.floor(Math.random() * REEL_WEIGHTS.length)];
+        }
+
+        function animateReels(nextGrid, nextMult, duration) {
+            return new Promise(resolve => {
+                const cols = [0, 1, 2, 3];
+                let finished = 0;
+
+                cols.forEach(c => {
+                    const tape = document.getElementById(`tape${c}`);
+                    const delay = c * (isTurbo ? 50 : 150);
+
+                    setTimeout(() => {
+                        tape.style.transition = 'transform 0.1s ease-in';
+                        tape.style.transform = 'translateY(18px)';
+
+                        setTimeout(() => {
+                            tape.style.transition = `transform ${duration / 1000}s cubic-bezier(0.12, 0.9, 0.22, 1)`;
+                            tape.style.transform = 'translateY(0px)';
+
+                            // Update Reel Items
+                            if (c < 3) {
+                                tape.innerHTML = '';
+                                for (let r = 0; r < 3; r++) {
+                                    tape.appendChild(buildReelCell(nextGrid[r][c], r, c));
+                                }
+                            } else {
+                                tape.innerHTML = '';
+                                for (let i = 0; i < 3; i++) {
+                                    const item = i === 1 ? nextMult : MULTIPLIERS[(i * 3 + 1) % MULTIPLIERS.length];
+                                    tape.appendChild(buildSpecialCell(item, i));
+                                }
+                            }
+
+                            playSfx(audioStop, 'stop');
+                            finished++;
+                            if (finished === 4) resolve();
+                        }, 90);
+                    }, delay);
+                });
+            });
+        }
+
+        // ------------------------------------------------------------------
+        // 4. PAYLINE EVALUATION & WIN MULTIPLIERS
+        // ------------------------------------------------------------------
+        async function evaluateOutcome(betAmt) {
+            let totalWin = 0;
+            const winningLines = [];
+            const lineBet = betAmt / 5; // 5 Fixed Paylines
+
+            // Check each of the 5 paylines
+            PAYLINES.forEach(line => {
+                const sym0 = grid[line.coords[0][0]][line.coords[0][1]];
+                const sym1 = grid[line.coords[1][0]][line.coords[1][1]];
+                const sym2 = grid[line.coords[2][0]][line.coords[2][1]];
+
+                const match = checkThreeMatch(sym0, sym1, sym2);
+                if (match) {
+                    const basePayout = SYMBOLS[match].payout * lineBet;
+                    winningLines.push({ line, symbol: match, basePayout });
+                }
+            });
+
+            // Check if 4th Column Center landed on Aztec Lucky Wheel!
+            if (currentMultiplier.isWheel) {
+                playSfx(audioJackpot, 'win');
+                await triggerLuckyWheelBonus(betAmt);
+                return;
+            }
+
+            const mult = currentMultiplier.mult || 1;
+
+            if (winningLines.length > 0) {
+                winningLines.forEach(item => {
+                    totalWin += item.basePayout * mult;
+                    highlightWinningLine(item.line);
+                });
+
+                // Credit REAL Win to authoritative wallet & MySQL
+                const currentBal = getRealBalance();
+                const newBal = currentBal + totalWin;
+                updateBalanceUI(newBal);
+                localStorage.setItem('wallet_balance', newBal);
+
+                if (window.wallet && typeof window.wallet.addWin === 'function') {
+                    try { window.wallet.addWin(totalWin, 'Fortune Gems 2 Win'); } catch(e) {}
+                }
+
+                try {
+                    fetch('/api/wallet.php?action=win', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            game: 'Fortune Gems 2',
+                            amount_pkr: totalWin,
+                            currency: 'PKR'
+                        })
+                    }).catch(() => {});
+                } catch(e) {}
+
+                // Count-up WIN display
+                animateWinCounter(totalWin);
+
+                if (totalWin >= betAmt * 20) {
+                    playSfx(audioJackpot, 'win');
+                    showBigWinModal(totalWin);
+                } else {
+                    playSfx(audioWin, 'win');
+                }
+            }
+        }
+
+        function checkThreeMatch(s0, s1, s2) {
+            // Garuda Wild substitutes for any regular symbol
+            const nonWilds = [s0, s1, s2].filter(s => s !== 'WILD');
+            if (nonWilds.length === 0) return 'WILD'; // All 3 Wilds!
+            const target = nonWilds[0];
+            const allMatch = [s0, s1, s2].every(s => s === 'WILD' || s === target);
+            return allMatch ? target : null;
+        }
+
+        function highlightWinningLine(line) {
+            line.coords.forEach(([r, c]) => {
+                const cell = document.getElementById(`cell_${r}_${c}`);
+                if (cell) cell.classList.add('winning-hit');
+            });
+            drawLaserPayline(line);
+        }
+
+        function clearPaylines() {
+            document.querySelectorAll('.symbol-tile').forEach(c => c.classList.remove('winning-hit'));
+            const canvas = document.getElementById('laserCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function initLaserCanvas() {
+            const canvas = document.getElementById('laserCanvas');
+            const frame = document.getElementById('reelsCabinetFrame');
+            if (canvas && frame) {
+                canvas.width = frame.clientWidth;
+                canvas.height = frame.clientHeight;
+            }
+        }
+
+        function drawLaserPayline(line) {
+            const canvas = document.getElementById('laserCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const coords = line.coords.map(([r, c]) => {
+                const el = document.getElementById(`cell_${r}_${c}`);
+                if (!el) return null;
+                const rect = el.getBoundingClientRect();
+                const parentRect = canvas.getBoundingClientRect();
+                return {
+                    x: rect.left - parentRect.left + rect.width / 2,
+                    y: rect.top - parentRect.top + rect.height / 2
+                };
+            }).filter(Boolean);
+
+            if (coords.length < 3) return;
+
+            ctx.save();
+            ctx.strokeStyle = line.color || '#ffd700';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            ctx.shadowColor = line.color || '#ffd700';
+            ctx.shadowBlur = 14;
+
+            ctx.beginPath();
+            ctx.moveTo(coords[0].x, coords[0].y);
+            ctx.lineTo(coords[1].x, coords[1].y);
+            ctx.lineTo(coords[2].x, coords[2].y);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function animateWinCounter(finalWin) {
+            const el = document.getElementById('winAmountDisplay');
+            if (!el) return;
+            let current = 0;
+            const step = Math.max(1, Math.floor(finalWin / 25));
+            const interval = setInterval(() => {
+                current += step;
+                if (current >= finalWin) {
+                    current = finalWin;
+                    clearInterval(interval);
+                }
+                el.innerText = Number(current).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }, 30);
+        }
+
+        // ------------------------------------------------------------------
+        // 5. AZTEC SUN STONE LUCKY WHEEL BONUS
+        // ------------------------------------------------------------------
+        let pendingWheelBet = 10;
+        function triggerLuckyWheelBonus(betAmt) {
+            pendingWheelBet = betAmt;
+            const overlay = document.getElementById('wheelBonusOverlay');
+            if (overlay) overlay.classList.add('show');
+        }
+
+        function spinBonusWheel() {
+            const btn = document.getElementById('bonusWheelSpinBtn');
+            const disc = document.getElementById('bonusWheelDisc');
+            if (btn) btn.disabled = true;
+
+            playSfx(audioWheelSpin, 'spin');
+
+            const wheelPrizes = [10, 15, 20, 30, 50, 100, 200, 500, 1000];
+            const prizeMult = wheelPrizes[Math.floor(Math.random() * wheelPrizes.length)];
+            const prizeAmount = pendingWheelBet * prizeMult;
+
+            const randomRot = 1440 + Math.floor(Math.random() * 360);
+            disc.style.transition = 'transform 3.8s cubic-bezier(0.15, 0.85, 0.25, 1)';
+            disc.style.transform = `rotate(${randomRot}deg)`;
+
+            setTimeout(() => {
+                playSfx(audioJackpot, 'win');
+                const overlay = document.getElementById('wheelBonusOverlay');
+                if (overlay) overlay.classList.remove('show');
+                if (btn) btn.disabled = false;
+
+                // Credit Wheel Win to Wallet
+                const curBal = getRealBalance();
+                const newBal = curBal + prizeAmount;
+                updateBalanceUI(newBal);
+                localStorage.setItem('wallet_balance', newBal);
+
+                if (window.wallet && typeof window.wallet.addWin === 'function') {
+                    try { window.wallet.addWin(prizeAmount, 'Lucky Wheel Bonus'); } catch(e) {}
+                }
+
+                showBigWinModal(prizeAmount);
+                animateWinCounter(prizeAmount);
+            }, 4200);
+        }
+
+        function showBigWinModal(amount) {
+            const overlay = document.getElementById('bigWinOverlay');
+            const num = document.getElementById('bigWinNumber');
+            if (num) num.innerText = 'Rs. ' + Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (overlay) {
+                overlay.classList.add('show');
+                setTimeout(() => {
+                    overlay.classList.remove('show');
+                }, 3500);
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // 6. INITIALIZATION & RESIZE
+        // ------------------------------------------------------------------
+        window.addEventListener('DOMContentLoaded', () => {
+            renderInitialReels();
+            updateBetUI();
+            updateBalanceUI(getRealBalance());
+            fetchServerBalance();
+            initLaserCanvas();
+
+            // Periodic authoritative wallet sync
+            setInterval(() => {
+                updateBalanceUI(getRealBalance());
+            }, 3000);
+        });
+
+        window.addEventListener('resize', initLaserCanvas);
+    </script>
+</body>
+</html>

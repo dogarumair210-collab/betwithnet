@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#03120a">
+    <title>🎰 American Blackjack (Pragmatic Play) | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css?v=2026_deposit_popup_v1">
+    <link rel="stylesheet" href="../css/games/blackjack.css?v=6.1">
+    <style id="mobile-rotate-style">
+        /* Instant Mobile Screen Rotation (Landscape Canvas) */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            background: #000000;
+        }
+
+        html.mobile-auto-rotated .bj-container,
+        body.mobile-auto-rotated .bj-container,
+        body.manual-rotate .bj-container {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 100vh !important;
+            width: 100dvh !important;
+            height: 100vw !important;
+            height: 100dvw !important;
+            transform: translate(-50%, -50%) rotate(90deg) !important;
+            transform-origin: center center !important;
+            overflow: hidden !important;
+            z-index: 10;
+        }
+
+        .bj-deposit-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+            font-size: 13px;
+            font-weight: 900;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            margin-left: 6px;
+            box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+            transition: transform 0.15s ease;
+            line-height: 1;
+        }
+        .bj-deposit-btn:hover {
+            transform: scale(1.15);
+        }
+
+        @media screen and (orientation: portrait) and (max-width: 992px) {
+            .bj-container {
+                position: fixed !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: 100vh !important;
+                width: 100dvh !important;
+                height: 100vw !important;
+                height: 100dvw !important;
+                transform: translate(-50%, -50%) rotate(90deg) !important;
+                transform-origin: center center !important;
+                overflow: hidden !important;
+                z-index: 10;
+            }
+        }
+
+        /* JILI Loading Screen (Positioned inside container to rotate perfectly) */
+        .jili-splash-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: #000000 !important;
+            z-index: 9999999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-direction: column !important;
+            transition: opacity 0.5s ease;
+            overflow: hidden !important;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .jili-splash-overlay.loaded {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: auto;
+            max-width: 90vw;
+        }
+
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 130px;
+            max-width: 40vw;
+            line-height: 0;
+        }
+
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95));
+        }
+
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/blackjack/jili_wordmark_tight.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/blackjack/jili_wordmark_tight.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes jiliGlintAnim {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+
+        .jili-loadline-track {
+            width: 125px;
+            max-width: 38vw;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.85);
+            transition: width 0.08s ease-out;
+        }
+
+        /* Scaled down, compact, perfectly proportioned game elements */
+        .bj-shoe-img {
+            width: 110px !important;
+        }
+        .bj-table-brand-center {
+            top: 48px !important;
+        }
+        .bj-table-logo-img {
+            width: 170px !important;
+            margin-bottom: 2px !important;
+        }
+        .bj-blackjack-tag-img {
+            width: 135px !important;
+            margin-bottom: 2px !important;
+        }
+        .bj-rules-text {
+            font-size: 9px !important;
+            letter-spacing: 1px !important;
+        }
+        .bj-dealer-zone {
+            margin-top: 5px !important;
+            min-height: 85px !important;
+        }
+        .bj-dealer-label {
+            font-size: 12px !important;
+            margin-bottom: 4px !important;
+        }
+        .bj-card-img {
+            height: 78px !important;
+        }
+        .bj-cards-row {
+            min-height: 78px !important;
+        }
+        .bj-cards-row .bj-card-img:not(:first-child) {
+            margin-left: -28px !important;
+        }
+        .bj-spots-container {
+            gap: 12px !important;
+            margin-bottom: 4px !important;
+        }
+        .bj-bet-box-container {
+            width: 74px !important;
+            height: 96px !important;
+        }
+        .bj-spot-chip-img {
+            width: 36px !important;
+            height: 36px !important;
+        }
+        .spot-hint {
+            font-size: 8.5px !important;
+        }
+        .spot-bet-val {
+            font-size: 10.5px !important;
+        }
+        .bj-bottom-bar {
+            min-height: 56px !important;
+            padding: 4px 18px !important;
+        }
+        .pragmatic-action-btn img {
+            width: 42px !important;
+            height: 42px !important;
+        }
+        .pragmatic-action-btn .btn-lbl {
+            font-size: 8px !important;
+        }
+        .bj-chips-rack {
+            gap: 8px !important;
+        }
+        .bj-chip-item img {
+            width: 36px !important;
+            height: 36px !important;
+        }
+        .bj-chip-label {
+            font-size: 9px !important;
+        }
+
+        /* Mobile ultra-compact scaling (rotated landscape & mobile devices) */
+        @media screen and (max-height: 520px), screen and (orientation: portrait) and (max-width: 992px), (max-width: 992px) {
+            .bj-header {
+                min-height: 28px !important;
+                padding: 2px 10px !important;
+            }
+            .bj-brand {
+                gap: 4px !important;
+            }
+            .bj-logo-badge {
+                font-size: 7.5px !important;
+                padding: 1px 4px !important;
+            }
+            .bj-title {
+                font-size: 9.5px !important;
+            }
+            .bj-back-btn {
+                font-size: 9.5px !important;
+                padding: 1px 6px !important;
+            }
+            .balance-label {
+                font-size: 8.5px !important;
+            }
+            .balance-val {
+                font-size: 10.5px !important;
+            }
+            .bj-btn-icon {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 10px !important;
+            }
+
+            .bj-shoe-container {
+                top: 28px !important;
+                right: 8px !important;
+            }
+            .bj-shoe-img {
+                width: 65px !important;
+            }
+
+            .bj-table-brand-center {
+                top: 30px !important;
+            }
+            .bj-table-logo-img {
+                width: 100px !important;
+                margin-bottom: 1px !important;
+            }
+            .bj-blackjack-tag-img {
+                width: 80px !important;
+                margin-bottom: 1px !important;
+            }
+            .bj-rules-text {
+                font-size: 6.5px !important;
+                letter-spacing: 0.5px !important;
+            }
+
+            .bj-table-area {
+                padding: 2px 6px !important;
+            }
+            .bj-dealer-zone {
+                margin-top: 0px !important;
+                min-height: 56px !important;
+            }
+            .bj-dealer-label {
+                font-size: 9.5px !important;
+                margin-bottom: 1px !important;
+            }
+            .bj-score-pill {
+                font-size: 8.5px !important;
+                padding: 1px 5px !important;
+            }
+
+            .bj-cards-row {
+                min-height: 52px !important;
+            }
+            .bj-card-img {
+                height: 52px !important;
+            }
+            .bj-cards-row .bj-card-img:not(:first-child) {
+                margin-left: -19px !important;
+            }
+
+            .bj-spots-container {
+                gap: 6px !important;
+                margin-bottom: 1px !important;
+            }
+            .bj-bet-box-container {
+                width: 48px !important;
+                height: 64px !important;
+            }
+            .bj-spot-chip-img {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            .spot-hint {
+                font-size: 7px !important;
+            }
+            .spot-bet-val {
+                font-size: 8.5px !important;
+            }
+            .bj-spot-result {
+                top: -16px !important;
+                font-size: 7.5px !important;
+                padding: 1px 4px !important;
+            }
+
+            .bj-bottom-bar {
+                min-height: 38px !important;
+                padding: 2px 8px !important;
+            }
+            .bj-action-buttons {
+                gap: 5px !important;
+            }
+            .pragmatic-action-btn img {
+                width: 28px !important;
+                height: 28px !important;
+            }
+            .pragmatic-action-btn .btn-lbl {
+                font-size: 6.5px !important;
+            }
+            .bj-chips-rack {
+                gap: 4px !important;
+            }
+            .bj-chip-item img {
+                width: 25px !important;
+                height: 25px !important;
+            }
+            .bj-chip-label {
+                font-size: 7.5px !important;
+            }
+        }
+    </style>
+    <script>
+        (function() {
+            function checkOrientation() {
+                var isPortrait = window.innerHeight > window.innerWidth || (window.matchMedia && window.matchMedia('(orientation: portrait)').matches);
+                var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 992);
+                if (isPortrait && isMobile) {
+                    document.documentElement.classList.add('mobile-auto-rotated');
+                    if (document.body) document.body.classList.add('mobile-auto-rotated');
+                } else {
+                    document.documentElement.classList.remove('mobile-auto-rotated');
+                    if (document.body) document.body.classList.remove('mobile-auto-rotated');
+                }
+            }
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(function(){});
+                }
+            } catch(e){}
+            checkOrientation();
+            window.addEventListener('resize', checkOrientation);
+            window.addEventListener('orientationchange', checkOrientation);
+            document.addEventListener('DOMContentLoaded', checkOrientation);
+        })();
+    </script>
+</head>
+<body>
+    <div class="bj-container">
+        <!-- JILI OFFICIAL LOADING SCREEN (Inside Container so it rotates automatically) -->
+        <div id="jiliLoadingScreen" class="jili-splash-overlay">
+            <div class="jili-center-stage">
+                <div class="jili-logo-box">
+                    <img src="../assets/games/blackjack/jili_wordmark_tight.png" alt="JILI" class="jili-img-brand">
+                    <div class="jili-sheen-mask">
+                        <div class="jili-glint-bar"></div>
+                    </div>
+                </div>
+                <!-- Video-Style Yellow Loading Line -->
+                <div class="jili-loadline-track">
+                    <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Authentic Table Felt Background -->
+        <div class="bj-table-felt"></div>
+
+        <!-- Top Header Status HUD -->
+        <header class="bj-header">
+            <div class="bj-brand">
+                <a href="../casino.html" class="bj-back-btn">← Casino</a>
+                <span class="bj-logo-badge">PRAGMATIC PLAY</span>
+                <span class="bj-title">AMERICAN BLACKJACK</span>
+            </div>
+
+            <div class="bj-balance-box" onclick="window.pragmaticBlackjack.toggleCurrency()" title="Click to switch currency PKR / USD">
+                <span class="balance-label">Balance:</span>
+                <span id="bj-balance-val" class="balance-val">₨ 0.00</span>
+                <a href="../deposit.html" class="bj-deposit-btn" title="Deposit / Add Funds" onclick="event.stopPropagation()">+</a>
+            </div>
+
+            <div class="bj-controls">
+                <button id="bj-sound-btn" class="bj-btn-icon" onclick="window.pragmaticBlackjack.toggleSound()" title="Toggle Sound">🔊</button>
+                <button id="bj-rotate-btn" class="bj-btn-icon" onclick="toggleScreenRotation(event)" title="Rotate Screen / Landscape">🔄</button>
+                <button class="bj-btn-icon" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()" title="Fullscreen">⛶</button>
+            </div>
+        </header>
+
+        <!-- Toast Notice -->
+        <div id="bj-toast" class="bj-toast"></div>
+
+        <!-- Authentic Card Dispenser (Shoe) at Top Right -->
+        <div class="bj-shoe-container">
+            <img src="../assets/games/blackjack/pragmatic_ui/s_card_dispenser.png" class="bj-shoe-img" alt="Shoe Dispenser">
+        </div>
+
+        <!-- Table Central Logo & Tag -->
+        <div class="bj-table-brand-center">
+            <img src="../assets/games/blackjack/pragmatic_ui/s_logo.png" class="bj-table-logo-img" alt="American Blackjack">
+            <img src="../assets/games/blackjack/pragmatic_ui/s_blackjack_tag.png" class="bj-blackjack-tag-img" alt="Blackjack Pays 3 to 2">
+            <div class="bj-rules-text">DEALER MUST STAND ON 17 AND DRAW TO 16 • INSURANCE PAYS 2 TO 1</div>
+        </div>
+
+        <!-- Main Playing Felt -->
+        <main class="bj-table-area">
+            <!-- Dealer Zone -->
+            <div class="bj-dealer-zone">
+                <div class="bj-dealer-label">
+                    Dealer <span id="bj-dealer-score" class="bj-score-pill" style="display:none;">0</span>
+                </div>
+                <div id="bj-dealer-cards" class="bj-cards-row"></div>
+            </div>
+
+            <!-- Player Betting Spots (Multi-Hand 3 Authentic Pragmatic Spots) -->
+            <div class="bj-spots-container">
+                <!-- Spot 0: Left -->
+                <div id="bj-spot-0" class="bj-spot-wrapper" onclick="window.pragmaticBlackjack.placeBet(0)">
+                    <div id="bj-result-0" class="bj-spot-result"></div>
+                    <div id="bj-total-0" class="bj-score-pill" style="display:none; margin-bottom:6px;">0</div>
+                    <div id="bj-cards-0" class="bj-cards-row"></div>
+                    <div class="bj-bet-box-container">
+                        <img src="../assets/games/blackjack/pragmatic_ui/s_betting_box.png" class="bj-bet-box-frame" alt="Bet Box">
+                        <div class="bj-bet-box-inner">
+                            <img id="bj-spot-chip-0" class="bj-spot-chip-img" style="display:none;" src="" alt="chip">
+                            <span class="spot-hint">BET</span>
+                            <span id="bj-spot-bet-0" class="spot-bet-val"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spot 1: Center (Main) -->
+                <div id="bj-spot-1" class="bj-spot-wrapper" onclick="window.pragmaticBlackjack.placeBet(1)">
+                    <div id="bj-result-1" class="bj-spot-result"></div>
+                    <div id="bj-total-1" class="bj-score-pill" style="display:none; margin-bottom:6px;">0</div>
+                    <div id="bj-cards-1" class="bj-cards-row"></div>
+                    <div class="bj-bet-box-container">
+                        <img src="../assets/games/blackjack/pragmatic_ui/s_betting_box.png" class="bj-bet-box-frame" alt="Bet Box">
+                        <div class="bj-bet-box-inner">
+                            <img id="bj-spot-chip-1" class="bj-spot-chip-img" style="display:none;" src="" alt="chip">
+                            <span class="spot-hint">BET</span>
+                            <span id="bj-spot-bet-1" class="spot-bet-val"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spot 2: Right -->
+                <div id="bj-spot-2" class="bj-spot-wrapper" onclick="window.pragmaticBlackjack.placeBet(2)">
+                    <div id="bj-result-2" class="bj-spot-result"></div>
+                    <div id="bj-total-2" class="bj-score-pill" style="display:none; margin-bottom:6px;">0</div>
+                    <div id="bj-cards-2" class="bj-cards-row"></div>
+                    <div class="bj-bet-box-container">
+                        <img src="../assets/games/blackjack/pragmatic_ui/s_betting_box.png" class="bj-bet-box-frame" alt="Bet Box">
+                        <div class="bj-bet-box-inner">
+                            <img id="bj-spot-chip-2" class="bj-spot-chip-img" style="display:none;" src="" alt="chip">
+                            <span class="spot-hint">BET</span>
+                            <span id="bj-spot-bet-2" class="spot-bet-val"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Controls Bar -->
+        <footer class="bj-bottom-bar">
+            <!-- Authentic Pragmatic Action Buttons -->
+            <div class="bj-action-buttons">
+                <!-- Betting Phase Buttons -->
+                <button id="btn-deal" class="pragmatic-action-btn" onclick="window.pragmaticBlackjack.deal()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_deal_default.png" alt="Deal">
+                    <span class="btn-lbl">DEAL</span>
+                </button>
+                <button id="btn-double-bet" class="pragmatic-action-btn" onclick="window.pragmaticBlackjack.doubleCurrentBets()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_double_default.png" alt="2X Bet">
+                    <span class="btn-lbl">2X BET</span>
+                </button>
+                <button id="btn-clear" class="pragmatic-action-btn" onclick="window.pragmaticBlackjack.clearBets()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_clear_bet_default.png" alt="Clear">
+                    <span class="btn-lbl">CLEAR</span>
+                </button>
+                <button id="btn-rebet" class="pragmatic-action-btn" onclick="window.pragmaticBlackjack.rebet()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_rebet_deal_default.png" alt="Rebet">
+                    <span class="btn-lbl">REBET</span>
+                </button>
+
+                <!-- In-Play Action Buttons -->
+                <button id="btn-hit" class="pragmatic-action-btn" style="display:none;" onclick="window.pragmaticBlackjack.hit()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_hit_default.png" alt="Hit">
+                    <span class="btn-lbl">HIT</span>
+                </button>
+                <button id="btn-stand" class="pragmatic-action-btn" style="display:none;" onclick="window.pragmaticBlackjack.stand()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_stand_default.png" alt="Stand">
+                    <span class="btn-lbl">STAND</span>
+                </button>
+                <button id="btn-double" class="pragmatic-action-btn" style="display:none;" onclick="window.pragmaticBlackjack.doubleDown()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_double_default.png" alt="Double">
+                    <span class="btn-lbl">DOUBLE</span>
+                </button>
+                <button id="btn-split" class="pragmatic-action-btn" style="display:none;" onclick="window.pragmaticBlackjack.split()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_split_default.png" alt="Split">
+                    <span class="btn-lbl">SPLIT</span>
+                </button>
+
+                <!-- Round End Button -->
+                <button id="btn-newround" class="pragmatic-action-btn" style="display:none;" onclick="window.pragmaticBlackjack.newRound()">
+                    <img src="../assets/games/blackjack/pragmatic_ui/s_new_bet_default.png" alt="New Hand">
+                    <span class="btn-lbl">NEW HAND</span>
+                </button>
+            </div>
+
+            <!-- Authentic Sliced Chips Rack -->
+            <div id="bj-chips-rack" class="bj-chips-rack">
+                <div class="bj-chip-item selected" onclick="window.pragmaticBlackjack.setChip(100)">
+                    <img src="../assets/games/blackjack/chips/s_chip_00.png" alt="100">
+                    <span class="bj-chip-label">100</span>
+                </div>
+                <div class="bj-chip-item" onclick="window.pragmaticBlackjack.setChip(500)">
+                    <img src="../assets/games/blackjack/chips/s_chip_01.png" alt="500">
+                    <span class="bj-chip-label">500</span>
+                </div>
+                <div class="bj-chip-item" onclick="window.pragmaticBlackjack.setChip(1000)">
+                    <img src="../assets/games/blackjack/chips/s_chip_02.png" alt="1K">
+                    <span class="bj-chip-label">1K</span>
+                </div>
+                <div class="bj-chip-item" onclick="window.pragmaticBlackjack.setChip(5000)">
+                    <img src="../assets/games/blackjack/chips/s_chip_03.png" alt="5K">
+                    <span class="bj-chip-label">5K</span>
+                </div>
+                <div class="bj-chip-item" onclick="window.pragmaticBlackjack.setChip(25000)">
+                    <img src="../assets/games/blackjack/chips/s_chip_04.png" alt="25K">
+                    <span class="bj-chip-label">25K</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Authentic Pragmatic Insurance Offer Modal -->
+        <div id="bj-insurance-modal" class="bj-modal-overlay" style="display:none;">
+            <div class="bj-modal-box">
+                <div class="bj-modal-header">INSURANCE</div>
+                <div class="bj-modal-body">
+                    <p>Dealer is showing an <strong>Ace</strong>.</p>
+                    <p>Would you like to insure your bets against Dealer Blackjack?</p>
+                    <p class="modal-terms">Cost: 1/2 of your main bet • Pays: 2 to 1</p>
+                </div>
+                <div class="bj-modal-actions">
+                    <button class="pragmatic-action-btn" onclick="window.pragmaticBlackjack.resolveInsurance(true)">
+                        <img src="../assets/games/blackjack/pragmatic_ui/s_insurance_yes_default.png" alt="Yes">
+                        <span class="btn-lbl">INSURE</span>
+                    </button>
+                    <button class="pragmatic-action-btn" onclick="window.pragmaticBlackjack.resolveInsurance(false)">
+                        <img src="../assets/games/blackjack/pragmatic_ui/s_insurance_no_default.png" alt="No">
+                        <span class="btn-lbl">PASS</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/wallet.js?v=6.0"></script>
+    <script src="../js/admin_config.js?v=4.0_rtp"></script>
+    <script src="../js/core.js?v=2026_deposit_popup_v1"></script>
+    <script src="../js/games/blackjack_pragmatic.js?v=7.0_low_winrate"></script>
+    <script>
+        // Highlighting selected chip
+        const chipItems = document.querySelectorAll('.bj-chip-item');
+        chipItems.forEach(c => {
+            c.addEventListener('click', () => {
+                chipItems.forEach(x => x.classList.remove('selected'));
+                c.classList.add('selected');
+            });
+        });
+
+        // Interactive authentic glowing button states (default -> active on hover/press)
+        document.querySelectorAll('.pragmatic-action-btn').forEach(btn => {
+            const img = btn.querySelector('img');
+            if (!img) return;
+            const defaultSrc = img.src;
+            const activeSrc = defaultSrc.replace('_default.png', '_active.png');
+            btn.addEventListener('mouseenter', () => { img.src = activeSrc; });
+            btn.addEventListener('mouseleave', () => { img.src = defaultSrc; });
+            btn.addEventListener('mousedown', () => { img.src = activeSrc; });
+            btn.addEventListener('mouseup', () => { img.src = defaultSrc; });
+        });
+
+        // JILI Official Loading Animation
+        let jiliLoadingStarted = false;
+        function startJiliLoading() {
+            if (jiliLoadingStarted) return;
+            jiliLoadingStarted = true;
+
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            if (!splash) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            if (progressBar) progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1600;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.8 ? (p * 1.05) : (0.84 + (p - 0.8) * 0.8);
+                const pct = Math.min(100, Math.round(ease * 100));
+                if (progressBar) progressBar.style.width = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    finishLoading();
+                }
+            }
+
+            function finishLoading() {
+                splash.classList.add('loaded');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 500);
+            }
+
+            // Guaranteed failsafe dismiss after 2.2 seconds
+            setTimeout(finishLoading, 2200);
+
+            requestAnimationFrame(step);
+        }
+
+        // Start loading immediately
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startJiliLoading);
+        } else {
+            startJiliLoading();
+        }
+        // Screen Rotation & Landscape Lock Handler
+        let isFullscreenPending = false;
+        function enforceLandscapeOrientation() {
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                } else if (screen.lockOrientation) {
+                    screen.lockOrientation('landscape');
+                } else if (screen.mozLockOrientation) {
+                    screen.mozLockOrientation('landscape');
+                } else if (screen.msLockOrientation) {
+                    screen.msLockOrientation('landscape');
+                }
+            } catch(e) {}
+        }
+
+        function requestFullScreenLandscape() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || isFullscreenPending) {
+                enforceLandscapeOrientation();
+                return;
+            }
+            const docEl = document.documentElement;
+            const req = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+            if (req) {
+                isFullscreenPending = true;
+                let prom;
+                try {
+                    prom = req.call(docEl, { navigationUI: 'hide' });
+                } catch(err) {
+                    try { prom = req.call(docEl); } catch(err2) {}
+                }
+                if (prom && prom.then) {
+                    prom.then(() => {
+                        isFullscreenPending = false;
+                        enforceLandscapeOrientation();
+                    }).catch(() => {
+                        isFullscreenPending = false;
+                    });
+                } else {
+                    setTimeout(() => { isFullscreenPending = false; }, 400);
+                    enforceLandscapeOrientation();
+                }
+            } else {
+                enforceLandscapeOrientation();
+            }
+            try { window.scrollTo(0, 0); } catch(e) {}
+        }
+
+        function toggleScreenRotation(e) {
+            if (e) e.stopPropagation();
+            requestFullScreenLandscape();
+            document.body.classList.toggle('manual-rotate');
+        }
+
+        // Trigger landscape orientation on first user touch
+        window.addEventListener('pointerdown', () => {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                requestFullScreenLandscape();
+            }
+        }, { capture: true, passive: true });
+    </script>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Game Under Maintenance | 1xBet & BetWithNet</title>
+    <link rel="icon" type="image/svg+xml" href="/games/racing/bet_1.e14d26f8.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #080d16;
+            --panel-bg: #0f172a;
+            --panel-card: #131d31;
+            --accent-cyan: #00a2ff;
+            --accent-gold: #facc15;
+            --accent-orange: #f97316;
+            --accent-green: #22c55e;
+            --text-main: #f8fafc;
+            --text-muted: #8da4be;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* 1xBet Master Top Bar */
+        .xb-master-header {
+            height: 48px;
+            background: #0d172b;
+            border-bottom: 1px solid #1a2f4d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .xb-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .xb-logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-decoration: none;
+            font-style: italic;
+        }
+        .xb-logo span {
+            color: var(--accent-cyan);
+        }
+
+        .xb-bonus-box {
+            background: #182844;
+            color: #facc15;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .xb-badge-maint {
+            background: rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(249, 115, 22, 0.5);
+            color: #fb923c;
+            padding: 3px 10px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .xb-badge-maint .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #f97316;
+            box-shadow: 0 0 8px #f97316;
+            animation: pulseDot 1.5s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .xb-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .xb-btn-lobby {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            padding: 7px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+            transition: all 0.2s;
+        }
+        .xb-btn-lobby:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+
+        .xb-lang-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #9bb3ce;
+            padding: 5px 8px;
+            border-radius: 6px;
+            background: #14233c;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* 1xBet Category Nav Ribbon */
+        .xb-nav-ribbon {
+            height: 38px;
+            background: #091322;
+            border-bottom: 1px solid #14233c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .xb-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .xb-nav-item {
+            color: #8da4be;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.15s;
+        }
+        .xb-nav-item:hover, .xb-nav-item.active {
+            color: #ffffff;
+        }
+        .xb-nav-item.active {
+            color: var(--accent-cyan);
+            border-bottom: 2px solid var(--accent-cyan);
+            padding-bottom: 7px;
+        }
+
+        .xb-crash-item {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8 !important;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        /* Body Layout with Sidebar + Stage */
+        .xb-body-layout {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Left Icon Sidebar */
+        .xb-sidebar-icons {
+            width: 48px;
+            background: #0a1324;
+            border-right: 1px solid #14233c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .xb-side-icon-btn {
+            background: transparent;
+            border: none;
+            color: #5d7496;
+            font-size: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .xb-side-icon-btn:hover {
+            color: #ffffff;
+            background: #14233c;
+        }
+        .xb-side-icon-btn.active {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+        }
+
+        /* Main Arena Stage */
+        .xb-stage-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background: #080d16 radial-gradient(circle at 50% 30%, #111e34 0%, #060a12 80%);
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px 60px 16px;
+            position: relative;
+        }
+
+        /* Subbar */
+        .f1-stand-subbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 18px;
+            background: rgba(13, 23, 43, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+        }
+
+        .f1-breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .f1-crumb-sep {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .f1-crumb-active {
+            color: #fff;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Maintenance Hero Card */
+        .maint-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(249, 115, 22, 0.15);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            max-width: 680px;
+            width: 100%;
+            padding: 44px 36px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .maint-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f97316, #eab308, #f97316);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Animated Gears & Racing Icon */
+        .maint-icon-wrap {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 4px;
+        }
+
+        .maint-icon-bg {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, rgba(15, 23, 42, 0.8) 70%);
+            border: 2px dashed rgba(249, 115, 22, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            color: #f97316;
+            animation: rotateGears 20s linear infinite;
+        }
+
+        @keyframes rotateGears {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .maint-badge-float {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            border: 3px solid #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .maint-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .maint-sub-urdu {
+            font-size: 17px;
+            font-weight: 700;
+            color: #facc15;
+            line-height: 1.5;
+            direction: rtl;
+        }
+
+        .maint-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            max-width: 540px;
+        }
+
+        .maint-desc-urdu {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            direction: rtl;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+            padding: 12px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            width: 100%;
+        }
+
+        /* Status Pills */
+        .maint-status-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 6px 0;
+        }
+
+        .maint-pill {
+            background: #111a2e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .maint-pill strong {
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Action Buttons */
+        .maint-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .maint-btn-primary {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 18px rgba(2, 132, 199, 0.4);
+            transition: all 0.2s;
+        }
+        .maint-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(2, 132, 199, 0.6);
+        }
+
+        .maint-btn-secondary {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f8fafc;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .maint-btn-secondary:hover {
+            background: #334155;
+            color: #fff;
+        }
+
+        .maint-btn-support {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #4ade80;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .maint-btn-support:hover {
+            background: rgba(34, 197, 94, 0.25);
+            color: #86efac;
+        }
+
+        /* 1xBet Bottom Footer Bar */
+        .xb-footer-bar {
+            height: 40px;
+            background: #091322;
+            border-top: 1px solid #14233c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .xb-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .xb-foot-tab {
+            background: transparent;
+            border: none;
+            color: #7f99b8;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .xb-foot-tab:hover {
+            color: #ffffff;
+        }
+
+        .xb-support-bubble {
+            position: fixed;
+            bottom: 12px;
+            right: 14px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #0284c7;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.6);
+            z-index: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .xb-support-bubble:hover {
+            transform: scale(1.08);
+            background: #0369a1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1xBet Master Top Bar -->
+    <header class="xb-master-header">
+        <div class="xb-header-left">
+            <a href="/" class="xb-logo">1X<span>BET</span></a>
+            <div class="xb-bonus-box" title="Bonuses">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <div class="xb-badge-maint">
+                <span class="dot"></span>
+                <span>MAINTENANCE</span>
+            </div>
+        </div>
+
+        <div class="xb-header-right">
+            <a href="/casino.html" class="xb-btn-lobby">
+                <i class="fa-solid fa-gamepad"></i> CASINO LOBBY
+            </a>
+            <div class="xb-lang-time">
+                <span>🇬🇧 EN</span>
+                <span style="color:rgba(255,255,255,0.2);">/</span>
+                <span id="liveTimeClock">03:45</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1xBet Category Nav Ribbon -->
+    <nav class="xb-nav-ribbon">
+        <div class="xb-nav-links">
+            <a href="/" class="xb-nav-item">
+                <i class="fa-solid fa-trophy" style="color:#facc15;"></i> TOP-EVENTS
+            </a>
+            <a href="/sports.html" class="xb-nav-item">SPORTS</a>
+            <a href="/live.html" class="xb-nav-item">LIVE</a>
+            <a href="/casino.html" class="xb-nav-item active">CASINO</a>
+            <a href="/live-casino.html" class="xb-nav-item">LIVE CASINO</a>
+            <a href="/games/crash.html" class="xb-nav-item xb-crash-item">
+                <i class="fa-solid fa-plane"></i> Crash
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1xBet Body Layout -->
+    <div class="xb-body-layout">
+        <!-- Left Sidebar Icons -->
+        <aside class="xb-sidebar-icons">
+            <a href="/casino.html" class="xb-side-icon-btn active" title="Casino Lobby"><i class="fa-solid fa-heart"></i></a>
+            <a href="/casino.html" class="xb-side-icon-btn" title="All Games"><i class="fa-solid fa-table-cells-large"></i></a>
+            <a href="/deposit.html" class="xb-side-icon-btn" title="Promotions"><i class="fa-solid fa-bullhorn"></i></a>
+            <a href="/casino.html" class="xb-side-icon-btn" title="Tournaments"><i class="fa-solid fa-trophy"></i></a>
+            <a href="/" class="xb-side-icon-btn" title="Home"><i class="fa-solid fa-gamepad"></i></a>
+        </aside>
+
+        <!-- Main Stage: Maintenance Card -->
+        <div class="xb-stage-wrap">
+            
+            <div class="f1-stand-subbar">
+                <div class="f1-breadcrumbs">
+                    <a href="/" style="color:#8da4be;"><i class="fa-solid fa-house"></i></a>
+                    <span class="f1-crumb-sep">/</span>
+                    <span>Games</span>
+                    <span class="f1-crumb-sep">/</span>
+                    <span class="f1-crumb-active">T1 Racing (F1 #108297)</span>
+                </div>
+                <div style="font-size:11px; font-weight:800; color:#f97316;">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> SCHEDULED UPGRADE
+                </div>
+            </div>
+
+            <div class="maint-card">
+                <div class="maint-icon-wrap">
+                    <div class="maint-icon-bg">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div class="maint-badge-float">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                </div>
+
+                <h1 class="maint-title">Game Under Maintenance</h1>
+                <div class="maint-sub-urdu">گیم فی الوقت مینٹیننس موڈ میں ہے</div>
+
+                <p class="maint-desc">
+                    <strong>T1 Racing Formula 1 (#108297)</strong> is currently undergoing scheduled server upgrades and visual optimizations to ensure the highest speed and provably fair racing experience.
+                </p>
+
+                <div class="maint-desc-urdu">
+                    سرور اپ گریڈیشن اور سسٹم کی بہتری کی وجہ سے یہ گیم عارضی طور پر بند ہے۔ آپ کا والٹ بیلنس اور ریکارڈ مکمل محفوظ ہے۔ ہماری ٹیم کام کر رہی ہے، گیم بہت جلد دوبارہ لائیو کر دی جائے گی۔
+                </div>
+
+                <div class="maint-status-row">
+                    <div class="maint-pill">
+                        <i class="fa-solid fa-server" style="color:#38bdf8;"></i>
+                        Status: <strong>Server Maintenance</strong>
+                    </div>
+                    <div class="maint-pill">
+                        <i class="fa-solid fa-shield-halved" style="color:#22c55e;"></i>
+                        Balances: <strong>100% Safe</strong>
+                    </div>
+                    <div class="maint-pill">
+                        <i class="fa-solid fa-clock" style="color:#facc15;"></i>
+                        Est. Time: <strong>Shortly Back Online</strong>
+                    </div>
+                </div>
+
+                <div class="maint-actions">
+                    <a href="/casino.html" class="maint-btn-primary">
+                        <i class="fa-solid fa-cubes"></i> Explore Other Casino Games
+                    </a>
+                    <a href="/games/crash.html" class="maint-btn-secondary">
+                        <i class="fa-solid fa-plane"></i> Play Aviator / Crash
+                    </a>
+                    <a href="https://t.me/" target="_blank" class="maint-btn-support">
+                        <i class="fa-solid fa-headset"></i> Live Support
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 1xBet Footer -->
+    <footer class="xb-footer-bar">
+        <div class="xb-footer-left">
+            <a href="/casino.html" class="xb-foot-tab"><i class="fa-regular fa-clock"></i> CASINO GAMES</a>
+            <a href="/deposit.html" class="xb-foot-tab"><i class="fa-solid fa-wallet"></i> WALLET & DEPOSIT</a>
+        </div>
+        <div style="font-size:11px; color:#64748b; font-weight:700;">
+            1xBet & BetWithNet Certified Platform
+        </div>
+    </footer>
+
+    <!-- Blue Support Bubble -->
+    <a href="https://t.me/" target="_blank" class="xb-support-bubble" title="24/7 Live Support">
+        <i class="fa-solid fa-headset"></i>
+    </a>
+
+    <script>
+        function updateLiveClock() {
+            const el = document.getElementById('liveTimeClock');
+            if (el) {
+                const now = new Date();
+                const hh = String(now.getHours()).padStart(2, '0');
+                const mm = String(now.getMinutes()).padStart(2, '0');
+                el.innerText = `${hh}:${mm}`;
+            }
+        }
+        updateLiveClock();
+        setInterval(updateLiveClock, 10000);
+    </script>
+</body>
+</html>

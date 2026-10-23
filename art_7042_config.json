@@ -1,0 +1,1584 @@
+﻿{
+    "paths":  {
+                  "0":  [
+                            "spine/jewelshinny/jewelshinny",
+                            4
+                        ],
+                  "1":  [
+                            "spine/combo/combo",
+                            0
+                        ],
+                  "2":  [
+                            "bmfont/mega7042_multipliers",
+                            0
+                        ],
+                  "3":  [
+                            "spine/skill/skill",
+                            4
+                        ],
+                  "4":  [
+                            "spine/multiply_bomb/multiply_frame",
+                            4
+                        ],
+                  "5":  [
+                            "spine/background/bg_back",
+                            4
+                        ],
+                  "6":  [
+                            "spine/lightbulb/light",
+                            4
+                        ],
+                  "7":  [
+                            "spine/symbol/symbol_main",
+                            4
+                        ],
+                  "8":  [
+                            "spine/settlement/settlement_word",
+                            4
+                        ],
+                  "9":  [
+                            "spine/lizard/Lizard_MP",
+                            4
+                        ],
+                  "10":  [
+                             "spine/charactor/charactor",
+                             4
+                         ],
+                  "11":  [
+                             "spine/settlement/settlement",
+                             4
+                         ],
+                  "12":  [
+                             "spine/symbol/fx",
+                             0
+                         ],
+                  "13":  [
+                             "spine/symbol/symbol_explosion",
+                             4
+                         ],
+                  "14":  [
+                             "spine/background/bg_machine",
+                             4
+                         ],
+                  "15":  [
+                             "spine/xn/xn",
+                             4
+                         ],
+                  "16":  [
+                             "spine/free_transitions/free_transitions_word",
+                             4
+                         ],
+                  "17":  [
+                             "spine/get/get",
+                             4
+                         ],
+                  "18":  [
+                             "bmfont/mega7042_bmfont",
+                             0
+                         ],
+                  "19":  [
+                             "spine/symbol/fx",
+                             4
+                         ],
+                  "20":  [
+                             "spine/bg_fg_jam/bg_fg_jam",
+                             4
+                         ],
+                  "21":  [
+                             "spine/background/bg_front",
+                             4
+                         ],
+                  "22":  [
+                             "spine/free_transitions/free_transitions",
+                             4
+                         ],
+                  "23":  [
+                             "spine/frame_fx/frame_fx",
+                             4
+                         ],
+                  "24":  [
+                             "atlas/upline",
+                             0
+                         ],
+                  "25":  [
+                             "spine/settlement/settlement_charactor",
+                             4
+                         ],
+                  "26":  [
+                             "atlas/star_012-2",
+                             0
+                         ],
+                  "27":  [
+                             "atlas/upfx",
+                             0
+                         ],
+                  "28":  [
+                             "spine/bigwin/big_win",
+                             4
+                         ],
+                  "29":  [
+                             "spine/combo/combo",
+                             4
+                         ],
+                  "30":  [
+                             "spine/symbol/symbol_bk",
+                             4
+                         ],
+                  "31":  [
+                             "spine/multiply_bomb/multiply_bomb",
+                             4
+                         ],
+                  "32":  [
+                             "spine/charactor/charactor13",
+                             0
+                         ],
+                  "33":  [
+                             "spine/symbol/symbol_bk",
+                             1,
+                             1
+                         ],
+                  "34":  [
+                             "atlas/symbols",
+                             2
+                         ],
+                  "35":  [
+                             "spine/free_transitions/free_transitions",
+                             1,
+                             1
+                         ],
+                  "36":  [
+                             "spine/lightbulb/light",
+                             0
+                         ],
+                  "37":  [
+                             "particle/Smoke_006",
+                             0
+                         ],
+                  "38":  [
+                             "spine/jewelshinny/jewelshinny",
+                             1,
+                             1
+                         ],
+                  "39":  [
+                             "bmfont/mega7042_bmfont",
+                             3
+                         ],
+                  "40":  [
+                             "spine/frame_fx/frame_fx",
+                             1,
+                             1
+                         ],
+                  "41":  [
+                             "spine/background/bg_back",
+                             1,
+                             1
+                         ],
+                  "42":  [
+                             "spine/background/bg_machine",
+                             5
+                         ],
+                  "43":  [
+                             "spine/bg_fg_jam/bg_fg_jam",
+                             0
+                         ],
+                  "44":  [
+                             "spine/bigwin/dark",
+                             0
+                         ],
+                  "45":  [
+                             "spine/charactor/charactor16",
+                             1,
+                             1
+                         ],
+                  "46":  [
+                             "spine/lightbulb/light",
+                             1,
+                             1
+                         ],
+                  "47":  [
+                             "spine/charactor/charactor13",
+                             1,
+                             1
+                         ],
+                  "48":  [
+                             "particle/Star_022-2",
+                             1,
+                             1
+                         ],
+                  "49":  [
+                             "spine/charactor/charactor14",
+                             0
+                         ],
+                  "50":  [
+                             "spine/settlement/settlement_charactor",
+                             0
+                         ],
+                  "51":  [
+                             "spine/charactor/charactor5",
+                             0
+                         ],
+                  "52":  [
+                             "particle/Dust_001",
+                             1,
+                             1
+                         ],
+                  "53":  [
+                             "spine/symbol/symbol_bk",
+                             0
+                         ],
+                  "54":  [
+                             "atlas/mountain",
+                             1,
+                             1
+                         ],
+                  "55":  [
+                             "spine/combo/combo",
+                             1,
+                             1
+                         ],
+                  "56":  [
+                             "spine/symbol/symbol_explosion",
+                             0
+                         ],
+                  "57":  [
+                             "atlas/star_012-2",
+                             1,
+                             1
+                         ],
+                  "58":  [
+                             "atlas/2030_5-2",
+                             0
+                         ],
+                  "59":  [
+                             "spine/symbol/fx",
+                             5
+                         ],
+                  "60":  [
+                             "atlas/ui",
+                             0
+                         ],
+                  "61":  [
+                             "locale/locale",
+                             0
+                         ],
+                  "62":  [
+                             "spine/background/bg_back",
+                             0
+                         ],
+                  "63":  [
+                             "spine/settlement/settlement",
+                             0
+                         ],
+                  "64":  [
+                             "atlas/gear",
+                             2
+                         ],
+                  "65":  [
+                             "particle/upline_flare",
+                             1,
+                             1
+                         ],
+                  "66":  [
+                             "spine/lizard/Lizard_MP",
+                             5
+                         ],
+                  "67":  [
+                             "spine/combo/combo",
+                             5
+                         ],
+                  "68":  [
+                             "spine/bg_fg_jam/bg_fg_jam",
+                             1,
+                             1
+                         ],
+                  "69":  [
+                             "bmfont/mega7042_bmfont",
+                             1,
+                             1
+                         ],
+                  "70":  [
+                             "spine/settlement/settlement",
+                             5
+                         ],
+                  "71":  [
+                             "spine/charactor/charactor14",
+                             1,
+                             1
+                         ],
+                  "72":  [
+                             "spine/bigwin/big_win",
+                             1,
+                             1
+                         ],
+                  "73":  [
+                             "spine/free_transitions/free_transitions",
+                             0
+                         ],
+                  "74":  [
+                             "spine/background/bg_front",
+                             0
+                         ],
+                  "75":  [
+                             "spine/charactor/charactor8",
+                             0
+                         ],
+                  "76":  [
+                             "spine/get/get",
+                             5
+                         ],
+                  "77":  [
+                             "spine/charactor/charactor4",
+                             0
+                         ],
+                  "78":  [
+                             "spine/charactor/charactor16",
+                             0
+                         ],
+                  "79":  [
+                             "atlas/all_bg",
+                             1,
+                             1
+                         ],
+                  "80":  [
+                             "atlas/Bg",
+                             0
+                         ],
+                  "81":  [
+                             "spine/charactor/charactor7",
+                             0
+                         ],
+                  "82":  [
+                             "spine/charactor/charactor9",
+                             1,
+                             1
+                         ],
+                  "83":  [
+                             "spine/free_transitions/free_transitions_word",
+                             0
+                         ],
+                  "84":  [
+                             "spine/frame_fx/frame_fx",
+                             5
+                         ],
+                  "85":  [
+                             "spine/background/bg_machine",
+                             1,
+                             1
+                         ],
+                  "86":  [
+                             "atlas/gear",
+                             0
+                         ],
+                  "87":  [
+                             "atlas/jewels",
+                             1,
+                             1
+                         ],
+                  "88":  [
+                             "spine/jewelshinny/jewelshinny",
+                             5
+                         ],
+                  "89":  [
+                             "spine/get/get",
+                             0
+                         ],
+                  "90":  [
+                             "spine/charactor/charactor6",
+                             1,
+                             1
+                         ],
+                  "91":  [
+                             "spine/bg_fg_jam/bg_fg_jam",
+                             5
+                         ],
+                  "92":  [
+                             "spine/multiply_bomb/multiply_frame",
+                             1,
+                             1
+                         ],
+                  "93":  [
+                             "particle/Dust_001",
+                             0
+                         ],
+                  "94":  [
+                             "spine/lizard/Lizard_MP",
+                             1,
+                             1
+                         ],
+                  "95":  [
+                             "spine/lightbulb/light",
+                             5
+                         ],
+                  "96":  [
+                             "spine/settlement/settlement_word",
+                             0
+                         ],
+                  "97":  [
+                             "spine/charactor/charactor2",
+                             1,
+                             1
+                         ],
+                  "98":  [
+                             "spine/charactor/charactor3",
+                             1,
+                             1
+                         ],
+                  "99":  [
+                             "particle/upline_flare",
+                             0
+                         ],
+                  "100":  [
+                              "spine/skill/skill",
+                              0
+                          ],
+                  "101":  [
+                              "spine/charactor/charactor12",
+                              0
+                          ],
+                  "102":  [
+                              "spine/jewelshinny/jewelshinny",
+                              0
+                          ],
+                  "103":  [
+                              "spine/charactor/charactor11",
+                              1,
+                              1
+                          ],
+                  "104":  [
+                              "spine/background/bg_back",
+                              5
+                          ],
+                  "105":  [
+                              "spine/multiply_bomb/multiply_frame",
+                              5
+                          ],
+                  "106":  [
+                              "atlas/ui",
+                              2
+                          ],
+                  "107":  [
+                              "spine/symbol/fx",
+                              1,
+                              1
+                          ],
+                  "108":  [
+                              "spine/bigwin/dark",
+                              1,
+                              1
+                          ],
+                  "109":  [
+                              "spine/symbol/symbol_explosion",
+                              1,
+                              1
+                          ],
+                  "110":  [
+                              "atlas/all_bg",
+                              0
+                          ],
+                  "111":  [
+                              "spine/charactor/charactor3",
+                              0
+                          ],
+                  "112":  [
+                              "spine/xn/xn",
+                              5
+                          ],
+                  "113":  [
+                              "atlas/mountain",
+                              0
+                          ],
+                  "114":  [
+                              "spine/charactor/charactor15",
+                              0
+                          ],
+                  "115":  [
+                              "spine/charactor/charactor11",
+                              0
+                          ],
+                  "116":  [
+                              "spine/free_transitions/free_transitions_word",
+                              1,
+                              1
+                          ],
+                  "117":  [
+                              "atlas/jewels",
+                              0
+                          ],
+                  "118":  [
+                              "spine/settlement/settlement_word",
+                              5
+                          ],
+                  "119":  [
+                              "atlas/upline",
+                              1,
+                              1
+                          ],
+                  "120":  [
+                              "spine/symbol/symbol_explosion",
+                              5
+                          ],
+                  "121":  [
+                              "spine/skill/skill",
+                              1,
+                              1
+                          ],
+                  "122":  [
+                              "spine/charactor/charactor6",
+                              0
+                          ],
+                  "123":  [
+                              "spine/charactor/charactor4",
+                              1,
+                              1
+                          ],
+                  "124":  [
+                              "spine/charactor/charactor10",
+                              1,
+                              1
+                          ],
+                  "125":  [
+                              "spine/settlement/settlement_charactor",
+                              5
+                          ],
+                  "126":  [
+                              "spine/settlement/settlement_charactor",
+                              1,
+                              1
+                          ],
+                  "127":  [
+                              "spine/bigwin/big_win",
+                              5
+                          ],
+                  "128":  [
+                              "spine/charactor/charactor9",
+                              0
+                          ],
+                  "129":  [
+                              "particle/Star_022-2",
+                              0
+                          ],
+                  "130":  [
+                              "spine/symbol/symbol_bk",
+                              5
+                          ],
+                  "131":  [
+                              "atlas/Bg",
+                              1,
+                              1
+                          ],
+                  "132":  [
+                              "spine/xn/xn",
+                              0
+                          ],
+                  "133":  [
+                              "spine/lizard/Lizard_MP",
+                              0
+                          ],
+                  "134":  [
+                              "locale/locale",
+                              2
+                          ],
+                  "135":  [
+                              "spine/multiply_bomb/multiply_bomb",
+                              0
+                          ],
+                  "136":  [
+                              "spine/background/bg_machine",
+                              0
+                          ],
+                  "137":  [
+                              "spine/charactor/charactor12",
+                              1,
+                              1
+                          ],
+                  "138":  [
+                              "particle/gem_stars",
+                              1,
+                              1
+                          ],
+                  "139":  [
+                              "bmfont/mega7042_multipliers",
+                              3
+                          ],
+                  "140":  [
+                              "spine/charactor/charactor",
+                              0
+                          ],
+                  "141":  [
+                              "spine/charactor/charactor7",
+                              1,
+                              1
+                          ],
+                  "142":  [
+                              "spine/multiply_bomb/multiply_bomb",
+                              5
+                          ],
+                  "143":  [
+                              "spine/free_transitions/free_transitions_word",
+                              5
+                          ],
+                  "144":  [
+                              "spine/free_transitions/free_transitions",
+                              5
+                          ],
+                  "145":  [
+                              "spine/skill/skill",
+                              5
+                          ],
+                  "146":  [
+                              "spine/get/get",
+                              1,
+                              1
+                          ],
+                  "147":  [
+                              "spine/bigwin/big_win",
+                              0
+                          ],
+                  "148":  [
+                              "spine/charactor/charactor10",
+                              0
+                          ],
+                  "149":  [
+                              "spine/charactor/charactor8",
+                              1,
+                              1
+                          ],
+                  "150":  [
+                              "atlas/upfx",
+                              2
+                          ],
+                  "151":  [
+                              "atlas/2030_5-2",
+                              1,
+                              1
+                          ],
+                  "152":  [
+                              "spine/background/bg_front",
+                              5
+                          ],
+                  "153":  [
+                              "spine/charactor/charactor2",
+                              0
+                          ],
+                  "154":  [
+                              "spine/symbol/symbol_main",
+                              0
+                          ],
+                  "155":  [
+                              "spine/charactor/charactor5",
+                              1,
+                              1
+                          ],
+                  "156":  [
+                              "spine/background/bg_front",
+                              1,
+                              1
+                          ],
+                  "157":  [
+                              "spine/multiply_bomb/multiply_frame",
+                              0
+                          ],
+                  "158":  [
+                              "bmfont/mega7042_multipliers",
+                              1,
+                              1
+                          ],
+                  "159":  [
+                              "spine/charactor/charactor15",
+                              1,
+                              1
+                          ],
+                  "160":  [
+                              "spine/multiply_bomb/multiply_bomb",
+                              1,
+                              1
+                          ],
+                  "161":  [
+                              "spine/symbol/symbol_main",
+                              5
+                          ],
+                  "162":  [
+                              "spine/charactor/charactor",
+                              5
+                          ],
+                  "163":  [
+                              "particle/gem_stars",
+                              0
+                          ],
+                  "164":  [
+                              "spine/xn/xn",
+                              1,
+                              1
+                          ],
+                  "165":  [
+                              "atlas/symbols",
+                              0
+                          ],
+                  "166":  [
+                              "spine/settlement/settlement_word",
+                              1,
+                              1
+                          ],
+                  "167":  [
+                              "spine/symbol/symbol_main",
+                              2
+                          ],
+                  "168":  [
+                              "spine/settlement/settlement",
+                              1,
+                              1
+                          ],
+                  "169":  [
+                              "spine/frame_fx/frame_fx",
+                              0
+                          ],
+                  "170":  [
+                              "spine/charactor/charactor",
+                              1,
+                              1
+                          ],
+                  "171":  [
+                              "particle/Smoke_006",
+                              1,
+                              1
+                          ]
+              },
+    "types":  [
+                  "cc.Texture2D",
+                  "cc.SpriteFrame",
+                  "cc.SpriteAtlas",
+                  "cc.BitmapFont",
+                  "cc.Asset",
+                  "sp.SkeletonData"
+              ],
+    "uuids":  [
+                  "07HuDiimlO855LvdFUW8mx",
+                  "09DoAn6L1DXq21jSJgm/ql",
+                  "1aQZmv79VMyJKZdkU0JpMw",
+                  "24WvzFRoZK0YuH6pTOEO/I",
+                  "28m2LjHixFLq1r+Rcprs6c",
+                  "2aa/D71ktEOKl3Ma5qVPjL",
+                  "2d+gmkDnpLj4h5eYLSpYIx",
+                  "30DZk0Z0JOypDa1+m4vK66",
+                  "31ventnJ1On6bBLrEOWG03",
+                  "38qQi6mwBMwJhtmKAJxHXc",
+                  "3bwiPG/CxJf4wW4wDm88a0",
+                  "567Trx/bJGKb2RbZJRXs4z",
+                  "59oY2Uae1IDog9tBV+Lqfa",
+                  "6c/XleGQpMlYFSBP5VsMyJ",
+                  "7azm/jgFZK67svT/Hw2drc",
+                  "80xxLdeYtG0qpr2jjrHr9x",
+                  "89biJfFONGLI4TcChlAISZ",
+                  "91jPtRFVVC3oPwF1CTiwk6",
+                  "96HekH6kdAgbiAFzbq2Lq6",
+                  "96gKaIYn1Gw45RRWDGf1kp",
+                  "9bH93IGaJFWa64KhWCZdDp",
+                  "a16QIeeqpK7okEaiaXR29b",
+                  "a5uJbG9zpPzIrgEQ02Iah+",
+                  "aeE9aC/oJOzJRNdx77QKhX",
+                  "bcKUbVG+VH/JJ1wYySjf2o",
+                  "c2qzS5t1RHpqj3YZrK6bUX",
+                  "d1ZJtId/9AqqGDhsAkqvrB",
+                  "d7Kv5lGSdG7LMnpW47qxR6",
+                  "d8ZUq/0e1DqrrLkW46aJqi",
+                  "dewWgzSqVM9oxhViQsgzyh",
+                  "fb7MZ3B2lACYexjGKjQhXV",
+                  "feGu/spPRBB46HIk0npK7i",
+                  "01hZOSCGBK7ZOSV5BzSKW2",
+                  "01tPtSohdBi7z1dKCtI3RT",
+                  "0bONts4gZCIopNoDg+4s10",
+                  "0d4gUJYOZKD6M8UfzdkSML",
+                  "0fU+n0zhdLQrluVYtpbYT6",
+                  "0fv6udHwJGEpN37JO6kcls",
+                  "13OXBPVEtF4L/SrjLlX2AO",
+                  "16D5vRVr5G4p8qMCF4rYK3",
+                  "1fVkA7iihHrbssHze5WlNq",
+                  "25Jf6DFbVG3rptQDFM1q7t",
+                  "25WcVsYCVMf5gwit2zwnu2",
+                  "25bvovMaVD+orP/xpSy12c",
+                  "28flT4a65Pqr1hRZxSPvZ1",
+                  "283A6u1IxC7LA8SEbKVDUm",
+                  "29KzGXmxtAyoLVbiKWQivv",
+                  "2dW3OwE2FGH4tB4QgrAciA",
+                  "30naVRvLxKQ7BVXEtdDJET",
+                  "384gKxVTxCT6VAEERD75sk",
+                  "3bmPlqkxVP1bmStuUzwJ7F",
+                  "3ckA1uA9JCybogFlQZwNwL",
+                  "3dFCUyT0FJaIBKeMs2aeF7",
+                  "41nrYf0DxF0JrTI/NaOwIi",
+                  "43FM+s+hNEaa2zBWKrbt5r",
+                  "44VwbyGcVLZpe0ENcjwMO5",
+                  "47jcoaFH5DOZttoN10bjA1",
+                  "4cQbTU0tlFlbZC34KsBiDo",
+                  "4cn5jluHFKGIn/fxfY98D5",
+                  "50TVbqQBtI24PbfkXtd6Hw",
+                  "53junyTPdIEodR3VSGu776",
+                  "542Cf7FJhHDZAIwrFJwTNA",
+                  "557ccdjnJLJLvOKT0b7heZ",
+                  "59XKHrtwlG8Kfs+y/lVHtq",
+                  "59jUE9g/BEFJQv1SXf9cnY",
+                  "5ahuH1vIxIqL9/3UMD8Z6b",
+                  "5bVfJJS35CnJPy1+eylonO",
+                  "5bsp6W+xREdZBZwJq1M2Tc",
+                  "5e5DT7ScNB37TYA4DK6Q/D",
+                  "60iuM/hhJC4qtnxsq/DgY2",
+                  "62DhQn2yVFhIpChS6hjRof",
+                  "62e3k+NKxMzYfcOG3/tWHO",
+                  "639N1ubPxGlZ2Pmx7kykCr",
+                  "64MCqPIuFEXai7wXA0es7K",
+                  "64RvyrfT1Fxq3f3uMWjRxy",
+                  "65zf6QQERIM5rFR1Eth51V",
+                  "66UC2rmvZPeINZVBXbNPr7",
+                  "69gKEXV9hHypMg5DOaogrH",
+                  "6bxtCAx0FPgq43yqvaheau",
+                  "6bySBBgoJNRJUZwDw/aUZg",
+                  "6dqQsVdhtKCIYRuI3lZLMZ",
+                  "6d0h6QFGRMHZOU6SKWUh3B",
+                  "6d/BySOQ1HXZlf/SnGQ+5B",
+                  "6fBm7ten5H/IbrWRpPcOsh",
+                  "70DfeydN1FMZENTK+2Gtvn",
+                  "71ypio5bBI05GKf7Ca/WhF",
+                  "76uy43eQZABpkLm5a+HxPe",
+                  "77WX9iQAFEw7JqfgthkOAu",
+                  "7a7eCNaGBN+IoNjsK98nOp",
+                  "7b/W8UMtdHn4tsKmK1bFF3",
+                  "7dhJY/UxNIt4kknDSpHEPW",
+                  "7eOhkSrJpJZ5F7pvKH2XGo",
+                  "81gq0lgNlKo6KBnUz2IuNK",
+                  "82y7czxa9De6Omj0d9tufE",
+                  "84I9pVFCNEBbnBUOMIEXVy",
+                  "86S0/lgZ1DXIxJUwsow6Qp",
+                  "88uc6Y86ZMh5IIKuNPY4dd",
+                  "8dyMIP1VFBlIlc8WVYBXVF",
+                  "8eJ4MW1KNBXYIUWgX7+9Oq",
+                  "8eRd0jj3RCzopSpNJnUKqp",
+                  "8edsX2jilOA6fj+pdsf3hU",
+                  "8fCwDPBiZF95bMRNHNGxK5",
+                  "91L4qWMCNGQ4Az/6Buzywb",
+                  "96MgeoCTpAJ6xIUiKectPV",
+                  "96xVubA4xPybsWO+UWnvnN",
+                  "97GejewVxHL5JjV+DjtpqN",
+                  "98W/IJBQ9Bb5lY8wH45/tC",
+                  "99Osngz+VDMrGXuIVxVwlY",
+                  "9d1N/hX65L8pojfHFh6dT5",
+                  "9eSSQ+3kBOJqPA0jJomGy7",
+                  "a3rNJW6K5Dpaq0aVOC4Aq7",
+                  "a3uvFvb7FE/rmcr0D1pNUS",
+                  "a4Lvf6S4xEYoPOIPNZkvkJ",
+                  "a62Lsm5M1LRqAJOy+UGhcq",
+                  "a7DnUOPA5HyYQBkaRnuGNi",
+                  "a9xQKSiVBE96KrRm6FfGOK",
+                  "acfvvkdCNFxpOz6/1I6++U",
+                  "adCDH73PxC/6oAIVp9GfiZ",
+                  "aeUDK1TG9Av7yDIoloBy3B",
+                  "afOL1hO3VPoJVELT0g0aTa",
+                  "b0OO64nTNDb7l9oKdGG7KB",
+                  "b2vIL+1HpPp4gdlSeoTpRM",
+                  "b5gEBtXT5BvbtQZ9mxg5NZ",
+                  "b7/MIDoxlGlLwKyhEA85hc",
+                  "bbBetHzh5CdIXO2ObEZrAw",
+                  "bdqBaIc79MM5FmgStksAAh",
+                  "bfGIazua9ENprwxOaHHQLd",
+                  "bfJq6q69VG76ltaylVlYf5",
+                  "bfYSe+thNNd5JuxX22bqhb",
+                  "c1kg0UAx5EcK5NCKmaKUUD",
+                  "c3XRJMvmxFRZjdbGEPI9Bo",
+                  "c3knOhcm5AgaPCYSNNc+gF",
+                  "c4Mf/ApkZMQKPhlOyEVzMT",
+                  "c763wZz1ZKMo0toW4sFRU/",
+                  "c8ALNGHPZBZLfO1obVGASB",
+                  "c9rUuFcD5GhLoji4fv59Gm",
+                  "c9x2rP6kpK1pbgjGKKVETa",
+                  "ca3s9PnoRAZZ236NeVNGoV",
+                  "cbUfjV/aBEeLgUy4WN2e79",
+                  "cdasmcvsJH7bKSUrajF+wq",
+                  "ceG9+fMO5KWouMHM8BB5LM",
+                  "d0YRLWVGhMLLSQQFvtUquo",
+                  "d1mi5pgF9IJIbAkXw5fR/V",
+                  "d1/Xs7AsNOQLpXo9N9mk2E",
+                  "d21Ri8wLRCV5dRtQut+5Qy",
+                  "d6/+K5fjBOFaF/1yunsGTI",
+                  "d8U5VBpUdP1pkE+lGP3216",
+                  "d9pIv+Aj9GJoxxkLYv8GgJ",
+                  "dapUQIw5NDPZSNxkB9btXV",
+                  "dcuBCktpZLFaAZW7DvbNVE",
+                  "detVfZLQFGn64Ovn9kS4S2",
+                  "dfCLK+Bz1NA5fur0MkJ5Vx",
+                  "dfFIHCC4VDwJKv1QiwLp2W",
+                  "e0Y11w8+JM4Jh3ahsYnKcQ",
+                  "e0qyMdOI1BgY50hTg0bAFk",
+                  "e3Bx3bBz5Pf5UcmYrw6tY8",
+                  "e3gr4BnKBFfJYUTNGHIbno",
+                  "e4cprVtqtOq4t5GBMTQ2v0",
+                  "e4fscb+vhGPIats72KXiPn",
+                  "e4549mw8VGb59CTq5vB+tO",
+                  "e5p1JTfkhB+L6ACwWvF8mw",
+                  "e8WqELfK5Oo6w+yrwUkkhg",
+                  "e9pZNGN+dCTKa0yjvEbPQz",
+                  "edIAW5GiFNA5vll9n3jYH8",
+                  "edO+ucICVJ1I5V5jUHGyLW",
+                  "eePxmmemFOko9QTtl5oZhj",
+                  "efgVry1whJWYq9kXRFI7qC",
+                  "f4ad76TvtKFoD2rfYSULzz",
+                  "f8G3LMGp9AdbaQQAQRp49z",
+                  "faL2b4LppOCat2CWBctq9Q",
+                  "fehmvKrsJNWa6XfaoeL+a/",
+                  "fflLGcnFJO64H+de9SP93T",
+                  "04Q7SH1bJGPaPz73TwHFiC",
+                  "0bVh0Yg31JEYigwJBe8Ucb",
+                  "12xXIWk9FJabI2Q0GhBy5J",
+                  "13hJzPPxdLwYVI1YFWpHKl",
+                  "137C/y2LhJXY+dWvLvPMhw",
+                  "208Bp9YQJJMbt8pQu0tsre",
+                  "21ewZdnjZI/6MzcCekAz3i",
+                  "22T3u79t9MV7sdruRIF9K1",
+                  "27sikHDVBF5oipuj2xgK0Z",
+                  "2748IAQo1HXrZbhH7C7zI4",
+                  "2bF9IFGmBPW6oDtDvZsKJs",
+                  "2eewdWE2BMJom4RcNdNZ4h",
+                  "31mus6PpdFBYNfzdwKUyV+",
+                  "353M0lif9GjbpEru4MT+p3",
+                  "37ROvDrdZMJJTXTSegSnZI",
+                  "39/gfIay1BWKVpkv8zQkgz",
+                  "3aLLIgeo5BU7FOjt8QIdV5",
+                  "3bERSE8/VPlJs3rVdyS5Kj",
+                  "3bRiIHpgJNtprQaJzEdZfT",
+                  "3dda5k/ThDtp2JSWjmfAbK",
+                  "3d5UI/jW1HnJW2CJGLpAvR",
+                  "41lMNfGUNPjY3efTDO+4K2",
+                  "47a4ErGXlKMqbtOAVrzC1l",
+                  "49VB0VkYJPT7g3UUl8IShI",
+                  "4b/rVqtAxOp6kiqIXujI8z",
+                  "4ci9VMbPNCJL2ELPdUbXYM",
+                  "4ee7BtpM1PvaBT83cMQ+b8",
+                  "50oUpBSOxKlKlNpqNIDfRG",
+                  "57H9/bECFCqJ08MwKQQpsm",
+                  "59KrIlCqJBZrfs8NOlyJwO",
+                  "599hgQZWRI0qBqSq+Te41O",
+                  "63WrUWylBGvLY0lnUMnjau",
+                  "65uGeIuUxC6oB0bNRPI/jH",
+                  "6cliQlb4FOjIOoOEBmpFBS",
+                  "6ftuLv3PZF2plIqrrBM4Xi",
+                  "73wBLssVBGI4yukH0G40S6",
+                  "74mb6LCJ1C2b8BL4O+KN14",
+                  "77xHNis85K946NuzINPuE6",
+                  "79ywZSx6NM5Yr4UPIRjgfU",
+                  "87hD0lA69EJJzwu/3hDNvh",
+                  "8b7NU8DLpJlpSk6JIV9EZe",
+                  "93zRX28aRD35ZHahSYauxG",
+                  "949yAHGxRGm67BCPXQycpO",
+                  "95shftLENDT5+ynuHTFBgD",
+                  "966nmr8RFIBYZGVfi03H2l",
+                  "97DH1E6YBIrJ9exNnjTcPa",
+                  "99JK6Rx3lHQ7FhKMndXQoq",
+                  "9a5G1w5sNKhaLYhcMhexf0",
+                  "9ecbxf0rlGdbf1Jx6NfXfy",
+                  "a4O70KAPBP/ZLbpK4AzgVR",
+                  "a69+AxSipOg6Uu82gfCx1O",
+                  "afMDjOzEFHQ7BU/CjhXfRm",
+                  "b1nhdGl51Cj6zz6ktmLL/A",
+                  "b8BZX64YdO+pjHaDkDFFpE",
+                  "bdPxyNh9VK8aUm/85P721+",
+                  "bepbakMqNE3ayXFs5L39Mp",
+                  "c0kXmGY5tEK5zpxKLohkS+",
+                  "c1dB9POapEDLP+NFFE5Rg0",
+                  "c1wAt7A9NI8JuogVTs2zwW",
+                  "c2Og/iEOJJ05RbvQ2h7AW3",
+                  "c3+xVqSxRIuK3Vyoqf4oQ6",
+                  "c7+gSSs8VFZIYPsuKPfaZh",
+                  "c9+lymZ3xKLaopJiRNiXUs",
+                  "cbLSEN3GZPH5LmCHKnrEmo",
+                  "cdYheHILlK46w7A0wyjbXl",
+                  "cfF1cPzYxC17rFsQlABwGZ",
+                  "d0NUZ+HdlM87a45l1krstG",
+                  "d0u8bUE2hP34vJfZ/fAz8M",
+                  "d3eejnqixB/4NeKYSJuYeG",
+                  "d6tkZBPcZOTbWyd3WPKrWA",
+                  "dbz0bXHGZHn6KGRjE1GK27",
+                  "de3ccV8A5Al6nSJmSUfoAT",
+                  "df/h5Em9JKu7U/HoPjUehT",
+                  "e09uAFVyNAUpuCRhDc7/Bh",
+                  "e89nRHTIFN5b/p3HPDzZaG",
+                  "e897XDrUpBMbyeFtOYy7f7",
+                  "e9o4LP65FDv40Vjh9pywa0",
+                  "e94eZcg9JE2YgwMwOXIJN3",
+                  "eaDc/36wZIc4ZSjhBj+UuB",
+                  "ebSyIOAKpCZ5Ojc9FHkSC/",
+                  "eeDxeqtehO+bwjEK6qXFiu",
+                  "ef541oz75DhpLf9aQ/Jpm1",
+                  "f7npX9kExGKKIzyW7+0VKS",
+                  "fcQEFUJuVAHpvkKgyHV2Uh",
+                  "ffBNGwnXpHtLkLFZMs7AUX"
+              ],
+    "scenes":  {
+
+               },
+    "redirect":  [
+                     32,
+                     0,
+                     36,
+                     0,
+                     37,
+                     0,
+                     174,
+                     0,
+                     176,
+                     0,
+                     39,
+                     0,
+                     177,
+                     0,
+                     42,
+                     0,
+                     43,
+                     0,
+                     180,
+                     0,
+                     44,
+                     0,
+                     182,
+                     0,
+                     183,
+                     0,
+                     48,
+                     0,
+                     184,
+                     0,
+                     185,
+                     0,
+                     186,
+                     0,
+                     49,
+                     0,
+                     187,
+                     0,
+                     188,
+                     0,
+                     189,
+                     0,
+                     190,
+                     0,
+                     50,
+                     0,
+                     51,
+                     0,
+                     52,
+                     0,
+                     192,
+                     0,
+                     53,
+                     0,
+                     54,
+                     0,
+                     56,
+                     0,
+                     195,
+                     0,
+                     196,
+                     0,
+                     197,
+                     0,
+                     58,
+                     0,
+                     60,
+                     0,
+                     61,
+                     0,
+                     62,
+                     0,
+                     200,
+                     0,
+                     63,
+                     0,
+                     202,
+                     0,
+                     65,
+                     0,
+                     66,
+                     0,
+                     70,
+                     0,
+                     73,
+                     0,
+                     74,
+                     0,
+                     204,
+                     0,
+                     75,
+                     0,
+                     76,
+                     0,
+                     77,
+                     0,
+                     78,
+                     0,
+                     79,
+                     0,
+                     80,
+                     0,
+                     81,
+                     0,
+                     83,
+                     0,
+                     84,
+                     0,
+                     207,
+                     0,
+                     208,
+                     0,
+                     86,
+                     0,
+                     87,
+                     0,
+                     209,
+                     0,
+                     88,
+                     0,
+                     89,
+                     0,
+                     91,
+                     0,
+                     93,
+                     0,
+                     95,
+                     0,
+                     211,
+                     0,
+                     96,
+                     0,
+                     99,
+                     0,
+                     100,
+                     0,
+                     101,
+                     0,
+                     102,
+                     0,
+                     213,
+                     0,
+                     104,
+                     0,
+                     217,
+                     0,
+                     105,
+                     0,
+                     219,
+                     0,
+                     108,
+                     0,
+                     220,
+                     0,
+                     110,
+                     0,
+                     111,
+                     0,
+                     112,
+                     0,
+                     221,
+                     0,
+                     113,
+                     0,
+                     222,
+                     0,
+                     114,
+                     0,
+                     115,
+                     0,
+                     117,
+                     0,
+                     118,
+                     0,
+                     120,
+                     0,
+                     224,
+                     0,
+                     122,
+                     0,
+                     226,
+                     0,
+                     125,
+                     0,
+                     227,
+                     0,
+                     127,
+                     0,
+                     128,
+                     0,
+                     228,
+                     0,
+                     229,
+                     0,
+                     129,
+                     0,
+                     231,
+                     0,
+                     130,
+                     0,
+                     131,
+                     0,
+                     232,
+                     0,
+                     132,
+                     0,
+                     133,
+                     0,
+                     134,
+                     0,
+                     135,
+                     0,
+                     136,
+                     0,
+                     235,
+                     0,
+                     138,
+                     0,
+                     236,
+                     0,
+                     139,
+                     0,
+                     140,
+                     0,
+                     238,
+                     0,
+                     142,
+                     0,
+                     143,
+                     0,
+                     144,
+                     0,
+                     145,
+                     0,
+                     147,
+                     0,
+                     148,
+                     0,
+                     243,
+                     0,
+                     151,
+                     0,
+                     152,
+                     0,
+                     244,
+                     0,
+                     153,
+                     0,
+                     154,
+                     0,
+                     157,
+                     0,
+                     161,
+                     0,
+                     246,
+                     0,
+                     248,
+                     0,
+                     162,
+                     0,
+                     250,
+                     0,
+                     251,
+                     0,
+                     163,
+                     0,
+                     165,
+                     0,
+                     253,
+                     0,
+                     167,
+                     0,
+                     169,
+                     0,
+                     256,
+                     0,
+                     171,
+                     0
+                 ],
+    "deps":  [
+                 "main"
+             ],
+    "packs":  {
+                  "07f9b45ce":  [
+                                    172,
+                                    34,
+                                    173,
+                                    175,
+                                    179,
+                                    181,
+                                    198,
+                                    216,
+                                    223,
+                                    241,
+                                    254
+                                ],
+                  "0b6a0881a":  [
+                                    1,
+                                    2,
+                                    12,
+                                    18,
+                                    24,
+                                    26,
+                                    27
+                                ],
+                  "0d5f88008":  [
+                                    193,
+                                    199,
+                                    201,
+                                    203,
+                                    205,
+                                    206,
+                                    210,
+                                    214,
+                                    215,
+                                    218,
+                                    225,
+                                    230,
+                                    233,
+                                    237,
+                                    239,
+                                    240,
+                                    150,
+                                    245,
+                                    247,
+                                    249,
+                                    252,
+                                    255
+                                ],
+                  "0ff90b9ae":  [
+                                    178,
+                                    191,
+                                    194,
+                                    212,
+                                    106
+                                ]
+              },
+    "name":  "art_7042",
+    "importBase":  "import",
+    "nativeBase":  "native",
+    "debug":  false,
+    "isZip":  false,
+    "encrypted":  false,
+    "versions":  {
+                     "import":  [
+                                    33,
+                                    "3f27d",
+                                    0,
+                                    "f2060",
+                                    "07f9b45ce",
+                                    "aaa33",
+                                    "0b6a0881a",
+                                    "a5a37",
+                                    "0d5f88008",
+                                    "49bff",
+                                    35,
+                                    "7f089",
+                                    "0ff90b9ae",
+                                    "4d3d0",
+                                    38,
+                                    "eb5d9",
+                                    40,
+                                    "c1804",
+                                    3,
+                                    "6be2d",
+                                    41,
+                                    "787dc",
+                                    4,
+                                    "1784c",
+                                    45,
+                                    "99966",
+                                    46,
+                                    "c2460",
+                                    5,
+                                    "66618",
+                                    47,
+                                    "e1302",
+                                    6,
+                                    "988dc",
+                                    7,
+                                    "b922c",
+                                    8,
+                                    "1ea5a",
+                                    9,
+                                    "40742",
+                                    10,
+                                    "5c6ac",
+                                    55,
+                                    "9f69f",
+                                    57,
+                                    "760b8",
+                                    59,
+                                    "a0119",
+                                    11,
+                                    "d925d",
+                                    64,
+                                    "dc052",
+                                    67,
+                                    "12dfe",
+                                    68,
+                                    "dbe72",
+                                    69,
+                                    "8e084",
+                                    71,
+                                    "45613",
+                                    72,
+                                    "2b46a",
+                                    13,
+                                    "2401c",
+                                    82,
+                                    "c66f6",
+                                    85,
+                                    "b0fec",
+                                    14,
+                                    "bccd4",
+                                    90,
+                                    "08293",
+                                    15,
+                                    "6c159",
+                                    92,
+                                    "96776",
+                                    94,
+                                    "784cb",
+                                    16,
+                                    "5d452",
+                                    97,
+                                    "181dd",
+                                    98,
+                                    "ed219",
+                                    17,
+                                    "4542f",
+                                    103,
+                                    "ac8d7",
+                                    19,
+                                    "ec83b",
+                                    107,
+                                    "3f340",
+                                    20,
+                                    "090c9",
+                                    109,
+                                    "83a6c",
+                                    21,
+                                    "21942",
+                                    22,
+                                    "7eed5",
+                                    116,
+                                    "cafd8",
+                                    23,
+                                    "d285d",
+                                    119,
+                                    "f6852",
+                                    121,
+                                    "aec4f",
+                                    123,
+                                    "dce7f",
+                                    124,
+                                    "26a0a",
+                                    126,
+                                    "add5f",
+                                    25,
+                                    "3c566",
+                                    234,
+                                    "188fb",
+                                    137,
+                                    "a7692",
+                                    141,
+                                    "59083",
+                                    146,
+                                    "ed3ab",
+                                    28,
+                                    "9febb",
+                                    242,
+                                    "09ef5",
+                                    149,
+                                    "57f80",
+                                    29,
+                                    "1e390",
+                                    155,
+                                    "fa5da",
+                                    156,
+                                    "d53e7",
+                                    158,
+                                    "96902",
+                                    159,
+                                    "114d4",
+                                    160,
+                                    "c0ee2",
+                                    164,
+                                    "e0ec4",
+                                    166,
+                                    "bff6a",
+                                    168,
+                                    "1385c",
+                                    30,
+                                    "0ae84",
+                                    31,
+                                    "297f7",
+                                    170,
+                                    "3a64d"
+                                ],
+                     "native":  [
+                                    0,
+                                    "0684c",
+                                    1,
+                                    "60def",
+                                    2,
+                                    "a632e",
+                                    3,
+                                    "ea5bf",
+                                    4,
+                                    "03a55",
+                                    5,
+                                    "27885",
+                                    6,
+                                    "b7cbf",
+                                    7,
+                                    "e729d",
+                                    8,
+                                    "3021e",
+                                    9,
+                                    "b3595",
+                                    10,
+                                    "c6c57",
+                                    11,
+                                    "94c7e",
+                                    12,
+                                    "7ab35",
+                                    13,
+                                    "542f3",
+                                    14,
+                                    "b204e",
+                                    15,
+                                    "b8426",
+                                    16,
+                                    "27e88",
+                                    17,
+                                    "d81c3",
+                                    18,
+                                    "fe1c3",
+                                    19,
+                                    "5951a",
+                                    20,
+                                    "9127c",
+                                    21,
+                                    "7282b",
+                                    22,
+                                    "242e1",
+                                    23,
+                                    "1a979",
+                                    24,
+                                    "114e5",
+                                    25,
+                                    "1b311",
+                                    26,
+                                    "698d3",
+                                    27,
+                                    "8ad87",
+                                    28,
+                                    "2bfe4",
+                                    29,
+                                    "0e637",
+                                    30,
+                                    "46b56",
+                                    31,
+                                    "ed935"
+                                ]
+                 }
+}

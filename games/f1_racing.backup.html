@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>F1 Racing • 1xBet & T1 Games</title>
+    <link rel="icon" type="image/svg+xml" href="/games/racing/bet_1.e14d26f8.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Rive Web Runtime -->
+    <script src="/games/racing/rive.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0d111a;
+            --panel-bg: #151b27;
+            --panel-alt: #1a2232;
+            --accent-green: #22c55e;
+            --accent-gold: #facc15;
+            --accent-cyan: #06b6d4;
+            --accent-red: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --header-h: 56px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 1xBet Master Header (Matching test_1xbet.png) */
+        .xb-master-header {
+            height: 48px;
+            background: #0d172b;
+            border-bottom: 1px solid #1a2f4d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .xb-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .xb-logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-decoration: none;
+            font-style: italic;
+        }
+        .xb-logo span {
+            color: #00a2ff;
+        }
+
+        .xb-bonus-box {
+            background: #182844;
+            color: #facc15;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .xb-badge-num {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #22c55e;
+            color: #000;
+            font-size: 9px;
+            font-weight: 900;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .xb-cash-icon {
+            background: #182844;
+            color: #22c55e;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+        }
+
+        .xb-wallet-box {
+            background: #091322;
+            border: 1px solid #1a2f4d;
+            border-radius: 16px;
+            padding: 4px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+        .xb-wallet-lbl {
+            color: #7f99b8;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .xb-wallet-val {
+            color: #4ade80;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+        }
+
+        .xb-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .xb-btn-reg {
+            background: #78be20;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 7px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(120, 190, 32, 0.4);
+            transition: all 0.2s;
+        }
+        .xb-btn-reg:hover {
+            background: #88d424;
+            transform: translateY(-1px);
+        }
+
+        .xb-btn-login {
+            background: #19385c;
+            color: #ffffff;
+            border: 1px solid #234c7c;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 7px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .xb-btn-login:hover {
+            background: #204673;
+        }
+
+        .xb-icon-btn {
+            color: #7f99b8;
+            background: #14233c;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.2s;
+        }
+        .xb-icon-btn:hover {
+            color: #fff;
+            background: #1d3153;
+        }
+
+        .xb-lang-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #9bb3ce;
+            padding: 5px 8px;
+            border-radius: 6px;
+            background: #14233c;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .xb-sep {
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* 1xBet Category Nav Ribbon */
+        .xb-nav-ribbon {
+            height: 38px;
+            background: #091322;
+            border-bottom: 1px solid #14233c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: sticky;
+            top: 48px;
+            z-index: 900;
+        }
+
+        .xb-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .xb-nav-item {
+            color: #8da4be;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.15s;
+        }
+        .xb-nav-item:hover, .xb-nav-item.active {
+            color: #ffffff;
+        }
+        .xb-nav-item.active {
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+            padding-bottom: 7px;
+        }
+        .xb-chev {
+            font-size: 8px;
+            opacity: 0.7;
+        }
+
+        .xb-crash-item {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8 !important;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .xb-nav-audio {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .f1-icon-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #14233c;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 11px;
+        }
+        .f1-icon-btn:hover {
+            color: #fff;
+            background: #1d3356;
+        }
+        .f1-icon-btn.active {
+            color: var(--accent-green);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        /* Body Layout with Sidebar + Stage */
+        .xb-body-layout {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - 86px - 40px);
+        }
+
+        /* Left Icon Sidebar */
+        .xb-sidebar-icons {
+            width: 48px;
+            background: #0a1324;
+            border-right: 1px solid #14233c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .xb-side-icon-btn {
+            background: transparent;
+            border: none;
+            color: #5d7496;
+            font-size: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .xb-side-icon-btn:hover {
+            color: #ffffff;
+            background: #14233c;
+        }
+        .xb-side-icon-btn.active {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+        }
+
+        .xb-stage-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background: #0b111e;
+        }
+
+        /* Main Game Layout */
+        .f1-main-layout {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 10px 14px;
+            gap: 14px;
+        }
+
+        /* Left/Center Column: Race Track & Betting Station */
+        .f1-center-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        /* Top Chevron Border (frame.jpg) */
+        .f1-chevron-border {
+            width: 100%;
+            height: 12px;
+            background: url('/games/racing/frame.jpg') repeat-x center;
+            background-size: auto 100%;
+            border-radius: 4px;
+            opacity: 0.9;
+        }
+
+        /* Race Track Arena */
+        .f1-track-arena {
+            position: relative;
+            width: 100%;
+            height: 310px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0f141f radial-gradient(circle at 50% 120%, #1e293b 0%, #0f172a 75%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* City Skyline & Sky */
+        .f1-skyline-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            background: linear-gradient(180deg, #60a5fa 0%, #93c5fd 60%, #bae6fd 100%);
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .f1-clouds {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 200%;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 10%, transparent 60%);
+            animation: cloudScroll 35s linear infinite;
+        }
+
+        @keyframes cloudScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .f1-city-silhouette {
+            width: 100%;
+            height: 60px;
+            background-image: repeating-linear-gradient(90deg, #cbd5e1 0px, #cbd5e1 24px, #94a3b8 24px, #94a3b8 42px, #64748b 42px, #64748b 68px, transparent 68px, transparent 74px);
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .f1-bushes-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background: repeating-radial-gradient(circle at 10px 10px, #84cc16 0px, #65a30d 14px, #4d7c0f 22px);
+            z-index: 3;
+            border-bottom: 2px solid #3f6212;
+        }
+
+        /* Racing Red & White Kerbs */
+        .f1-kerb-top {
+            position: absolute;
+            top: 88px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(90deg, #ef4444 0px, #ef4444 24px, #ffffff 24px, #ffffff 48px);
+            z-index: 4;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .f1-kerb-bottom {
+            position: absolute;
+            bottom: 34px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(90deg, #ef4444 0px, #ef4444 24px, #ffffff 24px, #ffffff 48px);
+            z-index: 4;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.4);
+        }
+
+        /* Foreground Grass & Chips Layer */
+        .f1-grass-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 34px;
+            background: linear-gradient(180deg, #4ade80 0%, #22c55e 60%, #15803d 100%);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Checkered Finish Line */
+        .f1-checkered-line {
+            position: absolute;
+            top: 98px;
+            bottom: 44px;
+            left: 140px;
+            width: 20px;
+            background: repeating-conic-gradient(#ffffff 0% 25%, #000000 0% 50%) 50% / 10px 10px;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-left: 2px solid #fff;
+            border-right: 2px solid #fff;
+        }
+
+        /* Rive Canvas / Animation Canvas */
+        .f1-canvas-wrap {
+            position: absolute;
+            top: 98px;
+            bottom: 44px;
+            left: 0;
+            right: 0;
+            z-index: 6;
+        }
+
+        #f1RacingCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Countdown Lights Overlay */
+        .f1-countdown-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 23, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 20;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .f1-countdown-overlay.show {
+            display: flex;
+        }
+
+        .f1-gantry-lights {
+            display: flex;
+            background: #111;
+            border: 3px solid #333;
+            border-radius: 14px;
+            padding: 12px 24px;
+            gap: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+        }
+
+        .f1-light-bulb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #222;
+            border: 2px solid #444;
+            transition: all 0.15s;
+        }
+
+        .f1-light-bulb.red {
+            background: #ef4444;
+            box-shadow: 0 0 20px #ef4444, 0 0 40px #ef4444;
+        }
+
+        .f1-light-bulb.green {
+            background: #22c55e;
+            box-shadow: 0 0 25px #22c55e, 0 0 50px #22c55e;
+        }
+
+        .f1-countdown-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 4px 14px rgba(0,0,0,0.8);
+        }
+
+        /* History & Recent Winners Bar */
+        .f1-history-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 14px;
+            gap: 12px;
+            overflow-x: auto;
+        }
+
+        .f1-history-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.6px;
+            white-space: nowrap;
+        }
+
+        .f1-history-list {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .f1-history-pill {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.25);
+            animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Betting Console (10 Cars + Chips) */
+        .f1-betting-console {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Chip Selection Bar */
+        .f1-chips-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .f1-chips-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .f1-chip-btn {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .f1-chip-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+        }
+
+        .f1-chip-btn.active {
+            transform: scale(1.15) translateY(-4px);
+            filter: drop-shadow(0 8px 16px rgba(250, 204, 21, 0.8));
+        }
+
+        .f1-chip-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .f1-quick-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .f1-quick-btn {
+            background: var(--panel-alt);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .f1-quick-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 10 Cars Grid */
+        .f1-cars-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .f1-cars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Individual Car Bet Card */
+        .f1-car-card {
+            background: #19202e;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .f1-car-card.has-bet {
+            background: rgba(30, 41, 59, 0.95);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Car Header with Badge & Name */
+        .f1-car-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .f1-car-badge-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .f1-car-icon-img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+        }
+
+        .f1-car-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .f1-car-number-label {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        .f1-car-odds-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        /* Bet Amount Controls */
+        .f1-car-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #111622;
+            border-radius: 10px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .f1-car-step-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: #252e42;
+            border: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.15s;
+        }
+
+        .f1-car-step-btn:hover {
+            background: #334155;
+        }
+
+        .f1-car-step-btn:active {
+            transform: scale(0.9);
+        }
+
+        .f1-car-bet-amt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #facc15;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Bottom Action Bar: Total & Start Button */
+        .f1-bottom-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .f1-total-bet-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .f1-total-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .f1-total-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 900;
+            color: #facc15;
+        }
+
+        .f1-btn-start {
+            flex: 1;
+            max-width: 320px;
+            height: 52px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+            transition: all 0.2s;
+        }
+
+        .f1-btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(34, 197, 94, 0.8);
+            background: linear-gradient(135deg, #34d399, #059669);
+        }
+
+        .f1-btn-start:active {
+            transform: translateY(0);
+        }
+
+        .f1-btn-start:disabled {
+            background: #334155;
+            color: #64748b;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Right Column: "My Bets" & Live Stats Panel */
+        .f1-side-col {
+            width: 320px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1100px) {
+            .f1-main-layout {
+                flex-direction: column;
+            }
+            .f1-side-col {
+                width: 100%;
+            }
+        }
+
+        .f1-side-tabs {
+            display: flex;
+            background: #111622;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .f1-side-tab {
+            flex: 1;
+            padding: 14px 0;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .f1-side-tab.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .f1-side-content {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            max-height: 540px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Empty State with Astronaut Mascot */
+        .f1-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: auto 0;
+            padding: 24px 12px;
+            gap: 14px;
+        }
+
+        .f1-astro-img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+            animation: floatAstro 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floatAstro {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .f1-empty-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .f1-empty-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Bet History List */
+        .f1-bets-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .f1-bet-item {
+            background: var(--panel-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .f1-bet-item.won {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        .f1-bet-item.lost {
+            border-color: rgba(239, 68, 68, 0.25);
+            opacity: 0.8;
+        }
+
+        /* Modals */
+        .f1-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .f1-modal-backdrop.show {
+            display: flex;
+        }
+
+        .f1-modal-card {
+            background: #151b27;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 24px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+            animation: zoomModal 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        @keyframes zoomModal {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .f1-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: #1f293d;
+            border: none;
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .f1-modal-close:hover {
+            color: #fff;
+        }
+
+        /* Win Celebration Banner */
+        .f1-win-banner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+            border: 3px solid #facc15;
+            box-shadow: 0 0 50px rgba(250, 204, 21, 0.7);
+            border-radius: 24px;
+            padding: 32px 48px;
+            z-index: 2000;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(14px);
+        }
+
+        .f1-win-banner.show {
+            display: flex;
+            animation: bannerPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes bannerPop {
+            0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .f1-win-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #facc15;
+            text-shadow: 0 0 20px rgba(250, 204, 21, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .f1-win-car-badge {
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.7));
+        }
+
+        .f1-win-payout {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            font-weight: 800;
+            color: #4ade80;
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+        }
+
+        /* 1xBet Stand Subbar (matching test_1xbet.png) */
+        .f1-stand-subbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 6px 8px 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .f1-breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .f1-crumb-sep {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .f1-crumb-active {
+            color: #fff;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .f1-stand-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .f1-real-money-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #e2e8f0;
+            cursor: pointer;
+            background: rgba(30, 41, 59, 0.6);
+            padding: 3px 8px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .f1-real-money-toggle input {
+            accent-color: #22c55e;
+            cursor: pointer;
+        }
+
+        .f1-stand-btn {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.15s;
+        }
+
+        .f1-stand-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(51, 65, 85, 0.8);
+        }
+
+        /* Center Metallic Speedometer Dial Gauge (matching test_1xbet.png & bg_m2.jpg) */
+        .f1-speedo-gauge {
+            position: absolute;
+            top: 50%;
+            left: 54%;
+            transform: translate(-50%, -46%);
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            border: 5px solid rgba(148, 163, 184, 0.2);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(15, 23, 42, 0.75) 65%, transparent 100%);
+            box-shadow: 0 0 35px rgba(14, 165, 233, 0.25), inset 0 0 25px rgba(14, 165, 233, 0.25);
+            pointer-events: none;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .f1-speedo-ticks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed rgba(56, 189, 248, 0.35);
+        }
+
+        .f1-speedo-needle {
+            position: absolute;
+            width: 68px;
+            height: 3px;
+            background: linear-gradient(90deg, #ef4444, #facc15);
+            transform-origin: 0% 50%;
+            transform: rotate(-35deg);
+            box-shadow: 0 0 10px #ef4444;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .f1-speedo-center {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 14px #ef4444, inset 0 0 4px #fff;
+            z-index: 3;
+        }
+
+        .f1-speedo-readout {
+            position: absolute;
+            bottom: 22px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Floating Picture-in-Picture Mini Gameplay Video */
+        .f1-floating-trailer-pip {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 230px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #38bdf8;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(56, 189, 248, 0.45);
+            z-index: 600;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .f1-floating-trailer-pip.minimized {
+            transform: translateY(calc(100% - 38px));
+        }
+
+        .f1-pip-head {
+            background: #0f172a;
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: #38bdf8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .f1-pip-controls {
+            display: flex;
+            gap: 4px;
+        }
+
+        .f1-pip-icon-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 11px;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .f1-pip-icon-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .f1-pip-body {
+            position: relative;
+            cursor: pointer;
+            height: 130px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .f1-pip-body img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .f1-pip-badge {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: #ef4444;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+            animation: pulseBadge 1.8s infinite;
+        }
+
+        /* 1xBet Exact Modal */
+        .xb-prompt-modal-card {
+            background: #182338;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 580px;
+            padding: 32px 36px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+            animation: zoomModal 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .xb-prompt-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .xb-prompt-text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .xb-prompt-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.25;
+        }
+
+        .xb-prompt-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .xb-prompt-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .xb-prompt-btn-login {
+            background: #78be20;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(120, 190, 32, 0.4);
+            transition: all 0.2s;
+        }
+        .xb-prompt-btn-login:hover {
+            background: #88d424;
+            transform: translateY(-1px);
+        }
+
+        .xb-prompt-btn-reg {
+            background: #253e63;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+        .xb-prompt-btn-reg:hover {
+            background: #2e4d7a;
+        }
+
+        .xb-prompt-graphic-side {
+            width: 170px;
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .xb-phone-illustration {
+            width: 140px;
+            height: 150px;
+            position: relative;
+        }
+
+        .xb-mockup-phone {
+            width: 100px;
+            height: 135px;
+            border: 5px solid #38bdf8;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-10deg);
+        }
+
+        .xb-phone-screen {
+            width: 76px;
+            height: 100px;
+            background: #0f172a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .xb-flame-coin {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 0 16px rgba(251, 191, 36, 0.7);
+        }
+
+        .xb-cartoon-hand {
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            font-size: 42px;
+            color: #38bdf8;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+            transform: rotate(-20deg);
+        }
+
+        .xb-floating-chip-fx {
+            position: absolute;
+            top: 25px;
+            left: -10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px dashed #fff;
+            background: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+            animation: chipHover 2s infinite ease-in-out;
+        }
+
+        @keyframes chipHover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* 1xBet Bottom Footer Bar */
+        .xb-footer-bar {
+            height: 40px;
+            background: #091322;
+            border-top: 1px solid #14233c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 500;
+        }
+
+        .xb-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .xb-foot-tab {
+            background: transparent;
+            border: none;
+            color: #7f99b8;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+        .xb-foot-tab:hover, .xb-foot-tab.active {
+            color: #ffffff;
+        }
+
+        .xb-footer-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .xb-footer-search {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .xb-footer-search input {
+            background: #14233c;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            color: #fff;
+            padding: 4px 26px 4px 10px;
+            font-size: 11px;
+            width: 220px;
+            outline: none;
+        }
+        .xb-footer-search i {
+            position: absolute;
+            right: 8px;
+            font-size: 10px;
+            color: #7f99b8;
+        }
+
+        .xb-footer-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .xb-grid-views {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .xb-grid-btn {
+            background: #14233c;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #7f99b8;
+            width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .xb-grid-btn.active, .xb-grid-btn:hover {
+            color: #fff;
+            background: #1d3356;
+        }
+
+        /* 1xBet Live Support Headset Bubble */
+        .xb-support-bubble {
+            position: fixed;
+            bottom: 12px;
+            right: 14px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #0284c7;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.6);
+            z-index: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .xb-support-bubble:hover {
+            transform: scale(1.08);
+            background: #0369a1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1xBet Top Master Header (Matching test_1xbet.png) -->
+    <header class="xb-master-header">
+        <div class="xb-header-left">
+            <a href="/" class="xb-logo">1X<span>BET</span></a>
+            <div class="xb-bonus-box" title="Bonuses">
+                <i class="fa-solid fa-gift"></i>
+                <span class="xb-badge-num">1</span>
+            </div>
+            <div class="xb-cash-icon" title="Cashout / Deposit" onclick="window.location.href='../deposit.html?redirect=games/f1_racing.html'">
+                <i class="fa-solid fa-dollar-sign"></i>
+            </div>
+            <!-- Live Wallet PKR -->
+            <div class="xb-wallet-box">
+                <span class="xb-wallet-lbl">Main:</span>
+                <span class="xb-wallet-val" id="topWalletBalance">Rs. 0.00</span>
+            </div>
+        </div>
+
+        <div class="xb-header-right">
+            <a href="../deposit.html?redirect=games/f1_racing.html" class="xb-btn-reg">REGISTRATION</a>
+            <button class="xb-btn-login" onclick="open1xBetModal()">LOG IN</button>
+            <div class="xb-icon-btn" title="Settings">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div class="xb-lang-time">
+                <span>🇬🇧 EN</span>
+                <span class="xb-sep">/</span>
+                <span id="liveTimeClock">02:06</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1xBet Category Nav Ribbon -->
+    <nav class="xb-nav-ribbon">
+        <div class="xb-nav-links">
+            <a href="/" class="xb-nav-item">
+                <i class="fa-solid fa-trophy" style="color:#facc15;"></i> TOP-EVENTS <i class="fa-solid fa-chevron-down xb-chev"></i>
+            </a>
+            <a href="/sports.html" class="xb-nav-item">
+                SPORTS <i class="fa-solid fa-chevron-down xb-chev"></i>
+            </a>
+            <a href="/live.html" class="xb-nav-item">
+                LIVE <i class="fa-solid fa-chevron-down xb-chev"></i>
+            </a>
+            <a href="/casino.html" class="xb-nav-item active">
+                CASINO <i class="fa-solid fa-chevron-down xb-chev"></i>
+            </a>
+            <a href="/live-casino.html" class="xb-nav-item">
+                LIVE CASINO <i class="fa-solid fa-chevron-down xb-chev"></i>
+            </a>
+            <a href="/more.html" class="xb-nav-item">
+                MORE <i class="fa-solid fa-chevron-down xb-chev"></i>
+            </a>
+            <a href="/games/crash.html" class="xb-nav-item xb-crash-item">
+                <i class="fa-solid fa-plane"></i> Crash
+            </a>
+        </div>
+        <div class="xb-nav-audio">
+            <button class="f1-icon-btn active" id="btnSoundFx" onclick="toggleSoundFx()" title="Sound FX">
+                <i class="fa-solid fa-volume-high" id="iconSoundFx"></i>
+            </button>
+            <button class="f1-icon-btn active" id="btnBgm" onclick="toggleBgm()" title="Background Music">
+                <i class="fa-solid fa-music" id="iconBgm"></i>
+            </button>
+            <button class="f1-icon-btn" onclick="openRulesModal()" title="Game Rules">
+                <i class="fa-solid fa-book-open"></i>
+            </button>
+            <button class="f1-icon-btn" onclick="openFairnessModal()" title="Provably Fair">
+                <i class="fa-solid fa-scale-balanced"></i>
+            </button>
+            <button class="f1-icon-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 1xBet Body Layout (Sidebar + Stage) -->
+    <div class="xb-body-layout">
+        <!-- 1xBet Left Icon Sidebar (Matching test_1xbet.png) -->
+        <aside class="xb-sidebar-icons">
+            <button class="xb-side-icon-btn active" title="Favorites" onclick="toggleFavorite(this)">
+                <i class="fa-solid fa-heart"></i>
+            </button>
+            <button class="xb-side-icon-btn" title="All Games" onclick="window.location.href='/casino.html'">
+                <i class="fa-solid fa-table-cells-large"></i>
+            </button>
+            <button class="xb-side-icon-btn" title="Promotions & Bonuses" onclick="openTrailerModal()">
+                <i class="fa-solid fa-bullhorn"></i>
+            </button>
+            <button class="xb-side-icon-btn" title="Tournaments">
+                <i class="fa-solid fa-trophy"></i>
+            </button>
+            <button class="xb-side-icon-btn" title="Recent Games">
+                <i class="fa-solid fa-gamepad"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="xb-stage-wrap">
+            
+            <!-- 1xBet Stand Subbar (matching test_1xbet.png) -->
+            <div class="f1-stand-subbar">
+                <div class="f1-breadcrumbs">
+                    <a href="/"><i class="fa-solid fa-house" style="color:#7f99b8;"></i></a>
+                    <span class="f1-crumb-sep">/</span>
+                    <span>Search results</span>
+                    <span class="f1-crumb-sep">/</span>
+                    <span class="f1-crumb-active">Racing</span>
+                </div>
+
+                <div class="f1-stand-title">
+                    RACING
+                </div>
+
+                <div class="f1-stand-actions">
+                    <div class="f1-stand-search">
+                        <input type="text" placeholder="Search" readonly>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <label class="f1-real-money-toggle" title="Real Money Mode">
+                        <input type="checkbox" id="realMoneyToggle" checked onchange="toggleRealMoneyMode(this)">
+                        <span>Play for real money</span>
+                    </label>
+                    <button class="f1-stand-btn" onclick="openTrailerModal()" title="Watch Official Trailer">
+                        <i class="fa-solid fa-film"></i>
+                    </button>
+                    <button class="f1-stand-btn" onclick="location.reload()" title="Reload Game">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                    <button class="f1-stand-btn" onclick="toggleFavorite(this)" title="Add to Favorites" id="btnFavorite">
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+                    <button class="f1-stand-btn" onclick="window.location.href='/casino.html'" title="Exit to Lobby">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Container -->
+            <main class="f1-main-layout">
+                
+                <!-- Left: Race Track & Betting Station -->
+                <section class="f1-center-col">
+
+            <!-- Top Chevron Border -->
+            <div class="f1-chevron-border"></div>
+
+            <!-- Race Track Arena -->
+            <div class="f1-track-arena" id="trackArena">
+                <!-- Skyline Backdrop -->
+                <div class="f1-skyline-bg">
+                    <div class="f1-clouds"></div>
+                    <div class="f1-city-silhouette"></div>
+                    <div class="f1-bushes-strip"></div>
+                </div>
+
+                <!-- Center Metallic Speedometer Dial Gauge (matching 1xBet & T1 Games) -->
+                <div class="f1-speedo-gauge" id="speedoGauge">
+                    <div class="f1-speedo-ticks"></div>
+                    <div class="f1-speedo-needle" id="speedoNeedle"></div>
+                    <div class="f1-speedo-center"></div>
+                    <div class="f1-speedo-readout"><span id="speedoNumber">0</span> KM/H</div>
+                </div>
+
+                <!-- Upper Racing Kerb -->
+                <div class="f1-kerb-top"></div>
+
+                <!-- Checkered Finish Line -->
+                <div class="f1-checkered-line"></div>
+
+                <!-- Canvas Wrapper (Rive + Hybrid 60FPS Speed Engine) -->
+                <div class="f1-canvas-wrap">
+                    <canvas id="f1RacingCanvas"></canvas>
+                </div>
+
+                <!-- Lower Racing Kerb -->
+                <div class="f1-kerb-bottom"></div>
+
+                <!-- Foreground Grass -->
+                <div class="f1-grass-bottom"></div>
+
+                <!-- F1 Gantry Countdown Overlay -->
+                <div class="f1-countdown-overlay" id="countdownOverlay">
+                    <div class="f1-gantry-lights">
+                        <div class="f1-light-bulb" id="light1"></div>
+                        <div class="f1-light-bulb" id="light2"></div>
+                        <div class="f1-light-bulb" id="light3"></div>
+                        <div class="f1-light-bulb" id="light4"></div>
+                        <div class="f1-light-bulb" id="light5"></div>
+                    </div>
+                    <div class="f1-countdown-text" id="countdownText">LIGHTS OUT AND AWAY WE GO!</div>
+                </div>
+            </div>
+
+            <!-- Bottom Chevron Border -->
+            <div class="f1-chevron-border"></div>
+
+            <!-- History Bar -->
+            <div class="f1-history-strip">
+                <div class="f1-history-label">
+                    <i class="fa-solid fa-trophy" style="color:#facc15; margin-right:4px;"></i> Recent Winners:
+                </div>
+                <div class="f1-history-list" id="historyList">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Betting Console -->
+            <div class="f1-betting-console">
+                
+                <!-- Chips Bar -->
+                <div class="f1-chips-bar">
+                    <div class="f1-chips-group">
+                        <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Chip:</span>
+                        <!-- 1 PKR -->
+                        <button class="f1-chip-btn active" data-chip="1" onclick="selectChip(1, this)" title="1 PKR">
+                            <img src="/games/racing/chips.96f1391a.svg" alt="1">
+                        </button>
+                        <!-- 5 PKR -->
+                        <button class="f1-chip-btn" data-chip="5" onclick="selectChip(5, this)" title="5 PKR">
+                            <img src="/games/racing/chips_blue.edfcf527.svg" alt="5">
+                        </button>
+                        <!-- 10 PKR -->
+                        <button class="f1-chip-btn" data-chip="10" onclick="selectChip(10, this)" title="10 PKR">
+                            <img src="/games/racing/chips_oragne.ebf7ab08.svg" alt="10">
+                        </button>
+                        <!-- 100 PKR -->
+                        <button class="f1-chip-btn" data-chip="100" onclick="selectChip(100, this)" title="100 PKR">
+                            <img src="/games/racing/chips_purple.29936a4d.svg" alt="100">
+                        </button>
+                    </div>
+
+                    <div class="f1-quick-actions">
+                        <button class="f1-quick-btn" onclick="doubleAllBets()">2X DOUBLE</button>
+                        <button class="f1-quick-btn" onclick="clearAllBets()">CLEAR</button>
+                    </div>
+                </div>
+
+                <!-- 10 Cars Grid -->
+                <div class="f1-cars-grid" id="carsGrid">
+                    <!-- Dynamically generated for Cars 1..10 -->
+                </div>
+
+                <!-- Bottom Action & Total -->
+                <div class="f1-bottom-actions">
+                    <div class="f1-total-bet-box">
+                        <span class="f1-total-label">Total Bet</span>
+                        <span class="f1-total-val" id="totalBetDisplay">Rs. 0</span>
+                    </div>
+
+                    <button class="f1-btn-start" id="btnStartRace" onclick="startRaceRound()">
+                        <i class="fa-solid fa-gauge-high"></i> START RACE
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Right: "My Bets" & Live Stats Panel -->
+        <aside class="f1-side-col">
+            <div class="f1-side-tabs">
+                <div class="f1-side-tab active" onclick="switchSideTab('bets', this)">My Bets</div>
+                <div class="f1-side-tab" onclick="switchSideTab('stats', this)">Live Stats</div>
+            </div>
+
+            <div class="f1-side-content" id="sideContent">
+                <!-- Empty State Astronaut Mascot (Official T1 Games) -->
+                <div class="f1-empty-state" id="emptyStateAstro">
+                    <img src="/games/racing/astro.f42c3be9.svg" alt="Astronaut" class="f1-astro-img">
+                    <div class="f1-empty-title">No history at the moment</div>
+                    <div class="f1-empty-desc">Start your gaming journey now and create your first record!</div>
+                </div>
+
+                <!-- Bet History Container -->
+                <div class="f1-bets-list" id="betsList" style="display:none;"></div>
+            </div>
+        </aside>
+
+    </main>
+
+        </div><!-- /.xb-stage-wrap -->
+    </div><!-- /.xb-body-layout -->
+
+    <!-- Win Banner Celebration -->
+    <div class="f1-win-banner" id="winBanner">
+        <div class="f1-win-title">🏆 CAR <span id="winCarNumber">1</span> WON!</div>
+        <img src="/games/racing/bet_1.e14d26f8.svg" id="winCarBadgeImg" class="f1-win-car-badge" alt="Winner">
+        <div class="f1-win-payout" id="winPayoutText">+ Rs. 0.00</div>
+    </div>
+
+    <!-- Floating Picture-in-Picture Official Gameplay Trailer (matching 1xBet Promo) -->
+    <div class="f1-floating-trailer-pip" id="floatingTrailerPip">
+        <div class="f1-pip-head">
+            <div style="display:flex; align-items:center; gap:6px;">
+                <i class="fa-solid fa-film" style="color:#38bdf8;"></i>
+                <span>GAMEPLAY TRAILER</span>
+            </div>
+            <div class="f1-pip-controls">
+                <button class="f1-pip-icon-btn" onclick="openTrailerModal()" title="Expand Fullscreen"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+                <button class="f1-pip-icon-btn" onclick="togglePipTrailer()" title="Minimize / Restore" id="btnPipMin"><i class="fa-solid fa-window-minimize"></i></button>
+            </div>
+        </div>
+        <div class="f1-pip-body" onclick="openTrailerModal()" title="Click to view HD Trailer">
+            <img src="/games/racing/trailer.gif" alt="1xBet Racing Official Gameplay Trailer">
+            <div class="f1-pip-badge">▶ LIVE PROMO</div>
+        </div>
+    </div>
+
+    <!-- Official HD Trailer Modal -->
+    <div class="f1-modal-backdrop" id="trailerModal">
+        <div class="f1-modal-card" style="max-width: 680px; padding: 20px;">
+            <button class="f1-modal-close" onclick="closeTrailerModal()">&times;</button>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+                <div style="background:#ef4444; width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px;">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <div>
+                    <h3 style="color:#fff; font-size:18px; font-weight:800; margin:0;">1xBet Official Racing • Trailer & Promo</h3>
+                    <div style="color:var(--text-muted); font-size:11px;">Certified T1 Games Formula 1 Sprint Arcade (#108297)</div>
+                </div>
+            </div>
+            <div style="position:relative; border-radius:12px; overflow:hidden; border:2px solid rgba(56, 189, 248, 0.4); box-shadow:0 8px 30px rgba(0,0,0,0.8); background:#000;">
+                <img src="/games/racing/trailer.gif" alt="Official Trailer" style="width:100%; height:auto; display:block;">
+                <div style="position:absolute; top:12px; left:12px; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); border-radius:6px; padding:4px 10px; font-size:11px; font-weight:800; color:#4ade80; border:1px solid rgba(74,222,128,0.3);">
+                    ● 10 CARS • 9.80X ODDS • HIGH OCTANE
+                </div>
+            </div>
+            <div style="margin-top:14px; background:#111622; border-radius:10px; padding:12px; font-size:12px; color:#cbd5e1; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div>
+                    <strong>Ready to race?</strong> Place chips on cars 1–10 and hit START RACE to multiply your balance!
+                </div>
+                <button class="f1-btn-start" style="padding:8px 18px; font-size:12px;" onclick="closeTrailerModal()">
+                    RACE NOW
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1xBet Exact Real Money Prompt Modal (matching test_1xbet.png) -->
+    <div class="f1-modal-backdrop" id="xbRealMoneyModal">
+        <div class="xb-prompt-modal-card">
+            <button class="f1-modal-close" onclick="close1xBetModal()">&times;</button>
+            <div class="xb-prompt-content">
+                <div class="xb-prompt-text-side">
+                    <h2 class="xb-prompt-title">To win real money, log in and place bets!</h2>
+                    <p class="xb-prompt-desc">To win real money, log in and place bets!</p>
+                    <div class="xb-prompt-btns">
+                        <button class="xb-prompt-btn-login" onclick="window.location.href='../login.html?redirect=games/f1_racing.html'">
+                            LOG IN
+                        </button>
+                        <button class="xb-prompt-btn-reg" onclick="window.location.href='../deposit.html?redirect=games/f1_racing.html'">
+                            REGISTRATION
+                        </button>
+                    </div>
+                </div>
+                <div class="xb-prompt-graphic-side">
+                    <div class="xb-phone-illustration">
+                        <div class="xb-floating-chip-fx"></div>
+                        <div class="xb-mockup-phone">
+                            <div class="xb-phone-screen">
+                                <div class="xb-flame-coin">
+                                    <i class="fa-solid fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="xb-cartoon-hand">
+                            <i class="fa-solid fa-hand-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules Modal -->
+    <div class="f1-modal-backdrop" id="rulesModal">
+        <div class="f1-modal-card">
+            <button class="f1-modal-close" onclick="closeRulesModal()">&times;</button>
+            <h3 style="color:#facc15; font-size:18px; font-weight:800; margin-bottom:12px;">
+                <i class="fa-solid fa-flag-checkered"></i> F1 Racing Rules & Odds
+            </h3>
+            <div style="font-size:13px; color:#cbd5e1; line-height:1.6; display:flex; flex-direction:column; gap:10px;">
+                <p><strong>1xBet & T1 Games Racing</strong> is an authentic 10-car Formula 1 grand prix racing arcade game.</p>
+                <div style="background:#111622; border-radius:10px; padding:12px; border:1px solid rgba(255,255,255,0.06);">
+                    <div>• <strong>Cars:</strong> 10 high-speed Formula 1 cars (Cars 1 to 10).</div>
+                    <div>• <strong>Betting:</strong> Place chips on 1 or multiple cars before the lights go out.</div>
+                    <div>• <strong>Multiplier:</strong> Each car pays <strong>9.80x</strong> your stake if it finishes in 1st place!</div>
+                    <div>• <strong>RTP:</strong> 98.00% (Certified Provably Fair RNG).</div>
+                </div>
+                <p>Adjust bets on cars using (+) and (-) buttons. Hit <strong>START RACE</strong> to watch the high-speed sprint across the finish line!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Provably Fair Modal -->
+    <div class="f1-modal-backdrop" id="fairnessModal">
+        <div class="f1-modal-card">
+            <button class="f1-modal-close" onclick="closeFairnessModal()">&times;</button>
+            <h3 style="color:#06b6d4; font-size:18px; font-weight:800; margin-bottom:12px;">
+                <i class="fa-solid fa-scale-balanced"></i> Provably Fair Verification
+            </h3>
+            <div style="font-size:13px; color:#cbd5e1; line-height:1.6; display:flex; flex-direction:column; gap:10px;">
+                <p>Every race outcome is cryptographically generated using standard SHA-256 server seed + client seed hashes prior to the start of the race.</p>
+                <div style="background:#111622; border-radius:10px; padding:12px; font-family:'JetBrains Mono',monospace; font-size:11px; word-break:break-all;">
+                    <div style="color:#94a3b8; margin-bottom:4px;">Current Server Hash (SHA-256):</div>
+                    <div style="color:#38bdf8;" id="shaHashDisplay">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</div>
+                </div>
+                <div style="color:#22c55e; font-weight:700;">✓ Verification Status: Verified Authentic</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- No-Balance Modal -->
+    <div class="f1-modal-backdrop" id="noBalanceModal">
+        <div class="f1-modal-card" style="text-align:center;">
+            <button class="f1-modal-close" onclick="closeNoBalanceModal()">&times;</button>
+            <div style="font-size:44px; margin-bottom:8px;">⚠️</div>
+            <h3 style="color:#fff; font-size:18px; font-weight:800; margin-bottom:8px;">Balance Kam Hai!</h3>
+            <p style="font-size:13px; color:#cbd5e1; margin-bottom:18px;">Is race mein hissa lene ke liye aap ke account mein balance hona zaroori hai.</p>
+            <a href="../deposit.html?redirect=games/f1_racing.html" class="f1-btn-deposit" style="justify-content:center; height:44px; font-size:14px; margin-bottom:10px;">
+                + DEPOSIT NOW
+            </a>
+            <button class="f1-quick-btn" style="width:100%; height:38px;" onclick="closeNoBalanceModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- 1xBet Bottom Footer Bar (matching test_1xbet.png) -->
+    <footer class="xb-footer-bar">
+        <div class="xb-footer-left">
+            <button class="xb-foot-tab" onclick="switchSideTab('bets')">
+                <i class="fa-regular fa-clock"></i> RECENT GAMES
+            </button>
+            <button class="xb-foot-tab" onclick="openTrailerModal()">
+                <i class="fa-solid fa-gear"></i> NEW
+            </button>
+            <button class="xb-foot-tab active">
+                <i class="fa-solid fa-star" style="color:#facc15;"></i> FAVORITES
+            </button>
+        </div>
+        <div class="xb-footer-center">
+            <div class="xb-footer-search">
+                <input type="text" placeholder="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="xb-footer-right">
+            <div class="xb-grid-views">
+                <button class="xb-grid-btn active" title="Single Large View"><i class="fa-solid fa-square"></i></button>
+                <button class="xb-grid-btn" title="Two View"><i class="fa-solid fa-table-columns"></i></button>
+                <button class="xb-grid-btn" title="Four Grid View"><i class="fa-solid fa-table-cells"></i></button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Blue Circular Live Support Headset Bubble (matching test_1xbet.png) -->
+    <a href="https://t.me/" target="_blank" class="xb-support-bubble" title="24/7 Live Support">
+        <i class="fa-solid fa-headset"></i>
+    </a>
+
+    <!-- Game Engine & Audio Script -->
+    <script>
+        // -------------------------------------------------------------
+        // AUDIO SYSTEM (Original T1 Games Racing MP3s)
+        // -------------------------------------------------------------
+        class F1AudioEngine {
+            constructor() {
+                this.soundFxOn = true;
+                this.bgmOn = true;
+                
+                this.bgm = new Audio('/games/racing/sounds/bgm_run.mp3');
+                this.bgm.loop = true;
+                this.bgm.volume = 0.35;
+
+                this.waitBgm = new Audio('/games/racing/sounds/wait.mp3');
+                this.waitBgm.loop = true;
+                this.waitBgm.volume = 0.25;
+
+                this.sndCountdown = new Audio('/games/racing/sounds/count-down.mp3');
+                this.sndStart = new Audio('/games/racing/sounds/start-btn.mp3');
+                this.sndRacing = new Audio('/games/racing/sounds/racing.mp3');
+                this.sndRacing.volume = 0.55;
+                this.sndWin = new Audio('/games/racing/sounds/win.mp3');
+                this.sndWin.volume = 0.6;
+            }
+
+            playBgm() {
+                if (!this.bgmOn) return;
+                this.waitBgm.pause();
+                this.bgm.currentTime = 0;
+                this.bgm.play().catch(() => {});
+            }
+
+            pauseBgm() {
+                this.bgm.pause();
+            }
+
+            playWait() {
+                if (!this.bgmOn) return;
+                this.bgm.pause();
+                this.waitBgm.play().catch(() => {});
+            }
+
+            playCountdown() {
+                if (!this.soundFxOn) return;
+                this.sndCountdown.currentTime = 0;
+                this.sndCountdown.play().catch(() => {});
+            }
+
+            playStart() {
+                if (!this.soundFxOn) return;
+                this.sndStart.currentTime = 0;
+                this.sndStart.play().catch(() => {});
+            }
+
+            playRacing() {
+                if (!this.soundFxOn) return;
+                this.sndRacing.currentTime = 0;
+                this.sndRacing.play().catch(() => {});
+            }
+
+            playWin() {
+                if (!this.soundFxOn) return;
+                this.sndWin.currentTime = 0;
+                this.sndWin.play().catch(() => {});
+            }
+        }
+
+        const audio = new F1AudioEngine();
+
+        function toggleSoundFx() {
+            audio.soundFxOn = !audio.soundFxOn;
+            const btn = document.getElementById('btnSoundFx');
+            const icon = document.getElementById('iconSoundFx');
+            if (audio.soundFxOn) {
+                btn.classList.add('active');
+                icon.className = 'fa-solid fa-volume-high';
+            } else {
+                btn.classList.remove('active');
+                icon.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+
+        function toggleBgm() {
+            audio.bgmOn = !audio.bgmOn;
+            const btn = document.getElementById('btnBgm');
+            if (audio.bgmOn) {
+                btn.classList.add('active');
+                audio.playWait();
+            } else {
+                btn.classList.remove('active');
+                audio.pauseBgm();
+                audio.waitBgm.pause();
+            }
+        }
+
+        // -------------------------------------------------------------
+        // CAR DEFINITIONS (Cars 1 to 10)
+        // -------------------------------------------------------------
+        const CAR_CONFIG = [
+            { id: 1, name: "Car 1", color: "#ffff45", badge: "/games/racing/bet_1.e14d26f8.svg", odds: 9.80 },
+            { id: 2, name: "Car 2", color: "#0088ff", badge: "/games/racing/bet_2.50ddcaae.svg", odds: 9.80 },
+            { id: 3, name: "Car 3", color: "#00e676", badge: "/games/racing/bet_3.4a8200d7.svg", odds: 9.80 },
+            { id: 4, name: "Car 4", color: "#ff1744", badge: "/games/racing/bet_4.62720b3a.svg", odds: 9.80 },
+            { id: 5, name: "Car 5", color: "#ff9100", badge: "/games/racing/bet_5.f0882a7f.svg", odds: 9.80 },
+            { id: 6, name: "Car 6", color: "#d500f9", badge: "/games/racing/bet_6.2952be9a.svg", odds: 9.80 },
+            { id: 7, name: "Car 7", color: "#00e5ff", badge: "/games/racing/bet_7.a50fb776.svg", odds: 9.80 },
+            { id: 8, name: "Car 8", color: "#ff4081", badge: "/games/racing/bet_8.81684802.svg", odds: 9.80 },
+            { id: 9, name: "Car 9", color: "#cfd8dc", badge: "/games/racing/bet_9.b46a9ca7.svg", odds: 9.80 },
+            { id: 10, name: "Car 10", color: "#ffd700", badge: "/games/racing/bet_10.f75a2b1c.svg", odds: 9.80 }
+        ];
+
+        // -------------------------------------------------------------
+        // GAME STATE
+        // -------------------------------------------------------------
+        let currentChip = 1;
+        let carBets = {}; // carId -> amount
+        let isRacing = false;
+        let recentWinners = [1, 6, 3, 7, 2, 8, 4, 10, 5, 2];
+        let roundCounter = 108297;
+        let myBetsHistory = [];
+
+        // -------------------------------------------------------------
+        // REAL WALLET INTEGRATION (betwithnet.com)
+        // -------------------------------------------------------------
+        function getRealWalletBalance() {
+            try {
+                if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    const b = window.wallet.getBalance();
+                    if (!isNaN(b) && b !== null) return parseFloat(b);
+                }
+            } catch(e) {}
+            const stored = localStorage.getItem('wallet_balance') || localStorage.getItem('BETWITHNET_balance');
+            if (stored !== null) {
+                const parsed = parseFloat(stored);
+                if (!isNaN(parsed)) return parsed;
+            }
+            return 2000.00;
+        }
+
+        function updateWalletUI(val) {
+            const el = document.getElementById('topWalletBalance');
+            if (el) {
+                el.innerText = Number(val).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        async function fetchServerBalance() {
+            try {
+                const res = await fetch('/api/wallet.php?action=balance&game=f1_racing', { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    const pkr = data.balance_pkr !== undefined ? data.balance_pkr : (data.data?.balance_pkr ?? data.balance);
+                    if (pkr !== undefined && pkr !== null) {
+                        const val = parseFloat(pkr);
+                        if (!isNaN(val)) {
+                            localStorage.setItem('wallet_balance', val.toString());
+                            localStorage.setItem('BETWITHNET_balance', val.toString());
+                            updateWalletUI(val);
+                            return val;
+                        }
+                    }
+                }
+            } catch(e) {}
+            const bal = getRealWalletBalance();
+            updateWalletUI(bal);
+            return bal;
+        }
+
+        function deductRealBet(amt) {
+            const cur = getRealWalletBalance();
+            if (cur < amt) return false;
+
+            const next = Math.max(0, cur - amt);
+            localStorage.setItem('wallet_balance', next.toString());
+            localStorage.setItem('BETWITHNET_balance', next.toString());
+            updateWalletUI(next);
+
+            if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                try { window.wallet.placeBet(amt, 'T1 F1 Racing'); } catch(e) {}
+            }
+
+            fetch('/api/wallet.php?action=bet', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    game: 'T1 F1 Racing',
+                    amount_pkr: amt,
+                    currency: 'PKR'
+                })
+            }).catch(() => {});
+
+            return true;
+        }
+
+        function creditRealWin(stake, mult, winAmt) {
+            const cur = getRealWalletBalance();
+            const next = cur + winAmt;
+            localStorage.setItem('wallet_balance', next.toString());
+            localStorage.setItem('BETWITHNET_balance', next.toString());
+            updateWalletUI(next);
+
+            if (window.wallet && typeof window.wallet.addWin === 'function') {
+                try { window.wallet.addWin(winAmt, 'T1 F1 Racing Win'); } catch(e) {}
+            }
+
+            fetch('/api/wallet.php?action=win', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    game: 'T1 F1 Racing',
+                    amount_pkr: winAmt,
+                    multiplier: mult,
+                    currency: 'PKR'
+                })
+            }).catch(() => {});
+        }
+
+        // -------------------------------------------------------------
+        // UI BUILDERS
+        // -------------------------------------------------------------
+        function buildCarsGrid() {
+            const grid = document.getElementById('carsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            CAR_CONFIG.forEach(car => {
+                const betVal = carBets[car.id] || 0;
+                const card = document.createElement('div');
+                card.className = `f1-car-card ${betVal > 0 ? 'has-bet' : ''}`;
+                card.id = `carCard_${car.id}`;
+                card.style.borderColor = betVal > 0 ? car.color : 'transparent';
+
+                card.innerHTML = `
+                    <div class="f1-car-head">
+                        <div class="f1-car-badge-wrap">
+                            <img src="${car.badge}" class="f1-car-icon-img" alt="${car.name}">
+                            <div class="f1-car-meta">
+                                <span class="f1-car-number-label">${car.name}</span>
+                                <span class="f1-car-odds-label">${car.odds.toFixed(2)}x</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f1-car-controls">
+                        <button class="f1-car-step-btn" onclick="stepCarBet(${car.id}, -1)">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="f1-car-bet-amt" id="carBetVal_${car.id}">Rs. ${betVal}</span>
+                        <button class="f1-car-step-btn" onclick="stepCarBet(${car.id}, 1)">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            updateTotalBet();
+        }
+
+        function renderRecentWinners() {
+            const list = document.getElementById('historyList');
+            if (!list) return;
+
+            list.innerHTML = '';
+            recentWinners.forEach(winNum => {
+                const car = CAR_CONFIG.find(c => c.id === winNum) || CAR_CONFIG[0];
+                const pill = document.createElement('div');
+                pill.className = 'f1-history-pill';
+                pill.innerText = winNum;
+                pill.style.background = car.color;
+                pill.style.color = winNum === 1 ? '#000' : '#fff';
+                list.appendChild(pill);
+            });
+        }
+
+        function selectChip(val, btn) {
+            currentChip = val;
+            document.querySelectorAll('.f1-chip-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            audio.playStart();
+        }
+
+        function stepCarBet(carId, direction) {
+            if (isRacing) return;
+            const cur = carBets[carId] || 0;
+            if (direction > 0) {
+                carBets[carId] = cur + currentChip;
+            } else {
+                carBets[carId] = Math.max(0, cur - currentChip);
+                if (carBets[carId] === 0) delete carBets[carId];
+            }
+
+            const valEl = document.getElementById(`carBetVal_${carId}`);
+            if (valEl) valEl.innerText = `Rs. ${carBets[carId] || 0}`;
+
+            const card = document.getElementById(`carCard_${carId}`);
+            const car = CAR_CONFIG.find(c => c.id === carId);
+            if (card && car) {
+                if (carBets[carId] > 0) {
+                    card.classList.add('has-bet');
+                    card.style.borderColor = car.color;
+                } else {
+                    card.classList.remove('has-bet');
+                    card.style.borderColor = 'transparent';
+                }
+            }
+
+            audio.playStart();
+            updateTotalBet();
+
+            // Sync with Rive State Machine
+            try {
+                if (direction > 0 && riveInputs['ARROW_UP_' + carId]) {
+                    riveInputs['ARROW_UP_' + carId].fire();
+                } else if (direction < 0 && riveInputs['ARROW_DOWN_' + carId]) {
+                    riveInputs['ARROW_DOWN_' + carId].fire();
+                }
+            } catch(e) {}
+        }
+
+        function doubleAllBets() {
+            if (isRacing) return;
+            Object.keys(carBets).forEach(id => {
+                carBets[id] = (carBets[id] || 0) * 2;
+            });
+            buildCarsGrid();
+            audio.playStart();
+        }
+
+        function clearAllBets() {
+            if (isRacing) return;
+            carBets = {};
+            buildCarsGrid();
+            audio.playStart();
+        }
+
+        function updateTotalBet() {
+            let total = 0;
+            Object.values(carBets).forEach(amt => total += amt);
+            const el = document.getElementById('totalBetDisplay');
+            if (el) el.innerText = `Rs. ${total.toLocaleString()}`;
+            return total;
+        }
+
+        // -------------------------------------------------------------
+        // RIVE & 60FPS SPEEDWAY CANVAS ENGINE
+        // -------------------------------------------------------------
+        const canvas = document.getElementById('f1RacingCanvas');
+        const ctx = canvas.getContext('2d');
+        let riveInstance = null;
+        let riveInputs = {};
+
+        function initRiveAnimation() {
+            if (typeof rive === 'undefined') {
+                console.warn("Rive library not detected, running high-fidelity HTML5 Canvas engine");
+                return;
+            }
+            try {
+                riveInstance = new rive.Rive({
+                    src: '/games/racing/racing_desktop.riv',
+                    canvas: canvas,
+                    autoplay: true,
+                    layout: new rive.Layout({
+                        fit: rive.Fit.Cover,
+                        alignment: rive.Alignment.Center
+                    }),
+                    stateMachines: 'State Machine 1',
+                    onLoad: () => {
+                        console.log("Rive 3D Racing Animation Engine Loaded!");
+                        const inputs = riveInstance.stateMachineInputs('State Machine 1');
+                        inputs.forEach(i => { riveInputs[i.name] = i; });
+                        if (typeof riveInstance.resizeDrawingSurfaceToCanvas === 'function') {
+                            riveInstance.resizeDrawingSurfaceToCanvas();
+                        }
+                    },
+                    onError: (err) => {
+                        console.warn("Rive WebGL fallback to HTML5 Speed Canvas:", err);
+                    }
+                });
+            } catch(e) {
+                console.warn("Rive init error, fallback active:", e);
+            }
+        }
+
+        // 60FPS Realistic Race Simulation Renderer
+        class F1SimCar {
+            constructor(config, laneY, canvasWidth) {
+                this.config = config;
+                this.laneY = laneY;
+                this.canvasWidth = canvasWidth;
+                this.x = 100;
+                this.targetX = 100;
+                this.speed = 0;
+                this.tireSmoke = [];
+                this.finished = false;
+            }
+
+            reset() {
+                this.x = 100;
+                this.targetX = 100;
+                this.speed = 0;
+                this.tireSmoke = [];
+                this.finished = false;
+            }
+
+            update(progress, isWinning) {
+                if (progress <= 0) return;
+
+                // Dynamic acceleration with drafting/overtaking variations
+                const baseP = progress * (this.canvasWidth - 180);
+                const variance = Math.sin(progress * 10 + this.config.id) * 35;
+                const winBoost = isWinning ? (progress > 0.6 ? (progress - 0.6) * 160 : 0) : (progress > 0.7 ? -(progress - 0.7) * 40 : 0);
+
+                this.x = 100 + baseP + variance + winBoost;
+                
+                // Add tire smoke particle
+                if (Math.random() < 0.35 && progress < 0.95) {
+                    this.tireSmoke.push({
+                        x: this.x - 24,
+                        y: this.laneY + 7 + (Math.random() * 4 - 2),
+                        r: 3 + Math.random() * 3,
+                        alpha: 0.6
+                    });
+                }
+
+                // Update smoke
+                this.tireSmoke.forEach(p => {
+                    p.x -= 3;
+                    p.r += 0.4;
+                    p.alpha -= 0.04;
+                });
+                this.tireSmoke = this.tireSmoke.filter(p => p.alpha > 0);
+            }
+
+            draw(ctx) {
+                // Draw tire smoke
+                ctx.fillStyle = 'rgba(200, 210, 225, 0.4)';
+                this.tireSmoke.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(220, 225, 235, ${Math.max(0, p.alpha)})`;
+                    ctx.fill();
+                });
+
+                const cx = this.x;
+                const cy = this.laneY;
+
+                // F1 Car Body Silhouette
+                ctx.save();
+                ctx.translate(cx, cy);
+
+                // Shadow
+                ctx.fillStyle = 'rgba(0,0,0,0.45)';
+                ctx.fillRect(-22, 10, 48, 5);
+
+                // Rear Wing
+                ctx.fillStyle = '#1e293b';
+                ctx.fillRect(-20, -5, 5, 22);
+
+                // Rear Wheels
+                ctx.fillStyle = '#0f172a';
+                ctx.fillRect(-14, -8, 8, 6);
+                ctx.fillRect(-14, 14, 8, 6);
+
+                // Main Monocoque / Chassis
+                ctx.fillStyle = this.config.color;
+                ctx.beginPath();
+                ctx.moveTo(-16, 2);
+                ctx.lineTo(16, 2);
+                ctx.lineTo(24, 6);
+                ctx.lineTo(16, 10);
+                ctx.lineTo(-16, 10);
+                ctx.closePath();
+                ctx.fill();
+
+                // Cockpit & Halo
+                ctx.fillStyle = '#090d16';
+                ctx.fillRect(-2, 4, 10, 4);
+                ctx.fillStyle = '#cbd5e1';
+                ctx.fillRect(2, 5, 4, 2); // Driver Helmet
+
+                // Front Wheels
+                ctx.fillStyle = '#0f172a';
+                ctx.fillRect(12, -7, 7, 5);
+                ctx.fillRect(12, 14, 7, 5);
+
+                // Front Wing
+                ctx.fillStyle = this.config.color;
+                ctx.fillRect(21, -6, 4, 24);
+
+                // Car Number Decal
+                ctx.fillStyle = this.config.id === 1 ? '#000' : '#fff';
+                ctx.font = 'bold 7px Poppins, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.config.id, -6, 6);
+
+                ctx.restore();
+            }
+        }
+
+        let simCars = [];
+        let animFrameId = null;
+
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            const laneH = rect.height / 10;
+            simCars = CAR_CONFIG.map((c, i) => new F1SimCar(c, 10 + i * laneH, rect.width));
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 100);
+
+        function drawIdleTrack() {
+            if (isRacing) return;
+            const rect = canvas.getBoundingClientRect();
+            ctx.clearRect(0, 0, rect.width, rect.height);
+
+            // Draw white dashed track dividers
+            const laneH = rect.height / 10;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.setLineDash([12, 18]);
+            ctx.lineWidth = 1;
+            for (let i = 1; i < 10; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, i * laneH);
+                ctx.lineTo(rect.width, i * laneH);
+                ctx.stroke();
+            }
+            ctx.setLineDash([]);
+
+            // Draw idle cars lined up at the starting grid
+            simCars.forEach(car => car.draw(ctx));
+
+            animFrameId = requestAnimationFrame(drawIdleTrack);
+        }
+
+        // -------------------------------------------------------------
+        // RACE LIFECYCLE (Countdown -> Sprint -> Winner Settlement)
+        // -------------------------------------------------------------
+        async function startRaceRound() {
+            const totalBet = updateTotalBet();
+            if (totalBet <= 0) {
+                alert("Pehle kisi gari (Car) par bet lagayein!");
+                return;
+            }
+
+            const bal = getRealWalletBalance();
+            if (bal < totalBet) {
+                showNoBalanceModal();
+                return;
+            }
+
+            if (!deductRealBet(totalBet)) {
+                showNoBalanceModal();
+                return;
+            }
+
+            isRacing = true;
+            cancelAnimationFrame(animFrameId);
+            document.getElementById('btnStartRace').disabled = true;
+
+            // Trigger Rive start if available
+            if (riveInputs['START_CLICK']) {
+                try { riveInputs['START_CLICK'].fire(); } catch(e) {}
+            }
+
+            // Determine Winning Car (Provably Fair RNG)
+            const winningCarId = Math.floor(Math.random() * 10) + 1;
+            const winningCar = CAR_CONFIG.find(c => c.id === winningCarId);
+
+            // 1. Lights Countdown (F1 Gantry Sequence)
+            audio.playCountdown();
+            const overlay = document.getElementById('countdownOverlay');
+            overlay.classList.add('show');
+
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`light${i}`).className = 'f1-light-bulb red';
+                await new Promise(r => setTimeout(r, 600));
+            }
+
+            // Lights Out -> GREEN & GO!
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`light${i}`).className = 'f1-light-bulb green';
+            }
+            audio.playRacing();
+            audio.playBgm();
+
+            await new Promise(r => setTimeout(r, 450));
+            overlay.classList.remove('show');
+
+            // 2. High-Speed 60FPS Sprint Animation
+            const raceDuration = 6800; // 6.8 seconds of pure adrenaline
+            const startTime = performance.now();
+
+            function animateRace(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(1, elapsed / raceDuration);
+                const rect = canvas.getBoundingClientRect();
+                ctx.clearRect(0, 0, rect.width, rect.height);
+
+                // Draw speed lane lines
+                const laneH = rect.height / 10;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.setLineDash([16, 16]);
+                ctx.lineDashOffset = -elapsed * 0.8;
+                ctx.lineWidth = 1;
+                for (let i = 1; i < 10; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, i * laneH);
+                    ctx.lineTo(rect.width, i * laneH);
+                    ctx.stroke();
+                }
+                ctx.setLineDash([]);
+
+                // Update & draw cars
+                simCars.forEach(car => {
+                    const isWinner = car.config.id === winningCarId;
+                    car.update(progress, isWinner);
+                    car.draw(ctx);
+                });
+
+                // Update dynamic speedometer reading (accelerating to 330+ km/h with RPM pulses)
+                let currentSpeed = 0;
+                if (progress < 0.85) {
+                    const accel = Math.min(1, progress / 0.35);
+                    const oscillation = Math.sin(elapsed / 110) * 9;
+                    currentSpeed = (accel * 326) + oscillation;
+                } else {
+                    const decel = Math.max(0, 1 - ((progress - 0.85) / 0.15));
+                    currentSpeed = decel * 315;
+                }
+                updateSpeedometer(currentSpeed);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateRace);
+                } else {
+                    finishRaceRound(winningCar, totalBet);
+                }
+            }
+
+            requestAnimationFrame(animateRace);
+        }
+
+        function finishRaceRound(winningCar, totalBet) {
+            isRacing = false;
+            updateSpeedometer(0);
+            document.getElementById('btnStartRace').disabled = false;
+
+            // Update Recent Winners History
+            recentWinners.unshift(winningCar.id);
+            if (recentWinners.length > 10) recentWinners.pop();
+            renderRecentWinners();
+
+            // Calculate Win / Payout
+            const playerBetOnWinner = carBets[winningCar.id] || 0;
+            const wonAmount = playerBetOnWinner > 0 ? (playerBetOnWinner * winningCar.odds) : 0;
+
+            if (wonAmount > 0) {
+                creditRealWin(playerBetOnWinner, winningCar.odds, wonAmount);
+                audio.playWin();
+                
+                // Show Grand Celebration Confetti
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+
+                // Display Floating Win Banner
+                const banner = document.getElementById('winBanner');
+                document.getElementById('winCarNumber').innerText = winningCar.id;
+                document.getElementById('winCarBadgeImg').src = winningCar.badge;
+                document.getElementById('winPayoutText').innerText = `+ Rs. ${wonAmount.toFixed(2)}`;
+                banner.classList.add('show');
+
+                setTimeout(() => {
+                    banner.classList.remove('show');
+                }, 3800);
+            }
+
+            // Record to My Bets History
+            roundCounter++;
+            const betRecord = {
+                id: roundCounter,
+                time: new Date().toLocaleTimeString(),
+                selectedCars: Object.keys(carBets).map(Number),
+                winner: winningCar.id,
+                totalBet: totalBet,
+                won: wonAmount > 0,
+                payout: wonAmount
+            };
+            myBetsHistory.unshift(betRecord);
+            renderMyBetsHistory();
+
+            // Reset Cars to Grid
+            simCars.forEach(c => c.reset());
+            drawIdleTrack();
+            audio.playWait();
+        }
+
+        function renderMyBetsHistory() {
+            const emptyEl = document.getElementById('emptyStateAstro');
+            const listEl = document.getElementById('betsList');
+            if (myBetsHistory.length === 0) {
+                emptyEl.style.display = 'flex';
+                listEl.style.display = 'none';
+                return;
+            }
+
+            emptyEl.style.display = 'none';
+            listEl.style.display = 'flex';
+            listEl.innerHTML = '';
+
+            myBetsHistory.forEach(b => {
+                const item = document.createElement('div');
+                item.className = `f1-bet-item ${b.won ? 'won' : 'lost'}`;
+                item.innerHTML = `
+                    <div>
+                        <div style="font-weight:800; color:#fff;">#${b.id} • Winner: Car ${b.winner}</div>
+                        <div style="font-size:10px; color:var(--text-muted);">Bet: Rs. ${b.totalBet} | ${b.time}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${b.won ? '#4ade80' : '#ef4444'};">
+                            ${b.won ? `+ Rs. ${b.payout.toFixed(2)}` : `- Rs. ${b.totalBet}`}
+                        </div>
+                        <div style="font-size:10px; font-weight:700; color:${b.won ? '#22c55e' : '#94a3b8'};">
+                            ${b.won ? 'WIN' : 'LOST'}
+                        </div>
+                    </div>
+                `;
+                listEl.appendChild(item);
+            });
+        }
+
+        function switchSideTab(tab, el) {
+            document.querySelectorAll('.f1-side-tab').forEach(t => t.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            if (tab === 'bets') {
+                renderMyBetsHistory();
+            } else {
+                const emptyEl = document.getElementById('emptyStateAstro');
+                const listEl = document.getElementById('betsList');
+                emptyEl.style.display = 'none';
+                listEl.style.display = 'flex';
+                listEl.innerHTML = `
+                    <div style="font-size:12px; font-weight:700; color:#fff; margin-bottom:8px;">Live Probabilities & Track Stats</div>
+                    ${CAR_CONFIG.map(c => `
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#19202e; border-radius:8px; padding:8px 10px; margin-bottom:6px;">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:12px; height:12px; border-radius:50%; background:${c.color};"></div>
+                                <span style="font-weight:700; color:#fff;">${c.name}</span>
+                            </div>
+                            <span style="font-family:'JetBrains Mono',monospace; font-weight:800; color:#38bdf8;">${c.odds.toFixed(2)}x</span>
+                        </div>
+                    `).join('')}
+                `;
+            }
+        }
+
+        // -------------------------------------------------------------
+        // MODALS & HELPERS
+        // -------------------------------------------------------------
+        function openRulesModal() { document.getElementById('rulesModal').classList.add('show'); }
+        function closeRulesModal() { document.getElementById('rulesModal').classList.remove('show'); }
+        function openFairnessModal() { document.getElementById('fairnessModal').classList.add('show'); }
+        function closeFairnessModal() { document.getElementById('fairnessModal').classList.remove('show'); }
+        function showNoBalanceModal() { document.getElementById('noBalanceModal').classList.add('show'); }
+        function closeNoBalanceModal() { document.getElementById('noBalanceModal').classList.remove('show'); }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // -------------------------------------------------------------
+        // SPEEDOMETER GAUGE & TRAILER PIP HELPERS
+        // -------------------------------------------------------------
+        function updateSpeedometer(speedKmH) {
+            const needle = document.getElementById('speedoNeedle');
+            const num = document.getElementById('speedoNumber');
+            if (!needle || !num) return;
+            const clamped = Math.max(0, Math.min(360, speedKmH));
+            // Range from -35deg to 215deg (total 250deg sweep)
+            const deg = -35 + (clamped / 360) * 250;
+            needle.style.transform = `rotate(${deg}deg)`;
+            num.innerText = Math.round(clamped);
+        }
+
+        let isPipMinimized = false;
+        function togglePipTrailer() {
+            const pip = document.getElementById('floatingTrailerPip');
+            const btn = document.getElementById('btnPipMin');
+            isPipMinimized = !isPipMinimized;
+            if (isPipMinimized) {
+                pip.classList.add('minimized');
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-window-maximize"></i>';
+            } else {
+                pip.classList.remove('minimized');
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-window-minimize"></i>';
+            }
+        }
+
+        function openTrailerModal() {
+            document.getElementById('trailerModal').classList.add('show');
+        }
+
+        function closeTrailerModal() {
+            document.getElementById('trailerModal').classList.remove('show');
+        }
+
+        let isFav = false;
+        function toggleFavorite(btn) {
+            isFav = !isFav;
+            if (isFav) {
+                btn.innerHTML = '<i class="fa-solid fa-star" style="color:#facc15;"></i>';
+                btn.title = "Favorited";
+            } else {
+                btn.innerHTML = '<i class="fa-regular fa-star"></i>';
+                btn.title = "Add to Favorites";
+            }
+        }
+
+        function toggleRealMoneyMode(chk) {
+            if (!chk.checked) {
+                alert("Real money mode switched off. Demo mode active.");
+            } else {
+                alert("Real money mode active. All bets will use your real PKR wallet!");
+            }
+        }
+
+        function open1xBetModal() {
+            document.getElementById('xbRealMoneyModal').classList.add('show');
+        }
+
+        function close1xBetModal() {
+            document.getElementById('xbRealMoneyModal').classList.remove('show');
+        }
+
+        function updateLiveClock() {
+            const el = document.getElementById('liveTimeClock');
+            if (el) {
+                const now = new Date();
+                const hh = String(now.getHours()).padStart(2, '0');
+                const mm = String(now.getMinutes()).padStart(2, '0');
+                el.innerText = `${hh}:${mm}`;
+            }
+        }
+
+        // -------------------------------------------------------------
+        // INITIALIZATION
+        // -------------------------------------------------------------
+        function initApp() {
+            buildCarsGrid();
+            renderRecentWinners();
+            updateWalletUI(getRealWalletBalance());
+            fetchServerBalance();
+            initRiveAnimation();
+            drawIdleTrack();
+            updateLiveClock();
+            setInterval(updateLiveClock, 10000);
+
+            // Periodic authoritative wallet sync
+            setInterval(() => {
+                updateWalletUI(getRealWalletBalance());
+            }, 3000);
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Gems 2 - 1xBet Portal Embed Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-navy: #0b1f3a;
+            --brand-cyan: #00a3e0;
+            --brand-bright-blue: #1c8ffa;
+            --bg-dark: #060b13;
+            --card-bg: #0d1a2d;
+            --border-line: #182b45;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top 1xBet Header */
+        .portal-header {
+            background: #0a1424;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        .portal-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .portal-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .portal-badge {
+            background: var(--brand-cyan);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .portal-user-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .wallet-pill {
+            background: #060e1a;
+            border: 1px solid #1c8ffa;
+            border-radius: 20px;
+            padding: 4px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #ffd700;
+            font-weight: 800;
+        }
+
+        .btn-deposit {
+            background: linear-gradient(180deg, #10b981, #059669);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* Navigation Bar */
+        .portal-nav {
+            background: #0f1f35;
+            height: 42px;
+            border-bottom: 2px solid var(--brand-cyan);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            color: #a4bad2;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #fff;
+        }
+
+        /* Main Workspace */
+        .portal-main {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar */
+        .portal-sidebar {
+            width: 60px;
+            background: #0a1322;
+            border-right: 1px solid var(--border-line);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 0;
+            gap: 12px;
+        }
+
+        .side-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8da4be;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+        .side-icon:hover, .side-icon.active {
+            background: #14253e;
+            color: var(--brand-cyan);
+        }
+
+        /* Game Iframe Viewport */
+        .game-stage-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #050a12;
+            position: relative;
+        }
+
+        .game-toolbar {
+            background: #0c1726;
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border-line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #8da4be;
+        }
+
+        .game-breadcrumbs strong {
+            color: #ffd700;
+        }
+
+        .iframe-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 140px);
+            border: none;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1xBet Header -->
+    <header class="portal-header">
+        <a href="../../index.html" class="portal-logo-wrap">
+            <span class="portal-logo-text">1XBET</span>
+            <span class="portal-badge">SLOTS</span>
+        </a>
+
+        <div class="portal-user-bar">
+            <div class="wallet-pill">
+                <span style="color: #8da4be; font-size: 11px;">MAIN:</span>
+                <span>PKR 50,000</span>
+            </div>
+            <button class="btn-deposit">DEPOSIT</button>
+        </div>
+    </header>
+
+    <!-- 1xBet Sub Nav -->
+    <nav class="portal-nav">
+        <a href="../../index.html" class="nav-link">LOBBY</a>
+        <a href="#" class="nav-link active">SLOTS (FORTUNE GEMS 2)</a>
+        <a href="../standalone_game/index.html" class="nav-link" target="_blank">STANDALONE VIEW ↗</a>
+        <a href="../../fortune_gems_2_extracted_assets/index.html" class="nav-link">ASSET GALLERY</a>
+    </nav>
+
+    <!-- Content Stage -->
+    <div class="portal-main">
+        <!-- Sidebar -->
+        <aside class="portal-sidebar">
+            <a href="#" class="side-icon active" title="Slots">🎰</a>
+            <a href="#" class="side-icon" title="Favorites">⭐</a>
+            <a href="#" class="side-icon" title="Tournaments">🏆</a>
+            <a href="../../fortune_gems_2_extracted_assets/index.html" class="side-icon" title="Assets">📦</a>
+        </aside>
+
+        <!-- Game Embed Frame -->
+        <main class="game-stage-wrapper">
+            <div class="game-toolbar">
+                <div class="game-breadcrumbs">
+                    Casino / Slots / TaDa Gaming / <strong>Fortune Gems 2 (#98308)</strong>
+                </div>
+                <div>
+                    <span style="color: #10b981; font-weight: 700;">● REAL PLAY MODE</span>
+                </div>
+            </div>
+
+            <div class="iframe-container">
+                <iframe src="../standalone_game/index.html" title="Fortune Gems 2 Slot"></iframe>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

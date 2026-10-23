@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mega7 Gold Rush (Game 71040) - Complete Template Kit & 1xBet Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png">
+    <style>
+        :root {
+            --brand-gold: #ffd700;
+            --brand-orange: #ff9800;
+            --bg-dark: #080503;
+            --panel-bg: #140d07;
+            --border-line: #3d2314;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Master Control Bar */
+        .master-nav-header {
+            background: linear-gradient(180deg, #26160d 0%, #120a05 100%);
+            border-bottom: 2px solid var(--brand-gold);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .master-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .master-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 19px;
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff7b8, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .master-badge {
+            background: var(--brand-orange);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .template-tabs-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(180deg, #d97706, #b45309);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(217, 119, 6, 0.5);
+        }
+
+        .quick-nav-pills {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pill-link {
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .pill-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--brand-gold);
+            color: var(--brand-gold);
+        }
+
+        /* Iframe Showcase Area */
+        .showcase-frame-wrap {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 58px);
+            background: #000;
+            position: relative;
+        }
+
+        .showcase-frame-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="master-nav-header">
+        <div class="master-logo">
+            <span class="master-badge">MEGA7 &bull; 71040</span>
+            <div class="master-logo-text">GOLD RUSH DEMO SHOWCASE</div>
+        </div>
+
+        <div class="template-tabs-group">
+            <button class="tab-btn active" id="tabEmbed" onclick="switchView('embed')">
+                <span>🌐</span> 1xBet Portal View
+            </button>
+            <button class="tab-btn" id="tabStandalone" onclick="switchView('standalone')">
+                <span>🎮</span> Standalone Game
+            </button>
+        </div>
+
+        <div class="quick-nav-pills">
+            <a href="/garuda" class="pill-link">🦅 Garuda 500</a>
+            <a href="/fortune-gems-2" class="pill-link">💎 Fortune Gems 2</a>
+            <a href="/casino" class="pill-link">🎲 Casino Lobby</a>
+        </div>
+    </header>
+
+    <div class="showcase-frame-wrap">
+        <iframe id="mainShowcaseFrame" src="/gold_rush_template/1xbet_portal_embed/index.html"></iframe>
+    </div>
+
+    <script>
+        function switchView(view) {
+            const frame = document.getElementById('mainShowcaseFrame');
+            const btnEmbed = document.getElementById('tabEmbed');
+            const btnStandalone = document.getElementById('tabStandalone');
+
+            if (view === 'embed') {
+                frame.src = '/gold_rush_template/1xbet_portal_embed/index.html';
+                btnEmbed.classList.add('active');
+                btnStandalone.classList.remove('active');
+            } else {
+                frame.src = '/gold_rush_template/standalone_game/index.html';
+                btnStandalone.classList.add('active');
+                btnEmbed.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

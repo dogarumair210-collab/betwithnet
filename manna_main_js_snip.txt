@@ -1,0 +1,29 @@
+﻿window.boot = function () {
+    if (iOS()) cc.sys.isMobile = true;
+    window.isIOSOver14Device = cc.sys.os === cc.sys.OS_IOS && cc.sys.isBrowser && cc.sys.isMobile && /iPhone OS (?=14|15)/.test(window.navigator.userAgent);
+    if (isIOSOver14Device) {    cc.MeshBuffer.prototype.checkAndSwitchBuffer = function (vertexCount) {        if (this.vertexOffset + vertexCount > 65535) {            this.uploadData();            this._batcher._flush();        }    };    cc.MeshBuffer.prototype.forwardIndiceStartToOffset = function () {        this.uploadData();        this.switchBuffer();    };}
+    
+    // å¨æ­£å¼å·è¡bootä¹ååpreboot
+    window.dispatchEvent(
+        new CustomEvent('preboot', {
+            bubbles: true,
+            detail: {}
+        }
+    ));
+    
+    var settings = window._CCSettings;
+    var splash_status = window._SplashStatus;
+    window._CCSettings = undefined;
+    
+    var RESOURCES = cc.AssetManager.BuiltinBundleName.RESOURCES;
+    var INTERNAL = cc.AssetManager.BuiltinBundleName.INTERNAL;
+    var MAIN = cc.AssetManager.BuiltinBundleName.MAIN;
+    function setLoadingDisplay () {
+        if (typeof splash_status == 'undefined') return;
+        // Loading splash scene
+        var splash = splash_status['obj'];
+        splash.sceneLaunched = false;   // cocos å ´æ¯æ¯å¦è¼å¥å®æ
+        let audio_source;
+        //--- å ´æ¯ load å®å¾è§¸ç¼ ---
+        cc.director.once(cc.Director.EVENT_AFTER_SCENE_LAUNCH, function () {
+            if (!splash.sc

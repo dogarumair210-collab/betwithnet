@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+async function run() {
+    try {
+        console.log('Fetching video...');
+        const resp = await fetch('file:///C:/Users/as/Desktop/WhatsApp%20Video%202026-09-24%20at%209.34.28%20PM.mp4');
+        const buf = await resp.arrayBuffer();
+        console.log('Video fetched, bytes:', buf.byteLength);
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const audioBuf = await ctx.decodeAudioData(buf);
+        console.log('AUDIO_FOUND: channels=' + audioBuf.numberOfChannels + ' sampleRate=' + audioBuf.sampleRate + ' duration=' + audioBuf.duration);
+    } catch(err) {
+        console.log('AUDIO_ERROR: ' + err.message);
+    }
+}
+run();
+</script>
+</body>
+</html>

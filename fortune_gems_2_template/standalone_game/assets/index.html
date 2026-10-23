@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Gems 2 - Complete Theme & Graphics Asset Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-1xbet-blue: #0b1f3a;
+            --brand-1xbet-cyan: #00a3e0;
+            --gold-bright: #fff5a6;
+            --gold-main: #ffd700;
+            --gold-deep: #b8860b;
+            --gold-shadow: #573f00;
+            --ruby-red: #ff1744;
+            --sapphire-blue: #00b0ff;
+            --emerald-green: #00e676;
+            --amethyst-purple: #d500f9;
+            --bg-dark: #070d18;
+            --card-bg: #0e1b2f;
+            --border-gold: rgba(255, 215, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 163, 224, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 10% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
+                linear-gradient(180deg, #070d18 0%, #03060a 100%);
+            color: #f1f5f9;
+            font-family: 'Inter', -apple-system, sans-serif;
+            padding: 32px 20px 80px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(11, 31, 58, 0.95), rgba(7, 13, 24, 0.98)), url('backgrounds_and_covers/fortunegems_bg.jpg') center/cover;
+            border: 2px solid var(--gold-main);
+            border-radius: 20px;
+            padding: 36px 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 85% 50%, rgba(255, 215, 0, 0.15), transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-info h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 38px;
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff7b8 0%, #ffd700 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .hero-info p {
+            color: #94a3b8;
+            font-size: 14px;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        .badge-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            background: rgba(0, 163, 224, 0.2);
+            color: #38bdf8;
+            border: 1px solid rgba(0, 163, 224, 0.4);
+        }
+
+        .badge-gold {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            z-index: 2;
+        }
+
+        .btn-action {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-gold {
+            background: linear-gradient(180deg, #ffd700, #d4af37);
+            color: #111;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.35);
+            border: none;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+            box-shadow: 0 6px 22px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-blue {
+            background: #142845;
+            color: #38bdf8;
+            border: 1px solid #1c8ffa;
+        }
+        .btn-blue:hover {
+            background: #1c3b66;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Section Titles */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 44px 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-counter {
+            background: rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+
+        /* Asset Grid */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .asset-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .asset-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold-main);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.25);
+        }
+
+        .asset-preview {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border-radius: 12px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .asset-preview img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .asset-card:hover .asset-preview img {
+            transform: scale(1.1);
+        }
+
+        .asset-title {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .asset-meta {
+            font-size: 11px;
+            color: #8da4be;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .asset-payout {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-download {
+            width: 100%;
+            padding: 8px 0;
+            background: #142845;
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(0, 163, 224, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-download:hover {
+            background: var(--brand-1xbet-cyan);
+            color: #000;
+            box-shadow: 0 0 12px rgba(0, 163, 224, 0.6);
+        }
+
+        /* Large Preview Cards */
+        .large-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .large-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 16px;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .large-preview {
+            width: 100%;
+            height: 240px;
+            background: #050a12;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .large-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .large-preview.contain-img img {
+            object-fit: contain;
+            padding: 12px;
+        }
+
+        /* Color Palette Display */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .palette-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 12px;
+        }
+
+        .swatch {
+            height: 60px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .swatch-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .swatch-hex {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #94a3b8;
+            cursor: pointer;
+            display: inline-block;
+            padding: 2px 6px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .swatch-hex:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        /* Paytable & Rules Table */
+        .table-wrap {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background: #14243b;
+            color: #ffd700;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        td {
+            padding: 12px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .symbol-thumb {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            vertical-align: middle;
+            margin-right: 12px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Folder Structure Box */
+        .folder-tree-box {
+            background: #050a12;
+            border: 1px solid #1e3352;
+            border-radius: 14px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #38bdf8;
+            line-height: 1.7;
+            margin-top: 16px;
+        }
+
+        .tree-folder { color: #ffd700; font-weight: 700; }
+        .tree-file { color: #94a3b8; }
+        .tree-desc { color: #64748b; font-style: italic; }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #10b981;
+            color: #000;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Top Banner -->
+    <div class="hero-banner">
+        <div class="hero-info">
+            <span class="badge-tag">1xBet Slot #98308</span>
+            <span class="badge-tag badge-gold">TaDa Gaming / JILI Original Assets</span>
+            <h1>Fortune Gems 2 Asset Kit</h1>
+            <p>
+                آپ کے مطلوبہ گیم <strong>Fortune Gems 2 (1xBet #98308)</strong> کے تمام آفیشل تھیم ڈیزائن ٹوکنز، ہائی ریزولوشن سمبلز، گولڈن لکی وہیل، ایزٹیک پیلرز، اسپن بٹن، بیک گراؤنڈز، اور ملٹی پلائر ویکٹرز کو مکمل طور پر نکال کر ایک جگہ ترتیب دے دیا گیا ہے۔
+            </p>
+        </div>
+        <div class="hero-actions">
+            <a href="../games/fortunegems2.html" target="_blank" class="btn-action btn-gold">
+                <span>▶</span> Play Live Fortune Gems 2
+            </a>
+            <a href="#symbols-section" class="btn-action btn-blue">
+                <span>💎</span> View Symbols (9)
+            </a>
+            <a href="#wheel-section" class="btn-action btn-blue">
+                <span>🎡</span> Lucky Wheel & UI
+            </a>
+        </div>
+    </div>
+
+    <!-- Section 1: Main Game Symbols -->
+    <div class="section-header" id="symbols-section">
+        <div class="section-title">
+            <span>💎</span> Game Reel Symbols (High Resolution PNGs)
+        </div>
+        <div class="section-counter">9 Assets</div>
+    </div>
+
+    <div class="assets-grid">
+        <!-- Wild -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_wild.png" alt="Garuda Mask Wild">
+            </div>
+            <div class="asset-title">Garuda Mask Wild</div>
+            <div class="asset-meta">Golden Aztec Divine Falcon</div>
+            <div class="asset-payout">Payout: 25X (3-of-a-kind)</div>
+            <a href="symbols/sym_wild.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Ruby -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_ruby.png" alt="Red Ruby Gem">
+            </div>
+            <div class="asset-title">Red Ruby Gem</div>
+            <div class="asset-meta">Gold Framed Crimson Gem</div>
+            <div class="asset-payout">Payout: 20X (3-of-a-kind)</div>
+            <a href="symbols/sym_ruby.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Sapphire -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_sapphire.png" alt="Blue Sapphire Gem">
+            </div>
+            <div class="asset-title">Blue Sapphire Gem</div>
+            <div class="asset-meta">Faceted Deep Cobalt Gem</div>
+            <div class="asset-payout">Payout: 15X (3-of-a-kind)</div>
+            <a href="symbols/sym_sapphire.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Emerald -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_emerald.png" alt="Green Emerald Gem">
+            </div>
+            <div class="asset-title">Green Emerald Gem</div>
+            <div class="asset-meta">Octagonal Radiant Jade</div>
+            <div class="asset-payout">Payout: 10X (3-of-a-kind)</div>
+            <a href="symbols/sym_emerald.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Golden Ace -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_a.png" alt="Golden Ace">
+            </div>
+            <div class="asset-title">Golden Ace (A)</div>
+            <div class="asset-meta">Chiseled Aztec Ingot</div>
+            <div class="asset-payout">Payout: 5X (3-of-a-kind)</div>
+            <a href="symbols/sym_a.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Golden King -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_k.png" alt="Golden King">
+            </div>
+            <div class="asset-title">Golden King (K)</div>
+            <div class="asset-meta">Chiseled Aztec Ingot</div>
+            <div class="asset-payout">Payout: 4X (3-of-a-kind)</div>
+            <a href="symbols/sym_k.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Golden Queen -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_q.png" alt="Golden Queen">
+            </div>
+            <div class="asset-title">Golden Queen (Q)</div>
+            <div class="asset-meta">Chiseled Aztec Ingot</div>
+            <div class="asset-payout">Payout: 3X (3-of-a-kind)</div>
+            <a href="symbols/sym_q.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Golden Jack -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_j.png" alt="Golden Jack">
+            </div>
+            <div class="asset-title">Golden Jack (J)</div>
+            <div class="asset-meta">Chiseled Aztec Ingot</div>
+            <div class="asset-payout">Payout: 2X (3-of-a-kind)</div>
+            <a href="symbols/sym_j.png" download class="btn-download">Download PNG</a>
+        </div>
+
+        <!-- Lucky Wheel Trigger -->
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="symbols/sym_wheel.png" alt="Lucky Wheel Symbol">
+            </div>
+            <div class="asset-title">Lucky Wheel Symbol</div>
+            <div class="asset-meta">Reel 4 Center Bonus Trigger</div>
+            <div class="asset-payout" style="color: #38bdf8; border-color: #38bdf8; background: rgba(56, 189, 248, 0.15)">Bonus Trigger (Up to 1000X)</div>
+            <a href="symbols/sym_wheel.png" download class="btn-download">Download PNG</a>
+        </div>
+    </div>
+
+    <!-- Section 2: 4th Multiplier Reel SVGs -->
+    <div class="section-header">
+        <div class="section-title">
+            <span>⚡</span> 4th Reel Multipliers (Scalable Vector SVGs)
+        </div>
+        <div class="section-counter">6 Multipliers</div>
+    </div>
+
+    <div class="assets-grid">
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="multipliers_svg/multiplier_1x.svg" alt="1X">
+            </div>
+            <div class="asset-title">1X Multiplier</div>
+            <div class="asset-meta">Steel Gray Disc</div>
+            <a href="multipliers_svg/multiplier_1x.svg" download class="btn-download">Download SVG</a>
+        </div>
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="multipliers_svg/multiplier_2x.svg" alt="2X">
+            </div>
+            <div class="asset-title">2X Multiplier</div>
+            <div class="asset-meta">Amber Bronze Disc</div>
+            <a href="multipliers_svg/multiplier_2x.svg" download class="btn-download">Download SVG</a>
+        </div>
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="multipliers_svg/multiplier_3x.svg" alt="3X">
+            </div>
+            <div class="asset-title">3X Multiplier</div>
+            <div class="asset-meta">Cobalt Azure Disc</div>
+            <a href="multipliers_svg/multiplier_3x.svg" download class="btn-download">Download SVG</a>
+        </div>
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="multipliers_svg/multiplier_5x.svg" alt="5X">
+            </div>
+            <div class="asset-title">5X Multiplier</div>
+            <div class="asset-meta">Golden Sun Disc</div>
+            <a href="multipliers_svg/multiplier_5x.svg" download class="btn-download">Download SVG</a>
+        </div>
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="multipliers_svg/multiplier_10x.svg" alt="10X">
+            </div>
+            <div class="asset-title">10X Multiplier</div>
+            <div class="asset-meta">Ruby Crimson Disc</div>
+            <a href="multipliers_svg/multiplier_10x.svg" download class="btn-download">Download SVG</a>
+        </div>
+        <div class="asset-card">
+            <div class="asset-preview">
+                <img src="multipliers_svg/multiplier_15x.svg" alt="15X">
+            </div>
+            <div class="asset-title">15X Multiplier</div>
+            <div class="asset-meta">Amethyst Purple Disc</div>
+            <a href="multipliers_svg/multiplier_15x.svg" download class="btn-download">Download SVG</a>
+        </div>
+    </div>
+
+    <!-- Section 3: Wheel & Big Win Bonus Graphics -->
+    <div class="section-header" id="wheel-section">
+        <div class="section-title">
+            <span>🎡</span> Lucky Wheel & Bonus UI Assets
+        </div>
+        <div class="section-counter">3 Assets</div>
+    </div>
+
+    <div class="large-grid">
+        <div class="large-card">
+            <div class="large-preview contain-img">
+                <img src="wheel_and_bonus/fortune_wheel_disc.png" alt="Lucky Wheel Disc">
+            </div>
+            <div class="asset-title">Aztec Sun Stone Lucky Wheel Disc</div>
+            <div class="asset-meta">Complete high-res 1024x1024 wheel disc with segment multipliers (20X - 1,000X)</div>
+            <a href="wheel_and_bonus/fortune_wheel_disc.png" download class="btn-download">Download Wheel Disc (1 MB)</a>
+        </div>
+
+        <div class="large-card">
+            <div class="large-preview contain-img">
+                <img src="wheel_and_bonus/wheel_eagle_pointer.png" alt="Eagle Head Pointer">
+            </div>
+            <div class="asset-title">Golden Eagle Head Pointer</div>
+            <div class="asset-meta">Carved Aztec eagle indicator with ruby gemstone eyes</div>
+            <a href="wheel_and_bonus/wheel_eagle_pointer.png" download class="btn-download">Download Eagle Pointer (743 KB)</a>
+        </div>
+
+        <div class="large-card">
+            <div class="large-preview contain-img">
+                <img src="wheel_and_bonus/aztec_bigwin_shield.png" alt="Aztec Big Win Shield">
+            </div>
+            <div class="asset-title">Aztec Big Win Shield & Crest</div>
+            <div class="asset-meta">Golden winged sun shield with feathered wings and gemstone core</div>
+            <a href="wheel_and_bonus/aztec_bigwin_shield.png" download class="btn-download">Download Big Win Shield (953 KB)</a>
+        </div>
+    </div>
+
+    <!-- Section 4: Cabinet & Background Assets -->
+    <div class="section-header">
+        <div class="section-title">
+            <span>🏛️</span> Cabinet, Pillars & Environment
+        </div>
+        <div class="section-counter">4 Assets</div>
+    </div>
+
+    <div class="large-grid">
+        <div class="large-card">
+            <div class="large-preview">
+                <img src="backgrounds_and_covers/fortunegems_bg.jpg" alt="Temple Background">
+            </div>
+            <div class="asset-title">Aztec Golden Temple Jungle Background</div>
+            <div class="asset-meta">High-definition 1920x1080 environment background art with sunrays and ancient pyramid</div>
+            <a href="backgrounds_and_covers/fortunegems_bg.jpg" download class="btn-download">Download Background (1.06 MB)</a>
+        </div>
+
+        <div class="large-card">
+            <div class="large-preview">
+                <img src="backgrounds_and_covers/fortunegems2.png" alt="Game Cover">
+            </div>
+            <div class="asset-title">Fortune Gems 2 Official Poster Cover</div>
+            <div class="asset-meta">Promotional banner art featuring Garuda Wild mask and gemstones</div>
+            <a href="backgrounds_and_covers/fortunegems2.png" download class="btn-download">Download Cover Poster (1.17 MB)</a>
+        </div>
+
+        <div class="large-card">
+            <div class="large-preview contain-img">
+                <img src="cabinet_and_ui/aztec_pillar.png" alt="Carved Aztec Pillar">
+            </div>
+            <div class="asset-title">Carved Aztec Stone Pillar</div>
+            <div class="asset-meta">Reel framing columns with hieroglyphic reliefs and gold trims</div>
+            <a href="cabinet_and_ui/aztec_pillar.png" download class="btn-download">Download Aztec Pillar (664 KB)</a>
+        </div>
+
+        <div class="large-card">
+            <div class="large-preview contain-img">
+                <img src="cabinet_and_ui/aztec_spin_button.png" alt="Aztec Spin Button">
+            </div>
+            <div class="asset-title">Ornate Aztec Golden Spin Button</div>
+            <div class="asset-meta">Circular embossed gold Aztec dial with jade center</div>
+            <a href="cabinet_and_ui/aztec_spin_button.png" download class="btn-download">Download Spin Button (1.05 MB)</a>
+        </div>
+    </div>
+
+    <!-- Section 5: Theme Color Codes & Palette -->
+    <div class="section-header">
+        <div class="section-title">
+            <span>🎨</span> Color Palette & Design Tokens
+        </div>
+        <div class="section-counter">Click Hex to Copy</div>
+    </div>
+
+    <div class="palette-grid">
+        <div class="palette-card">
+            <div class="swatch" style="background: #ffd700;"></div>
+            <div class="swatch-title">Gold Main</div>
+            <div class="swatch-hex" onclick="copyHex('#ffd700')">#ffd700</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #fff5a6;"></div>
+            <div class="swatch-title">Gold Bright Highlight</div>
+            <div class="swatch-hex" onclick="copyHex('#fff5a6')">#fff5a6</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #b8860b;"></div>
+            <div class="swatch-title">Gold Deep Shadow</div>
+            <div class="swatch-hex" onclick="copyHex('#b8860b')">#b8860b</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #ff1744;"></div>
+            <div class="swatch-title">Ruby Crimson</div>
+            <div class="swatch-hex" onclick="copyHex('#ff1744')">#ff1744</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #00b0ff;"></div>
+            <div class="swatch-title">Sapphire Cobalt</div>
+            <div class="swatch-hex" onclick="copyHex('#00b0ff')">#00b0ff</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #00e676;"></div>
+            <div class="swatch-title">Emerald Green</div>
+            <div class="swatch-hex" onclick="copyHex('#00e676')">#00e676</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #d500f9;"></div>
+            <div class="swatch-title">Amethyst Royal</div>
+            <div class="swatch-hex" onclick="copyHex('#d500f9')">#d500f9</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #00a3e0;"></div>
+            <div class="swatch-title">1xBet Cyan</div>
+            <div class="swatch-hex" onclick="copyHex('#00a3e0')">#00a3e0</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #0b1f3a;"></div>
+            <div class="swatch-title">1xBet Navy Blue</div>
+            <div class="swatch-hex" onclick="copyHex('#0b1f3a')">#0b1f3a</div>
+        </div>
+        <div class="palette-card">
+            <div class="swatch" style="background: #070d18;"></div>
+            <div class="swatch-title">Obsidian Dark Ground</div>
+            <div class="swatch-hex" onclick="copyHex('#070d18')">#070d18</div>
+        </div>
+    </div>
+
+    <!-- Section 6: Local Folder Directory -->
+    <div class="section-header">
+        <div class="section-title">
+            <span>📁</span> Extracted Directory Structure
+        </div>
+        <div class="section-counter">Local Workspace</div>
+    </div>
+
+    <div class="folder-tree-box">
+<span class="tree-folder">fortune_gems_2_extracted_assets/</span>
+├── <span class="tree-folder">symbols/</span>                       <span class="tree-desc"># تمام 9 سمبلز (PNG ہائی ریزولوشن)</span>
+│   ├── sym_wild.png                  <span class="tree-desc"># Garuda Wild Mask (25X)</span>
+│   ├── sym_ruby.png                  <span class="tree-desc"># Red Ruby (20X)</span>
+│   ├── sym_sapphire.png              <span class="tree-desc"># Blue Sapphire (15X)</span>
+│   ├── sym_emerald.png               <span class="tree-desc"># Green Emerald (10X)</span>
+│   ├── sym_a.png                     <span class="tree-desc"># Golden Ace (5X)</span>
+│   ├── sym_k.png                     <span class="tree-desc"># Golden King (4X)</span>
+│   ├── sym_q.png                     <span class="tree-desc"># Golden Queen (3X)</span>
+│   ├── sym_j.png                     <span class="tree-desc"># Golden Jack (2X)</span>
+│   └── sym_wheel.png                 <span class="tree-desc"># Lucky Wheel Bonus Symbol</span>
+├── <span class="tree-folder">multipliers_svg/</span>               <span class="tree-desc"># چوتھے ریل کے ویکٹر ملٹی پلائرز (SVG)</span>
+│   ├── multiplier_1x.svg             <span class="tree-desc"># 1X Base Steel Disc</span>
+│   ├── multiplier_2x.svg             <span class="tree-desc"># 2X Bronze Disc</span>
+│   ├── multiplier_3x.svg             <span class="tree-desc"># 3X Azure Disc</span>
+│   ├── multiplier_5x.svg             <span class="tree-desc"># 5X Golden Sun Disc</span>
+│   ├── multiplier_10x.svg            <span class="tree-desc"># 10X Crimson Disc</span>
+│   └── multiplier_15x.svg            <span class="tree-desc"># 15X Royal Violet Disc</span>
+├── <span class="tree-folder">wheel_and_bonus/</span>               <span class="tree-desc"># بونس وہیل اور بگ وِن شیلڈ</span>
+│   ├── fortune_wheel_disc.png        <span class="tree-desc"># Aztec Sun Stone Lucky Wheel (Up to 1000X)</span>
+│   ├── wheel_eagle_pointer.png       <span class="tree-desc"># Golden Aztec Eagle Pointer</span>
+│   └── aztec_bigwin_shield.png       <span class="tree-desc"># Big Win Shield Banner</span>
+├── <span class="tree-folder">cabinet_and_ui/</span>                <span class="tree-desc"># کیبنٹ اور اسپن بٹن</span>
+│   ├── aztec_pillar.png              <span class="tree-desc"># Carved Aztec Stone Pillars</span>
+│   └── aztec_spin_button.png         <span class="tree-desc"># Ornate Golden Spin Button</span>
+├── <span class="tree-folder">backgrounds_and_covers/</span>        <span class="tree-desc"># ماحول اور پوسٹر گرافکس</span>
+│   ├── fortunegems_bg.jpg            <span class="tree-desc"># 1920x1080 Aztec Temple Jungle Wallpaper</span>
+│   ├── fortunegems2.png              <span class="tree-desc"># Official Game Poster (1xBet / TaDa)</span>
+│   └── fortunegems.png               <span class="tree-desc"># Original Game Poster</span>
+└── <span class="tree-folder">theme_spec/</span>                    <span class="tree-desc"># مکمل کوڈنگ رولز اور کلرز</span>
+    ├── theme_palette.json            <span class="tree-desc"># تمام کلرز، شیڈوز اور گریڈینٹس</span>
+    └── paytable_rules.json           <span class="tree-desc"># پے ٹیبل، پے لائنز اور ملٹی پلائر رولز</span>
+    </div>
+
+</div>
+
+<div id="toast">Copied to clipboard!</div>
+
+<script>
+    function copyHex(hex) {
+        navigator.clipboard.writeText(hex).then(() => {
+            const toast = document.getElementById('toast');
+            toast.innerText = 'Copied: ' + hex;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>

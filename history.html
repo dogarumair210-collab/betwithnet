@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Betslip & Financial History - Bet With Net</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/app.css?v=2026_deposit_popup_v1">
+    <link rel="stylesheet" href="css/cashier.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app-header-slot"></div>
+
+    <main class="ledger-container-wide">
+
+        <!-- Title & Subtitle -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+            <div>
+                <h1 style="font-size:22px; font-weight:900; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <span>📋 Betslip & Statement Ledger</span>
+                    <span style="font-size:10.5px; font-weight:800; padding:2px 8px; border-radius:12px; background:rgba(245,166,35,0.15); color:var(--primary-gold); border:1px solid rgba(245,166,35,0.3);">PROVABLY FAIR</span>
+                </h1>
+                <p style="font-size:12.5px; color:var(--text-muted); margin-top:4px;">
+                    Cryptographic audit trail of all game bets, multiplayer cashouts, deposits, and P2P payouts
+                </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+                <button class="page-btn" onclick="exportStatement('json')" title="Download JSON Audit Trail">📥 Export JSON</button>
+                <button class="page-btn" onclick="window.print()" title="Print VIP Statement">🖨️ Print Ledger</button>
+            </div>
+        </div>
+
+        <!-- Ledger Summary Metric Cards -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:20px;">
+            <div style="background:var(--bg-card); padding:14px; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-card);">
+                <div style="font-size:11px; color:#8e9bb0; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">Total Wagered</div>
+                <div id="hist-wagered" style="font-size:18px; font-weight:900; color:#f5a623; margin-top:4px; font-family:var(--font-mono);">$ 0.00</div>
+            </div>
+            <div style="background:var(--bg-card); padding:14px; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-card);">
+                <div style="font-size:11px; color:#8e9bb0; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">Total Payouts Won</div>
+                <div id="hist-won" style="font-size:18px; font-weight:900; color:#00e700; margin-top:4px; font-family:var(--font-mono);">$ 0.00</div>
+            </div>
+            <div style="background:var(--bg-card); padding:14px; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-card);">
+                <div style="font-size:11px; color:#8e9bb0; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">Net PnL Profit</div>
+                <div id="hist-profit" style="font-size:18px; font-weight:900; color:#ffffff; margin-top:4px; font-family:var(--font-mono);">$ 0.00</div>
+            </div>
+            <div style="background:var(--bg-card); padding:14px; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-card);">
+                <div style="font-size:11px; color:#8e9bb0; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">Win Rate %</div>
+                <div id="hist-rate" style="font-size:18px; font-weight:900; color:#00e5ff; margin-top:4px; font-family:var(--font-mono);">0.0%</div>
+            </div>
+            <div style="background:var(--bg-card); padding:14px; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-card);">
+                <div style="font-size:11px; color:#8e9bb0; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">Total Rounds</div>
+                <div id="hist-total-rounds" style="font-size:18px; font-weight:900; color:#fff; margin-top:4px; font-family:var(--font-mono);">0</div>
+            </div>
+        </div>
+
+        <!-- Filter Category Tabs -->
+        <div class="category-pills category-pills-bar" style="margin-bottom:16px; display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; white-space:nowrap;">
+            <button class="category-pill active" id="pill-all" onclick="setCategoryFilter('all')">
+                <span>🌐 All Activity</span> <b id="count-pill-all" style="opacity:0.75; font-size:11px;">(0)</b>
+            </button>
+            <button class="category-pill" id="pill-bets" onclick="setCategoryFilter('bets')">
+                <span>🎲 Game Bets</span> <b id="count-pill-bets" style="opacity:0.75; font-size:11px;">(0)</b>
+            </button>
+            <button class="category-pill" id="pill-deposits" onclick="setCategoryFilter('deposits')">
+                <span>📥 Deposits</span> <b id="count-pill-deposits" style="opacity:0.75; font-size:11px;">(0)</b>
+            </button>
+            <button class="category-pill" id="pill-withdrawals" onclick="setCategoryFilter('withdrawals')">
+                <span>📤 Withdrawals</span> <b id="count-pill-withdrawals" style="opacity:0.75; font-size:11px;">(0)</b>
+            </button>
+        </div>
+
+        <!-- Search & Filter Toolbar -->
+        <div class="ledger-toolbar">
+            <div class="ledger-search-wrap">
+                <span class="ledger-search-icon">🔍</span>
+                <input type="text" id="ledger-search" class="ledger-search-input" placeholder="Search by game, ID, details, or method..." oninput="handleSearch(this.value)">
+            </div>
+            <div class="ledger-filters-wrap">
+                <select id="ledger-status-filter" class="ledger-select" onchange="handleStatusFilter(this.value)">
+                    <option value="all">All Statuses</option>
+                    <option value="win">Wins Only (WIN / Approved)</option>
+                    <option value="loss">Losses Only (LOSS / Rejected)</option>
+                    <option value="pending">Pending Orders Only</option>
+                </select>
+                <select id="ledger-page-size" class="ledger-select" onchange="handlePageSize(this.value)">
+                    <option value="10" selected>10 per page</option>
+                    <option value="20">20 per page</option>
+                    <option value="50">50 per page</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Desktop Luxury Data Table (>= 769px) -->
+        <div class="ledger-table-wrap">
+            <table class="ledger-table">
+                <thead>
+                    <tr>
+                        <th>Type / Game</th>
+                        <th>ID & Ref</th>
+                        <th>Timestamp</th>
+                        <th>Outcome / Details</th>
+                        <th>Wager / Amount</th>
+                        <th>Payout / Return</th>
+                        <th>Net Profit / PnL</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ledger-table-tbody">
+                    <!-- Populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mobile Cards (< 769px) -->
+        <div id="ledger-mobile-cards-wrap" class="ledger-mobile-cards">
+            <!-- Populated dynamically -->
+        </div>
+
+        <!-- Empty State Container -->
+        <div id="ledger-empty-state" style="display:none; padding:45px 20px; text-align:center; background:var(--bg-card); border-radius:var(--radius-md); border:1px solid var(--border-color); margin-bottom:16px;">
+            <div style="font-size:36px; margin-bottom:10px;">🔍</div>
+            <div style="font-size:15px; font-weight:700; color:#fff;">No records found</div>
+            <div style="font-size:12.5px; color:var(--text-muted); margin-top:4px;">Try searching for a different game name, transaction ID, or clearing filters.</div>
+            <button class="page-btn" style="margin-top:14px; background:var(--primary-gold); color:#000;" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+
+        <!-- Pagination Bar -->
+        <div class="ledger-pagination" id="ledger-pagination-bar">
+            <div class="ledger-page-info" id="ledger-page-info">
+                Showing 1 to 10 of 25 records
+            </div>
+            <div class="ledger-page-nav" id="ledger-page-nav">
+                <!-- Buttons rendered dynamically -->
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/audio.js?v=2026_bgm_v3"></script>
+    <script src="js/wallet.js?v=3.5"></script>
+    <script src="js/api_bridge.js?v=3.5"></script>
+    <script src="js/core.js?v=2026_hd_vault_v1"></script>
+    <script>
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let statusFilter = 'all';
+        let currentPage = 1;
+        let pageSize = 10;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            window.core.init('history');
+            await syncServerHistory();
+            renderLedger();
+        });
+
+        async function syncServerHistory() {
+            const user = window.core ? window.core.getLoggedInUser() : null;
+            if (!user || !user.id) return;
+            try {
+                // Fetch user real transactions from DB
+                const txRes = await fetch(`/api/wallet.php?action=history&type=transactions&user_id=${encodeURIComponent(user.id)}&limit=100`, { cache: 'no-store' });
+                const txJson = await txRes.json();
+                if (txJson && txJson.success && txJson.data && Array.isArray(txJson.data.items)) {
+                    if (window.wallet) {
+                        window.wallet.state.transactions = txJson.data.items.map(t => ({
+                            id: t.id,
+                            type: t.type,
+                            method: t.method,
+                            amountPKR: parseFloat(t.amount_pkr || 0),
+                            amountUSD: parseFloat(t.amount_usd || 0),
+                            sender: t.sender_account || '',
+                            trxId: t.trx_id || '',
+                            status: t.status,
+                            date: t.transaction_date || t.created_at
+                        }));
+                    }
+                }
+
+                // Fetch user real bets from DB
+                const betRes = await fetch(`/api/wallet.php?action=history&type=bets&user_id=${encodeURIComponent(user.id)}&limit=100`, { cache: 'no-store' });
+                const betJson = await betRes.json();
+                if (betJson && betJson.success && betJson.data && Array.isArray(betJson.data.items)) {
+                    if (window.wallet) {
+                        window.wallet.state.betHistory = betJson.data.items.map(b => ({
+                            id: b.id,
+                            game: b.game,
+                            betUSD: parseFloat(b.bet_amount || 0),
+                            betPKR: parseFloat(b.bet_amount_pkr !== undefined ? b.bet_amount_pkr : (b.bet_amount ? b.bet_amount * 280 : 0)),
+                            payoutUSD: parseFloat(b.payout || 0),
+                            payoutPKR: parseFloat(b.payout_pkr !== undefined ? b.payout_pkr : (b.payout ? b.payout * 280 : 0)),
+                            profitUSD: parseFloat(b.profit || 0),
+                            profitPKR: parseFloat(b.profit_pkr !== undefined ? b.profit_pkr : (b.profit ? b.profit * 280 : 0)),
+                            multiplier: b.multiplier_formatted || `${b.multiplier}x`,
+                            status: b.status,
+                            time: b.bet_time || '',
+                            timestamp: b.played_at || b.created_at
+                        }));
+                    }
+                }
+                if (window.wallet) window.wallet.saveState();
+            } catch (e) {
+                console.warn('Failed to sync history from server:', e);
+            }
+        }
+
+        function setCategoryFilter(f) {
+            currentFilter = f;
+            currentPage = 1;
+            document.querySelectorAll('.category-pills .category-pill').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById(`pill-${f}`);
+            if (activeBtn) activeBtn.classList.add('active');
+            if (window.sound && window.sound.playClick) window.sound.playClick();
+            renderLedger();
+        }
+
+        function handleSearch(val) {
+            searchQuery = (val || '').toLowerCase().trim();
+            currentPage = 1;
+            renderLedger();
+        }
+
+        function handleStatusFilter(val) {
+            statusFilter = val;
+            currentPage = 1;
+            renderLedger();
+        }
+
+        function handlePageSize(val) {
+            pageSize = parseInt(val, 10) || 10;
+            currentPage = 1;
+            renderLedger();
+        }
+
+        function resetFilters() {
+            currentFilter = 'all';
+            searchQuery = '';
+            statusFilter = 'all';
+            currentPage = 1;
+            document.getElementById('ledger-search').value = '';
+            document.getElementById('ledger-status-filter').value = 'all';
+            document.querySelectorAll('.category-pills .category-pill').forEach(b => b.classList.remove('active'));
+            document.getElementById('pill-all').classList.add('active');
+            renderLedger();
+        }
+
+        function getAllItems() {
+            let items = [];
+
+            // 1. Game Bets
+            if (window.wallet && window.wallet.state && Array.isArray(window.wallet.state.betHistory)) {
+                for (const b of window.wallet.state.betHistory) {
+                    const betUSD = Number(b.betUSD || b.bet || 0);
+                    const payoutUSD = Number(b.payoutUSD !== undefined ? b.payoutUSD : (b.payout || 0));
+                    const profitUSD = Number(b.profitUSD !== undefined ? b.profitUSD : (payoutUSD - betUSD));
+                    const isWin = (b.status === 'WIN' || profitUSD > 0);
+                    const isPush = (b.status === 'PUSH' || profitUSD === 0 && payoutUSD > 0);
+
+                    items.push({
+                        category: 'bets',
+                        type: 'Game Bet',
+                        icon: getGameIcon(b.game),
+                        title: b.game,
+                        id: b.id,
+                        time: b.time || (b.timestamp ? new Date(b.timestamp).toLocaleTimeString() : 'N/A'),
+                        timestamp: b.timestamp || new Date().toISOString(),
+                        details: b.details || `Round played (${b.multiplier || '1x'})`,
+                        multiplier: b.multiplier || (payoutUSD > 0 && betUSD > 0 ? (payoutUSD / betUSD).toFixed(2) + 'x' : '0.00x'),
+                        wagerFormatted: window.wallet.formatAmount(window.wallet.fromUSD(betUSD)),
+                        payoutFormatted: window.wallet.formatAmount(window.wallet.fromUSD(payoutUSD)),
+                        profitFormatted: (profitUSD > 0 ? '+' : '') + window.wallet.formatAmount(window.wallet.fromUSD(profitUSD)),
+                        profitUSD: profitUSD,
+                        status: isWin ? 'WIN' : (isPush ? 'PUSH' : 'LOSS'),
+                        badgeClass: isWin ? 'badge-status-win' : (isPush ? 'badge-status-push' : 'badge-status-loss'),
+                        isPositive: isWin
+                    });
+                }
+            }
+
+            // 2. Cashier Deposits & Withdrawals
+            if (window.wallet && window.wallet.state && Array.isArray(window.wallet.state.transactions)) {
+                for (const t of window.wallet.state.transactions) {
+                    const isDep = (t.type === 'deposit' || t.type === 'bonus');
+                    const isWith = (t.type === 'withdraw');
+                    const amountUSD = Number(t.amountUSD || (t.amountPKR ? t.amountPKR / 280 : 0));
+                    const status = t.status || 'Approved';
+
+                    let badgeClass = 'badge-status-approved';
+                    if (status === 'Pending') badgeClass = 'badge-status-pending';
+                    if (status === 'Rejected') badgeClass = 'badge-status-rejected';
+
+                    items.push({
+                        category: isDep ? 'deposits' : 'withdrawals',
+                        type: isDep ? 'Deposit' : 'Withdrawal',
+                        icon: isDep ? '📥' : '📤',
+                        title: `${t.method || 'Banking'} (${isDep ? 'Cash In' : 'Cash Out'})`,
+                        id: t.id,
+                        time: t.date || 'Today',
+                        timestamp: t.date || new Date().toISOString(),
+                        details: t.sender || t.accountNumber ? `Account: ${t.sender || t.accountNumber} • Trx: ${t.trxId || 'N/A'}` : `Processed via ${t.method}`,
+                        multiplier: isDep ? 'DEPOSIT' : 'CASHOUT',
+                        wagerFormatted: window.wallet.formatAmount(window.wallet.fromUSD(amountUSD)),
+                        payoutFormatted: window.wallet.formatAmount(window.wallet.fromUSD(amountUSD)),
+                        profitFormatted: (isDep ? '+' : '-') + window.wallet.formatAmount(window.wallet.fromUSD(amountUSD)),
+                        profitUSD: isDep ? amountUSD : -amountUSD,
+                        status: status,
+                        badgeClass: badgeClass,
+                        isPositive: isDep && status === 'Approved'
+                    });
+                }
+            }
+
+            return items;
+        }
+
+        function getGameIcon(name) {
+            if (!name) return '🎲';
+            const lower = name.toLowerCase();
+            if (lower.includes('crash') || lower.includes('aviator')) return '🚀';
+            if (lower.includes('roulette')) return '🎡';
+            if (lower.includes('blackjack')) return '♠️';
+            if (lower.includes('slot')) return '🎰';
+            if (lower.includes('poker')) return '🃏';
+            if (lower.includes('mine')) return '💣';
+            if (lower.includes('dice')) return '🎲';
+            if (lower.includes('plinko')) return '⚪';
+            if (lower.includes('keno')) return '🎱';
+            if (lower.includes('bingo')) return '🎫';
+            if (lower.includes('limbo')) return '🚀';
+            if (lower.includes('coin')) return '🪙';
+            if (lower.includes('hilo') || lower.includes('hi-lo')) return '🃏';
+            if (lower.includes('scratch')) return '🎟️';
+            if (lower.includes('tiger')) return '🐉';
+            return '🎲';
+        }
+
+        function renderLedger() {
+            const allItems = getAllItems();
+
+            // Update top metric cards
+            const stats = window.wallet.getStats ? window.wallet.getStats() : {};
+            const betItems = allItems.filter(i => i.category === 'bets');
+            const totalWageredUSD = betItems.reduce((acc, i) => acc + (parseFloat(i.wagerFormatted.replace(/[^0-9.-]+/g, "")) || 0), 0);
+            const totalWonUSD = betItems.filter(i => i.status === 'WIN').reduce((acc, i) => acc + (parseFloat(i.payoutFormatted.replace(/[^0-9.-]+/g, "")) || 0), 0);
+            const netProfitUSD = totalWonUSD - totalWageredUSD;
+            const winsCount = betItems.filter(i => i.status === 'WIN').length;
+            const winRate = betItems.length > 0 ? ((winsCount / betItems.length) * 100).toFixed(1) + '%' : '0.0%';
+
+            document.getElementById('hist-wagered').innerText = stats.totalWagered || window.wallet.formatAmount(totalWageredUSD);
+            document.getElementById('hist-won').innerText = stats.totalWon || window.wallet.formatAmount(totalWonUSD);
+            document.getElementById('hist-profit').innerText = stats.netProfit || ((netProfitUSD >= 0 ? '+' : '') + window.wallet.formatAmount(netProfitUSD));
+            document.getElementById('hist-profit').style.color = (stats.isProfitPositive !== undefined ? stats.isProfitPositive : netProfitUSD >= 0) ? '#00e700' : '#ff3b30';
+            document.getElementById('hist-rate').innerText = stats.winRate || winRate;
+            document.getElementById('hist-total-rounds').innerText = betItems.length;
+
+            // Update pill counts
+            document.getElementById('count-pill-all').innerText = `(${allItems.length})`;
+            document.getElementById('count-pill-bets').innerText = `(${betItems.length})`;
+            document.getElementById('count-pill-deposits').innerText = `(${allItems.filter(i => i.category === 'deposits').length})`;
+            document.getElementById('count-pill-withdrawals').innerText = `(${allItems.filter(i => i.category === 'withdrawals').length})`;
+
+            // Filter by Category
+            let filtered = allItems;
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(i => i.category === currentFilter);
+            }
+
+            // Filter by Search Query
+            if (searchQuery) {
+                filtered = filtered.filter(i =>
+                    (i.title && i.title.toLowerCase().includes(searchQuery)) ||
+                    (i.id && i.id.toLowerCase().includes(searchQuery)) ||
+                    (i.details && i.details.toLowerCase().includes(searchQuery)) ||
+                    (i.status && i.status.toLowerCase().includes(searchQuery))
+                );
+            }
+
+            // Filter by Status
+            if (statusFilter === 'win') {
+                filtered = filtered.filter(i => i.status === 'WIN' || i.status === 'Approved');
+            } else if (statusFilter === 'loss') {
+                filtered = filtered.filter(i => i.status === 'LOSS' || i.status === 'Rejected');
+            } else if (statusFilter === 'pending') {
+                filtered = filtered.filter(i => i.status === 'Pending');
+            }
+
+            // Calculate Pagination
+            const totalRecords = filtered.length;
+            const totalPages = Math.ceil(totalRecords / pageSize) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+
+            const startIndex = (currentPage - 1) * pageSize;
+            const endIndex = Math.min(startIndex + pageSize, totalRecords);
+            const pageItems = filtered.slice(startIndex, endIndex);
+
+            const tbody = document.getElementById('ledger-table-tbody');
+            const mobileCardsWrap = document.getElementById('ledger-mobile-cards-wrap');
+            const emptyState = document.getElementById('ledger-empty-state');
+            const paginationBar = document.getElementById('ledger-pagination-bar');
+
+            if (totalRecords === 0) {
+                tbody.innerHTML = '';
+                mobileCardsWrap.innerHTML = '';
+                emptyState.style.display = 'block';
+                paginationBar.style.display = 'none';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            paginationBar.style.display = 'flex';
+
+            // 1. Render Desktop Table Rows
+            tbody.innerHTML = pageItems.map(item => `
+                <tr>
+                    <td>
+                        <div class="ledger-badge-type">
+                            <span style="font-size:16px;">${item.icon}</span>
+                            <div>
+                                <div style="font-weight:700; color:#fff;">${item.title}</div>
+                                <span style="font-size:10px; color:var(--text-muted); text-transform:uppercase;">${item.type}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span style="font-family:var(--font-mono); font-size:11px; background:rgba(255,255,255,0.06); padding:2px 6px; border-radius:4px; color:#c7d2e0;">
+                            ${item.id}
+                        </span>
+                    </td>
+                    <td>
+                        <div style="font-size:11.5px; color:#8e9bb0;">${item.time}</div>
+                    </td>
+                    <td>
+                        <div style="font-size:11.5px; color:#c7d2e0; max-width:260px; overflow:hidden; text-overflow:ellipsis;" title="${item.details}">
+                            ${item.details}
+                        </div>
+                    </td>
+                    <td>
+                        <b style="font-family:var(--font-mono); color:#f0f3f8;">${item.wagerFormatted}</b>
+                    </td>
+                    <td>
+                        <b style="font-family:var(--font-mono); color:${item.status === 'WIN' ? '#00e700' : '#8e9bb0'};">${item.payoutFormatted}</b>
+                    </td>
+                    <td>
+                        <b style="font-family:var(--font-mono); font-size:13px; color:${item.isPositive ? '#00e700' : (item.status === 'PUSH' ? '#f5a623' : '#ff3b30')};">
+                            ${item.profitFormatted}
+                        </b>
+                    </td>
+                    <td>
+                        <span class="${item.badgeClass}">
+                            ${item.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+
+            // 2. Render Mobile Cards
+            mobileCardsWrap.innerHTML = pageItems.map(item => `
+                <div class="ledger-card-item">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="font-size:20px;">${item.icon}</span>
+                            <div>
+                                <div style="font-weight:800; font-size:13.5px; color:#fff;">${item.title}</div>
+                                <div style="font-size:10.5px; color:#8e9bb0; margin-top:1px;">
+                                    ${item.id} • ${item.time}
+                                </div>
+                            </div>
+                        </div>
+                        <span class="${item.badgeClass}">
+                            ${item.status}
+                        </span>
+                    </div>
+                    <div style="font-size:11.5px; color:#c7d2e0; background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:6px;">
+                        ${item.details}
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.05); padding-top:8px;">
+                        <div style="font-size:11px; color:#8e9bb0;">
+                            Wager: <b style="color:#fff;">${item.wagerFormatted}</b>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-size:10px; color:#8e9bb0;">Return / PnL</div>
+                            <div style="font-weight:900; font-family:var(--font-mono); font-size:14px; color:${item.isPositive ? '#00e700' : (item.status === 'PUSH' ? '#f5a623' : '#ff3b30')};">
+                                ${item.profitFormatted}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 3. Render Pagination Navigation Controls
+            document.getElementById('ledger-page-info').innerHTML = `
+                Showing <b>${startIndex + 1}</b> to <b>${endIndex}</b> of <b>${totalRecords}</b> entries
+            `;
+
+            let navHtml = '';
+            navHtml += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">« Prev</button>`;
+
+            for (let p = 1; p <= totalPages; p++) {
+                if (p === 1 || p === totalPages || (p >= currentPage - 1 && p <= currentPage + 1)) {
+                    navHtml += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
+                } else if (p === currentPage - 2 || p === currentPage + 2) {
+                    navHtml += `<span style="color:#8e9bb0; padding:0 3px;">...</span>`;
+                }
+            }
+
+            navHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next »</button>`;
+            document.getElementById('ledger-page-nav').innerHTML = navHtml;
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderLedger();
+            if (window.sound && window.sound.playClick) window.sound.playClick();
+            window.scrollTo({ top: 180, behavior: 'smooth' });
+        }
+
+        function exportStatement(type) {
+            const items = getAllItems();
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `BetWithNet_Statement_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            if (window.core && window.core.showToast) {
+                window.core.showToast('VIP Statement Ledger exported successfully!', 'success');
+            }
+        }
+    </script>
+</body>
+</html>

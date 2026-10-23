@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="crypto-eze-verification" content="83c6a00ae5705a81">
+    <title>Bet With Net - Premium VIP Casino & Sports Gaming</title>
+    <link rel="manifest" href="manifest.json">
+    <!-- Apple iOS Native Web App Experience -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Bet With Net">
+    <link rel="apple-touch-icon" href="assets/icons/apple_touch_icon_180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple_touch_icon_152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple_touch_icon_180.png">
+    <link rel="apple-touch-startup-image" href="assets/icons/betwithnet_4k_wallpaper_mobile.jpg">
+    <link rel="stylesheet" href="css/app.css?v=2026_vip_popups_v3">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/cashier.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .game-card-wide-aviator {
+            min-height: 125px !important;
+            padding: 10px 12px !important;
+        }
+        .game-card-wide-fishing {
+            min-height: 165px !important;
+            padding: 12px 14px !important;
+            border: 1.5px solid rgba(0, 247, 255, 0.45) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 22px rgba(0, 247, 255, 0.22) !important;
+            background: #02101e !important;
+        }
+        .games-grid.fishing-view-mode .game-card-wide-fishing {
+            min-height: 290px !important;
+            border-width: 2px !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 247, 255, 0.35) !important;
+        }
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important;
+                gap: 8px !important;
+            }
+            .game-card-wide-aviator {
+                grid-column: 1 / -1 !important;
+                min-height: 110px !important;
+                padding: 8px 10px !important;
+                border-radius: 12px !important;
+            }
+            .game-card-wide-fishing {
+                grid-column: 1 / -1 !important;
+                min-height: 145px !important;
+                padding: 10px 12px !important;
+                border-radius: 14px !important;
+            }
+            .games-grid.fishing-view-mode .game-card-wide-fishing {
+                min-height: 235px !important;
+            }
+            .wide-aviator-wordmark {
+                height: 17px !important;
+            }
+            .wide-mult-value {
+                font-size: 18px !important;
+            }
+            .wide-mult-label {
+                font-size: 8px !important;
+            }
+            .wide-aviator-mult-box {
+                padding: 3px 8px !important;
+                min-width: 70px !important;
+            }
+            .wide-aviator-action-btn {
+                padding: 4px 10px !important;
+                font-size: 10px !important;
+            }
+            .wide-aviator-stats {
+                font-size: 10px !important;
+            }
+            .badge-aviator-hot, .badge-aviator-spribe {
+                font-size: 8.5px !important;
+                padding: 2px 5px !important;
+            }
+            .game-card:not(.game-card-wide-aviator) {
+                aspect-ratio: 1 / 1 !important;
+                padding: 0 !important;
+            }
+            .game-card:not(.game-card-wide-aviator) .game-card-img-wrap {
+                height: 100% !important;
+                width: 100% !important;
+                aspect-ratio: 1 / 1 !important;
+            }
+            .game-card-info, .game-card-title, .game-card-category, .game-play-tag, .game-badge-hot, .game-badge-rtp {
+                display: none !important;
+            }
+        }
+
+        /* HD Hero Banner Carousel */
+        .hero-carousel-container {
+            position: relative;
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-top: 4px;
+            margin-bottom: 16px;
+            border: 1.5px solid rgba(245, 166, 35, 0.55);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(245, 166, 35, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            background: #0d131c;
+            touch-action: pan-y pinch-zoom;
+            user-select: none;
+            animation: heroGlowPulse 6s ease-in-out infinite alternate;
+        }
+        @keyframes heroGlowPulse {
+            0% {
+                box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 166, 35, 0.18);
+                border-color: rgba(245, 166, 35, 0.45);
+            }
+            100% {
+                box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8), 0 0 45px rgba(245, 166, 35, 0.38);
+                border-color: rgba(255, 215, 0, 0.75);
+            }
+        }
+        .hero-carousel-track {
+            display: flex;
+            width: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .hero-carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+        .hero-carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            line-height: 0;
+            position: relative;
+        }
+        .hero-carousel-slide a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            line-height: 0;
+        }
+        .hero-carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 1920 / 540;
+            object-fit: cover;
+            border-radius: 17px;
+        }
+        @media (max-width: 768px) {
+            .hero-carousel-container {
+                border-radius: 14px;
+                margin-bottom: 12px;
+            }
+            .hero-carousel-slide img {
+                border-radius: 13px;
+            }
+        }
+        .hero-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(8, 12, 19, 0.85);
+            border: 1.5px solid rgba(245, 166, 35, 0.4);
+            color: #ffd700;
+            font-size: 24px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.22s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+        }
+        .hero-carousel-container:hover .hero-carousel-arrow {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .hero-carousel-arrow {
+                display: none;
+            }
+        }
+        .hero-carousel-prev { left: 14px; }
+        .hero-carousel-next { right: 14px; }
+        .hero-carousel-arrow:hover {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #000;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(245, 166, 35, 0.7);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        /* Lobby Category Navigation Bar (Ditto Reference Design) */
+        .lobby-category-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: rgba(14, 18, 28, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 8px 6px 0 6px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .lobby-category-navbar::-webkit-scrollbar {
+            display: none;
+        }
+        .lobby-cat-tab {
+            position: relative;
+            background: transparent;
+            border: none;
+            outline: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 12px 10px 12px;
+            cursor: pointer;
+            flex: 1 1 0;
+            min-width: 64px;
+            max-width: 110px;
+            border-radius: 12px;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .lobby-cat-icon-wrap {
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+        .lobby-cat-icon {
+            max-height: 26px;
+            max-width: 36px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+            transition: all 0.22s ease;
+        }
+        .lobby-cat-tab:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .lobby-cat-tab:hover .lobby-cat-icon {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+        }
+        .lobby-cat-tab.active {
+            background: rgba(224, 36, 195, 0.08);
+        }
+        .lobby-cat-tab.active .lobby-cat-icon {
+            filter: brightness(1.2) drop-shadow(0 4px 12px rgba(224, 36, 195, 0.55));
+            transform: scale(1.1) translateY(-2px);
+        }
+        .lobby-cat-tab.active .lobby-cat-icon.icon-hot {
+            filter: drop-shadow(0 0 12px rgba(255, 100, 0, 0.65));
+        }
+        .lobby-cat-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #8c92a4;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+            letter-spacing: -0.2px;
+        }
+        .lobby-cat-tab:hover .lobby-cat-label {
+            color: #ffffff;
+        }
+        .lobby-cat-tab.active .lobby-cat-label {
+            color: #ff33c2;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(224, 36, 195, 0.4);
+        }
+        .lobby-cat-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 18%;
+            right: 18%;
+            height: 3.5px;
+            background: transparent;
+            border-radius: 4px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .lobby-cat-tab.active .lobby-cat-indicator {
+            background: linear-gradient(90deg, #e024c3, #ff4e50);
+            box-shadow: 0 0 14px rgba(224, 36, 195, 0.9), 0 0 4px #e024c3;
+        }
+        @media (max-width: 480px) {
+            .lobby-category-navbar {
+                padding: 6px 4px 0 4px;
+                gap: 2px;
+            }
+            .lobby-cat-tab {
+                min-width: 58px;
+                padding: 3px 6px 8px 6px;
+                gap: 4px;
+            }
+            .lobby-cat-icon-wrap {
+                height: 24px;
+            }
+            .lobby-cat-icon {
+                max-height: 22px;
+                max-width: 30px;
+            }
+            .lobby-cat-label {
+                font-size: 11px;
+            }
+        }
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header injected by core.js -->
+    <div id="app-header-slot"></div>
+
+    <!-- Main Lobby Content -->
+    <main class="main-container">
+
+        <!-- Bet With Net Official HD Hero Banner Carousel -->
+        <div class="hero-carousel-container" id="heroCarousel">
+            <div class="hero-carousel-track" id="heroCarouselTrack">
+                <div class="hero-carousel-slide" data-slide="0">
+                    <a href="deposit.html" title="Invitation Bonus - Up to 3.0% Daily Commission">
+                        <img src="assets/banners/banner_invitation_bonus.jpg?v=hd_v1" alt="Bet With Net Invitation Bonus" fetchpriority="high">
+                    </a>
+                </div>
+                <div class="hero-carousel-slide" data-slide="1">
+                    <a href="deposit.html" title="Monthly Cash Reward - Rs 10 to 1,000,000">
+                        <img src="assets/banners/banner_cash_reward.jpg?v=hd_v1" alt="Bet With Net Monthly Cash Reward" loading="lazy">
+                    </a>
+                </div>
+                <div class="hero-carousel-slide" data-slide="2">
+                    <a href="casino.html" title="Bet With Net VIP Casino">
+                        <img src="assets/banners/hero_banner_4k.jpg?v=final_32" alt="Bet With Net VIP Casino" loading="lazy">
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Carousel Desktop Navigation Arrows -->
+            <button class="hero-carousel-arrow hero-carousel-prev" id="heroCarouselPrev" aria-label="Previous Slide">‹</button>
+            <button class="hero-carousel-arrow hero-carousel-next" id="heroCarouselNext" aria-label="Next Slide">›</button>
+        </div>
+
+        <!-- Live Big Wins Ticker (Moved below banner) -->
+        <div class="live-ticker" style="border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(15, 19, 26, 0.85); backdrop-filter: blur(8px);">
+            <div id="live-ticker-track" class="live-ticker-track"></div>
+        </div>
+
+        <!-- Game Categories Navigation Bar (Ditto Reference Design) -->
+        <div class="lobby-category-navbar" id="lobbyCatNavbar">
+            <button class="lobby-cat-tab active" data-cat="all" onclick="switchLobbyCategory('all', this)">
+                <div class="lobby-cat-icon-wrap">
+                    <img src="assets/icons/tab_hot.png?v=v2_bright" alt="Hot" class="lobby-cat-icon icon-hot">
+                </div>
+                <span class="lobby-cat-label">Hot</span>
+                <span class="lobby-cat-indicator"></span>
+            </button>
+            <button class="lobby-cat-tab" data-cat="originals" onclick="switchLobbyCategory('originals', this)">
+                <div class="lobby-cat-icon-wrap">
+                    <img src="assets/icons/tab_minigames.png?v=v2_bright" alt="Mini Games" class="lobby-cat-icon">
+                </div>
+                <span class="lobby-cat-label">Mini Games</span>
+                <span class="lobby-cat-indicator"></span>
+            </button>
+            <button class="lobby-cat-tab" data-cat="slots" onclick="switchLobbyCategory('slots', this)">
+                <div class="lobby-cat-icon-wrap">
+                    <img src="assets/icons/tab_slot.png?v=v2_bright" alt="Slot" class="lobby-cat-icon icon-slot">
+                </div>
+                <span class="lobby-cat-label">Slot</span>
+                <span class="lobby-cat-indicator"></span>
+            </button>
+            <button class="lobby-cat-tab" data-cat="cards" onclick="switchLobbyCategory('cards', this)">
+                <div class="lobby-cat-icon-wrap">
+                    <img src="assets/icons/tab_cards.png?v=v2_bright" alt="Cards" class="lobby-cat-icon">
+                </div>
+                <span class="lobby-cat-label">Cards</span>
+                <span class="lobby-cat-indicator"></span>
+            </button>
+            <button class="lobby-cat-tab" data-cat="fishing" onclick="switchLobbyCategory('fishing', this)">
+                <div class="lobby-cat-icon-wrap">
+                    <img src="assets/icons/tab_fishing.png?v=v2_bright" alt="Fishing" class="lobby-cat-icon">
+                </div>
+                <span class="lobby-cat-label">Fishing</span>
+                <span class="lobby-cat-indicator"></span>
+            </button>
+        </div>
+
+        <div class="games-grid">
+            
+            <!-- 1. Crash (Elongated Featured Animated Showcase) -->
+            <a href="games/crash.html" class="game-card game-card-wide-aviator" style="text-decoration:none;">
+                <div class="wide-aviator-arena">
+                    <video class="wide-aviator-bg-video" autoplay loop muted playsinline poster="assets/aviator_banner_poster.jpg">
+                        <source src="assets/aviator_banner.webm" type="video/webm">
+                        <source src="assets/aviator_banner.mp4" type="video/mp4">
+                    </video>
+                    <div class="wide-aviator-overlay"></div>
+                </div>
+                <div class="wide-aviator-content">
+                    <div class="wide-aviator-top">
+                        <div class="wide-aviator-badges">
+                            <span class="badge-aviator-hot">🔥 #1 HOT</span>
+                            <span class="badge-aviator-spribe">SPRIBE</span>
+                        </div>
+                        <div class="wide-aviator-live-indicator">
+                            <span class="live-dot-pulse"></span>
+                            <span class="live-status-text" id="lobby-live-text">ROUND IN PROGRESS</span>
+                        </div>
+                    </div>
+                    <div class="wide-aviator-middle">
+                        <div class="wide-aviator-titles">
+                            <div class="wide-aviator-brand-row">
+                                <img src="assets/aviator_wordmark.png?v=2" alt="Aviator" class="wide-aviator-wordmark">
+                            </div>
+                        </div>
+                        <div class="wide-aviator-mult-box">
+                            <span class="wide-mult-label">LIVE MULT</span>
+                            <span class="wide-mult-value" id="lobby-mult-val">1.00x</span>
+                        </div>
+                    </div>
+                    <div class="wide-aviator-bottom">
+                        <div class="wide-aviator-action-btn">
+                            <span>PLAY NOW</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="wide-aviator-stats">
+                            <span>🧑‍✈️ <b id="lobby-players-count">1,842</b> Online</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 2. Speedy Andar Bahar (Pure Picture Poster Cover) -->
+            <a href="games/andarbahar.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/andarbahar.jpg" alt="Speedy Andar Bahar">
+                </div>
+            </a>
+
+            <!-- Chicken Road 1xBet Official Arcade (UNDER MAINTENANCE) -->
+            <a href="games/chicken_road.html" onclick="showUnderRepairNotice(event, 'Chicken Road');" class="game-card game-card-poster-only" data-cat="originals arcade slots hot" style="text-decoration:none; position:relative;">
+                <div class="game-card-img-wrap" style="position:relative;">
+                    <img src="assets/covers/chicken_road.png" alt="Chicken Road" style="filter:grayscale(0.4) brightness(0.85);">
+                    <div style="position:absolute; top:8px; right:8px; background:rgba(239,68,68,0.92); color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:6px; letter-spacing:0.5px; border:1px solid rgba(255,255,255,0.4); box-shadow:0 2px 8px rgba(0,0,0,0.6); z-index:5;">
+                        🛠️ UNDER MAINTENANCE
+                    </div>
+                </div>
+            </a>
+
+            <!-- 3. Tower Legend / Tower Rush -->
+            <a href="games/tower_legend.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/tower_legend.png?v=towerrush_v4" alt="Tower Rush">
+                </div>
+            </a>
+
+            <!-- 4. Greyhound Racing Virtual (1xBet #114801) -->
+            <a href="games/greyhound.html" class="game-card game-card-poster-only" data-cat="arcade originals cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/greyhound_1xbet_logo.jpg?v=1xbet" alt="Greyhound Racing Virtual">
+                </div>
+            </a>
+
+            <!-- 3. Card Game (Dragon vs Tiger Pure Picture Cover) -->
+            <a href="games/card.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/card.png?v=vip_poster" alt="Dragon vs Tiger">
+                </div>
+            </a>
+
+            <!-- 4. Roulette VIP (Pure Picture Poster Cover) -->
+            <a href="games/roulettex.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/roulette.png?v=vip_poster" alt="Roulette VIP">
+                </div>
+            </a>
+
+            <!-- 4. Lucky 777 Slots (Pure Picture Poster Cover) -->
+            <a href="games/slots.html" class="game-card game-card-poster-only" data-cat="slots" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/slots.png?v=777_clean_dark" alt="Lucky 777 Slots">
+                </div>
+            </a>
+
+            <!-- 4B. Fortune Gems 2 - JILI (Under Maintenance) -->
+            <a href="games/fortunegems2.html" class="game-card game-card-poster-only" data-cat="slots" style="text-decoration:none; position:relative;" onclick="if(window.core && window.core.showGameMaintenanceModal){window.core.showGameMaintenanceModal('Fortune Gems 2 (JILI Slot)', event); return false;}">
+                <span style="position:absolute; top:8px; right:8px; background:linear-gradient(135deg, #e74c3c, #c0392b); color:#fff; font-size:10px; font-weight:900; padding:3px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.6); z-index:10; letter-spacing:0.5px; border:1px solid rgba(255,255,255,0.25);">MAINTENANCE</span>
+                <div class="game-card-img-wrap" style="filter:grayscale(0.4) brightness(0.85);">
+                    <img src="assets/covers/fortunegems2.png" alt="Fortune Gems 2">
+                </div>
+            </a>
+
+
+
+
+
+
+            <!-- 5. First Person XXXtreme Lightning Roulette (1xBet #97478) -->
+            <a href="games/lightning_roulette.html" class="game-card game-card-poster-only" data-cat="cards originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/lightning_roulette.png?v=xxxtreme_1xbet_v2" alt="First Person XXXtreme Lightning Roulette">
+                </div>
+            </a>
+
+            <!-- 6. Aztec Sun Wheel -->
+            <a href="games/wheel.html?v=filmi_v1" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/wheel.png" alt="Aztec Sun Wheel"></div>
+            </a>
+
+            <!-- 7. Plinko X (Pure Picture Poster Cover) -->
+            <a href="games/plinko.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/plinko.png?v=poster_hq" alt="Plinko X">
+                </div>
+            </a>
+
+            <!-- 8. Keno Lottery (Pure Picture Poster Cover) -->
+            <a href="games/keno.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/keno.png?v=vip_poster" alt="Keno Lottery">
+                </div>
+            </a>
+
+            <!-- 9. Limbo Turbo (Pure Picture Poster Cover) -->
+            <a href="games/limbo.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/limbo.png?v=poster_pure" alt="Limbo Turbo">
+                </div>
+            </a>
+
+            <!-- 10. Mines Land (Pure Picture Poster Cover) -->
+            <a href="games/mines.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/mines.png?v=mines_land" alt="Mines Land VIP">
+                </div>
+            </a>
+
+            <!-- 11. Bingo 75-Ball (Pure Picture Poster Cover) -->
+            <a href="games/bingo.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/bingo.png" alt="Bingo 75 VIP">
+                </div>
+            </a>
+
+            <!-- 12. Blackjack 21 (Pure Picture Poster Cover) -->
+            <a href="games/blackjack.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/blackjack.png?v=vip_poster" alt="Blackjack 21">
+                </div>
+            </a>
+
+            <!-- 13. Caribbean Poker -->
+            <a href="games/poker.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/poker.png?v=vip_caribbean" alt="Caribbean Poker VIP"></div>
+            </a>
+
+            <!-- 14. Lucky Number 777 -->
+            <a href="games/lucky.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/lucky.png" alt="Lucky Number"></div>
+            </a>
+
+            <!-- 15. Lucky Scratch VIP -->
+            <a href="games/scratch.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/scratch.png" alt="Lucky Scratch"></div>
+            </a>
+
+            <!-- 16. Coin Flip VIP -->
+            <a href="games/coinflip.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/coinflip.webp?v=poseidon" alt="Coin Flip VIP"></div>
+            </a>
+
+            <!-- 17. Hi-Lo VIP -->
+            <a href="games/hilo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/hilo.png" alt="Hi-Lo VIP"></div>
+            </a>
+            <!-- 18. Tao Yuan Instant Baccarat VIP -->
+            <a href="games/baccarat_squeeze.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/baccarat_squeeze.png" alt="Tao Yuan Instant Baccarat"></div>
+            </a>
+
+            <!-- 19. Space XY Rocket -->
+            <a href="games/space_xy.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/space_xy.png" alt="Space XY Rocket"></div>
+            </a>
+
+            <!-- 20. Sic Bo Imperial -->
+            <a href="games/sicbo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/sicbo.png" alt="Sic Bo Imperial"></div>
+            </a>
+
+            <!-- 21. Penalty Shootout Pro -->
+            <a href="games/penalty.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/penalty.png" alt="Penalty Shootout Pro"></div>
+            </a>
+
+            <!-- 22. Horse Racing Derby -->
+            <a href="games/derby.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/derby.png" alt="Horse Racing Derby"></div>
+            </a>
+
+            <!-- 23. Teen Patti Royal -->
+            <a href="games/teenpatti.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/teenpatti.png" alt="Teen Patti Royal"></div>
+            </a>
+
+
+            <!-- 25. Magic Cups VIP (Pure Picture Poster Cover) -->
+            <a href="games/cups.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/cups.png" alt="Magic Cups VIP">
+                </div>
+            </a>
+
+
+
+
+            <!-- 30. Gold Rush Minecart -->
+            <a href="games/goldmine.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/goldmine.png" alt="Gold Rush Minecart"></div>
+            </a>
+
+            <!-- 32. Spinning Top 3D -->
+            <a href="games/topspin.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/topspin.png" alt="Spinning Top 3D"></div>
+            </a>
+
+            <!-- 34. Lucky 88 Pearls -->
+            <a href="games/lucky88.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/lucky88.png" alt="Lucky 88 Pearls"></div>
+            </a>
+
+            <!-- 36. Fruit Blade Ninja -->
+            <a href="games/fruitslice.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/fruitslice.png" alt="Fruit Blade Ninja"></div>
+            </a>
+
+            <!-- 37. Rock Paper Scissors VIP -->
+            <a href="games/rps.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/rps.png" alt="Rock Paper Scissors VIP"></div>
+            </a>
+            <!-- 39. Color Prediction VIP -->
+            <a href="games/color.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/color.png" alt="Color Prediction"></div>
+            </a>
+            <!-- 42. Dragon Tiger VIP -->
+            <a href="games/dragontiger.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/dragontiger.png" alt="Dragon Tiger VIP"></div>
+            </a>
+
+            <!-- 43. Jhandi Munda Imperial -->
+            <a href="games/jhandi_munda.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/jhandi_munda.png" alt="Jhandi Munda Imperial"></div>
+            </a>
+
+            <!-- 43B. Ludo Quick - JILI Official (#101392) -->
+            <a href="games/ludo_quick.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/ludo_quick.png" alt="Ludo Quick JILI #101392"></div>
+            </a>
+
+            <!-- 44. Gold Vault Safe Cracker -->
+            <a href="games/safecracker.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/safecracker.png" alt="Safe Cracker"></div>
+            </a>
+
+            <!-- 45. Steampunk Zeppelin -->
+            <a href="games/zeppelin.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/zeppelin.png" alt="Steampunk Zeppelin"></div>
+            </a>
+
+            <!-- 46. Meow Hi-Lo VIP -->
+            <a href="games/hilo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/hilo.jpg" alt="Meow Hi-Lo VIP"></div>
+            </a>
+
+            <!-- 47. Ice Hockey Shootout -->
+            <a href="games/hockey_shootout.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/hockey_shootout.png" alt="Ice Hockey Shootout"></div>
+            </a>
+
+            <!-- 48. Dice Bet (Pure Picture Poster Cover) -->
+            <a href="games/dice.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/dice.png?v=official_neon" alt="Dice Bet"></div>
+            </a>
+
+            <!-- 49. Russian Chamber Survival -->
+            <a href="games/russian_roulette.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/russian_roulette.png" alt="Russian Chamber"></div>
+            </a>
+
+            <!-- 50. Mines of El Dorado -->
+            <a href="games/eldorado.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/eldorado.png" alt="Mines of El Dorado"></div>
+            </a>
+
+            <!-- 51. Bullseye Archery 3D -->
+            <a href="games/archery.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/archery.png" alt="Bullseye Archery"></div>
+            </a>
+
+            <!-- 52. Golden Dragon 777 Slots (Pure Picture Poster Cover) -->
+            <a href="games/dragon_slots.html" class="game-card game-card-poster-only" data-cat="slots" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/dragon_slots.png?v=777_clean_dark" alt="Golden Dragon Slots">
+                </div>
+            </a>
+
+            <!-- 53. Pirate Treasure Chests -->
+            <a href="games/treasure_chest.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/treasure_chest.png" alt="Pirate Treasure Chests"></div>
+            </a>
+
+            <!-- 54. Strike Master Bowling -->
+            <a href="games/bowling.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/bowling.png" alt="Strike Master Bowling"></div>
+            </a>
+
+            <!-- 55. Cyber Keno Neon 80 (Pure Picture Poster Cover) -->
+            <a href="games/cyber_keno.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/cyber_keno.png?v=vip_poster" alt="Cyber Keno 80">
+                </div>
+            </a>
+
+            <!-- 56. Turbo Grand Prix F1 -->
+            <a href="games/f1_racing.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/f1_racing.png" alt="Turbo Grand Prix F1"></div>
+            </a>
+
+
+            <!-- 58. Cyber Blade Samurai -->
+            <a href="games/cyber_ninja.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/cyber_ninja.png" alt="Cyber Blade Samurai"></div>
+            </a>
+
+
+            <!-- 59. Pinball Arcade Deluxe -->
+            <a href="games/pinball_deluxe.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/pinball_deluxe.png" alt="Pinball Arcade Deluxe"></div>
+            </a>
+
+            <!-- 61. Hook Up! Fishing Wars / Fish Hunter (Elongated Live Animated Showcase - Last Position) -->
+            <a href="games/fishhunter.html?v=maint_v10" onclick="showUnderRepairNotice(event, 'Fish Hunter');" class="game-card game-card-wide-aviator game-card-wide-fishing" data-cat="fishing originals" style="text-decoration:none; position:relative;">
+                <div class="wide-aviator-arena" style="background: radial-gradient(circle at 50% 30%, #06395e 0%, #021629 70%, #010a14 100%);">
+                    <canvas id="lobby-fishing-canvas" style="position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1; pointer-events:none;"></canvas>
+                    <div class="wide-aviator-overlay" style="z-index:2; background: linear-gradient(90deg, rgba(1,10,22,0.78) 0%, rgba(1,14,28,0.28) 48%, rgba(1,10,22,0.72) 100%), linear-gradient(180deg, rgba(1,10,22,0.45) 0%, transparent 40%, rgba(1,10,22,0.75) 100%);"></div>
+                </div>
+                <div class="wide-aviator-content" style="z-index:3;">
+                    <div class="wide-aviator-top">
+                        <div class="wide-aviator-badges">
+                            <span class="badge-aviator-hot" style="background:linear-gradient(135deg,#00d2ff,#0072ff); box-shadow:0 0 10px rgba(0,210,255,0.6);">🎣 LIVE FISHING</span>
+                            <span class="badge-aviator-spribe" style="background:rgba(231,76,60,0.92); color:#fff; border:1px solid rgba(255,255,255,0.35);">🛠️ UNDER REPAIR</span>
+                        </div>
+                        <div class="wide-aviator-live-indicator">
+                            <span class="live-dot-pulse" style="background:#00f7ff; box-shadow:0 0 8px #00f7ff;"></span>
+                            <span class="live-status-text" id="lobby-fishing-live-text" style="color:#80fbff;">LIVE OCEAN ARENA</span>
+                        </div>
+                    </div>
+                    <div class="wide-aviator-middle">
+                        <div class="wide-aviator-titles">
+                            <div class="wide-aviator-brand-row" style="display:flex; flex-direction:column; align-items:flex-start; gap:2px;">
+                                <span style="font-family:'Inter', sans-serif; font-weight:900; font-size:clamp(15px, 2.6vw, 22px); letter-spacing:0.6px; color:#fff; text-shadow:0 2px 12px rgba(0,247,255,0.75), 0 0 24px rgba(0,140,255,0.55); line-height:1.1;">
+                                    HOOK UP! <span style="color:#ffd700;">FISHING WARS</span>
+                                </span>
+                                <span style="font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:700; color:#7ce8ff; letter-spacing:0.5px;">
+                                    MASCOT GAMING • 22 SPECIES • DRAGON BOSS
+                                </span>
+                            </div>
+                        </div>
+                        <div class="wide-aviator-mult-box" style="border-color:rgba(0,247,255,0.55); background:rgba(2,18,34,0.82); box-shadow:0 0 18px rgba(0,247,255,0.28);">
+                            <span class="wide-mult-label" id="lobby-fishing-target-label" style="color:#7ce8ff;">BOSS MULT</span>
+                            <span class="wide-mult-value" id="lobby-fishing-mult-val" style="color:#ffd700; text-shadow:0 0 12px rgba(255,215,0,0.75);">250x</span>
+                        </div>
+                    </div>
+                    <div class="wide-aviator-bottom">
+                        <div class="wide-aviator-action-btn" style="background:linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); box-shadow:0 4px 14px rgba(231,76,60,0.55);">
+                            <span>🛠️ UNDER REPAIR</span>
+                        </div>
+                        <div class="wide-aviator-stats">
+                            <span>🎯 <b id="lobby-fishing-players">1,428</b> Watching Live</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Providers Banner -->
+        <div style="background:#111823; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:16px; margin:24px 0;">
+            <div style="font-size:12px; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-bottom:10px;">Official Gaming Providers</div>
+            <div style="display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:16px; color:#8e9bb0; font-weight:800; font-size:14px;">
+                <span>SPRIBE</span>
+                <span>PRAGMATIC PLAY</span>
+                <span>EVOLUTION</span>
+                <span>BETWITHNET ORIGINALS</span>
+                <span>BGAMING</span>
+            </div>
+        </div>
+
+        <!-- 1. VIP Progressive Mega Jackpot Live Showcase -->
+        <section class="vip-jackpot-showcase">
+            <div class="jackpot-glow-header">
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div class="jackpot-flame-icon">💎</div>
+                    <div>
+                        <div class="jackpot-label-top">BET WITH NET • VIP PROGRESSIVE JACKPOT POOL</div>
+                        <div class="jackpot-counter-main" id="index-jackpot-counter">$ 3,842,912.45</div>
+                        <div class="jackpot-pkr-sub">≈ PKR ₨ 1,076,015,486 • LIVE ACCUMULATING</div>
+                    </div>
+                </div>
+                <div class="jackpot-badge-pulse">⚡ LIVE MULTIPLIER TIER</div>
+            </div>
+            <div class="jackpot-tiers-grid">
+                <div class="jackpot-tier-card tier-mini">
+                    <div class="tier-name">MINI JACKPOT</div>
+                    <div class="tier-val" id="jackpot-mini-val">$ 2,548.80</div>
+                    <div class="tier-winner">🏆 Latest: Hamza_786 (Limbo Turbo)</div>
+                </div>
+                <div class="jackpot-tier-card tier-major">
+                    <div class="tier-name">MAJOR JACKPOT</div>
+                    <div class="tier-val" id="jackpot-major-val">$ 84,215.20</div>
+                    <div class="tier-winner">🏆 Latest: Zeeshan_VIP (European Roulette)</div>
+                </div>
+                <div class="jackpot-tier-card tier-mega">
+                    <div class="tier-name">MEGA GRAND JACKPOT</div>
+                    <div class="tier-val" style="color:var(--primary-gold);">$ 3,842,912.45</div>
+                    <div class="tier-winner">🔥 Must Drop Under $4,000,000</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. VIP Studios 4-Category Showcase -->
+        <section class="vip-studios-showcase">
+            <div class="section-header-wrap">
+                <div>
+                    <h2 class="section-title-luxury">🎮 Official VIP Studio Suites</h2>
+                    <p class="section-subtitle-luxury">Handcrafted 100% Provably Fair and Live Casino Experiences</p>
+                </div>
+                <a href="casino.html" class="btn-outline-gold">Explore All 17 Studios →</a>
+            </div>
+            <div class="studios-showcase-grid">
+                <div class="studio-highlight-card" style="background: linear-gradient(135deg, rgba(255, 59, 48, 0.35), rgba(13, 19, 28, 0.95)), url('assets/covers/crash.png') center/cover;">
+                    <div class="studio-card-overlay">
+                        <span class="studio-badge-category">TURBO & FLIGHT</span>
+                        <h3>Crash & Flight Suites</h3>
+                        <p>Aviator Crash & Limbo Turbo with up to 10,000x multiplier potential.</p>
+                        <div class="studio-card-footer">
+                            <span>3 Games Active</span>
+                            <a href="games/crash.html" class="btn-studio-play">Launch 🚀</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="studio-highlight-card" style="background: linear-gradient(135deg, rgba(0, 231, 0, 0.28), rgba(13, 19, 28, 0.95)), url('assets/covers/roulette.png') center/cover;">
+                    <div class="studio-card-overlay">
+                        <span class="studio-badge-category">LIVE TABLE ACTION</span>
+                        <h3>European Roulette & Cards</h3>
+                        <p>3D Roulette, Blackjack 21 VIP, and Dragon Tiger high-speed showdowns.</p>
+                        <div class="studio-card-footer">
+                            <span>4 Tables Open</span>
+                            <a href="games/roulette.html" class="btn-studio-play">Seat At Table 🎡</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="studio-highlight-card" style="background: linear-gradient(135deg, rgba(245, 166, 35, 0.35), rgba(13, 19, 28, 0.95)), url('assets/covers/slots.png') center/cover;">
+                    <div class="studio-card-overlay">
+                        <span class="studio-badge-category">VEGAS CASINO</span>
+                        <h3>Lucky 777 Slots Deluxe</h3>
+                        <p>Classic 3-reel 5-payline slot machine with 777x Multiplier Reel and progressive jackpot.</p>
+                        <div class="studio-card-footer">
+                            <span>97.4% RTP</span>
+                            <a href="games/slots.html" class="btn-studio-play">Spin Reels 🎰</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="studio-highlight-card" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.35), rgba(13, 19, 28, 0.95)), url('assets/covers/plinko.png') center/cover;">
+                    <div class="studio-card-overlay">
+                        <span class="studio-badge-category">FAST INSTANT WINS</span>
+                        <h3>Plinko, Mines & Lottery</h3>
+                        <p>Custom-risk Minesweeper, 16-row Plinko drops, 80-Ball Keno, and Bingo.</p>
+                        <div class="studio-card-footer">
+                            <span>99% Peak RTP</span>
+                            <a href="games/plinko.html" class="btn-studio-play">Drop Ball ⚪</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Live Bets Feed Real-Time Table -->
+        <section class="live-bets-feed-section">
+            <div class="section-header-wrap">
+                <div>
+                    <h2 class="section-title-luxury">🔥 Live High-Roller Activity & Wagers</h2>
+                    <p class="section-subtitle-luxury">Real-time provably fair verified bets across Pakistan & International desks</p>
+                </div>
+                <div class="live-bets-pills">
+                    <span class="live-pill active">⚡ All Bets</span>
+                    <span class="live-pill">👑 High Rollers</span>
+                </div>
+            </div>
+            <div class="live-bets-table-wrap">
+                <table class="live-bets-table">
+                    <thead>
+                        <tr>
+                            <th>GAME</th>
+                            <th>PLAYER</th>
+                            <th>TIME</th>
+                            <th>BET AMOUNT</th>
+                            <th>MULTIPLIER</th>
+                            <th>PAYOUT</th>
+                            <th>VERIFY</th>
+                        </tr>
+                    </thead>
+                    <tbody id="live-bets-tbody">
+                        <!-- Injected dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. Provably Fair & RNG Security Bar -->
+        <section class="provably-fair-bar">
+            <div class="pf-col-info">
+                <div class="pf-icon">🛡️</div>
+                <div>
+                    <div class="pf-title">100% Provably Fair & Cryptographically Verifiable</div>
+                    <div class="pf-desc">Every round uses SHA-256 hash seeds (Server Seed + Client Seed + Nonce). Outcomes are mathematically predetermined before wager placement and cannot be altered.</div>
+                </div>
+            </div>
+            <div class="pf-col-actions">
+                <a href="pages.html?slug=fair-play" class="btn-pf-verify">Verify Seed Audit ↗</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Betslip Quick Action Button -->
+    <a href="history.html" class="floating-betslip-btn">
+        <span>📋</span>
+        <span>BETSLIP & LEDGER</span>
+    </a>
+
+    <!-- 24/7 Official WhatsApp Community & Support Floating Widget -->
+    <div id="whatsapp-floating-root" class="whatsapp-floating-widget" title="Chat on WhatsApp 24/7" style="display:flex!important; visibility:visible!important; opacity:1!important; position:fixed!important; bottom:82px!important; left:16px!important; z-index:999999!important;">
+        <div class="whatsapp-btn-pulse"></div>
+        <div class="whatsapp-btn-core">
+            <svg class="whatsapp-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.216 175.552" width="100%" height="100%">
+                <defs>
+                    <linearGradient id="bwnWaGrad" x1="85.915" x2="86.535" y1="32.567" y2="137.092" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#57d163"/>
+                        <stop offset="1" stop-color="#23b33a"/>
+                    </linearGradient>
+                </defs>
+                <path fill="#ffffff" d="m12.966 161.238 10.439-38.114a73.42 73.42 0 0 1-9.821-36.772c.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954z"/>
+                <path fill="url(#bwnWaGrad)" d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z"/>
+                <path fill="#ffffff" fill-rule="evenodd" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647"/>
+            </svg>
+            <span class="whatsapp-status-dot"></span>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="js/audio.js?v=8.0"></script>
+    <script src="js/wallet.js?v=2026_ijaz_v5"></script>
+    <script src="js/api_bridge.js?v=2026_ijaz_v5"></script>
+    <script src="js/core.js?v=2026_ep_logos_v1"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.core && window.core.sanitizePaymentNumbers) window.core.sanitizePaymentNumbers();
+            window.core.init('home');
+
+            // Live Winners Ticker Generator
+            const track = document.getElementById('live-ticker-track');
+            if (track) {
+                const users = ['Ali_Khan', 'Hamza_786', 'Zeeshan_K', 'Malik_VIP', 'CryptoKing', 'Tariq_M', 'Babar_Pro', 'Fatima_99'];
+                const games = ['Aviator Crash', 'European Roulette', 'Deluxe Slots', 'Dragon vs Tiger', 'Plinko', 'Mines', 'Color Prediction'];
+                let html = '';
+                for (let i = 0; i < 16; i++) {
+                    const u = users[Math.floor(Math.random() * users.length)];
+                    const g = games[Math.floor(Math.random() * games.length)];
+                    const mult = (1.5 + Math.random() * 20).toFixed(2);
+                    const win = Math.floor(1000 + Math.random() * 65000);
+                    html += `
+                        <div class="ticker-item">
+                            <span class="ticker-user">👤 ${u}</span>
+                            <span class="ticker-game">${g}</span>
+                            <span class="ticker-win">+${window.wallet.formatAmount(win)}</span>
+                            <span class="ticker-mult">${mult}x</span>
+                        </div>
+                    `;
+                }
+                track.innerHTML = html + html;
+            }
+
+            // Progressive Jackpot Live Accumulator
+            let jackpotBase = 3842912.45;
+            const jackpotEl = document.getElementById('index-jackpot-counter');
+            setInterval(() => {
+                jackpotBase += (Math.random() * 0.45);
+                if (jackpotEl) {
+                    jackpotEl.innerText = '$ ' + jackpotBase.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            }, 2500);
+
+            // Live Bets Table Generator & Real-time Stream
+            const tbody = document.getElementById('live-bets-tbody');
+            if (tbody) {
+                const sampleGames = [
+                    { name: '🚀 Aviator Crash', path: 'games/crash.html' },
+                    { name: '🐔 Chicken Road', path: 'games/chicken_road.html' },
+                    { name: '🎡 European Roulette', path: 'games/roulette.html' },
+                    { name: '🚀 Limbo Turbo', path: 'games/limbo.html' },
+                    { name: '♠️ Blackjack 21', path: 'games/blackjack.html' },
+                    { name: '💣 Mines Field', path: 'games/mines.html' },
+                    { name: '🎱 Keno Lottery', path: 'games/keno.html' },
+                    { name: '🪙 Coin Flip VIP', path: 'games/coinflip.html' },
+                    { name: '⚪ Plinko X 100x', path: 'games/plinko.html' },
+                    { name: '🎴 Dragon vs Tiger', path: 'games/card.html' },
+                    { name: '🃏 Hi-Lo VIP', path: 'games/hilo.html' }
+                ];
+                const sampleUsers = ['Hamza_VIP', 'Ali_Raza', 'Zeeshan_786', 'Malik_Whale', 'Shahid_Afridi', 'Babar_99', 'Crypto_King', 'Fatima_K', 'Sikandar_Pro', 'Usman_Pak'];
+
+                function createBetRow() {
+                    const g = sampleGames[Math.floor(Math.random() * sampleGames.length)];
+                    const u = sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+                    const isWin = Math.random() > 0.45;
+                    const betUsd = (10 + Math.random() * 250).toFixed(2);
+                    const mult = isWin ? (1.2 + Math.random() * 15).toFixed(2) : '0.00';
+                    const payoutUsd = isWin ? (betUsd * mult).toFixed(2) : '0.00';
+                    const now = new Date().toLocaleTimeString('en-US', { hour12: false });
+
+                    return `
+                        <tr>
+                            <td><b>${g.name}</b></td>
+                            <td class="td-player-user">👤 ${u}</td>
+                            <td style="color:var(--text-dim);">${now}</td>
+                            <td>$ ${betUsd}</td>
+                            <td><span class="td-mult-pill ${isWin ? 'mult-win' : 'mult-loss'}">${mult}x</span></td>
+                            <td style="color:${isWin ? '#00e700' : 'var(--text-dim)'}; font-weight:${isWin ? '700' : 'normal'};">
+                                ${isWin ? '+$ ' + payoutUsd : '$ 0.00'}
+                            </td>
+                            <td><button class="btn-verify-seed" onclick="window.core.showToast('SHA-256 Provably Fair verified: Round Hash valid.', 'success')">Verify 🛡️</button></td>
+                        </tr>
+                    `;
+                }
+
+                // Initial 8 rows
+                let rows = '';
+                for (let i = 0; i < 8; i++) {
+                    rows += createBetRow();
+                }
+                tbody.innerHTML = rows;
+
+                // Live append every 3.5 seconds
+                setInterval(() => {
+                    const newRow = createBetRow();
+                    tbody.insertAdjacentHTML('afterbegin', newRow);
+                    if (tbody.children.length > 10) {
+                        tbody.removeChild(tbody.lastChild);
+                    }
+                }, 3500);
+            }
+
+            // ==========================================
+            // LOBBY FEATURED WIDE AVIATOR TICKER & STATS
+            // ==========================================
+            function initLobbyAviatorTicker() {
+                const multValEl = document.getElementById('lobby-mult-val');
+                const liveTextEl = document.getElementById('lobby-live-text');
+                const playersCountEl = document.getElementById('lobby-players-count');
+
+                let currentMult = 1.00;
+                let crashMult = generateTargetMult();
+                let state = 'FLYING';
+                let stateTime = 0;
+
+                function generateTargetMult() {
+                    const r = Math.random();
+                    if (r < 0.25) return +(1.15 + Math.random() * 0.7).toFixed(2);
+                    if (r < 0.70) return +(1.85 + Math.random() * 2.8).toFixed(2);
+                    if (r < 0.92) return +(4.65 + Math.random() * 6.5).toFixed(2);
+                    return +(11.20 + Math.random() * 18.0).toFixed(2);
+                }
+
+                // Random player counter fluctuations
+                let playerCount = 1842;
+                setInterval(() => {
+                    playerCount += Math.floor(Math.random() * 15) - 7;
+                    if (playerCount < 1400) playerCount = 1450;
+                    if (playersCountEl) playersCountEl.innerText = playerCount.toLocaleString();
+                }, 3000);
+
+                let lastNow = performance.now();
+
+                function loop(now) {
+                    const dt = Math.min((now - lastNow) / 1000, 0.1);
+                    lastNow = now;
+                    stateTime += dt;
+
+                    if (state === 'FLYING') {
+                        const speed = 0.38 + (currentMult * 0.24);
+                        currentMult += speed * dt;
+
+                        if (multValEl) {
+                            multValEl.innerText = currentMult.toFixed(2) + 'x';
+                            multValEl.classList.remove('crashed');
+                        }
+                        if (liveTextEl) liveTextEl.innerText = 'ROUND IN PROGRESS';
+
+                        if (currentMult >= crashMult) {
+                            state = 'CRASHED';
+                            stateTime = 0;
+                            if (multValEl) {
+                                multValEl.innerText = crashMult.toFixed(2) + 'x';
+                                multValEl.classList.add('crashed');
+                            }
+                            if (liveTextEl) liveTextEl.innerText = `FLEW AWAY @ ${crashMult.toFixed(2)}x`;
+                        }
+                    } else if (state === 'CRASHED') {
+                        if (stateTime >= 2.5) {
+                            state = 'WAITING';
+                            stateTime = 0;
+                        }
+                    } else if (state === 'WAITING') {
+                        const rem = Math.max(0, 3.0 - stateTime).toFixed(1);
+                        if (liveTextEl) liveTextEl.innerText = `NEXT ROUND IN ${rem}s...`;
+                        if (multValEl) {
+                            multValEl.innerText = '1.00x';
+                            multValEl.classList.remove('crashed');
+                        }
+                        if (stateTime >= 3.0) {
+                            state = 'FLYING';
+                            stateTime = 0;
+                            currentMult = 1.00;
+                            crashMult = generateTargetMult();
+                        }
+                    }
+
+                    requestAnimationFrame(loop);
+                }
+
+                requestAnimationFrame(loop);
+            }
+
+            initLobbyAviatorTicker();
+
+            /* --- HD Hero Banner Carousel Logic --- */
+            (function initHeroCarousel() {
+                const track = document.getElementById('heroCarouselTrack');
+                const prevBtn = document.getElementById('heroCarouselPrev');
+                const nextBtn = document.getElementById('heroCarouselNext');
+                const container = document.getElementById('heroCarousel');
+                if (!track) return;
+
+                const slides = track.querySelectorAll('.hero-carousel-slide');
+                const totalSlides = slides.length;
+                if (totalSlides === 0) return;
+
+                let currentIndex = 0;
+                let autoInterval = null;
+
+                function getSlideWidth() {
+                    return track.clientWidth || track.offsetWidth || window.innerWidth;
+                }
+
+                function goToSlide(idx, smooth = true) {
+                    if (idx < 0) idx = totalSlides - 1;
+                    if (idx >= totalSlides) idx = 0;
+                    currentIndex = idx;
+                    const w = getSlideWidth();
+                    track.scrollTo({
+                        left: w * currentIndex,
+                        behavior: smooth ? 'smooth' : 'auto'
+                    });
+                }
+
+                // Scroll listener to update currentIndex when user manually swipes
+                let scrollTimeout;
+                track.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        const w = getSlideWidth();
+                        if (w > 0) {
+                            const newIdx = Math.round(track.scrollLeft / w);
+                            if (newIdx !== currentIndex && newIdx >= 0 && newIdx < totalSlides) {
+                                currentIndex = newIdx;
+                            }
+                        }
+                    }, 50);
+                }, { passive: true });
+
+                // Touch swipe handling for mobile
+                let touchStartX = 0;
+                let touchStartY = 0;
+                let isSwiping = false;
+
+                track.addEventListener('touchstart', (e) => {
+                    if (e.touches.length === 1) {
+                        touchStartX = e.touches[0].clientX;
+                        touchStartY = e.touches[0].clientY;
+                        isSwiping = true;
+                        stopAutoSlide();
+                    }
+                }, { passive: true });
+
+                track.addEventListener('touchend', (e) => {
+                    if (!isSwiping || e.changedTouches.length === 0) return;
+                    isSwiping = false;
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const touchEndY = e.changedTouches[0].clientY;
+                    const diffX = touchStartX - touchEndX;
+                    const diffY = touchStartY - touchEndY;
+
+                    // Only handle horizontal swipe if horizontal movement is larger than vertical
+                    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                        if (diffX > 0) {
+                            // Swiped left -> advance to next banner
+                            goToSlide(currentIndex + 1);
+                        } else {
+                            // Swiped right -> go to previous banner
+                            goToSlide(currentIndex - 1);
+                        }
+                    }
+                    startAutoSlide();
+                }, { passive: true });
+
+                // Desktop navigation buttons
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        goToSlide(currentIndex - 1);
+                        resetAutoSlide();
+                    });
+                }
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        goToSlide(currentIndex + 1);
+                        resetAutoSlide();
+                    });
+                }
+
+                // Auto slide every 4.5 seconds
+                function startAutoSlide() {
+                    stopAutoSlide();
+                    autoInterval = setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 4500);
+                }
+
+                function stopAutoSlide() {
+                    if (autoInterval) clearInterval(autoInterval);
+                }
+
+                function resetAutoSlide() {
+                    stopAutoSlide();
+                    startAutoSlide();
+                }
+
+                if (container) {
+                    container.addEventListener('mouseenter', stopAutoSlide);
+                    container.addEventListener('mouseleave', startAutoSlide);
+                }
+
+                startAutoSlide();
+            })();
+
+            /* --- Lobby Category Filter Logic --- */
+            window.switchLobbyCategory = function(cat, tabEl) {
+                const tabs = document.querySelectorAll('.lobby-cat-tab');
+                tabs.forEach(t => t.classList.remove('active'));
+                if (tabEl) tabEl.classList.add('active');
+
+                const grid = document.querySelector('.games-grid');
+                if (!grid) return;
+                grid.classList.toggle('fishing-view-mode', cat === 'fishing' || cat === 'arcade');
+                const cards = grid.querySelectorAll('.game-card');
+
+                cards.forEach(card => {
+                    const cardCat = card.getAttribute('data-cat');
+                    const isAviatorWide = card.classList.contains('game-card-wide-aviator') && !card.classList.contains('game-card-wide-fishing');
+
+                    let match = false;
+                    if (cat === 'all') {
+                        match = true;
+                    } else if (cat === 'originals') {
+                        match = (cardCat && cardCat.includes('originals')) || isAviatorWide;
+                    } else if (cat === 'slots') {
+                        match = (cardCat && cardCat.includes('slots'));
+                    } else if (cat === 'cards') {
+                        match = (cardCat && cardCat.includes('cards'));
+                    } else if (cat === 'fishing' || cat === 'arcade') {
+                        match = (cardCat && cardCat.includes('fishing'));
+                    }
+
+                    if (match) {
+                        card.style.display = '';
+                        card.style.animation = 'fadeInCard 0.25s ease-out';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (typeof window.resizeLobbyFishingCanvas === 'function') {
+                    setTimeout(window.resizeLobbyFishingCanvas, 20);
+                    setTimeout(window.resizeLobbyFishingCanvas, 260);
+                }
+            };
+
+            /* --- Live Fish Hunter Wide Arena Showcase Engine (60FPS) --- */
+            (function initLobbyFishingArena() {
+                const canvas = document.getElementById('lobby-fishing-canvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const ASSET_BASE = 'https://static.mascot.games/mascotGaming/hook_up_fishing_wars/assets/';
+
+                const bgImg = new Image();
+                bgImg.src = ASSET_BASE + 'bg.jpg';
+                const gunImg = new Image();
+                gunImg.src = ASSET_BASE + 'gun/gun.png';
+
+                const SPECIES = [
+                    { url: 'fishes/small/small-1.png', mult: 5, size: 30, speed: 1.35, color: '#00f7ff' },
+                    { url: 'fishes/small/small-6.png', mult: 10, size: 34, speed: 1.25, color: '#38ef7d' },
+                    { url: 'fishes/medium/med-2.png', mult: 25, size: 46, speed: 1.05, color: '#ff9a00' },
+                    { url: 'fishes/medium/med-6.png', mult: 50, size: 52, speed: 0.95, color: '#ff3cac' },
+                    { url: 'fishes/big/big-2.png', mult: 100, size: 68, speed: 0.82, color: '#00d2ff' },
+                    { url: 'fishes/big/big-5.png', mult: 250, size: 78, speed: 0.75, color: '#ffd700' },
+                    { url: 'fishes/boss_1/boss-1.png', mult: 500, size: 105, speed: 0.62, color: '#ff512f', isBoss: true },
+                    { url: 'fishes/boss_2/boss-2.png', mult: 1000, size: 118, speed: 0.56, color: '#ffd700', isBoss: true }
+                ];
+                SPECIES.forEach(s => {
+                    s.img = new Image();
+                    s.img.src = ASSET_BASE + s.url;
+                });
+
+                let W = 600, H = 180, dpr = 1;
+                function resize() {
+                    const rect = canvas.parentElement.getBoundingClientRect();
+                    if (rect.width < 10 || rect.height < 10) return;
+                    dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    W = rect.width;
+                    H = rect.height;
+                    canvas.width = Math.floor(W * dpr);
+                    canvas.height = Math.floor(H * dpr);
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                }
+                window.resizeLobbyFishingCanvas = resize;
+                window.addEventListener('resize', resize);
+                setTimeout(resize, 30);
+
+                const fishes = [];
+                const bullets = [];
+                const nets = [];
+                const popups = [];
+                const bubbles = [];
+
+                for (let i = 0; i < 18; i++) {
+                    bubbles.push({
+                        x: Math.random() * 800,
+                        y: Math.random() * 300,
+                        r: 1.5 + Math.random() * 3.5,
+                        vy: 0.35 + Math.random() * 0.65,
+                        a: 0.2 + Math.random() * 0.45
+                    });
+                }
+
+                function spawnFish(initial) {
+                    const isBossRoll = Math.random() < 0.16 && !fishes.some(f => f.spec.isBoss);
+                    const pool = isBossRoll ? SPECIES.slice(6) : SPECIES.slice(0, 6);
+                    const spec = pool[Math.floor(Math.random() * pool.length)];
+                    const dir = Math.random() < 0.5 ? 1 : -1;
+                    const scale = H > 200 ? 1.18 : 0.85;
+                    const sz = spec.size * scale;
+                    fishes.push({
+                        spec,
+                        dir,
+                        x: initial ? Math.random() * W : (dir === 1 ? -sz : W + sz),
+                        y: 22 + Math.random() * Math.max(40, H - 64),
+                        vy: (Math.random() - 0.5) * 0.25,
+                        wobble: Math.random() * Math.PI * 2,
+                        size: sz,
+                        hp: spec.isBoss ? 7 : (spec.mult >= 100 ? 4 : 2),
+                        hitFlash: 0
+                    });
+                }
+
+                for (let i = 0; i < 9; i++) spawnFish(true);
+
+                let turretAngle = 0;
+                let lastShot = 0;
+                const multEl = document.getElementById('lobby-fishing-mult-val');
+                const statusEl = document.getElementById('lobby-fishing-live-text');
+                const playersEl = document.getElementById('lobby-fishing-players');
+
+                function frame(now) {
+                    requestAnimationFrame(frame);
+                    if (W < 10 || H < 10) {
+                        resize();
+                        return;
+                    }
+
+                    // 1. Ocean Background
+                    if (bgImg.complete && bgImg.naturalWidth > 0) {
+                        ctx.drawImage(bgImg, 0, 0, W, H);
+                    } else {
+                        const g = ctx.createLinearGradient(0, 0, 0, H);
+                        g.addColorStop(0, '#07446e');
+                        g.addColorStop(1, '#011120');
+                        ctx.fillStyle = g;
+                        ctx.fillRect(0, 0, W, H);
+                    }
+
+                    // Caustic light rays
+                    ctx.save();
+                    for (let i = 0; i < 4; i++) {
+                        const rx = ((i * 0.28 + Math.sin(now * 0.0005 + i) * 0.05) * W);
+                        const rg = ctx.createLinearGradient(rx, 0, rx + 50, H);
+                        rg.addColorStop(0, 'rgba(0, 247, 255, 0.12)');
+                        rg.addColorStop(1, 'rgba(0, 247, 255, 0)');
+                        ctx.fillStyle = rg;
+                        ctx.beginPath();
+                        ctx.moveTo(rx - 18, 0);
+                        ctx.lineTo(rx + 28, 0);
+                        ctx.lineTo(rx + 75, H);
+                        ctx.lineTo(rx - 45, H);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                    ctx.restore();
+
+                    // Bubbles
+                    ctx.save();
+                    bubbles.forEach(b => {
+                        b.y -= b.vy;
+                        if (b.y < -10) { b.y = H + 8; b.x = Math.random() * W; }
+                        ctx.beginPath();
+                        ctx.arc(b.x % W, b.y, b.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(160, 245, 255, ${b.a})`;
+                        ctx.fill();
+                    });
+                    ctx.restore();
+
+                    // Maintain fish count
+                    while (fishes.length < 10) spawnFish(false);
+
+                    // Pick lock target (prefer Boss or high multiplier near center)
+                    let target = null;
+                    let bestScore = -1;
+                    for (let i = 0; i < fishes.length; i++) {
+                        const f = fishes[i];
+                        if (f.x > 40 && f.x < W - 40) {
+                            const score = f.spec.mult + (f.spec.isBoss ? 1000 : 0);
+                            if (score > bestScore) {
+                                bestScore = score;
+                                target = f;
+                            }
+                        }
+                    }
+
+                    // Update & draw fish
+                    for (let i = fishes.length - 1; i >= 0; i--) {
+                        const f = fishes[i];
+                        const scale = H > 200 ? 1.18 : 0.85;
+                        f.size = f.spec.size * scale;
+                        f.wobble += 0.06;
+                        f.x += f.dir * f.spec.speed * 1.15;
+                        f.y += Math.sin(f.wobble) * 0.28 + f.vy;
+                        if (f.y < 20) f.vy = Math.abs(f.vy);
+                        if (f.y > H - 30) f.vy = -Math.abs(f.vy);
+                        if (f.hitFlash > 0) f.hitFlash--;
+
+                        if ((f.dir === 1 && f.x > W + f.size + 20) || (f.dir === -1 && f.x < -f.size - 20)) {
+                            fishes.splice(i, 1);
+                            continue;
+                        }
+
+                        ctx.save();
+                        ctx.translate(f.x, f.y);
+                        if (f.spec.isBoss) {
+                            ctx.shadowColor = 'rgba(255, 215, 0, 0.85)';
+                            ctx.shadowBlur = 14;
+                        }
+                        if (f.spec.img && f.spec.img.complete && f.spec.img.naturalWidth > 0) {
+                            const nw = f.spec.img.naturalWidth;
+                            const nh = f.spec.img.naturalHeight;
+                            const ratio = f.size / Math.max(nw, nh);
+                            const dw = nw * ratio;
+                            const dh = nh * ratio;
+                            if (f.spec.isBoss) {
+                                ctx.scale(f.dir === 1 ? 1 : -1, 1);
+                            } else {
+                                ctx.rotate(f.dir === 1 ? Math.PI / 2 : -Math.PI / 2);
+                            }
+                            if (f.hitFlash > 0) ctx.filter = 'brightness(2.2) saturate(1.5)';
+                            ctx.drawImage(f.spec.img, -dw / 2, -dh / 2, dw, dh);
+                        } else {
+                            ctx.scale(f.dir, 1);
+                            ctx.fillStyle = f.hitFlash > 0 ? '#ffffff' : f.spec.color;
+                            ctx.beginPath();
+                            ctx.ellipse(0, 0, f.size * 0.45, f.size * 0.24, 0, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                        ctx.restore();
+
+                        // Target lock reticle on primary target
+                        if (f === target) {
+                            ctx.save();
+                            ctx.translate(f.x, f.y);
+                            ctx.rotate(now * 0.003);
+                            ctx.strokeStyle = f.spec.isBoss ? '#ffd700' : '#00f7ff';
+                            ctx.lineWidth = 1.6;
+                            ctx.setLineDash([5, 4]);
+                            ctx.beginPath();
+                            ctx.arc(0, 0, Math.max(16, f.size * 0.36), 0, Math.PI * 2);
+                            ctx.stroke();
+                            ctx.restore();
+                        }
+                    }
+
+                    // Turret position & auto-aim
+                    const tx = W * 0.5;
+                    const ty = H - 6;
+                    if (target) {
+                        const desired = Math.atan2(target.x - tx, -(target.y - ty));
+                        const clamped = Math.max(-1.15, Math.min(1.15, desired));
+                        turretAngle += (clamped - turretAngle) * 0.14;
+                    } else {
+                        turretAngle = Math.sin(now * 0.0015) * 0.65;
+                    }
+
+                    // Auto fire plasma bullets
+                    if (now - lastShot > 290) {
+                        lastShot = now;
+                        const spd = 5.6;
+                        bullets.push({
+                            x: tx + Math.sin(turretAngle) * 24,
+                            y: ty - Math.cos(turretAngle) * 24,
+                            vx: Math.sin(turretAngle) * spd,
+                            vy: -Math.cos(turretAngle) * spd
+                        });
+                    }
+
+                    // Laser sight line
+                    ctx.save();
+                    ctx.strokeStyle = 'rgba(0, 247, 255, 0.22)';
+                    ctx.setLineDash([4, 6]);
+                    ctx.lineWidth = 1.2;
+                    ctx.beginPath();
+                    ctx.moveTo(tx, ty);
+                    ctx.lineTo(tx + Math.sin(turretAngle) * 180, ty - Math.cos(turretAngle) * 180);
+                    ctx.stroke();
+                    ctx.restore();
+
+                    // Update & draw bullets
+                    for (let i = bullets.length - 1; i >= 0; i--) {
+                        const b = bullets[i];
+                        b.x += b.vx;
+                        b.y += b.vy;
+                        if (b.x < -10 || b.x > W + 10 || b.y < -10 || b.y > H + 10) {
+                            bullets.splice(i, 1);
+                            continue;
+                        }
+
+                        ctx.save();
+                        ctx.translate(b.x, b.y);
+                        ctx.shadowColor = '#00f7ff';
+                        ctx.shadowBlur = 10;
+                        ctx.fillStyle = '#ffffff';
+                        ctx.beginPath();
+                        ctx.arc(0, 0, 3.8, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.strokeStyle = '#00f7ff';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        ctx.restore();
+
+                        // Hit check
+                        for (let j = fishes.length - 1; j >= 0; j--) {
+                            const f = fishes[j];
+                            const dx = b.x - f.x;
+                            const dy = b.y - f.y;
+                            const hitR = Math.max(16, f.size * 0.34);
+                            if (dx * dx + dy * dy < hitR * hitR) {
+                                bullets.splice(i, 1);
+                                f.hp--;
+                                f.hitFlash = 4;
+                                nets.push({ x: b.x, y: b.y, r: 6, maxR: f.spec.isBoss ? 38 : 26, a: 1, color: f.spec.isBoss ? '#ffd700' : '#00f7ff' });
+
+                                if (f.hp <= 0) {
+                                    const winPkr = f.spec.mult * 16;
+                                    popups.push({
+                                        x: f.x,
+                                        y: f.y,
+                                        text: f.spec.isBoss ? `🐉 ${f.spec.mult}x BOSS!` : `+${winPkr} PKR (${f.spec.mult}x)`,
+                                        a: 1.0,
+                                        isBoss: f.spec.isBoss
+                                    });
+                                    if (multEl) multEl.textContent = f.spec.mult + 'x';
+                                    if (statusEl) {
+                                        statusEl.textContent = f.spec.isBoss ? `🐉 DRAGON BOSS ${f.spec.mult}x HIT!` : `🎯 HIT +${winPkr} PKR (${f.spec.mult}x)`;
+                                    }
+                                    fishes.splice(j, 1);
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    // Draw electric capture nets
+                    for (let i = nets.length - 1; i >= 0; i--) {
+                        const n = nets[i];
+                        n.r += (n.maxR - n.r) * 0.22;
+                        n.a -= 0.06;
+                        if (n.a <= 0) { nets.splice(i, 1); continue; }
+                        ctx.save();
+                        ctx.globalAlpha = n.a;
+                        ctx.strokeStyle = n.color;
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                        ctx.stroke();
+                        ctx.beginPath();
+                        ctx.arc(n.x, n.y, n.r * 0.55, 0, Math.PI * 2);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+
+                    // Draw Cannon Turret at bottom center
+                    ctx.save();
+                    ctx.translate(tx, ty);
+                    ctx.fillStyle = 'rgba(0, 247, 255, 0.25)';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, 22, Math.PI, 0);
+                    ctx.fill();
+                    ctx.rotate(turretAngle);
+                    if (gunImg.complete && gunImg.naturalWidth > 0) {
+                        ctx.drawImage(gunImg, -20, -36, 40, 46);
+                    } else {
+                        ctx.fillStyle = '#00f7ff';
+                        ctx.fillRect(-6, -30, 12, 28);
+                    }
+                    ctx.restore();
+
+                    // Floating Win Multiplier Popups
+                    for (let i = popups.length - 1; i >= 0; i--) {
+                        const p = popups[i];
+                        p.y -= 0.75;
+                        p.a -= 0.018;
+                        if (p.a <= 0) { popups.splice(i, 1); continue; }
+                        ctx.save();
+                        ctx.globalAlpha = p.a;
+                        ctx.font = p.isBoss ? '900 14px "Inter", sans-serif' : '800 11.5px "JetBrains Mono", monospace';
+                        ctx.textAlign = 'center';
+                        ctx.lineWidth = 3;
+                        ctx.strokeStyle = '#010a14';
+                        ctx.strokeText(p.text, p.x, p.y);
+                        ctx.fillStyle = p.isBoss ? '#ffd700' : '#56ccf2';
+                        ctx.fillText(p.text, p.x, p.y);
+                        ctx.restore();
+                    }
+                }
+                requestAnimationFrame(frame);
+
+                setInterval(() => {
+                    if (playersEl) {
+                        const base = 1420 + Math.floor(Math.random() * 35);
+                        playersEl.textContent = base.toLocaleString();
+                    }
+                }, 3500);
+            })();
+        });
+
+        function showUnderRepairNotice(e, gameName) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (window.core && typeof window.core.showToast === 'function') {
+                window.core.showToast(`🛠️ ${gameName || 'Slot Game'} Under Repair: Game is currently undergoing scheduled maintenance. Access locked.`, 'error');
+            } else {
+                alert(`🛠️ ${gameName || 'Slot Game'} Under Repair!\n\nThis game is currently undergoing essential server maintenance and mechanical repair. Access is temporarily locked.`);
+            }
+        }
+    </script>
+</body>
+</html>

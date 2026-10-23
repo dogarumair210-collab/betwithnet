@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ Tower of Olympus - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .active-pick { border-color: #00e700 !important; background: rgba(0, 231, 0, 0.2) !important; color: #00e700 !important; }
+    </style>
+</head>
+<body class="game-page bg-scratch">
+    <div id="app-header-slot"></div>
+    <main class="main-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <a href="../casino.html" class="btn-secondary" style="padding:6px 12px; font-size:12px; text-decoration:none;">← Casino</a>
+                <h1 style="font-size:18px; font-weight:800;">⚡ Tower of Olympus</h1>
+            </div>
+            <div style="font-size:11px; color:#00e700; background:rgba(0,231,0,0.15); padding:4px 10px; border-radius:12px; font-weight:700;">97.4% RTP</div>
+        </div>
+        <div class="game-stage-wrapper">
+            <div style="width:100%; min-height:260px; background:radial-gradient(circle at center, #1b2838 0%, #080f18 100%); border-radius:16px; border:2px solid #ffd700; position:relative; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:15px;">
+        <div id="ol-tower" style="display:flex; flex-direction:column-reverse; gap:4px; width:180px; margin-bottom:10px;">
+            <div class="ol-floor" id="ol-f-5" style="background:rgba(255,255,255,0.06); border:1px solid #ffd700; border-radius:4px; padding:4px; text-align:center; font-size:11px; color:#ffd700; font-weight:800;">Floor 5 (16.0x Zeus)</div>
+            <div class="ol-floor" id="ol-f-4" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:4px; text-align:center; font-size:11px; color:#fff;">Floor 4 (6.5x)</div>
+            <div class="ol-floor" id="ol-f-3" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:4px; text-align:center; font-size:11px; color:#fff;">Floor 3 (3.2x)</div>
+            <div class="ol-floor" id="ol-f-2" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:4px; text-align:center; font-size:11px; color:#fff;">Floor 2 (1.9x)</div>
+            <div class="ol-floor" id="ol-f-1" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:4px; text-align:center; font-size:11px; color:#fff;">Floor 1 (1.3x)</div>
+        </div>
+        <div id="ol-status" style="font-size:13px; font-weight:700; color:#ffd700;">Climb Mount Olympus! Dodge Zeus Lightning!</div>
+        <button id="ol-cashout-btn" class="btn-action-primary btn-cashout" style="display:none; margin-top:8px;" onclick="window.tower_legendGame.cashOut()">CASH OUT OLYMPUS ₨ 0</button>
+    </div>
+        </div>
+        <div class="game-control-panel">
+            <div class="bet-amount-row"><div class="bet-input-wrap"><span class="bet-currency-prefix">₨</span><input type="number" id="ol-bet-input" class="bet-input" value="100"></div><div class="bet-quick-btn-group"><button class="btn-bet-modifier" onclick="window.app.modifyBet('ol-bet-input', 'half')">½</button><button class="btn-bet-modifier" onclick="window.app.modifyBet('ol-bet-input', 'double')">2×</button><button class="btn-bet-modifier" onclick="window.app.modifyBet('ol-bet-input', 'max')">MAX</button></div></div>
+    <button id="ol-climb-btn" class="btn-action-primary" onclick="window.tower_legendGame.climb()">CLIMB NEXT FLOOR ⚡</button>
+        </div>
+    </main>
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/tower_legend.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.core.init('casino');
+            if (window.tower_legendGame && window.tower_legendGame.init) window.tower_legendGame.init();
+        });
+    </script>
+
+<!-- AUTO-INJECTED UNIVERSAL WALLET ENGINE v4.0 -->
+<script src="../js/universal_wallet_bridge.js?v=universal_v4"></script>
+<!-- END AUTO-INJECTED WALLET -->
+</body>
+</html>

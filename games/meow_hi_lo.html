@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Meow Hi-Lo - Bet With Net</title>
+  <link rel="stylesheet" href="../css/games/meow_hi_lo.css?v=3.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- JILI Luxury Loading Screen -->
+  <div class="jili-loading-screen" id="jiliLoadingScreen">
+    <div class="jili-splash-content">
+      <div class="jili-logo-glow-wrapper">
+        <img src="../assets/games/meow_hi_lo/jili_logo.png" alt="JILI Games" class="jili-logo-img">
+      </div>
+      <div class="jili-game-title">MEOW HI-LO</div>
+      <div class="jili-loading-bar-container">
+        <div class="jili-loading-bar" id="jiliProgressBar">
+          <span class="jili-bar-shine"></span>
+        </div>
+      </div>
+      <div class="jili-loading-info">
+        <span class="jili-loading-status" id="jiliStatusText">Loading game assets...</span>
+        <span class="jili-loading-pct" id="jiliProgressText">0%</span>
+      </div>
+      <div class="jili-loading-footer">
+        <span class="jili-pill">JILI CERTIFIED</span>
+        <span class="jili-fair">RNG 100% FAIR GAMING</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Music Audio Element for instant autoplay -->
+  <audio id="bgmAudio" src="../assets/games/meow_hi_lo/hilo_bgm.mp3" loop preload="auto" autoplay></audio>
+
+  <div class="game-container">
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Header -->
+    <header class="game-header">
+      <div class="header-left">
+        <button class="back-btn" onclick="window.location.href='../index.html'" title="Exit to Lobby">←</button>
+        <div class="logo-badge">
+          <img src="../assets/games/meow_hi_lo/logo.jpg" alt="Meow Hi-Lo">
+          <span class="logo-text">MEOW HI-LO</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="sound-btn" id="soundBtn" title="Toggle Sound">🔊</button>
+        <div class="wallet-badge">
+          <span class="coin-icon">🪙</span>
+          <span id="walletBalance">PKR 2,000.00</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Card History Bar -->
+    <div class="history-bar">
+      <span class="history-label">History:</span>
+      <div class="history-cards" id="historyCards">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Game Stage (Cat Mascot & Card Arena) -->
+    <main class="game-stage">
+      <!-- Cat Mascot -->
+      <div class="cat-mascot-container">
+        <div class="cat-speech-bubble" id="catSpeech">
+          Meow! Place your bet and tap DEAL to play! 🐾
+        </div>
+        <div class="cat-avatar">
+          <!-- Cute SVG Lucky Cat with animated paw -->
+          <svg class="cat-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cat Body -->
+            <ellipse cx="60" cy="78" rx="42" ry="34" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="3"/>
+            <!-- Cat Ears -->
+            <path d="M28 42 L22 18 L44 28 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="3"/>
+            <path d="M30 38 L26 24 L40 30 Z" fill="#FF8BA7"/>
+            <path d="M92 42 L98 18 L76 28 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="3"/>
+            <path d="M90 38 L94 24 L80 30 Z" fill="#FF8BA7"/>
+            <!-- Cat Head -->
+            <circle cx="60" cy="52" r="38" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="3"/>
+            <!-- Cat Eyes (Happy anime squint) -->
+            <path d="M42 48 Q49 42 56 48" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M64 48 Q71 42 78 48" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <!-- Cheeks blush -->
+            <circle cx="38" cy="55" r="6" fill="#FFAEC0" opacity="0.6"/>
+            <circle cx="82" cy="55" r="6" fill="#FFAEC0" opacity="0.6"/>
+            <!-- Cat Nose & Mouth -->
+            <path d="M57 56 L63 56 L60 60 Z" fill="#FF6584"/>
+            <path d="M54 62 Q60 66 60 62 Q60 66 66 62" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <!-- Cat Whiskers -->
+            <line x1="24" y1="52" x2="12" y2="48" stroke="#CBD5E1" stroke-width="2"/>
+            <line x1="24" y1="56" x2="10" y2="58" stroke="#CBD5E1" stroke-width="2"/>
+            <line x1="96" y1="52" x2="108" y2="48" stroke="#CBD5E1" stroke-width="2"/>
+            <line x1="96" y1="56" x2="110" y2="58" stroke="#CBD5E1" stroke-width="2"/>
+            <!-- Red Collar & Golden Bell -->
+            <rect x="36" y="80" width="48" height="8" rx="4" fill="#E11D48"/>
+            <circle cx="60" cy="88" r="7" fill="#F59E0B" stroke="#D97706" stroke-width="1.5"/>
+            <circle cx="60" cy="88" r="2.5" fill="#78350F"/>
+            <!-- Animated Waving Left Paw -->
+            <g class="cat-paw-wave">
+              <ellipse cx="28" cy="74" rx="10" ry="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+              <ellipse cx="28" cy="78" rx="5" ry="4" fill="#FFAEC0"/>
+              <circle cx="24" cy="72" r="2" fill="#FFAEC0"/>
+              <circle cx="28" cy="70" r="2" fill="#FFAEC0"/>
+              <circle cx="32" cy="72" r="2" fill="#FFAEC0"/>
+            </g>
+            <!-- Right Paw resting -->
+            <ellipse cx="84" cy="82" rx="9" ry="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card Table Arena -->
+      <div class="card-table-arena">
+        <!-- Streak / Multiplier Pill -->
+        <div class="streak-multiplier-badge" id="streakBadge">
+          STREAK x0 (1.00x)
+        </div>
+
+        <!-- 3D Playing Card -->
+        <div class="playing-card-wrapper" id="playingCard">
+          <!-- Card Front -->
+          <div class="card-face card-front suit-hearts" id="cardFront">
+            <div class="card-top-corner">
+              <span class="card-rank" id="cardRankTop">7</span>
+              <span class="card-suit-sm" id="cardSuitTop">♥</span>
+            </div>
+            <div class="card-center-suit" id="cardCenterSuit">♥</div>
+            <div class="card-bottom-corner">
+              <span class="card-rank" id="cardRankBottom">7</span>
+              <span class="card-suit-sm" id="cardSuitBottom">♥</span>
+            </div>
+          </div>
+          <!-- Card Back -->
+          <div class="card-face card-back" id="cardBack">
+            <div class="card-back-pattern">
+              <span class="card-back-paw">🐾</span>
+              <span style="font-weight: 900; font-size: 0.8rem; letter-spacing: 1px;">MEOW</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Deck Stand -->
+        <div class="card-deck-stack" title="Deck">
+          <span>🐾</span>
+        </div>
+      </div>
+
+      <!-- Betting Action Panel (HI / LO & Side Bets) -->
+      <div class="bet-actions-panel">
+        <!-- Main HI / LO Buttons -->
+        <div class="main-hilo-buttons">
+          <button class="hilo-btn btn-hi" id="btnHi">
+            <div class="hilo-btn-title">
+              <span>HI</span>
+              <span>▲</span>
+            </div>
+            <span class="hilo-btn-subtitle">Same or Higher</span>
+            <div class="hilo-multiplier" id="hiMultiplier">1.85x</div>
+            <span class="hilo-chance" id="hiChance">54% Chance</span>
+          </button>
+
+          <button class="hilo-btn btn-lo" id="btnLo">
+            <div class="hilo-btn-title">
+              <span>LO</span>
+              <span>▼</span>
+            </div>
+            <span class="hilo-btn-subtitle">Same or Lower</span>
+            <div class="hilo-multiplier" id="loMultiplier">1.85x</div>
+            <span class="hilo-chance" id="loChance">54% Chance</span>
+          </button>
+        </div>
+
+        <!-- Side Bet Options -->
+        <div class="side-bets-toggle-row">
+          <button class="side-bet-pill" id="betRed">
+            <span>RED ♥ ♦</span>
+            <span class="pill-odds">1.92x</span>
+          </button>
+          <button class="side-bet-pill" id="betBlack">
+            <span>BLACK ♠ ♣</span>
+            <span class="pill-odds">1.92x</span>
+          </button>
+          <button class="side-bet-pill" id="betEqual">
+            <span>EQUAL =</span>
+            <span class="pill-odds">11.5x</span>
+          </button>
+        </div>
+
+        <!-- In-Round Cashout & Skip -->
+        <div class="round-control-row" id="actionControls" style="display: none;">
+          <button class="cashout-btn" id="cashoutBtn">
+            <span>💰 CASH OUT</span>
+            <span id="cashoutAmount">PKR 0.00</span>
+          </button>
+          <button class="skip-btn" id="skipBtn" title="Deal a different start card">
+            <span>🔄 SKIP</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Console (Bet Selector & Play) -->
+    <footer class="bottom-console">
+      <div class="bet-stepper-row">
+        <button class="stepper-btn" id="betMinus">-</button>
+        <div class="bet-display-box">
+          <span class="bet-label">Total Bet</span>
+          <span class="bet-value" id="betDisplay">PKR 50</span>
+        </div>
+        <button class="stepper-btn" id="betPlus">+</button>
+      </div>
+
+      <div class="chips-quick-row">
+        <button class="chip-btn" data-value="10">10</button>
+        <button class="chip-btn active" data-value="50">50</button>
+        <button class="chip-btn" data-value="100">100</button>
+        <button class="chip-btn" data-value="500">500</button>
+        <button class="chip-btn" data-value="1000">1K</button>
+      </div>
+
+      <button class="deal-start-btn" id="dealBtn">
+        DEAL & PLAY 🐾
+      </button>
+    </footer>
+
+    <!-- Win Modal Popup -->
+    <div class="win-popup-overlay" id="winModal">
+      <div class="win-card-modal">
+        <div class="modal-cat-paw">😻🎉</div>
+        <h2 class="modal-title">PURRFECT WIN!</h2>
+        <div class="modal-win-amount" id="modalWinAmount">PKR 0.00</div>
+        <p style="color: #64748b; font-size: 0.85rem; font-weight: 600;">You successfully cashed out your streak!</p>
+        <button class="modal-ok-btn" id="modalOkBtn">AWESOME!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bet With Net Universal Core, Wallet & API Bridge Scripts -->
+  <script src="../js/api_bridge.js?v=2.5"></script>
+  <script src="../js/wallet.js?v=2.5"></script>
+  <script src="../js/core.js?v=2.5"></script>
+  <script src="../js/games/meow_hi_lo.js?v=3.0"></script>
+</body>
+</html>

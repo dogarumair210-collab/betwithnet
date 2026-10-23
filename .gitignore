@@ -1,0 +1,18 @@
+# Environment variables and secrets
+.env
+.env.*
+*.env
+.env.local
+.env.*.local
+
+# Browser temporary caches
+chrome_tmp/
+chrome_tmp2/
+
+# Operating System files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs
+*.log

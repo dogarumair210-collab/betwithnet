@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Profile & Security - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span class="navbar-breadcrumb">
+                    Security / <b style="color:#fff;">Admin Profile & Access Credentials</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="lockAdmin()" class="btn-lte btn-lte-danger">
+                    <span>🔒 Lock & Sign Out</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>🔐</span> Administrator Profile & Security
+                    </h1>
+                    <p class="page-subtitle">
+                        Manage Super Admin email address, update Master Security PIN, and audit active authorization sessions.
+                    </p>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:24px;">
+
+                <!-- Change Admin Email -->
+                <div class="lte-card">
+                    <div class="lte-card-header">
+                        <div class="lte-card-title">
+                            <span>📧</span> Admin Contact Email
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleUpdateEmail(event)">
+                        <div class="form-field">
+                            <label>Current Registered Email:</label>
+                            <input type="email" id="profile-current-email" class="form-ctrl" readonly style="opacity:0.7; background:#05080d;">
+                        </div>
+                        <div class="form-field">
+                            <label>New Administrator Email:</label>
+                            <input type="email" id="profile-new-email" class="form-ctrl" placeholder="admin.new@betwithnet.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Emergency Support Mobile:</label>
+                            <input type="text" id="profile-phone" class="form-ctrl" placeholder="0300-7777777" required>
+                        </div>
+
+                        <button type="submit" class="btn-lte btn-lte-primary" style="margin-top:10px;">
+                            <span>💾 Save Email Changes</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Change Security PIN -->
+                <div class="lte-card">
+                    <div class="lte-card-header">
+                        <div class="lte-card-title">
+                            <span>🔑</span> Master Security PIN / Password
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleUpdatePin(event)">
+                        <div class="form-field">
+                            <label>Current Master PIN:</label>
+                            <input type="password" id="pin-current" class="form-ctrl" placeholder="••••" maxlength="6" required>
+                        </div>
+                        <div class="form-field">
+                            <label>New Master PIN / Password (4 to 6 Digits):</label>
+                            <input type="password" id="pin-new" class="form-ctrl" placeholder="••••" maxlength="6" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Confirm New PIN:</label>
+                            <input type="password" id="pin-confirm" class="form-ctrl" placeholder="••••" maxlength="6" required>
+                        </div>
+
+                        <button type="submit" class="btn-lte btn-lte-warning" style="margin-top:10px;">
+                            <span>⚡ Update Master PIN</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Active Session Dossier -->
+            <div class="lte-card" style="margin-top:10px;">
+                <div class="lte-card-header">
+                    <div class="lte-card-title">
+                        <span>🛡️</span> Active Back-Office Session
+                    </div>
+                    <span class="badge-status badge-active">Authenticated</span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+                    <div style="background:#0a0f18; padding:14px; border-radius:8px; border:1px solid var(--lte-border);">
+                        <div style="font-size:11px; color:var(--lte-muted);">Role Permission:</div>
+                        <div style="font-weight:800; color:#fff; font-size:14px; margin-top:2px;">SUPER ADMIN (ALL ACCESS)</div>
+                    </div>
+                    <div style="background:#0a0f18; padding:14px; border-radius:8px; border:1px solid var(--lte-border);">
+                        <div style="font-size:11px; color:var(--lte-muted);">Current IP Address:</div>
+                        <div style="font-weight:800; color:var(--lte-cyan); font-size:14px; font-family:'JetBrains Mono',monospace; margin-top:2px;">127.0.0.1 (Localhost / Dedicated)</div>
+                    </div>
+                    <div style="background:#0a0f18; padding:14px; border-radius:8px; border:1px solid var(--lte-border);">
+                        <div style="font-size:11px; color:var(--lte-muted);">Session Security:</div>
+                        <div style="font-weight:800; color:var(--lte-green); font-size:14px; margin-top:2px;">ENCRYPTED LOCAL STORAGE</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/site_settings.js"></script>
+    <script>
+        function loadProfile() {
+            const prof = window.siteSettings.settings.adminProfile;
+            document.getElementById('profile-current-email').value = prof.email || 'admin@betwithnet.com';
+            document.getElementById('profile-phone').value = prof.phone || '0300-7777777';
+        }
+
+        function handleUpdateEmail(e) {
+            e.preventDefault();
+            const newEmail = document.getElementById('profile-new-email').value.trim();
+            const phone = document.getElementById('profile-phone').value.trim();
+
+            if (!newEmail) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            window.siteSettings.updateAdminProfile({ email: newEmail, phone });
+            alert(`Admin contact email updated to: ${newEmail}`);
+            loadProfile();
+            document.getElementById('profile-new-email').value = '';
+        }
+
+        function handleUpdatePin(e) {
+            e.preventDefault();
+            const curr = document.getElementById('pin-current').value.trim();
+            const next = document.getElementById('pin-new').value.trim();
+            const conf = document.getElementById('pin-confirm').value.trim();
+
+            const actualPin = window.siteSettings.settings.adminProfile.masterPin || '7777';
+
+            if (curr !== actualPin) {
+                alert('Current Master PIN is incorrect!');
+                return;
+            }
+
+            if (next.length < 4) {
+                alert('New PIN must be at least 4 digits!');
+                return;
+            }
+
+            if (next !== conf) {
+                alert('New PIN and Confirmation do not match!');
+                return;
+            }
+
+            window.siteSettings.updateAdminProfile({ masterPin: next });
+            alert(`Master Security PIN successfully updated! Use your new PIN for future admin logins.`);
+            document.getElementById('pin-current').value = '';
+            document.getElementById('pin-new').value = '';
+            document.getElementById('pin-confirm').value = '';
+        }
+
+        function lockAdmin() {
+            sessionStorage.removeItem('bwn_admin_auth');
+            alert('Admin Console Locked.');
+            window.location.href = '../admin.html';
+        }
+
+        window.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+    <script src="js/adminlte.js"></script>
+</body>
+</html>

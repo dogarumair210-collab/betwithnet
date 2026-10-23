@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Coin Flip VIP - 1xBet / Astriona Games | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="stylesheet" href="../css/games/coinflip_theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Exact Theme Overrides from 1xBet Astriona Mini-Games */
+        :root {
+            --bg-deep: #020a16;
+            --bg-surface: #031125;
+            --bg-card: #172436;
+            --bg-input: #031023;
+            --bg-elevated: #212e3f;
+            --border: #303c4c;
+            --border-light: #424d5c;
+            --accent: #1c8ffa;
+            --accent-dim: #187ad5;
+            --accent-rgb: 28, 143, 250;
+            --cashout-rgb: 245, 158, 11;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-deep) !important;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* -------------------------------------------------------------
+           BACKGROUND VIDEO & THEME PICTURE AMBIENCE
+           ------------------------------------------------------------- */
+        .cf-video-background-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+            background: #020a16;
+        }
+
+        .cf-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.68) contrast(1.15) saturate(1.25);
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .cf-bg-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 50%, rgba(2, 10, 22, 0.3) 0%, rgba(2, 10, 22, 0.82) 100%);
+            pointer-events: none;
+        }
+
+        .cf-particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Top Nav Bar */
+        .cf-header {
+            background: rgba(3, 17, 37, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(48, 60, 76, 0.6);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .cf-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .cf-back-btn {
+            background: rgba(33, 46, 63, 0.8);
+            border: 1px solid var(--border);
+            color: #fff;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .cf-back-btn:hover {
+            border-color: var(--accent);
+            background: var(--border-light);
+        }
+
+        .cf-header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cf-header-logo-img {
+            height: 38px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+        }
+
+        .cf-provider-badge {
+            background: rgba(28, 143, 250, 0.15);
+            border: 1px solid rgba(28, 143, 250, 0.35);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 10px rgba(28, 143, 250, 0.5);
+        }
+
+        .cf-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cf-nav-btn {
+            background: rgba(33, 46, 63, 0.8);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            backdrop-filter: blur(8px);
+        }
+        .cf-nav-btn:hover, .cf-nav-btn.active {
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* -------------------------------------------------------------
+           MOBILE SCREEN ROTATION & RESPONSIVE LAYOUT ENGINE
+           ------------------------------------------------------------- */
+        .cf-app-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Rotate Navigation Button */
+        .cf-rotate-btn {
+            background: rgba(28, 143, 250, 0.15) !important;
+            border: 1px solid rgba(28, 143, 250, 0.4) !important;
+            color: #60a5fa !important;
+            cursor: pointer;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cf-rotate-btn:hover, .cf-rotate-btn.active {
+            background: rgba(28, 143, 250, 0.3) !important;
+            border-color: #38bdf8 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 12px rgba(28, 143, 250, 0.4);
+        }
+
+        /* Main Game Layout */
+        .cf-layout {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 20px;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sidebar Control Panel */
+        .cf-sidebar {
+            width: 360px;
+            background: rgba(3, 17, 37, 0.88);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(48, 60, 76, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+
+
+        /* Balance Card */
+        .cf-balance-card {
+            background: rgba(3, 16, 35, 0.9);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .cf-balance-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(28, 143, 250, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 20px;
+            box-shadow: 0 0 15px rgba(28, 143, 250, 0.2);
+        }
+
+        .cf-balance-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cf-balance-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .cf-balance-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #e8edf5, #57acfb) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        /* User badge, login button, quick deposit button in header and balance card */
+        .cf-user-badge-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(33, 46, 63, 0.85);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 6px 12px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .cf-user-badge-link:hover {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+        }
+        .cf-vip-tag {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .cf-login-btn {
+            background: linear-gradient(135deg, #1c8ffa, #125da3);
+            border: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.15s;
+        }
+        .cf-login-btn:hover {
+            transform: scale(1.03);
+        }
+        .cf-dep-btn {
+            border-color: rgba(16, 185, 129, 0.4) !important;
+            color: #10b981 !important;
+            text-decoration: none;
+        }
+        .cf-dep-btn:hover {
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.15) !important;
+        }
+        .cf-deposit-quick-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            color: #ffffff !important;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+            transition: all 0.2s;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .cf-deposit-quick-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+            filter: brightness(1.1);
+        }
+        .cf-quick-chips {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .cf-chip-pill {
+            background: rgba(33, 46, 63, 0.6);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .cf-chip-pill:hover {
+            border-color: var(--accent);
+            color: #fff;
+            background: rgba(28, 143, 250, 0.2);
+        }
+
+
+        /* Section Titles */
+        .cf-section-title {
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Game Mode Selector */
+        .cf-mode-selector {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .cf-mode-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 10px;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cf-mode-btn.active {
+            background: var(--bg-elevated);
+            color: #ffffff;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Choice Cards (Heads vs Tails with realistic coin pictures) */
+        .cf-choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .cf-choice-card {
+            background: rgba(3, 16, 35, 0.85);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 12px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cf-choice-card:hover {
+            border-color: var(--border-light);
+            background: rgba(23, 36, 54, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .cf-choice-card.selected {
+            border-color: var(--accent);
+            background: rgba(28, 143, 250, 0.12);
+            box-shadow: 0 0 22px rgba(28, 143, 250, 0.35);
+        }
+
+        .cf-choice-coin-img {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .cf-choice-card[data-choice="tails"] .cf-choice-coin-img {
+            border: 2px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .cf-choice-card:hover .cf-choice-coin-img {
+            transform: scale(1.06);
+        }
+
+        .cf-choice-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+        }
+
+        .cf-choice-mult {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--accent);
+            background: rgba(28, 143, 250, 0.18);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* Bet Input Area */
+        .cf-bet-input-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 6px 6px 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+        }
+
+        .cf-bet-input-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(28, 143, 250, 0.2);
+        }
+
+        .cf-currency-badge {
+            background: rgba(28, 143, 250, 0.18);
+            border: 1px solid rgba(28, 143, 250, 0.3);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 800;
+            padding: 6px 10px;
+        }
+
+        .cf-bet-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 800;
+            outline: none;
+            min-width: 0;
+        }
+
+        .cf-quick-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .cf-quick-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .cf-quick-btn:hover {
+            border-color: var(--border-light);
+            color: #fff;
+            background: #2b3a4f;
+        }
+
+        /* Action Buttons */
+        .cf-btn-play {
+            background: linear-gradient(180deg, #1b88ee, #125da3) !important;
+            border: none;
+            border-radius: 16px;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 900;
+            height: 64px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 0 25px rgba(28, 143, 250, 0.4), 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        .cf-btn-play:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cf-btn-play:hover {
+            box-shadow: 0 0 35px rgba(28, 143, 250, 0.6), 0 6px 20px rgba(0, 0, 0, 0.6);
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+        }
+
+        .cf-btn-play:hover:before {
+            left: 120%;
+        }
+
+        .cf-btn-play:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .cf-btn-cashout {
+            background: linear-gradient(180deg, #d8ad16, #ea7522) !important;
+            border: none;
+            border-radius: 16px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 900;
+            height: 64px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4), 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: cf-cashout-pulse 1.4s infinite alternate;
+        }
+
+        @keyframes cf-cashout-pulse {
+            0% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+            100% { box-shadow: 0 0 35px rgba(245, 158, 11, 0.6); }
+        }
+
+        /* Streak Stats Panel */
+        .cf-streak-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cf-streak-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .cf-streak-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .cf-streak-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Game Arena (Center Stage) */
+        .cf-arena {
+            flex: 1;
+            background: rgba(3, 17, 37, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(48, 60, 76, 0.8);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            min-height: 520px;
+        }
+
+        /* Top History Ribbon */
+        .cf-history-bar {
+            background: rgba(2, 10, 22, 0.85);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .cf-history-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .cf-history-items {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .cf-history-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            animation: cf-fade-in 0.3s ease;
+        }
+
+        @keyframes cf-fade-in {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .cf-history-pill.heads {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .cf-history-pill.tails {
+            background: rgba(148, 163, 184, 0.2);
+            color: #cbd5e1;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+
+        /* 3D Coin Stage with Background Casino Stage Image */
+        .cf-stage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            perspective: 1400px;
+            position: relative;
+            padding: 40px 20px;
+            overflow: hidden;
+            background: #01050c;
+        }
+
+        .cf-stage-video-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cf-stage-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.9) contrast(1.1) saturate(1.2);
+            transition: all 0.3s ease;
+        }
+
+        .cf-stage-video-glass {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(2, 10, 22, 0.15) 0%, rgba(2, 10, 22, 0.55) 75%),
+                linear-gradient(180deg, rgba(3, 17, 37, 0.7) 0%, transparent 15%, transparent 85%, rgba(3, 17, 37, 0.85) 100%);
+            pointer-events: none;
+        }
+
+        .cf-stage-spotlight {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(28, 143, 250, 0.25) 0%, transparent 80%);
+            pointer-events: none;
+            filter: blur(25px);
+            z-index: 3;
+        }
+
+        /* 3D Coin Structure */
+        .cf-coin-wrapper {
+            width: 220px;
+            height: 220px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s;
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9));
+            z-index: 10;
+        }
+
+        .cf-coin {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Realistic Image Faces */
+        .cf-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .cf-face-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Heads Face */
+        .cf-face-heads {
+            border: 6px solid #ffd700;
+            transform: rotateY(0deg);
+        }
+
+        /* Tails Face */
+        .cf-face-tails {
+            border: 6px solid #e2e8f0;
+            transform: rotateY(180deg);
+        }
+
+        /* Specular Coin Shine Layer */
+        .cf-face-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
+        }
+
+        /* Coin Shadow */
+        .cf-coin-shadow {
+            width: 180px;
+            height: 28px;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.85) 0%, transparent 75%);
+            position: absolute;
+            bottom: 24px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        /* Multiplier Stage Badge */
+        .cf-current-mult-badge {
+            margin-top: 32px;
+            background: rgba(23, 36, 54, 0.9);
+            border: 1px solid var(--border);
+            padding: 8px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 12;
+            position: relative;
+        }
+
+        .cf-current-mult-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+
+        .cf-current-mult-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(28, 143, 250, 0.4);
+        }
+
+        /* Result Splash Banner */
+        .cf-result-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            padding: 20px 40px;
+            border-radius: 20px;
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            z-index: 30;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            text-transform: uppercase;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cf-result-banner.show {
+            display: flex;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .cf-result-banner.win {
+            background: linear-gradient(135deg, rgba(1, 154, 16, 0.95), rgba(5, 90, 15, 0.95));
+            border: 2px solid #22c55e;
+            color: #ffffff;
+            box-shadow: 0 0 50px rgba(34, 197, 94, 0.6);
+        }
+
+        .cf-result-banner.lose {
+            background: linear-gradient(135deg, rgba(169, 2, 2, 0.95), rgba(90, 5, 5, 0.95));
+            border: 2px solid #ef4444;
+            color: #ffffff;
+            box-shadow: 0 0 50px rgba(239, 68, 68, 0.6);
+        }
+
+        .cf-result-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        /* Arena Bottom Controls */
+        .cf-arena-footer {
+            border-top: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 17, 37, 0.7);
+        }
+
+        .cf-footer-stat {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cf-footer-stat strong {
+            color: var(--text-secondary);
+        }
+
+        .cf-control-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .cf-icon-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cf-icon-btn:hover {
+            color: #fff;
+            border-color: var(--accent);
+            background: var(--bg-elevated);
+        }
+
+        /* 3D Flip Keyframes */
+        @keyframes flipToHeads {
+            0% { transform: rotateY(0deg) translateY(0); }
+            50% { transform: rotateY(900deg) translateY(-200px) scale(1.18); }
+            100% { transform: rotateY(1800deg) translateY(0) scale(1); }
+        }
+
+        @keyframes flipToTails {
+            0% { transform: rotateY(0deg) translateY(0); }
+            50% { transform: rotateY(900deg) translateY(-200px) scale(1.18); }
+            100% { transform: rotateY(1980deg) translateY(0) scale(1); }
+        }
+
+        .flipping-heads {
+            animation: flipToHeads 1.25s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .flipping-tails {
+            animation: flipToTails 1.25s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .flipping-turbo-heads {
+            animation: flipToHeads 0.45s ease-out forwards;
+        }
+
+        /* -------------------------------------------------------------
+           CLEAN UPRIGHT MOBILE EXPERIENCE (NO ROTATION - 100% PROPER)
+           ------------------------------------------------------------- */
+        @media screen and (max-width: 900px) {
+            html, body {
+                width: 100%;
+                min-height: 100vh;
+                overflow-x: hidden !important;
+                overflow-y: auto !important;
+                position: relative !important;
+                margin: 0;
+                padding: 0;
+            }
+            .cf-app-wrapper {
+                width: 100% !important;
+                min-height: 100vh !important;
+                height: auto !important;
+                transform: none !important;
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: visible !important;
+            }
+            /* Header */
+            .cf-header {
+                padding: 8px 12px !important;
+                min-height: 48px !important;
+                height: auto !important;
+                gap: 8px !important;
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 100 !important;
+                backdrop-filter: blur(16px) !important;
+                background: rgba(3, 17, 37, 0.92) !important;
+            }
+            .cf-header-logo-img {
+                height: 26px !important;
+            }
+            .cf-provider-badge {
+                display: none !important;
+            }
+            .cf-rotate-btn {
+                display: none !important;
+            }
+            .cf-nav-btn {
+                padding: 5px 8px !important;
+                font-size: 11px !important;
+                border-radius: 8px !important;
+            }
+            /* Layout: Vertical Stack */
+            .cf-layout {
+                flex-direction: column !important;
+                width: 100% !important;
+                max-width: 520px !important;
+                margin: 0 auto !important;
+                padding: 8px 12px 24px 12px !important;
+                gap: 12px !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            /* 1. Arena on Top (Coin Stage + Video + History) */
+            .cf-arena {
+                order: 1 !important;
+                width: 100% !important;
+                min-height: 280px !important;
+                height: 38vh !important;
+                max-height: 340px !important;
+                border-radius: 18px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: hidden !important;
+                position: relative !important;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+            }
+            .cf-history-bar {
+                padding: 6px 12px !important;
+                min-height: 32px !important;
+                height: 32px !important;
+                gap: 6px !important;
+            }
+            .cf-history-label {
+                font-size: 10px !important;
+            }
+            .cf-history-pill {
+                font-size: 11px !important;
+                padding: 3px 8px !important;
+            }
+            .cf-stage {
+                flex: 1 !important;
+                min-height: 0 !important;
+                padding: 10px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            .cf-coin-wrapper {
+                width: clamp(130px, 32vw, 175px) !important;
+                height: clamp(130px, 32vw, 175px) !important;
+            }
+            .cf-current-mult-badge {
+                bottom: 8px !important;
+                padding: 4px 12px !important;
+                font-size: 11px !important;
+            }
+            .cf-arena-footer {
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+                min-height: 28px !important;
+            }
+            .cf-result-banner {
+                padding: 14px 28px !important;
+                font-size: 24px !important;
+                border-radius: 14px !important;
+            }
+            .cf-result-sub {
+                font-size: 14px !important;
+            }
+
+            /* 2. Controls Below (Sidebar) */
+            .cf-sidebar {
+                order: 2 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                min-height: 0 !important;
+                padding: 14px 14px 18px 14px !important;
+                gap: 12px !important;
+                border-radius: 18px !important;
+                background: rgba(3, 17, 37, 0.92) !important;
+                backdrop-filter: blur(16px) !important;
+                box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: visible !important;
+            }
+            /* Balance Card */
+            .cf-balance-card {
+                padding: 10px 14px !important;
+                gap: 10px !important;
+                border-radius: 12px !important;
+            }
+            .cf-balance-icon {
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 18px !important;
+                border-radius: 8px !important;
+            }
+            .cf-balance-label {
+                font-size: 10px !important;
+            }
+            .cf-balance-val {
+                font-size: 18px !important;
+            }
+            .cf-deposit-quick-btn {
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+                border-radius: 8px !important;
+            }
+            /* Mode Selector */
+            .cf-section-title {
+                font-size: 10px !important;
+                margin-bottom: 4px !important;
+            }
+            .cf-mode-selector {
+                padding: 3px !important;
+                border-radius: 10px !important;
+            }
+            .cf-mode-btn {
+                padding: 7px 10px !important;
+                font-size: 12px !important;
+                border-radius: 8px !important;
+            }
+            /* Choice Cards: Side-by-side Heads (Lion) vs Tails (Eagle) */
+            .cf-choice-grid {
+                gap: 10px !important;
+            }
+            .cf-choice-card {
+                padding: 10px 8px !important;
+                height: auto !important;
+                min-height: 72px !important;
+                border-radius: 14px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 6px !important;
+            }
+            .cf-choice-coin-img {
+                width: 44px !important;
+                height: 44px !important;
+                border-radius: 50% !important;
+            }
+            .cf-choice-name {
+                font-size: 11px !important;
+                font-weight: 800 !important;
+            }
+            .cf-choice-mult {
+                font-size: 11px !important;
+                padding: 2px 6px !important;
+            }
+            /* Bet Input */
+            .cf-bet-input-box {
+                height: 44px !important;
+                border-radius: 10px !important;
+                padding: 4px 6px 4px 10px !important;
+            }
+            .cf-currency-badge {
+                font-size: 14px !important;
+                padding: 4px 8px !important;
+            }
+            .cf-bet-input {
+                font-size: 16px !important;
+            }
+            .cf-quick-btn {
+                padding: 6px 10px !important;
+                font-size: 11px !important;
+                border-radius: 6px !important;
+            }
+            .cf-quick-chips {
+                gap: 6px !important;
+                margin-top: 6px !important;
+            }
+            .cf-chip-pill {
+                padding: 6px 2px !important;
+                font-size: 11px !important;
+                border-radius: 6px !important;
+            }
+            /* Primary Flip Action */
+            .cf-btn-play {
+                height: 52px !important;
+                min-height: 52px !important;
+                font-size: 18px !important;
+                font-weight: 900 !important;
+                padding: 10px 18px !important;
+                border-radius: 14px !important;
+                margin-top: 4px !important;
+                box-shadow: 0 0 25px rgba(28, 143, 250, 0.45) !important;
+            }
+            .cf-btn-cashout {
+                height: 52px !important;
+                min-height: 52px !important;
+                font-size: 17px !important;
+                border-radius: 14px !important;
+            }
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN (DARK + YELLOW BAR)
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            width: 100dvw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: #000000 !important;
+            background-color: #000000 !important;
+            z-index: 2147483647 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s ease;
+            overflow: hidden !important;
+            pointer-events: auto;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            max-width: 240px;
+            padding: 16px;
+            box-sizing: border-box;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .pp-logo-wrap {
+            width: 100%;
+            max-width: 165px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pp-logo-img {
+            width: 100%;
+            max-width: 165px;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.3));
+        }
+
+        .pp-bar-track {
+            width: 100%;
+            max-width: 180px;
+            height: 3.5px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+        }
+
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff9500 0%, #ffb700 50%, #ffd000 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(255, 190, 0, 0.9), 0 0 4px #ffe066;
+            transition: width 0.16s ease-out;
+        }
+
+        @media screen and (max-width: 600px) {
+            .pp-loader-container {
+                max-width: 200px !important;
+                gap: 12px !important;
+                padding: 10px !important;
+            }
+            .pp-logo-wrap, .pp-logo-img {
+                max-width: 145px !important;
+            }
+            .pp-bar-track {
+                max-width: 155px !important;
+                height: 3px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1xBet Live Ambiance Video & Theme Pictures -->
+    <div class="cf-video-background-wrap">
+        <video id="cf-main-bg-video" class="cf-bg-video" autoplay loop muted playsinline poster="../assets/games/coinflip/coinflip_bg.jpg">
+            <source src="../assets/games/coinflip/coinflip_user_video.mp4?v=2" type="video/mp4">
+            <source src="../assets/games/coinflip/coinflip_video.mp4?v=2" type="video/mp4">
+        </video>
+        <div class="cf-bg-image-overlay"></div>
+        <canvas id="cf-particles" class="cf-particle-canvas"></canvas>
+    </div>
+
+    <!-- Responsive Mobile Rotation Wrapper -->
+    <div class="cf-app-wrapper" id="cf-app-wrapper">
+
+    <!-- Header -->
+    <header class="cf-header">
+        <div class="cf-header-left">
+            <a href="../casino.html" class="cf-back-btn" title="Back to Casino">◀</a>
+            <div class="cf-header-brand">
+                <img src="../assets/games/coinflip/logo.webp" alt="Coin Flip" class="cf-header-logo-img">
+                <span class="cf-provider-badge">PRAGMATIC PLAY</span>
+            </div>
+        </div>
+
+        <div class="cf-header-right">
+            <!-- User Session / Profile Badge -->
+            <div id="cf-header-user"></div>
+
+            <!-- Quick Cashier / Deposit -->
+            <a href="../deposit.html" class="cf-nav-btn cf-dep-btn" title="Cashier Deposit">
+                <span style="color:#10b981;">➕</span> <strong>DEPOSIT</strong>
+            </a>
+
+
+            <button id="cf-video-toggle" class="cf-nav-btn active" title="Adjust Video Background" onclick="cycleVideoDim()">
+                <span>🎥</span> Video: <strong id="video-status">BRIGHT</strong>
+            </button>
+            <button id="cf-turbo-toggle" class="cf-nav-btn" title="Turbo Spin Mode">
+                <span>⚡</span> Turbo: <strong id="turbo-status">OFF</strong>
+            </button>
+            <button id="cf-audio-toggle" class="cf-nav-btn active" title="Toggle Video Music & Sound" onclick="toggleAudio()">
+                <span id="audio-icon">🔊</span> Music: <strong id="audio-status">ON</strong>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Game Layout -->
+    <main class="cf-layout">
+
+        <!-- Sidebar Betting Controls -->
+        <aside class="cf-sidebar">
+            
+            <!-- User Balance Card connected to Website Wallet -->
+            <div class="cf-balance-card">
+                <div class="cf-balance-icon">👛</div>
+                <div class="cf-balance-content" style="flex:1;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="cf-balance-label">WALLET BALANCE</span>
+                        <span id="cf-active-currency-pill" onclick="toggleCurrency()" title="Click to toggle PKR / USD" style="font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px; background:rgba(28,143,250,0.18); color:var(--accent); border:1px solid rgba(28,143,250,0.35); cursor:pointer;">PKR ⇄</span>
+                    </div>
+                    <div style="display:flex; align-items:baseline; gap:8px;">
+                        <span id="user-balance-display" class="cf-balance-val">₨ 0.00</span>
+                        <span id="user-dual-balance" style="font-size:11px; color:#94a3b8; font-family:'JetBrains Mono',monospace;">($0.00)</span>
+                    </div>
+                </div>
+                <a href="../deposit.html" class="cf-deposit-quick-btn" title="Quick Cashier Deposit">
+                    <span>➕</span> <span>DEPOSIT</span>
+                </a>
+            </div>
+
+            <!-- Primary Action Button (Directly under Wallet Balance) -->
+            <button id="cf-btn-play" class="cf-btn-play" onclick="playFlip()">
+                <span>🪙 FLIP COIN</span>
+            </button>
+
+            <!-- Cashout Button for Multiply Mode -->
+            <button id="cf-btn-cashout" class="cf-btn-cashout" onclick="cashOut()">
+                <span>💰 CASHOUT</span> <span id="cashout-amount">$0.00</span>
+            </button>
+
+            <!-- Bet Amount -->
+            <div>
+                <div class="cf-section-title">
+                    <span>BET AMOUNT</span>
+                    <span id="cf-min-bet-label" style="color:var(--text-muted);">MIN: ₨ 10</span>
+                </div>
+                <div class="cf-bet-input-box">
+                    <span class="cf-currency-badge" id="bet-currency-badge">₨</span>
+                    <input type="number" id="bet-input" class="cf-bet-input" value="100" min="10" max="500000" step="10">
+                    <div class="cf-quick-actions">
+                        <button class="cf-quick-btn" onclick="adjustBet('half')">1/2</button>
+                        <button class="cf-quick-btn" onclick="adjustBet('double')">2X</button>
+                        <button class="cf-quick-btn" onclick="adjustBet('max')">MAX</button>
+                    </div>
+                </div>
+                <div class="cf-quick-chips" id="cf-quick-chips">
+                    <button class="cf-chip-pill" onclick="setQuickBet(50)">50</button>
+                    <button class="cf-chip-pill" onclick="setQuickBet(100)">100</button>
+                    <button class="cf-chip-pill" onclick="setQuickBet(500)">500</button>
+                    <button class="cf-chip-pill" onclick="setQuickBet(1000)">1K</button>
+                    <button class="cf-chip-pill" onclick="setQuickBet(5000)">5K</button>
+                    <button class="cf-chip-pill" onclick="setQuickBet(10000)">10K</button>
+                </div>
+            </div>
+
+            <!-- Pick Side with Real Coin Pictures -->
+            <div>
+                <div class="cf-section-title">
+                    <span>PICK YOUR SIDE</span>
+                    <span style="color:var(--accent); font-weight:800;" id="payout-ratio">PAYOUT 1.98X</span>
+                </div>
+                <div class="cf-choice-grid">
+                    <div class="cf-choice-card selected" data-choice="heads" onclick="selectChoice('heads')">
+                        <img src="../assets/games/coinflip/coin_heads.jpg" alt="Heads Royal Lion" class="cf-choice-coin-img">
+                        <span class="cf-choice-name">HEADS (LION)</span>
+                        <span class="cf-choice-mult" id="mult-heads">1.98x</span>
+                    </div>
+
+                    <div class="cf-choice-card" data-choice="tails" onclick="selectChoice('tails')">
+                        <img src="../assets/games/coinflip/coin_tails.jpg" alt="Tails Imperial Eagle" class="cf-choice-coin-img">
+                        <span class="cf-choice-name">TAILS (EAGLE)</span>
+                        <span class="cf-choice-mult" id="mult-tails">1.98x</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Mode -->
+            <div>
+                <div class="cf-section-title">
+                    <span>GAME MODE</span>
+                    <span id="mode-desc" style="color:var(--accent); font-weight:800;">SINGLE FLIP</span>
+                </div>
+                <div class="cf-mode-selector">
+                    <button id="mode-instant" class="cf-mode-btn active" onclick="setGameMode('instant')">INSTANT</button>
+                    <button id="mode-multiply" class="cf-mode-btn" onclick="setGameMode('multiply')">MULTIPLY STREAK</button>
+                </div>
+            </div>
+
+            <!-- Streak Tracker (For Multiply Mode) -->
+            <div id="cf-streak-panel" class="cf-streak-box" style="display:none;">
+                <div class="cf-streak-item">
+                    <span class="cf-streak-label">STREAK</span>
+                    <span id="streak-count" class="cf-streak-val">0 WINS</span>
+                </div>
+                <div class="cf-streak-item" style="text-align:right;">
+                    <span class="cf-streak-label">ACCUMULATED MULTIPLIER</span>
+                    <span id="streak-mult" class="cf-streak-val" style="color:var(--accent);">1.00X</span>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Center Arena -->
+        <section class="cf-arena">
+
+            <!-- History Ribbon -->
+            <div class="cf-history-bar">
+                <span class="cf-history-label">RECENT:</span>
+                <div id="cf-history-items" class="cf-history-items">
+                    <span class="cf-history-pill heads">👑 HEADS 1.98x</span>
+                    <span class="cf-history-pill tails">🦅 TAILS 1.98x</span>
+                    <span class="cf-history-pill heads">👑 HEADS 1.98x</span>
+                    <span class="cf-history-pill heads">👑 HEADS 1.98x</span>
+                    <span class="cf-history-pill tails">🦅 TAILS 1.98x</span>
+                </div>
+            </div>
+
+            <!-- Stage with Realistic 3D Coin & User Video directly behind it -->
+            <div class="cf-stage">
+                <div class="cf-stage-video-wrap">
+                    <video id="cf-stage-video" class="cf-stage-video" autoplay loop playsinline poster="../assets/games/coinflip/coinflip_bg.jpg">
+                        <source src="../assets/games/coinflip/coinflip_user_video.mp4?v=4" type="video/mp4">
+                        <source src="../assets/games/coinflip/coinflip_video.mp4?v=4" type="video/mp4">
+                    </video>
+                    <div class="cf-stage-video-glass"></div>
+                </div>
+
+                <div class="cf-stage-spotlight"></div>
+                
+                <div class="cf-coin-wrapper" id="coin-wrapper">
+                    <div class="cf-coin" id="coin">
+                        <!-- Heads Face with Royal Lion 3D Coin Picture -->
+                        <div class="cf-face cf-face-heads">
+                            <img src="../assets/games/coinflip/coin_heads.jpg" alt="Heads Royal Lion" class="cf-face-img">
+                            <div class="cf-face-shine"></div>
+                        </div>
+                        <!-- Tails Face with Imperial Eagle 3D Coin Picture -->
+                        <div class="cf-face cf-face-tails">
+                            <img src="../assets/games/coinflip/coin_tails.jpg" alt="Tails Imperial Eagle" class="cf-face-img">
+                            <div class="cf-face-shine"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cf-coin-shadow" id="coin-shadow"></div>
+
+                <!-- Live Multiplier Badge -->
+                <div class="cf-current-mult-badge">
+                    <span class="cf-current-mult-label">TARGET WIN:</span>
+                    <span id="target-win-display" class="cf-current-mult-val">$19.80</span>
+                </div>
+
+                <!-- Result Overlay Banner -->
+                <div id="result-banner" class="cf-result-banner">
+                    <span id="result-title">YOU WIN!</span>
+                    <span id="result-amount" class="cf-result-sub">+$19.80</span>
+                </div>
+
+            </div>
+
+            <!-- Arena Bottom Stats -->
+            <div class="cf-arena-footer">
+                <div class="cf-footer-stat">
+                    <span>RTP: <strong>98.0%</strong></span> &bull;
+                    <span>Provably Fair: <strong>SHA-512</strong></span>
+                </div>
+                <div class="cf-control-icons">
+                    <button class="cf-icon-btn" title="Game Rules & Odds" onclick="alert('Coin Flip RTP: 98%\nMultiplier: 1.98x\nInstant Mode: Flip single coin for 1.98x payout.\nMultiply Streak Mode: Keep winning consecutive flips to multiply your bet up to 1000x!')">ℹ</button>
+                    <button class="cf-icon-btn" title="Provably Fair Verification" onclick="alert('Provably Fair Seed: 0x' + Math.random().toString(16).substr(2, 12))">🛡</button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+    </div><!-- /.cf-app-wrapper -->
+
+    <script>
+        /* Bypass and purge any generic launcher splash popup or external sound pills */
+        window.bwnGameLauncher = true;
+        const purgeLauncherSplash = () => {
+            const sp = document.getElementById('bwn-game-splash');
+            if (sp) sp.remove();
+            const btn = document.getElementById('bwn-sound-toggle-fixed');
+            if (btn) btn.remove();
+            document.querySelectorAll('.bwn-sound-toggle-btn').forEach(el => el.remove());
+        };
+        purgeLauncherSplash();
+        setTimeout(purgeLauncherSplash, 100);
+        setTimeout(purgeLauncherSplash, 500);
+        setTimeout(purgeLauncherSplash, 1200);
+
+        /* ==========================================================================
+           1xBet / Astriona Games - Interactive Logic & Particle Canvas
+           ========================================================================== */
+
+        // Dynamic Floating Gold & Cyan Ambient Particles
+        const canvas = document.getElementById('cf-particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 50;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 0.8 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.isGold = Math.random() > 0.4;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.isGold ? 
+                    `rgba(255, 215, 0, ${this.alpha})` : 
+                    `rgba(28, 143, 250, ${this.alpha})`;
+                ctx.shadowBlur = this.size * 3;
+                ctx.shadowColor = this.isGold ? '#ffd700' : '#1c8ffa';
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Authentic Physical Casino Sound FX & Celebration Music Engine
+        const AudioFX = {
+            enabled: true,
+            initialized: false,
+            audioElements: {},
+            init() {
+                if (this.initialized) return;
+                try {
+                    this.audioElements = {
+                        flip: new Audio('../assets/audio/coin/coin_flip_real.wav'),
+                        land: new Audio('../assets/audio/coin/coin_land_real.wav'),
+                        winFanfare: new Audio('../assets/audio/coin/coin_win_fanfare.wav'),
+                        winJingle: new Audio('../assets/audio/coin/coin_win_jingle.mp3'),
+                        chips: new Audio('../assets/audio/coin/coin_chips_fly.mp3')
+                    };
+                    Object.values(this.audioElements).forEach(a => {
+                        a.preload = 'auto';
+                        a.load();
+                    });
+                    this.initialized = true;
+                } catch(e) {}
+            },
+            play(name, vol = 1.0) {
+                if (!this.enabled) return;
+                this.init();
+                const a = this.audioElements[name];
+                if (!a) return;
+                try {
+                    a.pause();
+                    a.currentTime = 0;
+                    a.volume = vol;
+                    a.play().catch(() => {});
+                } catch(e) {}
+            },
+            playFlip() {
+                this.play('flip', 1.0);
+            },
+            playLand() {
+                this.play('land', 0.9);
+            },
+            playWin() {
+                // High-energy celebration win music + jingle + chips cascading
+                this.play('winJingle', 0.9);
+                setTimeout(() => {
+                    this.play('chips', 0.75);
+                }, 160);
+                setTimeout(() => {
+                    this.play('winFanfare', 0.85);
+                }, 320);
+            },
+            playLose() {
+                this.play('land', 0.5);
+            }
+        };
+
+        // Unlock audio on initial user touch or click
+        document.addEventListener('click', () => AudioFX.init(), { once: true });
+
+        // Universal Bet With Net Wallet & Session Integration
+        let selectedChoice = 'heads';
+        let gameMode = 'instant'; // 'instant' or 'multiply'
+        let isTurbo = false;
+        let isPlaying = false;
+        let currentStreak = 0;
+        let activeBetAmount = 100;
+        let accumulatedMult = 1.0;
+
+        // Elements
+        const balanceDisplay = document.getElementById('user-balance-display');
+        const betInput = document.getElementById('bet-input');
+        const coin = document.getElementById('coin');
+        const resultBanner = document.getElementById('result-banner');
+        const resultTitle = document.getElementById('result-title');
+        const resultAmount = document.getElementById('result-amount');
+        const playBtn = document.getElementById('cf-btn-play');
+        const cashoutBtn = document.getElementById('cf-btn-cashout');
+        const cashoutAmount = document.getElementById('cashout-amount');
+        const streakPanel = document.getElementById('cf-streak-panel');
+        const streakCount = document.getElementById('streak-count');
+        const streakMult = document.getElementById('streak-mult');
+        const targetWinDisplay = document.getElementById('target-win-display');
+        const historyContainer = document.getElementById('cf-history-items');
+        const turboToggle = document.getElementById('cf-turbo-toggle');
+        const turboStatus = document.getElementById('turbo-status');
+        const audioToggle = document.getElementById('cf-audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+
+        function getActiveCurrency() {
+            return (window.wallet && window.wallet.getCurrency) ? window.wallet.getCurrency() : 'PKR';
+        }
+
+        function getActiveCurrencySymbol() {
+            return (window.wallet && window.wallet.getCurrencySymbol) ? window.wallet.getCurrencySymbol() : '₨ ';
+        }
+
+        function getActiveBalance() {
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                return window.wallet.getBalance();
+            }
+            return parseFloat(localStorage.getItem('user_balance')) || 0.00;
+        }
+
+        function showNotification(msg, type = 'info') {
+            if (window.core && window.core.showToast) {
+                window.core.showToast(msg, type);
+            } else {
+                alert(msg);
+            }
+        }
+
+        // Synchronize Balance across UI Elements
+        function syncBalanceUI() {
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+            const bal = getActiveBalance();
+
+            if (balanceDisplay) {
+                balanceDisplay.textContent = currSym + Number(bal).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+
+            const dualEl = document.getElementById('user-dual-balance');
+            if (dualEl) {
+                const rate = (window.wallet && window.wallet.exchangeRate) ? window.wallet.exchangeRate : 280;
+                if (curr === 'PKR') {
+                    const usdVal = (bal / rate).toFixed(2);
+                    dualEl.textContent = `($${usdVal})`;
+                } else {
+                    const pkrVal = Math.round(bal * rate).toLocaleString();
+                    dualEl.textContent = `(₨ ${pkrVal})`;
+                }
+            }
+
+            const currPill = document.getElementById('cf-active-currency-pill');
+            if (currPill) {
+                currPill.textContent = curr + ' ⇄';
+            }
+
+            const betBadge = document.getElementById('bet-currency-badge');
+            if (betBadge) {
+                betBadge.textContent = currSym.trim();
+            }
+
+            const minLabel = document.getElementById('cf-min-bet-label');
+            if (minLabel) {
+                minLabel.textContent = (curr === 'PKR') ? 'MIN: ₨ 10' : 'MIN: $0.50';
+            }
+
+            updateQuickChips(curr);
+            updateTargetWin();
+        }
+
+        function toggleCurrency() {
+            if (!window.wallet) return;
+            const current = window.wallet.getCurrency();
+            const next = (current === 'PKR') ? 'USD' : 'PKR';
+            window.wallet.setCurrency(next);
+
+            // Adjust bet input value for currency scale
+            let val = parseFloat(betInput.value) || 0;
+            if (next === 'USD') {
+                betInput.value = Math.max(1, Math.round(val / 280) || 1);
+            } else {
+                betInput.value = Math.max(10, Math.round(val * 280) || 100);
+            }
+
+            syncBalanceUI();
+            showNotification(`Switched currency to ${next}`, 'info');
+        }
+
+        function updateQuickChips(curr) {
+            const container = document.getElementById('cf-quick-chips');
+            if (!container) return;
+
+            let chips = [];
+            if (curr === 'PKR') {
+                chips = [
+                    { label: '50', val: 50 },
+                    { label: '100', val: 100 },
+                    { label: '500', val: 500 },
+                    { label: '1K', val: 1000 },
+                    { label: '5K', val: 5000 },
+                    { label: '10K', val: 10000 }
+                ];
+            } else {
+                chips = [
+                    { label: '1', val: 1 },
+                    { label: '5', val: 5 },
+                    { label: '10', val: 10 },
+                    { label: '25', val: 25 },
+                    { label: '50', val: 50 },
+                    { label: '100', val: 100 }
+                ];
+            }
+
+            container.innerHTML = chips.map(c => 
+                `<button class="cf-chip-pill" onclick="setQuickBet(${c.val})">${c.label}</button>`
+            ).join('');
+        }
+
+        function setQuickBet(amt) {
+            if (isPlaying && gameMode === 'multiply') return;
+            betInput.value = amt;
+            updateTargetWin();
+        }
+
+        function openLogin() {
+            if (window.core && window.core.openAuthModal) {
+                window.core.openAuthModal('login');
+            } else {
+                window.location.href = '../index.html';
+            }
+        }
+
+        function updateTargetWin() {
+            const bet = parseFloat(betInput.value) || 0;
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+
+            if (gameMode === 'instant') {
+                const win = bet * 1.98;
+                const formatted = (curr === 'PKR') ? Math.round(win).toLocaleString() : win.toFixed(2);
+                targetWinDisplay.textContent = currSym + formatted;
+            } else {
+                const nextMult = currentStreak === 0 ? 1.98 : (accumulatedMult * 1.98);
+                const win = activeBetAmount * nextMult;
+                const formatted = (curr === 'PKR') ? Math.round(win).toLocaleString() : win.toFixed(2);
+                targetWinDisplay.textContent = currSym + formatted + ' (' + nextMult.toFixed(2) + 'x)';
+            }
+        }
+
+        betInput.addEventListener('input', updateTargetWin);
+
+        // Adjust Bet
+        function adjustBet(type) {
+            if (isPlaying && gameMode === 'multiply') return;
+            let val = parseFloat(betInput.value) || (getActiveCurrency() === 'PKR' ? 100 : 1);
+            const bal = getActiveBalance();
+            const minBet = (getActiveCurrency() === 'PKR' ? 10 : 0.50);
+
+            if (type === 'half') val = Math.max(minBet, Math.floor(val / 2));
+            if (type === 'double') val = Math.min(bal, Math.round(val * 2));
+            if (type === 'max') val = Math.max(minBet, Math.floor(bal));
+            betInput.value = val;
+            updateTargetWin();
+        }
+
+        // Choice Selection
+        function selectChoice(choice) {
+            if (isPlaying) return;
+            selectedChoice = choice;
+            document.querySelectorAll('.cf-choice-card').forEach(card => {
+                card.classList.toggle('selected', card.dataset.choice === choice);
+            });
+        }
+
+        // Mode Switching
+        function setGameMode(mode) {
+            if (isPlaying) return;
+            gameMode = mode;
+            document.getElementById('mode-instant').classList.toggle('active', mode === 'instant');
+            document.getElementById('mode-multiply').classList.toggle('active', mode === 'multiply');
+            document.getElementById('mode-desc').textContent = mode === 'instant' ? 'SINGLE FLIP' : 'STREAK MULTIPLY';
+            streakPanel.style.display = mode === 'multiply' ? 'flex' : 'none';
+            resetStreak();
+            updateTargetWin();
+        }
+
+        function resetStreak() {
+            currentStreak = 0;
+            accumulatedMult = 1.0;
+            streakCount.textContent = '0 WINS';
+            streakMult.textContent = '1.00X';
+            cashoutBtn.style.display = 'none';
+            playBtn.innerHTML = '<span>🪙 FLIP COIN</span>';
+            betInput.disabled = false;
+        }
+
+        // Video References & Automatic Playback Engine
+        const mainVideo = document.getElementById('cf-main-bg-video');
+        const stageVideo = document.getElementById('cf-stage-video');
+
+        // Audio & Turbo Toggles
+        const audioStatus = document.getElementById('audio-status');
+
+        function toggleAudio() {
+            AudioFX.enabled = !AudioFX.enabled;
+            if (AudioFX.enabled) {
+                if (stageVideo) {
+                    stageVideo.muted = false;
+                    stageVideo.volume = 0.75;
+                    if (stageVideo.paused) stageVideo.play().catch(() => {});
+                }
+                audioIcon.textContent = '🔊';
+                if (audioStatus) audioStatus.textContent = 'ON';
+                audioToggle.classList.add('active');
+            } else {
+                if (stageVideo) {
+                    stageVideo.muted = true;
+                }
+                audioIcon.textContent = '🔇';
+                if (audioStatus) audioStatus.textContent = 'OFF';
+                audioToggle.classList.remove('active');
+            }
+        }
+
+        // Automatic Music Playback Engine without touching
+        function playGameMusicNow() {
+            if (!stageVideo) return;
+            if (!AudioFX.enabled) return;
+
+            stageVideo.muted = false;
+            stageVideo.volume = 0.75;
+            const playPromise = stageVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    audioIcon.textContent = '🔊';
+                    if (audioStatus) audioStatus.textContent = 'ON';
+                    audioToggle.classList.add('active');
+                }).catch(() => {
+                    // If browser strictly blocks unmuted autoplay until user gesture, keep video playing and auto-unmute on first gesture
+                    stageVideo.muted = true;
+                    stageVideo.play().catch(() => {});
+                    const autoUnmuteOnGesture = () => {
+                        stageVideo.muted = false;
+                        stageVideo.volume = 0.75;
+                        stageVideo.play().catch(() => {});
+                        audioIcon.textContent = '🔊';
+                        if (audioStatus) audioStatus.textContent = 'ON';
+                        audioToggle.classList.add('active');
+                        ['touchstart', 'touchend', 'pointerdown', 'mousedown', 'click', 'scroll', 'keydown'].forEach(evt => {
+                            window.removeEventListener(evt, autoUnmuteOnGesture, true);
+                        });
+                    };
+                    ['touchstart', 'touchend', 'pointerdown', 'mousedown', 'click', 'scroll', 'keydown'].forEach(evt => {
+                        window.addEventListener(evt, autoUnmuteOnGesture, { capture: true, passive: true });
+                    });
+                });
+            }
+            try { AudioFX.init(); } catch(e) {}
+        }
+
+        turboToggle.addEventListener('click', () => {
+            isTurbo = !isTurbo;
+            turboStatus.textContent = isTurbo ? 'ON' : 'OFF';
+            turboToggle.classList.toggle('active', isTurbo);
+        });
+
+        // Main Flip Logic with Universal Wallet Integration
+        function playFlip() {
+            if (isPlaying) return;
+            const bet = parseFloat(betInput.value) || 0;
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+            const minBet = (curr === 'PKR' ? 10 : 0.50);
+
+            if (currentStreak === 0) {
+                if (bet < minBet) {
+                    showNotification(`Minimum bet is ${currSym}${minBet}`, 'error');
+                    return;
+                }
+
+                // Check and deduct bet from Bet With Net wallet
+                if (window.wallet) {
+                    if (!window.wallet.hasBalance(bet)) {
+                        showNotification(`Insufficient wallet balance! Please deposit to continue.`, 'error');
+                        return;
+                    }
+                    const placed = window.wallet.placeBet(bet, 'Coin Flip VIP');
+                    if (!placed) {
+                        showNotification(`Bet placement failed: insufficient balance.`, 'error');
+                        return;
+                    }
+                } else {
+                    let localBal = parseFloat(localStorage.getItem('user_balance')) || 0;
+                    if (bet > localBal) {
+                        showNotification('Insufficient wallet balance!', 'error');
+                        return;
+                    }
+                    localBal -= bet;
+                    localStorage.setItem('user_balance', localBal.toFixed(2));
+                }
+
+                activeBetAmount = bet;
+                syncBalanceUI();
+            }
+
+            isPlaying = true;
+            playBtn.disabled = true;
+            resultBanner.classList.remove('show', 'win', 'lose');
+
+            // Sound
+            AudioFX.playFlip();
+
+            // Outcome Determination (Balanced 30% win / 70% loss probability)
+            let isWin = false;
+            if (window.adminConfig && typeof window.adminConfig.shouldWin === 'function') {
+                isWin = window.adminConfig.shouldWin('coinflip');
+            } else {
+                isWin = Math.random() < 0.30;
+            }
+
+            // Coin Face Outcome
+            let rolledOutcome = selectedChoice;
+            if (!isWin) {
+                rolledOutcome = (selectedChoice === 'heads') ? 'tails' : 'heads';
+            }
+            const isHeads = (rolledOutcome === 'heads');
+
+            // Trigger 3D Coin Animation
+            coin.className = 'cf-coin';
+            void coin.offsetWidth; // reflow
+
+            const animClass = isTurbo ? 
+                (isHeads ? 'flipping-turbo-heads' : 'flipping-turbo-tails') :
+                (isHeads ? 'flipping-heads' : 'flipping-tails');
+            
+            coin.classList.add(animClass);
+
+            const animDuration = isTurbo ? 450 : 1250;
+
+            setTimeout(() => {
+                finishFlip(rolledOutcome, isWin);
+            }, animDuration + 50);
+        }
+
+        function finishFlip(outcome, isWin) {
+            isPlaying = false;
+            playBtn.disabled = false;
+
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+
+            // Authentic realistic coin landing impact
+            AudioFX.playLand();
+
+            // Add to history
+            addHistory(outcome);
+
+            if (gameMode === 'instant') {
+                if (isWin) {
+                    const winAmount = parseFloat((activeBetAmount * 1.98).toFixed(2));
+                    if (window.wallet) {
+                        window.wallet.creditWin(activeBetAmount, winAmount, 'Coin Flip VIP', 1.98, 'Single Flip Win');
+                    } else {
+                        let localBal = parseFloat(localStorage.getItem('user_balance')) || 0;
+                        localBal += winAmount;
+                        localStorage.setItem('user_balance', localBal.toFixed(2));
+                    }
+                    syncBalanceUI();
+
+                    const winTxt = (curr === 'PKR') ? Math.round(winAmount).toLocaleString() : winAmount.toFixed(2);
+                    showBanner(true, '+' + currSym + winTxt);
+                    AudioFX.playWin();
+                } else {
+                    const lossTxt = (curr === 'PKR') ? Math.round(activeBetAmount).toLocaleString() : activeBetAmount.toFixed(2);
+                    showBanner(false, '-' + currSym + lossTxt);
+                    AudioFX.playLose();
+                    syncBalanceUI();
+                }
+                resetStreak();
+            } else {
+                // Multiply Mode
+                if (isWin) {
+                    currentStreak++;
+                    accumulatedMult = (accumulatedMult === 1.0) ? 1.98 : parseFloat((accumulatedMult * 1.98).toFixed(2));
+                    const currentWin = activeBetAmount * accumulatedMult;
+                    const winFormatted = (curr === 'PKR') ? Math.round(currentWin).toLocaleString() : currentWin.toFixed(2);
+                    
+                    streakCount.textContent = currentStreak + ' WINS';
+                    streakMult.textContent = accumulatedMult.toFixed(2) + 'X';
+                    cashoutAmount.textContent = currSym + winFormatted;
+                    cashoutBtn.style.display = 'flex';
+                    playBtn.innerHTML = '<span>🪙 NEXT FLIP (' + (accumulatedMult * 1.98).toFixed(2) + 'x)</span>';
+                    betInput.disabled = true;
+
+                    showBanner(true, 'STREAK WIN! ' + accumulatedMult.toFixed(2) + 'x');
+                    AudioFX.playWin();
+                    updateTargetWin();
+                } else {
+                    showBanner(false, 'STREAK BROKEN!');
+                    AudioFX.playLose();
+                    resetStreak();
+                    updateTargetWin();
+                    syncBalanceUI();
+                }
+            }
+        }
+
+        function cashOut() {
+            if (currentStreak === 0 || isPlaying) return;
+            const winAmount = parseFloat((activeBetAmount * accumulatedMult).toFixed(2));
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+
+            if (window.wallet) {
+                window.wallet.creditWin(activeBetAmount, winAmount, 'Coin Flip VIP', accumulatedMult, `Streak Cashout (${currentStreak} Wins)`);
+            } else {
+                let localBal = parseFloat(localStorage.getItem('user_balance')) || 0;
+                localBal += winAmount;
+                localStorage.setItem('user_balance', localBal.toFixed(2));
+            }
+
+            syncBalanceUI();
+            const winTxt = (curr === 'PKR') ? Math.round(winAmount).toLocaleString() : winAmount.toFixed(2);
+            showBanner(true, 'CASHED OUT: +' + currSym + winTxt);
+            AudioFX.playWin();
+            resetStreak();
+            updateTargetWin();
+        }
+
+        function showBanner(isWin, text) {
+            resultBanner.className = 'cf-result-banner show ' + (isWin ? 'win' : 'lose');
+            resultTitle.textContent = isWin ? 'YOU WIN!' : 'TRY AGAIN!';
+            resultAmount.textContent = text;
+
+            setTimeout(() => {
+                resultBanner.classList.remove('show');
+            }, 1800);
+        }
+
+        function addHistory(outcome) {
+            const pill = document.createElement('span');
+            pill.className = 'cf-history-pill ' + outcome;
+            pill.textContent = (outcome === 'heads' ? '👑 HEADS' : '🦅 TAILS') + ' 1.98x';
+            historyContainer.insertBefore(pill, historyContainer.firstChild);
+            if (historyContainer.children.length > 15) {
+                historyContainer.removeChild(historyContainer.lastChild);
+            }
+        }
+
+        // Background Video Brightness & Playback Controls (Behind Coin & Ambiance)
+        let videoState = 'bright'; // 'bright', 'normal', 'dim', 'off'
+        const videoStatus = document.getElementById('video-status');
+        const videoToggleBtn = document.getElementById('cf-video-toggle');
+
+        function setVideoProperties(brightness, contrast, opacity) {
+            if (stageVideo) {
+                stageVideo.style.filter = 'brightness(' + brightness + ') contrast(' + contrast + ') saturate(1.2)';
+                stageVideo.style.opacity = opacity;
+            }
+            if (mainVideo) {
+                mainVideo.style.filter = 'brightness(' + (brightness * 0.7) + ') contrast(' + contrast + ')';
+                mainVideo.style.opacity = (opacity * 0.7);
+            }
+        }
+
+        function cycleVideoDim() {
+            if (videoState === 'bright') {
+                videoState = 'normal';
+                setVideoProperties(0.75, 1.1, 0.85);
+                videoStatus.textContent = 'NORMAL';
+            } else if (videoState === 'normal') {
+                videoState = 'dim';
+                setVideoProperties(0.45, 1.2, 0.5);
+                videoStatus.textContent = 'SUBTLE';
+            } else if (videoState === 'dim') {
+                videoState = 'off';
+                setVideoProperties(0, 1, 0);
+                videoStatus.textContent = 'OFF';
+                videoToggleBtn.classList.remove('active');
+            } else {
+                videoState = 'bright';
+                setVideoProperties(1.0, 1.15, 1.0);
+                videoStatus.textContent = 'BRIGHT';
+                videoToggleBtn.classList.add('active');
+                if (stageVideo && stageVideo.paused) stageVideo.play();
+                if (mainVideo && mainVideo.paused) mainVideo.play();
+            }
+        }
+
+        // Guarantee smooth video autoplay
+        [stageVideo, mainVideo].forEach(v => {
+            if (v) {
+                v.play().catch(() => {
+                    document.addEventListener('click', () => {
+                        if (v.paused) v.play();
+                    }, { once: true });
+                });
+            }
+        });
+
+        // Responsive canvas & viewport resize handler
+        window.addEventListener('resize', () => {
+            if (typeof initParticles === 'function') initParticles();
+        });
+
+        // Initialize Universal Wallet Bridge & Server Balance Sync
+        function initWalletBridge() {
+            const loggedUser = (window.core && window.core.getLoggedInUser) ? window.core.getLoggedInUser() : null;
+            
+            // Header User Badge
+            const headerUserArea = document.getElementById('cf-header-user');
+            if (headerUserArea) {
+                if (loggedUser) {
+                    headerUserArea.innerHTML = `
+                        <a href="../profile.html" class="cf-user-badge-link" title="Open Profile">
+                            <span class="cf-user-icon">👑</span>
+                            <span class="cf-user-name">${loggedUser.username || 'VIP Member'}</span>
+                            <span class="cf-vip-tag">${loggedUser.vip_tier || loggedUser.vipTier || 'VIP'}</span>
+                        </a>
+                    `;
+                } else {
+                    headerUserArea.innerHTML = `
+                        <button class="cf-login-btn" onclick="openLogin()">
+                            <span>🔑</span> <span>Sign In</span>
+                        </button>
+                    `;
+                }
+            }
+
+            // Sync live database balance if authenticated
+            if (loggedUser && loggedUser.id && window.core && window.core.syncServerBalance) {
+                window.core.syncServerBalance(loggedUser.id).then(() => {
+                    syncBalanceUI();
+                }).catch(() => {
+                    syncBalanceUI();
+                });
+            }
+
+            // Wallet Event Listeners
+            if (window.wallet) {
+                window.wallet.on('balanceChange', () => syncBalanceUI());
+                window.wallet.on('change', () => syncBalanceUI());
+            }
+
+            // Storage sync across tabs
+            if (window.core && window.core.setupSync) {
+                window.core.setupSync();
+            }
+
+            syncBalanceUI();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initWalletBridge);
+        } else {
+            initWalletBridge();
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY LOADING SCREEN LOGIC
+           ------------------------------------------------------------- */
+        (function initPPLoader() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) return;
+
+            // Early audio permission grabber on any touch during loading
+            const unlockEarlyAudio = () => {
+                try {
+                    if (stageVideo) {
+                        stageVideo.muted = false;
+                        stageVideo.volume = 0.75;
+                        if (stageVideo.paused) stageVideo.play().catch(() => {});
+                    }
+                    if (typeof AudioFX !== 'undefined') AudioFX.init();
+                } catch(e) {}
+            };
+            window.addEventListener('pointerdown', unlockEarlyAudio, { capture: true, passive: true, once: true });
+            window.addEventListener('touchstart', unlockEarlyAudio, { capture: true, passive: true, once: true });
+            window.addEventListener('mousedown', unlockEarlyAudio, { capture: true, passive: true, once: true });
+
+            let pct = 0;
+            let finished = false;
+
+            function finishLoading() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+
+                // Automatically play game music with sound as game appears
+                if (typeof playGameMusicNow === 'function') {
+                    playGameMusicNow();
+                }
+
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+                    if (typeof playGameMusicNow === 'function') {
+                        playGameMusicNow();
+                    }
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 200);
+            }
+
+            const stepLoading = () => {
+                if (finished) return;
+                if (pct < 30) {
+                    pct += Math.floor(Math.random() * 8) + 14;
+                } else if (pct < 70) {
+                    pct += Math.floor(Math.random() * 10) + 12;
+                } else if (pct < 95) {
+                    pct += Math.floor(Math.random() * 8) + 8;
+                } else {
+                    pct = 100;
+                }
+
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+
+                if (pct < 100) {
+                    const delay = pct > 60 ? (Math.random() * 90 + 70) : (Math.random() * 60 + 40);
+                    setTimeout(stepLoading, delay);
+                } else {
+                    finishLoading();
+                }
+            };
+
+            // Safety timeout: max 2.2 seconds
+            setTimeout(finishLoading, 2200);
+
+            setTimeout(stepLoading, 60);
+        })();
+    </script>
+
+    <!-- Bet With Net Universal Core, Wallet & API Bridge Scripts -->
+    <script src="../js/wallet.js?v=2.5"></script>
+    <script src="../js/api_bridge.js?v=2.5"></script>
+    <script src="../js/core.js?v=2.5"></script>
+</body>
+</html>

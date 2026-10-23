@@ -1,0 +1,917 @@
+tr_all.webp
+size:2048,2036
+filter:Linear,Linear
+Bonus temple/Temple torch_mob/Temple torch_mob_0
+bounds:400,2014,19,23
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_1
+bounds:425,2014,19,22
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_10
+bounds:449,2014,19,25
+offsets:1,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_11
+bounds:130,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_12
+bounds:157,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_13
+bounds:184,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_14
+bounds:211,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_15
+bounds:238,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_16
+bounds:476,2014,19,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_17
+bounds:265,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_18
+bounds:292,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_19
+bounds:319,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_2
+bounds:503,2014,19,22
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_20
+bounds:346,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_21
+bounds:373,2015,18,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_22
+bounds:527,2014,19,25
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_23
+bounds:554,2014,19,23
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_3
+bounds:579,2014,19,22
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_4
+bounds:603,2014,19,23
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_5
+bounds:628,2014,19,23
+offsets:2,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_6
+bounds:679,2013,20,24
+offsets:1,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_7
+bounds:705,2013,20,24
+offsets:1,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_8
+bounds:731,2013,20,24
+offsets:1,0,22,25
+rotate:90
+Bonus temple/Temple torch_mob/Temple torch_mob_9
+bounds:653,2014,19,24
+offsets:1,0,22,25
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_0
+bounds:718,1608,111,137
+offsets:18,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_1
+bounds:1007,1590,111,129
+offsets:18,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_10
+bounds:1271,1581,111,145
+offsets:16,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_11
+bounds:420,1624,110,146
+offsets:17,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_12
+bounds:862,1707,108,147
+offsets:19,1,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_13
+bounds:1011,1703,108,148
+offsets:19,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_14
+bounds:120,1630,109,148
+offsets:19,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_15
+bounds:568,1622,110,148
+offsets:18,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_16
+bounds:1418,1577,111,148
+offsets:17,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_17
+bounds:857,1595,110,148
+offsets:18,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_18
+bounds:270,1629,109,148
+offsets:18,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_19
+bounds:1279,1694,108,148
+offsets:18,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_2
+bounds:1138,1586,112,131
+offsets:17,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_20
+bounds:1429,1690,108,148
+offsets:19,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_21
+bounds:426,1736,106,146
+offsets:21,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_22
+bounds:574,1734,107,146
+offsets:21,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_23
+bounds:722,1721,108,138
+offsets:20,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_3
+bounds:1568,1567,112,133
+offsets:17,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_4
+bounds:1703,1563,112,136
+offsets:17,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_5
+bounds:1841,1546,112,138
+offsets:17,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_6
+bounds:410,1509,113,140
+offsets:16,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_7
+bounds:552,1507,113,141
+offsets:16,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_8
+bounds:120,1516,112,142
+offsets:16,0,148,148
+rotate:90
+Bonus temple/Temple torch_web/Temple torch_web_9
+bounds:264,1515,112,144
+offsets:16,0,148,148
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_0
+bounds:2,2032,1,1
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_24
+bounds:2,2032,1,1
+Bonus temple/wheel_glow_mob/wheel_glow_mob_123
+bounds:2,2032,1,1
+Bonus temple/wheel_glow_mob/wheel_glow_mob_19
+bounds:2,2032,1,1
+Drop smoke_mob/Drop smoke_mob_24
+bounds:2,2032,1,1
+resul smoke mob/resul smoke mob_74
+bounds:2,2032,1,1
+resul smoke mob/resul smoke mob_88
+bounds:2,2032,1,1
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_53
+bounds:2,2032,1,1
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_1
+bounds:1036,1999,34,34
+offsets:74,6,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_10
+bounds:382,704,190,179
+offsets:1,17,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_11
+bounds:777,663,188,180
+offsets:3,16,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_12
+bounds:190,524,185,186
+offsets:6,10,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_13
+bounds:383,885,172,190
+offsets:19,6,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_14
+bounds:169,1238,146,191
+offsets:45,5,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_15
+bounds:1558,1304,139,190
+offsets:52,6,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_16
+bounds:877,1343,125,188
+offsets:64,8,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_17
+bounds:1067,1338,125,187
+offsets:59,9,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_18
+bounds:1662,1895,75,117
+offsets:52,10,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_19
+bounds:121,1741,104,184
+offsets:32,12,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_2
+bounds:1072,1995,40,38
+offsets:71,5,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_20
+bounds:2,904,171,179
+offsets:2,17,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_21
+bounds:203,711,190,177
+offsets:1,19,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_22
+bounds:1732,955,189,167
+offsets:2,29,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_23
+bounds:362,1234,158,147
+offsets:33,49,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_3
+bounds:1114,1991,43,42
+offsets:70,4,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_4
+bounds:1222,1989,46,44
+offsets:68,5,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_5
+bounds:1434,1981,52,57
+offsets:64,6,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_6
+bounds:1369,1907,71,124
+offsets:50,8,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_7
+bounds:196,1072,160,186
+offsets:1,10,191,196
+rotate:90
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_8
+bounds:2,541,186,184
+offsets:1,12,191,196
+Bonus temple/wheel sector glow_mob/wheel sector glow_mob_9
+bounds:1372,599,190,182
+offsets:1,14,191,196
+Bonus temple/wheel_glow_mob/wheel_glow_mob_118
+bounds:966,11,333,206
+offsets:27,192,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_121
+bounds:1301,2,335,207
+offsets:33,193,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_122
+bounds:757,2013,36,20
+offsets:182,364,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_20
+bounds:1781,1894,119,76
+offsets:146,315,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_21
+bounds:2,124,326,202
+offsets:44,197,400,400
+Drop smoke_mob/Drop smoke_mob_0
+bounds:795,2013,61,20
+offsets:87,11,150,75
+Drop smoke_mob/Drop smoke_mob_1
+bounds:950,2003,84,30
+offsets:64,10,150,75
+Drop smoke_mob/Drop smoke_mob_10
+bounds:709,1945,129,66
+offsets:11,4,150,75
+Drop smoke_mob/Drop smoke_mob_11
+bounds:840,1933,128,68
+offsets:10,3,150,75
+Drop smoke_mob/Drop smoke_mob_12
+bounds:1062,1919,106,70
+offsets:9,2,150,75
+Drop smoke_mob/Drop smoke_mob_13
+bounds:1170,1915,105,70
+offsets:8,2,150,75
+Drop smoke_mob/Drop smoke_mob_14
+bounds:970,1926,90,71
+offsets:8,2,150,75
+Drop smoke_mob/Drop smoke_mob_15
+bounds:1277,1913,90,72
+offsets:7,1,150,75
+Drop smoke_mob/Drop smoke_mob_16
+bounds:1495,1906,82,72
+offsets:6,1,150,75
+Drop smoke_mob/Drop smoke_mob_17
+bounds:1579,1902,81,73
+offsets:5,0,150,75
+Drop smoke_mob/Drop smoke_mob_18
+bounds:221,1950,81,63
+offsets:5,1,150,75
+Drop smoke_mob/Drop smoke_mob_19
+bounds:2,1962,81,62
+offsets:4,2,150,75
+Drop smoke_mob/Drop smoke_mob_2
+bounds:1270,1987,107,46
+offsets:41,6,150,75
+Drop smoke_mob/Drop smoke_mob_20
+bounds:1740,1972,80,61
+offsets:4,2,150,75
+Drop smoke_mob/Drop smoke_mob_21
+bounds:1822,1972,61,61
+offsets:4,2,150,75
+Drop smoke_mob/Drop smoke_mob_22
+bounds:1159,1991,61,42
+offsets:3,3,150,75
+Drop smoke_mob/Drop smoke_mob_23
+bounds:108,2023,10,20
+offsets:13,3,150,75
+rotate:90
+Drop smoke_mob/Drop smoke_mob_3
+bounds:1493,1980,117,53
+offsets:31,4,150,75
+Drop smoke_mob/Drop smoke_mob_4
+bounds:1612,1977,126,56
+offsets:22,5,150,75
+Drop smoke_mob/Drop smoke_mob_5
+bounds:1885,1972,130,61
+offsets:18,4,150,75
+Drop smoke_mob/Drop smoke_mob_6
+bounds:85,1951,134,62
+offsets:14,5,150,75
+Drop smoke_mob/Drop smoke_mob_7
+bounds:304,1949,135,63
+offsets:13,5,150,75
+Drop smoke_mob/Drop smoke_mob_8
+bounds:441,1947,135,65
+offsets:12,4,150,75
+Drop smoke_mob/Drop smoke_mob_9
+bounds:578,1946,129,65
+offsets:12,4,150,75
+Frozen_web/Frozen_web_0
+bounds:12,2026,94,7
+offsets:18,6,132,132
+Frozen_web/Frozen_web_1
+bounds:2,1859,115,90
+offsets:8,0,132,132
+Frozen_web/Frozen_web_10
+bounds:816,1479,114,118
+offsets:9,6,132,132
+rotate:90
+Frozen_web/Frozen_web_11
+bounds:1292,1463,116,118
+offsets:8,6,132,132
+rotate:90
+Frozen_web/Frozen_web_12
+bounds:1412,1459,116,119
+offsets:8,6,132,132
+rotate:90
+Frozen_web/Frozen_web_13
+bounds:1533,1449,116,119
+offsets:8,6,132,132
+rotate:90
+Frozen_web/Frozen_web_14
+bounds:2,1397,117,120
+offsets:7,6,132,132
+rotate:90
+Frozen_web/Frozen_web_15
+bounds:1654,1445,116,120
+offsets:8,6,132,132
+rotate:90
+Frozen_web/Frozen_web_16
+bounds:1776,1428,116,120
+offsets:8,6,132,132
+rotate:90
+Frozen_web/Frozen_web_17
+bounds:936,1474,114,119
+offsets:9,6,132,132
+rotate:90
+Frozen_web/Frozen_web_18
+bounds:695,1493,113,119
+offsets:9,6,132,132
+rotate:90
+Frozen_web/Frozen_web_19
+bounds:1926,1660,111,118
+offsets:10,6,132,132
+rotate:90
+Frozen_web/Frozen_web_2
+bounds:2,1752,117,101
+offsets:7,0,132,132
+Frozen_web/Frozen_web_20
+bounds:1161,1700,109,116
+offsets:11,6,132,132
+rotate:90
+Frozen_web/Frozen_web_21
+bounds:1941,1773,104,115
+offsets:14,6,132,132
+Frozen_web/Frozen_web_22
+bounds:217,1847,100,108
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_23
+bounds:327,1847,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_24
+bounds:435,1845,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_25
+bounds:543,1844,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_26
+bounds:651,1843,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_27
+bounds:759,1831,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_28
+bounds:867,1825,100,106
+offsets:15,6,132,132
+Frozen_web/Frozen_web_29
+bounds:969,1817,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_3
+bounds:307,1740,117,105
+offsets:7,1,132,132
+Frozen_web/Frozen_web_30
+bounds:1077,1813,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_31
+bounds:1185,1811,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_32
+bounds:1293,1805,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_33
+bounds:1401,1804,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_34
+bounds:1509,1800,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_35
+bounds:1617,1793,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_36
+bounds:1725,1792,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_37
+bounds:1833,1788,100,106
+offsets:15,6,132,132
+rotate:90
+Frozen_web/Frozen_web_38
+bounds:1174,986,166,176
+offsets:26,10,220,220
+rotate:90
+Frozen_web/Frozen_web_4
+bounds:1579,1682,116,109
+offsets:8,2,132,132
+Frozen_web/Frozen_web_5
+bounds:2,1638,116,112
+offsets:8,4,132,132
+Frozen_web/Frozen_web_6
+bounds:1697,1681,114,109
+offsets:9,6,132,132
+Frozen_web/Frozen_web_7
+bounds:1813,1677,111,109
+offsets:10,6,132,132
+Frozen_web/Frozen_web_8
+bounds:1057,1470,114,114
+offsets:9,6,132,132
+Frozen_web/Frozen_web_9
+bounds:1173,1465,114,117
+offsets:8,6,132,132
+rotate:90
+Frozen_web/Frozen_webmain
+bounds:1237,1154,157,176
+offsets:30,9,220,220
+resul smoke mob/resul smoke mob_75
+bounds:2,1523,113,116
+offsets:57,39,217,219
+rotate:90
+resul smoke mob/resul smoke mob_76
+bounds:1564,595,183,183
+offsets:21,7,217,219
+resul smoke mob/resul smoke mob_77
+bounds:1603,211,195,194
+offsets:15,3,217,219
+resul smoke mob/resul smoke mob_78
+bounds:1800,202,206,203
+offsets:9,3,217,219
+resul smoke mob/resul smoke mob_79
+bounds:542,78,210,206
+offsets:7,5,217,219
+resul smoke mob/resul smoke mob_80
+bounds:754,65,210,208
+offsets:6,9,217,219
+resul smoke mob/resul smoke mob_81
+bounds:330,102,210,205
+offsets:6,12,217,219
+resul smoke mob/resul smoke mob_82
+bounds:1171,623,181,199
+offsets:5,17,217,219
+rotate:90
+resul smoke mob/resul smoke mob_83
+bounds:1750,1284,142,153
+offsets:40,46,217,219
+rotate:90
+resul smoke mob/resul smoke mob_84
+bounds:566,1372,127,133
+offsets:53,61,217,219
+resul smoke mob/resul smoke mob_85
+bounds:435,1383,122,129
+offsets:56,64,217,219
+rotate:90
+resul smoke mob/resul smoke mob_86
+bounds:858,2013,58,20
+offsets:118,80,217,219
+resul smoke mob/resul smoke mob_87
+bounds:5,2029,5,4
+offsets:123,83,217,219
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_0
+bounds:918,2005,28,30
+offsets:87,72,206,191
+rotate:90
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_1
+bounds:1379,1985,53,48
+offsets:69,64,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_10
+bounds:694,1198,177,153
+offsets:8,8,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_11
+bounds:873,1187,181,154
+offsets:7,8,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_12
+bounds:1396,1145,187,157
+offsets:6,7,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_13
+bounds:1585,1124,188,158
+offsets:6,6,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_14
+bounds:1775,1124,191,158
+offsets:5,6,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_15
+bounds:2,1077,192,159
+offsets:5,6,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_16
+bounds:384,1059,194,160
+offsets:4,5,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_17
+bounds:580,1035,195,161
+offsets:4,5,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_18
+bounds:777,1023,196,162
+offsets:4,4,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_19
+bounds:975,1015,197,163
+offsets:3,4,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_2
+bounds:1902,1890,80,81
+offsets:54,49,206,191
+rotate:90
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_20
+bounds:1352,977,198,166
+offsets:3,3,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_21
+bounds:183,903,198,167
+offsets:3,3,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_22
+bounds:575,863,200,170
+offsets:2,3,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_23
+bounds:1780,779,201,174
+offsets:2,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_24
+bounds:574,684,201,177
+offsets:2,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_25
+bounds:967,660,202,180
+offsets:2,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_26
+bounds:1749,594,203,183
+offsets:1,1,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_27
+bounds:773,474,204,184
+offsets:1,1,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_28
+bounds:1371,408,204,185
+offsets:1,1,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_29
+bounds:1577,407,204,185
+offsets:1,1,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_3
+bounds:119,1855,94,96
+offsets:45,42,206,191
+rotate:90
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_30
+bounds:1783,407,205,185
+offsets:0,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_31
+bounds:190,328,204,186
+offsets:0,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_32
+bounds:1167,435,202,186
+offsets:0,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_33
+bounds:1400,217,201,188
+offsets:0,1,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_34
+bounds:995,246,201,187
+offsets:1,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_35
+bounds:1198,219,200,187
+offsets:2,2,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_36
+bounds:396,309,199,186
+offsets:3,4,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_37
+bounds:574,497,197,185
+offsets:5,5,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_38
+bounds:597,286,197,186
+offsets:5,5,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_39
+bounds:979,463,195,186
+offsets:5,5,206,191
+rotate:90
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_4
+bounds:1898,1428,117,116
+offsets:34,30,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_40
+bounds:2,343,196,186
+offsets:4,5,206,191
+rotate:90
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_41
+bounds:796,275,197,186
+offsets:4,5,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_42
+bounds:378,516,194,186
+offsets:6,4,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_43
+bounds:777,845,194,176
+offsets:7,4,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_44
+bounds:1579,780,199,173
+offsets:3,3,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_45
+bounds:2,727,199,174
+offsets:3,3,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_46
+bounds:973,842,199,171
+offsets:4,7,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_47
+bounds:1377,783,200,171
+offsets:3,7,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_48
+bounds:1174,806,201,169
+offsets:3,9,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_49
+bounds:1552,956,178,166
+offsets:3,8,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_5
+bounds:302,1386,131,121
+offsets:27,27,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_50
+bounds:1056,1180,179,156
+offsets:2,8,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_51
+bounds:695,1353,180,124
+offsets:2,41,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_52
+bounds:124,1395,176,118
+offsets:7,47,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_6
+bounds:1256,1332,146,129
+offsets:19,22,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_7
+bounds:1404,1309,152,138
+offsets:15,16,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_8
+bounds:2,1248,165,145
+offsets:11,12,206,191
+triple_bonus_smoke_mob/triple_bonus_smoke_mob_9
+bounds:522,1221,170,149
+offsets:9,10,206,191
+
+tr_all_2.webp
+size:1968,1944
+filter:Linear,Linear
+Bonus temple/wheel_glow_mob/wheel_glow_mob_100
+bounds:387,1155,400,382
+offsets:0,8,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_101
+bounds:785,771,400,382
+offsets:0,10,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_102
+bounds:2,1555,400,384
+offsets:0,11,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_103
+bounds:404,1539,400,383
+offsets:0,13,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_104
+bounds:1177,1557,398,382
+offsets:1,15,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_105
+bounds:789,1158,396,377
+offsets:2,21,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_106
+bounds:2,19,394,377
+offsets:3,23,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_107
+bounds:398,4,392,377
+offsets:4,23,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_108
+bounds:1171,392,391,377
+offsets:4,23,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_109
+bounds:1558,2,388,359
+offsets:6,41,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_114
+bounds:387,398,370,278
+offsets:13,122,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_30
+bounds:1187,786,373,385
+offsets:27,4,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_34
+bounds:1171,13,385,377
+offsets:4,0,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_35
+bounds:2,765,383,386
+offsets:0,1,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_36
+bounds:1577,1562,377,388
+offsets:0,6,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_37
+bounds:777,3,377,385
+offsets:0,12,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_39
+bounds:2,404,382,359
+offsets:12,41,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_40
+bounds:1564,406,377,385
+offsets:23,12,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_42
+bounds:785,390,384,379
+offsets:14,0,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_44
+bounds:789,1556,383,386
+offsets:0,1,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_45
+bounds:1562,785,377,388
+offsets:0,7,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_46
+bounds:1177,1173,382,383
+offsets:1,17,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_97
+bounds:1562,1164,391,377
+offsets:4,0,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_98
+bounds:387,770,396,383
+offsets:2,0,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_99
+bounds:2,1153,400,383
+offsets:0,4,400,400
+rotate:90
+
+tr_all_3.webp
+size:1888,1808
+filter:Linear,Linear
+Bonus temple/Wheel_stone
+bounds:1145,759,356,356
+offsets:22,22,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_110
+bounds:1538,1422,384,346
+offsets:7,54,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_111
+bounds:732,7,382,336
+offsets:9,64,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_112
+bounds:379,734,377,308
+offsets:11,92,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_113
+bounds:1150,1117,380,322
+offsets:9,78,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_115
+bounds:1503,758,372,293
+offsets:14,107,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_116
+bounds:1123,261,364,258
+offsets:19,142,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_117
+bounds:377,122,353,223
+offsets:23,176,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_119
+bounds:2,2,364,265
+offsets:17,135,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_120
+bounds:1496,473,370,283
+offsets:15,117,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_22
+bounds:1145,521,349,236
+offsets:29,164,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_23
+bounds:1116,24,341,235
+offsets:41,163,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_24
+bounds:1489,185,359,286
+offsets:30,112,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_25
+bounds:1532,1053,367,336
+offsets:26,62,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_26
+bounds:2,269,373,374
+offsets:24,23,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_27
+bounds:379,1044,377,383
+offsets:23,14,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_28
+bounds:2,1420,375,386
+offsets:25,10,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_29
+bounds:758,699,356,385
+offsets:44,8,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_31
+bounds:765,1429,377,383
+offsets:23,2,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_32
+bounds:379,1429,384,377
+offsets:13,0,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_33
+bounds:377,347,385,358
+offsets:8,0,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_38
+bounds:2,645,385,371
+offsets:5,29,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_41
+bounds:758,1057,370,385
+offsets:30,5,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_43
+bounds:2,1032,386,375
+offsets:5,0,400,400
+rotate:90
+Bonus temple/wheel_glow_mob/wheel_glow_mob_47
+bounds:737,345,384,352
+offsets:7,48,400,400
+Bonus temple/wheel_glow_mob/wheel_glow_mob_96
+bounds:1150,1441,386,365
+offsets:7,0,400,400

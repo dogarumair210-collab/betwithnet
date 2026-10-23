@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Jhandi Munda - JILI Official (#105801) | Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Roboto:wght@500;700;900&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="../js/wallet.js?v=3.0"></script>
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            overflow: hidden;
+            background: #140504;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ambient side wallpaper for desktop screens (mirrors JILI's dark surround) */
+        .desktop-backdrop {
+            position: fixed;
+            inset: 0;
+            background-image: url('../assets/games/jhandi_munda/jili_raw/Background.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(28px) brightness(0.32);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* =========================================================
+           OFFICIAL JILI LOADING OVERLAY (LogoPage replica)
+           ========================================================= */
+        #jiliLogoPage {
+            position: fixed;
+            inset: 0;
+            background-color: #000;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.45s ease, visibility 0.45s ease;
+        }
+        #jiliLogoPage.hidden-loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .jili-logo-box {
+            width: min(300px, 72vw);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        .jili-logo-box img.jili-brand {
+            width: 190px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 16px rgba(219,177,76,0.45));
+        }
+        .jili-logo-box img.jm-title-logo {
+            width: 240px;
+            object-fit: contain;
+            animation: logoFloat 2s ease-in-out infinite;
+        }
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .jili-progress-track {
+            width: 240px;
+            height: 10px;
+            background-color: rgb(45, 38, 28);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(219, 177, 76, 0.35);
+        }
+        .jili-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, rgb(219, 177, 76), #fff099, rgb(219, 177, 76));
+            border-radius: 10px;
+            animation: jiliLoadProgress 1.5s ease-out forwards;
+        }
+        @keyframes jiliLoadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* =========================================================
+           EXACT JILI 640x1136 PORTRAIT STAGE CONTAINER
+           ========================================================= */
+        .jili-stage-wrapper {
+            position: relative;
+            z-index: 5;
+            width: 100vw;
+            height: 100dvh;
+            max-width: calc(100dvh * (640 / 1136));
+            max-height: 100dvh;
+            aspect-ratio: 640 / 1136;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+            background-color: #460e0b;
+            background-image: url('../assets/games/jhandi_munda/jili_raw/Background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-aspect-ratio: 640/1136) {
+            .jili-stage-wrapper {
+                max-width: 100vw;
+                width: 100vw;
+                height: 100dvh;
+                aspect-ratio: auto;
+            }
+        }
+
+        /* Subtle pattern watermark at top (from Change_BG.jpg) */
+        .jili-top-watermark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 29%;
+            background-image: url('../assets/games/jhandi_munda/jili_raw/Change_BG.jpg');
+            background-size: 100% auto;
+            background-position: top center;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* =========================================================
+           TOP STATUS BAR (WiFi, Min/Max Dropdown, Back & Menu Icons)
+           ========================================================= */
+        .jili-top-bar {
+            position: relative;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 10px 2px;
+            height: 36px;
+        }
+
+        .jili-back-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 215, 130, 0.45);
+            color: #ffe39f;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.12s;
+        }
+        .jili-back-pill:active { transform: scale(0.94); }
+
+        /* Min/Max Selector Pill (Wifi_Minmax_Bg) */
+        .jili-minmax-pill {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(48, 10, 8, 0.78);
+            border: 1px solid rgba(226, 173, 107, 0.55);
+            border-radius: 14px;
+            padding: 3px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffdfa7;
+            cursor: pointer;
+        }
+        .jili-wifi-icon {
+            width: 13px;
+            height: 13px;
+            display: inline-block;
+            color: #52ff7c;
+        }
+        .jili-minmax-dropdown {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 210px;
+            background: rgba(58, 12, 10, 0.96);
+            border: 1.5px solid #d49b57;
+            border-radius: 10px;
+            padding: 6px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            z-index: 120;
+        }
+        .jili-minmax-dropdown.open { display: flex; }
+        .jili-minmax-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.06);
+            color: #f8d89c;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .jili-minmax-item.active, .jili-minmax-item:hover {
+            background: linear-gradient(90deg, #b86b1b, #e8a849);
+            color: #2b0904;
+        }
+
+        /* Top Right Utility Buttons (3D Live Engine Toggle, Sound, Help) */
+        .jili-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .jili-icon-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fad074, #b5741e);
+            border: 1.5px solid #fff1be;
+            color: #3d1603;
+            font-weight: 900;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.55);
+        }
+        .jili-icon-btn:active { transform: scale(0.92); }
+        .jili-3d-switch {
+            background: linear-gradient(180deg, #ffe680 0%, #d48817 100%);
+            border: 1.5px solid #fff5c0;
+            color: #3a0d03;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 7px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            letter-spacing: 0.2px;
+        }
+
+        /* =========================================================
+           UPPER ARENA: COUNTDOWN CLOCK + 3D WOODEN SHAKER CUP + ROADMAP
+           ========================================================= */
+        .jili-upper-arena {
+            position: relative;
+            z-index: 15;
+            height: 20.5%;
+            min-height: 145px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 10px;
+        }
+
+        /* Left: Official JILI Countdown Clock (MG_07_count_bg) */
+        .jili-clock-wrap {
+            position: relative;
+            width: 66px;
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .jili-clock-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .jili-clock-ring {
+            position: absolute;
+            inset: -3px;
+            width: calc(100% + 6px);
+            height: calc(100% + 6px);
+            object-fit: contain;
+            transition: opacity 0.2s;
+        }
+        .jili-clock-svg {
+            position: absolute;
+            inset: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            transform: rotate(-90deg);
+        }
+        .jili-clock-num {
+            position: relative;
+            z-index: 3;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff6d6;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.75), 0 0 8px rgba(255,190,60,0.6);
+        }
+        .jili-clock-num.alert-red {
+            color: #ff4d4d;
+            text-shadow: 0 0 10px rgba(255,30,30,0.9);
+            animation: clockPulse 0.45s infinite alternate;
+        }
+        @keyframes clockPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.16); }
+        }
+
+        /* Center: 3D Wooden Shaker Plate (Flood) & Wooden Cup (Can) + 6 3D Dice */
+        .jili-shaker-stage {
+            position: relative;
+            width: 195px;
+            height: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Black & Gold Rim Shaker Plate (Flood + atlas_1fe96e8f3) */
+        .jili-shaker-plate {
+            position: absolute;
+            bottom: 6px;
+            width: 176px;
+            height: 116px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at 50% 42%, #3a3532 0%, #1d1917 62%, #0c0a09 82%, #b5854b 86%, #593515 94%, #1f1107 100%);
+            box-shadow:
+                0 10px 22px rgba(0,0,0,0.85),
+                inset 0 4px 12px rgba(255,255,255,0.14),
+                inset 0 -8px 16px rgba(0,0,0,0.9);
+            border: 2.5px solid #9c6c38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .jili-shaker-plate::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(214, 163, 96, 0.35);
+            pointer-events: none;
+        }
+
+        /* 6 Dice inside the Shaker Plate */
+        .jili-plate-dice-grid {
+            position: relative;
+            z-index: 4;
+            width: 128px;
+            height: 76px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            place-items: center;
+            gap: 2px;
+        }
+        .jili-plate-die {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.75));
+            transition: transform 0.25s ease;
+        }
+        .jili-plate-die.tumbling {
+            animation: dieTumble 0.16s linear infinite;
+        }
+        @keyframes dieTumble {
+            0% { transform: rotate(0deg) scale(0.92) translate(-2px, -2px); }
+            50% { transform: rotate(180deg) scale(1.06) translate(2px, 2px); }
+            100% { transform: rotate(360deg) scale(0.92) translate(-2px, -2px); }
+        }
+
+        /* 3D Segmented Wooden Shaker Cup (Can.jpg texture replica) */
+        .jili-wooden-cup {
+            position: absolute;
+            z-index: 10;
+            bottom: 18px;
+            width: 136px;
+            height: 118px;
+            pointer-events: auto;
+            cursor: pointer;
+            transform-origin: center bottom;
+            transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease;
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.85));
+        }
+        /* Open state: cup lifted up/back so player sees the 6 dice on the plate */
+        .jili-wooden-cup.cup-open {
+            transform: translateY(-68px) scale(0.78);
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* Closed & shaking state */
+        .jili-wooden-cup.cup-closed {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        .jili-wooden-cup.cup-shaking {
+            opacity: 1;
+            animation: jiliCupShake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+        }
+        @keyframes jiliCupShake {
+            0%   { transform: translate(0, 0) rotate(0deg); }
+            15%  { transform: translate(-10px, -14px) rotate(-9deg); }
+            30%  { transform: translate(10px, -6px) rotate(9deg); }
+            45%  { transform: translate(-12px, -16px) rotate(-11deg); }
+            60%  { transform: translate(11px, -8px) rotate(8deg); }
+            75%  { transform: translate(-7px, -12px) rotate(-6deg); }
+            90%  { transform: translate(6px, -4px) rotate(4deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* Right: Official JILI Roadmap / History Drawer (MG_Road_*) */
+        .jili-roadmap-panel {
+            position: relative;
+            z-index: 25;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+        .jili-road-compact {
+            width: 78px;
+            background: rgba(42, 8, 6, 0.9);
+            border: 1.5px solid #d48e4c;
+            border-radius: 10px;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.65);
+        }
+        .jili-road-latest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            width: 100%;
+            place-items: center;
+            background: rgba(255, 245, 232, 0.95);
+            border-radius: 6px;
+            padding: 3px;
+        }
+        .jili-road-latest-grid img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+        .jili-road-toggle-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffdca2;
+            width: 100%;
+        }
+        .jili-road-toggle-bar img {
+            width: 13px;
+            height: 13px;
+            object-fit: contain;
+        }
+
+        /* Expanded History & Symbol Percentage Drawer */
+        .jili-road-drawer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: min(330px, 92vw);
+            background: rgba(54, 10, 8, 0.97);
+            border: 2px solid #dfa055;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.92);
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 100;
+        }
+        .jili-road-drawer.open { display: flex; }
+        .jili-road-rates {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 3px;
+            background: rgba(255, 246, 235, 0.96);
+            border-radius: 8px;
+            padding: 5px 3px;
+        }
+        .jili-rate-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            color: #5b190e;
+            font-size: 10px;
+            font-weight: 900;
+        }
+        .jili-rate-col img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        .jili-road-history-list {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            overflow-x: auto;
+            padding: 4px 2px;
+        }
+        .jili-road-col {
+            position: relative;
+            background: rgba(255, 246, 235, 0.95);
+            border: 1.5px solid #b56c3b;
+            border-radius: 6px;
+            padding: 3px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+        .jili-road-col.newest {
+            border-color: #ff2a2a;
+            box-shadow: 0 0 8px rgba(255, 60, 60, 0.65);
+        }
+        .jili-road-col img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        /* =========================================================
+           PAYOUT ODDS BAR (MG_10_Table_Bg + MG_08_Odds_Dice_2..6)
+           1:2.5 | 1:5 | 1:10 | 1:20 | 1:100
+           ========================================================= */
+        .jili-odds-bar {
+            position: relative;
+            z-index: 20;
+            width: 97.5%;
+            height: 6.2%;
+            min-height: 36px;
+            max-height: 48px;
+            margin: 0 auto 3px;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Bg.png');
+            background-size: 100% 100%;
+            background-color: rgba(84, 18, 14, 0.92);
+            border: 1.5px solid #b86c43;
+            border-radius: 9px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+        }
+        .jili-odds-cell {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.05;
+        }
+        .jili-odds-cell:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 18%;
+            height: 64%;
+            width: 1.5px;
+            background: rgba(235, 168, 120, 0.45);
+        }
+        .jili-odds-top {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .jili-odds-top img {
+            width: 15px;
+            height: 15px;
+            object-fit: contain;
+        }
+        .jili-odds-val {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffcf8b;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+        }
+
+        /* =========================================================
+           MAIN WHITE/CREAM BETTING BOARD (Background_02 + 6 AreaNodes
+           + 15 TwoDiceAreaNodes on the borders!)
+           ========================================================= */
+        .jili-board-wrapper {
+            position: relative;
+            z-index: 20;
+            width: 97.5%;
+            flex: 1;
+            min-height: 0;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* The 3x2 Single Symbol Board (AreaNode 0..5) */
+        .jili-main-grid {
+            position: relative;
+            width: 100%;
+            height: 76%;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/Background_02.png');
+            background-size: 100% 100%;
+            border-radius: 14px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.65);
+            overflow: visible;
+        }
+
+        .jili-area-cell {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 4px;
+            overflow: hidden;
+            transition: background-color 0.15s;
+        }
+        .jili-area-cell:active {
+            background-color: rgba(180, 60, 40, 0.12);
+        }
+
+        /* White inner rounded tile (MG_09_Bet_Dice_bg) */
+        .jili-area-tile-bg {
+            position: absolute;
+            inset: 5px;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            object-fit: fill;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.96;
+        }
+
+        /* Total Player Bet Bar at top of cell (MG_Bet_Money_bg + MG_Player_Money_Mark) */
+        .jili-area-bet-bar {
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 8;
+            width: 86%;
+            height: 20px;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/MG_Bet_Money_bg.png');
+            background-size: 100% 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 0 6px;
+        }
+        .jili-area-bet-bar.active {
+            display: flex;
+            animation: betBarPop 0.22s ease-out;
+        }
+        @keyframes betBarPop {
+            0% { transform: translateX(-50%) scale(0.8); }
+            70% { transform: translateX(-50%) scale(1.12); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        .jili-area-bet-bar img {
+            width: 15px;
+            height: 15px;
+            object-fit: contain;
+        }
+        .jili-area-bet-bar span {
+            font-size: 11px;
+            font-weight: 900;
+            color: #fff3c4;
+            text-shadow: 0 1px 2px #000;
+        }
+
+        /* Traditional Langur Burja Symbol Graphic (MG_09_Bet_*) */
+        .jili-area-symbol {
+            position: relative;
+            z-index: 3;
+            width: 56%;
+            max-width: 82px;
+            max-height: 62%;
+            object-fit: contain;
+            margin-bottom: 12px;
+            transition: transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        /* Bottom 5-Round History Strip inside each cell (Mg_09_Bet_Dice_History_*) */
+        .jili-area-history-row {
+            position: absolute;
+            bottom: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            width: 88%;
+        }
+        .jili-area-history-row img {
+            width: 17px;
+            height: 21px;
+            object-fit: contain;
+        }
+
+        /* Placed Chip Stack on Cell (mineChip left, otherChip right) */
+        .jili-chip-marker {
+            position: absolute;
+            z-index: 12;
+            width: 40px;
+            height: 40px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.65));
+        }
+        .jili-chip-marker.mine {
+            left: 10%;
+            top: 44%;
+            transform: translateY(-50%);
+        }
+        .jili-chip-marker.npc {
+            right: 8%;
+            top: 44%;
+            transform: translateY(-50%);
+            width: 34px;
+            height: 34px;
+            opacity: 0.92;
+        }
+        .jili-chip-marker.active {
+            display: flex;
+            animation: chipBounce 0.2s ease-out;
+        }
+        @keyframes chipBounce {
+            0% { transform: translateY(-50%) scale(1.4); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+        .jili-chip-marker img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .jili-chip-marker span {
+            position: relative;
+            z-index: 2;
+            font-size: 9px;
+            font-weight: 900;
+            color: #1f140e;
+            letter-spacing: -0.3px;
+        }
+
+        /* Extra Pay Golden Multiplier Badge on Cell (FX_Extra / 6X..200X) */
+        .jili-extra-badge {
+            position: absolute;
+            top: 26px;
+            left: 6px;
+            z-index: 14;
+            background: radial-gradient(circle, #fff3a1 0%, #f59e0b 65%, #b45309 100%);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #580b04;
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.95);
+            animation: extraPulse 0.6s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        .jili-extra-badge.active { display: flex; }
+        @keyframes extraPulse {
+            from { transform: scale(0.95) rotate(-4deg); }
+            to { transform: scale(1.12) rotate(4deg); }
+        }
+
+        /* Winning Golden Frame & Grey Lock Overlay */
+        .jili-area-cell.win-glow::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 3.5px solid #ffd700;
+            border-radius: 10px;
+            box-shadow: inset 0 0 22px rgba(255, 215, 0, 0.85), 0 0 18px rgba(255, 215, 0, 0.9);
+            z-index: 9;
+            pointer-events: none;
+            animation: winBorderFlash 0.4s ease-in-out infinite alternate;
+        }
+        @keyframes winBorderFlash {
+            from { opacity: 0.55; }
+            to { opacity: 1; }
+        }
+        .jili-area-cell.grey-locked {
+            filter: grayscale(0.78) brightness(0.72);
+        }
+
+        /* =========================================================
+           ANY-2-DICE COMBINATION GRID (Background_01: 5x3 = 15 pairs, Odds 1:5 / Extra 1:8)
+           ========================================================= */
+        .jili-twodice-section {
+            position: relative;
+            width: 100%;
+            height: 22.5%;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/Background_01.png');
+            background-size: 100% 100%;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.55);
+            overflow: hidden;
+        }
+        .jili-twodice-header-tag {
+            position: absolute;
+            top: -9px;
+            right: 10px;
+            z-index: 25;
+            background: linear-gradient(90deg, #7c1911, #b32a1d);
+            border: 1px solid #f0b265;
+            color: #ffe29e;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 1px 7px;
+            border-radius: 8px;
+            pointer-events: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+        .jili-pair-cell {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            padding: 1px;
+        }
+        .jili-pair-cell:active {
+            background: rgba(180, 60, 40, 0.16);
+        }
+        .jili-pair-cell img.pair-sym {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            pointer-events: none;
+        }
+        .jili-pair-cell.win-glow {
+            background: rgba(255, 215, 0, 0.32);
+            box-shadow: inset 0 0 10px #ffd700;
+        }
+        .jili-pair-cell.grey-locked {
+            filter: grayscale(0.8) brightness(0.68);
+        }
+        .jili-pair-chip {
+            position: absolute;
+            z-index: 10;
+            width: 26px;
+            height: 26px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .jili-pair-chip.active { display: flex; }
+        .jili-pair-chip img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .jili-pair-chip span {
+            position: relative;
+            z-index: 2;
+            font-size: 7.5px;
+            font-weight: 900;
+            color: #1a1008;
+        }
+
+        /* =========================================================
+           BOTTOM WOODEN TABLE CONTROLS, CHIPS & PLAYER BAR
+           ========================================================= */
+        .jili-bottom-panel {
+            position: relative;
+            z-index: 25;
+            width: 100%;
+            height: 17.5%;
+            min-height: 118px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3px 8px 4px;
+        }
+
+        /* Chip Selector Row (6 Official JILI Chips + Other Players Icon) */
+        .jili-chips-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3px;
+            padding: 0 2px;
+        }
+        .jili-chip-btn {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s;
+            flex-shrink: 0;
+        }
+        .jili-chip-btn img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.65));
+        }
+        .jili-chip-btn span {
+            position: relative;
+            z-index: 2;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #231409;
+            letter-spacing: -0.3px;
+        }
+        .jili-chip-btn.selected {
+            transform: translateY(-6px) scale(1.12);
+            filter: drop-shadow(0 0 10px rgba(255, 230, 110, 0.95));
+        }
+        .jili-chip-btn.selected::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2px solid #ffe875;
+            box-shadow: 0 0 10px #ffd700;
+            pointer-events: none;
+        }
+
+        /* Online NPC Players Counter Badge (MG_06_OtherPlayer_Bg) */
+        .jili-npc-pill {
+            position: relative;
+            height: 28px;
+            padding: 0 9px;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/MG_06_OtherPlayer_Bg.png');
+            background-size: 100% 100%;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffdfa6;
+            flex-shrink: 0;
+        }
+        .jili-npc-pill img {
+            width: 15px;
+            height: 16px;
+            object-fit: contain;
+        }
+
+        /* Action Row: Player Avatar + Balance + Bet | Again/Roll | Double (x2) | Undo | Clear */
+        .jili-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+            padding: 2px 2px;
+        }
+
+        /* Player Info Box (defaultIcon + MG_06_Player_frame + MG_Player_Money_bg) */
+        .jili-player-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(25, 6, 4, 0.72);
+            border: 1.5px solid rgba(218, 160, 92, 0.65);
+            border-radius: 24px;
+            padding: 3px 10px 3px 4px;
+            min-width: 150px;
+        }
+        .jili-avatar-wrap {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+        .jili-avatar-wrap img.avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .jili-avatar-wrap img.avatar-frame {
+            position: absolute;
+            inset: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            object-fit: contain;
+        }
+        .jili-wallet-lines {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+        .jili-wallet-bal {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #ffd86b;
+        }
+        .jili-wallet-bet {
+            font-size: 10px;
+            font-weight: 700;
+            color: #e5c49f;
+        }
+
+        /* JILI Operate Buttons (MG_11_button_Bg / MG_11_button_Bg_B) */
+        .jili-op-btns {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .jili-op-btn {
+            position: relative;
+            width: 44px;
+            height: 45px;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/MG_11_button_Bg.png');
+            background-size: 100% 100%;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.1s, filter 0.15s;
+        }
+        .jili-op-btn.blue-btn {
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/MG_11_button_Bg_B.png');
+        }
+        .jili-op-btn:active:not(:disabled) {
+            transform: scale(0.92);
+        }
+        .jili-op-btn:disabled {
+            filter: grayscale(0.85) brightness(0.65);
+            cursor: not-allowed;
+        }
+        .jili-op-btn img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        /* Footer Version & Round ID Bar (Background_bottom) */
+        .jili-footer-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 9.5px;
+            font-weight: 700;
+            color: rgba(255, 225, 185, 0.72);
+            padding: 0 4px;
+            height: 14px;
+        }
+
+        /* =========================================================
+           OFFICIAL JILI BANNERS:
+           1. StepDeclareUI ("Please Bet Now" / "Bet Locked" on MG_bet_now_bg)
+           2. Declare_ExtraPay ("Extra Pay" on ExtraPay_BG)
+           3. ResultBoard (6 sorted winning dice popup)
+           4. WinBoard (JhandiMunda_spine golden WIN celebration)
+           ========================================================= */
+        .jili-declare-banner {
+            position: absolute;
+            top: 44%;
+            left: 0;
+            width: 100%;
+            height: 58px;
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/MG_bet_now_bg.png');
+            background-size: 100% 100%;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            transform: scaleY(0.2);
+            transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .jili-declare-banner.show {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        .jili-declare-banner.extrapay-banner {
+            background-image: url('../assets/games/jhandi_munda/jili_sprites/ExtraPay_BG.png');
+        }
+        .jili-declare-text {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff6c2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow:
+                0 2px 0 #7b240c,
+                0 4px 10px rgba(0,0,0,0.85),
+                0 0 18px rgba(255, 205, 70, 0.85);
+        }
+
+        /* Result 6-Dice Floating Ribbon (ResultBoard) */
+        .jili-result-board {
+            position: absolute;
+            top: 19.5%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.7);
+            z-index: 65;
+            background: linear-gradient(180deg, rgba(92, 18, 12, 0.97) 0%, rgba(48, 8, 5, 0.98) 100%);
+            border: 2.5px solid #ffd06b;
+            border-radius: 16px;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.9), 0 0 20px rgba(255, 200, 60, 0.55);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .jili-result-board.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        .jili-result-board img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.65));
+        }
+
+        /* Golden WIN Compliment Overlay (WinBoard) */
+        .jili-win-overlay {
+            position: absolute;
+            top: 36%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            z-index: 75;
+            background: radial-gradient(circle, rgba(135, 28, 14, 0.96) 0%, rgba(56, 8, 4, 0.98) 100%);
+            border: 3px solid #ffe066;
+            border-radius: 22px;
+            padding: 12px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.92), 0 0 35px rgba(255, 215, 0, 0.8);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .jili-win-overlay.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .jili-win-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(180deg, #fffbe0 0%, #ffd700 55%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+        }
+        .jili-win-amount {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #4ade80;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        /* =========================================================
+           OFFICIAL JILI LIVE 3D ENGINE IFRAME MODAL (100% Original Client)
+           ========================================================= */
+        #jiliLive3DModal {
+            position: fixed;
+            inset: 0;
+            z-index: 50000;
+            background: #000;
+            display: none;
+            flex-direction: column;
+        }
+        #jiliLive3DModal.active { display: flex; }
+        .jili-live-bar {
+            height: 36px;
+            background: #1c0604;
+            border-bottom: 1px solid #b57c3c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            font-size: 12px;
+            color: #ffdca2;
+        }
+        .jili-live-close {
+            background: #dc2626;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* Help / Rules Modal */
+        #jiliHelpModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.82);
+            z-index: 40000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        #jiliHelpModal.open { display: flex; }
+        .jili-help-card {
+            width: min(380px, 94vw);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: #3b0b08;
+            border: 2px solid #e09f54;
+            border-radius: 16px;
+            padding: 16px;
+            color: #ffecd1;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="desktop-backdrop"></div>
+
+    <!-- =========================================================
+         OFFICIAL JILI LOADING SCREEN
+         ========================================================= -->
+    <div id="jiliLogoPage">
+        <div class="jili-logo-box">
+            <img src="../assets/games/jhandi_munda/images/jili_logo.png" alt="JILI" class="jili-brand">
+            <img src="../assets/games/jhandi_munda/jili_raw/Logo.png" alt="Jhandi Munda" class="jm-title-logo">
+            <div class="jili-progress-track">
+                <div class="jili-progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         OFFICIAL JILI 640x1136 PORTRAIT GAME STAGE
+         ========================================================= -->
+    <div class="jili-stage-wrapper" id="jiliStage">
+        <div class="jili-top-watermark"></div>
+
+        <!-- 1. TOP BAR: Back to Lobby | Min/Max Range Selector | 3D Live Mode, Audio, Help -->
+        <div class="jili-top-bar">
+            <div style="display:flex; align-items:center; gap:6px;">
+                <a href="../index.html" class="jili-back-pill" title="Back to Lobby">
+                    ◀ Lobby
+                </a>
+                <div class="jili-minmax-pill" onclick="toggleMinMaxDropdown(event)">
+                    <svg class="jili-wifi-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 18c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-4.9-2.3l1.4 1.4C9.4 16.4 10.6 16 12 16s2.6.4 3.5 1.1l1.4-1.4C15.6 14.6 13.9 14 12 14s-3.6.6-4.9 1.7zm-2.8-2.8l1.4 1.4C7.3 13 9.5 12 12 12s4.7 1 6.3 2.3l1.4-1.4C17.7 11.1 15 10 12 10s-5.7 1.1-7.7 2.9z"/>
+                    </svg>
+                    <span>Min <b id="minBetLabel">10</b> Max <b id="maxBetLabel">5K</b></span>
+                    <span style="font-size:9px;">▼</span>
+
+                    <div class="jili-minmax-dropdown" id="minMaxDropdown" onclick="event.stopPropagation()">
+                        <div class="jili-minmax-item active" onclick="selectRoomRange(0, '10', '5K', [10, 50, 100, 500, 1000, 5000])">
+                            <span>Min 10</span><span>Max 5,000</span>
+                        </div>
+                        <div class="jili-minmax-item" onclick="selectRoomRange(1, '50', '10K', [50, 100, 500, 1000, 5000, 10000])">
+                            <span>Min 50</span><span>Max 10,000</span>
+                        </div>
+                        <div class="jili-minmax-item" onclick="selectRoomRange(2, '100', '25K', [100, 500, 1000, 5000, 10000, 25000])">
+                            <span>Min 100</span><span>Max 25,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jili-top-actions">
+                <button class="jili-3d-switch" onclick="openOfficialJili3D()" title="Launch Official JILI 3D Trial Engine">
+                    3D LIVE
+                </button>
+                <button class="jili-icon-btn" id="soundToggleBtn" onclick="toggleJiliSound()" title="Mute / Unmute Official JILI Audio">
+                    🔊
+                </button>
+                <button class="jili-icon-btn" onclick="openHelpModal()" title="Game Rules & Payouts">
+                    ?
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. UPPER ARENA: Countdown Clock + 3D Wooden Shaker Bowl & 6 Dice + Roadmap -->
+        <div class="jili-upper-arena">
+            <!-- Left: Official JILI Countdown Clock -->
+            <div class="jili-clock-wrap">
+                <img src="../assets/games/jhandi_munda/jili_sprites/MG_07_count_bg.png" class="jili-clock-bg" alt="">
+                <img src="../assets/games/jhandi_munda/jili_sprites/MG_07_count_bg_light.png" id="clockRingLight" class="jili-clock-ring" alt="">
+                <svg class="jili-clock-svg" viewBox="0 0 100 100">
+                    <circle id="clockArc" cx="50" cy="50" r="43" fill="none" stroke="#ffd859" stroke-width="5" stroke-dasharray="270" stroke-dashoffset="0" stroke-linecap="round"/>
+                </svg>
+                <span class="jili-clock-num" id="countdownNum">14</span>
+            </div>
+
+            <!-- Center: 3D Shaker Plate (Flood) + 6 White Rounded Dice + Wooden Cup (Can) -->
+            <div class="jili-shaker-stage" onclick="forceRollNow()" title="Tap Cup to Roll Now!">
+                <div class="jili-shaker-plate">
+                    <div class="jili-plate-dice-grid" id="plateDiceGrid">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_09_Bet_Dice_flag.png" class="jili-plate-die" id="plateDie0" alt="die">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_09_Bet_Dice_crown.png" class="jili-plate-die" id="plateDie1" alt="die">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_09_Bet_Dice_spade.png" class="jili-plate-die" id="plateDie2" alt="die">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_09_Bet_Dice_heart.png" class="jili-plate-die" id="plateDie3" alt="die">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_09_Bet_Dice_club.png" class="jili-plate-die" id="plateDie4" alt="die">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_09_Bet_Dice_diamand.png" class="jili-plate-die" id="plateDie5" alt="die">
+                    </div>
+                </div>
+
+                <!-- 3D Wooden Shaker Cup (Crafted from JILI Can.jpg wood-grain aesthetic) -->
+                <div class="jili-wooden-cup cup-open" id="woodenCup">
+                    <svg viewBox="0 0 160 140" width="100%" height="100%">
+                        <defs>
+                            <linearGradient id="jiliWoodBody" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#471d06"/>
+                                <stop offset="24%" stop-color="#8b4214"/>
+                                <stop offset="52%" stop-color="#df8c34"/>
+                                <stop offset="68%" stop-color="#f6b252"/>
+                                <stop offset="85%" stop-color="#984916"/>
+                                <stop offset="100%" stop-color="#3d1704"/>
+                            </linearGradient>
+                            <linearGradient id="jiliWoodRim" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#592508"/>
+                                <stop offset="50%" stop-color="#ffca6e"/>
+                                <stop offset="100%" stop-color="#4a1d06"/>
+                            </linearGradient>
+                            <radialGradient id="jiliWoodTop" cx="50%" cy="45%" r="50%">
+                                <stop offset="0%" stop-color="#d8832f"/>
+                                <stop offset="70%" stop-color="#843d11"/>
+                                <stop offset="100%" stop-color="#451b05"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- Lower Gold/Wood Rim -->
+                        <ellipse cx="80" cy="118" rx="68" ry="16" fill="url(#jiliWoodRim)" stroke="#2b0e02" stroke-width="2"/>
+                        <!-- Main Conical Segmented Wood Cup -->
+                        <path d="M34 26 C34 16, 126 16, 126 26 L146 115 C146 128, 14 128, 14 115 Z" fill="url(#jiliWoodBody)" stroke="#381403" stroke-width="2"/>
+                        <!-- Wood stave rings matching Can.jpg -->
+                        <path d="M26 55 Q80 68 134 55" fill="none" stroke="#471c05" stroke-width="2" opacity="0.65"/>
+                        <path d="M20 84 Q80 98 140 84" fill="none" stroke="#471c05" stroke-width="2.5" opacity="0.7"/>
+                        <path d="M16 106 Q80 120 144 106" fill="none" stroke="#ffcf78" stroke-width="2" opacity="0.6"/>
+                        <!-- Top Wooden Cap -->
+                        <ellipse cx="80" cy="26" rx="46" ry="11" fill="url(#jiliWoodTop)" stroke="#f3ae52" stroke-width="1.8"/>
+                        <ellipse cx="80" cy="24" rx="22" ry="5" fill="#5e2708" stroke="#d98932" stroke-width="1.2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Right: Official JILI Roadmap / History Widget -->
+            <div class="jili-roadmap-panel">
+                <div class="jili-road-compact" onclick="toggleRoadmapDrawer(event)" title="View Roll History & Symbol Rates">
+                    <div class="jili-road-latest-grid" id="latestRoadMini">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_Dice_Heart.png" alt="">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_Dice_Spade.png" alt="">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_Dice_Crown.png" alt="">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_Dice_Diamond.png" alt="">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_Dice_Flag.png" alt="">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_Dice_Club.png" alt="">
+                    </div>
+                    <div class="jili-road-toggle-bar">
+                        <span>HISTORY</span>
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_Road_01_ArrowDown.png" alt="▼">
+                    </div>
+                </div>
+
+                <!-- Expanded Roadmap Drawer -->
+                <div class="jili-road-drawer" id="roadmapDrawer" onclick="event.stopPropagation()">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:11px; font-weight:800; color:#ffda96;">RECENT ROLLS & SYMBOL RATES</span>
+                        <button onclick="toggleRoadmapDrawer(event)" style="background:none; border:none; color:#ffcf7c; font-weight:900; cursor:pointer;">✕</button>
+                    </div>
+                    <!-- Symbol Probability Row -->
+                    <div class="jili-road-rates" id="roadRatesGrid"></div>
+                    <!-- Columns of 6 Dice per round -->
+                    <div class="jili-road-history-list" id="roadHistoryCols"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. OFFICIAL ODDS BAR (2 Dice = 1:2.5 | 3 = 1:5 | 4 = 1:10 | 5 = 1:20 | 6 = 1:100) -->
+        <div class="jili-odds-bar">
+            <div class="jili-odds-cell">
+                <div class="jili-odds-top">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_2.png" alt="2">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_2.png" alt="2">
+                </div>
+                <div class="jili-odds-val">1:2.5</div>
+            </div>
+            <div class="jili-odds-cell">
+                <div class="jili-odds-top">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_3.png" alt="3">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_3.png" alt="3">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_3.png" alt="3">
+                </div>
+                <div class="jili-odds-val">1:5</div>
+            </div>
+            <div class="jili-odds-cell">
+                <div class="jili-odds-top">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_4.png" alt="4">
+                    <span style="font-size:10px; font-weight:900; color:#fff;">×4</span>
+                </div>
+                <div class="jili-odds-val">1:10</div>
+            </div>
+            <div class="jili-odds-cell">
+                <div class="jili-odds-top">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_5.png" alt="5">
+                    <span style="font-size:10px; font-weight:900; color:#fff;">×5</span>
+                </div>
+                <div class="jili-odds-val">1:20</div>
+            </div>
+            <div class="jili-odds-cell">
+                <div class="jili-odds-top">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_08_Odds_Dice_6.png" alt="6">
+                    <span style="font-size:10px; font-weight:900; color:#ffd700;">×6</span>
+                </div>
+                <div class="jili-odds-val" style="color:#ffd700;">1:100</div>
+            </div>
+        </div>
+
+        <!-- 4. WHITE/CREAM BETTING BOARD (3x2 Single Symbols + 5x3 Any-2-Dice Pairs) -->
+        <div class="jili-board-wrapper">
+            <!-- 3x2 Main Symbol Grid (Exact JILI Order: Heart, Spade, Crown / Diamond, Flag, Club) -->
+            <div class="jili-main-grid" id="mainSymbolGrid">
+                <!-- Populated dynamically by JS with exact JILI sprites -->
+            </div>
+
+            <!-- 5x3 Any-2-Dice Combination Grid (15 Two-Symbol Pairs, Payout 1:5) -->
+            <div class="jili-twodice-section" id="twoDiceGrid">
+                <span class="jili-twodice-header-tag">ANY 2 DICE • 1:5</span>
+                <!-- Populated dynamically by JS with all 15 two-symbol combinations -->
+            </div>
+        </div>
+
+        <!-- 5. BOTTOM WOODEN TABLE CONTROLS -->
+        <div class="jili-bottom-panel">
+            <!-- 6 JILI Chips + NPC Count -->
+            <div class="jili-chips-row">
+                <div id="chipsContainer" style="display:flex; align-items:center; gap:4px; flex:1; justify-content:space-around;">
+                    <!-- Populated by JS using Chip_Base_0..5.png -->
+                </div>
+                <div class="jili-npc-pill" title="Online Players at Table">
+                    <img src="../assets/games/jhandi_munda/jili_sprites/MG_06_OtherPlayer_Icon.png" alt="NPC">
+                    <span id="npcCountLabel">28</span>
+                </div>
+            </div>
+
+            <!-- Player Balance Pill + Operate Buttons (Rebet, Double, Undo, Clear, Roll Now) -->
+            <div class="jili-action-row">
+                <div class="jili-player-box">
+                    <div class="jili-avatar-wrap">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/defaultIcon.png" class="avatar-img" alt="Player">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_06_Player_frame.png" class="avatar-frame" alt="">
+                    </div>
+                    <div class="jili-wallet-lines">
+                        <div class="jili-wallet-bal">
+                            <img src="../assets/games/jhandi_munda/jili_sprites/MG_Player_Money_Mark.png" style="width:14px;height:14px;" alt="₨">
+                            <span id="walletBalanceText">10,000</span>
+                        </div>
+                        <div class="jili-wallet-bet">
+                            Bet: <span id="totalBetText" style="color:#fff;">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jili-op-btns">
+                    <!-- Rebet / Again -->
+                    <button class="jili-op-btn" id="btnAgain" onclick="handleAgainBet()" title="Rebet Previous Round">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/again.png" alt="Again">
+                    </button>
+                    <!-- Double (x2) -->
+                    <button class="jili-op-btn" id="btnDouble" onclick="handleDoubleBet()" title="Double Current Bets (x2)">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/doble.png" alt="x2">
+                    </button>
+                    <!-- Undo -->
+                    <button class="jili-op-btn" id="btnUndo" onclick="handleUndoBet()" title="Undo Last Chip">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/undo.png" alt="Undo">
+                    </button>
+                    <!-- Clear -->
+                    <button class="jili-op-btn" id="btnClear" onclick="handleClearBets()" title="Clear All Bets">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/clear.png" alt="Clear">
+                    </button>
+                    <!-- Instant Roll / Auto Toggle (MG_11_button_Bg_B) -->
+                    <button class="jili-op-btn blue-btn" id="btnAuto" onclick="toggleAutoPlay()" title="Toggle Auto Rebet">
+                        <img src="../assets/games/jhandi_munda/jili_sprites/MG_11_button_auto.png" id="autoBtnIcon" alt="Auto">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Version & Round Number Bar -->
+            <div class="jili-footer-bar">
+                <span>v1.0.12 • JILI ID 397 (#105801)</span>
+                <span id="roundWagerText">No.2026100201</span>
+            </div>
+        </div>
+
+        <!-- =========================================================
+             FLOATING BANNERS (Please Bet Now / Bet Locked / Extra Pay / Result / Win)
+             ========================================================= -->
+        <div class="jili-declare-banner" id="declareBanner">
+            <span class="jili-declare-text" id="declareBannerText">Please Bet Now</span>
+        </div>
+
+        <div class="jili-result-board" id="resultBoard">
+            <!-- 6 sorted winning dice sprites -->
+        </div>
+
+        <div class="jili-win-overlay" id="winOverlay">
+            <div class="jili-win-title">WIN!</div>
+            <div class="jili-win-amount" id="winOverlayAmount">+0</div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         OFFICIAL JILI LIVE 3D ENGINE MODAL (Loads casino-wbgame.jiligames.com)
+         ========================================================= -->
+    <div id="jiliLive3DModal">
+        <div class="jili-live-bar">
+            <span>👑 <b>JILI Jhandi Munda (#105801)</b> — Official Live 3D Cocos Engine</span>
+            <button class="jili-live-close" onclick="closeOfficialJili3D()">✕ Return to Wallet Table</button>
+        </div>
+        <iframe id="jiliLiveIframe" style="width:100%; flex:1; border:none; background:#000;" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <!-- =========================================================
+         OFFICIAL JILI PAYTABLE & RULES MODAL
+         ========================================================= -->
+    <div id="jiliHelpModal" onclick="closeHelpModal()">
+        <div class="jili-help-card" onclick="event.stopPropagation()">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid rgba(255,215,150,0.3); padding-bottom:6px;">
+                <h3 style="color:#ffd470; font-size:15px;">JILI Jhandi Munda — Official Rules (#105801)</h3>
+                <button onclick="closeHelpModal()" style="background:none; border:none; color:#ffd470; font-size:16px; font-weight:900; cursor:pointer;">✕</button>
+            </div>
+            <p style="margin-bottom:8px;">
+                Jhandi Munda is played with <b>6 six-sided symbol dice</b> (Heart, Spade, Crown, Diamond, Flag, Club). Place your chips during the 14-second countdown or tap the wooden shaker cup to roll immediately!
+            </p>
+            <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,200,110,0.35); border-radius:10px; padding:8px; margin-bottom:8px;">
+                <div style="color:#ffd470; font-weight:800; margin-bottom:4px;">Single Symbol Payouts (2+ matching dice win):</div>
+                <div>• 2 Matching Dice: <b>1 : 2.5</b> (Total Return <b>3x</b>, Extra Pay <b>6x</b>)</div>
+                <div>• 3 Matching Dice: <b>1 : 5</b> (Total Return <b>5x</b>, Extra Pay <b>10x</b>)</div>
+                <div>• 4 Matching Dice: <b>1 : 10</b> (Total Return <b>10x</b>, Extra Pay <b>20x</b>)</div>
+                <div>• 5 Matching Dice: <b>1 : 20</b> (Total Return <b>20x</b>, Extra Pay <b>40x</b>)</div>
+                <div>• 6 Matching Dice: <b>1 : 100</b> (Total Return <b>100x</b>, Extra Pay <b>200x</b>)</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,200,110,0.35); border-radius:10px; padding:8px;">
+                <div style="color:#ffd470; font-weight:800; margin-bottom:4px;">Any 2 Dice Combination (Bottom 15-Grid):</div>
+                <div>• Both chosen symbols appear on at least 1 die each: <b>1 : 5</b> (Extra Pay <b>1 : 8</b>)</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =====================================================================
+           100% ORIGINAL JILI JHANDI MUNDA (GameID 397 / 1xBet #105801)
+           Exact Assets, Audio MP3s, Payout Math, Countdown & Wallet Sync
+           ===================================================================== */
+
+        const SPRITE_DIR = '../assets/games/jhandi_munda/jili_sprites/';
+        const AUDIO_DIR  = '../assets/games/jhandi_munda/jili_raw/audio/';
+
+        // Exact 6 JILI Symbols in GameView AreaNode 0..5 order
+        const JILI_SYMBOLS = [
+            { id: 0, key: 'heart',   name: 'Heart',   betImg: 'MG_09_Bet_heart.png',   diceImg: 'MG_09_Bet_Dice_heart.png',   roadImg: 'MG_Road_Dice_Heart.png' },
+            { id: 1, key: 'spade',   name: 'Spade',   betImg: 'MG_09_Bet_spade.png',   diceImg: 'MG_09_Bet_Dice_spade.png',   roadImg: 'MG_Road_Dice_Spade.png' },
+            { id: 2, key: 'crown',   name: 'Crown',   betImg: 'MG_09_Bet_crown.png',   diceImg: 'MG_09_Bet_Dice_crown.png',   roadImg: 'MG_Road_Dice_Crown.png' },
+            { id: 3, key: 'diamond', name: 'Diamond', betImg: 'MG_09_Bet_diamand.png', diceImg: 'MG_09_Bet_Dice_diamand.png', roadImg: 'MG_Road_Dice_Diamond.png' },
+            { id: 4, key: 'flag',    name: 'Flag',    betImg: 'MG_09_Bet_flag.png',    diceImg: 'MG_09_Bet_Dice_flag.png',    roadImg: 'MG_Road_Dice_Flag.png' },
+            { id: 5, key: 'club',    name: 'Club',    betImg: 'MG_09_Bet_club.png',    diceImg: 'MG_09_Bet_Dice_club.png',    roadImg: 'MG_Road_Dice_Club.png' }
+        ];
+
+        // All 15 Two-Symbol Combinations (Any 2 Dice grid)
+        const JILI_PAIRS = [];
+        for (let i = 0; i < 6; i++) {
+            for (let j = i + 1; j < 6; j++) {
+                JILI_PAIRS.push({ key: `pair_${i}_${j}`, s1: i, s2: j });
+            }
+        }
+
+        // Exact JILI SingleRate & SingleExtraPayMultiple from game_index.js
+        const SINGLE_RATE      = { 0: 0, 1: 0, 2: 3, 3: 5, 4: 10, 5: 20, 6: 100 };
+        const SINGLE_EXTRA_PAY = { 0: 0, 1: 0, 2: 6, 3: 10, 4: 20, 5: 40, 6: 200 };
+        const PAIR_RATE        = 5;
+        const PAIR_EXTRA_RATE  = 8;
+
+        // Official JILI Audio Clips
+        const jiliAudio = {};
+        const AUDIO_FILES = [
+            'bgm', 'Btn_01', 'Btn_02', 'BetArea_01', 'BetArea_02',
+            'Win_BetArea', 'Multiplier_Win', 'Multiplier_Show',
+            'chipTray_01_open', 'chipTray_02_close',
+            'state_01_PleaseBetNow', 'state_02_BetLock', 'state_03_ExtraPay',
+            'Dice_VN', 'Win_Coin', 'ClickBet_NPC', 'ClickBet_Player',
+            'Count_Alert', 'Count_HurryUp'
+        ];
+        let soundEnabled = true;
+        let bgmStarted = false;
+
+        AUDIO_FILES.forEach(name => {
+            const a = new Audio(`${AUDIO_DIR}${name}.mp3`);
+            if (name === 'bgm') {
+                a.loop = true;
+                a.volume = 0.38;
+            } else {
+                a.volume = 0.85;
+            }
+            jiliAudio[name] = a;
+        });
+
+        function playJiliSfx(name) {
+            if (!soundEnabled) return;
+            if (!bgmStarted && jiliAudio['bgm']) {
+                bgmStarted = true;
+                jiliAudio['bgm'].play().catch(() => { bgmStarted = false; });
+            }
+            const clip = jiliAudio[name];
+            if (!clip) return;
+            try {
+                clip.currentTime = 0;
+                clip.play().catch(() => {});
+            } catch (e) {}
+        }
+
+        function toggleJiliSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundToggleBtn');
+            btn.innerText = soundEnabled ? '🔊' : '🔇';
+            if (jiliAudio['bgm']) {
+                if (soundEnabled) {
+                    bgmStarted = true;
+                    jiliAudio['bgm'].play().catch(() => {});
+                } else {
+                    jiliAudio['bgm'].pause();
+                }
+            }
+        }
+
+        // Start BGM on first user interaction
+        document.addEventListener('pointerdown', () => {
+            if (soundEnabled && !bgmStarted && jiliAudio['bgm']) {
+                bgmStarted = true;
+                jiliAudio['bgm'].play().catch(() => { bgmStarted = false; });
+            }
+        }, { once: false });
+
+        // --- Wallet Integration ---
+        function getWalletBalance() {
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                return Number(window.wallet.getBalance()) || 0;
+            }
+            return parseFloat(localStorage.getItem('user_balance') || '10000');
+        }
+
+        function formatCompact(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+            return Math.floor(num).toString();
+        }
+
+        function refreshWalletUI() {
+            const bal = getWalletBalance();
+            const el = document.getElementById('walletBalanceText');
+            if (el) el.innerText = Math.floor(bal).toLocaleString();
+        }
+
+        // --- Game State ---
+        let chipValues = [10, 50, 100, 500, 1000, 5000];
+        let selectedChipIdx = 2; // default 100
+        let myBets = {};        // areaKey -> amount
+        let npcBets = {};       // areaKey -> amount
+        let betStack = [];      // undo stack: [{ areaKey, amount }]
+        let lastValidBets = {}; // for Again / Auto rebet
+        let extraPayKeys = [];  // symbols or pairs boosted this round
+        let roundHistory = [
+            [0, 1, 2, 3, 4, 5],
+            [4, 4, 2, 1, 0, 5],
+            [2, 2, 2, 0, 3, 4],
+            [1, 5, 5, 3, 3, 0],
+            [4, 0, 0, 2, 1, 4],
+            [3, 3, 1, 2, 5, 4]
+        ];
+        let roundCounter = 2026100201;
+        let roomState = 'IDLE'; // 'BET' | 'SETTLE'
+        let countdownSec = 14;
+        let countdownTimer = null;
+        let npcInterval = null;
+        let isAutoPlay = false;
+
+        // --- Build UI Boards ---
+        function buildMainSymbolGrid() {
+            const grid = document.getElementById('mainSymbolGrid');
+            grid.innerHTML = '';
+            JILI_SYMBOLS.forEach(sym => {
+                const areaKey = `sym_${sym.id}`;
+                myBets[areaKey] = 0;
+                npcBets[areaKey] = 0;
+
+                const cell = document.createElement('div');
+                cell.className = 'jili-area-cell';
+                cell.id = `cell_${areaKey}`;
+                cell.onclick = () => placeBetOnArea(areaKey);
+
+                cell.innerHTML = `
+                    <img src="${SPRITE_DIR}MG_09_Bet_Dice_bg.png" class="jili-area-tile-bg" alt="">
+                    <div class="jili-area-bet-bar" id="betbar_${areaKey}">
+                        <img src="${SPRITE_DIR}MG_Player_Money_Mark.png" alt="">
+                        <span id="betval_${areaKey}">0</span>
+                    </div>
+                    <div class="jili-extra-badge" id="extra_${areaKey}">6X</div>
+                    <img src="${SPRITE_DIR}${sym.betImg}" class="jili-area-symbol" alt="${sym.name}">
+                    <div class="jili-chip-marker mine" id="minechip_${areaKey}">
+                        <img src="${SPRITE_DIR}Chip_Base_2_small.png" id="minechip_img_${areaKey}" alt="">
+                        <span id="minechip_txt_${areaKey}">0</span>
+                    </div>
+                    <div class="jili-chip-marker npc" id="npcchip_${areaKey}">
+                        <img src="${SPRITE_DIR}Chip_Base_Other_small.png" alt="">
+                        <span id="npcchip_txt_${areaKey}">0</span>
+                    </div>
+                    <div class="jili-area-history-row" id="histrow_${sym.id}"></div>
+                `;
+                grid.appendChild(cell);
+            });
+            updateCellHistoryBadges();
+        }
+
+        function buildTwoDiceGrid() {
+            const grid = document.getElementById('twoDiceGrid');
+            // Keep header tag
+            grid.innerHTML = '<span class="jili-twodice-header-tag">ANY 2 DICE • 1:5</span>';
+            JILI_PAIRS.forEach(pair => {
+                myBets[pair.key] = 0;
+                npcBets[pair.key] = 0;
+                const s1 = JILI_SYMBOLS[pair.s1];
+                const s2 = JILI_SYMBOLS[pair.s2];
+
+                const cell = document.createElement('div');
+                cell.className = 'jili-pair-cell';
+                cell.id = `cell_${pair.key}`;
+                cell.onclick = () => placeBetOnArea(pair.key);
+
+                cell.innerHTML = `
+                    <img src="${SPRITE_DIR}${s1.betImg}" class="pair-sym" alt="${s1.name}">
+                    <img src="${SPRITE_DIR}${s2.betImg}" class="pair-sym" alt="${s2.name}">
+                    <div class="jili-pair-chip" id="minechip_${pair.key}">
+                        <img src="${SPRITE_DIR}Chip_Base_2_small.png" id="minechip_img_${pair.key}" alt="">
+                        <span id="minechip_txt_${pair.key}">0</span>
+                    </div>
+                `;
+                grid.appendChild(cell);
+            });
+        }
+
+        function buildChipsBar() {
+            const container = document.getElementById('chipsContainer');
+            container.innerHTML = '';
+            chipValues.forEach((val, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'jili-chip-btn' + (idx === selectedChipIdx ? ' selected' : '');
+                btn.onclick = () => {
+                    selectedChipIdx = idx;
+                    playJiliSfx('Btn_02');
+                    buildChipsBar();
+                };
+                btn.innerHTML = `
+                    <img src="${SPRITE_DIR}Chip_Base_${idx}.png" alt="${val}">
+                    <span>${formatCompact(val)}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function getChipSpriteIndexByAmount(amt) {
+            for (let i = chipValues.length - 1; i >= 0; i--) {
+                if (amt >= chipValues[i]) return i;
+            }
+            return 0;
+        }
+
+        // Update the 5-round history badges at the bottom of each of the 6 symbol cells
+        // Exact JILI logic: 0 or 1 match -> Mg_09_Bet_Dice_History_X.png; 2..6 matches -> Mg_09_Bet_Dice_History_2..6.png
+        function updateCellHistoryBadges() {
+            const last5 = roundHistory.slice(-5);
+            JILI_SYMBOLS.forEach(sym => {
+                const row = document.getElementById(`histrow_${sym.id}`);
+                if (!row) return;
+                row.innerHTML = '';
+                last5.forEach(draw => {
+                    const count = draw.filter(d => d === sym.id).length;
+                    const badgeFile = count >= 2
+                        ? `Mg_09_Bet_Dice_History_${count}.png`
+                        : `Mg_09_Bet_Dice_History_X.png`;
+                    const img = document.createElement('img');
+                    img.src = `${SPRITE_DIR}${badgeFile}`;
+                    img.alt = count >= 2 ? `${count}` : 'X';
+                    row.appendChild(img);
+                });
+            });
+            updateRoadmapUI();
+        }
+
+        function updateRoadmapUI() {
+            const latest = roundHistory[roundHistory.length - 1] || [0, 1, 2, 3, 4, 5];
+            const mini = document.getElementById('latestRoadMini');
+            if (mini) {
+                mini.innerHTML = latest.map(id =>
+                    `<img src="${SPRITE_DIR}${JILI_SYMBOLS[id].roadImg}" alt="">`
+                ).join('');
+            }
+
+            // Symbol percentage rates across history
+            const totalDice = roundHistory.length * 6;
+            const counts = [0, 0, 0, 0, 0, 0];
+            roundHistory.forEach(draw => draw.forEach(id => counts[id]++));
+
+            const ratesGrid = document.getElementById('roadRatesGrid');
+            if (ratesGrid) {
+                ratesGrid.innerHTML = JILI_SYMBOLS.map(sym => {
+                    const pct = totalDice > 0 ? Math.round((counts[sym.id] / totalDice) * 100) : 16;
+                    return `
+                        <div class="jili-rate-col">
+                            <img src="${SPRITE_DIR}${sym.roadImg}" alt="${sym.name}">
+                            <span>${pct}%</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Columns of 6 dice
+            const colsEl = document.getElementById('roadHistoryCols');
+            if (colsEl) {
+                const recent = roundHistory.slice(-8);
+                colsEl.innerHTML = recent.map((draw, idx) => {
+                    const isNewest = idx === recent.length - 1;
+                    const sorted = sortDrawByFrequency(draw);
+                    return `
+                        <div class="jili-road-col ${isNewest ? 'newest' : ''}">
+                            ${sorted.map(id => `<img src="${SPRITE_DIR}${JILI_SYMBOLS[id].roadImg}" alt="">`).join('')}
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        // Exact JILI sortByFrequency from GameEndLayerCtr
+        function sortDrawByFrequency(draw) {
+            const map = new Map();
+            for (const r of draw) map.set(r, (map.get(r) || 0) + 1);
+            const entries = Array.from(map.entries()).sort((a, b) => a[1] === b[1] ? a[0] - b[0] : b[1] - a[1]);
+            const out = [];
+            for (const [id, freq] of entries) {
+                for (let k = 0; k < freq; k++) out.push(id);
+            }
+            return out;
+        }
+
+        // --- Banner Helper ---
+        function showDeclareBanner(text, isExtra = false, durationMs = 1350) {
+            const banner = document.getElementById('declareBanner');
+            const txtEl = document.getElementById('declareBannerText');
+            banner.classList.toggle('extrapay-banner', isExtra);
+            txtEl.innerText = text;
+            banner.classList.add('show');
+            setTimeout(() => {
+                banner.classList.remove('show');
+            }, durationMs);
+        }
+
+        // --- Betting Logic ---
+        function getTotalMyBet() {
+            return Object.values(myBets).reduce((a, b) => a + b, 0);
+        }
+
+        function placeBetOnArea(areaKey, customAmount = null, recordUndo = true) {
+            if (roomState !== 'BET') return false;
+            const chipVal = customAmount !== null ? customAmount : chipValues[selectedChipIdx];
+            const currentTotal = getTotalMyBet();
+            const bal = getWalletBalance();
+
+            if (currentTotal + chipVal > bal) {
+                showDeclareBanner('Insufficient Balance', false, 1100);
+                return false;
+            }
+
+            myBets[areaKey] = (myBets[areaKey] || 0) + chipVal;
+            if (recordUndo) {
+                betStack.push({ areaKey, amount: chipVal });
+            }
+            playJiliSfx('ClickBet_Player');
+            updateAreaBetUI(areaKey);
+            updateTotalBetAndButtons();
+            return true;
+        }
+
+        function updateAreaBetUI(areaKey) {
+            const amt = myBets[areaKey] || 0;
+            const chipEl = document.getElementById(`minechip_${areaKey}`);
+            const chipImg = document.getElementById(`minechip_img_${areaKey}`);
+            const chipTxt = document.getElementById(`minechip_txt_${areaKey}`);
+
+            if (chipEl && chipImg && chipTxt) {
+                if (amt > 0) {
+                    const cIdx = getChipSpriteIndexByAmount(amt);
+                    chipImg.src = `${SPRITE_DIR}Chip_Base_${cIdx}_small.png`;
+                    chipTxt.innerText = formatCompact(amt);
+                    chipEl.classList.remove('active');
+                    void chipEl.offsetWidth;
+                    chipEl.classList.add('active');
+                } else {
+                    chipEl.classList.remove('active');
+                }
+            }
+
+            // If single symbol cell, also update top bet bar
+            const barEl = document.getElementById(`betbar_${areaKey}`);
+            const valEl = document.getElementById(`betval_${areaKey}`);
+            if (barEl && valEl) {
+                if (amt > 0) {
+                    valEl.innerText = amt.toLocaleString();
+                    barEl.classList.add('active');
+                } else {
+                    barEl.classList.remove('active');
+                }
+            }
+        }
+
+        function updateNpcAreaUI(areaKey) {
+            const amt = npcBets[areaKey] || 0;
+            const npcEl = document.getElementById(`npcchip_${areaKey}`);
+            const npcTxt = document.getElementById(`npcchip_txt_${areaKey}`);
+            if (npcEl && npcTxt) {
+                if (amt > 0) {
+                    npcTxt.innerText = formatCompact(amt);
+                    npcEl.classList.add('active');
+                } else {
+                    npcEl.classList.remove('active');
+                }
+            }
+        }
+
+        function updateTotalBetAndButtons() {
+            const total = getTotalMyBet();
+            document.getElementById('totalBetText').innerText = total.toLocaleString();
+            // Show live remaining balance while betting
+            const bal = getWalletBalance();
+            document.getElementById('walletBalanceText').innerText = Math.max(0, Math.floor(bal - total)).toLocaleString();
+
+            const inBet = roomState === 'BET';
+            document.getElementById('btnUndo').disabled = !inBet || betStack.length === 0;
+            document.getElementById('btnClear').disabled = !inBet || total === 0;
+            document.getElementById('btnDouble').disabled = !inBet || total === 0;
+            const hasPrev = Object.values(lastValidBets).reduce((a, b) => a + b, 0) > 0;
+            document.getElementById('btnAgain').disabled = !inBet || !hasPrev;
+        }
+
+        function handleUndoBet() {
+            if (roomState !== 'BET' || betStack.length === 0) return;
+            playJiliSfx('Btn_01');
+            const last = betStack.pop();
+            myBets[last.areaKey] = Math.max(0, (myBets[last.areaKey] || 0) - last.amount);
+            updateAreaBetUI(last.areaKey);
+            updateTotalBetAndButtons();
+        }
+
+        function handleClearBets() {
+            if (roomState !== 'BET') return;
+            playJiliSfx('Btn_01');
+            Object.keys(myBets).forEach(k => {
+                myBets[k] = 0;
+                updateAreaBetUI(k);
+            });
+            betStack = [];
+            updateTotalBetAndButtons();
+        }
+
+        function handleDoubleBet() {
+            if (roomState !== 'BET') return;
+            const total = getTotalMyBet();
+            if (total <= 0) return;
+            if (total * 2 > getWalletBalance()) {
+                showDeclareBanner('Insufficient Balance', false, 1100);
+                return;
+            }
+            playJiliSfx('Btn_02');
+            Object.keys(myBets).forEach(k => {
+                if (myBets[k] > 0) {
+                    const add = myBets[k];
+                    myBets[k] += add;
+                    betStack.push({ areaKey: k, amount: add });
+                    updateAreaBetUI(k);
+                }
+            });
+            updateTotalBetAndButtons();
+        }
+
+        function handleAgainBet() {
+            if (roomState !== 'BET') return;
+            const prevTotal = Object.values(lastValidBets).reduce((a, b) => a + b, 0);
+            if (prevTotal <= 0) return;
+            if (getTotalMyBet() + prevTotal > getWalletBalance()) {
+                showDeclareBanner('Insufficient Balance', false, 1100);
+                return;
+            }
+            playJiliSfx('Btn_02');
+            Object.entries(lastValidBets).forEach(([k, val]) => {
+                if (val > 0) {
+                    placeBetOnArea(k, val, true);
+                }
+            });
+        }
+
+        function toggleAutoPlay() {
+            isAutoPlay = !isAutoPlay;
+            playJiliSfx('Btn_02');
+            const icon = document.getElementById('autoBtnIcon');
+            icon.src = isAutoPlay
+                ? `${SPRITE_DIR}MG_11_button_stop.png`
+                : `${SPRITE_DIR}MG_11_button_auto.png`;
+            if (isAutoPlay && roomState === 'BET' && getTotalMyBet() === 0) {
+                handleAgainBet();
+            }
+        }
+
+        // Tap the wooden cup during betting to lock & roll immediately if player already placed a bet
+        function forceRollNow() {
+            if (roomState === 'BET' && getTotalMyBet() > 0 && countdownSec > 1) {
+                clearInterval(countdownTimer);
+                lockAndSettleRound();
+            }
+        }
+
+        // --- JILI 14-Second Round Loop (Exact mainGame + GameEndLayerCtr sequence) ---
+        function startBettingRound() {
+            roomState = 'BET';
+            countdownSec = 14;
+            roundCounter++;
+            document.getElementById('roundWagerText').innerText = `No.${roundCounter}`;
+            document.getElementById('npcCountLabel').innerText = Math.floor(22 + Math.random() * 14);
+
+            // Reset board highlights, extra badges, and bets
+            Object.keys(myBets).forEach(k => {
+                myBets[k] = 0;
+                npcBets[k] = 0;
+                updateAreaBetUI(k);
+                updateNpcAreaUI(k);
+                const cell = document.getElementById(`cell_${k}`);
+                if (cell) cell.classList.remove('win-glow', 'grey-locked');
+                const ex = document.getElementById(`extra_${k}`);
+                if (ex) ex.classList.remove('active');
+            });
+            betStack = [];
+            extraPayKeys = [];
+            document.getElementById('resultBoard').classList.remove('show');
+            document.getElementById('winOverlay').classList.remove('show');
+
+            // Cover the shaker plate with the wooden cup ready for the new round
+            const cup = document.getElementById('woodenCup');
+            cup.classList.remove('cup-open', 'cup-shaking');
+            cup.classList.add('cup-closed');
+
+            refreshWalletUI();
+            updateTotalBetAndButtons();
+
+            // Official JILI "Please Bet Now" voiceover & banner
+            playJiliSfx('state_01_PleaseBetNow');
+            showDeclareBanner('Please Bet Now', false, 1400);
+
+            // If Auto Play is active, automatically rebet previous valid bets
+            if (isAutoPlay) {
+                setTimeout(() => {
+                    if (roomState === 'BET' && getTotalMyBet() === 0) {
+                        handleAgainBet();
+                    }
+                }, 600);
+            }
+
+            // Simulate NPC players placing chips on the 6 symbols
+            clearInterval(npcInterval);
+            npcInterval = setInterval(() => {
+                if (roomState !== 'BET') return;
+                const randSym = Math.floor(Math.random() * 6);
+                const key = `sym_${randSym}`;
+                const randChip = chipValues[Math.floor(Math.random() * 3)];
+                npcBets[key] = (npcBets[key] || 0) + randChip;
+                updateNpcAreaUI(key);
+                if (Math.random() < 0.35) playJiliSfx('ClickBet_NPC');
+            }, 950);
+
+            updateCountdownUI();
+            clearInterval(countdownTimer);
+            countdownTimer = setInterval(() => {
+                countdownSec--;
+                updateCountdownUI();
+                if (countdownSec <= 3 && countdownSec > 0) {
+                    playJiliSfx('Count_Alert');
+                } else if (countdownSec === 4) {
+                    playJiliSfx('Count_HurryUp');
+                }
+                if (countdownSec <= 0) {
+                    clearInterval(countdownTimer);
+                    lockAndSettleRound();
+                }
+            }, 1000);
+        }
+
+        function updateCountdownUI() {
+            const numEl = document.getElementById('countdownNum');
+            const ringEl = document.getElementById('clockRingLight');
+            const arcEl = document.getElementById('clockArc');
+            numEl.innerText = Math.max(0, countdownSec);
+
+            const pct = Math.max(0, countdownSec) / 14;
+            const dashOffset = 270 * (1 - pct);
+            arcEl.style.strokeDashoffset = dashOffset;
+
+            if (countdownSec <= 3) {
+                numEl.classList.add('alert-red');
+                ringEl.src = `${SPRITE_DIR}MG_07_count_bg_red_light.png`;
+                arcEl.setAttribute('stroke', '#ff3b3b');
+            } else {
+                numEl.classList.remove('alert-red');
+                ringEl.src = `${SPRITE_DIR}MG_07_count_bg_light.png`;
+                arcEl.setAttribute('stroke', '#ffd859');
+            }
+        }
+
+        function lockAndSettleRound() {
+            roomState = 'SETTLE';
+            clearInterval(npcInterval);
+            updateTotalBetAndButtons();
+
+            const totalMyBet = getTotalMyBet();
+
+            // Deduct player bet from real wallet
+            if (totalMyBet > 0) {
+                if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                    const ok = window.wallet.placeBet(totalMyBet, 'Jhandi Munda');
+                    if (!ok) {
+                        // Reset bets if wallet rejected
+                        Object.keys(myBets).forEach(k => { myBets[k] = 0; updateAreaBetUI(k); });
+                    } else {
+                        lastValidBets = { ...myBets };
+                    }
+                } else {
+                    const bal = getWalletBalance();
+                    localStorage.setItem('user_balance', Math.max(0, bal - totalMyBet).toString());
+                    lastValidBets = { ...myBets };
+                }
+                refreshWalletUI();
+            }
+
+            // Step 1: Official JILI "Bet Locked" voiceover & banner
+            playJiliSfx('state_02_BetLock');
+            showDeclareBanner('Bet Locked', false, 1200);
+
+            // Grey out unbet cells if player placed any bets
+            if (getTotalMyBet() > 0) {
+                Object.keys(myBets).forEach(k => {
+                    if ((myBets[k] || 0) <= 0) {
+                        const c = document.getElementById(`cell_${k}`);
+                        if (c) c.classList.add('grey-locked');
+                    }
+                });
+            }
+
+            // Step 2: After 1.1s, trigger JILI Extra Pay Lightning on 1 or 2 random symbols
+            setTimeout(() => {
+                const boostCount = Math.random() < 0.45 ? 2 : 1;
+                const indices = [0, 1, 2, 3, 4, 5].sort(() => Math.random() - 0.5).slice(0, boostCount);
+                extraPayKeys = indices.map(i => `sym_${i}`);
+
+                playJiliSfx('state_03_ExtraPay');
+                showDeclareBanner('Extra Pay', true, 1250);
+
+                setTimeout(() => {
+                    playJiliSfx('Multiplier_Show');
+                    extraPayKeys.forEach(k => {
+                        const badge = document.getElementById(`extra_${k}`);
+                        if (badge) {
+                            badge.innerText = '6X+';
+                            badge.classList.add('active');
+                        }
+                    });
+                }, 450);
+
+                // Step 3: Shake the 3D Wooden Cup vigorously with official Dice_VN.mp3
+                setTimeout(() => {
+                    const cup = document.getElementById('woodenCup');
+                    cup.classList.remove('cup-open');
+                    cup.classList.add('cup-shaking');
+                    playJiliSfx('Dice_VN');
+
+                    // Tumble the 6 dice inside the plate
+                    for (let i = 0; i < 6; i++) {
+                        document.getElementById(`plateDie${i}`).classList.add('tumbling');
+                    }
+
+                    // Roll 6 fair dice (0..5)
+                    const draw = [];
+                    const counts = [0, 0, 0, 0, 0, 0];
+                    for (let i = 0; i < 6; i++) {
+                        const face = Math.floor(Math.random() * 6);
+                        draw.push(face);
+                        counts[face]++;
+                    }
+
+                    // Step 4: Lift wooden cup to reveal the 6 dice & pop up ResultBoard
+                    setTimeout(() => {
+                        for (let i = 0; i < 6; i++) {
+                            const dieEl = document.getElementById(`plateDie${i}`);
+                            dieEl.classList.remove('tumbling');
+                            dieEl.src = `${SPRITE_DIR}${JILI_SYMBOLS[draw[i]].diceImg}`;
+                        }
+                        cup.classList.remove('cup-shaking', 'cup-closed');
+                        cup.classList.add('cup-open');
+
+                        // Record in history & update badges
+                        roundHistory.push(draw);
+                        if (roundHistory.length > 30) roundHistory.shift();
+                        updateCellHistoryBadges();
+
+                        // Show floating 6-dice ResultBoard sorted by frequency
+                        const sortedDraw = sortDrawByFrequency(draw);
+                        const resBoard = document.getElementById('resultBoard');
+                        resBoard.innerHTML = sortedDraw.map(id =>
+                            `<img src="${SPRITE_DIR}${JILI_SYMBOLS[id].diceImg}" alt="">`
+                        ).join('');
+                        resBoard.classList.add('show');
+
+                        // Step 5: Highlight winning areas & calculate exact JILI payout
+                        setTimeout(() => {
+                            settlePayouts(draw, counts);
+                        }, 650);
+
+                    }, 1350);
+                }, 1250);
+            }, 1100);
+        }
+
+        function settlePayouts(draw, counts) {
+            let totalWin = 0;
+            let hitExtra = false;
+
+            // Clear grey-lock from winning symbols and lock non-winning symbols
+            JILI_SYMBOLS.forEach(sym => {
+                const key = `sym_${sym.id}`;
+                const cell = document.getElementById(`cell_${key}`);
+                const c = counts[sym.id];
+                const isExtra = extraPayKeys.includes(key);
+
+                if (c >= 2) {
+                    cell.classList.remove('grey-locked');
+                    cell.classList.add('win-glow');
+                    const mult = isExtra ? SINGLE_EXTRA_PAY[c] : SINGLE_RATE[c];
+                    const badge = document.getElementById(`extra_${key}`);
+                    if (isExtra && badge) {
+                        badge.innerText = `${mult}X`;
+                    }
+                    if ((myBets[key] || 0) > 0) {
+                        totalWin += myBets[key] * mult;
+                        if (isExtra) hitExtra = true;
+                    }
+                } else {
+                    cell.classList.add('grey-locked');
+                    const badge = document.getElementById(`extra_${key}`);
+                    if (badge) badge.classList.remove('active');
+                }
+            });
+
+            // Check all 15 Two-Dice Combinations (win if both symbols have count >= 1)
+            JILI_PAIRS.forEach(pair => {
+                const cell = document.getElementById(`cell_${pair.key}`);
+                const winPair = counts[pair.s1] >= 1 && counts[pair.s2] >= 1;
+                if (winPair) {
+                    cell.classList.remove('grey-locked');
+                    cell.classList.add('win-glow');
+                    if ((myBets[pair.key] || 0) > 0) {
+                        totalWin += myBets[pair.key] * PAIR_RATE;
+                    }
+                } else {
+                    cell.classList.add('grey-locked');
+                }
+            });
+
+            playJiliSfx('Win_BetArea');
+            if (hitExtra) {
+                setTimeout(() => playJiliSfx('Multiplier_Win'), 300);
+            }
+
+            const totalMyBet = getTotalMyBet();
+            if (totalWin > 0) {
+                if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                    window.wallet.creditWin(totalMyBet, totalWin, 'Jhandi Munda', +(totalWin / Math.max(1, totalMyBet)).toFixed(2), 'JILI Jhandi Munda Win');
+                } else {
+                    const bal = getWalletBalance();
+                    localStorage.setItem('user_balance', (bal + totalWin).toString());
+                }
+                refreshWalletUI();
+                playJiliSfx('Win_Coin');
+
+                const winOv = document.getElementById('winOverlay');
+                document.getElementById('winOverlayAmount').innerText = `+${Math.floor(totalWin).toLocaleString()}`;
+                winOv.classList.add('show');
+
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 55, spread: 65, origin: { y: 0.55 } });
+                }
+            }
+
+            // Start next round after 3.4s
+            setTimeout(() => {
+                startBettingRound();
+            }, 3400);
+        }
+
+        // --- UI Dropdowns & Modals ---
+        function toggleMinMaxDropdown(e) {
+            e.stopPropagation();
+            playJiliSfx('Btn_02');
+            document.getElementById('minMaxDropdown').classList.toggle('open');
+        }
+
+        function selectRoomRange(level, minTxt, maxTxt, chips) {
+            playJiliSfx('Btn_01');
+            document.getElementById('minBetLabel').innerText = minTxt;
+            document.getElementById('maxBetLabel').innerText = maxTxt;
+            chipValues = chips;
+            selectedChipIdx = 1;
+            buildChipsBar();
+            document.querySelectorAll('.jili-minmax-item').forEach((el, idx) => {
+                el.classList.toggle('active', idx === level);
+            });
+            document.getElementById('minMaxDropdown').classList.remove('open');
+        }
+
+        function toggleRoadmapDrawer(e) {
+            e.stopPropagation();
+            playJiliSfx('Btn_02');
+            document.getElementById('roadmapDrawer').classList.toggle('open');
+        }
+
+        function openHelpModal() {
+            playJiliSfx('Btn_02');
+            document.getElementById('jiliHelpModal').classList.add('open');
+        }
+        function closeHelpModal() {
+            document.getElementById('jiliHelpModal').classList.remove('open');
+        }
+
+        function openOfficialJili3D() {
+            playJiliSfx('Btn_02');
+            const modal = document.getElementById('jiliLive3DModal');
+            const iframe = document.getElementById('jiliLiveIframe');
+            iframe.src = '../api/jili_jhandi_munda.php?t=' + Date.now();
+            modal.classList.add('active');
+        }
+        function closeOfficialJili3D() {
+            const modal = document.getElementById('jiliLive3DModal');
+            const iframe = document.getElementById('jiliLiveIframe');
+            iframe.src = 'about:blank';
+            modal.classList.remove('active');
+        }
+
+        document.addEventListener('click', () => {
+            document.getElementById('minMaxDropdown').classList.remove('open');
+            document.getElementById('roadmapDrawer').classList.remove('open');
+        });
+
+        // --- Initialize Game on Load ---
+        window.addEventListener('DOMContentLoaded', () => {
+            buildMainSymbolGrid();
+            buildTwoDiceGrid();
+            buildChipsBar();
+            refreshWalletUI();
+
+            setTimeout(() => {
+                document.getElementById('jiliLogoPage').classList.add('hidden-loader');
+                startBettingRound();
+            }, 1450);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Speedy Andar Bahar | Bet With Net</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <script src="../js/wallet.js"></script>
+    <style>
+        :root {
+            --gold: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #fff7c2 0%, #ffd700 35%, #d4af37 70%, #8a5a00 100%);
+            --bg-dark: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000000;
+        }
+
+        /* Fullscreen Game Container - 100% Untouched Native View */
+        .ab-game-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="ab-game-container" id="gameFrameWrap">
+        <iframe 
+            id="gameIframe" 
+            class="game-iframe" 
+            src="/games/ab_engine/index.html?currency=PKR&lang=en&test=1&v=20261012_smooth_v1" 
+            allow="fullscreen; autoplay; screen-wake-lock; orientation"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        // Real wallet balance retriever
+        function getRealBalance() {
+            let bal = 0;
+            if (typeof getRealWalletBalance === 'function') {
+                bal = getRealWalletBalance();
+            } else if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                bal = window.wallet.getBalance();
+            } else {
+                try {
+                    const u = JSON.parse(localStorage.getItem('bwn_session_user') || localStorage.getItem('currentUser') || 'null');
+                    if (u && (u.balance_pkr !== undefined || u.balancePKR !== undefined)) {
+                        bal = parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : u.balancePKR);
+                    } else if (u && u.balance !== undefined) {
+                        bal = parseFloat(u.balance);
+                    } else {
+                        const l = localStorage.getItem("BETWITHNET_balance");
+                        if (l !== null) bal = parseFloat(l);
+                    }
+                } catch(e) {}
+            }
+            if (isNaN(bal) || bal < 0) bal = 0;
+            return bal;
+        }
+
+        window.getRealBalance = getRealBalance;
+
+        // Bridge function called when player taps inside game table to bet
+        window.placeRealBetFromGame = function(amount, betOption) {
+            amount = parseFloat(amount) || 0;
+            if (amount <= 0) return false;
+
+            if (window.wallet && window.wallet.state) {
+                window.wallet.state.currency = 'PKR';
+            }
+
+            const bal = getRealBalance();
+            if (amount > bal) {
+                console.warn(`[BWN BET] Balance insufficient! Current: ${bal}, Required: ${amount}`);
+                return false;
+            }
+
+            let ok = false;
+            if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                ok = window.wallet.placeBet(amount, `Speedy Andar Bahar (${betOption})`);
+            } else if (window.wallet && typeof window.wallet.addBalancePKR === 'function') {
+                window.wallet.addBalancePKR(-amount, `Speedy Andar Bahar (${betOption})`);
+                ok = true;
+            } else {
+                const newBal = Math.max(0, bal - amount);
+                localStorage.setItem("BETWITHNET_balance", newBal.toString());
+                ok = true;
+            }
+
+            try {
+                const cur = getRealBalance();
+                localStorage.setItem("BETWITHNET_balance", cur.toString());
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    u.balance_pkr = cur;
+                    u.balancePKR = cur;
+                    u.balance_usd = parseFloat((cur / 280).toFixed(2));
+                    u.balanceUSD = u.balance_usd;
+                    localStorage.setItem('bwn_session_user', JSON.stringify(u));
+                }
+            } catch(e) {}
+
+            if (ok) {
+                console.log(`[BWN BET] In-game bet placed: Rs. ${amount} on ${betOption}`);
+                return true;
+            }
+            return false;
+        };
+
+        // Bridge function called when in-game round results in a win
+        window.winRealBetFromGame = function(stake, multiplier, winAmount, betOption) {
+            winAmount = parseFloat(winAmount) || 0;
+            if (winAmount <= 0) return;
+            stake = parseFloat(stake) || 0;
+            betOption = betOption || 'Andar Bahar';
+
+            console.log(`[BWN WIN] Crediting win payout: Rs. ${winAmount} (stake: ${stake}, opt: ${betOption})`);
+
+            if (window.wallet && window.wallet.state) {
+                window.wallet.state.currency = 'PKR';
+            }
+
+            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                window.wallet.creditWin(stake, winAmount, `Speedy Andar Bahar (${betOption})`, multiplier || 1);
+            } else if (window.wallet && typeof window.wallet.addBalancePKR === 'function') {
+                window.wallet.addBalancePKR(winAmount);
+            } else {
+                const currentBal = getRealBalance();
+                const newBal = currentBal + winAmount;
+                localStorage.setItem("BETWITHNET_balance", newBal.toString());
+            }
+
+            try {
+                const cur = getRealBalance();
+                localStorage.setItem("BETWITHNET_balance", cur.toString());
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    u.balance_pkr = cur;
+                    u.balancePKR = cur;
+                    u.balance_usd = parseFloat((cur / 280).toFixed(2));
+                    u.balanceUSD = u.balance_usd;
+                    localStorage.setItem('bwn_session_user', JSON.stringify(u));
+                }
+            } catch(e) {}
+        };
+
+        // Bridge function called when player cancels or undoes bet before round starts
+        window.refundRealBetFromGame = function(amount, betOption) {
+            amount = parseFloat(amount) || 0;
+            if (amount <= 0) return;
+
+            if (window.wallet && window.wallet.state) {
+                window.wallet.state.currency = 'PKR';
+            }
+
+            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                window.wallet.creditWin(amount, amount, `Speedy Andar Bahar Refund (${betOption})`, 1, 'Refund');
+            } else if (window.wallet && typeof window.wallet.addBalancePKR === 'function') {
+                window.wallet.addBalancePKR(amount);
+            } else {
+                const bal = getRealBalance();
+                const newBal = bal + amount;
+                localStorage.setItem("BETWITHNET_balance", newBal.toString());
+            }
+
+            try {
+                const cur = getRealBalance();
+                localStorage.setItem("BETWITHNET_balance", cur.toString());
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    u.balance_pkr = cur;
+                    u.balancePKR = cur;
+                    u.balance_usd = parseFloat((cur / 280).toFixed(2));
+                    u.balanceUSD = u.balance_usd;
+                    localStorage.setItem('bwn_session_user', JSON.stringify(u));
+                }
+            } catch(e) {}
+
+            console.log(`[BWN REFUND] Refund: Rs. ${amount} on ${betOption}`);
+        };
+
+        async function syncSession() {
+            try {
+                const token = localStorage.getItem('token') || localStorage.getItem('auth_token') || localStorage.getItem('bwn_auth_token');
+                if (token) {
+                    const res = await fetch('/api/user/me', {
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                    const data = await res.json();
+                    if (data && data.success && data.data) {
+                        localStorage.setItem('bwn_session_user', JSON.stringify(data.data));
+                        if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                            window.wallet.syncWithUser(data.data);
+                        }
+                    }
+                }
+            } catch(e) {}
+        }
+
+        function reloadGame() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe) iframe.src = iframe.src;
+        }
+
+        function toggleFullscreen() {
+            const wrap = document.getElementById('gameFrameWrap');
+            if (!document.fullscreenElement) {
+                if (wrap.requestFullscreen) {
+                    wrap.requestFullscreen();
+                } else if (wrap.webkitRequestFullscreen) {
+                    wrap.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        window.addEventListener('load', () => {
+            syncSession();
+            if (window.wallet && typeof window.wallet.on === 'function') {
+                window.wallet.on('change', () => {});
+                window.wallet.on('balanceChange', () => {});
+            }
+            window.addEventListener('focus', syncSession);
+        });
+    </script>
+</body>
+</html>

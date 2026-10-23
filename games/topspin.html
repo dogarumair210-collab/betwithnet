@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TopSpin 3D - Multi-Theme Gyro Royale | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           5 SPECTACULAR CASINO THEMES & GRAPHICS
+           ------------------------------------------------------------- */
+        :root {
+            --ts-bg: #060911;
+            --ts-bg-gradient: radial-gradient(circle at 50% 25%, #1b2640 0%, #0b0f1c 55%, #040508 100%);
+            --ts-surface: rgba(18, 26, 42, 0.78);
+            --ts-card-bg: rgba(22, 33, 54, 0.68);
+            --ts-card-border: rgba(255, 215, 0, 0.25);
+            --ts-gold: #ffd700;
+            --ts-gold-glow: rgba(255, 215, 0, 0.45);
+            --ts-gold-gradient: linear-gradient(135deg, #fff3a8 0%, #ffd700 45%, #d4af37 80%, #996515 100%);
+            --ts-accent: #ffd700;
+            --ts-text-dim: #94a3b8;
+            --ts-radius-lg: 20px;
+            --ts-radius-md: 14px;
+            --ts-radius-sm: 8px;
+            --ts-font-heading: 'Cinzel', 'Inter', -apple-system, sans-serif;
+            --ts-font-mono: 'JetBrains Mono', monospace;
+        }
+
+        /* 1. ROYALE 24K GOLD & VELVET */
+        body.theme-royale {
+            --ts-bg: #070913;
+            --ts-bg-gradient: radial-gradient(circle at 50% 25%, #1b2640 0%, #0b0f1c 55%, #040508 100%);
+            --ts-card-border: rgba(255, 215, 0, 0.25);
+            --ts-gold-glow: rgba(255, 215, 0, 0.45);
+            --ts-accent: #ffd700;
+            --ts-gold: #ffd700;
+            --ts-gold-gradient: linear-gradient(135deg, #fff3a8 0%, #ffd700 45%, #d4af37 80%, #996515 100%);
+        }
+
+        /* 2. CYBERPUNK 2077 */
+        body.theme-cyber {
+            --ts-bg: #050414;
+            --ts-bg-gradient: radial-gradient(circle at 50% 25%, #241045 0%, #0d061f 55%, #03010a 100%);
+            --ts-card-border: rgba(0, 240, 255, 0.35);
+            --ts-gold-glow: rgba(0, 240, 255, 0.55);
+            --ts-accent: #00f0ff;
+            --ts-gold: #00f0ff;
+            --ts-gold-gradient: linear-gradient(135deg, #e0ffff 0%, #00f0ff 45%, #0091ea 80%, #7c4dff 100%);
+        }
+
+        /* 3. MACAU JADE VIP */
+        body.theme-emerald {
+            --ts-bg: #02120a;
+            --ts-bg-gradient: radial-gradient(circle at 50% 25%, #0e3d24 0%, #051a0e 55%, #010804 100%);
+            --ts-card-border: rgba(0, 230, 118, 0.32);
+            --ts-gold-glow: rgba(0, 230, 118, 0.45);
+            --ts-accent: #00e676;
+            --ts-gold: #00e676;
+            --ts-gold-gradient: linear-gradient(135deg, #dcfce7 0%, #00e676 45%, #059669 80%, #d4af37 100%);
+        }
+
+        /* 4. COSMIC NEBULA */
+        body.theme-galaxy {
+            --ts-bg: #060312;
+            --ts-bg-gradient: radial-gradient(circle at 50% 25%, #220b42 0%, #0a0418 55%, #020106 100%);
+            --ts-card-border: rgba(179, 136, 255, 0.35);
+            --ts-gold-glow: rgba(179, 136, 255, 0.5);
+            --ts-accent: #b388ff;
+            --ts-gold: #b388ff;
+            --ts-gold-gradient: linear-gradient(135deg, #f3e8ff 0%, #b388ff 45%, #7c4dff 80%, #311b92 100%);
+        }
+
+        /* 5. INFERNO MAGMA */
+        body.theme-inferno {
+            --ts-bg: #140402;
+            --ts-bg-gradient: radial-gradient(circle at 50% 25%, #3d0c04 0%, #1a0502 55%, #080100 100%);
+            --ts-card-border: rgba(255, 87, 34, 0.35);
+            --ts-gold-glow: rgba(255, 69, 0, 0.5);
+            --ts-accent: #ff5722;
+            --ts-gold: #ff7043;
+            --ts-gold-gradient: linear-gradient(135deg, #ffccbc 0%, #ff5722 45%, #d84315 80%, #bf360c 100%);
+        }
+
+        /* -------------------------------------------------------------
+           RESET & FULL VIEWPORT
+           ------------------------------------------------------------- */
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-header-slot, #app-bottom-nav-slot, #app-luxury-footer,
+        .luxury-casino-footer, .app-bottom-nav, .hero-banner,
+        #bwn-sound-toggle-fixed, .bwn-sound-toggle-btn, #bwn-game-splash {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        body.game-page.bg-wheel {
+            background-color: var(--ts-bg) !important;
+            background-image: var(--ts-bg-gradient) !important;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        /* Ambient Dynamic Light Flares */
+        .ts-ambient-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .ambient-spot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.16;
+            animation: pulseLight 8s ease-in-out infinite alternate;
+        }
+        .spot-1 { width: 340px; height: 340px; background: var(--ts-accent); top: -40px; left: 50%; transform: translateX(-50%); }
+        .spot-2 { width: 280px; height: 280px; background: #ff1744; bottom: 12%; left: -60px; }
+        .spot-3 { width: 280px; height: 280px; background: #00b0ff; bottom: 12%; right: -60px; }
+
+        @keyframes pulseLight {
+            0% { transform: scale(0.9) translateY(0); opacity: 0.12; }
+            100% { transform: scale(1.15) translateY(20px); opacity: 0.22; }
+        }
+
+        /* -------------------------------------------------------------
+           MAIN CONTAINER
+           ------------------------------------------------------------- */
+        .ts-app-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 12px 14px 28px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* VIP Topbar */
+        .ts-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--ts-surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--ts-card-border);
+            border-radius: var(--ts-radius-md);
+            padding: 8px 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            gap: 6px;
+        }
+
+        .ts-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .ts-back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            padding: 5px 8px;
+            border-radius: var(--ts-radius-sm);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .ts-back-btn:hover {
+            background: rgba(255, 215, 0, 0.18);
+            border-color: var(--ts-gold);
+            color: #ffffff;
+        }
+
+        .ts-title-badge {
+            display: flex;
+            flex-direction: column;
+        }
+        .ts-title-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .ts-title-text {
+            font-family: var(--ts-font-heading);
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            background: var(--ts-gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+        .ts-rtp-badge {
+            font-size: 9px;
+            font-weight: 800;
+            color: #00e676;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .ts-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .ts-ctrl-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            border-radius: var(--ts-radius-sm);
+            padding: 5px 7px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .ts-ctrl-btn:hover {
+            background: rgba(255, 215, 0, 0.18);
+            border-color: var(--ts-gold);
+        }
+
+        /* Animated Music Equalizer Visualizer */
+        .ts-music-btn {
+            position: relative;
+        }
+        .music-eq-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 1.5px;
+            height: 11px;
+            width: 10px;
+        }
+        .eq-bar {
+            width: 2px;
+            background: var(--ts-gold);
+            border-radius: 1px;
+            height: 3px;
+            transition: height 0.15s;
+        }
+        .ts-music-btn.music-playing .bar-1 {
+            animation: bounceBar1 0.65s infinite alternate ease-in-out;
+        }
+        .ts-music-btn.music-playing .bar-2 {
+            animation: bounceBar2 0.5s infinite alternate ease-in-out 0.12s;
+        }
+        .ts-music-btn.music-playing .bar-3 {
+            animation: bounceBar3 0.6s infinite alternate ease-in-out 0.25s;
+        }
+        @keyframes bounceBar1 {
+            0% { height: 2px; }
+            100% { height: 10px; }
+        }
+        @keyframes bounceBar2 {
+            0% { height: 3px; }
+            100% { height: 11px; }
+        }
+        @keyframes bounceBar3 {
+            0% { height: 2px; }
+            100% { height: 9px; }
+        }
+        .ts-music-btn.muted .eq-bar {
+            background: #64748b;
+            height: 2px !important;
+            animation: none !important;
+        }
+        .ts-music-btn.muted #ts-music-label {
+            color: #94a3b8;
+        }
+
+        .ts-wallet-hud {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid var(--ts-card-border);
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .ts-wallet-hud .wallet-icon {
+            font-size: 13px;
+        }
+        .ts-wallet-hud .wallet-bal {
+            font-family: var(--ts-font-mono);
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--ts-gold);
+        }
+
+        /* -------------------------------------------------------------
+           RECENT HISTORY / STREAK TICKER
+           ------------------------------------------------------------- */
+        .ts-history-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 16, 28, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--ts-radius-sm);
+            padding: 6px 10px;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .ts-history-bar::-webkit-scrollbar { display: none; }
+        .ts-history-label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            color: var(--ts-text-dim);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .ts-history-chips {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+        }
+        .history-pill {
+            font-family: var(--ts-font-mono);
+            font-size: 9.5px;
+            font-weight: 800;
+            border: 1px solid transparent;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 7px;
+            border-radius: 12px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            animation: chipSlide 0.3s ease-out;
+        }
+        .history-pill .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        @keyframes chipSlide {
+            0% { transform: scale(0.6) translateY(-4px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        /* -------------------------------------------------------------
+           3D GYRO ARENA STAGE
+           ------------------------------------------------------------- */
+        .ts-arena-card {
+            background: var(--ts-surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--ts-card-border);
+            border-radius: var(--ts-radius-lg);
+            padding: 16px 12px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .ts-arena-glow-ring {
+            position: absolute;
+            top: 24px;
+            width: 290px;
+            height: 290px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--ts-gold-glow) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+            transition: background 0.3s;
+        }
+
+        /* Spring-Loaded 3D Needle Pointer */
+        .ts-pointer-wrap {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: -16px;
+        }
+
+        .ts-needle {
+            width: 28px;
+            height: 38px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.85));
+            transform-origin: 50% 15%;
+            transition: transform 0.05s ease-out;
+        }
+
+        .needle-tick {
+            animation: pointerBounce 0.07s ease-out;
+        }
+
+        @keyframes pointerBounce {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(-7deg) scale(1.08); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        .ts-canvas-holder {
+            position: relative;
+            z-index: 3;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #topspin-canvas {
+            display: block;
+            border-radius: 50%;
+        }
+
+        /* Interactive Status Banner */
+        .status-banner {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: var(--ts-radius-sm);
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--ts-gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+        .status-banner.active-spin {
+            border-color: var(--ts-accent);
+            color: var(--ts-accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .status-banner.win {
+            border-color: #00e676;
+            color: #00e676;
+            background: rgba(0, 230, 118, 0.16);
+            animation: pulseWin 0.6s infinite alternate;
+        }
+        .status-banner.loss {
+            border-color: #ff3b30;
+            color: #ff5252;
+            background: rgba(255, 59, 48, 0.14);
+        }
+        .status-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulseDot 0.8s infinite;
+        }
+        @keyframes pulseDot {
+            0% { transform: scale(0.6); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.6); opacity: 0.4; }
+        }
+        @keyframes pulseWin {
+            0% { box-shadow: 0 0 12px rgba(0, 230, 118, 0.3); }
+            100% { box-shadow: 0 0 24px rgba(0, 230, 118, 0.7); }
+        }
+
+        /* -------------------------------------------------------------
+           4-QUADRANT TACTILE BETTING GRID
+           ------------------------------------------------------------- */
+        .ts-quad-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .ts-quad-card {
+            background: var(--ts-card-bg);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--ts-radius-md);
+            padding: 12px 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .ts-quad-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .ts-quad-card:active {
+            transform: scale(0.97);
+        }
+
+        .ts-quad-card.active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Sector Color Borders & Accents */
+        .ts-quad-card[data-quad="1"] { border-top: 3px solid #ff1744; }
+        .ts-quad-card[data-quad="1"].active {
+            border-color: #ff1744;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 23, 68, 0.28) 0%, rgba(22, 33, 54, 0.8) 100%);
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.45);
+        }
+
+        .ts-quad-card[data-quad="2"] { border-top: 3px solid #00e676; }
+        .ts-quad-card[data-quad="2"].active {
+            border-color: #00e676;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 230, 118, 0.28) 0%, rgba(22, 33, 54, 0.8) 100%);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.45);
+        }
+
+        .ts-quad-card[data-quad="3"] { border-top: 3px solid #00b0ff; }
+        .ts-quad-card[data-quad="3"].active {
+            border-color: #00b0ff;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 176, 255, 0.28) 0%, rgba(22, 33, 54, 0.8) 100%);
+            box-shadow: 0 0 20px rgba(0, 176, 255, 0.45);
+        }
+
+        .ts-quad-card[data-quad="4"] { border-top: 3px solid #ffd600; }
+        .ts-quad-card[data-quad="4"].active {
+            border-color: #ffd600;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 214, 0, 0.28) 0%, rgba(22, 33, 54, 0.8) 100%);
+            box-shadow: 0 0 20px rgba(255, 214, 0, 0.45);
+        }
+
+        .quad-name-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .quad-num-badge {
+            font-size: 13px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(0,0,0,0.5);
+            font-family: var(--ts-font-mono);
+        }
+        .quad-symbol {
+            font-size: 13px;
+        }
+        .quad-title {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .quad-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2px;
+        }
+        .quad-payout {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--ts-gold);
+            font-family: var(--ts-font-mono);
+            background: rgba(255, 215, 0, 0.1);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+        .quad-prob {
+            font-size: 10px;
+            color: var(--ts-text-dim);
+            font-weight: 600;
+        }
+
+        /* 3D Casino Chip Badge on Active Card */
+        .chip-badge {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff1a8 0%, #ffd700 50%, #b38600 100%);
+            border: 2px dashed #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: chipDrop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 5;
+        }
+        .chip-badge span {
+            font-family: var(--ts-font-mono);
+            font-size: 7.5px;
+            font-weight: 900;
+            color: #0b0700;
+        }
+        @keyframes chipDrop {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* -------------------------------------------------------------
+           3D REALISTIC CASINO CHIPS SELECTOR
+           ------------------------------------------------------------- */
+        .ts-control-panel {
+            background: var(--ts-surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--ts-card-border);
+            border-radius: var(--ts-radius-lg);
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+        }
+
+        .ts-chip-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 4px 2px;
+        }
+
+        /* 3D Casino Chip Button Graphic */
+        .casino-chip-3d {
+            flex: 1;
+            min-width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2.5px dashed rgba(255, 255, 255, 0.6);
+            color: #ffffff;
+            font-family: var(--ts-font-mono);
+            font-size: 11px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+            position: relative;
+        }
+        .casino-chip-3d:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.5);
+        }
+        .casino-chip-3d:active {
+            transform: scale(0.94);
+        }
+
+        /* Chip Color Variations */
+        .chip-50 {
+            background: radial-gradient(circle at 35% 35%, #64b5f6 0%, #1976d2 60%, #0d47a1 100%);
+        }
+        .chip-100 {
+            background: radial-gradient(circle at 35% 35%, #e57373 0%, #d32f2f 60%, #b71c1c 100%);
+        }
+        .chip-250 {
+            background: radial-gradient(circle at 35% 35%, #81c784 0%, #388e3c 60%, #1b5e20 100%);
+        }
+        .chip-500 {
+            background: radial-gradient(circle at 35% 35%, #ba68c8 0%, #7b1fa2 60%, #4a148c 100%);
+        }
+        .chip-1000 {
+            background: radial-gradient(circle at 35% 35%, #78909c 0%, #37474f 60%, #212121 100%);
+            border-color: #ffd700;
+        }
+        .chip-5000 {
+            background: radial-gradient(circle at 35% 35%, #fff176 0%, #fbc02d 50%, #f57f17 100%);
+            color: #0b0700;
+            border-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Bet Input & Modifiers */
+        .ts-bet-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .ts-input-wrap {
+            flex: 1;
+            position: relative;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: var(--ts-radius-sm);
+            display: flex;
+            align-items: center;
+            padding: 2px 10px;
+            transition: border-color 0.2s;
+        }
+        .ts-input-wrap:focus-within {
+            border-color: var(--ts-gold);
+            box-shadow: 0 0 10px var(--ts-gold-glow);
+        }
+        .ts-curr-prefix {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--ts-gold);
+            margin-right: 6px;
+        }
+        .ts-bet-field {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: var(--ts-font-mono);
+            font-size: 15px;
+            font-weight: 800;
+            outline: none;
+            padding: 8px 0;
+        }
+
+        .ts-modifier-group {
+            display: flex;
+            gap: 5px;
+        }
+        .mod-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            border-radius: var(--ts-radius-sm);
+            padding: 8px 11px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mod-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--ts-gold);
+            color: #ffffff;
+        }
+        .mod-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Master Spin Action Button */
+        .ts-spin-action-btn {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: var(--ts-radius-md);
+            background: var(--ts-gold-gradient);
+            color: #0d0900;
+            font-family: var(--ts-font-heading);
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .ts-spin-action-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px var(--ts-gold-glow);
+        }
+        .ts-spin-action-btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+        .ts-spin-action-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+            filter: grayscale(0.2);
+        }
+
+        .ts-spin-action-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transform: rotate(25deg);
+            animation: goldShimmer 3.2s infinite;
+        }
+        @keyframes goldShimmer {
+            0% { left: -60%; }
+            35% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        .spin-loader-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2.5px solid rgba(0,0,0,0.25);
+            border-top-color: #000000;
+            border-radius: 50%;
+            animation: spinLoader 0.6s linear infinite;
+        }
+        @keyframes spinLoader {
+            to { transform: rotate(360deg); }
+        }
+
+        /* -------------------------------------------------------------
+           GRAPHICAL THEME SELECTOR MODAL
+           ------------------------------------------------------------- */
+        .ts-themes-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            padding: 16px;
+        }
+        .ts-themes-modal-overlay.open {
+            display: flex;
+        }
+        .ts-themes-dialog {
+            background: radial-gradient(circle at 50% 20%, #1c263c 0%, #0d121e 100%);
+            border: 2px solid var(--ts-gold);
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px var(--ts-gold-glow);
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+        }
+        .ts-theme-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ts-theme-modal-title {
+            font-family: var(--ts-font-heading);
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--ts-gold);
+        }
+        .ts-modal-x-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 800;
+        }
+        .ts-theme-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ts-theme-choice-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ts-theme-choice-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(3px);
+        }
+        .ts-theme-choice-card.active {
+            border-color: var(--ts-gold);
+            background: rgba(255, 215, 0, 0.14);
+            box-shadow: 0 0 14px var(--ts-gold-glow);
+        }
+        .theme-choice-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .theme-choice-icon {
+            font-size: 20px;
+        }
+        .theme-choice-info {
+            flex: 1;
+        }
+        .theme-choice-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .theme-choice-desc {
+            font-size: 10.5px;
+            color: var(--ts-text-dim);
+        }
+        .theme-active-pill {
+            font-size: 9px;
+            font-weight: 900;
+            background: var(--ts-gold-gradient);
+            color: #000000;
+            padding: 2px 7px;
+            border-radius: 10px;
+        }
+        .theme-swatches-row {
+            display: flex;
+            gap: 6px;
+            padding-left: 28px;
+        }
+        .swatch-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* -------------------------------------------------------------
+           WIN OVERLAY CELEBRATION
+           ------------------------------------------------------------- */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .ts-win-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .ts-win-modal-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .ts-win-card {
+            background: radial-gradient(circle at 50% 20%, #1c263c 0%, #0d121e 100%);
+            border: 2px solid var(--ts-gold);
+            border-radius: 24px;
+            padding: 26px 28px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px var(--ts-gold-glow);
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .ts-win-modal-overlay.visible .ts-win-card {
+            transform: scale(1);
+        }
+        .ts-win-trophy {
+            font-size: 52px;
+            animation: trophyBounce 1s infinite alternate;
+        }
+        @keyframes trophyBounce {
+            0% { transform: translateY(0) scale(0.95); }
+            100% { transform: translateY(-8px) scale(1.05); }
+        }
+        .ts-win-title {
+            font-family: var(--ts-font-heading);
+            font-size: 22px;
+            font-weight: 900;
+            background: var(--ts-gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 6px;
+        }
+        .ts-win-amount {
+            font-family: var(--ts-font-mono);
+            font-size: 28px;
+            font-weight: 900;
+            color: #00e676;
+            margin: 10px 0;
+            text-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+        }
+        .ts-win-sector {
+            font-size: 13px;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+        .ts-win-claim-btn {
+            margin-top: 18px;
+            width: 100%;
+            padding: 11px 16px;
+            background: var(--ts-gold-gradient);
+            border: none;
+            border-radius: var(--ts-radius-sm);
+            font-weight: 900;
+            color: #0a0700;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .ts-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #111827;
+            border: 1px solid var(--ts-gold);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1001;
+            white-space: nowrap;
+        }
+        .ts-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .ts-toast.error {
+            border-color: #ff3b30;
+            background: #240a0a;
+            color: #ff8080;
+        }
+
+        /* Rules Modal */
+        .ts-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .ts-modal-overlay.open { display: flex; }
+        .ts-modal-box {
+            background: #0f172a;
+            border: 1px solid var(--ts-card-border);
+            border-radius: 18px;
+            padding: 22px;
+            width: 90%;
+            max-width: 360px;
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .ts-modal-box h3 {
+            font-family: var(--ts-font-heading);
+            color: var(--ts-gold);
+            margin-bottom: 12px;
+        }
+        .ts-modal-close-btn {
+            margin-top: 14px;
+            width: 100%;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="game-page bg-wheel theme-royale">
+
+    <!-- Native Background Music Audio Element for instant mobile autoplay -->
+    <audio id="ts-bgm-audio" src="../assets/audio/topspin_bgm.mp3" loop preload="auto"></audio>
+
+    <!-- Ambient Dynamic Lighting -->
+    <div class="ts-ambient-lights">
+        <div class="ambient-spot spot-1"></div>
+        <div class="ambient-spot spot-2"></div>
+        <div class="ambient-spot spot-3"></div>
+    </div>
+
+    <!-- Celebration Confetti Overlay -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Theme Selection Modal -->
+    <div class="ts-themes-modal-overlay" id="ts-themes-modal" onclick="window.topSpinGame.closeThemeModal()">
+        <div class="ts-themes-dialog" onclick="event.stopPropagation()">
+            <div class="ts-theme-header">
+                <div class="ts-theme-modal-title">🎨 Select Casino Theme</div>
+                <button class="ts-modal-x-btn" onclick="window.topSpinGame.closeThemeModal()">✕</button>
+            </div>
+            <div class="ts-theme-cards-list" id="ts-theme-cards-list">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Modal Popup -->
+    <div class="ts-win-modal-overlay" id="ts-win-modal" onclick="window.topSpinGame.closeWinModal()">
+        <div class="ts-win-card" onclick="event.stopPropagation()">
+            <div class="ts-win-trophy">🏆</div>
+            <div class="ts-win-title">BIG WINNER!</div>
+            <div class="ts-win-amount" id="ts-win-modal-amount">Rs. 384.00</div>
+            <div class="ts-win-sector" id="ts-win-modal-sector">Matched Sector 🔴 1 RED</div>
+            <button class="ts-win-claim-btn" onclick="window.topSpinGame.closeWinModal()">COLLECT WIN 💰</button>
+        </div>
+    </div>
+
+    <!-- Rules Modal -->
+    <div class="ts-modal-overlay" id="ts-rules-modal" onclick="document.getElementById('ts-rules-modal').classList.remove('open')">
+        <div class="ts-modal-box" onclick="event.stopPropagation()">
+            <h3>🌀 TopSpin 3D Rules</h3>
+            <p>1. <b>Choose Your Quadrant:</b> Tap RED (1), GREEN (2), BLUE (3), or YELLOW (4).</p>
+            <p>2. <b>Place Your Stake:</b> Select chips or type bet amount.</p>
+            <p>3. <b>Spin The Gyro Top:</b> Top accelerates up to 3,200 RPM and decelerates with realistic physical precession.</p>
+            <p>4. <b>Win 3.84× Payout:</b> If the top pointer settles on your selected quadrant, you win <b>3.84×</b> your stake instantly!</p>
+            
+            <div style="margin-top:12px; padding:10px; background:rgba(255,255,255,0.06); border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
+                <div style="font-weight:800; color:var(--ts-gold); margin-bottom:6px;">🎵 Music Tracks:</div>
+                <div style="display:flex; gap:6px;">
+                    <button class="ts-ctrl-btn" style="flex:1;" onclick="window.topSpinGame.switchMusicTrack(0)">🎡 Track 1: Sweet Spin</button>
+                    <button class="ts-ctrl-btn" style="flex:1;" onclick="window.topSpinGame.switchMusicTrack(1)">🎷 Track 2: VIP Lounge</button>
+                </div>
+            </div>
+
+            <p style="margin-top:10px; font-size:11px; color:#94a3b8;">• RTP: 97.8% | Certified RNG Fair</p>
+            <button class="ts-modal-close-btn" onclick="document.getElementById('ts-rules-modal').classList.remove('open')">Got It</button>
+        </div>
+    </div>
+
+    <!-- Main Game Container -->
+    <div class="ts-app-container">
+
+        <!-- VIP Navigation Bar -->
+        <header class="ts-navbar">
+            <div class="ts-nav-left">
+                <a href="../casino.html" class="ts-back-btn">
+                    <span>←</span> Lobby
+                </a>
+                <div class="ts-title-badge">
+                    <div class="ts-title-row">
+                        <span style="font-size:16px;">🌀</span>
+                        <span class="ts-title-text">TOPSPIN 3D</span>
+                    </div>
+                    <span class="ts-rtp-badge">97.8% VIP RTP</span>
+                </div>
+            </div>
+
+            <div class="ts-nav-right">
+                <!-- Theme Modal Button -->
+                <button class="ts-ctrl-btn" onclick="window.topSpinGame.openThemeModal()" title="Switch Themes">
+                    <span id="ts-current-theme-name">👑 Royale</span>
+                </button>
+                <!-- Music Toggle Button -->
+                <button class="ts-ctrl-btn ts-music-btn" id="ts-music-btn" onclick="window.topSpinGame.toggleMusic()" title="Toggle Background Music">
+                    <span class="music-eq-bars" id="ts-music-eq">
+                        <span class="eq-bar bar-1"></span>
+                        <span class="eq-bar bar-2"></span>
+                        <span class="eq-bar bar-3"></span>
+                    </span>
+                    <span id="ts-music-label">Music</span>
+                </button>
+                <!-- Sound Toggle -->
+                <button class="ts-ctrl-btn" onclick="window.topSpinGame.toggleSound()" title="Toggle Sound FX">
+                    <span id="ts-sound-icon">🔊</span>
+                </button>
+                <!-- Rules -->
+                <button class="ts-ctrl-btn" onclick="document.getElementById('ts-rules-modal').classList.add('open')" title="Help & Rules">
+                    <span>ℹ️</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Live Wallet Balance Bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:0 4px;">
+            <div style="font-size:11px; font-weight:700; color:var(--ts-text-dim); display:flex; align-items:center; gap:5px;">
+                <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#00e676;"></span>
+                LIVE CASINO DESK
+            </div>
+            <div class="ts-wallet-hud">
+                <span class="wallet-icon">🪙</span>
+                <span class="wallet-bal" id="ts-wallet-balance">Rs. 0.00</span>
+            </div>
+        </div>
+
+        <!-- Recent Spins Streak Bar -->
+        <div class="ts-history-bar">
+            <span class="ts-history-label">Last Spins:</span>
+            <div class="ts-history-chips" id="ts-history-chips">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- 3D Gyroscope Arena Stage -->
+        <div class="ts-arena-card">
+            <div class="ts-arena-glow-ring"></div>
+
+            <!-- Mechanical 3D Pointer Needle -->
+            <div class="ts-pointer-wrap">
+                <svg id="ts-needle-pointer" class="ts-needle" viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="needleGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fff8db" />
+                            <stop offset="40%" stop-color="#ffd700" />
+                            <stop offset="80%" stop-color="#b8860b" />
+                            <stop offset="100%" stop-color="#664600" />
+                        </linearGradient>
+                        <radialGradient id="needleRuby" cx="40%" cy="40%" r="50%">
+                            <stop offset="0%" stop-color="#ff8099" />
+                            <stop offset="50%" stop-color="#ff1744" />
+                            <stop offset="100%" stop-color="#7a0014" />
+                        </radialGradient>
+                    </defs>
+                    <path d="M14 36 L4 10 Q3 4 14 2 Q25 4 24 10 Z" fill="url(#needleGold)" stroke="#ffd700" stroke-width="1.2"/>
+                    <circle cx="14" cy="11" r="4.5" fill="url(#needleRuby)" stroke="#ffffff" stroke-width="1"/>
+                    <circle cx="12.5" cy="9.5" r="1.2" fill="#ffffff"/>
+                </svg>
+            </div>
+
+            <!-- High-DPI 3D Canvas -->
+            <div class="ts-canvas-holder">
+                <canvas id="topspin-canvas" width="280" height="280"></canvas>
+            </div>
+
+            <!-- Dynamic Live Status Banner -->
+            <div id="ts-status-banner" class="status-banner">
+                <span class="status-pulse-dot"></span>
+                <span>Select Quadrant & Spin Desi Top</span>
+            </div>
+
+            <!-- 4-Quadrant Betting Grid -->
+            <div class="ts-quad-grid">
+                <!-- 1. RED -->
+                <div class="ts-quad-card active" data-quad="1" onclick="window.topSpinGame.selectQuad(1)">
+                    <div class="quad-name-row">
+                        <span class="quad-num-badge" style="color:#ff1744;">#1</span>
+                        <span class="quad-symbol">👑</span>
+                        <span class="quad-title" style="color:#ff5252;">RED</span>
+                    </div>
+                    <div class="quad-meta-row">
+                        <span class="quad-payout">3.84×</span>
+                        <span class="quad-prob">25% Win</span>
+                    </div>
+                </div>
+
+                <!-- 2. GREEN -->
+                <div class="ts-quad-card" data-quad="2" onclick="window.topSpinGame.selectQuad(2)">
+                    <div class="quad-name-row">
+                        <span class="quad-num-badge" style="color:#00e676;">#2</span>
+                        <span class="quad-symbol">🍀</span>
+                        <span class="quad-title" style="color:#69f0ae;">GREEN</span>
+                    </div>
+                    <div class="quad-meta-row">
+                        <span class="quad-payout">3.84×</span>
+                        <span class="quad-prob">25% Win</span>
+                    </div>
+                </div>
+
+                <!-- 3. BLUE -->
+                <div class="ts-quad-card" data-quad="3" onclick="window.topSpinGame.selectQuad(3)">
+                    <div class="quad-name-row">
+                        <span class="quad-num-badge" style="color:#00b0ff;">#3</span>
+                        <span class="quad-symbol">💎</span>
+                        <span class="quad-title" style="color:#80d8ff;">BLUE</span>
+                    </div>
+                    <div class="quad-meta-row">
+                        <span class="quad-payout">3.84×</span>
+                        <span class="quad-prob">25% Win</span>
+                    </div>
+                </div>
+
+                <!-- 4. YELLOW -->
+                <div class="ts-quad-card" data-quad="4" onclick="window.topSpinGame.selectQuad(4)">
+                    <div class="quad-name-row">
+                        <span class="quad-num-badge" style="color:#ffd600;">#4</span>
+                        <span class="quad-symbol">⚡</span>
+                        <span class="quad-title" style="color:#ffe57f;">YELLOW</span>
+                    </div>
+                    <div class="quad-meta-row">
+                        <span class="quad-payout">3.84×</span>
+                        <span class="quad-prob">25% Win</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Betting Controls -->
+        <div class="ts-control-panel">
+            <!-- 3D Realistic Casino Chips Selector -->
+            <div class="ts-chip-selector">
+                <button class="casino-chip-3d chip-50" onclick="window.topSpinGame.setQuickBet(50)">50</button>
+                <button class="casino-chip-3d chip-100" onclick="window.topSpinGame.setQuickBet(100)">100</button>
+                <button class="casino-chip-3d chip-250" onclick="window.topSpinGame.setQuickBet(250)">250</button>
+                <button class="casino-chip-3d chip-500" onclick="window.topSpinGame.setQuickBet(500)">500</button>
+                <button class="casino-chip-3d chip-1000" onclick="window.topSpinGame.setQuickBet(1000)">1K</button>
+                <button class="casino-chip-3d chip-5000" onclick="window.topSpinGame.setQuickBet(5000)">5K</button>
+            </div>
+
+            <!-- Custom Bet Input & Multipliers -->
+            <div class="ts-bet-row">
+                <div class="ts-input-wrap">
+                    <span class="ts-curr-prefix">Rs.</span>
+                    <input type="number" id="ts-bet-input" class="ts-bet-field" value="100" min="10" step="10" oninput="window.topSpinGame.updateChipPlacement(window.topSpinGame.selectedQuad)">
+                </div>
+                <div class="ts-modifier-group">
+                    <button class="mod-btn" onclick="window.topSpinGame.modifyBet('half')">½</button>
+                    <button class="mod-btn" onclick="window.topSpinGame.modifyBet('double')">2×</button>
+                    <button class="mod-btn" onclick="window.topSpinGame.modifyBet('max')">MAX</button>
+                </div>
+            </div>
+
+            <!-- Master CTA Spin Button -->
+            <button id="ts-spin-btn" class="ts-spin-action-btn" onclick="window.topSpinGame.spin()">
+                ⚡ SPIN GYRO TOP 🌀
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Ensure guest/demo session is available so visitors can play right away
+        try {
+            if (!localStorage.getItem('bwn_session_user') && !localStorage.getItem('currentUser')) {
+                const demoUser = { id: 'guest_' + Math.floor(Math.random()*8999+1000), username: "VIP Guest", balance_pkr: 5000, balancePKR: 5000 };
+                localStorage.setItem('bwn_session_user', JSON.stringify(demoUser));
+                if (!localStorage.getItem('BETWITHNET_balance')) {
+                    localStorage.setItem('BETWITHNET_balance', '5000');
+                }
+            }
+        } catch(e) {}
+    </script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/topspin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.core && typeof window.core.init === 'function') {
+                window.core.init('casino');
+            }
+            if (window.topSpinGame && typeof window.topSpinGame.init === 'function') {
+                window.topSpinGame.init();
+            }
+        });
+    </script>
+</body>
+</html>

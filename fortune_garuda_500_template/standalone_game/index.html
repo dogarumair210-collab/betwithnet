@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Fortune Garuda 500 - Official Standalone Slot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/game_style.css">
+</head>
+<body>
+
+    <!-- JILI Official Loading Screen -->
+    <div id="jiliSplash" class="jili-splash-overlay">
+        <div class="jili-splash-stage">
+            <img src="assets/jili_wordmark_tight.png" alt="JILI Games" class="jili-brand-logo" onerror="this.style.display='none'">
+            <div style="font-family:'Cinzel', serif; font-size:18px; font-weight:900; color:#ffd700; letter-spacing:2px;">FORTUNE GARUDA 500</div>
+            <div class="jili-progress-track">
+                <div id="jiliBar" class="jili-progress-bar"></div>
+            </div>
+            <div style="font-size:11px; color:#888;">LOADING TEMPLE OF GARUDA...</div>
+        </div>
+    </div>
+
+    <!-- Master Viewport -->
+    <div class="garuda-viewport">
+        <!-- Ambient Temple Background Image -->
+        <div class="temple-ambient-bg"></div>
+
+        <!-- Ambient Embers Canvas -->
+        <canvas id="embersCanvas"></canvas>
+
+        <!-- Top Navigation -->
+        <header class="top-nav-bar">
+            <a href="../../casino.html" class="nav-pill-btn">
+                <span>◀</span> LOBBY
+            </a>
+            <div style="display: flex; gap: 8px;">
+                <button class="nav-pill-btn" onclick="toggleMute()" id="soundBtn" title="Toggle Sound">🔊 SFX</button>
+                <button class="nav-pill-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">⛶ FULL</button>
+            </div>
+        </header>
+
+        <!-- Main Game Cabinet -->
+        <main class="game-cabinet">
+            <!-- Animated Golden Winged Garuda Guardian Stage -->
+            <div class="garuda-guardian-stage">
+                <video class="guardian-video" id="guardianVideo" autoplay loop muted playsinline preload="auto" poster="assets/garuda_full_guardian.png">
+                    <source src="assets/garuda_guardian_video.mp4" type="video/mp4">
+                </video>
+                <img src="assets/garuda_full_guardian.png" alt="Garuda" class="guardian-fallback" id="guardianStatic">
+            </div>
+
+            <!-- Stone Temple Carved Arch Lintel -->
+            <div class="temple-lintel">
+                <span class="temple-title">FORTUNE GARUDA 500</span>
+            </div>
+
+            <!-- 3x3 Reels Grid + 4th Multiplier Reel Stage -->
+            <div class="reels-stage">
+                <!-- Golden Extra Bet (+50%) Toggle Button on Left -->
+                <div class="extra-bet-switch" id="extraBetSwitch" onclick="window.garudaGame.toggleExtraBet()">
+                    <span class="extra-bet-title">EXTRA<br>BET</span>
+                    <span class="extra-bet-badge">+50%</span>
+                    <span class="extra-bet-status">OFF</span>
+                </div>
+
+                <!-- Temple Frame Inner -->
+                <div class="temple-frame-inner">
+                    <!-- Payline Canvas -->
+                    <canvas id="paylineCanvas"></canvas>
+
+                    <!-- Left: 3x3 Symbol Reels -->
+                    <div class="symbol-reels-wrap">
+                        <div class="reel-column" id="reelCol_0"></div>
+                        <div class="reel-column" id="reelCol_1"></div>
+                        <div class="reel-column" id="reelCol_2"></div>
+                    </div>
+
+                    <!-- Right: 4th Multiplier Wheel Reel (1x - 500x) -->
+                    <div class="multiplier-reel-wrap" id="multReelWrap"></div>
+                </div>
+            </div>
+
+            <!-- Divine Gift of Garuda Blessing Alert Banner -->
+            <div class="blessing-banner" id="blessingBanner">
+                ⚡ GIFT OF GARUDA ⚡
+            </div>
+
+            <!-- Bottom Controls & HUD Console -->
+            <footer class="bottom-console">
+                <!-- Win Line Meter Display -->
+                <div class="win-meter-row">
+                    <span class="win-label">WIN</span>
+                    <span class="win-amount-val" id="winAmountVal">0.00</span>
+                </div>
+
+                <!-- Action Controls Row -->
+                <div class="action-controls-row">
+                    <!-- Bet Selector -->
+                    <div class="bet-selector-chip">
+                        <button class="btn-bet-step" onclick="window.garudaGame.changeBet(-1)">−</button>
+                        <div class="bet-display-box">
+                            <span class="bet-sub">TOTAL BET</span>
+                            <span class="bet-val" id="betAmountVal">PKR 3.00</span>
+                        </div>
+                        <button class="btn-bet-step" onclick="window.garudaGame.changeBet(1)">+</button>
+                    </div>
+
+                    <!-- Master Golden Spin Button -->
+                    <button class="spin-master-btn" id="spinBtn" onclick="window.garudaGame.spin()">
+                        <span class="spin-btn-icon">SPIN</span>
+                    </button>
+
+                    <!-- Turbo & Auto Controls -->
+                    <div class="side-toggle-group">
+                        <button class="pill-toggle-btn" id="turboBtn" onclick="window.garudaGame.toggleTurbo()">
+                            <span>⚡</span> TURBO
+                        </button>
+                        <button class="pill-toggle-btn" id="autoBtn" onclick="window.garudaGame.toggleAuto()">
+                            <span>🔄</span> AUTO
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Footer Balance Bar -->
+                <div class="bottom-footer-bar">
+                    <div>
+                        <span>Balance: </span>
+                        <span class="balance-val" id="balanceVal">PKR 50,000.00</span>
+                    </div>
+                    <div style="font-size:10px; color:#785834;">TaDa Gaming / JILI • v_177_041</div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Big Win Celebration Modal -->
+    <div class="celebration-overlay" id="celebrationModal">
+        <div class="celebration-card">
+            <div class="celebration-title" id="celebTitle">SUPER WIN!</div>
+            <div class="celebration-sub">TEMPLE TREASURE UNLOCKED</div>
+            <div class="celebration-win-num" id="celebNum">PKR 15,000.00</div>
+            <button class="btn-collect-win" onclick="window.garudaGame.closeCelebration()">COLLECT</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/audio_engine.js"></script>
+    <script src="js/game_engine.js"></script>
+    <script>
+        function toggleMute() {
+            if (window.SlotAudio) {
+                const muted = window.SlotAudio.toggleMute();
+                document.getElementById('soundBtn').innerText = muted ? '🔇 SFX' : '🔊 SFX';
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        // Fallback for video
+        const v = document.getElementById('guardianVideo');
+        if (v) {
+            v.addEventListener('error', () => {
+                v.style.display = 'none';
+                document.getElementById('guardianStatic').style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>

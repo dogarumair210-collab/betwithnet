@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Lucky 777 Vegas - Classic Video Slot Machine | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* ------------------------------------------------------------------
+           1. CRITICAL: PREVENT PLATFORM FOOTER & BOTTOM NAV INJECTION
+           ------------------------------------------------------------------ */
+        #app-luxury-footer, 
+        #app-bottom-nav-slot, 
+        #app-header-slot, 
+        #bwn-sound-toggle-fixed, 
+        .luxury-casino-footer, 
+        .app-bottom-nav, 
+        .game-balance-hud, 
+        .live-ticker, 
+        .hero-banner {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+        }
+
+        :root {
+            --gold-bright: #fff5a6;
+            --gold-main: #ffd700;
+            --gold-deep: #b8860b;
+            --gold-shadow: #573f00;
+            --vegas-red: #d63031;
+            --vegas-bg: #03060d;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background-color: #030408;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* ------------------------------------------------------------------
+           2. AMBIENT BACKGROUND FOR DESKTOP
+           ------------------------------------------------------------------ */
+        .vegas-desktop-ambient-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #02040a;
+        }
+
+        .vegas-ambient-video,
+        .vegas-ambient-img {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            filter: blur(14px) brightness(0.4) saturate(1.3);
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        .vegas-ambient-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(2, 4, 10, 0.4) 0%, rgba(2, 4, 10, 0.95) 100%);
+        }
+
+        /* ------------------------------------------------------------------
+           3. 1:1 MOBILE APP SHELL (Authentic Vegas 777 Cabinet)
+           ------------------------------------------------------------------ */
+        .vegas-app-shell {
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: #080305;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            border-left: 1px solid rgba(255, 215, 0, 0.25);
+            border-right: 1px solid rgba(255, 215, 0, 0.25);
+        }
+
+        /* Top Bar */
+        .vegas-top-bar {
+            width: 100%;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            background: linear-gradient(180deg, #1b0a0e 0%, #0d0507 100%);
+            border-bottom: 1.5px solid rgba(255, 215, 0, 0.35);
+            z-index: 50;
+            flex-shrink: 0;
+        }
+
+        .vegas-lobby-link {
+            color: #ffd700;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .vegas-lobby-link:active {
+            transform: scale(0.94);
+            background: rgba(255, 215, 0, 0.25);
+        }
+
+        .vegas-platform-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .vegas-wallet-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #00ffcc;
+            background: rgba(0, 255, 204, 0.12);
+            border: 1px solid rgba(0, 255, 204, 0.4);
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+        }
+
+        .vegas-fs-btn {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 13px;
+            font-weight: 800;
+            border-radius: 6px;
+            padding: 2px 7px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .vegas-fs-btn:active {
+            transform: scale(0.92);
+            background: rgba(255, 215, 0, 0.35);
+        }
+        .vegas-fs-btn.muted {
+            opacity: 0.55;
+            filter: grayscale(1);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #aaa;
+        }
+
+        /* ------------------------------------------------------------------
+           4. 777 MARQUEE & JACKPOT SECTION
+           ------------------------------------------------------------------ */
+        .vegas-marquee-wrap {
+            position: relative;
+            width: 100%;
+            flex: 1.15;
+            min-height: 140px;
+            max-height: 220px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-color: #000;
+        }
+
+        .vegas-marquee-video,
+        .vegas-marquee-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .vegas-marquee-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, transparent 60%, rgba(8, 3, 5, 0.8) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Super Bet / Extra Bet Button */
+        .vegas-superbet-btn {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            width: 52px;
+            height: 52px;
+            background: radial-gradient(circle, #ff2a2a 0%, #800000 100%);
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 42, 42, 0.8), inset 0 0 8px rgba(255, 215, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.15s;
+        }
+
+        .vegas-superbet-btn:active { transform: scale(0.92); }
+        .vegas-superbet-btn.active {
+            background: radial-gradient(circle, #00e676 0%, #006935 100%);
+            box-shadow: 0 0 25px #00e676, inset 0 0 10px #00e676;
+            border-color: #ffd700;
+        }
+
+        .superbet-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffd700;
+            line-height: 1;
+            text-shadow: 0 1px 2px #000;
+        }
+
+        .superbet-sub {
+            font-size: 8px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        /* Progressive Jackpot Display on Header */
+        .vegas-jackpot-box {
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            background: rgba(18, 5, 8, 0.92);
+            border: 1.5px solid #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 8px rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            padding: 4px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 10;
+        }
+
+        .jackpot-label {
+            font-family: 'Cinzel', serif;
+            font-size: 9px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .jackpot-counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            color: #fffa65;
+            text-shadow: 0 0 8px #ff9900;
+        }
+
+        /* ------------------------------------------------------------------
+           5. VEGAS TITLE BAR & CONTROLS STRIP
+           ------------------------------------------------------------------ */
+        .vegas-title-bar {
+            width: 100%;
+            height: 32px;
+            background: linear-gradient(180deg, #2b0b12 0%, #150508 100%);
+            border-top: 2px solid #b8860b;
+            border-bottom: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            position: relative;
+            z-index: 15;
+            flex-shrink: 0;
+        }
+
+        .vegas-info-btn {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid #ffd700;
+            color: #ffd700;
+            font-size: 12px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+        }
+
+        .vegas-game-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            background: linear-gradient(180deg, #fff7b8 0%, #ffd700 50%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vegas-paylines-badge {
+            font-size: 9px;
+            font-weight: 900;
+            color: #ffd700;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* ------------------------------------------------------------------
+           6. 777 VEGAS REELS CABINET
+           ------------------------------------------------------------------ */
+        .vegas-reels-cabinet {
+            position: relative;
+            width: 100%;
+            flex: 2;
+            min-height: 220px;
+            max-height: 290px;
+            display: flex;
+            overflow: hidden;
+            background: url('../assets/games/slots777/cabinet_reels_bg.jpg') center/cover no-repeat;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.95);
+            border-top: 2px solid #ffd700;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        /* Payline Indicators (Left & Right) */
+        .payline-indicator-col {
+            width: 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0;
+            z-index: 10;
+            background: rgba(10, 2, 4, 0.6);
+        }
+
+        .payline-dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #2b0005;
+            border: 1.5px solid #ffd700;
+            color: #ffd700;
+            font-size: 8px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+        }
+
+        .main-reels-container {
+            flex: 3;
+            display: flex;
+            position: relative;
+            height: 100%;
+            background: transparent;
+        }
+
+        .single-reel-col {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 215, 0, 0.35);
+        }
+
+        .single-reel-col:last-child { border-right: none; }
+
+        .reel-strip-items {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.1s linear;
+        }
+
+        .reel-cell-item {
+            flex: 1;
+            height: 33.333%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 3px;
+        }
+
+        .reel-blur {
+            filter: blur(2.5px);
+        }
+
+        .cell-plate {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.8);
+        }
+
+        .cell-plate.plate-vegas {
+            background: linear-gradient(135deg, #1f0b0f 0%, #100508 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .cell-plate.plate-wild {
+            background: radial-gradient(circle, #3d1400 0%, #150000 100%);
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.7), inset 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        .symbol-inner-frame {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .symbol-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.9));
+            transition: transform 0.2s;
+        }
+
+        /* Wild Nudge & Expansion */
+        .wild-full-column {
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: wildNudgeBounce 0.5s ease;
+            background: rgba(0,0,0,0.5);
+        }
+
+        @keyframes wildNudgeBounce {
+            0% { transform: translateY(-50px) scale(0.9); opacity: 0; }
+            70% { transform: translateY(10px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .wild-full-column img {
+            width: 96%;
+            height: 96%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.95);
+        }
+
+        /* -------------------------------------------------------------
+           JILI OFFICIAL LOADING SCREEN
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 9999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .jili-splash-overlay.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: auto;
+            max-width: 90vw;
+            padding: 0;
+            background: transparent;
+        }
+
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 96px;
+            max-width: 30vw;
+            line-height: 0;
+        }
+
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.95));
+        }
+
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/slots777/jili_logo.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/slots777/jili_logo.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes jiliGlintAnim {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+
+        .jili-loadline-track {
+            width: 96px;
+            max-width: 30vw;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.95);
+            transition: width 0.08s ease-out;
+        }
+
+        .jili-load-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .jili-load-pct {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+
+        .jili-load-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 8.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+        }
+
+        /* -------------------------------------------------------------
+           4TH MULTIPLIER REEL - ULTRA HD 3D JILI MEDALLIONS
+           ------------------------------------------------------------- */
+        .multiplier-reel-container {
+            flex: 1.18;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(8, 2, 4, 0.95) 0%, rgba(22, 5, 12, 0.85) 50%, rgba(8, 2, 4, 0.95) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-left: 2px solid #ffd700;
+            box-shadow: inset 6px 0 16px rgba(0, 0, 0, 0.85);
+        }
+
+        .multiplier-strip-items {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            transition: transform 0.1s linear;
+        }
+
+        .multiplier-cell-item {
+            flex: 1;
+            height: 33.333%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2px;
+        }
+
+        /* 3D Multiplier Medallion Coin Outer Frame */
+        .mult-vegas-badge {
+            width: 74px;
+            height: 74px;
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 3.5px;
+            background: linear-gradient(135deg, #fff7b8 0%, #ffd700 30%, #a67c00 60%, #ffd700 85%, #593e00 100%);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.95), inset 0 2px 3px rgba(255, 255, 255, 0.8), inset 0 -2px 3px rgba(0, 0, 0, 0.8);
+            transition: transform 0.15s ease;
+        }
+
+        /* Medallion Inner Recessed Jewel Disc */
+        .mult-badge-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.8), inset 0 -2px 4px rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 215, 0, 0.7);
+        }
+
+        /* Concentric Engraved Ring */
+        .mult-badge-inner::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.35);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Specular Glass Sheen */
+        .mult-badge-inner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+            border-radius: 50% 50% 0 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* TIER 1: Sapphire Jewel (1x, 2x, 3x) */
+        .mult-vegas-badge.badge-blue .mult-badge-inner {
+            background: radial-gradient(circle at 38% 30%, #48dbfb 0%, #0abde3 30%, #0c3873 70%, #03122b 100%);
+        }
+        .mult-vegas-badge.badge-blue {
+            box-shadow: 0 0 14px rgba(10, 189, 227, 0.7), 0 5px 14px rgba(0, 0, 0, 0.95);
+        }
+        .mult-vegas-badge.badge-blue .badge-number {
+            background: linear-gradient(180deg, #ffffff 0%, #dff9fb 40%, #00d2d3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.9)) drop-shadow(0 0 8px rgba(0, 210, 211, 0.8));
+        }
+
+        /* TIER 2: Ruby Flame (5x, 10x, 15x, 20x) */
+        .mult-vegas-badge.badge-ruby .mult-badge-inner {
+            background: radial-gradient(circle at 38% 30%, #ff6b81 0%, #ee5253 35%, #8c0012 75%, #3d0006 100%);
+        }
+        .mult-vegas-badge.badge-ruby {
+            box-shadow: 0 0 16px rgba(238, 82, 83, 0.8), 0 5px 14px rgba(0, 0, 0, 0.95);
+        }
+        .mult-vegas-badge.badge-ruby .badge-number {
+            background: linear-gradient(180deg, #ffffff 0%, #fff275 35%, #ffd700 70%, #ff793f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.95)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.9));
+        }
+
+        /* TIER 3: 24K Grand Gold (50x, 100x) */
+        .mult-vegas-badge.badge-gold .mult-badge-inner {
+            background: radial-gradient(circle at 38% 30%, #fff9c4 0%, #ffd700 35%, #e67e22 75%, #592b02 100%);
+        }
+        .mult-vegas-badge.badge-gold {
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.95), 0 5px 15px rgba(0, 0, 0, 0.95);
+            animation: goldBadgeShimmer 2s infinite alternate;
+        }
+        .mult-vegas-badge.badge-gold .badge-number {
+            background: linear-gradient(180deg, #ffffff 0%, #ffffff 30%, #ffd700 65%, #c0392b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.95)) drop-shadow(0 0 10px rgba(255, 215, 0, 1));
+        }
+
+        @keyframes goldBadgeShimmer {
+            0% { transform: scale(1); filter: brightness(1); }
+            100% { transform: scale(1.03); filter: brightness(1.2); }
+        }
+
+        /* TIER 4: 777 GRAND JACKPOT (777x) */
+        .mult-vegas-badge.badge-jackpot {
+            background: linear-gradient(135deg, #fffa65 0%, #ff007f 40%, #ffd700 70%, #ff0055 100%);
+            box-shadow: 0 0 26px rgba(255, 0, 128, 1), 0 5px 15px rgba(0,0,0,0.95);
+            animation: jackpotBadgePulse 1s infinite alternate;
+        }
+        .mult-vegas-badge.badge-jackpot .mult-badge-inner {
+            background: radial-gradient(circle at 38% 30%, #ff9ff3 0%, #f368e0 30%, #6f0073 75%, #25002b 100%);
+            border: 1.5px solid #fffa65;
+        }
+        .mult-vegas-badge.badge-jackpot .badge-number {
+            font-size: 21px;
+            background: linear-gradient(180deg, #ffffff 0%, #fffa65 30%, #ffd700 65%, #ff0055 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 3px #000) drop-shadow(0 0 10px #ff007f);
+        }
+
+        @keyframes jackpotBadgePulse {
+            0% { transform: scale(0.98); box-shadow: 0 0 16px rgba(255, 0, 128, 0.7); }
+            100% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 230, 0, 1), 0 0 45px rgba(255, 0, 128, 0.9); }
+        }
+
+        /* TIER 5: Emerald Lightning (777 NUDGE & SUPER 77x) */
+        .mult-vegas-badge.badge-nudge .mult-badge-inner {
+            background: radial-gradient(circle at 38% 30%, #55efc4 0%, #00b894 35%, #005642 75%, #002119 100%);
+            border: 1.5px solid #55efc4;
+        }
+        .mult-vegas-badge.badge-nudge {
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.9), 0 5px 14px rgba(0,0,0,0.95);
+        }
+        .mult-vegas-badge.badge-nudge .badge-number {
+            background: linear-gradient(180deg, #ffffff 0%, #e8f5e9 30%, #00e676 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px #000) drop-shadow(0 0 8px rgba(0, 230, 118, 0.9));
+        }
+
+        .badge-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .badge-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 7px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 0 5px rgba(255,215,0,0.8);
+            letter-spacing: 0.8px;
+            margin-bottom: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-sub-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 6.5px;
+            font-weight: 900;
+            color: #fffa65;
+            text-shadow: 0 1px 3px #000;
+            letter-spacing: 0.5px;
+            margin-top: 1px;
+        }
+
+        .badge-arrows {
+            font-size: 8px;
+            color: #55efc4;
+            letter-spacing: 1px;
+            margin-top: 1px;
+            animation: arrowsBounce 0.8s infinite alternate;
+        }
+
+        @keyframes arrowsBounce {
+            from { transform: translateY(0); opacity: 0.7; }
+            to { transform: translateY(-2px); opacity: 1; text-shadow: 0 0 6px #55efc4; }
+        }
+
+        .badge-number {
+            font-family: 'Cinzel', 'JetBrains Mono', sans-serif;
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
+
+        /* 3D Ornate Golden Multiplier Target Reticle Frame */
+        .multiplier-target-box {
+            position: absolute;
+            top: 33.333%;
+            left: 2px;
+            right: 2px;
+            height: 33.333%;
+            border: 2.5px solid #ffd700;
+            border-radius: 8px;
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.9), inset 0 0 14px rgba(255, 215, 0, 0.45);
+            pointer-events: none;
+            z-index: 12;
+            background: rgba(255, 215, 0, 0.08);
+            animation: targetBoxPulse 1.5s infinite alternate;
+        }
+
+        .multiplier-target-box::before,
+        .multiplier-target-box::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 2px solid #ffffff;
+            pointer-events: none;
+        }
+        .multiplier-target-box::before {
+            top: -2px; left: -2px;
+            border-right: none; border-bottom: none;
+        }
+        .multiplier-target-box::after {
+            bottom: -2px; right: -2px;
+            border-left: none; border-top: none;
+        }
+
+        @keyframes targetBoxPulse {
+            from { border-color: #ffd700; box-shadow: 0 0 14px rgba(255, 215, 0, 0.7); }
+            to { border-color: #ff3838; box-shadow: 0 0 24px rgba(255, 56, 56, 0.95); }
+        }
+
+        /* Lightning / Payline Canvas */
+        .vegas-lightning-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 12;
+        }
+
+        /* ------------------------------------------------------------------
+           7. VEGAS 3 HUD STATUS BOXES (WALLET, BET, WIN)
+           ------------------------------------------------------------------ */
+        .vegas-hud-row {
+            width: 100%;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            padding: 2px 10px;
+            background: linear-gradient(180deg, #1b0a0e 0%, #0d0507 100%);
+            border-top: 1.5px solid rgba(255, 215, 0, 0.4);
+            border-bottom: 1.5px solid #000;
+            z-index: 20;
+            flex-shrink: 0;
+        }
+
+        .vegas-hud-box {
+            flex: 1;
+            height: 30px;
+            background: linear-gradient(180deg, #2b0b12 0%, #150508 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.45);
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hud-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 8.5px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+
+        .hud-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 1px 3px #000;
+        }
+
+        .hud-val.win-gold {
+            color: #fffa65;
+            text-shadow: 0 0 8px #ff9900;
+        }
+
+        /* ------------------------------------------------------------------
+           8. VEGAS BOTTOM CONTROLS DECK
+           ------------------------------------------------------------------ */
+        .vegas-control-deck {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(180deg, #24090e 0%, #0e0305 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 10px 8px 10px;
+            border-top: 2.5px solid #ffd700;
+            flex-shrink: 0;
+        }
+
+        .vegas-action-buttons-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px;
+        }
+
+        .deck-btn-round {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #3d141b 0%, #1a0508 100%);
+            border: 2px solid #b8860b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 0 6px rgba(255, 215, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 11px;
+            font-weight: 900;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.15s;
+        }
+
+        .deck-btn-round:active { transform: scale(0.92); }
+        .deck-btn-round.active {
+            border-color: #00e676;
+            color: #fff;
+            background: radial-gradient(circle, #009944 0%, #004d22 100%);
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.8);
+        }
+
+        .auto-count-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #ff2a2a;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #fff;
+        }
+
+        .bet-adjuster-pill {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 215, 0, 0.45);
+            border-radius: 20px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .bet-mini-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #2b0b12;
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .bet-mini-btn:active { transform: scale(0.9); }
+
+        .bet-val-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #fff;
+            padding: 0 6px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* -------------------------------------------------------------
+           ULTRA HD 3D VEGAS MASTER SPIN BUTTON
+           ------------------------------------------------------------- */
+        .vegas-spin-btn-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Outer 24K Gold & Platinum Beveled Housing */
+        .vegas-master-spin-btn {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            background: radial-gradient(circle at 35% 30%, #fff6a6 0%, #ffd700 22%, #b8860b 52%, #573f00 80%, #201300 100%);
+            box-shadow: 
+                0 8px 22px rgba(0, 0, 0, 0.95),
+                0 0 25px rgba(255, 42, 42, 0.75),
+                0 0 35px rgba(255, 215, 0, 0.45),
+                inset 0 2.5px 4px rgba(255, 255, 255, 0.85),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.85);
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 5px;
+        }
+
+        /* Golden Outer Rotating Laser Chaser Ring */
+        .spin-outer-chaser {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2.5px dashed rgba(255, 240, 120, 0.9);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), inset 0 0 8px rgba(255, 215, 0, 0.5);
+            animation: spinRingRotate 12s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spinRingRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Middle Metallic Chamfered Bezel */
+        .spin-bezel-mid {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(145deg, #ffe082 0%, #d4af37 35%, #8c6d1f 70%, #4a3507 100%);
+            box-shadow: 
+                inset 0 2px 3px rgba(255, 255, 255, 0.9),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.9),
+                0 3px 6px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Inner High-Gloss Crystalline Ruby Dome */
+        .spin-dome-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 45% 35%, #ff4d4d 0%, #d63031 35%, #990000 70%, #4a0000 100%);
+            box-shadow: 
+                inset 0 4px 10px rgba(255, 255, 255, 0.45),
+                inset 0 -5px 12px rgba(0, 0, 0, 0.85),
+                0 0 15px rgba(255, 30, 30, 0.9);
+        }
+
+        /* Glass Specular Reflection Crescent */
+        .spin-dome-inner::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 12%;
+            right: 12%;
+            height: 42%;
+            border-radius: 50% 50% 45% 45%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.08) 75%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Bottom Specular Bounce */
+        .spin-dome-inner::after {
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            left: 25%;
+            right: 25%;
+            height: 18%;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(255, 200, 100, 0.4) 0%, transparent 80%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* 3D Embossed Golden "SPIN" Wordmark */
+        .spin-text-wrap {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .spin-wordmark {
+            font-family: 'Cinzel', -apple-system, sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 0%, #fff5a6 25%, #ffd700 55%, #e67e22 85%, #873600 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px #380000) drop-shadow(0 0 8px rgba(255, 235, 120, 0.9));
+        }
+
+        .spin-sub-arrows {
+            font-size: 8px;
+            color: #ffd700;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 2px #000;
+            margin-top: 1px;
+            opacity: 0.9;
+        }
+
+        /* Tactile Mechanical Press State */
+        .vegas-master-spin-btn:active {
+            transform: scale(0.91) translateY(3px);
+            box-shadow: 
+                0 3px 8px rgba(0, 0, 0, 0.9),
+                0 0 15px rgba(255, 42, 42, 0.5),
+                inset 0 3px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        .vegas-master-spin-btn:active .spin-dome-inner {
+            background: radial-gradient(circle at 50% 50%, #b30000 0%, #660000 70%, #300000 100%);
+            box-shadow: inset 0 6px 14px rgba(0, 0, 0, 0.95);
+        }
+
+        /* Active Spinning State */
+        .vegas-master-spin-btn.spinning {
+            animation: spinBtnPulseVegas 0.5s infinite alternate ease-in-out;
+        }
+
+        .vegas-master-spin-btn.spinning .spin-outer-chaser {
+            border-color: #00ffcc;
+            box-shadow: 0 0 25px #00ffcc, inset 0 0 15px #00ffcc;
+            animation: spinRingRotate 2.5s linear infinite;
+        }
+
+        .vegas-master-spin-btn.spinning .spin-wordmark {
+            background: linear-gradient(180deg, #ffffff 0%, #70a1ff 40%, #1e90ff 80%, #0c2461 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px #1e90ff);
+        }
+
+        @keyframes spinBtnPulseVegas {
+            from {
+                transform: scale(0.96);
+                box-shadow: 0 0 20px rgba(255, 42, 42, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
+            }
+            to {
+                transform: scale(1.04);
+                box-shadow: 0 0 35px rgba(255, 42, 42, 1), 0 0 55px rgba(255, 215, 0, 0.9);
+            }
+        }
+
+        /* Transaction ID & Footer */
+        .vegas-subfooter-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 4px;
+            font-size: 9px;
+            color: #887;
+        }
+
+        .vegas-trans-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #887;
+        }
+
+        /* ------------------------------------------------------------------
+           9. SUPER WIN / 777 JACKPOT OVERLAY
+           ------------------------------------------------------------------ */
+        .vegas-super-win-banner {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            animation: bannerPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .jackpot-coins-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.85;
+            mix-blend-mode: screen;
+        }
+
+        .jackpot-overlay-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes bannerPop {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .win-title-777 {
+            font-family: 'Cinzel', serif;
+            font-size: 30px;
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff7b8 0%, #ffd700 50%, #ff3b3b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .win-mult-777 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 900;
+            color: #00ffcc;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+        }
+
+        .win-cash-777 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 34px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 20px #ffd700, 0 2px 4px #000;
+            margin-bottom: 16px;
+        }
+
+        .win-collect-btn {
+            background: linear-gradient(180deg, #ffd700 0%, #ff8800 100%);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 900;
+            padding: 10px 32px;
+            border-radius: 25px;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            cursor: pointer;
+        }
+
+        /* ------------------------------------------------------------------
+           10. PAYTABLE / RULES MODAL
+           ------------------------------------------------------------------ */
+        .vegas-modal-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 120;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .vegas-modal-content {
+            background: linear-gradient(180deg, #24090e 0%, #100305 100%);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 16px;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
+            color: #fff;
+        }
+
+        .vegas-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .vegas-modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+
+        .vegas-modal-close {
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .paytable-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .paytable-item {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .paytable-item img {
+            width: 38px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .paytable-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .paytable-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .paytable-mult {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay" onclick="kickstartJiliAudio()" ontouchstart="kickstartJiliAudio()">
+        <div class="jili-center-stage">
+            <div class="jili-logo-box">
+                <img src="../assets/games/slots777/jili_logo.png" alt="JILI" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+            <!-- Video-Style Yellow Loading Line -->
+            <div class="jili-loadline-track">
+                <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+            </div>
+            <div class="jili-load-meta">
+                <span id="jiliLoadPct" class="jili-load-pct">0%</span>
+                <span class="jili-load-sub">JILI GAMES • LUCKY 777 VEGAS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. Ambient Desktop Background with Animated Video -->
+    <div class="vegas-desktop-ambient-wrap">
+        <video class="vegas-ambient-video" autoplay loop muted playsinline poster="../assets/games/slots777/vegas_ambient.jpg">
+            <source src="../assets/games/slots777/vegas_ambient_loop.webm" type="video/webm">
+            <source src="../assets/games/slots777/vegas_ambient_loop.mp4" type="video/mp4">
+        </video>
+        <div class="vegas-ambient-overlay"></div>
+    </div>
+
+    <!-- 2. Authentic Vegas 777 Mobile Shell -->
+    <div class="vegas-app-shell">
+        <!-- Top Navigation -->
+        <header class="vegas-top-bar">
+            <a href="../index.html" class="vegas-lobby-link">
+                <span>◀</span> LOBBY
+            </a>
+            <div class="vegas-platform-title">BET WITH NET</div>
+            <div style="display:flex; align-items:center; gap:6px;">
+                <div id="topWalletVal" class="vegas-wallet-badge">₨ 0.00</div>
+                <button id="soundToggleBtn" class="vegas-fs-btn" onclick="window.slotsGame.toggleSound()" title="Sound On/Off">🔊</button>
+                <button class="vegas-fs-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+            </div>
+        </header>
+
+        <!-- 777 Marquee Header with Video Animation & Jackpot Counter -->
+        <div class="vegas-marquee-wrap">
+            <video class="vegas-marquee-video" autoplay loop muted playsinline poster="../assets/games/slots777/header_777.jpg">
+                <source src="../assets/games/slots777/header_777_loop.webm" type="video/webm">
+                <source src="../assets/games/slots777/header_777_loop.mp4" type="video/mp4">
+            </video>
+            <div class="vegas-marquee-overlay"></div>
+
+            <!-- Super Bet / Extra Bet Toggle -->
+            <div id="exBetBtn" class="vegas-superbet-btn" onclick="window.slotsGame.toggleExBet()" title="Boost Jackpot chance!">
+                <span class="superbet-title">SUPER</span>
+                <span class="superbet-sub">BET +50%</span>
+            </div>
+
+            <!-- Grand Progressive Jackpot Box -->
+            <div class="vegas-jackpot-box">
+                <span class="jackpot-label">GRAND JACKPOT</span>
+                <span id="jackpotAmountDisplay" class="jackpot-counter">₨ 777,777.00</span>
+            </div>
+        </div>
+
+        <!-- Title & Info Strip -->
+        <div class="vegas-title-bar">
+            <button class="vegas-info-btn" onclick="togglePaytableModal()">?</button>
+            <div class="vegas-game-logo">
+                <span>★</span> LUCKY 777 VEGAS <span>★</span>
+            </div>
+            <span class="vegas-paylines-badge">5 LINES • 777x</span>
+        </div>
+
+        <!-- Vegas 3x3 Reels Cabinet + 4th Multiplier Reel -->
+        <div class="vegas-reels-cabinet">
+            <!-- Left Payline Indicators -->
+            <div class="payline-indicator-col">
+                <div class="payline-dot">1</div>
+                <div class="payline-dot">2</div>
+                <div class="payline-dot">3</div>
+            </div>
+
+            <!-- 3 Main Reels -->
+            <div class="main-reels-container">
+                <div class="single-reel-col" id="reelCol0">
+                    <div class="reel-strip-items" id="reelStrip0"></div>
+                </div>
+                <div class="single-reel-col" id="reelCol1">
+                    <div class="reel-strip-items" id="reelStrip1"></div>
+                </div>
+                <div class="single-reel-col" id="reelCol2">
+                    <div class="reel-strip-items" id="reelStrip2"></div>
+                </div>
+            </div>
+
+            <!-- 4th Multiplier Reel -->
+            <div class="multiplier-reel-container">
+                <div class="multiplier-strip-items" id="multStrip"></div>
+                <div class="multiplier-target-box"></div>
+            </div>
+
+            <!-- Right Payline Indicators -->
+            <div class="payline-indicator-col">
+                <div class="payline-dot">4</div>
+                <div class="payline-dot">5</div>
+                <div class="payline-dot">★</div>
+            </div>
+
+            <!-- Payline Lightning Canvas -->
+            <canvas id="lightningCanvas" class="vegas-lightning-canvas"></canvas>
+        </div>
+
+        <!-- 3 HUD Status Boxes (Wallet, Bet, Win) -->
+        <div class="vegas-hud-row">
+            <div class="vegas-hud-box">
+                <span class="hud-tag">WALLET</span>
+                <span id="hudWalletVal" class="hud-val">0.00</span>
+            </div>
+            <div class="vegas-hud-box">
+                <span class="hud-tag">BET</span>
+                <span id="hudBetVal" class="hud-val">10.00</span>
+            </div>
+            <div class="vegas-hud-box">
+                <span class="hud-tag">WIN</span>
+                <span id="winDisplayAmount" class="hud-val win-gold">0.00</span>
+            </div>
+        </div>
+
+        <!-- Vegas Bottom Controls Deck -->
+        <div class="vegas-control-deck">
+            <div class="vegas-action-buttons-row">
+                <!-- Turbo Toggle -->
+                <div id="turboBtn" class="deck-btn-round" onclick="window.slotsGame.toggleTurbo()" title="Toggle Turbo Spin">
+                    ⚡
+                </div>
+
+                <!-- Bet Adjuster -->
+                <div class="bet-adjuster-pill">
+                    <div class="bet-mini-btn" onclick="window.slotsGame.adjustBet(-1)">-</div>
+                    <div class="bet-val-display" id="deckBetAmount">10.00</div>
+                    <div class="bet-mini-btn" onclick="window.slotsGame.adjustBet(1)">+</div>
+                </div>
+
+                <!-- Ultra HD 3D Grand Spin Button -->
+                <div class="vegas-spin-btn-wrap">
+                    <button id="spinMasterBtn" class="vegas-master-spin-btn" onclick="window.slotsGame.spin()" title="Spin the Reels!">
+                        <div class="spin-outer-chaser"></div>
+                        <div class="spin-bezel-mid">
+                            <div class="spin-dome-inner">
+                                <div class="spin-text-wrap">
+                                    <span class="spin-wordmark">SPIN</span>
+                                    <span class="spin-sub-arrows">▶ ▶</span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Auto Spin Button -->
+                <div id="autoPlayBtn" class="deck-btn-round" onclick="window.slotsGame.toggleAutoPlay()" title="Auto Spin">
+                    AUTO
+                    <span id="autoCountBadge" class="auto-count-badge" style="display:none;">25</span>
+                </div>
+            </div>
+
+            <!-- Subfooter Info -->
+            <div class="vegas-subfooter-row">
+                <span id="transIdText" class="vegas-trans-id">ID 777-245071</span>
+                <span>RETURN TO PLAYER 97.4%</span>
+            </div>
+        </div>
+
+        <!-- Super Win / Jackpot Banner with Animated Coins Video -->
+        <div id="superWinBanner" class="vegas-super-win-banner">
+            <video id="jackpotCoinsVideo" class="jackpot-coins-video" loop muted playsinline>
+                <source src="../assets/games/slots777/jackpot_coins_loop.mp4" type="video/mp4">
+            </video>
+            <div class="jackpot-overlay-content">
+                <div id="winBannerTitle" class="win-title-777">777 GRAND JACKPOT!</div>
+                <div id="winBannerMult" class="win-mult-777">777x MULTIPLIER HIT</div>
+                <div id="winBannerCash" class="win-cash-777">₨ 77,700.00</div>
+                <button class="win-collect-btn" onclick="window.slotsGame.closeSuperWin()">COLLECT</button>
+            </div>
+        </div>
+
+        <!-- Paytable Modal -->
+        <div id="paytableModal" class="vegas-modal-overlay" onclick="if(event.target===this) togglePaytableModal()">
+            <div class="vegas-modal-content">
+                <div class="vegas-modal-header">
+                    <span class="vegas-modal-title">LUCKY 777 PAYTABLE</span>
+                    <button class="vegas-modal-close" onclick="togglePaytableModal()">✕</button>
+                </div>
+                <div class="paytable-grid">
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_777_wild.jpg" alt="777 Wild">
+                        <div class="paytable-info">
+                            <span class="paytable-name">777 WILD</span>
+                            <span class="paytable-mult">50x Base</span>
+                        </div>
+                    </div>
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_7_red.jpg" alt="Red 7">
+                        <div class="paytable-info">
+                            <span class="paytable-name">BLAZING RED 7</span>
+                            <span class="paytable-mult">25x Base</span>
+                        </div>
+                    </div>
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_7_blue.jpg" alt="Blue 7">
+                        <div class="paytable-info">
+                            <span class="paytable-name">ELECTRIC BLUE 7</span>
+                            <span class="paytable-mult">15x Base</span>
+                        </div>
+                    </div>
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_bar.jpg" alt="BAR">
+                        <div class="paytable-info">
+                            <span class="paytable-name">TRIPLE GOLD BAR</span>
+                            <span class="paytable-mult">10x Base</span>
+                        </div>
+                    </div>
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_bell.jpg" alt="Bell">
+                        <div class="paytable-info">
+                            <span class="paytable-name">LIBERTY BELL</span>
+                            <span class="paytable-mult">8x Base</span>
+                        </div>
+                    </div>
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_diamond.jpg" alt="Diamond">
+                        <div class="paytable-info">
+                            <span class="paytable-name">DIAMOND</span>
+                            <span class="paytable-mult">5x Base</span>
+                        </div>
+                    </div>
+                    <div class="paytable-item">
+                        <img src="../assets/games/slots777/sym_cherry.jpg" alt="Cherries">
+                        <div class="paytable-info">
+                            <span class="paytable-name">LUCKY CHERRIES</span>
+                            <span class="paytable-mult">3x Base</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-size:11px; line-height:1.5; color:#ddd; border-top:1px solid rgba(255,215,0,0.25); padding-top:10px;">
+                    <p>• <strong>5 Classic Paylines:</strong> 3 Horizontal lines + 2 Diagonal lines.</p>
+                    <p>• <strong>4th Multiplier Reel:</strong> Multiplies total payline wins by 2x, 3x, 5x, 10x, 20x, 50x, 100x, or <strong>777x JACKPOT</strong>!</p>
+                    <p>• <strong>777 Wild Nudge:</strong> When a 777 Wild appears with Nudge, it expands to fill the entire reel!</p>
+                    <p>• <strong>Super Bet (+50%):</strong> Activates higher frequency of 777x Jackpot and Nudge badges!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/slots.js"></script>
+    <script>
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        function togglePaytableModal() {
+            const modal = document.getElementById('paytableModal');
+            if (modal) {
+                modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+            }
+        }
+
+        function kickstartJiliAudio() {
+            if (window.slotsGame && window.slotsGame.soundEnabled && !window.slotsGame.bgmStarted) {
+                window.slotsGame.startBGM();
+            }
+        }
+
+        function startJiliLoader() {
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            const pctEl = document.getElementById('jiliLoadPct');
+            if (!splash || !progressBar) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1850;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.7 ? (p * 1.15) : (0.805 + (p - 0.7) * 0.65);
+                const pct = Math.min(100, Math.round(ease * 100));
+                progressBar.style.width = pct + '%';
+                if (pctEl) pctEl.innerText = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    setTimeout(() => {
+                        splash.classList.add('loaded');
+                        setTimeout(() => {
+                            splash.style.display = 'none';
+                        }, 600);
+                    }, 140);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            startJiliLoader();
+            if (window.slotsGame) {
+                window.slotsGame.init();
+            }
+        });
+    </script>
+</body>
+</html>

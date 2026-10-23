@@ -1,0 +1,10 @@
+{"method":"Network.webSocketFrameSent","params":{"requestId":"13200.259","timestamp":44003.149765,"response":{"opcode":1,"mask":true,"payloadData":"{\"arguments\":[{\"version\":2}],\"invocationId\":\"4\",\"target\":\"Ping\",\"type\":1}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"13200.259","timestamp":44003.333665,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":1,\"target\":\"Ping\",\"arguments\":[]}\u001e{\"type\":3,\"invocationId\":\"4\",\"result\":null}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"13200.259","timestamp":44003.616988,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":6}\u001e"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"13200.262","timestamp":44004.099612,"response":{"opcode":2,"mask":true,"payloadData":"G5UBgKEztFVwZGF0ZVBsYXllclNlc3Npb25zkA=="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"13200.262","timestamp":44004.300115,"response":{"opcode":2,"mask":false,"payloadData":"B5UDgKEzA8A="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"13200.262","timestamp":44004.306778,"response":{"opcode":2,"mask":false,"payloadData":"ApEG"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"13200.259","timestamp":44008.14849,"response":{"opcode":1,"mask":true,"payloadData":"{\"arguments\":[{\"version\":2}],\"invocationId\":\"5\",\"target\":\"Ping\",\"type\":1}\u001e"}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"13200.259","timestamp":44008.350275,"response":{"opcode":1,"mask":false,"payloadData":"{\"type\":1,\"target\":\"Ping\",\"arguments\":[]}\u001e{\"type\":3,\"invocationId\":\"5\",\"result\":null}\u001e"}}}
+{"method":"Network.webSocketFrameSent","params":{"requestId":"13200.262","timestamp":44009.097929,"response":{"opcode":2,"mask":true,"payloadData":"G5UBgKE0tFVwZGF0ZVBsYXllclNlc3Npb25zkA=="}}}
+{"method":"Network.webSocketFrameReceived","params":{"requestId":"13200.262","timestamp":44009.283251,"response":{"opcode":2,"mask":false,"payloadData":"B5UDgKE0A8A="}}}

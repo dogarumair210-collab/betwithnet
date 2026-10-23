@@ -1,0 +1,113 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link REL="SHORTCUT ICON" HREF="https://cors.mannagaming.com/img/favicon/mannaplay.ico">
+  <title>MannaPlay | Gold Rush</title>
+  <meta name="Cache-Control" content="must-revalidate">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  <meta name="screen-orientation" content=""/>
+  <meta name="x5-orientation" content="">
+  <meta name="x5-page-mode" content="app">
+  <meta name="respath" content="https://cors.mannagaming.com/gassets">
+  <meta name="copyright_portrait" content="https://cors.mannagaming.com/img/copyright/manna/copyright_en-us_portrait.png?t=1790498357">
+  <meta name="copyright_landscape" content="https://cors.mannagaming.com/img/copyright/manna/copyright_en-us_landscape.png?t=1790498357">
+  <meta name="version" content="1.1.46">
+  <meta name="gamever" content="0bca672a.9039fac">
+  <meta name="common_js" content="cocos_utils,game-overlap,replay,refresh_token,pako.min">
+  
+  <style type="text/css">
+    .logo {
+      width: auto;
+      height: 100%;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="https://cors.mannagaming.com/gassets/slot20x21/css/loader.css?2e6c83990c79586bf02f40fd7bd9d2df"><link rel="stylesheet" type="text/css" href="https://cors.mannagaming.com/gassets/slot20x21/css/style-mobile.css?4b46a9b3346d261f4ae4a3804debf1d4">
+  
+</head>
+<body>
+  <img src="https://cors.mannagaming.com/img/copyright/manna/copyright_en-us_landscape.png?t=1790498357" style="display: none;">
+  <img src="https://cors.mannagaming.com/img/copyright/manna/copyright_en-us_portrait.png?t=1790498357" style="display: none;">
+  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+  <div id="splash" class="loaderContainer">
+    <div class="loaderOrder">
+      <div class="loaderOrder2">
+        <div class="loaderOrder3">
+          <div id="splash_img" style="background-repeat: no-repeat; background-position: center; background-size: contain; max-width: 100%; width: 200px; " class="logo"></div>    
+        </div>
+      </div>
+    </div>
+    <div class="progress-bar stripes">
+      <span style="width: 0%;"></span>
+    </div>
+  </div>
+  <div id="loader" class="loader_background">
+    <div class="loader_container">
+      <div class="loader"></div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cors.mannagaming.com/gassets/js/load_md5.js?793a17403d65974d18e2d191448c27ec"></script>
+  <script src="https://cors.mannagaming.com/gassets/slot20x21/js/main.js?89ca860cbecd936f56db816257e16aa4" charset="utf-8"></script><script src="https://cors.mannagaming.com/gassets/slot20x21/js/splash_loader.js?69793f24b1383e8576fbaf115da77a69" charset="utf-8"></script><script src="https://cors.mannagaming.com/gassets/slot20x21/js/transition.js?ed0a9e4e265a2bfed34a7a86b324170b" charset="utf-8"></script><script src="https://cors.mannagaming.com/gassets/slot20x21/js/util.js?f5cd90011bc74b509e199b975b343d44" charset="utf-8"></script><script src="https://cors.mannagaming.com/gassets/slot20x21/js/load_config.js?17a2723eb531651f54f9f64a4bad3aaf" charset="utf-8"></script><script src="https://cors.mannagaming.com/gassets/slot20x21/js/globals.js?3e1332f76cbf2d67a2822f7434d918bf" charset="utf-8"></script><script src="src/settings.fb193.js?d=1790498357" charset="utf-8"></script>
+<script type="text/javascript">
+(function () {
+    
+        console.timeEnd = function(){};
+        console.log = function(){};
+        console.warn = function(){};
+        
+    // open web debugger console
+    if (typeof VConsole !== 'undefined') {
+        window.vConsole = new VConsole();
+    }
+    let res_version = Date.now();
+    try{res_version = document.querySelector("meta[name=\"version\"]").content}catch(e){}
+    load_splash("https://cors.mannagaming.com/img/logo/mannaplay.png?705c93ff3e917ed212f10354c2e5fc83");
+    window.g_settings = {
+      "gameMode": "demo",
+      "gameType": "slot",
+      "gameId": "MEGA_7042"
+    };
+    let localB = ('').split(",");
+    if (localB.length !== 0 && window._CCSettings.hasOwnProperty('bundleVers')){
+      localB.filter(b => window._CCSettings['bundleVers'].hasOwnProperty(b)).forEach(b=> window._CCSettings['bundleVers'][b] = "");
+    }
+
+    function loadScript (moduleName, cb) {
+      function scriptLoaded () {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+      };
+      var domScript = document.createElement('script');
+      domScript.async = true;
+      domScript.src = moduleName;
+      domScript.addEventListener('load', scriptLoaded, false);
+      document.body.appendChild(domScript);
+    }
+
+    const respath = getAttr('respath') + '/';
+    const cocos2d_ver = (window.md5_lib && window.md5_lib["https://cors.mannagaming.com/gassets/slot20x21/js/cocos2d-js-min.js".replace(respath, "")]) ?? ("d=" + res_version);
+    loadScript("https://cors.mannagaming.com/gassets/slot20x21/js/cocos2d-js-min.js?"+cocos2d_ver, function () {
+      if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+        const physics_ver = (window.md5_lib && window.md5_lib["https://cors.mannagaming.com/gassets/slot20x21/js/physics-js-min.js".replace(respath, "")]) ?? ("d=" + res_version);
+        loadScript("https://cors.mannagaming.com/gassets/slot20x21/js/physics-js-min.js?"+physics_ver, window.boot);
+      }
+      else {
+        window.boot();
+      }
+    });
+})();
+</script>
+</body>
+</html>
+

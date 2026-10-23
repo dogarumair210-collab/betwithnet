@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Merchants Management • Bet With Net VIP Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+</head>
+<body class="adminlte-layout">
+
+    <!-- Sidebar Backdrop for Mobile -->
+    <div class="sidebar-backdrop" onclick="toggleSidebarFold()"></div>
+
+    <!-- AdminLTE Luxury Sidebar -->
+    <aside class="adminlte-sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-logo">👑</span>
+            <div class="brand-info">
+                <div class="brand-text">BET WITH NET</div>
+                <span class="brand-badge">VIP ADMINLTE</span>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="adminlte-main">
+
+        <!-- Top Navigation Bar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    P2P OTC Liquidity / <b style="color:#fff;">Verified Merchants Management</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>P2P ESCROW ACTIVE</span>
+                </div>
+                <a href="../p2p.html" target="_blank" class="btn-lte btn-lte-secondary" style="font-size:12px; padding:6px 12px; text-decoration:none;">
+                    <span>↗</span> View P2P Live Desk
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <!-- Page Title & Top Actions -->
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>🏪</span> Verified P2P OTC Merchants Management
+                    </h1>
+                    <p class="page-subtitle">
+                        Add, edit, delete, verify, and monitor liquidity providers supporting EasyPaisa, JazzCash, Meezan Bank, SadaPay, and Raast.
+                    </p>
+                </div>
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <button onclick="openCommissionModal()" class="btn-lte btn-lte-secondary">
+                        <span>⚙️</span> Commission Rate: <b id="commission-rate-badge" style="color:var(--lte-gold); margin-left:4px;">2.0%</b>
+                    </button>
+                    <button onclick="openAddMerchantModal()" class="btn-lte btn-lte-primary">
+                        <span>➕</span> Add New Merchant
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPI Summary Cards -->
+            <div class="stat-cards-grid" style="margin-bottom:24px;">
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-primary">🏪</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-total-merchants">8</div>
+                        <div class="stat-label">Total Verified Merchants</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-success">🟢</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-online-merchants" style="color:var(--lte-green);">8</div>
+                        <div class="stat-label">Online & Taking Orders</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-warning">💰</div>
+                    <div class="stat-data">
+                        <div class="stat-value" id="kpi-p2p-volume">$ 14,850</div>
+                        <div class="stat-label">24h Trade Volume</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrap icon-info">⚡</div>
+                    <div class="stat-data">
+                        <div class="stat-value">2.4 min</div>
+                        <div class="stat-label">Average Escrow Release</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter & Search Toolbar -->
+            <div class="table-search-bar">
+                <div class="search-input-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="merchant-search-input" class="search-input" placeholder="Search merchant name, badge, bank, or account title..." oninput="filterMerchants()">
+                </div>
+                <div class="filter-group">
+                    <select id="channel-filter" class="filter-select" onchange="filterMerchants()">
+                        <option value="all">All Payment Channels</option>
+                        <option value="EasyPaisa">EasyPaisa</option>
+                        <option value="JazzCash">JazzCash</option>
+                        <option value="Meezan Bank">Meezan Bank</option>
+                        <option value="Raast">Raast Direct</option>
+                        <option value="SadaPay">SadaPay</option>
+                    </select>
+                    <select id="status-filter" class="filter-select" onchange="filterMerchants()">
+                        <option value="all">All Statuses</option>
+                        <option value="online">🟢 Online Only</option>
+                        <option value="offline">⚪ Offline Only</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Merchants Data Table -->
+            <div class="lte-card">
+                <div class="lte-table-responsive">
+                    <table class="lte-table">
+                        <thead>
+                            <tr>
+                                <th>MERCHANT</th>
+                                <th>CHANNELS</th>
+                                <th>EXCHANGE RATES (BUY / SELL)</th>
+                                <th>ORDER LIMITS (PKR)</th>
+                                <th>PERFORMANCE</th>
+                                <th>STATUS</th>
+                                <th style="text-align:right;">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="merchants-table-body">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <div class="table-info" id="table-info">Showing 1 to 8 of 8 merchants</div>
+                    <div class="pagination" id="table-pagination">
+                        <button class="page-btn active">1</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal: Add New Merchant -->
+    <div id="add-merchant-modal" class="lte-modal-overlay" style="display:none;">
+        <div class="lte-modal-window" style="max-width:580px;">
+            <div class="lte-modal-header">
+                <div class="lte-modal-title"><span>➕</span> Add New Verified P2P Merchant</div>
+                <button class="lte-modal-close" onclick="closeModal('add-merchant-modal')">✕</button>
+            </div>
+            <div class="lte-modal-body">
+                <form id="add-merchant-form" onsubmit="handleAddMerchantSubmit(event)">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Merchant Name *</label>
+                            <input type="text" id="add-m-name" class="form-control" placeholder="e.g. Lahore_Crypto_Bull" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Avatar Emoji / Icon</label>
+                            <input type="text" id="add-m-avatar" class="form-control" value="👑" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Verification Badge</label>
+                            <input type="text" id="add-m-badge" class="form-control" value="🏆 Super Merchant">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Avg Release Time (Minutes)</label>
+                            <input type="number" id="add-m-release" class="form-control" value="2" min="1" max="60">
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">User Buy Rate (PKR / USD) *</label>
+                            <input type="number" step="0.01" id="add-m-buy-price" class="form-control" value="280.50" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">User Sell Rate (PKR / USD) *</label>
+                            <input type="number" step="0.01" id="add-m-sell-price" class="form-control" value="278.50" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Min Limit (PKR) *</label>
+                            <input type="number" id="add-m-min-limit" class="form-control" value="2000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Max Limit (PKR) *</label>
+                            <input type="number" id="add-m-max-limit" class="form-control" value="150000" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Supported Payment Channels *</label>
+                        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:6px;">
+                            <label style="font-size:12px; color:#fff; display:flex; align-items:center; gap:4px;">
+                                <input type="checkbox" name="add-channels" value="EasyPaisa" checked> EasyPaisa
+                            </label>
+                            <label style="font-size:12px; color:#fff; display:flex; align-items:center; gap:4px;">
+                                <input type="checkbox" name="add-channels" value="JazzCash" checked> JazzCash
+                            </label>
+                            <label style="font-size:12px; color:#fff; display:flex; align-items:center; gap:4px;">
+                                <input type="checkbox" name="add-channels" value="Meezan Bank"> Meezan Bank
+                            </label>
+                            <label style="font-size:12px; color:#fff; display:flex; align-items:center; gap:4px;">
+                                <input type="checkbox" name="add-channels" value="Raast" checked> Raast Direct
+                            </label>
+                            <label style="font-size:12px; color:#fff; display:flex; align-items:center; gap:4px;">
+                                <input type="checkbox" name="add-channels" value="SadaPay"> SadaPay
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Primary Account Title *</label>
+                            <input type="text" id="add-m-acc-title" class="form-control" placeholder="Account Holder Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Account # / IBAN *</label>
+                            <input type="text" id="add-m-acc-num" class="form-control" placeholder="0300-1234567 or IBAN" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Initial Status</label>
+                        <select id="add-m-status" class="form-control">
+                            <option value="online">🟢 Online (Accepting Orders)</option>
+                            <option value="offline">⚪ Offline (Hidden from Lobby)</option>
+                        </select>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                        <button type="button" class="btn-lte btn-lte-secondary" onclick="closeModal('add-merchant-modal')">Cancel</button>
+                        <button type="submit" class="btn-lte btn-lte-primary"><span>💾</span> Register Merchant</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Edit Merchant -->
+    <div id="edit-merchant-modal" class="lte-modal-overlay" style="display:none;">
+        <div class="lte-modal-window" style="max-width:580px;">
+            <div class="lte-modal-header">
+                <div class="lte-modal-title"><span>✏️</span> Edit Merchant Profile</div>
+                <button class="lte-modal-close" onclick="closeModal('edit-merchant-modal')">✕</button>
+            </div>
+            <div class="lte-modal-body">
+                <form id="edit-merchant-form" onsubmit="handleEditMerchantSubmit(event)">
+                    <input type="hidden" id="edit-m-id">
+                    
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Merchant Name *</label>
+                            <input type="text" id="edit-m-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Badge Label</label>
+                            <input type="text" id="edit-m-badge" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">User Buy Rate (PKR / USD) *</label>
+                            <input type="number" step="0.01" id="edit-m-buy-price" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">User Sell Rate (PKR / USD) *</label>
+                            <input type="number" step="0.01" id="edit-m-sell-price" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Min Limit (PKR) *</label>
+                            <input type="number" id="edit-m-min-limit" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Max Limit (PKR) *</label>
+                            <input type="number" id="edit-m-max-limit" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select id="edit-m-status" class="form-control">
+                            <option value="online">🟢 Online (Taking Trades)</option>
+                            <option value="offline">⚪ Offline (Temporarily Inactive)</option>
+                        </select>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                        <button type="button" class="btn-lte btn-lte-secondary" onclick="closeModal('edit-merchant-modal')">Cancel</button>
+                        <button type="submit" class="btn-lte btn-lte-primary"><span>💾</span> Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: View Merchant Accounts -->
+    <div id="view-merchant-modal" class="lte-modal-overlay" style="display:none;">
+        <div class="lte-modal-window" style="max-width:520px;">
+            <div class="lte-modal-header">
+                <div class="lte-modal-title"><span id="view-m-avatar">🏪</span> <span id="view-m-title">Merchant Details</span></div>
+                <button class="lte-modal-close" onclick="closeModal('view-merchant-modal')">✕</button>
+            </div>
+            <div class="lte-modal-body" id="view-m-content">
+                <!-- Content injected via JS -->
+            </div>
+            <div style="padding:16px 20px; border-top:1px solid var(--lte-border); text-align:right;">
+                <button class="btn-lte btn-lte-secondary" onclick="closeModal('view-merchant-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Commission Settings -->
+    <div id="commission-modal" class="lte-modal-overlay" style="display:none;">
+        <div class="lte-modal-window" style="max-width:440px;">
+            <div class="lte-modal-header">
+                <div class="lte-modal-title"><span>⚙️</span> Platform P2P Commission Fee</div>
+                <button class="lte-modal-close" onclick="closeModal('commission-modal')">✕</button>
+            </div>
+            <div class="lte-modal-body">
+                <p style="font-size:12px; color:var(--lte-muted); margin-bottom:14px;">
+                    This commission percentage is automatically collected by the platform on every executed P2P trade.
+                </p>
+                <div class="form-group">
+                    <label class="form-label">Platform Fee Percentage (%)</label>
+                    <input type="number" step="0.1" min="0" max="10" id="platform-commission-input" class="form-control" value="2.0">
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px;">
+                    <button class="btn-lte btn-lte-secondary" onclick="closeModal('commission-modal')">Cancel</button>
+                    <button class="btn-lte btn-lte-primary" onclick="saveCommissionRate()">Save Fee Rate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/p2p_manager.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        let allMerchants = [];
+        let filteredMerchantsList = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMerchantsData();
+            updateCommissionDisplay();
+        });
+
+        function loadMerchantsData() {
+            if (!window.p2pManager) return;
+            allMerchants = window.p2pManager.state.merchants || [];
+            filteredMerchantsList = [...allMerchants];
+            renderTable();
+            updateKPIs();
+        }
+
+        function updateCommissionDisplay() {
+            if (!window.p2pManager) return;
+            const rate = window.p2pManager.getCommissionRate();
+            document.getElementById('commission-rate-badge').innerText = rate.toFixed(1) + '%';
+            document.getElementById('platform-commission-input').value = rate;
+        }
+
+        function updateKPIs() {
+            const total = allMerchants.length;
+            const online = allMerchants.filter(m => m.status === 'online').length;
+            document.getElementById('kpi-total-merchants').innerText = total;
+            document.getElementById('kpi-online-merchants').innerText = online;
+        }
+
+        function filterMerchants() {
+            const q = (document.getElementById('merchant-search-input').value || '').toLowerCase().trim();
+            const channel = document.getElementById('channel-filter').value;
+            const status = document.getElementById('status-filter').value;
+
+            filteredMerchantsList = allMerchants.filter(m => {
+                const matchQ = !q || m.name.toLowerCase().includes(q) || (m.badge && m.badge.toLowerCase().includes(q)) || JSON.stringify(m.accounts || {}).toLowerCase().includes(q);
+                const matchChannel = channel === 'all' || (m.channels && m.channels.some(c => c.toLowerCase().includes(channel.toLowerCase())));
+                const matchStatus = status === 'all' || m.status === status;
+                return matchQ && matchChannel && matchStatus;
+            });
+
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('merchants-table-body');
+            if (!tbody) return;
+
+            if (filteredMerchantsList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:32px; color:var(--lte-muted);">No verified merchants match your filter.</td></tr>`;
+                document.getElementById('table-info').innerText = 'Showing 0 of 0 merchants';
+                return;
+            }
+
+            let html = '';
+            filteredMerchantsList.forEach(m => {
+                const isOnline = m.status === 'online';
+                const channelBadges = (m.channels || []).map(c => {
+                    let color = '#00e700';
+                    if (c === 'EasyPaisa') color = '#00c853';
+                    if (c === 'JazzCash') color = '#ff4757';
+                    if (c === 'Meezan Bank') color = '#00e5ff';
+                    if (c === 'Raast') color = '#f5a623';
+                    if (c === 'SadaPay') color = '#ff6b81';
+                    return `<span style="display:inline-block; font-size:10px; font-weight:800; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,0.06); color:${color}; border:1px solid rgba(255,255,255,0.1); margin:1px;">${c}</span>`;
+                }).join(' ');
+
+                html += `
+                    <tr>
+                        <td>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <span style="font-size:24px;">${m.avatar || '🏪'}</span>
+                                <div>
+                                    <div style="font-weight:800; color:#fff; font-size:13px;">${m.name}</div>
+                                    <div style="font-size:11px; color:var(--lte-gold);">${m.badge || 'Verified Desk'}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${channelBadges}</td>
+                        <td>
+                            <div style="font-size:12px; font-family:var(--font-mono);">
+                                <span style="color:#00e700; font-weight:700;">Buy: ₨ ${parseFloat(m.buyPrice || 280.5).toFixed(2)}</span> / 
+                                <span style="color:#ff4757; font-weight:700;">Sell: ₨ ${parseFloat(m.sellPrice || 278.5).toFixed(2)}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span style="font-size:12px; color:#cbd5e1; font-family:var(--font-mono);">
+                                ₨ ${(m.minLimitPKR || 1000).toLocaleString()} - ₨ ${(m.maxLimitPKR || 100000).toLocaleString()}
+                            </span>
+                        </td>
+                        <td>
+                            <div style="font-size:12px; font-weight:700; color:#fff;">${m.trades || 0} trades</div>
+                            <div style="font-size:11px; color:var(--lte-green);">${m.completion || 99.5}% completion • ${m.avgReleaseMin || 2}m</div>
+                        </td>
+                        <td>
+                            <button onclick="toggleMerchantStatus('${m.id}')" class="btn-lte ${isOnline ? 'btn-lte-success' : 'btn-lte-secondary'}" style="padding:4px 10px; font-size:11px;">
+                                ${isOnline ? '🟢 Online' : '⚪ Offline'}
+                            </button>
+                        </td>
+                        <td style="text-align:right;">
+                            <div style="display:inline-flex; gap:6px;">
+                                <button onclick="viewMerchantDetails('${m.id}')" class="btn-action-icon" title="View Account Details">👁️</button>
+                                <button onclick="openEditMerchantModal('${m.id}')" class="btn-action-icon" title="Edit Merchant">✏️</button>
+                                <button onclick="deleteMerchant('${m.id}', '${m.name}')" class="btn-action-icon" style="color:var(--lte-red);" title="Delete Merchant">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+            document.getElementById('table-info').innerText = `Showing 1 to ${filteredMerchantsList.length} of ${filteredMerchantsList.length} merchants`;
+        }
+
+        function toggleMerchantStatus(id) {
+            if (!window.p2pManager) return;
+            window.p2pManager.toggleMerchantStatus(id);
+            loadMerchantsData();
+        }
+
+        function deleteMerchant(id, name) {
+            if (confirm(`Are you sure you want to delete merchant "${name}"? This cannot be undone.`)) {
+                window.p2pManager.deleteMerchant(id);
+                loadMerchantsData();
+                alert(`Merchant "${name}" has been removed.`);
+            }
+        }
+
+        function viewMerchantDetails(id) {
+            const m = window.p2pManager.getMerchantById(id);
+            if (!m) return;
+
+            document.getElementById('view-m-avatar').innerText = m.avatar || '🏪';
+            document.getElementById('view-m-title').innerText = m.name;
+
+            let accountsHtml = '';
+            if (m.accounts && typeof m.accounts === 'object') {
+                for (const [ch, acc] of Object.entries(m.accounts)) {
+                    accountsHtml += `
+                        <div style="background:#0b111a; border:1px solid var(--lte-border); border-radius:6px; padding:10px; margin-bottom:8px;">
+                            <div style="font-weight:800; color:var(--lte-gold); font-size:12px; margin-bottom:4px;">${ch}</div>
+                            <div style="font-size:12px; color:#fff;">Title: <b>${acc.title || 'N/A'}</b></div>
+                            <div style="font-size:12px; color:#cbd5e1; font-family:var(--font-mono);">Account / IBAN: <b>${acc.number || 'N/A'}</b></div>
+                        </div>
+                    `;
+                }
+            } else {
+                accountsHtml = `<div style="color:var(--lte-muted); font-size:12px;">No dedicated accounts stored.</div>`;
+            }
+
+            document.getElementById('view-m-content').innerHTML = `
+                <div style="margin-bottom:16px; font-size:12px; line-height:1.6; color:#cbd5e1;">
+                    <div>Merchant ID: <b style="color:#fff;">${m.id}</b></div>
+                    <div>Status: <b style="color:${m.status === 'online' ? '#00e700' : 'var(--lte-muted)'};">${m.status.toUpperCase()}</b></div>
+                    <div>Exchange Rate: <b>Buy ₨ ${m.buyPrice} | Sell ₨ ${m.sellPrice}</b></div>
+                    <div>Limits: <b>₨ ${m.minLimitPKR.toLocaleString()} - ₨ ${m.maxLimitPKR.toLocaleString()}</b></div>
+                    <div>Performance: <b>${m.trades} trades (${m.completion}% completion rate)</b></div>
+                </div>
+                <h4 style="font-size:13px; font-weight:800; color:#fff; margin-bottom:8px;">Banking & Cashier Channels</h4>
+                ${accountsHtml}
+            `;
+
+            document.getElementById('view-merchant-modal').style.display = 'flex';
+        }
+
+        function openAddMerchantModal() {
+            document.getElementById('add-merchant-form').reset();
+            document.getElementById('add-merchant-modal').style.display = 'flex';
+        }
+
+        function handleAddMerchantSubmit(e) {
+            e.preventDefault();
+            const channels = [];
+            document.querySelectorAll('input[name="add-channels"]:checked').forEach(c => channels.push(c.value));
+
+            const name = document.getElementById('add-m-name').value.trim();
+            const avatar = document.getElementById('add-m-avatar').value.trim() || '🏪';
+            const badge = document.getElementById('add-m-badge').value.trim() || 'Verified Desk';
+            const buyPrice = parseFloat(document.getElementById('add-m-buy-price').value);
+            const sellPrice = parseFloat(document.getElementById('add-m-sell-price').value);
+            const minLimit = parseInt(document.getElementById('add-m-min-limit').value, 10);
+            const maxLimit = parseInt(document.getElementById('add-m-max-limit').value, 10);
+            const title = document.getElementById('add-m-acc-title').value.trim();
+            const num = document.getElementById('add-m-acc-num').value.trim();
+            const status = document.getElementById('add-m-status').value;
+
+            const accounts = {};
+            channels.forEach(ch => {
+                accounts[ch] = { title: title, number: num };
+            });
+
+            window.p2pManager.addMerchant({
+                name, avatar, badge, buyPrice, sellPrice,
+                minLimitPKR: minLimit, maxLimitPKR: maxLimit,
+                channels, accounts, status
+            });
+
+            closeModal('add-merchant-modal');
+            loadMerchantsData();
+            alert(`Merchant "${name}" successfully registered!`);
+        }
+
+        function openEditMerchantModal(id) {
+            const m = window.p2pManager.getMerchantById(id);
+            if (!m) return;
+
+            document.getElementById('edit-m-id').value = m.id;
+            document.getElementById('edit-m-name').value = m.name;
+            document.getElementById('edit-m-badge').value = m.badge || '';
+            document.getElementById('edit-m-buy-price').value = m.buyPrice;
+            document.getElementById('edit-m-sell-price').value = m.sellPrice;
+            document.getElementById('edit-m-min-limit').value = m.minLimitPKR;
+            document.getElementById('edit-m-max-limit').value = m.maxLimitPKR;
+            document.getElementById('edit-m-status').value = m.status;
+
+            document.getElementById('edit-merchant-modal').style.display = 'flex';
+        }
+
+        function handleEditMerchantSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('edit-m-id').value;
+            const name = document.getElementById('edit-m-name').value.trim();
+            const badge = document.getElementById('edit-m-badge').value.trim();
+            const buyPrice = parseFloat(document.getElementById('edit-m-buy-price').value);
+            const sellPrice = parseFloat(document.getElementById('edit-m-sell-price').value);
+            const minLimitPKR = parseInt(document.getElementById('edit-m-min-limit').value, 10);
+            const maxLimitPKR = parseInt(document.getElementById('edit-m-max-limit').value, 10);
+            const status = document.getElementById('edit-m-status').value;
+
+            window.p2pManager.updateMerchant(id, {
+                name, badge, buyPrice, sellPrice, minLimitPKR, maxLimitPKR, status
+            });
+
+            closeModal('edit-merchant-modal');
+            loadMerchantsData();
+            alert(`Merchant "${name}" updated successfully!`);
+        }
+
+        function openCommissionModal() {
+            document.getElementById('commission-modal').style.display = 'flex';
+        }
+
+        function saveCommissionRate() {
+            const val = parseFloat(document.getElementById('platform-commission-input').value);
+            if (isNaN(val) || val < 0 || val > 15) {
+                alert('Please enter a valid commission rate between 0% and 15%.');
+                return;
+            }
+            window.p2pManager.setCommissionRate(val);
+            updateCommissionDisplay();
+            closeModal('commission-modal');
+            alert(`Platform P2P Commission Rate set to ${val}%!`);
+        }
+
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://crash-games.astriona.games/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>RouletteX Live Client | Bet With Net</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body, #root {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #050a12;
+      }
+    </style>
+    <script>
+      // Wallet bridge to parent window
+      window.wallet = (window.parent && window.parent.wallet) ? window.parent.wallet : null;
+      window.addEventListener('load', function() {
+        if (window.parent && window.parent.wallet && window.parent.wallet.on) {
+          window.parent.wallet.on('balanceChange', function(bal) {
+            try {
+              if (window.gameStore && window.gameStore.setBalance) {
+                window.gameStore.setBalance(bal);
+              }
+            } catch(e) {}
+          });
+        }
+      });
+    </script>
+    <script type="module" crossorigin src="/games/live_client/assets/index-B5JrIcca.js"></script>
+    <link rel="stylesheet" crossorigin href="/games/live_client/assets/index-hqzXGoYz.css">
+    <link rel="stylesheet" crossorigin href="/games/live_client/assets/index-DhD25oiJ.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

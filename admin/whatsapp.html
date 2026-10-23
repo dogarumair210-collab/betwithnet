@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WhatsApp Group & Community Settings - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .wa-hero-card {
+            background: linear-gradient(135deg, rgba(37,211,102,0.12) 0%, rgba(17,23,34,0.98) 100%);
+            border: 1px solid rgba(37,211,102,0.4);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .btn-wa-save {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #000;
+            font-weight: 900;
+            font-size: 15px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-wa-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(37,211,102,0.6);
+        }
+        .btn-wa-test {
+            background: rgba(37,211,102,0.15);
+            border: 1px solid #25D366;
+            color: #25D366;
+            font-weight: 700;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-wa-test:hover {
+            background: #25D366;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>Merchant Registry</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>Live Escrow Orders</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">GAME CONTROLLERS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Live Crash Controller</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">FINANCE & CASHIER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link active" style="background: rgba(37,211,102,0.15); border-left: 3px solid #25D366;">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:800; color:#fff;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">ACTIVE</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    Platform Settings / <b style="color:#fff;">WhatsApp Group Link & Player Community</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <a href="../index.html" target="_blank" class="btn-lte btn-lte-secondary" style="color:var(--lte-green);">
+                    <span>🎮 Open Player Casino</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <!-- Hero Banner -->
+            <div class="wa-hero-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div style="width:58px; height:58px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 0 25px rgba(37,211,102,0.6);">
+                            💬
+                        </div>
+                        <div>
+                            <h1 style="font-size:22px; font-weight:900; color:#fff; margin:0 0 4px 0;">
+                                WhatsApp Official Group Link & Live Support
+                            </h1>
+                            <p style="font-size:13px; color:var(--lte-muted); margin:0;">
+                                Manage your casino's WhatsApp group invite link, customer support hotline, and the draggable floating bubble on players' screens.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button onclick="testGroupLink()" class="btn-wa-test">
+                            <span>🔗 Test Open Group Link</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Grid -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:24px;">
+
+                <!-- Card 1: Official Group Link & Settings -->
+                <div class="lte-card">
+                    <div class="lte-card-header" style="border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:14px; margin-bottom:18px;">
+                        <div class="lte-card-title" style="display:flex; align-items:center; gap:10px;">
+                            <span style="color:#25D366; font-size:20px;">🌐</span>
+                            <span style="font-weight:800; font-size:16px; color:#fff;">WhatsApp Group Configuration</span>
+                        </div>
+                    </div>
+
+                    <form id="wa-form" onsubmit="handleSaveWhatsApp(event)">
+                        
+                        <div class="form-field" style="margin-bottom:18px;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#ccd2e0; margin-bottom:6px;">
+                                WhatsApp Group Invite URL:
+                            </label>
+                            <input type="url" id="wa-group-link" class="form-ctrl" 
+                                placeholder="https://chat.whatsapp.com/GzB9o13U2Rj6..." 
+                                style="font-family:'JetBrains Mono',monospace; font-size:13px; border-color:rgba(37,211,102,0.4);"
+                                required>
+                            <div style="font-size:11px; color:var(--lte-muted); margin-top:4px;">
+                                💡 Paste your complete WhatsApp Group invite link. Jab player floating button ya support par click karega to yeh group join hoga.
+                            </div>
+                        </div>
+
+                        <div class="form-field" style="margin-bottom:18px;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#ccd2e0; margin-bottom:6px;">
+                                Direct WhatsApp Support Number (Fallback 1-on-1):
+                            </label>
+                            <input type="text" id="wa-number" class="form-ctrl" 
+                                placeholder="923001234567" 
+                                style="font-family:'JetBrains Mono',monospace; font-size:13px;">
+                            <div style="font-size:11px; color:var(--lte-muted); margin-top:4px;">
+                                Agar group link empty ho, to player is number par direct chat me redirect hoga (e.g. 923001234567).
+                            </div>
+                        </div>
+
+                        <div class="form-field" style="margin-bottom:18px;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#ccd2e0; margin-bottom:6px;">
+                                Pre-filled Support Greeting Message:
+                            </label>
+                            <input type="text" id="wa-message" class="form-ctrl" 
+                                placeholder="Hello BetWithNet Support, I need assistance with my account.">
+                            <div style="font-size:11px; color:var(--lte-muted); margin-top:4px;">
+                                User ke WhatsApp chat box me automatically pehle se type message.
+                            </div>
+                        </div>
+
+                        <div class="form-field" style="margin-bottom:24px;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#ccd2e0; margin-bottom:6px;">
+                                Floating WhatsApp Bubble on Casino:
+                            </label>
+                            <select id="wa-enabled" class="form-ctrl">
+                                <option value="1" selected>🟢 Enabled (Floating draggable button visible on casino screens)</option>
+                                <option value="0">🔴 Disabled (Hidden from casino)</option>
+                            </select>
+                        </div>
+
+                        <div style="display:flex; gap:12px; align-items:center;">
+                            <button type="submit" class="btn-wa-save">
+                                <span>💾 Save & Apply Live</span>
+                            </button>
+                            <button type="button" onclick="testGroupLink()" class="btn-wa-test">
+                                <span>🚀 Test Now</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Card 2: Live Status & Preview -->
+                <div class="lte-card">
+                    <div class="lte-card-header" style="border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:14px; margin-bottom:18px;">
+                        <div class="lte-card-title" style="display:flex; align-items:center; gap:10px;">
+                            <span style="color:#00e700; font-size:20px;">📱</span>
+                            <span style="font-weight:800; font-size:16px; color:#fff;">Live Player Screen Preview</span>
+                        </div>
+                    </div>
+
+                    <div style="background:#090d14; border-radius:10px; border:1px dashed rgba(255,255,255,0.15); padding:24px; text-align:center;">
+                        
+                        <div style="font-size:13px; color:#8e9bb0; margin-bottom:16px;">
+                            Yeh floating widget casino ke har page ke bottom corner me show hota hai jise player drag karke kisi bhi jagah rakh sakta hai:
+                        </div>
+
+                        <!-- Mock Floating Bubble -->
+                        <div style="display:inline-block; padding:12px; background:rgba(255,255,255,0.03); border-radius:50%; border:2px solid rgba(37,211,102,0.3); box-shadow:0 0 30px rgba(37,211,102,0.3); margin-bottom:16px;">
+                            <div style="width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg, #25D366 0%, #128C7E 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 15px rgba(37,211,102,0.5); cursor:pointer;" onclick="testGroupLink()">
+                                <svg width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
+                                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div style="font-size:14px; font-weight:800; color:#25D366; margin-bottom:8px;" id="preview-status-text">
+                            🟢 Status: Link is Configured & Live
+                        </div>
+
+                        <div style="background:#111722; padding:12px; border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#fff; word-break:break-all;" id="preview-link-val">
+                            https://chat.whatsapp.com/...
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        async function loadWhatsAppSettings() {
+            let link = localStorage.getItem('bwn_whatsapp_group_link') || '';
+            let num = localStorage.getItem('bwn_whatsapp_number') || '923001234567';
+            let enabled = localStorage.getItem('bwn_whatsapp_enabled') !== '0';
+            let msg = localStorage.getItem('bwn_whatsapp_message') || 'Hello BetWithNet Support, I need assistance with my account.';
+
+            try {
+                const res = await fetch('../api/admin.php?action=site_settings', { cache: 'no-store' });
+                const json = await res.json();
+                if (json && json.success && json.data) {
+                    if (json.data.whatsapp_group_link !== undefined) link = json.data.whatsapp_group_link;
+                    if (json.data.whatsapp_number !== undefined) num = json.data.whatsapp_number;
+                    if (json.data.whatsapp_enabled !== undefined) enabled = json.data.whatsapp_enabled == '1';
+                    if (json.data.whatsapp_message !== undefined) msg = json.data.whatsapp_message;
+                }
+            } catch (err) {
+                console.warn('API fetch warning:', err);
+            }
+
+            document.getElementById('wa-group-link').value = link;
+            document.getElementById('wa-number').value = num;
+            document.getElementById('wa-enabled').value = enabled ? '1' : '0';
+            document.getElementById('wa-message').value = msg;
+
+            updatePreview(link, enabled);
+        }
+
+        function updatePreview(link, enabled) {
+            const statusEl = document.getElementById('preview-status-text');
+            const linkEl = document.getElementById('preview-link-val');
+
+            if (!enabled) {
+                statusEl.innerHTML = '🔴 Status: Widget Disabled in Admin';
+                statusEl.style.color = '#ff4757';
+            } else if (link && link.trim() !== '') {
+                statusEl.innerHTML = '🟢 Status: Active WhatsApp Group Link';
+                statusEl.style.color = '#25D366';
+                linkEl.textContent = link.trim();
+            } else {
+                statusEl.innerHTML = '🟡 Status: Using Fallback Support Phone';
+                statusEl.style.color = '#f5c518';
+                linkEl.textContent = 'Direct Chat: ' + (document.getElementById('wa-number').value || 'Not Set');
+            }
+        }
+
+        async function handleSaveWhatsApp(e) {
+            e.preventDefault();
+            const link = document.getElementById('wa-group-link').value.trim();
+            const num = document.getElementById('wa-number').value.trim().replace(/[^0-9]/g, '');
+            const enabled = document.getElementById('wa-enabled').value;
+            const msg = document.getElementById('wa-message').value.trim();
+
+            // Save to localStorage immediately for instant client feedback
+            localStorage.setItem('bwn_whatsapp_group_link', link);
+            localStorage.setItem('bwn_whatsapp_number', num);
+            localStorage.setItem('bwn_whatsapp_enabled', enabled);
+            localStorage.setItem('bwn_whatsapp_message', msg);
+
+            // Persist to Server MySQL database
+            try {
+                const res = await fetch('../api/admin.php?action=save_site_settings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        whatsapp_group_link: link,
+                        whatsapp_number: num,
+                        whatsapp_enabled: enabled,
+                        whatsapp_message: msg
+                    })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    alert('✅ WhatsApp Group Link & Support settings successfully saved and applied to entire casino!');
+                } else {
+                    alert('Settings saved locally. Server response: ' + (json ? json.message : 'OK'));
+                }
+            } catch (err) {
+                alert('✅ Settings saved to browser and applied!');
+            }
+
+            updatePreview(link, enabled === '1');
+        }
+
+        function testGroupLink() {
+            const link = document.getElementById('wa-group-link').value.trim();
+            if (link) {
+                window.open(link, '_blank');
+            } else {
+                const num = document.getElementById('wa-number').value.trim() || '923001234567';
+                window.open('https://wa.me/' + num, '_blank');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadWhatsAppSettings);
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Fortune Gems 2 - JILI Games | 1xBet Official Play</title>
+  <link rel="stylesheet" href="../css/games/fortunegems2.css?v=5.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="../assets/games/fortunegems/sym_wild.png" type="image/png">
+</head>
+<body class="slot-game-body">
+
+  <!-- JILI Luxury Loading Splash Screen -->
+  <div class="jili-loading-screen" id="jiliLoadingScreen">
+    <div class="jili-splash-content">
+      <div class="jili-logo-glow-wrapper">
+        <img src="../assets/games/fortunegems/jili_logo.png" alt="JILI Games" class="jili-logo-img">
+      </div>
+      <div class="jili-game-title">FORTUNE GEMS 2</div>
+      <div class="jili-subtitle">1XBET OFFICIAL EMBED #98308</div>
+
+      <div class="jili-loading-bar-container">
+        <div class="jili-loading-bar" id="jiliProgressBar">
+          <span class="jili-bar-shine"></span>
+        </div>
+      </div>
+      <div class="jili-loading-info">
+        <span class="jili-loading-status" id="jiliStatusText">Loading official JILI slot engine...</span>
+        <span class="jili-loading-pct" id="jiliProgressText">0%</span>
+      </div>
+      <div class="jili-loading-footer">
+        <span class="jili-pill">JILI & 1XBET CERTIFIED</span>
+        <span class="jili-fair">RNG 100% PROVABLY FAIR</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Responsive Game Container -->
+  <div class="game-viewport" id="gameViewport">
+
+    <!-- Top Sleek Bet With Net Casino HUD -->
+    <header class="ingame-top-hud" id="topHud">
+      <div class="hud-left">
+        <button class="hud-btn back-btn" onclick="goBack()" title="Back to Lobby">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+        </button>
+        <div class="hud-brand-tag">
+          <img src="../assets/games/fortunegems/jili_logo.png" alt="JILI" class="hud-brand-logo">
+          <div class="hud-brand-info">
+            <span class="hud-game-title">FORTUNE GEMS 2</span>
+            <span class="hud-status-badge">● LIVE PLAY</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <div class="hud-wallet-pill">
+          <span class="wallet-label">BALANCE:</span>
+          <span class="wallet-currency">PKR</span>
+          <span class="wallet-amount" id="walletBalance">2,000.00</span>
+          <button class="wallet-refresh-btn" onclick="refreshWalletBalance()" title="Refresh Balance">↻</button>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <button class="hud-btn deposit-btn" onclick="openDeposit()" title="Deposit Funds">
+          <span>+</span> DEPOSIT
+        </button>
+        <button class="hud-btn fullscreen-btn" id="fsToggleBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" id="fsIcon">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+          </svg>
+        </button>
+        <button class="hud-btn hud-collapse-btn" id="collapseHudBtn" onclick="toggleHudCollapse()" title="Hide Top Bar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mini Floating Restore Button (when HUD is collapsed) -->
+    <button class="hud-restore-pill" id="hudRestorePill" onclick="toggleHudCollapse()" title="Show Top Bar">
+      <span class="hud-pill-dot"></span>
+      <span class="hud-pill-text">BWN HUD</span>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+      </svg>
+    </button>
+
+    <!-- Genuine 100% Real JILI Game 98308 Frame -->
+    <main class="real-game-stage" id="gameStage">
+      <iframe
+        id="jiliGameFrame"
+        class="real-game-iframe"
+        src="https://jiligames.com/plusplayer/PlusTrial/223/en-US"
+        allow="autoplay; fullscreen; screen-wake-lock; orientation; accelerometer; gyroscope"
+        allowfullscreen="true"
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        scrolling="no"
+        frameborder="0">
+      </iframe>
+    </main>
+
+  </div>
+
+  <!-- Bet With Net Wallet Core & API Scripts -->
+  <script src="../js/api_bridge.js?v=2.5"></script>
+  <script src="../js/wallet.js?v=2.5"></script>
+  <script src="../js/core.js?v=2.5"></script>
+  <script src="../js/games/fortunegems2.js?v=5.0"></script>
+</body>
+</html>

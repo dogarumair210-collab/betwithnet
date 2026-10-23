@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#060c14">
+    <title>Royal Thimbles & Magic Cups - VIP Casino Edition | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT (0-SCROLL)
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        :root {
+            --cup-gold-light: #ffffff;
+            --cup-gold-main: #d5dee8;
+            --cup-gold-deep: #2a333f;
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #161e2a 0%, #090e15 65%, #020408 100%);
+            --table-rim: #d5dee8;
+            --table-border: rgba(213, 222, 232, 0.45);
+            --accent-glow: rgba(255, 100, 0, 0.7);
+            --cup-metal-deep: #1e252e;
+            --cup-metal-mid: #556375;
+            --cup-metal-gold: #c5d1e0;
+            --cup-metal-light: #ffffff;
+            --gem-color: #00e5ff;
+        }
+
+        /* 4 SELECTABLE CASINO THEMES */
+        body.theme-silver {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #161e2a 0%, #090e15 65%, #020408 100%);
+            --table-rim: #d5dee8;
+            --table-border: rgba(213, 222, 232, 0.45);
+            --accent-glow: rgba(255, 100, 0, 0.7);
+            --cup-metal-deep: #1e252e;
+            --cup-metal-mid: #556375;
+            --cup-metal-gold: #c5d1e0;
+            --cup-metal-light: #ffffff;
+        }
+
+        body.theme-emerald {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #0d3822 0%, #051a0f 65%, #020b06 100%);
+            --table-rim: #d4af37;
+            --table-border: rgba(255, 215, 0, 0.4);
+            --accent-glow: rgba(255, 100, 0, 0.7);
+            --cup-metal-deep: #1e252e;
+            --cup-metal-mid: #556375;
+            --cup-metal-gold: #c5d1e0;
+            --cup-metal-light: #ffffff;
+        }
+
+        body.theme-sapphire {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #0a2540 0%, #051329 65%, #020712 100%);
+            --table-rim: #00f0ff;
+            --table-border: rgba(0, 240, 255, 0.4);
+            --accent-glow: rgba(0, 240, 255, 0.6);
+            --cup-metal-deep: #00364a;
+            --cup-metal-mid: #0088b3;
+            --cup-metal-gold: #00e5ff;
+            --cup-metal-light: #e0faff;
+        }
+
+        body.theme-ruby {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #3e0e18 0%, #1f050b 65%, #0a0104 100%);
+            --table-rim: #ff4757;
+            --table-border: rgba(255, 71, 87, 0.4);
+            --accent-glow: rgba(255, 71, 87, 0.6);
+            --cup-metal-deep: #590d19;
+            --cup-metal-mid: #b33939;
+            --cup-metal-gold: #ff6b81;
+            --cup-metal-light: #fff0f3;
+        }
+
+        body.theme-onyx {
+            --table-felt-bg: radial-gradient(circle at 50% 40%, #1e2026 0%, #101216 65%, #060709 100%);
+            --table-rim: #ffd700;
+            --table-border: rgba(255, 215, 0, 0.35);
+            --accent-glow: rgba(255, 215, 0, 0.5);
+            --cup-metal-deep: #1e272e;
+            --cup-metal-mid: #485460;
+            --cup-metal-gold: #d2dae2;
+            --cup-metal-light: #ffffff;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background-color: #03060a;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* -------------------------------------------------------------
+           DESKTOP & STAGE 3D ANIMATED VIDEO BACKGROUNDS
+           ------------------------------------------------------------- */
+        .desktop-ambient-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background: #020408;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .desktop-ambient-video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            opacity: 0.45;
+            filter: blur(12px) brightness(0.65) saturate(1.3);
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .desktop-ambient-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(2, 6, 12, 0.25) 0%, rgba(2, 6, 12, 0.95) 100%);
+        }
+
+        /* 3D Animated Video inside the Casino Stage Table */
+        .stage-3d-bg-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+            filter: brightness(0.9) saturate(1.4) contrast(1.1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .stage-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(5, 12, 22, 0.2) 0%, rgba(2, 6, 12, 0.85) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* -------------------------------------------------------------
+           1:1 MOBILE APP SHELL (ROYAL CASINO TABLE)
+           ------------------------------------------------------------- */
+        .thimbles-shell {
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #070d18 0%, #03060c 100%);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            border-left: 1px solid rgba(255, 215, 0, 0.2);
+            border-right: 1px solid rgba(255, 215, 0, 0.2);
+            margin: 0 auto;
+        }
+
+        /* 1. TOP HEADER BAR */
+        .thimbles-topbar {
+            width: 100%;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            background: linear-gradient(180deg, #131c2e 0%, #09101d 100%);
+            border-bottom: 1.5px solid var(--table-border);
+            flex-shrink: 0;
+            z-index: 30;
+        }
+
+        .btn-lobby-back {
+            color: #ffd700;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 3px 7px;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:active {
+            transform: scale(0.95);
+            background: rgba(255, 215, 0, 0.25);
+        }
+
+        .thimbles-brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .topbar-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wallet-badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #00ffcc;
+            background: rgba(0, 255, 204, 0.12);
+            border: 1px solid rgba(0, 255, 204, 0.4);
+            padding: 2px 7px;
+            border-radius: 5px;
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+            cursor: pointer;
+        }
+
+        .top-btn-icon {
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            font-size: 12px;
+            width: 26px;
+            height: 26px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .top-btn-icon:active { transform: scale(0.92); }
+
+        /* 2. MODE SELECTOR & HISTORY RIBBON */
+        .thimbles-substrip {
+            width: 100%;
+            height: 32px;
+            background: #060b14;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            flex-shrink: 0;
+            gap: 6px;
+        }
+
+        /* Mode Switcher Pills (1 Gem vs 2 Gems) */
+        .mode-toggle-group {
+            display: flex;
+            align-items: center;
+            background: rgba(14, 23, 38, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .mode-pill-btn {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #8fa0be;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .mode-pill-btn.active {
+            background: linear-gradient(135deg, #ffd700, #ff9900);
+            color: #0b0701;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        /* History Track (Past Rounds) */
+        .history-ribbon {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 3px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .history-ribbon::-webkit-scrollbar { display: none; }
+
+        .hist-chip {
+            padding: 1.5px 5px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+            font-weight: 900;
+            flex-shrink: 0;
+            animation: histPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes histPop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .hist-chip.win {
+            background: rgba(0, 231, 0, 0.2);
+            border: 1px solid #00e700;
+            color: #00ffcc;
+        }
+        .hist-chip.loss {
+            background: rgba(255, 51, 68, 0.2);
+            border: 1px solid #ff3344;
+            color: #ff7675;
+        }
+
+        /* 3. ROYAL TABLE CASINO STAGE */
+        .thimbles-stage-wrap {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4px 6px;
+            overflow: hidden;
+        }
+
+        .casino-felt-table {
+            width: 100%;
+            height: 100%;
+            max-height: 310px;
+            border-radius: 18px;
+            background: var(--table-felt-bg);
+            border: 2.5px solid var(--table-rim);
+            box-shadow: 
+                0 0 25px rgba(0, 0, 0, 0.95),
+                inset 0 0 25px rgba(0, 0, 0, 0.85),
+                0 0 12px var(--accent-glow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 6px 8px 8px;
+        }
+
+        /* Felt Texture & Golden Ring Pattern */
+        .felt-decor-circle {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 215, 0, 0.2);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .felt-brand-watermark {
+            position: absolute;
+            top: 6px;
+            font-family: 'Cinzel', serif;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: rgba(255, 215, 0, 0.35);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Table Status Instruction Banner */
+        .table-status-bubble {
+            background: rgba(5, 12, 22, 0.88);
+            border: 1.2px solid var(--table-border);
+            border-radius: 16px;
+            padding: 3px 10px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            z-index: 5;
+            backdrop-filter: blur(8px);
+        }
+
+        .table-status-text {
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+            text-align: center;
+            letter-spacing: 0.2px;
+        }
+
+        /* CUPS STAGE ARENA */
+        .cups-arena {
+            width: 100%;
+            max-width: 380px;
+            height: 132px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            position: relative;
+            padding-bottom: 6px;
+        }
+
+        /* Individual Cup Unit */
+        .cup-holder {
+            width: 22%;
+            max-width: 76px;
+            min-width: 60px;
+            height: 112px;
+            position: absolute;
+            bottom: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            cursor: pointer;
+            transition: left 0.16s ease, transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Cup Position Anchors: perfectly spaced and safely within 100% table width */
+        .cup-holder[data-pos="0"] { left: 7%; }
+        .cup-holder[data-pos="1"] { left: 39%; }
+        .cup-holder[data-pos="2"] { left: 71%; }
+
+        .thimble-cup {
+            width: 100%;
+            height: 92px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.25s ease;
+            z-index: 10;
+            filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 10px rgba(255, 100, 0, 0.4));
+            overflow: visible;
+        }
+
+        /* -------------------------------------------------------------
+           DYNAMIC FIRE FLAME ANIMATION (آگ کی اینیمیشن)
+           ------------------------------------------------------------- */
+        .cup-fire-emitter {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 25;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .flame-tongue {
+            position: absolute;
+            bottom: 2px;
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(-45deg);
+            filter: blur(1px);
+        }
+
+        .flame-tongue.flame-outer {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 60% 60%, rgba(255, 69, 0, 0.95) 0%, rgba(255, 0, 50, 0.85) 60%, transparent 85%);
+            animation: flameFlickerOuter 0.45s ease-in-out infinite alternate;
+            box-shadow: 0 0 16px rgba(255, 69, 0, 0.9), 0 0 30px rgba(255, 140, 0, 0.6);
+        }
+
+        .flame-tongue.flame-mid {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 60% 60%, rgba(255, 190, 0, 0.95) 0%, rgba(255, 90, 0, 0.85) 70%, transparent 90%);
+            animation: flameFlickerMid 0.32s ease-in-out infinite alternate;
+        }
+
+        .flame-tongue.flame-core {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle at 55% 55%, #ffffff 0%, #fff275 50%, rgba(255, 200, 0, 0.9) 80%);
+            animation: flameFlickerCore 0.22s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px #ffffff;
+        }
+
+        @keyframes flameFlickerOuter {
+            0% { transform: rotate(-42deg) scale(0.92, 1.05) translateY(0); opacity: 0.85; }
+            50% { transform: rotate(-48deg) scale(1.08, 0.95) translateY(-3px); opacity: 0.95; }
+            100% { transform: rotate(-40deg) scale(0.96, 1.15) translateY(-5px); opacity: 0.9; }
+        }
+
+        @keyframes flameFlickerMid {
+            0% { transform: rotate(-46deg) scale(1.05, 0.95) translateY(0); }
+            100% { transform: rotate(-43deg) scale(0.95, 1.12) translateY(-4px); }
+        }
+
+        @keyframes flameFlickerCore {
+            0% { transform: rotate(-45deg) scale(0.9, 1.05); }
+            100% { transform: rotate(-45deg) scale(1.1, 0.95) translateY(-2px); }
+        }
+
+        /* Floating Sparks & Embers */
+        .flame-spark {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: #ffcc00;
+            box-shadow: 0 0 6px #ff9900, 0 0 10px #ffffff;
+            animation: sparkFloat 1.2s infinite linear;
+            pointer-events: none;
+        }
+        .flame-spark:nth-child(4) { left: 22%; animation-delay: 0.1s; }
+        .flame-spark:nth-child(5) { left: 50%; animation-delay: 0.5s; }
+        .flame-spark:nth-child(6) { left: 76%; animation-delay: 0.85s; }
+
+        @keyframes sparkFloat {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-24px) translateX(3px) scale(0.7); opacity: 0.8; }
+            100% { transform: translateY(-48px) translateX(-5px) scale(0.2); opacity: 0; }
+        }
+
+        /* Burning Fire Glow inside Silver Engraving */
+        @keyframes fireEngravePulse {
+            0% { filter: drop-shadow(0 0 4px #ff6600) drop-shadow(0 0 10px #ff3300); opacity: 0.75; }
+            50% { filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 18px #ff4400); opacity: 1; }
+            100% { filter: drop-shadow(0 0 5px #ff6600) drop-shadow(0 0 12px #ff2200); opacity: 0.8; }
+        }
+
+        .fire-engraving-glow {
+            animation: fireEngravePulse 0.8s ease-in-out infinite alternate;
+        }
+
+        /* Diagonal Specular Silver Glint Sweep */
+        .silver-glint-sweep {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 15;
+            border-radius: 16px;
+        }
+        .silver-glint-sweep::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.75) 50%, transparent 80%);
+            transform: skewX(-25deg);
+            animation: silverGlintPass 3.5s infinite;
+        }
+        @keyframes silverGlintPass {
+            0%, 60% { left: -120%; }
+            100% { left: 160%; }
+        }
+
+        /* Cup Lifting Animation */
+        .cup-holder.lifted .thimble-cup {
+            transform: translateY(-36px) rotate(-4deg) scale(1.04);
+            filter: drop-shadow(0 20px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(255, 120, 0, 0.85));
+        }
+        .cup-holder.lifted .cup-fire-emitter .flame-outer {
+            transform: rotate(-45deg) scale(1.2) !important;
+            box-shadow: 0 0 25px rgba(255, 80, 0, 1), 0 0 45px rgba(255, 160, 0, 0.8);
+        }
+
+        /* Glowing Pulse when ready to pick */
+        .cup-holder.ready-to-pick .thimble-cup {
+            animation: cupVipPulse 1.2s infinite alternate ease-in-out;
+        }
+        @keyframes cupVipPulse {
+            0% { 
+                filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 8px rgba(255, 100, 0, 0.5)); 
+                transform: scale(1); 
+            }
+            100% { 
+                filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 20px rgba(255, 140, 0, 1)); 
+                transform: scale(1.03); 
+            }
+        }
+
+        .vip-chalice-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        /* Shadow beneath cup */
+        .cup-shadow-disk {
+            width: 56px;
+            height: 9px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+            filter: blur(2px);
+            margin-top: -3px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .cup-holder.lifted .cup-shadow-disk {
+            transform: scale(0.6);
+            opacity: 0.25;
+        }
+
+        /* 3D GEMSTONE / BALL UNDER THE CUP */
+        .cup-item-gem {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            animation: gemRadiate 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cup-item-gem.active { display: flex; }
+
+        @keyframes gemRadiate {
+            0% { transform: translateX(-50%) scale(0) rotate(-45deg); opacity: 0; }
+            70% { transform: translateX(-50%) scale(1.2) rotate(15deg); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .gem-3d-orb {
+            font-size: 24px;
+            filter: drop-shadow(0 0 10px #00e5ff) drop-shadow(0 0 18px #00e700);
+            animation: gemPulse 1.2s infinite alternate;
+        }
+        @keyframes gemPulse {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 16px #00e5ff) drop-shadow(0 0 28px #ffffff); }
+        }
+
+        .empty-x-orb {
+            font-size: 20px;
+            color: #ff3344;
+            filter: drop-shadow(0 0 6px rgba(255, 51, 68, 0.6));
+        }
+
+        /* Win Confetti Canvas */
+        #confettiCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        /* 4. THREE HUD STATUS STRIP (WALLET / BET / WIN) */
+        .thimbles-hud-row {
+            width: 100%;
+            height: 38px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            padding: 2px 8px;
+            background: linear-gradient(180deg, #09101d 0%, #050b14 100%);
+            border-top: 1.5px solid var(--table-border);
+            border-bottom: 1.5px solid var(--table-border);
+            flex-shrink: 0;
+        }
+
+        .thimbles-hud-box {
+            background: rgba(14, 23, 38, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1px 3px;
+        }
+
+        .hud-title-tag {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #8fa0be;
+            letter-spacing: 0.5px;
+        }
+
+        .hud-value-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .hud-value-display.gold-win {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        /* 5. CONTROL DECK & BETTING CONSOLE */
+        .thimbles-deck {
+            width: 100%;
+            padding: 6px 8px 8px;
+            background: linear-gradient(180deg, #0d1624 0%, #050912 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        /* Main Action Row */
+        .deck-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .btn-deck-speed {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #1f2e46 0%, #111a28 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 10px;
+            font-weight: 900;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .btn-deck-speed:active { transform: scale(0.92); }
+        .btn-deck-speed.active {
+            background: #ffcc00;
+            color: #0b0701;
+            box-shadow: 0 0 12px #ffd700;
+        }
+
+        /* Bet Adjuster Pill */
+        .bet-adjuster-bar {
+            flex: 1;
+            height: 38px;
+            background: rgba(14, 23, 38, 0.95);
+            border: 1.5px solid rgba(255, 215, 0, 0.35);
+            border-radius: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .btn-bet-step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 16px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-bet-step:active { transform: scale(0.9); background: rgba(255, 215, 0, 0.35); }
+
+        .bet-text-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .bet-label-small {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #8fa0be;
+        }
+        .bet-amount-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+
+        /* Master Start / Shuffle Button */
+        .btn-master-shuffle {
+            height: 38px;
+            padding: 0 14px;
+            border-radius: 19px;
+            background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ffd700 45%, #e67e22 80%, #a04000 100%);
+            border: 1.5px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #0b0701;
+            font-family: 'Cinzel', serif;
+            font-size: 11.5px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+        .btn-master-shuffle:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .btn-master-shuffle:active { transform: scale(0.95); }
+        .btn-master-shuffle.disabled {
+            filter: grayscale(0.8) opacity(0.5);
+            pointer-events: none;
+        }
+
+        /* Chip Tray Row */
+        .thimbles-chiptray-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3px;
+            padding-top: 1px;
+        }
+
+        .chip-button {
+            flex: 1;
+            padding: 3px 0;
+            background: rgba(19, 29, 46, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 5px;
+            color: #ccd6e8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .chip-button:active, .chip-button.active {
+            background: rgba(255, 215, 0, 0.25);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        /* -------------------------------------------------------------
+           THEME PICKER & INFO MODAL
+           ------------------------------------------------------------- */
+        .modal-wrap {
+            position: fixed;
+            inset: 0;
+            background: rgba(1, 4, 8, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+        .modal-wrap.open { display: flex; }
+
+        .modal-card {
+            width: 100%;
+            max-width: 420px;
+            max-height: 85vh;
+            background: linear-gradient(180deg, #101c30 0%, #060c16 100%);
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .modal-card-header {
+            padding: 12px 14px;
+            background: #15243d;
+            border-bottom: 1.5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-card-body {
+            padding: 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .theme-select-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .theme-option-card {
+            background: rgba(14, 23, 38, 0.8);
+            border: 1.5px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .theme-option-card:hover, .theme-option-card.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY VIP LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 240px;
+        }
+        .pp-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
+        .pp-bar-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #ffcc00;
+            box-shadow: 0 0 10px #ffcc00;
+            border-radius: 3px;
+            transition: width 0.15s ease-out;
+        }
+
+        /* Big Win Banner Overlay */
+        .win-pop-banner {
+            position: absolute;
+            top: 30%;
+            left: 8%;
+            right: 8%;
+            background: linear-gradient(135deg, rgba(16, 28, 48, 0.98), rgba(6, 12, 22, 0.98));
+            border: 2.5px solid #ffd700;
+            border-radius: 16px;
+            padding: 18px 12px;
+            text-align: center;
+            z-index: 80;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: winBannerPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .win-pop-banner.active { display: flex; }
+
+        @keyframes winBannerPop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* -------------------------------------------------------------
+           RESPONSIVE MOBILE VIEWPORT ENGINE (ZERO SCROLL FIT)
+           ------------------------------------------------------------- */
+        @media (max-height: 720px) {
+            .casino-felt-table { max-height: 270px; }
+            .cups-arena { height: 120px; }
+            .cup-holder { height: 104px; }
+            .thimble-cup { height: 86px; }
+            .cup-fire-emitter { top: -14px; width: 44px; height: 36px; }
+            .cup-holder.lifted .thimble-cup { transform: translateY(-32px) rotate(-4deg) scale(1.03); }
+            .table-status-bubble { padding: 2.5px 8px; margin-bottom: 4px; }
+            .table-status-text { font-size: 10.5px; }
+            .btn-master-shuffle { height: 36px; font-size: 11px; padding: 0 12px; }
+            .bet-adjuster-bar { height: 36px; }
+            .btn-deck-speed { width: 36px; height: 36px; }
+        }
+
+        @media (max-height: 620px) {
+            .thimbles-topbar { height: 34px; padding: 0 6px; }
+            .thimbles-brand-title { font-size: 11px; }
+            .thimbles-substrip { height: 28px; padding: 0 4px; }
+            .mode-pill-btn { font-size: 8.5px; padding: 2px 6px; }
+            .casino-felt-table { max-height: 220px; padding: 4px 6px 6px; border-radius: 14px; }
+            .felt-decor-circle { width: 170px; height: 170px; }
+            .cups-arena { height: 105px; padding-bottom: 3px; }
+            .cup-holder { height: 90px; }
+            .thimble-cup { height: 75px; }
+            .cup-fire-emitter { top: -12px; width: 38px; height: 30px; }
+            .cup-holder.lifted .thimble-cup { transform: translateY(-26px) rotate(-4deg) scale(1.03); }
+            .table-status-bubble { padding: 2px 7px; margin-bottom: 3px; }
+            .table-status-text { font-size: 9.5px; }
+            .thimbles-hud-row { height: 32px; padding: 1px 6px; gap: 3px; }
+            .hud-title-tag { font-size: 7px; }
+            .hud-value-display { font-size: 10.5px; }
+            .thimbles-deck { padding: 4px 6px 6px; gap: 4px; }
+            .btn-master-shuffle { height: 34px; font-size: 10px; padding: 0 10px; }
+            .bet-adjuster-bar { height: 34px; }
+            .btn-deck-speed { width: 34px; height: 34px; }
+            .btn-bet-step { width: 26px; height: 26px; font-size: 14px; }
+            .chip-button { padding: 2px 0; font-size: 8px; }
+        }
+
+        @media (max-height: 520px) {
+            .thimbles-topbar { height: 30px; }
+            .thimbles-substrip { height: 24px; }
+            .casino-felt-table { max-height: 180px; }
+            .cups-arena { height: 88px; }
+            .cup-holder { height: 76px; }
+            .thimble-cup { height: 62px; }
+            .cup-fire-emitter { display: none; }
+            .cup-holder.lifted .thimble-cup { transform: translateY(-20px) scale(1.03); }
+            .thimbles-hud-row { height: 28px; }
+            .thimbles-deck { padding: 3px 5px 5px; gap: 3px; }
+        }
+
+        @media (max-width: 360px) {
+            .cup-holder { width: 24%; min-width: 54px; }
+            .cup-holder[data-pos="0"] { left: 5%; }
+            .cup-holder[data-pos="1"] { left: 38%; }
+            .cup-holder[data-pos="2"] { left: 71%; }
+            .thimble-cup { height: 84px; }
+            .btn-master-shuffle { padding: 0 10px; font-size: 10.5px; }
+        }
+    </style>
+</head>
+<body class="theme-silver">
+
+    <!-- 1. PRAGMATIC PLAY VIP LOADING SCREEN -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DESKTOP AMBIENT BACKGROUND (3D ANIMATED VIDEO) -->
+    <div class="desktop-ambient-wrap">
+        <video class="desktop-ambient-video" autoplay loop muted playsinline poster="../assets/games/slots777/vegas_ambient.jpg">
+            <source src="../assets/games/slots777/vegas_ambient_loop.mp4" type="video/mp4">
+            <source src="../assets/games/slots777/vegas_ambient_loop.webm" type="video/webm">
+        </video>
+        <div class="desktop-ambient-vignette"></div>
+    </div>
+
+    <!-- Background Audio Element -->
+    <audio id="casinoBgm" src="../assets/audio/card/casino_bgm.mp3" loop preload="auto"></audio>
+
+    <!-- 3. MAIN ROYAL APP SHELL (100% 0-SCROLL VIEWPORT) -->
+    <div class="thimbles-shell">
+
+        <!-- Top Navigation Bar -->
+        <header class="thimbles-topbar">
+            <a href="../index.html" class="btn-lobby-back">
+                <span>◀</span> LOBBY
+            </a>
+            <div class="thimbles-brand-title">
+                <span>🏆</span> MAGIC CUPS VIP
+            </div>
+            <div class="topbar-right-actions">
+                <div id="topWalletDisplay" class="wallet-badge-pill" title="Tap to toggle Currency">₨ 0.00</div>
+                <button class="top-btn-icon" id="soundBtn" onclick="magicCupsGame.toggleAudio()" title="Toggle Sound">🔊</button>
+                <button class="top-btn-icon" onclick="magicCupsGame.toggleThemeModal()" title="Themes & Rules">🎨</button>
+            </div>
+        </header>
+
+        <!-- Mode Selector & History Ribbon -->
+        <div class="thimbles-substrip">
+            <div class="mode-toggle-group">
+                <button class="mode-pill-btn active" id="mode1GemBtn" onclick="magicCupsGame.setGemMode(1)">
+                    <span>💎</span> 1 GEM (2.94×)
+                </button>
+                <button class="mode-pill-btn" id="mode2GemsBtn" onclick="magicCupsGame.setGemMode(2)">
+                    <span>🟢</span> 2 GEMS (1.47×)
+                </button>
+            </div>
+
+            <!-- History Ribbon -->
+            <div class="history-ribbon" id="historyRibbon">
+                <span class="hist-chip win">2.94× 💎</span>
+                <span class="hist-chip loss">0.00× ❌</span>
+                <span class="hist-chip win">1.47× 🟢</span>
+                <span class="hist-chip win">2.94× 💎</span>
+            </div>
+        </div>
+
+        <!-- Felt Casino Stage Arena -->
+        <div class="thimbles-stage-wrap">
+            <div class="casino-felt-table">
+                <!-- 3D Animated Background Video Loop Inside Felt Stage -->
+                <video class="stage-3d-bg-video" autoplay loop muted playsinline poster="../assets/games/slots777/vegas_ambient.jpg">
+                    <source src="../assets/games/slots777/vegas_ambient_loop.mp4" type="video/mp4">
+                    <source src="../assets/games/slots777/vegas_ambient_loop.webm" type="video/webm">
+                </video>
+                <div class="stage-video-overlay"></div>
+                <div class="felt-decor-circle"></div>
+                <div class="felt-brand-watermark">BET WITH NET • PROVABLY FAIR 98%</div>
+
+                <!-- Table Status Bubble -->
+                <div class="table-status-bubble" id="statusBubble">
+                    <span id="statusIcon">✨</span>
+                    <span id="statusMsg" class="table-status-text">Place Bet & Tap SHUFFLE CUPS</span>
+                </div>
+
+                <!-- Ultra-VIP 3D Royal Casino Thimble Cup SVG Definitions -->
+                <svg style="display:none;" id="vipCupDefs">
+                    <defs>
+                        <!-- Metallic 3D Platinum Chrome Body Gradient -->
+                        <linearGradient id="cup3dPlatinumBody" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#141a22"/>
+                            <stop offset="8%" stop-color="#3d4957"/>
+                            <stop offset="18%" stop-color="#8a99ac"/>
+                            <stop offset="28%" stop-color="#eaf0f8"/>
+                            <stop offset="38%" stop-color="#ffffff"/>
+                            <stop offset="50%" stop-color="#cad6e4"/>
+                            <stop offset="68%" stop-color="#4a5768"/>
+                            <stop offset="85%" stop-color="#242d38"/>
+                            <stop offset="94%" stop-color="#738294"/>
+                            <stop offset="100%" stop-color="#151b22"/>
+                        </linearGradient>
+
+                        <!-- 24K Royal Gold Gradient -->
+                        <linearGradient id="cup3dGoldTrim" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#362203"/>
+                            <stop offset="10%" stop-color="#7a4f0b"/>
+                            <stop offset="22%" stop-color="#e5b83b"/>
+                            <stop offset="34%" stop-color="#ffffff"/>
+                            <stop offset="46%" stop-color="#f5d061"/>
+                            <stop offset="62%" stop-color="#9a6f1d"/>
+                            <stop offset="78%" stop-color="#5a3805"/>
+                            <stop offset="90%" stop-color="#d4a329"/>
+                            <stop offset="96%" stop-color="#fff0aa"/>
+                            <stop offset="100%" stop-color="#2c1a02"/>
+                        </linearGradient>
+
+                        <!-- Faceted 3D Vertical Flutes Gradients -->
+                        <linearGradient id="facetShade0" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#18202a"/>
+                            <stop offset="100%" stop-color="#384556"/>
+                        </linearGradient>
+                        <linearGradient id="facetShade1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#384556"/>
+                            <stop offset="100%" stop-color="#76879d"/>
+                        </linearGradient>
+                        <linearGradient id="facetShade2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#b8c8dc"/>
+                            <stop offset="50%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#e2ebf5"/>
+                        </linearGradient>
+                        <linearGradient id="facetShade3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#cad6e4"/>
+                            <stop offset="100%" stop-color="#7e90a6"/>
+                        </linearGradient>
+                        <linearGradient id="facetShade4" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#5a687a"/>
+                            <stop offset="100%" stop-color="#2d3744"/>
+                        </linearGradient>
+                        <linearGradient id="facetShade5" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#2d3744"/>
+                            <stop offset="100%" stop-color="#18202a"/>
+                        </linearGradient>
+                        <linearGradient id="facetShade6" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1f2834"/>
+                            <stop offset="100%" stop-color="#4f5e70"/>
+                        </linearGradient>
+
+                        <!-- Burning Fire Magma Gem Gradient -->
+                        <radialGradient id="cup3dRubyGem" cx="40%" cy="38%" r="60%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="25%" stop-color="#ffdd44"/>
+                            <stop offset="55%" stop-color="#ff3300"/>
+                            <stop offset="85%" stop-color="#a80000"/>
+                            <stop offset="100%" stop-color="#4a0000"/>
+                        </radialGradient>
+
+                        <!-- Deep Onyx Bezel Inner Gradient -->
+                        <radialGradient id="cup3dDarkBezel" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#222b37"/>
+                            <stop offset="70%" stop-color="#0e131a"/>
+                            <stop offset="100%" stop-color="#040608"/>
+                        </radialGradient>
+
+                        <!-- Vertical High Gloss Specular Reflection -->
+                        <linearGradient id="cup3dSpecularVertical" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="35%" stop-color="#ffffff" stop-opacity="0.7"/>
+                            <stop offset="85%" stop-color="#ffffff" stop-opacity="0.15"/>
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.5"/>
+                        </linearGradient>
+
+                        <!-- Drop Shadow Filter for Inset Carvings -->
+                        <filter id="cup3dEmboss" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#000000" flood-opacity="0.8"/>
+                        </filter>
+                    </defs>
+
+                    <!-- The Complete 3D VIP Royal Casino Cup Symbol -->
+                    <g id="vip-chalice-symbol">
+                        <!-- 1. Pedestal Base - Ground Contact Shadow -->
+                        <ellipse cx="60" cy="158" rx="46" ry="6" fill="#04060a" opacity="0.9"/>
+
+                        <!-- 2. Pedestal Base - Lower Heavy Weighted Ring -->
+                        <path d="M 14,151 C 14,158 35,162 60,162 C 85,162 106,158 106,151 L 104,146 C 104,152 84,156 60,156 C 36,156 16,152 16,146 Z" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="0.8"/>
+                        <ellipse cx="60" cy="147" rx="44" ry="5.5" fill="url(#cup3dPlatinumBody)" stroke="#ffffff" stroke-width="0.7"/>
+
+                        <!-- 3. Pedestal Base - Stepped Bevel Tier -->
+                        <path d="M 22,143 C 22,148 38,151 60,151 C 82,151 98,148 98,143 L 95,138 C 95,142 80,145 60,145 C 40,145 25,142 25,138 Z" fill="url(#cup3dGoldTrim)"/>
+                        <ellipse cx="60" cy="139" rx="36" ry="4.5" fill="url(#cup3dPlatinumBody)" stroke="#d4a329" stroke-width="0.9"/>
+
+                        <!-- 4. Main 3D Cup Body - Backing Shell -->
+                        <path d="M 32,45 C 32,41 44,38 60,38 C 76,38 88,41 88,45 L 98,138 C 98,143 81,146 60,146 C 39,146 22,143 22,138 Z" fill="url(#cup3dPlatinumBody)" stroke="#556375" stroke-width="1"/>
+
+                        <!-- 5. 3D Faceted Fluting Panels (7 distinct light-refracting vertical facets) -->
+                        <!-- Panel 0: Left Shadow Edge -->
+                        <path d="M 32,45 C 32,43 35,42 38,42 L 30,137 C 26,137 22,136 22,134 Z" fill="url(#facetShade0)" opacity="0.95"/>
+                        <!-- Panel 1: Left Mid Transition -->
+                        <path d="M 38,42 L 47,40.5 L 42,139 C 38,138.5 34,138 30,137 Z" fill="url(#facetShade1)"/>
+                        <!-- Panel 2: SPECULAR BRIGHT LIGHT PANEL (3D Gleam) -->
+                        <path d="M 47,40.5 L 56,39.5 L 54,140 C 50,140 46,139.5 42,139 Z" fill="url(#facetShade2)"/>
+                        <!-- Specular Glare Streak -->
+                        <path d="M 51,41 L 47,139" stroke="url(#cup3dSpecularVertical)" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+                        <path d="M 53,42 L 50,138" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.95"/>
+
+                        <!-- Panel 3: Center Panel Behind Medallion -->
+                        <path d="M 56,39.5 L 64,39.5 L 66,140 C 62,140.2 58,140.2 54,140 Z" fill="url(#facetShade3)"/>
+                        <!-- Panel 4: Right Mid Shadow -->
+                        <path d="M 64,39.5 L 73,40.5 L 78,139 C 74,139.5 70,140 66,140 Z" fill="url(#facetShade4)"/>
+                        <!-- Panel 5: Right Deep Shadow -->
+                        <path d="M 73,40.5 L 82,42 L 90,137 C 86,138 82,138.5 78,139 Z" fill="url(#facetShade5)"/>
+                        <!-- Panel 6: Right Rim Bounce Highlight -->
+                        <path d="M 82,42 C 85,42 88,43 88,45 L 98,134 C 98,136 94,137 90,137 Z" fill="url(#facetShade6)"/>
+                        <path d="M 86,45 L 96,134" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+
+                        <!-- 6. Bottom Ornate Gold Filigree Band -->
+                        <path d="M 23,128 C 34,132 50,134 60,134 C 70,134 86,132 97,128 L 98,134 C 86,138 70,140 60,140 C 50,140 34,138 22,134 Z" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="0.8"/>
+                        <!-- Studded Gemstones along Bottom Band -->
+                        <circle cx="34" cy="131.5" r="2.2" fill="url(#cup3dRubyGem)" stroke="#ffe891" stroke-width="0.5"/>
+                        <circle cx="47" cy="133.5" r="2.5" fill="#ffffff" stroke="#9bb0c9" stroke-width="0.5"/>
+                        <circle cx="60" cy="134.5" r="2.8" fill="url(#cup3dRubyGem)" stroke="#ffe891" stroke-width="0.6" class="fire-engraving-glow"/>
+                        <circle cx="73" cy="133.5" r="2.5" fill="#ffffff" stroke="#9bb0c9" stroke-width="0.5"/>
+                        <circle cx="86" cy="131.5" r="2.2" fill="url(#cup3dRubyGem)" stroke="#ffe891" stroke-width="0.5"/>
+
+                        <!-- 7. Upper Shoulder Ornate Gold Filigree Collar -->
+                        <path d="M 31,43 C 40,40.5 50,39.5 60,39.5 C 70,39.5 80,40.5 89,43 L 88,49 C 80,46.5 70,45.5 60,45.5 C 50,45.5 40,46.5 32,49 Z" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="0.8"/>
+                        <ellipse cx="60" cy="42" rx="28" ry="3.5" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.9"/>
+
+                        <!-- 8. IMPERIAL 3D STAR & FIRE MEDALLION (CENTERPIECE) -->
+                        <g transform="translate(60, 88)" filter="url(#cup3dEmboss)">
+                            <!-- Outer Gold Bevel Ring -->
+                            <circle cx="0" cy="0" r="22" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="1.2"/>
+                            <!-- Bevel Drop -->
+                            <circle cx="0" cy="0" r="19" fill="#1b242e" stroke="#000000" stroke-width="1"/>
+                            <!-- Inner Onyx Core Bed -->
+                            <circle cx="0" cy="0" r="17" fill="url(#cup3dDarkBezel)"/>
+
+                            <!-- 8-Pointed Royal Faceted Gold & Diamond Star -->
+                            <!-- Star Vertical/Horizontal Points -->
+                            <path d="M 0,-15 L 3.5,-4 L 15,0 L 3.5,4 L 0,15 L -3.5,4 L -15,0 L -3.5,-4 Z" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="0.6"/>
+                            <!-- Star Diagonal Points (Tiered Depth) -->
+                            <path d="M 0,-11 L 2.5,-3 L 11,0 L 2.5,3 L 0,11 L -2.5,3 L -11,0 L -2.5,-3 Z" transform="rotate(45)" fill="#ffffff" opacity="0.95"/>
+
+                            <!-- Star Facet Highlights -->
+                            <polygon points="0,-15 0,0 3.5,-4" fill="#ffffff" opacity="0.8"/>
+                            <polygon points="15,0 0,0 3.5,4" fill="#d4a329" opacity="0.9"/>
+                            <polygon points="0,15 0,0 -3.5,4" fill="#7a4f0b" opacity="0.9"/>
+                            <polygon points="-15,0 0,0 -3.5,-4" fill="#fff0aa" opacity="0.95"/>
+
+                            <!-- Central Burning Fire Gem (آگ کا جلتا ہوا دل) -->
+                            <circle cx="0" cy="0" r="7.5" fill="url(#cup3dRubyGem)" class="fire-engraving-glow"/>
+                            <circle cx="-2" cy="-2" r="2" fill="#ffffff" opacity="0.8"/>
+                        </g>
+
+                        <!-- 9. Upper Neck & 3D Royal Crown Finial -->
+                        <g transform="translate(60, 32)">
+                            <!-- Neck Ring -->
+                            <path d="M -22,6 C -22,2 -10,0 0,0 C 10,0 22,2 22,6 L 22,11 C 22,7 10,5 0,5 C -10,5 -22,7 -22,11 Z" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="0.6"/>
+                            <ellipse cx="0" cy="6" rx="22" ry="4" fill="url(#cup3dPlatinumBody)" stroke="#ffffff" stroke-width="0.7"/>
+
+                            <!-- 5-Pointed Sculpted Royal Crown with Ruby Peaks -->
+                            <path d="M -18,4 L -21,-8 L -11,-3 L 0,-14 L 11,-3 L 21,-8 L 18,4 Z" fill="url(#cup3dGoldTrim)" stroke="#ffe891" stroke-width="1"/>
+                            <path d="M -18,4 C -18,6 -8,8 0,8 C 8,8 18,6 18,4 L 18,5 C 18,7 8,9 0,9 C -8,9 -18,7 -18,5 Z" fill="#362203"/>
+
+                            <!-- Crown Jewels (Rubies on each peak) -->
+                            <circle cx="-21" cy="-8" r="2.6" fill="url(#cup3dRubyGem)" stroke="#fff" stroke-width="0.5"/>
+                            <circle cx="-11" cy="-3" r="2.2" fill="#ffffff" stroke="#d4a329" stroke-width="0.5"/>
+                            <circle cx="0" cy="-14" r="3.8" fill="url(#cup3dRubyGem)" stroke="#fff" stroke-width="0.8" class="fire-engraving-glow"/>
+                            <circle cx="11" cy="-3" r="2.2" fill="#ffffff" stroke="#d4a329" stroke-width="0.5"/>
+                            <circle cx="21" cy="-8" r="2.6" fill="url(#cup3dRubyGem)" stroke="#fff" stroke-width="0.5"/>
+
+                            <!-- Central Top Golden Fire Brazier (Where the real flames rise) -->
+                            <ellipse cx="0" cy="-14" rx="7" ry="2.2" fill="#2c1a02" stroke="#ffe891" stroke-width="0.6"/>
+                            <ellipse cx="0" cy="-14" rx="5" ry="1.5" fill="url(#cup3dRubyGem)"/>
+                        </g>
+                    </g>
+                </svg>
+
+                <!-- The 3 Cups Stage -->
+                <div class="cups-arena" id="cupsArena">
+                    <!-- Cup 0 -->
+                    <div class="cup-holder" id="cup0" data-pos="0" onclick="magicCupsGame.pickCup(0)">
+                        <div class="thimble-cup">
+                            <!-- Roaring Fire Flame Animation -->
+                            <div class="cup-fire-emitter">
+                                <div class="flame-tongue flame-outer"></div>
+                                <div class="flame-tongue flame-mid"></div>
+                                <div class="flame-tongue flame-core"></div>
+                                <div class="flame-spark"></div>
+                                <div class="flame-spark"></div>
+                                <div class="flame-spark"></div>
+                            </div>
+                            <div class="silver-glint-sweep"></div>
+                            <svg class="vip-chalice-svg" viewBox="0 0 120 170">
+                                <use href="#vip-chalice-symbol"/>
+                            </svg>
+                        </div>
+                        <div class="cup-shadow-disk"></div>
+                        <div class="cup-item-gem" id="gem0">
+                            <span class="gem-3d-orb">💎</span>
+                        </div>
+                    </div>
+
+                    <!-- Cup 1 -->
+                    <div class="cup-holder" id="cup1" data-pos="1" onclick="magicCupsGame.pickCup(1)">
+                        <div class="thimble-cup">
+                            <!-- Roaring Fire Flame Animation -->
+                            <div class="cup-fire-emitter">
+                                <div class="flame-tongue flame-outer"></div>
+                                <div class="flame-tongue flame-mid"></div>
+                                <div class="flame-tongue flame-core"></div>
+                                <div class="flame-spark"></div>
+                                <div class="flame-spark"></div>
+                                <div class="flame-spark"></div>
+                            </div>
+                            <div class="silver-glint-sweep"></div>
+                            <svg class="vip-chalice-svg" viewBox="0 0 120 170">
+                                <use href="#vip-chalice-symbol"/>
+                            </svg>
+                        </div>
+                        <div class="cup-shadow-disk"></div>
+                        <div class="cup-item-gem" id="gem1">
+                            <span class="gem-3d-orb">💎</span>
+                        </div>
+                    </div>
+
+                    <!-- Cup 2 -->
+                    <div class="cup-holder" id="cup2" data-pos="2" onclick="magicCupsGame.pickCup(2)">
+                        <div class="thimble-cup">
+                            <!-- Roaring Fire Flame Animation -->
+                            <div class="cup-fire-emitter">
+                                <div class="flame-tongue flame-outer"></div>
+                                <div class="flame-tongue flame-mid"></div>
+                                <div class="flame-tongue flame-core"></div>
+                                <div class="flame-spark"></div>
+                                <div class="flame-spark"></div>
+                                <div class="flame-spark"></div>
+                            </div>
+                            <div class="silver-glint-sweep"></div>
+                            <svg class="vip-chalice-svg" viewBox="0 0 120 170">
+                                <use href="#vip-chalice-symbol"/>
+                            </svg>
+                        </div>
+                        <div class="cup-shadow-disk"></div>
+                        <div class="cup-item-gem" id="gem2">
+                            <span class="gem-3d-orb">💎</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas for Win Particles -->
+                <canvas id="confettiCanvas"></canvas>
+
+                <!-- Big Win Alert Popup -->
+                <div class="win-pop-banner" id="winBanner">
+                    <span style="font-family:'Cinzel',serif; font-size:18px; font-weight:900; color:#ffd700;">💎 DIAMOND REVEALED! 💎</span>
+                    <span id="winBannerAmt" style="font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:900; color:#00ffcc;">+₨ 294.00</span>
+                    <button class="chip-button" style="width:110px; padding:6px; font-size:12px; margin-top:4px;" onclick="magicCupsGame.dismissWinBanner()">CONTINUE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Three HUD Status Boxes -->
+        <div class="thimbles-hud-row">
+            <div class="thimbles-hud-box">
+                <span class="hud-title-tag">BALANCE</span>
+                <span id="hudBalanceVal" class="hud-value-display">0.00</span>
+            </div>
+            <div class="thimbles-hud-box">
+                <span class="hud-title-tag">BET AMOUNT</span>
+                <span id="hudBetVal" class="hud-value-display">100.00</span>
+            </div>
+            <div class="thimbles-hud-box">
+                <span class="hud-title-tag">LAST WIN</span>
+                <span id="hudWinVal" class="hud-value-display gold-win">0.00</span>
+            </div>
+        </div>
+
+        <!-- Control Deck & Chips Console -->
+        <div class="thimbles-deck">
+            <div class="deck-action-row">
+                <!-- Turbo Toggle -->
+                <button id="turboSpeedBtn" class="btn-deck-speed" onclick="magicCupsGame.toggleTurbo()" title="Toggle Turbo Speed">
+                    <span>⚡</span>
+                    <span style="font-size:7.5px;">TURBO</span>
+                </button>
+
+                <!-- Bet Adjuster -->
+                <div class="bet-adjuster-bar">
+                    <button class="btn-bet-step" onclick="magicCupsGame.adjustBet(-1)">-</button>
+                    <div class="bet-text-center">
+                        <span class="bet-label-small" id="betModifierTag">BET AMOUNT</span>
+                        <span id="betDisplayNumber" class="bet-amount-display">₨ 100.00</span>
+                    </div>
+                    <button class="btn-bet-step" onclick="magicCupsGame.adjustBet(1)">+</button>
+                </div>
+
+                <!-- Grand Master Shuffle Button -->
+                <button id="mainShuffleBtn" class="btn-master-shuffle" onclick="magicCupsGame.startRound()">
+                    <span>🏆</span>
+                    <span id="btnShuffleText">SHUFFLE (2.94×)</span>
+                </button>
+            </div>
+
+            <!-- Chip Tray Presets & Bet Multipliers -->
+            <div class="thimbles-chiptray-row">
+                <div class="chip-button" onclick="magicCupsGame.setBetModifier('half')">½</div>
+                <div class="chip-button" onclick="magicCupsGame.setBetModifier('double')">2×</div>
+                <div class="chip-button active" onclick="magicCupsGame.setBet(100)">100</div>
+                <div class="chip-button" onclick="magicCupsGame.setBet(500)">500</div>
+                <div class="chip-button" onclick="magicCupsGame.setBet(1000)">1K</div>
+                <div class="chip-button" onclick="magicCupsGame.setBet(5000)">5K</div>
+                <div class="chip-button" onclick="magicCupsGame.setBetModifier('max')">MAX</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Theme Picker & Rules Modal -->
+    <div id="themeModal" class="modal-wrap">
+        <div class="modal-card">
+            <div class="modal-card-header">
+                <span style="font-family:'Cinzel',serif; font-size:15px; font-weight:900; color:#ffd700;">🎨 THEMES & GAME RULES</span>
+                <button class="top-btn-icon" onclick="magicCupsGame.toggleThemeModal()">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <span style="font-size:11px; font-weight:800; color:#ffd700; letter-spacing:0.5px;">CHOOSE TABLE FELT THEME:</span>
+                <div class="theme-select-grid">
+                    <div class="theme-option-card active" onclick="magicCupsGame.switchTheme('theme-silver')">
+                        <span style="font-size:22px;">🔥</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Silver Fire</div>
+                            <div style="font-size:9.5px; color:#ff9900;">Sterling Silver & Flame</div>
+                        </div>
+                    </div>
+                    <div class="theme-option-card" onclick="magicCupsGame.switchTheme('theme-emerald')">
+                        <span style="font-size:22px;">🟢</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Emerald Royal</div>
+                            <div style="font-size:9.5px; color:#8fa0be;">Gold & Velvet</div>
+                        </div>
+                    </div>
+                    <div class="theme-option-card" onclick="magicCupsGame.switchTheme('theme-sapphire')">
+                        <span style="font-size:22px;">🔵</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Sapphire Cyber</div>
+                            <div style="font-size:9.5px; color:#8fa0be;">Chrome & Blue</div>
+                        </div>
+                    </div>
+                    <div class="theme-option-card" onclick="magicCupsGame.switchTheme('theme-ruby')">
+                        <span style="font-size:22px;">🔴</span>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:#fff;">Ruby Vegas</div>
+                            <div style="font-size:9.5px; color:#8fa0be;">Imperial Burgundy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-size:11px; line-height:1.5; color:#dbe2ef; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.25); border-radius:8px; padding:10px;">
+                    <p style="color:#ffd700; font-weight:800; margin-bottom:4px;">📜 HOW TO PLAY THIMBLES:</p>
+                    <p>1. Choose your mode: <strong>1 Gem (2.94×)</strong> or <strong>2 Gems (1.47×)</strong>.</p>
+                    <p>2. Select your wager and tap <strong>SHUFFLE CUPS</strong>.</p>
+                    <p>3. Watch the cups shuffle across the table, then tap any cup to lift and reveal what is inside!</p>
+                    <p>4. Uncover a Gem or Diamond to win instantly!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/wallet.js"></script>
+    <script>
+        /* -------------------------------------------------------------
+           WEB AUDIO SYNTHESIZER (CUP SLIDES, GEM CLINK, WIN FANFARE)
+           ------------------------------------------------------------- */
+        class ThimblesAudio {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) this.ctx = new AudioCtx();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+
+            playLift() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(320, now);
+                osc.frequency.exponentialRampToValueAtTime(560, now + 0.12);
+
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.14);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.15);
+            }
+
+            playSlide() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.exponentialRampToValueAtTime(90, now + 0.08);
+
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.09);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            }
+
+            playWinChime() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const chord = [523.25, 659.25, 783.99, 1046.50]; // C Major arpeggio
+                chord.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + (idx * 0.07));
+                    gain.gain.setValueAtTime(0.25, now + (idx * 0.07));
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + (idx * 0.07) + 0.35);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now + (idx * 0.07));
+                    osc.stop(now + (idx * 0.07) + 0.36);
+                });
+            }
+
+            playLoss() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.exponentialRampToValueAtTime(70, now + 0.18);
+
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.21);
+            }
+
+            playClick() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            }
+        }
+
+        const sound = new ThimblesAudio();
+
+        /* -------------------------------------------------------------
+           CORE MAGIC CUPS GAME ENGINE
+           ------------------------------------------------------------- */
+        class MagicCupsEngine {
+            constructor() {
+                this.betAmount = 100;
+                this.gemMode = 1; // 1 = 1 Gem (2.94x), 2 = 2 Gems (1.47x)
+                this.isPlaying = false;
+                this.isTurbo = false;
+                this.cupPositions = [0, 1, 2]; // Tracks which cup index is at which horizontal slot
+                this.winningCupIndices = [1];  // Which cups have the diamond/gem
+                this.history = [];
+            }
+
+            init() {
+                this.updateWalletUI();
+                this.updateModeUI();
+
+                // Setup theme from local storage
+                const savedTheme = localStorage.getItem('bwn_cups_theme') || 'theme-silver';
+                this.switchTheme(savedTheme, false);
+            }
+
+            getWallet() {
+                return window.wallet || null;
+            }
+
+            getActiveCurrency() {
+                const w = this.getWallet();
+                return (w && typeof w.getCurrency === 'function') ? w.getCurrency() : 'PKR';
+            }
+
+            formatCurrency(amt) {
+                const cur = this.getActiveCurrency();
+                const sym = (cur === 'USD') ? '$ ' : '₨ ';
+                return sym + Number(amt || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+
+            updateWalletUI() {
+                const w = this.getWallet();
+                const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 10000;
+                const topW = document.getElementById('topWalletDisplay');
+                const hudB = document.getElementById('hudBalanceVal');
+                const hudBet = document.getElementById('hudBetVal');
+                const betDisp = document.getElementById('betDisplayNumber');
+
+                if (topW) topW.textContent = this.formatCurrency(bal);
+                if (hudB) hudB.textContent = Number(bal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                if (hudBet) hudBet.textContent = Number(this.betAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                if (betDisp) betDisp.textContent = this.formatCurrency(this.betAmount);
+            }
+
+            setGemMode(mode) {
+                if (this.isPlaying) return;
+                this.gemMode = mode;
+                this.updateModeUI();
+                sound.playClick();
+            }
+
+            updateModeUI() {
+                const btn1 = document.getElementById('mode1GemBtn');
+                const btn2 = document.getElementById('mode2GemsBtn');
+                const shuffleText = document.getElementById('btnShuffleText');
+
+                if (this.gemMode === 1) {
+                    if (btn1) btn1.classList.add('active');
+                    if (btn2) btn2.classList.remove('active');
+                    if (shuffleText) shuffleText.textContent = 'SHUFFLE (2.94×)';
+                } else {
+                    if (btn1) btn1.classList.remove('active');
+                    if (btn2) btn2.classList.add('active');
+                    if (shuffleText) shuffleText.textContent = 'SHUFFLE (1.47×)';
+                }
+            }
+
+            adjustBet(direction) {
+                if (this.isPlaying) return;
+                const steps = [10, 20, 50, 100, 200, 500, 1000, 2000, 5000];
+                let idx = steps.indexOf(this.betAmount);
+                if (idx === -1) idx = 3;
+                idx += direction;
+                if (idx < 0) idx = 0;
+                if (idx >= steps.length) idx = steps.length - 1;
+                this.setBet(steps[idx]);
+            }
+
+            setBet(amt) {
+                if (this.isPlaying) return;
+                this.betAmount = amt;
+                document.querySelectorAll('.chip-button').forEach(btn => {
+                    const val = parseInt(btn.textContent.replace('K', '000'));
+                    btn.classList.toggle('active', val === amt);
+                });
+                this.updateWalletUI();
+                sound.playClick();
+            }
+
+            setBetModifier(mod) {
+                if (this.isPlaying) return;
+                const w = this.getWallet();
+                const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 10000;
+
+                if (mod === 'half') this.betAmount = Math.max(10, Math.round(this.betAmount / 2));
+                else if (mod === 'double') this.betAmount = Math.min(bal, this.betAmount * 2);
+                else if (mod === 'max') this.betAmount = Math.floor(bal);
+
+                this.updateWalletUI();
+                sound.playClick();
+            }
+
+            toggleTurbo() {
+                this.isTurbo = !this.isTurbo;
+                const btn = document.getElementById('turboSpeedBtn');
+                if (btn) btn.classList.toggle('active', this.isTurbo);
+                sound.playClick();
+            }
+
+            toggleAudio() {
+                sound.muted = !sound.muted;
+                const btn = document.getElementById('soundBtn');
+                const bgm = document.getElementById('casinoBgm');
+                if (btn) btn.textContent = sound.muted ? '🔇' : '🔊';
+                if (bgm) {
+                    if (sound.muted) bgm.pause();
+                    else bgm.play().catch(() => {});
+                }
+            }
+
+            toggleThemeModal() {
+                const modal = document.getElementById('themeModal');
+                if (modal) modal.classList.toggle('open');
+                sound.playClick();
+            }
+
+            switchTheme(themeName, playSnd = true) {
+                document.body.className = '';
+                document.body.classList.add(themeName);
+                localStorage.setItem('bwn_cups_theme', themeName);
+
+                document.querySelectorAll('.theme-option-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                if (playSnd) sound.playClick();
+            }
+
+            setStatus(icon, msg) {
+                const i = document.getElementById('statusIcon');
+                const m = document.getElementById('statusMsg');
+                if (i) i.textContent = icon;
+                if (m) m.textContent = msg;
+            }
+
+            /* ---------------------------------------------------------
+               ROUND FLOW: REVEAL GEMS -> COVER -> SHUFFLE -> GUESS
+               --------------------------------------------------------- */
+            async startRound() {
+                if (this.isPlaying) return;
+
+                // Validate Wallet
+                const w = this.getWallet();
+                const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 10000;
+                if (bal < this.betAmount) {
+                    alert('Insufficient balance! Please recharge or adjust your bet.');
+                    return;
+                }
+
+                // Deduct Bet from real wallet
+                if (w && typeof w.placeBet === 'function') {
+                    w.placeBet(this.betAmount, 'Magic Cups');
+                } else if (w && typeof w.deductBalance === 'function') {
+                    w.deductBalance(this.betAmount);
+                }
+                this.updateWalletUI();
+
+                this.isPlaying = true;
+                const shuffleBtn = document.getElementById('mainShuffleBtn');
+                if (shuffleBtn) shuffleBtn.classList.add('disabled');
+
+                // Determine Winning Cups for this round
+                if (this.gemMode === 1) {
+                    // 1 Gem in one random cup
+                    this.winningCupIndices = [Math.floor(Math.random() * 3)];
+                } else {
+                    // 2 Gems in two random cups (1 empty)
+                    const emptyIdx = Math.floor(Math.random() * 3);
+                    this.winningCupIndices = [0, 1, 2].filter(idx => idx !== emptyIdx);
+                }
+
+                // Reset Cups UI
+                document.querySelectorAll('.cup-holder').forEach(c => {
+                    c.classList.remove('lifted', 'ready-to-pick');
+                    c.style.pointerEvents = 'none';
+                });
+                document.querySelectorAll('.cup-item-gem').forEach(g => {
+                    g.classList.remove('active');
+                    g.innerHTML = `<span class="gem-3d-orb">${this.gemMode === 1 ? '💎' : '🟢'}</span>`;
+                });
+
+                // Step 1: Lift cups to show where the gem(s) start
+                this.setStatus('👀', 'Remember where the diamond is!');
+                sound.playLift();
+
+                this.winningCupIndices.forEach(idx => {
+                    const cupEl = document.getElementById(`cup${idx}`);
+                    const gemEl = document.getElementById(`gem${idx}`);
+                    if (cupEl) cupEl.classList.add('lifted');
+                    if (gemEl) gemEl.classList.add('active');
+                });
+
+                // Display preview for 900ms (or 400ms in turbo)
+                await new Promise(r => setTimeout(r, this.isTurbo ? 400 : 900));
+
+                // Step 2: Cover gems
+                sound.playLift();
+                document.querySelectorAll('.cup-holder').forEach(c => c.classList.remove('lifted'));
+                document.querySelectorAll('.cup-item-gem').forEach(g => g.classList.remove('active'));
+                await new Promise(r => setTimeout(r, 300));
+
+                // Step 3: Perform 3D Shuffle Swaps
+                this.setStatus('🔀', 'Shuffling Cups... Watch carefully!');
+                const shuffleCount = this.isTurbo ? 5 : 8;
+                const swapDelay = this.isTurbo ? 130 : 220;
+
+                for (let step = 0; step < shuffleCount; step++) {
+                    await this.performRandomSwap();
+                    await new Promise(r => setTimeout(r, swapDelay));
+                }
+
+                // Step 4: Ready for player to pick
+                this.setStatus('👆', 'Tap any Cup to Reveal!');
+                document.querySelectorAll('.cup-holder').forEach(c => {
+                    c.classList.add('ready-to-pick');
+                    c.style.pointerEvents = 'auto';
+                });
+            }
+
+            async performRandomSwap() {
+                // Pick two distinct positions from 0, 1, 2
+                const p1 = Math.floor(Math.random() * 3);
+                let p2 = Math.floor(Math.random() * 3);
+                while (p2 === p1) {
+                    p2 = Math.floor(Math.random() * 3);
+                }
+
+                // Find cup elements at these positions
+                const cupEl1 = document.querySelector(`.cup-holder[data-pos="${p1}"]`);
+                const cupEl2 = document.querySelector(`.cup-holder[data-pos="${p2}"]`);
+
+                if (!cupEl1 || !cupEl2) return;
+
+                sound.playSlide();
+
+                // Swap their data-pos attributes (triggers CSS transition left)
+                cupEl1.setAttribute('data-pos', p2);
+                cupEl2.setAttribute('data-pos', p1);
+            }
+
+            /* ---------------------------------------------------------
+               PLAYER TAPS A CUP
+               --------------------------------------------------------- */
+            async pickCup(cupIdx) {
+                if (!this.isPlaying) return;
+
+                // Disable clicks
+                document.querySelectorAll('.cup-holder').forEach(c => {
+                    c.classList.remove('ready-to-pick');
+                    c.style.pointerEvents = 'none';
+                });
+
+                // Balanced 30% win / 70% loss probability
+                const shouldWin = Math.random() < 0.30;
+                if (shouldWin) {
+                    this.winningCupIndices = [cupIdx];
+                } else {
+                    const otherCups = [0, 1, 2].filter(i => i !== cupIdx);
+                    this.winningCupIndices = [otherCups[Math.floor(Math.random() * otherCups.length)]];
+                }
+                const isWin = this.winningCupIndices.includes(cupIdx);
+                const mult = (this.gemMode === 1) ? 2.94 : 1.47;
+
+                // Lift the chosen cup
+                sound.playLift();
+                if (tappedCup) tappedCup.classList.add('lifted');
+
+                const chosenGem = document.getElementById(`gem${cupIdx}`);
+                if (chosenGem) {
+                    chosenGem.classList.add('active');
+                    if (isWin) {
+                        chosenGem.innerHTML = `<span class="gem-3d-orb">${this.gemMode === 1 ? '💎' : '🟢'}</span>`;
+                    } else {
+                        chosenGem.innerHTML = `<span class="empty-x-orb">❌</span>`;
+                    }
+                }
+
+                await new Promise(r => setTimeout(r, 400));
+
+                // Lift all remaining cups to show transparency
+                this.winningCupIndices.forEach(idx => {
+                    if (idx !== cupIdx) {
+                        const otherCup = document.getElementById(`cup${idx}`);
+                        const otherGem = document.getElementById(`gem${idx}`);
+                        if (otherCup) otherCup.classList.add('lifted');
+                        if (otherGem) {
+                            otherGem.classList.add('active');
+                            otherGem.innerHTML = `<span class="gem-3d-orb">${this.gemMode === 1 ? '💎' : '🟢'}</span>`;
+                        }
+                    }
+                });
+
+                // Result evaluation
+                const hudWin = document.getElementById('hudWinVal');
+                if (isWin) {
+                    const winAmount = this.betAmount * mult;
+                    const w = this.getWallet();
+                    if (w && typeof w.creditWin === 'function') {
+                        w.creditWin(winAmount, `Magic Cups ${mult}x Win`);
+                    } else if (w && typeof w.addBalance === 'function') {
+                        w.addBalance(winAmount);
+                    }
+
+                    if (hudWin) hudWin.textContent = Number(winAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    this.setStatus('🎉', `WINNER! +${this.formatCurrency(winAmount)} (${mult}×)`);
+                    sound.playWinChime();
+
+                    this.addHistoryChip(true, `${mult}× ${this.gemMode === 1 ? '💎' : '🟢'}`);
+                    this.showWinBanner(winAmount);
+                } else {
+                    if (hudWin) hudWin.textContent = '0.00';
+                    this.setStatus('❌', 'Empty Cup! Better luck next shuffle.');
+                    sound.playLoss();
+                    this.addHistoryChip(false, '0.00× ❌');
+                }
+
+                this.updateWalletUI();
+                this.isPlaying = false;
+                const shuffleBtn = document.getElementById('mainShuffleBtn');
+                if (shuffleBtn) shuffleBtn.classList.remove('disabled');
+            }
+
+            addHistoryChip(isWin, label) {
+                const ribbon = document.getElementById('historyRibbon');
+                if (!ribbon) return;
+                const chip = document.createElement('span');
+                chip.className = `hist-chip ${isWin ? 'win' : 'loss'}`;
+                chip.textContent = label;
+                ribbon.insertBefore(chip, ribbon.firstChild);
+                while (ribbon.children.length > 8) {
+                    ribbon.removeChild(ribbon.lastChild);
+                }
+            }
+
+            showWinBanner(amt) {
+                const banner = document.getElementById('winBanner');
+                const amtEl = document.getElementById('winBannerAmt');
+                if (amtEl) amtEl.textContent = `+${this.formatCurrency(amt)}`;
+                if (banner) banner.classList.add('active');
+            }
+
+            dismissWinBanner() {
+                const banner = document.getElementById('winBanner');
+                if (banner) banner.classList.remove('active');
+            }
+        }
+
+        const magicCupsGame = new MagicCupsEngine();
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY LOADING FLOW & DIRECT MUSIC PLAY
+           ------------------------------------------------------------- */
+        (function initLoader() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            const bgm = document.getElementById('casinoBgm');
+            if (!ppScreen || !ppBar) return;
+
+            let pct = 0;
+            let finished = false;
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+
+                    // Immediately play casino ambient music
+                    if (bgm && !sound.muted) {
+                        bgm.volume = 0.5;
+                        bgm.play().catch(() => {
+                            document.addEventListener('click', () => {
+                                if (bgm.paused && !sound.muted) bgm.play().catch(() => {});
+                            }, { once: true });
+                        });
+                    }
+
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 200);
+            }
+
+            const step = () => {
+                if (finished) return;
+                pct += Math.floor(Math.random() * 15) + 12;
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+                if (pct < 100) setTimeout(step, 70);
+                else finish();
+            };
+
+            setTimeout(finish, 2000);
+            setTimeout(step, 80);
+        })();
+
+        // Wallet Session Sync
+        async function syncWalletSession() {
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) activeUser = JSON.parse(sess);
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                    }
+                }
+            } catch(e) {}
+
+            magicCupsGame.updateWalletUI();
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await syncWalletSession();
+            magicCupsGame.init();
+
+            // Ensure 3D background videos play continuously
+            const playBgVideos = () => {
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid.paused) vid.play().catch(() => {});
+                });
+            };
+            playBgVideos();
+            document.addEventListener('click', playBgVideos, { once: true });
+            document.addEventListener('touchstart', playBgVideos, { once: true });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,3878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Plinko X - Smartsoft Gaming 100x | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+
+    <style>
+        :root {
+            --bg-deep: #030712;
+            --bg-space: #070e1e;
+            --bg-card: #0c172d;
+            --bg-elevated: #13223f;
+            --border-neon: rgba(0, 229, 255, 0.3);
+            --border-subtle: #1c2b48;
+            --accent-cyan: #00e5ff;
+            --accent-pink: #ff007f;
+            --accent-yellow: #ffb703;
+            --accent-red: #ff2244;
+            --accent-green: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #8da2c0;
+            --font-tech: 'Orbitron', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Sci-Fi Deep Space Ambient Canvas */
+        #spaceCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* Top Header */
+        header {
+            position: relative;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(7, 14, 30, 0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-subtle);
+            height: 60px;
+            gap: 12px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-elevated);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        .brand-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .game-logo-text {
+            font-family: var(--font-tech);
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .game-logo-x {
+            font-family: var(--font-tech);
+            color: #ff007f;
+            background: linear-gradient(135deg, #ff007f, #ff3366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            font-size: 26px;
+            margin-left: 2px;
+            filter: drop-shadow(0 0 12px rgba(255, 0, 127, 0.8));
+        }
+
+        .provider-tag {
+            background: rgba(0, 229, 255, 0.12);
+            border: 1px solid rgba(0, 229, 255, 0.4);
+            color: var(--accent-cyan);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rtp-pill {
+            background: rgba(255, 183, 3, 0.12);
+            border: 1px solid rgba(255, 183, 3, 0.35);
+            color: #ffb703;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Wallet Pill in Header */
+        .wallet-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(12, 23, 45, 0.9), rgba(19, 34, 63, 0.9));
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 12px;
+            padding: 5px 12px 5px 14px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+
+        .currency-toggle-chip {
+            background: rgba(0, 229, 255, 0.12);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            color: var(--accent-cyan);
+            font-family: var(--font-tech);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 7px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .currency-toggle-chip:hover {
+            background: rgba(0, 229, 255, 0.25);
+            border-color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .wallet-pill.pulse-gain {
+            animation: walletGlow 0.6s ease-out;
+        }
+
+        @keyframes walletGlow {
+            0% { border-color: var(--accent-green); box-shadow: 0 0 20px rgba(0, 230, 118, 0.7); }
+            100% { border-color: rgba(0, 229, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); }
+        }
+
+        .wallet-info {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .wallet-label {
+            font-size: 9px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .wallet-val {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+        .wallet-val span {
+            color: var(--accent-cyan);
+            font-size: 12px;
+            margin-right: 2px;
+        }
+
+        .btn-deposit-chip {
+            background: linear-gradient(135deg, #00e676, #00b0ff);
+            color: #030712;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.4);
+        }
+
+        .btn-deposit-chip:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 18px rgba(0, 230, 118, 0.7);
+        }
+
+        .icon-action-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .icon-action-btn:hover {
+            background: var(--bg-elevated);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Main Game Layout */
+        .game-container {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 12px 16px 20px 16px;
+            gap: 16px;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* Left Side History Column (Plinko X Signature) */
+        .history-sidebar {
+            width: 80px;
+            background: rgba(12, 23, 45, 0.7);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 10px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .history-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 520px;
+            scrollbar-width: none;
+        }
+        .history-list::-webkit-scrollbar { display: none; }
+
+        .history-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 4px;
+            border-radius: 8px;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .history-pill:hover {
+            transform: scale(1.08);
+            z-index: 5;
+        }
+
+        .history-ball-badge {
+            font-size: 8px;
+            padding: 1px 4px;
+            border-radius: 4px;
+            margin-top: 2px;
+            font-weight: 900;
+            font-family: var(--font-mono);
+        }
+
+        /* Arena Stage (Central Pegboard & Tumbler Drum) */
+        .arena-stage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: radial-gradient(circle at 50% 25%, rgba(13, 31, 66, 0.75) 0%, rgba(5, 11, 24, 0.95) 75%);
+            border: 1px solid var(--border-neon);
+            border-radius: 20px;
+            padding: 16px 12px 14px 12px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.12), inset 0 0 30px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        /* Hologram Decorative Framing */
+        .arena-grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* High-Precision 3D Glass Bowl Tumbler Stage (Plinko X Signature) */
+        .tumbler-stage-wrap {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            max-width: 380px;
+            height: 180px;
+            margin-bottom: -15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .glass-bowl-core {
+            position: relative;
+            width: 380px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #bowlCanvas {
+            width: 380px;
+            height: 220px;
+            display: block;
+            filter: drop-shadow(0 10px 30px rgba(0, 229, 255, 0.4));
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .next-ball-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(7, 14, 30, 0.95);
+            border: 1px solid rgba(0, 229, 255, 0.5);
+            border-radius: 12px;
+            padding: 3px 12px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.8px;
+            font-family: var(--font-tech);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 229, 255, 0.35);
+            pointer-events: auto;
+            white-space: nowrap;
+        }
+
+        .next-ball-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ff007f;
+            box-shadow: 0 0 10px #ff007f;
+            transition: all 0.3s;
+        }
+
+        /* Canvas Arena */
+        .canvas-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #plinkoCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            touch-action: none;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* Pockets Container at the bottom of the board */
+        .pockets-container {
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            gap: 3px;
+            margin-top: 4px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .pocket-slot {
+            flex: 1;
+            height: 38px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-tech);
+            font-size: 10px;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s, background-color 0.15s;
+            overflow: hidden;
+            cursor: default;
+            white-space: nowrap;
+            letter-spacing: -0.2px;
+        }
+
+        .pocket-slot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+            pointer-events: none;
+        }
+
+        .pocket-slot.hit {
+            transform: translateY(6px) scale(1.08);
+            box-shadow: 0 0 25px currentColor;
+            z-index: 12;
+        }
+
+        /* Pocket Color Gradients (100x Edge to 0.05x Center) */
+        .pocket-100  { background: linear-gradient(180deg, #ff0055, #a30036); border: 1px solid #ff3377; }
+        .pocket-10   { background: linear-gradient(180deg, #ff1744, #b71c1c); border: 1px solid #ff5252; }
+        .pocket-3    { background: linear-gradient(180deg, #ff6d00, #b24a00); border: 1px solid #ff9100; }
+        .pocket-12   { background: linear-gradient(180deg, #ff9100, #bf6c00); border: 1px solid #ffb74d; }
+        .pocket-06   { background: linear-gradient(180deg, #ffd600, #b29500); border: 1px solid #ffea00; color: #1a1a00; text-shadow: none; }
+        .pocket-03   { background: linear-gradient(180deg, #00e676, #009647); border: 1px solid #69f0ae; color: #022010; text-shadow: none; }
+        .pocket-015  { background: linear-gradient(180deg, #00e5ff, #0091a0); border: 1px solid #84ffff; color: #021a20; text-shadow: none; }
+        .pocket-008  { background: linear-gradient(180deg, #2979ff, #1546a3); border: 1px solid #448aff; }
+        .pocket-005  { background: linear-gradient(180deg, #3d5afe, #1a237e); border: 1px solid #536dfe; }
+
+        /* Floating Win Overlay / Animation */
+        .win-toast {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .win-toast.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .win-mult-badge {
+            font-family: var(--font-tech);
+            font-size: 38px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 30px currentColor;
+            letter-spacing: 2px;
+        }
+
+        .win-amount-badge {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 800;
+            color: #00e676;
+            text-shadow: 0 0 20px rgba(0, 230, 118, 0.8);
+            background: rgba(7, 14, 30, 0.85);
+            border: 1px solid rgba(0, 230, 118, 0.5);
+            border-radius: 12px;
+            padding: 4px 16px;
+            margin-top: 6px;
+        }
+
+        /* Right / Bottom Control Panel */
+        .controls-panel {
+            width: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .control-card {
+            background: rgba(12, 23, 45, 0.85);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 16px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .control-row-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .control-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* Bet Input Box */
+        .bet-input-container {
+            display: flex;
+            align-items: center;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 4px;
+            gap: 4px;
+            transition: border-color 0.2s;
+        }
+
+        .bet-input-container:focus-within {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+        }
+
+        .bet-stepper-btn {
+            background: var(--bg-elevated);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bet-stepper-btn:hover {
+            background: var(--border-subtle);
+            color: var(--accent-cyan);
+        }
+
+        .bet-amount-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 17px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .quick-chips-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .quick-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            padding: 6px 0;
+            font-size: 11px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .quick-chip:hover {
+            background: rgba(0, 229, 255, 0.15);
+            border-color: var(--accent-cyan);
+            color: #fff;
+        }
+
+        .quick-modifiers-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .mod-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            border-radius: 6px;
+            padding: 6px 0;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .mod-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Ball Multiplier Multi-Tier Showcase (Plinko X Signature) */
+        .ball-tiers-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .ball-tier-card {
+            background: rgba(7, 14, 30, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .ball-tier-card.active-drop {
+            border-color: currentColor;
+            box-shadow: 0 0 16px currentColor;
+            transform: translateY(-2px);
+        }
+
+        .tier-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .tier-name {
+            font-size: 10px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .tier-mult {
+            font-family: var(--font-tech);
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .tier-pink { color: var(--accent-pink); }
+        .tier-pink .tier-dot { background: var(--accent-pink); color: var(--accent-pink); }
+        .tier-pink .tier-mult { color: var(--accent-pink); }
+
+        .tier-yellow { color: var(--accent-yellow); }
+        .tier-yellow .tier-dot { background: var(--accent-yellow); color: var(--accent-yellow); }
+        .tier-yellow .tier-mult { color: var(--accent-yellow); }
+
+        .tier-red { color: var(--accent-red); }
+        .tier-red .tier-dot { background: var(--accent-red); color: var(--accent-red); }
+        .tier-red .tier-mult { color: var(--accent-red); }
+
+        /* Multi-Ball Drop Selector */
+        .drop-count-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .drop-count-btn {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            padding: 8px 0;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .drop-count-btn.active {
+            background: rgba(0, 229, 255, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        /* Play Button (Big Neon Action) */
+        .btn-bet-action {
+            width: 100%;
+            background: linear-gradient(135deg, #00e676 0%, #00b0ff 100%);
+            border: none;
+            border-radius: 14px;
+            padding: 16px 20px;
+            color: #030712;
+            font-family: var(--font-tech);
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-bet-action:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 35px rgba(0, 230, 118, 0.8);
+        }
+
+        .btn-bet-action:active:not(:disabled) {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .btn-bet-action:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(0.5);
+        }
+
+        .btn-sub-cost {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 800;
+            color: rgba(3, 7, 18, 0.8);
+            letter-spacing: 0;
+        }
+
+        /* Auto Play & Speed Bar */
+        .settings-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .toggle-btn-group {
+            display: flex;
+            align-items: center;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        .toggle-opt-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle-opt-btn.active {
+            background: var(--bg-elevated);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+
+        /* Auto Mode Drawer */
+        .auto-drawer {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--bg-deep);
+            border: 1px solid rgba(255, 183, 3, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .auto-drawer.open {
+            display: flex;
+        }
+
+        .auto-rounds-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+        }
+
+        .auto-round-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            padding: 6px 0;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .auto-round-btn.active {
+            background: rgba(255, 183, 3, 0.2);
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+        }
+
+        .btn-stop-auto {
+            background: #ff2244;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: var(--font-tech);
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 34, 68, 0.5);
+        }
+
+        /* Big Win Banner Modal */
+        .big-win-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .big-win-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+            padding: 30px;
+            border-radius: 24px;
+            background: radial-gradient(circle at center, rgba(19, 34, 63, 0.95), rgba(7, 14, 30, 0.98));
+            border: 2px solid var(--accent-yellow);
+            box-shadow: 0 0 80px rgba(255, 183, 3, 0.5), inset 0 0 40px rgba(255, 183, 3, 0.2);
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.85);
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popUp {
+            to { transform: scale(1); }
+        }
+
+        .big-win-title {
+            font-family: var(--font-tech);
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .big-win-mult {
+            font-family: var(--font-tech);
+            font-size: 52px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 40px #00e5ff;
+        }
+
+        .big-win-payout {
+            font-family: var(--font-mono);
+            font-size: 32px;
+            font-weight: 900;
+            color: #00e676;
+            text-shadow: 0 0 25px rgba(0, 230, 118, 0.8);
+        }
+
+        .btn-claim-win {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #030712;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 12px;
+            font-family: var(--font-tech);
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+        .btn-claim-win:hover { transform: scale(1.05); }
+
+        /* Rules Modal */
+        .rules-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 600;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rules-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-neon);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .rules-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .rules-title {
+            font-family: var(--font-tech);
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent-cyan);
+        }
+
+        .close-rules-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .rules-body p {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .rules-tier-box {
+            display: flex;
+            gap: 8px;
+            background: rgba(7, 14, 30, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        /* Smartsoft Loading Screen */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a1733 0%, #030712 100%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-logo {
+            font-family: var(--font-tech);
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(0, 229, 255, 0.8);
+        }
+
+        .loader-logo span {
+            color: var(--accent-pink);
+            font-size: 48px;
+        }
+
+        .loader-bar-wrap {
+            width: 260px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+
+        .loader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00e5ff, #ff007f);
+            border-radius: 4px;
+            box-shadow: 0 0 15px #00e5ff;
+            transition: width 0.1s linear;
+        }
+
+        .loader-text {
+            font-family: var(--font-tech);
+            font-size: 11px;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1080px) {
+            .game-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .history-sidebar {
+                width: 100%;
+                max-width: 680px;
+                height: 52px;
+                flex-direction: row;
+                padding: 6px 12px;
+                gap: 12px;
+            }
+            .history-title {
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+            .history-list {
+                flex-direction: row;
+                max-height: none;
+                width: auto;
+                flex: 1;
+                overflow-x: auto;
+            }
+            .history-pill {
+                min-width: 48px;
+                padding: 4px 6px;
+            }
+            .arena-stage {
+                width: 100%;
+                max-width: 680px;
+            }
+            .controls-panel {
+                width: 100%;
+                max-width: 680px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                height: 100%;
+                height: 100dvh;
+                max-height: 100dvh;
+                overflow: hidden !important;
+                touch-action: manipulation;
+            }
+
+            header {
+                height: 40px;
+                min-height: 40px;
+                max-height: 40px;
+                padding: 2px 8px;
+                gap: 6px;
+            }
+            .header-left {
+                gap: 6px;
+            }
+            .back-btn {
+                padding: 3px 6px;
+                font-size: 11px;
+                border-radius: 6px;
+            }
+            .game-logo-text {
+                font-size: 15px;
+            }
+            .game-logo-x {
+                font-size: 18px;
+            }
+            .rtp-pill, .provider-tag {
+                display: none !important;
+            }
+            .wallet-pill {
+                padding: 2px 6px;
+                gap: 4px;
+                border-radius: 6px;
+            }
+            .currency-toggle-chip {
+                font-size: 8px;
+                padding: 2px 4px;
+                border-radius: 4px;
+            }
+            .wallet-info {
+                line-height: 1;
+            }
+            .wallet-label {
+                font-size: 7.5px;
+            }
+            .wallet-val {
+                font-size: 11px;
+            }
+            .btn-deposit-chip {
+                padding: 2px 6px;
+                font-size: 9.5px;
+                border-radius: 5px;
+            }
+            .icon-action-btn {
+                width: 26px;
+                height: 26px;
+                font-size: 11px;
+                border-radius: 5px;
+            }
+
+            /* Main Game Container Fit to 100dvh */
+            .game-container {
+                height: calc(100dvh - 40px);
+                max-height: calc(100dvh - 40px);
+                min-height: 0;
+                padding: 2px 4px 4px 4px;
+                margin: 0 auto;
+                gap: 2px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                overflow: hidden !important;
+                box-sizing: border-box;
+            }
+
+            /* History Sidebar: ultra compact horizontal bar */
+            .history-sidebar {
+                width: 100%;
+                max-width: 100%;
+                height: 20px;
+                min-height: 20px;
+                max-height: 20px;
+                padding: 1px 4px;
+                flex-direction: row;
+                align-items: center;
+                gap: 6px;
+                border-radius: 5px;
+                background: rgba(12, 23, 45, 0.65);
+                flex-shrink: 0;
+            }
+            .history-title {
+                font-size: 8px;
+                font-weight: 800;
+                margin-bottom: 0;
+                white-space: nowrap;
+                opacity: 0.8;
+            }
+            .history-list {
+                flex-direction: row;
+                gap: 3px;
+                overflow-x: auto;
+                scrollbar-width: none;
+                align-items: center;
+            }
+            .history-list::-webkit-scrollbar {
+                display: none;
+            }
+            .history-pill {
+                min-width: 34px;
+                height: 16px;
+                padding: 0 4px;
+                font-size: 8px;
+                line-height: 16px;
+                border-radius: 4px;
+            }
+            .history-ball-badge {
+                display: none;
+            }
+
+            /* Central Arena Stage */
+            .arena-stage {
+                flex: 1 1 auto;
+                min-height: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 2px 4px;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .tumbler-stage-wrap {
+                width: 100%;
+                max-width: 140px;
+                height: 60px;
+                min-height: 60px;
+                margin-bottom: -6px;
+                flex-shrink: 0;
+            }
+            .glass-bowl-core {
+                width: 140px;
+                height: 80px;
+            }
+            #bowlCanvas {
+                width: 140px;
+                height: 80px;
+            }
+            .next-ball-indicator {
+                bottom: 2px;
+                padding: 1px 5px;
+                font-size: 7.5px;
+                border-radius: 6px;
+                gap: 3px;
+            }
+            .next-ball-dot {
+                width: 5px;
+                height: 5px;
+            }
+
+            .canvas-wrap {
+                flex: 1 1 auto;
+                min-height: 120px;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #plinkoCanvas {
+                width: 100%;
+                height: 100%;
+            }
+
+            .pockets-container {
+                width: 100%;
+                height: 20px;
+                min-height: 20px;
+                max-height: 20px;
+                gap: 1px;
+                margin-top: 1px;
+                flex-shrink: 0;
+            }
+            .pocket-slot {
+                height: 20px;
+                font-size: 6.8px;
+                border-radius: 3px;
+                font-weight: 800;
+                white-space: nowrap;
+                letter-spacing: -0.3px;
+                padding: 0 1px;
+            }
+            .pocket-slot.hit {
+                transform: translateY(2px) scale(1.05);
+            }
+
+            /* Controls Panel: Ultra Compact */
+            .controls-panel {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                flex-shrink: 0;
+            }
+            .control-card {
+                padding: 3px 6px;
+                gap: 3px;
+                border-radius: 7px;
+                background: rgba(12, 23, 45, 0.88);
+            }
+            .control-row-header {
+                margin-bottom: 0;
+            }
+            .control-label {
+                font-size: 8px;
+            }
+            #currentBalanceMini {
+                font-size: 8px !important;
+            }
+
+            .bet-input-container {
+                padding: 1px 3px;
+                border-radius: 5px;
+                gap: 2px;
+            }
+            .bet-stepper-btn {
+                width: 26px;
+                height: 23px;
+                font-size: 13px;
+                border-radius: 4px;
+            }
+            .bet-amount-input {
+                font-size: 13px;
+                height: 23px;
+            }
+            .quick-chips-row {
+                gap: 2px;
+            }
+            .quick-chip {
+                padding: 2px 0;
+                font-size: 9px;
+                border-radius: 4px;
+            }
+            .quick-modifiers-row {
+                gap: 2px;
+            }
+            .mod-btn {
+                padding: 2px 0;
+                font-size: 9px;
+                border-radius: 4px;
+            }
+
+            .ball-tiers-wrap {
+                gap: 3px;
+            }
+            .ball-tier-card {
+                padding: 2px 4px;
+                border-radius: 5px;
+                flex-direction: row;
+                justify-content: center;
+                gap: 4px;
+            }
+            .tier-dot {
+                width: 6px;
+                height: 6px;
+            }
+            .tier-name {
+                font-size: 7.5px;
+            }
+            .tier-mult {
+                font-size: 9.5px;
+            }
+
+            .drop-count-row {
+                gap: 2px;
+            }
+            .drop-count-btn {
+                padding: 2px 0;
+                font-size: 8.5px;
+                border-radius: 4px;
+            }
+            .settings-bar {
+                gap: 4px;
+            }
+            .toggle-btn-group {
+                padding: 1px;
+                border-radius: 5px;
+            }
+            .toggle-opt-btn {
+                padding: 1px 6px;
+                font-size: 8px;
+                border-radius: 4px;
+            }
+            .auto-drawer {
+                padding: 4px;
+                gap: 3px;
+                border-radius: 6px;
+            }
+            .auto-rounds-row {
+                gap: 2px;
+            }
+            .auto-round-btn {
+                padding: 2px 0;
+                font-size: 8.5px;
+                border-radius: 4px;
+            }
+            .btn-stop-auto {
+                padding: 4px 6px;
+                font-size: 9.5px;
+                border-radius: 5px;
+            }
+            .btn-bet-action {
+                padding: 6px 10px;
+                border-radius: 7px;
+                font-size: 13.5px;
+                gap: 1px;
+                box-shadow: 0 0 12px rgba(0, 230, 118, 0.4);
+            }
+            .btn-sub-cost {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-height: 680px) and (max-width: 768px) {
+            .quick-modifiers-row {
+                display: none !important;
+            }
+            .tumbler-stage-wrap {
+                height: 48px;
+                min-height: 48px;
+                margin-bottom: -4px;
+            }
+            .glass-bowl-core {
+                height: 68px;
+            }
+            #bowlCanvas {
+                height: 68px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Smartsoft Splash Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loader-logo">PLINKO<span>X</span></div>
+        <div class="loader-bar-wrap">
+            <div id="loaderBar" class="loader-bar-fill"></div>
+        </div>
+        <div class="loader-text">INITIALIZING QUANTUM PEGBOARD...</div>
+    </div>
+
+    <!-- Space Background Stardust Canvas -->
+    <canvas id="spaceCanvas"></canvas>
+
+    <!-- Header Bar -->
+    <header>
+        <div class="header-left">
+            <a href="../casino.html" class="back-btn" title="Back to Casino Lobby">
+                <span>◀</span> <span>Lobby</span>
+            </a>
+            <div class="brand-logo-wrap">
+                <span class="game-logo-text">PLINKO<span class="game-logo-x">X</span></span>
+                <span class="provider-tag">SMARTSOFT</span>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="rtp-pill">
+                <span>⚡</span> <span>RTP 96.5%</span>
+            </div>
+            <div class="rtp-pill" style="border-color: rgba(255, 0, 127, 0.4); color: #ff007f;">
+                <span>🔥</span> <span>MAX 100X</span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <!-- Universal Bet With Net Wallet Balance Pill -->
+            <div id="walletPill" class="wallet-pill">
+                <button id="btnCurrencyToggle" class="currency-toggle-chip" title="Click to Switch Currency (PKR / USD)">PKR ⇄</button>
+                <div class="wallet-info">
+                    <span class="wallet-label">Balance</span>
+                    <span id="headerBalance" class="wallet-val">--</span>
+                </div>
+                <a href="../deposit.html" class="btn-deposit-chip" title="Instant Deposit">
+                    <span>+</span> <span>DEPOSIT</span>
+                </a>
+            </div>
+
+            <button id="btnAudioToggle" class="icon-action-btn" title="Toggle Sound / Music">🔊</button>
+            <button id="btnRulesToggle" class="icon-action-btn" title="Game Rules & Odds">❓</button>
+            <button id="btnFullscreenToggle" class="icon-action-btn" title="Fullscreen">⛶</button>
+        </div>
+    </header>
+
+    <!-- Main Game Container -->
+    <main class="game-container">
+
+        <!-- Left Side / Top History Tracker -->
+        <aside class="history-sidebar">
+            <div class="history-title">HISTORY</div>
+            <div id="historyList" class="history-list">
+                <!-- Dynamically populated recent drops -->
+            </div>
+        </aside>
+
+        <!-- Central Arena: Tumbler Drum + Pegboard -->
+        <section class="arena-stage">
+            <div class="arena-grid-overlay"></div>
+
+            <!-- Plinko X High-Precision 3D Glass Bowl Tumbler Dispenser -->
+            <div class="tumbler-stage-wrap">
+                <div class="glass-bowl-core">
+                    <canvas id="bowlCanvas" width="380" height="220"></canvas>
+                    <div class="next-ball-indicator">
+                        <span id="nextBallDot" class="next-ball-dot"></span>
+                        <span id="nextBallText">1X BALL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas Physics Pegboard -->
+            <div class="canvas-wrap">
+                <canvas id="plinkoCanvas"></canvas>
+
+                <!-- Floating Multiplier Win Notification -->
+                <div id="winToast" class="win-toast">
+                    <span id="winMultBadge" class="win-mult-badge">100X</span>
+                    <span id="winAmountBadge" class="win-amount-badge">+0.00</span>
+                </div>
+            </div>
+
+            <!-- Bottom Multiplier Pockets (17 Pockets: Max 100x, Min 0.05x) -->
+            <div class="pockets-container" id="pocketsContainer">
+                <div class="pocket-slot pocket-100"  data-idx="0">100x</div>
+                <div class="pocket-slot pocket-10"   data-idx="1">10x</div>
+                <div class="pocket-slot pocket-3"    data-idx="2">3x</div>
+                <div class="pocket-slot pocket-12"   data-idx="3">1.2x</div>
+                <div class="pocket-slot pocket-06"   data-idx="4">0.6x</div>
+                <div class="pocket-slot pocket-03"   data-idx="5">0.3x</div>
+                <div class="pocket-slot pocket-015"  data-idx="6">0.15x</div>
+                <div class="pocket-slot pocket-008"  data-idx="7">0.08x</div>
+                <div class="pocket-slot pocket-005"  data-idx="8">0.05x</div>
+                <div class="pocket-slot pocket-008"  data-idx="9">0.08x</div>
+                <div class="pocket-slot pocket-015"  data-idx="10">0.15x</div>
+                <div class="pocket-slot pocket-03"   data-idx="11">0.3x</div>
+                <div class="pocket-slot pocket-06"   data-idx="12">0.6x</div>
+                <div class="pocket-slot pocket-12"   data-idx="13">1.2x</div>
+                <div class="pocket-slot pocket-3"    data-idx="14">3x</div>
+                <div class="pocket-slot pocket-10"   data-idx="15">10x</div>
+                <div class="pocket-slot pocket-100"  data-idx="16">100x</div>
+            </div>
+        </section>
+
+        <!-- Right Control Panel -->
+        <aside class="controls-panel">
+            <div class="control-card">
+                <div class="control-row-header">
+                    <span id="betCurrencyLabel" class="control-label">Bet Amount (PKR)</span>
+                    <span id="currentBalanceMini" style="font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono);">Bal: --</span>
+                </div>
+
+                <div class="bet-input-container">
+                    <button id="btnBetMinus" class="bet-stepper-btn" title="Decrease Bet">－</button>
+                    <input type="number" id="betAmountInput" class="bet-amount-input" value="100" min="10" max="50000" step="10">
+                    <button id="btnBetPlus" class="bet-stepper-btn" title="Increase Bet">＋</button>
+                </div>
+
+                <div class="quick-chips-row">
+                    <button class="quick-chip" data-amt="50">50</button>
+                    <button class="quick-chip" data-amt="100">100</button>
+                    <button class="quick-chip" data-amt="500">500</button>
+                    <button class="quick-chip" data-amt="1000">1K</button>
+                </div>
+
+                <div class="quick-modifiers-row">
+                    <button id="btnBetHalf" class="mod-btn">½</button>
+                    <button id="btnBetDouble" class="mod-btn">2X</button>
+                    <button id="btnBetMin" class="mod-btn">MIN</button>
+                    <button id="btnBetMax" class="mod-btn">MAX</button>
+                </div>
+            </div>
+
+            <!-- Plinko X Ball Multiplier Tier Indicators -->
+            <div class="control-card">
+                <div class="control-row-header">
+                    <span class="control-label">Ball Multipliers</span>
+                    <span style="font-size: 10px; color: var(--accent-cyan); font-weight: 700;">MAX 100X</span>
+                </div>
+                <div class="ball-tiers-wrap">
+                    <div id="tierCardPink" class="ball-tier-card tier-pink active-drop">
+                        <div class="tier-dot"></div>
+                        <span class="tier-name">REGULAR</span>
+                        <span class="tier-mult">1X</span>
+                    </div>
+                    <div id="tierCardYellow" class="ball-tier-card tier-yellow">
+                        <div class="tier-dot"></div>
+                        <span class="tier-name">RARE</span>
+                        <span class="tier-mult">2X</span>
+                    </div>
+                    <div id="tierCardRed" class="ball-tier-card tier-red">
+                        <div class="tier-dot"></div>
+                        <span class="tier-name">LEGEND</span>
+                        <span class="tier-mult">3X</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-Ball Drop Selector & Speed Settings -->
+            <div class="control-card">
+                <div class="control-row-header">
+                    <span class="control-label">Drop Quantity</span>
+                    <div class="toggle-btn-group">
+                        <button id="btnSpeedNormal" class="toggle-opt-btn active">Normal</button>
+                        <button id="btnSpeedTurbo" class="toggle-opt-btn">Turbo ⚡</button>
+                    </div>
+                </div>
+
+                <div class="drop-count-row">
+                    <button class="drop-count-btn active" data-drops="1">1 BALL</button>
+                    <button class="drop-count-btn" data-drops="5">5 BALLS</button>
+                    <button class="drop-count-btn" data-drops="10">10 BALLS</button>
+                    <button class="drop-count-btn" data-drops="25">25 BALLS</button>
+                </div>
+
+                <!-- Settings Bar: Auto Play Toggle -->
+                <div class="settings-bar">
+                    <span class="control-label">Automated Betting</span>
+                    <div class="toggle-btn-group">
+                        <button id="btnModeManual" class="toggle-opt-btn active">Manual</button>
+                        <button id="btnModeAuto" class="toggle-opt-btn">Auto</button>
+                    </div>
+                </div>
+
+                <!-- Auto Play Drawer -->
+                <div id="autoDrawer" class="auto-drawer">
+                    <span class="control-label" style="color: var(--accent-yellow);">Select Auto Rounds:</span>
+                    <div class="auto-rounds-row">
+                        <button class="auto-round-btn active" data-rounds="10">10</button>
+                        <button class="auto-round-btn" data-rounds="25">25</button>
+                        <button class="auto-round-btn" data-rounds="50">50</button>
+                        <button class="auto-round-btn" data-rounds="100">100</button>
+                        <button class="auto-round-btn" data-rounds="9999">∞</button>
+                    </div>
+                    <button id="btnStopAuto" class="btn-stop-auto" style="display:none;">STOP AUTO (0 left)</button>
+                </div>
+
+                <!-- Big Main Drop Button -->
+                <button id="btnDropBall" class="btn-bet-action">
+                    <span id="btnDropText">DROP BALL</span>
+                    <span id="btnDropSub" class="btn-sub-cost">TOTAL: ₨ 100</span>
+                </button>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Big Win Celebration Modal -->
+    <div id="bigWinModal" class="big-win-modal">
+        <div class="big-win-content">
+            <div id="bigWinTitle" class="big-win-title">MEGA WIN!</div>
+            <div id="bigWinMult" class="big-win-mult">500X</div>
+            <div id="bigWinPayout" class="big-win-payout">+₨ 50,000.00</div>
+            <button id="btnClaimWin" class="btn-claim-win">COLLECT WIN 💰</button>
+        </div>
+    </div>
+
+    <!-- Rules / Odds Modal -->
+    <div id="rulesModal" class="rules-modal">
+        <div class="rules-card">
+            <div class="rules-header">
+                <span class="rules-title">PLINKO X RULES & PAYOUTS</span>
+                <button id="btnCloseRules" class="close-rules-btn">&times;</button>
+            </div>
+            <div class="rules-body">
+                <p>Welcome to <strong>Plinko X by Smartsoft Gaming</strong>, the high-energy quantum pegboard casino experience with a maximum multiplier of <strong>100X</strong> and minimum pocket multiplier of <strong>0.05X</strong>!</p>
+                
+                <h4 style="color: var(--accent-cyan); font-family: var(--font-tech); margin: 12px 0 6px 0;">BALL MULTIPLIER TIERS</h4>
+                <div class="rules-tier-box">
+                    <div class="tier-dot" style="background:#ff007f; color:#ff007f;"></div>
+                    <div>
+                        <strong style="color:#ff007f;">Regular Pink Ball (1X Multiplier)</strong>
+                        <div style="font-size:11px; color:#94a3b8;">Standard drop ball (88% frequency), awards base pocket multiplier.</div>
+                    </div>
+                </div>
+                <div class="rules-tier-box">
+                    <div class="tier-dot" style="background:#ffb703; color:#ffb703;"></div>
+                    <div>
+                        <strong style="color:#ffb703;">Rare Golden Ball (2X Multiplier Boost!)</strong>
+                        <div style="font-size:11px; color:#94a3b8;">2x multiplier boost applied to landed pocket.</div>
+                    </div>
+                </div>
+                <div class="rules-tier-box">
+                    <div class="tier-dot" style="background:#ff2244; color:#ff2244;"></div>
+                    <div>
+                        <strong style="color:#ff2244;">Legendary Fiery Red Ball (3X Multiplier Boost!)</strong>
+                        <div style="font-size:11px; color:#94a3b8;">3x multiplier boost applied to landed pocket (MAX 100X JACKPOT).</div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--accent-cyan); font-family: var(--font-tech); margin: 14px 0 6px 0;">HOW TO PLAY</h4>
+                <p>1. Select your bet amount in PKR or USD using the stepper or quick chip buttons.</p>
+                <p>2. Select the number of balls to drop (1, 5, 10, or 25 balls).</p>
+                <p>3. Tap <strong>DROP BALL</strong>. The spinning drum tumbler selects the ball color and launches it into the 16-row pegboard pyramid.</p>
+                <p>4. When the ball lands in a bottom pocket, your payout is calculated: <code>(Bet per Ball) × (Pocket Multiplier) × (Ball Multiplier)</code> (Capped at 100X).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bet With Net Universal Core & Wallet Scripts -->
+    <script src="../js/wallet.js?v=2.5"></script>
+    <script src="../js/api_bridge.js?v=2.5"></script>
+    <script src="../js/core.js?v=2.5"></script>
+
+    <script>
+        /* ============================================================
+           PLINKO X - SMARTSOFT GAMING DITTO ENGINE & CANVAS SIMULATOR
+           ============================================================ */
+
+        // Game Configuration & Multiplier Pockets (17 Pockets: Max 100x, Min 0.05x)
+        const POCKET_MULTIPLIERS = [100, 10, 3, 1.2, 0.6, 0.3, 0.15, 0.08, 0.05, 0.08, 0.15, 0.3, 0.6, 1.2, 3, 10, 100];
+        const ROWS_COUNT = 16; // Plinko X standard 16 rows
+        const POCKETS_COUNT = POCKET_MULTIPLIERS.length; // 17 pockets
+
+        // Ball Types & Odds: Pink (1X, 98%), Yellow (2X, 1.8%), Red (3X, 0.2%)
+        const BALL_TIERS = {
+            PINK: { name: 'Regular', mult: 1, color: '#ff007f', trailColor: 'rgba(255, 0, 127, 0.8)', weight: 98 },
+            YELLOW: { name: 'Rare', mult: 2, color: '#ffb703', trailColor: 'rgba(255, 183, 3, 0.85)', weight: 1.8 },
+            RED: { name: 'Legend', mult: 3, color: '#ff2244', trailColor: 'rgba(255, 34, 68, 0.95)', weight: 0.2 }
+        };
+
+        // State
+        const state = {
+            betAmount: 100,
+            dropCount: 1,
+            speedMode: 'normal', // 'normal' | 'turbo'
+            isAuto: false,
+            autoRoundsRemaining: 0,
+            activeBalls: [],
+            pegs: [],
+            sparkles: [],
+            recentHistory: [
+                { pocketMult: 2, ballMult: 1, totalMult: 2, ballType: 'PINK' },
+                { pocketMult: 0.4, ballMult: 1, totalMult: 0.4, ballType: 'PINK' },
+                { pocketMult: 4, ballMult: 5, totalMult: 20, ballType: 'YELLOW' },
+                { pocketMult: 1, ballMult: 1, totalMult: 1, ballType: 'PINK' },
+                { pocketMult: 10, ballMult: 1, totalMult: 10, ballType: 'PINK' },
+                { pocketMult: 0.2, ballMult: 1, totalMult: 0.2, ballType: 'PINK' }
+            ],
+            audioMuted: false,
+            nextBallType: 'PINK',
+            lastDropTime: 0
+        };
+
+        // Audio System (Howler + Web Audio Synthesizer Fallback)
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) audioCtx = new AudioCtx();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        /* --- Plinko X Sound Effects (Howler.js + Web Audio API) --- */
+        const audioSfx = {
+            clicks: [
+                new Howl({ src: ['../game_assets/audio_sounds/ball-click-1.mp3'], volume: 0.45 }),
+                new Howl({ src: ['../game_assets/audio_sounds/ball-click-2.mp3'], volume: 0.45 }),
+                new Howl({ src: ['../game_assets/audio_sounds/ball-click-3.mp3'], volume: 0.45 })
+            ],
+            bet: new Howl({ src: ['../game_assets/audio_sounds/bet.mp3'], volume: 0.55 }),
+            win: new Howl({ src: ['../game_assets/audio_sounds/win.mp3'], volume: 0.65 }),
+            victory: new Howl({ src: ['../assets/audio/victory_fanfare.wav'], volume: 0.75 })
+        };
+
+        /* --- Plinko X Cosmic Background Music Engine --- */
+        let plinkoBgmAudio = null;
+        let plinkoBgmMuted = false;
+
+        function initPlinkoBGM() {
+            try {
+                plinkoBgmMuted = localStorage.getItem('plinko_bgm_muted') === '1';
+                state.audioMuted = plinkoBgmMuted;
+
+                plinkoBgmAudio = new Howl({
+                    src: [
+                        '../assets/audio/slots_synth.wav',
+                        '../assets/audio/chill_groove.wav',
+                        '../game_assets/audio_sounds/bg_ambience.mp3'
+                    ],
+                    loop: true,
+                    volume: plinkoBgmMuted ? 0.0 : 0.38,
+                    autoplay: false,
+                    html5: true
+                });
+
+                // Auto-start on first user interaction anywhere (browser policy requirement)
+                const startOnFirstGesture = () => {
+                    if (plinkoBgmAudio && !plinkoBgmAudio.playing() && !plinkoBgmMuted) {
+                        plinkoBgmAudio.play();
+                    }
+                    window.removeEventListener('click', startOnFirstGesture);
+                    window.removeEventListener('touchstart', startOnFirstGesture);
+                    window.removeEventListener('keydown', startOnFirstGesture);
+                };
+                window.addEventListener('click', startOnFirstGesture);
+                window.addEventListener('touchstart', startOnFirstGesture);
+                window.addEventListener('keydown', startOnFirstGesture);
+
+                updateBGMButtonState();
+            } catch (e) {
+                console.warn('Plinko BGM init error', e);
+            }
+        }
+
+        function togglePlinkoBGM() {
+            plinkoBgmMuted = !plinkoBgmMuted;
+            state.audioMuted = plinkoBgmMuted;
+            try {
+                localStorage.setItem('plinko_bgm_muted', plinkoBgmMuted ? '1' : '0');
+            } catch (e) {}
+
+            if (plinkoBgmAudio) {
+                if (plinkoBgmMuted) {
+                    plinkoBgmAudio.fade(plinkoBgmAudio.volume(), 0.0, 300);
+                    setTimeout(() => plinkoBgmAudio.pause(), 350);
+                } else {
+                    plinkoBgmAudio.volume(0.38);
+                    plinkoBgmAudio.play();
+                }
+            }
+            updateBGMButtonState();
+        }
+
+        function updateBGMButtonState() {
+            const btn = document.getElementById('btnAudioToggle');
+            if (btn) {
+                btn.textContent = plinkoBgmMuted ? '🔇' : '🎵';
+                btn.style.opacity = plinkoBgmMuted ? '0.5' : '1.0';
+            }
+        }
+
+        const sounds = {
+            pegHit: (pitch = 1.0) => {
+                if (state.audioMuted) return;
+                try {
+                    const rndClick = audioSfx.clicks[Math.floor(Math.random() * audioSfx.clicks.length)];
+                    if (rndClick) {
+                        rndClick.rate(Math.max(0.7, Math.min(1.5, pitch)));
+                        rndClick.play();
+                    }
+                } catch (e) {}
+
+                try {
+                    const ctx = getAudioContext();
+                    if (!ctx) return;
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600 * pitch, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.06);
+                    gain.gain.setValueAtTime(0.18, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.07);
+                } catch (e) {}
+            },
+            dropWhoosh: () => {
+                if (state.audioMuted) return;
+                try {
+                    audioSfx.bet.play();
+                } catch (e) {}
+                try {
+                    const ctx = getAudioContext();
+                    if (!ctx) return;
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(350, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.15);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.16);
+                } catch (e) {}
+            },
+            pocketLand: (mult) => {
+                if (state.audioMuted) return;
+                try {
+                    audioSfx.win.play();
+                } catch (e) {}
+                try {
+                    const ctx = getAudioContext();
+                    if (!ctx) return;
+                    const now = ctx.currentTime;
+                    const notes = mult >= 10 ? [523.25, 659.25, 783.99, 1046.50] : [440, 554.37];
+                    notes.forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                        gain.gain.setValueAtTime(0.25, now + idx * 0.06);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.2);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.06);
+                        osc.stop(now + idx * 0.06 + 0.22);
+                    });
+                } catch (e) {}
+            },
+            bigWinFanfare: () => {
+                if (state.audioMuted) return;
+                try {
+                    audioSfx.victory.play();
+                } catch (e) {}
+                try {
+                    const ctx = getAudioContext();
+                    if (!ctx) return;
+                    const chord = [440, 554.37, 659.25, 880];
+                    chord.forEach((freq) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start();
+                        osc.stop(ctx.currentTime + 1.2);
+                    });
+                } catch (e) {}
+            }
+        };
+
+        // DOM Elements
+        const canvas = document.getElementById('plinkoCanvas');
+        const ctx = canvas.getContext('2d');
+        const spaceCanvas = document.getElementById('spaceCanvas');
+        const spaceCtx = spaceCanvas.getContext('2d');
+        const headerBalance = document.getElementById('headerBalance');
+        const walletPill = document.getElementById('walletPill');
+        const currentBalanceMini = document.getElementById('currentBalanceMini');
+        const betAmountInput = document.getElementById('betAmountInput');
+        const btnDropBall = document.getElementById('btnDropBall');
+        const btnDropText = document.getElementById('btnDropText');
+        const btnDropSub = document.getElementById('btnDropSub');
+        const nextBallDot = document.getElementById('nextBallDot');
+        const nextBallText = document.getElementById('nextBallText');
+        const historyList = document.getElementById('historyList');
+        const pocketsContainer = document.getElementById('pocketsContainer');
+        const winToast = document.getElementById('winToast');
+        const winMultBadge = document.getElementById('winMultBadge');
+        const winAmountBadge = document.getElementById('winAmountBadge');
+        const bigWinModal = document.getElementById('bigWinModal');
+        const bigWinTitle = document.getElementById('bigWinTitle');
+        const bigWinMult = document.getElementById('bigWinMult');
+        const bigWinPayout = document.getElementById('bigWinPayout');
+        const btnClaimWin = document.getElementById('btnClaimWin');
+        const rulesModal = document.getElementById('rulesModal');
+
+        /* ============================================================
+           HIGH-PRECISION 3D GLASS BOWL TUMBLER DISPENSER ENGINE
+           ============================================================ */
+        const bowlCanvas = document.getElementById('bowlCanvas');
+        const bowlCtx = bowlCanvas.getContext('2d');
+
+        const BOWL_CENTER_X = 190;
+        const BOWL_CENTER_Y = 100;
+        const BOWL_RADIUS = 72;
+
+        class GlassBowlSimulator {
+            constructor() {
+                this.balls = [];
+                this.rotation = 0;
+                this.angularVelocity = 0.02; // Idle swirl speed
+                this.targetVelocity = 0.02;
+                this.ejectionFlash = 0;
+                this.sparks = [];
+                this.initBowlBalls();
+            }
+
+            initBowlBalls() {
+                this.balls = [];
+                // 10 Pink (1X), 5 Yellow (5X), 3 Red (10X)
+                const config = [
+                    { type: 'PINK', color: '#ff007f', count: 10 },
+                    { type: 'YELLOW', color: '#ffb703', count: 5 },
+                    { type: 'RED', color: '#ff2244', count: 3 }
+                ];
+
+                config.forEach(group => {
+                    for (let i = 0; i < group.count; i++) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const dist = Math.random() * (BOWL_RADIUS - 22);
+                        this.balls.push({
+                            x: BOWL_CENTER_X + Math.cos(angle) * dist,
+                            y: BOWL_CENTER_Y + Math.sin(angle) * dist,
+                            vx: (Math.random() - 0.5) * 1.5,
+                            vy: (Math.random() - 0.5) * 1.5,
+                            radius: 7.2,
+                            type: group.type,
+                            color: group.color,
+                            angle: Math.random() * Math.PI * 2,
+                            rotSpeed: (Math.random() - 0.5) * 0.1
+                        });
+                    }
+                });
+            }
+
+            spinFast(ballType) {
+                this.targetVelocity = 0.38; // surge speed
+                this.ejectionFlash = 1.0;
+                // Emit nozzle sparks
+                for (let i = 0; i < 14; i++) {
+                    this.sparks.push({
+                        x: BOWL_CENTER_X + (Math.random() - 0.5) * 8,
+                        y: 195,
+                        vx: (Math.random() - 0.5) * 3.5,
+                        vy: Math.random() * 4.5 + 2,
+                        color: BALL_TIERS[ballType].color,
+                        life: 1.0,
+                        size: Math.random() * 2.5 + 1.2
+                    });
+                }
+            }
+
+            update(dt) {
+                const step = dt ? Math.min(dt * 60, 2.0) : 1.0;
+                // Smooth speed interpolation
+                this.angularVelocity += (this.targetVelocity - this.angularVelocity) * (0.06 * step);
+                if (this.targetVelocity > 0.02) {
+                    this.targetVelocity -= 0.008 * step;
+                    if (this.targetVelocity < 0.02) this.targetVelocity = 0.02;
+                }
+                this.rotation += this.angularVelocity * step;
+                if (this.ejectionFlash > 0) this.ejectionFlash = Math.max(0, this.ejectionFlash - 0.05 * step);
+
+                const gravity = 0.22 * step;
+                const maxDist = BOWL_RADIUS - 9.5;
+
+                // Update internal tumbling balls
+                for (let i = 0; i < this.balls.length; i++) {
+                    const b = this.balls[i];
+
+                    // Gravity pulls balls down
+                    b.vy += gravity;
+
+                    // Centrifugal and rotational drag from spinning glass
+                    const dx = b.x - BOWL_CENTER_X;
+                    const dy = b.y - BOWL_CENTER_Y;
+                    const distFromCenter = Math.hypot(dx, dy) || 1;
+
+                    // Swirl tangential force
+                    const tangentX = -dy / distFromCenter;
+                    const tangentY = dx / distFromCenter;
+                    b.vx += tangentX * (this.angularVelocity * 1.8) * step;
+                    b.vy += tangentY * (this.angularVelocity * 1.8) * step;
+
+                    // Air friction
+                    b.vx *= Math.pow(0.975, step);
+                    b.vy *= Math.pow(0.975, step);
+
+                    b.x += b.vx * step;
+                    b.y += b.vy * step;
+                    b.angle += (b.rotSpeed + this.angularVelocity * 0.5) * step;
+
+                    // Constrain inside curved glass sphere perimeter
+                    const newDx = b.x - BOWL_CENTER_X;
+                    const newDy = b.y - BOWL_CENTER_Y;
+                    const newDist = Math.hypot(newDx, newDy);
+
+                    if (newDist > maxDist) {
+                        const nx = newDx / newDist;
+                        const ny = newDy / newDist;
+                        b.x = BOWL_CENTER_X + nx * maxDist;
+                        b.y = BOWL_CENTER_Y + ny * maxDist;
+
+                        // Bounce reflection with friction
+                        const dot = b.vx * nx + b.vy * ny;
+                        if (dot > 0) {
+                            b.vx = (b.vx - 1.65 * dot * nx) * 0.72;
+                            b.vy = (b.vy - 1.65 * dot * ny) * 0.72;
+                        }
+                    }
+
+                    // Ball-to-ball repulsion
+                    for (let j = i + 1; j < this.balls.length; j++) {
+                        const b2 = this.balls[j];
+                        const bdx = b2.x - b.x;
+                        const bdy = b2.y - b.y;
+                        const bdist = Math.hypot(bdx, bdy);
+                        const minDist = b.radius + b2.radius;
+
+                        if (bdist < minDist && bdist > 0.001) {
+                            const bnx = bdx / bdist;
+                            const bny = bdy / bdist;
+                            const overlap = (minDist - bdist) * 0.5;
+                            b.x -= bnx * overlap;
+                            b.y -= bny * overlap;
+                            b2.x += bnx * overlap;
+                            b2.y += bny * overlap;
+
+                            const bdot = (b.vx - b2.vx) * bnx + (b.vy - b2.vy) * bny;
+                            if (bdot > 0) {
+                                b.vx -= bdot * bnx * 0.5;
+                                b.vy -= bdot * bny * 0.5;
+                                b2.vx += bdot * bnx * 0.5;
+                                b2.vy += bdot * bny * 0.5;
+                            }
+                        }
+                    }
+                }
+
+                // Update Ejection Sparks
+                for (let sIdx = this.sparks.length - 1; sIdx >= 0; sIdx--) {
+                    const sp = this.sparks[sIdx];
+                    sp.x += sp.vx * step;
+                    sp.y += sp.vy * step;
+                    sp.life -= 0.05 * step;
+                    if (sp.life <= 0) this.sparks.splice(sIdx, 1);
+                }
+            }
+
+            render() {
+                bowlCtx.clearRect(0, 0, 380, 220);
+
+                const cx = BOWL_CENTER_X;
+                const cy = BOWL_CENTER_Y;
+                const R = BOWL_RADIUS;
+
+                // 1. Draw Mechanical Titanium Chassis Mounts & Rotating Brass Gears
+                this.renderMountChassis(cx, cy, R);
+
+                // 2. Draw Back Glass Sphere (Concave Depth & Interior Absorption)
+                bowlCtx.save();
+                bowlCtx.beginPath();
+                bowlCtx.arc(cx, cy, R, 0, Math.PI * 2);
+                const bgGrad = bowlCtx.createRadialGradient(cx, cy - 10, 5, cx, cy, R);
+                bgGrad.addColorStop(0, 'rgba(15, 30, 60, 0.92)');
+                bgGrad.addColorStop(0.7, 'rgba(7, 14, 30, 0.96)');
+                bgGrad.addColorStop(1, 'rgba(3, 7, 18, 0.98)');
+                bowlCtx.fillStyle = bgGrad;
+                bowlCtx.fill();
+
+                // Inner soft cyan energy vortex
+                const vortexGrad = bowlCtx.createRadialGradient(cx, cy, 0, cx, cy, R);
+                vortexGrad.addColorStop(0, 'rgba(0, 229, 255, 0.15)');
+                vortexGrad.addColorStop(0.8, 'rgba(0, 229, 255, 0.02)');
+                vortexGrad.addColorStop(1, 'transparent');
+                bowlCtx.fillStyle = vortexGrad;
+                bowlCtx.fill();
+                bowlCtx.restore();
+
+                // 3. Draw Internal Rotating Tumbler Cage Ribs
+                bowlCtx.save();
+                bowlCtx.translate(cx, cy);
+                bowlCtx.rotate(this.rotation);
+                bowlCtx.strokeStyle = 'rgba(0, 229, 255, 0.25)';
+                bowlCtx.lineWidth = 1.8;
+                for (let a = 0; a < 6; a++) {
+                    const ang = (a * Math.PI) / 3;
+                    bowlCtx.beginPath();
+                    bowlCtx.moveTo(Math.cos(ang) * (R - 22), Math.sin(ang) * (R - 22));
+                    bowlCtx.lineTo(Math.cos(ang) * (R - 2), Math.sin(ang) * (R - 2));
+                    bowlCtx.stroke();
+                }
+                bowlCtx.restore();
+
+                // 4. Render 3D High-Gloss Tumbling Balls
+                this.balls.forEach(b => {
+                    bowlCtx.save();
+
+                    // Ambient Shadow under ball
+                    bowlCtx.beginPath();
+                    bowlCtx.ellipse(b.x, b.y + b.radius * 0.7, b.radius * 0.9, b.radius * 0.35, 0, 0, Math.PI * 2);
+                    bowlCtx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+                    bowlCtx.fill();
+
+                    // Outer Ball Glow Halo
+                    bowlCtx.shadowColor = b.color;
+                    bowlCtx.shadowBlur = 10;
+
+                    // 3D Spherical Radial Gradient
+                    const bGrad = bowlCtx.createRadialGradient(
+                        b.x - b.radius * 0.38,
+                        b.y - b.radius * 0.38,
+                        b.radius * 0.08,
+                        b.x,
+                        b.y,
+                        b.radius
+                    );
+                    bGrad.addColorStop(0, '#ffffff');
+                    bGrad.addColorStop(0.35, b.color);
+                    bGrad.addColorStop(0.85, '#050a18');
+                    bGrad.addColorStop(1, '#020408');
+
+                    bowlCtx.beginPath();
+                    bowlCtx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+                    bowlCtx.fillStyle = bGrad;
+                    bowlCtx.fill();
+
+                    // Crisp Specular Shiny Highlight Point
+                    bowlCtx.shadowBlur = 0;
+                    bowlCtx.beginPath();
+                    bowlCtx.ellipse(
+                        b.x - b.radius * 0.32,
+                        b.y - b.radius * 0.35,
+                        b.radius * 0.32,
+                        b.radius * 0.18,
+                        -Math.PI / 4,
+                        0,
+                        Math.PI * 2
+                    );
+                    bowlCtx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    bowlCtx.fill();
+
+                    // Secondary bottom caustic reflection
+                    bowlCtx.beginPath();
+                    bowlCtx.ellipse(
+                        b.x + b.radius * 0.25,
+                        b.y + b.radius * 0.35,
+                        b.radius * 0.28,
+                        b.radius * 0.12,
+                        Math.PI / 4,
+                        0,
+                        Math.PI * 2
+                    );
+                    bowlCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    bowlCtx.fill();
+
+                    bowlCtx.restore();
+                });
+
+                // 5. Draw FRONT Glass Layer: 3D Refraction, Curved Specular Glare & Caustics (Rendered OVER the balls)
+                this.renderGlassDomeShaders(cx, cy, R);
+
+                // 6. Draw Bottom Crystal Funnel & Ejection Nozzle
+                this.renderEjectionFunnel(cx, cy, R);
+
+                // 7. Render Ejection Sparks
+                this.sparks.forEach(sp => {
+                    bowlCtx.save();
+                    bowlCtx.beginPath();
+                    bowlCtx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+                    bowlCtx.fillStyle = sp.color;
+                    bowlCtx.globalAlpha = sp.life;
+                    bowlCtx.shadowColor = sp.color;
+                    bowlCtx.shadowBlur = 10;
+                    bowlCtx.fill();
+                    bowlCtx.restore();
+                });
+            }
+
+            renderMountChassis(cx, cy, R) {
+                // Left & Right Titanium Pivot Arms
+                [-1, 1].forEach(side => {
+                    const armX = cx + side * (R + 14);
+
+                    // Rotating Brass Cog Gear
+                    bowlCtx.save();
+                    bowlCtx.translate(armX, cy);
+                    bowlCtx.rotate(side * this.rotation * 1.5);
+                    bowlCtx.fillStyle = '#b8860b';
+                    bowlCtx.strokeStyle = '#ffd700';
+                    bowlCtx.lineWidth = 1;
+                    bowlCtx.shadowColor = 'rgba(255, 215, 0, 0.4)';
+                    bowlCtx.shadowBlur = 6;
+
+                    const teeth = 8;
+                    for (let t = 0; t < teeth; t++) {
+                        const ang = (t * Math.PI * 2) / teeth;
+                        bowlCtx.fillRect(Math.cos(ang) * 12 - 2, Math.sin(ang) * 12 - 2, 4, 4);
+                    }
+                    bowlCtx.beginPath();
+                    bowlCtx.arc(0, 0, 11, 0, Math.PI * 2);
+                    bowlCtx.fill();
+                    bowlCtx.stroke();
+                    bowlCtx.restore();
+
+                    // Metallic Mounting Bracket
+                    const mGrad = bowlCtx.createLinearGradient(armX - 10, cy - 25, armX + 10, cy + 25);
+                    mGrad.addColorStop(0, '#334155');
+                    mGrad.addColorStop(0.5, '#1e293b');
+                    mGrad.addColorStop(1, '#0f172a');
+
+                    bowlCtx.fillStyle = mGrad;
+                    bowlCtx.strokeStyle = 'rgba(0, 229, 255, 0.4)';
+                    bowlCtx.lineWidth = 1.5;
+                    bowlCtx.beginPath();
+                    bowlCtx.roundRect(armX - 8, cy - 24, 16, 48, 6);
+                    bowlCtx.fill();
+                    bowlCtx.stroke();
+
+                    // Bolt Head
+                    bowlCtx.beginPath();
+                    bowlCtx.arc(armX, cy, 4, 0, Math.PI * 2);
+                    bowlCtx.fillStyle = '#00e5ff';
+                    bowlCtx.shadowColor = '#00e5ff';
+                    bowlCtx.shadowBlur = 8;
+                    bowlCtx.fill();
+                    bowlCtx.shadowBlur = 0;
+                });
+            }
+
+            renderGlassDomeShaders(cx, cy, R) {
+                bowlCtx.save();
+
+                // Outer Illuminated Neon Cyan Ring
+                bowlCtx.beginPath();
+                bowlCtx.arc(cx, cy, R, 0, Math.PI * 2);
+                bowlCtx.strokeStyle = 'rgba(0, 229, 255, 0.75)';
+                bowlCtx.lineWidth = 3.5;
+                bowlCtx.shadowColor = '#00e5ff';
+                bowlCtx.shadowBlur = 18;
+                bowlCtx.stroke();
+                bowlCtx.shadowBlur = 0;
+
+                // Secondary Chromatic Magenta Rim
+                bowlCtx.beginPath();
+                bowlCtx.arc(cx, cy, R - 2, 0, Math.PI * 2);
+                bowlCtx.strokeStyle = 'rgba(255, 0, 127, 0.35)';
+                bowlCtx.lineWidth = 1.5;
+                bowlCtx.stroke();
+
+                // Curved Specular Glossy Reflection Arc (Top-Left Physical Glass Sheen)
+                bowlCtx.beginPath();
+                bowlCtx.arc(cx, cy, R - 6, -Math.PI * 0.88, -Math.PI * 0.15);
+                const glossGrad = bowlCtx.createLinearGradient(cx - R, cy - R, cx, cy);
+                glossGrad.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
+                glossGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.45)');
+                glossGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+                bowlCtx.strokeStyle = glossGrad;
+                bowlCtx.lineWidth = 5;
+                bowlCtx.lineCap = 'round';
+                bowlCtx.stroke();
+
+                // Diagonal Glass Sheen Flare (Front Glass Facet)
+                bowlCtx.beginPath();
+                bowlCtx.ellipse(cx - 18, cy - 25, 42, 14, -Math.PI / 4, 0, Math.PI * 2);
+                const sheenGrad = bowlCtx.createLinearGradient(cx - 40, cy - 40, cx, cy);
+                sheenGrad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+                sheenGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+                bowlCtx.fillStyle = sheenGrad;
+                bowlCtx.fill();
+
+                // Bottom Caustic Reflection Arc
+                bowlCtx.beginPath();
+                bowlCtx.arc(cx, cy, R - 5, Math.PI * 0.25, Math.PI * 0.75);
+                bowlCtx.strokeStyle = 'rgba(0, 229, 255, 0.4)';
+                bowlCtx.lineWidth = 2.5;
+                bowlCtx.stroke();
+
+                bowlCtx.restore();
+            }
+
+            renderEjectionFunnel(cx, cy, R) {
+                const funnelTopY = cy + R - 6;
+                const funnelBotY = 192;
+
+                bowlCtx.save();
+
+                // Crystal Glass Funnel Cone
+                bowlCtx.beginPath();
+                bowlCtx.moveTo(cx - 24, funnelTopY);
+                bowlCtx.lineTo(cx + 24, funnelTopY);
+                bowlCtx.lineTo(cx + 10, funnelBotY);
+                bowlCtx.lineTo(cx - 10, funnelBotY);
+                bowlCtx.closePath();
+
+                const fGrad = bowlCtx.createLinearGradient(cx - 20, funnelTopY, cx + 20, funnelBotY);
+                fGrad.addColorStop(0, 'rgba(0, 229, 255, 0.35)');
+                fGrad.addColorStop(0.5, 'rgba(10, 25, 55, 0.85)');
+                fGrad.addColorStop(1, 'rgba(0, 229, 255, 0.5)');
+                bowlCtx.fillStyle = fGrad;
+                bowlCtx.fill();
+
+                bowlCtx.strokeStyle = 'rgba(0, 229, 255, 0.8)';
+                bowlCtx.lineWidth = 2;
+                bowlCtx.stroke();
+
+                // Metallic Funnel Nozzle Collar
+                bowlCtx.fillStyle = '#0f1d36';
+                bowlCtx.strokeStyle = '#00e5ff';
+                bowlCtx.lineWidth = 1.5;
+                bowlCtx.fillRect(cx - 14, funnelBotY - 3, 28, 8);
+                bowlCtx.strokeRect(cx - 14, funnelBotY - 3, 28, 8);
+
+                // Laser Alignment Guide Beam & Ejection Flash
+                if (this.ejectionFlash > 0.05) {
+                    bowlCtx.beginPath();
+                    bowlCtx.arc(cx, funnelBotY + 2, 12 * this.ejectionFlash, 0, Math.PI * 2);
+                    bowlCtx.fillStyle = `rgba(0, 229, 255, ${this.ejectionFlash * 0.9})`;
+                    bowlCtx.shadowColor = '#00e5ff';
+                    bowlCtx.shadowBlur = 25;
+                    bowlCtx.fill();
+
+                    // Laser beam straight down towards apex peg
+                    bowlCtx.beginPath();
+                    bowlCtx.moveTo(cx, funnelBotY);
+                    bowlCtx.lineTo(cx, funnelBotY + 35);
+                    bowlCtx.strokeStyle = `rgba(0, 229, 255, ${this.ejectionFlash})`;
+                    bowlCtx.lineWidth = 3 * this.ejectionFlash;
+                    bowlCtx.stroke();
+                }
+
+                bowlCtx.restore();
+            }
+        }
+
+        const bowlDispenser = new GlassBowlSimulator();
+
+        let lastBowlTimestamp = performance.now();
+        function animateGlassBowl(timestamp) {
+            if (!timestamp) timestamp = performance.now();
+            const dt = Math.min((timestamp - lastBowlTimestamp) / 1000, 0.05);
+            lastBowlTimestamp = timestamp;
+            bowlDispenser.update(dt);
+            bowlDispenser.render();
+            requestAnimationFrame(animateGlassBowl);
+        }
+
+        /* --- Canvas & Pegboard Geometry Layout --- */
+        let canvasW = 680;
+        let canvasH = 480;
+        let pegRadius = 3.8;
+        let ballRadius = 6.5;
+        let startY = 40;
+        let endY = 460;
+        let rowSpacing = (endY - startY) / ROWS_COUNT;
+
+        function resizeCanvases() {
+            const wrap = canvas.parentElement;
+            const w = wrap.clientWidth;
+            const h = wrap.clientHeight;
+            // Full HD High-DPI Supersampling (min 2x DPR for crystal crisp visuals on all screens)
+            const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 2), 3);
+
+            canvasW = w;
+            canvasH = h;
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            ctx.resetTransform();
+            ctx.scale(dpr, dpr);
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+
+            const sw = window.innerWidth;
+            const sh = window.innerHeight;
+            spaceCanvas.width = Math.round(sw * dpr);
+            spaceCanvas.height = Math.round(sh * dpr);
+            spaceCtx.resetTransform();
+            spaceCtx.scale(dpr, dpr);
+            spaceCtx.imageSmoothingEnabled = true;
+            spaceCtx.imageSmoothingQuality = 'high';
+
+            // Scale Bowl Canvas
+            const bowlWrap = bowlCanvas.parentElement;
+            const bWidth = bowlWrap.clientWidth || 380;
+            const bHeight = bowlWrap.clientHeight || 220;
+            bowlCanvas.width = Math.round(bWidth * dpr);
+            bowlCanvas.height = Math.round(bHeight * dpr);
+            bowlCtx.resetTransform();
+            bowlCtx.scale(dpr * (bWidth / 380), dpr * (bHeight / 220));
+            bowlCtx.imageSmoothingEnabled = true;
+            bowlCtx.imageSmoothingQuality = 'high';
+
+            pegRadius = Math.max(1.9, Math.min(3.8, w / 160));
+            ballRadius = pegRadius * 1.5;
+            startY = Math.max(10, Math.min(22, h * 0.06));
+            endY = h - Math.max(6, Math.min(10, h * 0.03));
+            rowSpacing = (endY - startY) / (ROWS_COUNT + 1);
+
+            buildPegs();
+            if (typeof initPlinkoBubbles === 'function' && plinkoBubbles.length === 0) initPlinkoBubbles();
+        }
+
+        // Build Triangular Peg Pyramid (Rows 0 to 15)
+        function buildPegs() {
+            state.pegs = [];
+            const centerX = canvasW / 2;
+            const totalWidthAtBottom = canvasW * 0.94;
+            const colSpacingBottom = totalWidthAtBottom / (ROWS_COUNT + 1);
+
+            for (let row = 0; row < ROWS_COUNT; row++) {
+                const pegsInRow = row + 3; // Row 0 has 3 pegs, Row 1 has 4... Row 15 has 18 pegs
+                const y = startY + (row + 1) * rowSpacing;
+                const rowWidth = colSpacingBottom * (pegsInRow - 1);
+                const startX = centerX - rowWidth / 2;
+
+                for (let col = 0; col < pegsInRow; col++) {
+                    const x = startX + col * colSpacingBottom;
+                    state.pegs.push({
+                        x: x,
+                        y: y,
+                        row: row,
+                        col: col,
+                        pulse: 0,
+                        flashColor: '#ffffff'
+                    });
+                }
+            }
+        }
+
+        /* --- Background Cosmic Plinko X Galaxy & Cyber Portal Engine --- */
+        const stars = [];
+        const cosmicEmbers = [];
+        const plinkoBubbles = [];
+        const BUBBLE_COUNT = 45;
+        const BUBBLE_COLORS = [
+            { rim: 'rgba(0, 229, 255, 0.9)', inner: 'rgba(0, 229, 255, 0.12)', glow: 'rgba(0, 229, 255, 0.45)' }, // Cyber Cyan
+            { rim: 'rgba(255, 0, 127, 0.9)', inner: 'rgba(255, 0, 127, 0.12)', glow: 'rgba(255, 0, 127, 0.45)' }, // Neon Pink
+            { rim: 'rgba(168, 85, 247, 0.9)', inner: 'rgba(168, 85, 247, 0.12)', glow: 'rgba(168, 85, 247, 0.45)' }, // Purple
+            { rim: 'rgba(255, 183, 3, 0.9)', inner: 'rgba(255, 183, 3, 0.12)', glow: 'rgba(255, 183, 3, 0.45)' }, // Electric Gold
+            { rim: 'rgba(0, 230, 118, 0.9)', inner: 'rgba(0, 230, 118, 0.12)', glow: 'rgba(0, 230, 118, 0.45)' }  // Lime Green
+        ];
+
+        function initPlinkoBubbles() {
+            plinkoBubbles.length = 0;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            for (let i = 0; i < BUBBLE_COUNT; i++) {
+                const radius = Math.random() < 0.28 ? (Math.random() * 24 + 24) : (Math.random() * 16 + 9);
+                const colorScheme = BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)];
+                plinkoBubbles.push({
+                    baseX: Math.random() * w,
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    radius: radius,
+                    vy: -(Math.random() * 0.75 + 0.35),
+                    swayAmp: Math.random() * 32 + 14,
+                    swaySpeed: Math.random() * 0.02 + 0.008,
+                    swayPhase: Math.random() * Math.PI * 2,
+                    alpha: Math.random() * 0.5 + 0.35,
+                    colorScheme: colorScheme
+                });
+            }
+        }
+        initPlinkoBubbles();
+
+        for (let i = 0; i < 120; i++) {
+            stars.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: Math.random() * 2.2 + 0.6,
+                alpha: Math.random() * 0.85 + 0.15,
+                twinkleSpeed: Math.random() * 0.03 + 0.01,
+                phase: Math.random() * Math.PI * 2,
+                hasSpike: i < 18
+            });
+        }
+        for (let i = 0; i < 28; i++) {
+            cosmicEmbers.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: -(Math.random() * 0.5 + 0.2),
+                size: Math.random() * 3 + 1,
+                color: Math.random() > 0.5 ? '#00e5ff' : '#ff007f',
+                alpha: Math.random() * 0.6 + 0.2
+            });
+        }
+
+        let bgTime = 0;
+        let lastBgTimestamp = performance.now();
+        function renderCosmicPlinkoXBackground(timestamp) {
+            if (!timestamp) timestamp = performance.now();
+            const dt = Math.min((timestamp - lastBgTimestamp) / 1000, 0.05);
+            lastBgTimestamp = timestamp;
+            bgTime += dt * 0.9;
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            spaceCtx.clearRect(0, 0, w, h);
+
+            // 1. Deep Space Cosmic Nebulae Clouds (Pulsing Cyan, Magenta, Purple)
+            spaceCtx.save();
+            // Cyan Nebula
+            const cyanX = w * 0.28 + Math.sin(bgTime * 0.4) * 50;
+            const cyanY = h * 0.35 + Math.cos(bgTime * 0.3) * 40;
+            const gCyan = spaceCtx.createRadialGradient(cyanX, cyanY, 20, cyanX, cyanY, w * 0.38);
+            gCyan.addColorStop(0, 'rgba(0, 229, 255, 0.09)');
+            gCyan.addColorStop(0.6, 'rgba(0, 180, 216, 0.03)');
+            gCyan.addColorStop(1, 'transparent');
+            spaceCtx.fillStyle = gCyan;
+            spaceCtx.fillRect(0, 0, w, h);
+
+            // Magenta Nebula
+            const magX = w * 0.72 + Math.cos(bgTime * 0.35) * 60;
+            const magY = h * 0.48 + Math.sin(bgTime * 0.45) * 50;
+            const gMag = spaceCtx.createRadialGradient(magX, magY, 20, magX, magY, w * 0.42);
+            gMag.addColorStop(0, 'rgba(255, 0, 127, 0.08)');
+            gMag.addColorStop(0.6, 'rgba(123, 31, 162, 0.03)');
+            gMag.addColorStop(1, 'transparent');
+            spaceCtx.fillStyle = gMag;
+            spaceCtx.fillRect(0, 0, w, h);
+            spaceCtx.restore();
+
+            // 2. Rotating Cyber Tech Portal Behind Pegboard
+            spaceCtx.save();
+            const portalX = w / 2;
+            const portalY = h * 0.42;
+            const portalR = Math.min(w * 0.35, 340);
+
+            spaceCtx.translate(portalX, portalY);
+
+            // Outer Orbit Ring with Degree Ticks
+            spaceCtx.rotate(bgTime * 0.12);
+            spaceCtx.strokeStyle = 'rgba(0, 229, 255, 0.14)';
+            spaceCtx.lineWidth = 1.5;
+            spaceCtx.beginPath();
+            spaceCtx.arc(0, 0, portalR, 0, Math.PI * 2);
+            spaceCtx.stroke();
+
+            // Ticks
+            for (let t = 0; t < 48; t++) {
+                const ang = (t * Math.PI * 2) / 48;
+                const isMajor = t % 12 === 0;
+                const len = isMajor ? 12 : 5;
+                spaceCtx.strokeStyle = isMajor ? 'rgba(0, 229, 255, 0.4)' : 'rgba(0, 229, 255, 0.15)';
+                spaceCtx.lineWidth = isMajor ? 2 : 1;
+                spaceCtx.beginPath();
+                spaceCtx.moveTo(Math.cos(ang) * (portalR - len), Math.sin(ang) * (portalR - len));
+                spaceCtx.lineTo(Math.cos(ang) * portalR, Math.sin(ang) * portalR);
+                spaceCtx.stroke();
+            }
+
+            // Inner Counter-Rotating Segmented Energy Band
+            spaceCtx.rotate(-bgTime * 0.24);
+            spaceCtx.strokeStyle = 'rgba(255, 0, 127, 0.16)';
+            spaceCtx.lineWidth = 2.5;
+            for (let s = 0; s < 4; s++) {
+                const startA = (s * Math.PI) / 2 + 0.2;
+                const endA = startA + Math.PI / 4;
+                spaceCtx.beginPath();
+                spaceCtx.arc(0, 0, portalR * 0.75, startA, endA);
+                spaceCtx.stroke();
+            }
+            spaceCtx.restore();
+
+            // 3. Perspective 3D Cyber Floor Grid
+            spaceCtx.save();
+            const horizonY = h * 0.68;
+            const gridW = w * 1.4;
+            const vpX = w / 2;
+
+            spaceCtx.strokeStyle = 'rgba(0, 229, 255, 0.1)';
+            spaceCtx.lineWidth = 1;
+
+            // Perspective diagonal rays
+            for (let x = -gridW / 2; x <= gridW / 2; x += 90) {
+                spaceCtx.beginPath();
+                spaceCtx.moveTo(vpX, horizonY);
+                spaceCtx.lineTo(vpX + x * 2.2, h);
+                spaceCtx.stroke();
+            }
+
+            // Moving horizontal grid lines
+            const gridSpeed = (bgTime * 35) % 30;
+            for (let i = 0; i < 9; i++) {
+                const frac = ((i * 30 + gridSpeed) % 270) / 270;
+                const lineY = horizonY + Math.pow(frac, 2.2) * (h - horizonY);
+                spaceCtx.globalAlpha = frac * 0.65;
+                spaceCtx.beginPath();
+                spaceCtx.moveTo(0, lineY);
+                spaceCtx.lineTo(w, lineY);
+                spaceCtx.stroke();
+            }
+            spaceCtx.restore();
+
+            // 4. Multi-Tier Twinkling Stars & Cross Flares
+            stars.forEach(s => {
+                s.phase += s.twinkleSpeed;
+                const twinkleAlpha = s.alpha * (0.5 + 0.5 * Math.sin(s.phase));
+                spaceCtx.globalAlpha = twinkleAlpha;
+                spaceCtx.fillStyle = '#ffffff';
+
+                spaceCtx.beginPath();
+                spaceCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                spaceCtx.fill();
+
+                // 4-Point Optical Diffraction Cross Flare on Bright Stars
+                if (s.hasSpike && twinkleAlpha > 0.4) {
+                    spaceCtx.strokeStyle = 'rgba(0, 229, 255, 0.6)';
+                    spaceCtx.lineWidth = 0.8;
+                    const spikeLen = s.size * 4;
+                    spaceCtx.beginPath();
+                    spaceCtx.moveTo(s.x - spikeLen, s.y);
+                    spaceCtx.lineTo(s.x + spikeLen, s.y);
+                    spaceCtx.moveTo(s.x, s.y - spikeLen);
+                    spaceCtx.lineTo(s.x, s.y + spikeLen);
+                    spaceCtx.stroke();
+                }
+            });
+
+            // 5. Rising Cosmic Energy Embers
+            cosmicEmbers.forEach(em => {
+                em.x += em.vx;
+                em.y += em.vy;
+                if (em.y < 0) { em.y = h; em.x = Math.random() * w; }
+                spaceCtx.globalAlpha = em.alpha * (0.7 + 0.3 * Math.sin(bgTime * 2 + em.x));
+                spaceCtx.fillStyle = em.color;
+                spaceCtx.beginPath();
+                spaceCtx.arc(em.x, em.y, em.size, 0, Math.PI * 2);
+                spaceCtx.fill();
+            });
+
+            // 6. Plinko X Signature Floating Glowing Glass/Soap Bubbles
+            plinkoBubbles.forEach(b => {
+                b.y += b.vy;
+                b.swayPhase += b.swaySpeed;
+                b.x = b.baseX + Math.sin(b.swayPhase) * b.swayAmp;
+
+                // Reset bubble when rising off the top of the screen
+                if (b.y < -b.radius * 2) {
+                    b.y = h + b.radius * 2;
+                    b.baseX = Math.random() * w;
+                    b.x = b.baseX;
+                    b.swayPhase = Math.random() * Math.PI * 2;
+                }
+
+                // Smooth wobble breathing
+                const wobble = Math.sin(bgTime * 2.5 + b.swayPhase) * 0.05;
+                const r = b.radius * (1 + wobble);
+
+                spaceCtx.save();
+
+                // Outer Soft Atmosphere Glow Halo (Instant Hardware Accelerated)
+                spaceCtx.beginPath();
+                spaceCtx.arc(b.x, b.y, r * 1.15, 0, Math.PI * 2);
+                spaceCtx.fillStyle = b.colorScheme.inner;
+                spaceCtx.globalAlpha = b.alpha * 0.35;
+                spaceCtx.fill();
+
+                spaceCtx.globalAlpha = b.alpha;
+
+                // Translucent Glass/Soap Body Gradient
+                const innerGrad = spaceCtx.createRadialGradient(
+                    b.x - r * 0.35,
+                    b.y - r * 0.35,
+                    r * 0.1,
+                    b.x,
+                    b.y,
+                    r
+                );
+                innerGrad.addColorStop(0, 'rgba(255, 255, 255, 0.22)');
+                innerGrad.addColorStop(0.45, b.colorScheme.inner);
+                innerGrad.addColorStop(0.85, 'rgba(7, 14, 30, 0.05)');
+                innerGrad.addColorStop(1, b.colorScheme.inner);
+                spaceCtx.fillStyle = innerGrad;
+
+                spaceCtx.beginPath();
+                spaceCtx.arc(b.x, b.y, r, 0, Math.PI * 2);
+                spaceCtx.fill();
+
+                // Glowing Iridescent Glass Rim
+                spaceCtx.strokeStyle = b.colorScheme.rim;
+                spaceCtx.lineWidth = Math.max(1.4, r * 0.08);
+                spaceCtx.stroke();
+
+                // Curved Specular Gloss Highlight Crescent (Top-Left Physical Glass Sheen)
+                spaceCtx.beginPath();
+                spaceCtx.arc(b.x, b.y, r * 0.8, -Math.PI * 0.85, -Math.PI * 0.18);
+                const glossGrad = spaceCtx.createLinearGradient(b.x - r, b.y - r, b.x, b.y);
+                glossGrad.addColorStop(0, 'rgba(255, 255, 255, 0.92)');
+                glossGrad.addColorStop(0.45, 'rgba(255, 255, 255, 0.45)');
+                glossGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+                spaceCtx.strokeStyle = glossGrad;
+                spaceCtx.lineWidth = Math.max(1.8, r * 0.14);
+                spaceCtx.lineCap = 'round';
+                spaceCtx.stroke();
+
+                // Secondary Small Specular Highlight Point (Bottom-Right Reflection)
+                spaceCtx.beginPath();
+                spaceCtx.arc(b.x + r * 0.48, b.y + r * 0.48, Math.max(1.2, r * 0.12), 0, Math.PI * 2);
+                spaceCtx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                spaceCtx.fill();
+
+                spaceCtx.restore();
+            });
+
+            spaceCtx.globalAlpha = 1.0;
+            requestAnimationFrame(renderCosmicPlinkoXBackground);
+        }
+
+        /* ============================================================
+           BET WITH NET - OFFICIAL REAL-TIME WALLET & DATABASE INTEGRATION
+           ============================================================ */
+        let activeUserSession = null;
+
+        function getActiveCurrency() {
+            if (window.wallet && typeof window.wallet.getCurrency === 'function') {
+                return window.wallet.getCurrency();
+            }
+            try {
+                const sess = JSON.parse(localStorage.getItem('bwn_session_user') || '{}');
+                if (sess && sess.currency) return sess.currency;
+            } catch(e) {}
+            return 'PKR';
+        }
+
+        function getActiveCurrencySymbol() {
+            if (window.wallet && typeof window.wallet.getCurrencySymbol === 'function') {
+                return window.wallet.getCurrencySymbol();
+            }
+            return getActiveCurrency() === 'USD' ? '$ ' : '₨ ';
+        }
+
+        function getWalletBalance() {
+            // 1. Authoritative window.wallet engine
+            if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                return window.wallet.getBalance();
+            }
+            // 2. Check active user session in localStorage
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    const curr = getActiveCurrency();
+                    if (curr === 'USD') {
+                        return parseFloat(u.balance_usd !== undefined ? u.balance_usd : (u.balanceUSD || 0));
+                    }
+                    return parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : (u.balancePKR || 0));
+                }
+            } catch (e) {}
+            // 3. Fallback to wallet state storage
+            try {
+                const st = JSON.parse(localStorage.getItem('bwn_wallet_state_v1') || '{}');
+                if (st.balancePKR !== undefined) {
+                    return getActiveCurrency() === 'USD' ? (st.balanceUSD || 0) : st.balancePKR;
+                }
+            } catch (e) {}
+            return 0;
+        }
+
+        function updateBalanceUI(pulse = false) {
+            const bal = getWalletBalance();
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+            const formatted = bal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            const btnCurr = document.getElementById('btnCurrencyToggle');
+            if (btnCurr) {
+                btnCurr.textContent = `${curr} ⇄`;
+            }
+
+            const betLbl = document.getElementById('betCurrencyLabel');
+            if (betLbl) {
+                betLbl.textContent = `Bet Amount (${curr})`;
+            }
+
+            headerBalance.innerHTML = `<span>${currSym.trim()}</span> ${formatted}`;
+            currentBalanceMini.textContent = `Bal: ${currSym}${formatted}`;
+
+            if (pulse && walletPill) {
+                walletPill.classList.remove('pulse-gain');
+                void walletPill.offsetWidth;
+                walletPill.classList.add('pulse-gain');
+            }
+
+            const totalStake = state.betAmount * state.dropCount;
+            const stakeFormatted = curr === 'USD' ? totalStake.toFixed(2) : Math.round(totalStake).toLocaleString();
+            if (bal < totalStake) {
+                btnDropBall.disabled = false;
+                btnDropSub.textContent = `STAKE: ${currSym}${stakeFormatted}`;
+            } else {
+                btnDropBall.disabled = false;
+                btnDropText.textContent = state.dropCount > 1 ? `DROP ${state.dropCount} BALLS` : 'DROP BALL';
+                btnDropSub.textContent = `TOTAL: ${currSym}${stakeFormatted}`;
+            }
+        }
+
+        async function syncWithServerWallet() {
+            try {
+                // 1. Check if authenticated on backend via active session cookie
+                const meRes = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (meRes.ok) {
+                    const meJson = await meRes.json();
+                    if (meJson && meJson.success && meJson.data && meJson.data.id) {
+                        activeUserSession = meJson.data;
+                        try {
+                            localStorage.setItem('bwn_session_user', JSON.stringify(activeUserSession));
+                        } catch(e) {}
+                        if (window.wallet && typeof window.wallet.syncWithUser === 'function') {
+                            window.wallet.syncWithUser(activeUserSession);
+                        }
+                    }
+                }
+
+                // 2. Fetch authoritative live balance from MySQL database
+                const userId = (activeUserSession && activeUserSession.id) ? activeUserSession.id : (function() {
+                    try {
+                        const s = JSON.parse(localStorage.getItem('bwn_session_user') || '{}');
+                        return s.id || null;
+                    } catch(e) { return null; }
+                })();
+
+                if (userId) {
+                    const balRes = await fetch(`/api/wallet.php?action=balance&user_id=${encodeURIComponent(userId)}`, {
+                        credentials: 'include',
+                        cache: 'no-store'
+                    });
+                    if (balRes.ok) {
+                        const balJson = await balRes.json();
+                        if (balJson && balJson.success && balJson.data) {
+                            const balPkr = parseFloat(balJson.data.balance_pkr || 0);
+                            const balUsd = parseFloat(balJson.data.balance_usd || (balPkr / 280));
+                            if (window.wallet) {
+                                window.wallet.state.balancePKR = balPkr;
+                                window.wallet.state.balanceUSD = balUsd;
+                                window.wallet.saveState();
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('[Wallet Bridge] Server sync non-fatal:', err);
+            }
+            updateBalanceUI(false);
+        }
+
+        function toggleCurrency() {
+            if (!window.wallet) return;
+            const current = getActiveCurrency();
+            const next = (current === 'PKR') ? 'USD' : 'PKR';
+            window.wallet.setCurrency(next);
+
+            const rate = window.wallet.exchangeRate || 280;
+            if (next === 'USD') {
+                state.betAmount = Math.max(0.5, parseFloat((state.betAmount / rate).toFixed(2)));
+                betAmountInput.value = state.betAmount;
+                betAmountInput.step = '0.5';
+                betAmountInput.min = '0.1';
+            } else {
+                state.betAmount = Math.max(10, Math.round(state.betAmount * rate));
+                betAmountInput.value = state.betAmount;
+                betAmountInput.step = '10';
+                betAmountInput.min = '10';
+            }
+
+            updateBalanceUI(false);
+            updateDropButtonSub();
+        }
+
+        function deductStake(amount) {
+            const curr = getActiveCurrency();
+            const currSym = getActiveCurrencySymbol();
+            const bal = getWalletBalance();
+
+            if (bal < amount) {
+                const msg = `Insufficient balance! Current balance: ${currSym}${bal.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                if (window.core && window.core.showToast) {
+                    window.core.showToast(msg, 'error');
+                } else {
+                    alert(`${msg}\n\nPlease deposit funds to continue playing.`);
+                }
+                return false;
+            }
+
+            // Deduct via Bet With Net universal wallet engine
+            if (window.wallet && typeof window.wallet.placeBet === 'function') {
+                const success = window.wallet.placeBet(amount, 'Plinko X');
+                if (success) {
+                    updateBalanceUI(false);
+                    return true;
+                }
+            } else if (window.walletEngine && typeof window.walletEngine.placeBet === 'function') {
+                const success = window.walletEngine.placeBet(amount, 'Plinko X');
+                if (success) {
+                    updateBalanceUI(false);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function creditWinAmount(betAmt, winAmt, mult, info) {
+            if (window.wallet && typeof window.wallet.creditWin === 'function') {
+                window.wallet.creditWin(betAmt, winAmt, 'Plinko X', mult, info);
+            } else if (window.walletEngine && typeof window.walletEngine.creditWin === 'function') {
+                window.walletEngine.creditWin(betAmt, winAmt, 'Plinko X', mult, info);
+            }
+
+            // Sync updated balance to backend MySQL database immediately
+            const userId = (activeUserSession && activeUserSession.id) ? activeUserSession.id : (function() {
+                try {
+                    const s = JSON.parse(localStorage.getItem('bwn_session_user') || '{}');
+                    return s.id || null;
+                } catch(e) { return null; }
+            })();
+
+            if (userId && window.wallet) {
+                fetch('/api/wallet.php?action=sync_balance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        user_id: userId,
+                        balance_pkr: window.wallet.state.balancePKR,
+                        balance_usd: window.wallet.state.balanceUSD
+                    })
+                }).catch(() => {});
+            }
+
+            updateBalanceUI(true);
+        }
+
+        /* --- Random Ball Selection (Plinko X Odds) --- */
+        function pickRandomBallType() {
+            const rand = Math.random() * 100;
+            if (rand < BALL_TIERS.PINK.weight) return 'PINK';
+            if (rand < BALL_TIERS.PINK.weight + BALL_TIERS.YELLOW.weight) return 'YELLOW';
+            return 'RED';
+        }
+
+        function updateNextBallUI() {
+            state.nextBallType = pickRandomBallType();
+            const tier = BALL_TIERS[state.nextBallType];
+            nextBallDot.style.background = tier.color;
+            nextBallDot.style.boxShadow = `0 0 10px ${tier.color}`;
+            nextBallText.textContent = `${tier.mult}X BALL`;
+            nextBallText.style.color = tier.color;
+
+            // Highlight tier card in controls
+            document.querySelectorAll('.ball-tier-card').forEach(c => c.classList.remove('active-drop'));
+            if (state.nextBallType === 'PINK') document.getElementById('tierCardPink').classList.add('active-drop');
+            if (state.nextBallType === 'YELLOW') document.getElementById('tierCardYellow').classList.add('active-drop');
+            if (state.nextBallType === 'RED') document.getElementById('tierCardRed').classList.add('active-drop');
+        }
+
+        /* --- Ball Drop Spawning & High-Precision Physics Engine --- */
+        function dropBallInstance(ballType, betPerBall) {
+            const tier = BALL_TIERS[ballType];
+            const centerX = canvasW / 2;
+            const jitter = (Math.random() - 0.5) * 4;
+
+            // Trigger 3D Glass Bowl Dispenser fast spin & ejection sparks
+            if (typeof bowlDispenser !== 'undefined' && bowlDispenser.spinFast) {
+                bowlDispenser.spinFast(ballType);
+            }
+
+            sounds.dropWhoosh();
+
+            const isTurbo = state.speedMode === 'turbo';
+            const baseGravity = isTurbo ? 0.38 : 0.22;
+
+            state.activeBalls.push({
+                x: centerX + jitter,
+                y: startY - 14,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: isTurbo ? 3.0 : 1.8,
+                radius: ballRadius,
+                type: ballType,
+                tier: tier,
+                betAmount: betPerBall,
+                baseGravity: baseGravity,
+                bounceCoeff: 0.44,
+                trail: [],
+                settled: false,
+                color: tier.color,
+                trailColor: tier.trailColor,
+                targetRow: 0
+            });
+        }
+
+        /* --- Fixed 60Hz Physics Sub-Stepping Loop (Silky Smooth on 60/90/120Hz Screens) --- */
+        function updatePhysicsStep(subStepRatio) {
+            // Update Active Balls
+            for (let i = state.activeBalls.length - 1; i >= 0; i--) {
+                const b = state.activeBalls[i];
+
+                b.vy += b.baseGravity * subStepRatio;
+                b.x += b.vx * subStepRatio;
+                b.y += b.vy * subStepRatio;
+
+                // Air resistance / horizontal dampening
+                b.vx *= Math.pow(0.982, subStepRatio);
+
+                // Centripetal attraction to keep 90%+ of balls in low-multiplier center pockets
+                const centerAxis = canvasW / 2;
+                const distFromCenter = b.x - centerAxis;
+                if (Math.abs(distFromCenter) > canvasW * 0.08) {
+                    b.vx -= distFromCenter * 0.0012 * subStepRatio;
+                }
+
+                // Wall bounds dampening
+                const minX = 14;
+                const maxX = canvasW - 14;
+                if (b.x < minX) { b.x = minX; b.vx = Math.abs(b.vx) * 0.7; }
+                if (b.x > maxX) { b.x = maxX; b.vx = -Math.abs(b.vx) * 0.7; }
+
+                // Check Peg Collisions with high precision
+                for (let pIdx = 0; pIdx < state.pegs.length; pIdx++) {
+                    const peg = state.pegs[pIdx];
+                    const dx = b.x - peg.x;
+                    const dy = b.y - peg.y;
+                    const dist = Math.hypot(dx, dy);
+                    const minDist = b.radius + pegRadius;
+
+                    if (dist < minDist && dist > 0.0001) {
+                        // Elastic collision normal
+                        const nx = dx / dist;
+                        const ny = dy / dist;
+
+                        // Separate overlapping positions
+                        const overlap = minDist - dist;
+                        b.x += nx * overlap;
+                        b.y += ny * overlap;
+
+                        // Restitution velocity reflection
+                        const dot = b.vx * nx + b.vy * ny;
+                        if (dot < 0) {
+                            const restitution = b.bounceCoeff;
+                            b.vx = (b.vx - (1 + restitution) * dot * nx);
+                            b.vy = (b.vy - (1 + restitution) * dot * ny);
+
+                            // Subtle organic lateral deflection
+                            b.vx += (Math.random() - 0.5) * 0.4;
+                            if (Math.abs(b.vx) < 0.12) {
+                                b.vx += (Math.random() > 0.5 ? 0.25 : -0.25);
+                            }
+                        }
+
+                        // Light up peg
+                        peg.pulse = 1.0;
+                        peg.flashColor = b.color;
+
+                        // Emit collision sparkles
+                        for (let s = 0; s < 3; s++) {
+                            state.sparkles.push({
+                                x: peg.x,
+                                y: peg.y,
+                                vx: (Math.random() - 0.5) * 3,
+                                vy: (Math.random() - 0.5) * 3,
+                                color: b.color,
+                                life: 1.0,
+                                size: Math.random() * 2 + 1.2
+                            });
+                        }
+
+                        // Play pitch-modulated click sound
+                        const pitchMod = 0.85 + (peg.row / ROWS_COUNT) * 0.5 + (Math.random() - 0.5) * 0.15;
+                        sounds.pegHit(pitchMod);
+                    }
+                }
+
+                // Check Landing at the Bottom Pockets
+                if (b.y >= endY) {
+                    onBallLanded(b);
+                    state.activeBalls.splice(i, 1);
+                }
+            }
+        }
+
+        function postPhysicsFrame() {
+            // Record smooth trail coordinates
+            const maxTrail = state.speedMode === 'turbo' ? 8 : 14;
+            for (let i = 0; i < state.activeBalls.length; i++) {
+                const b = state.activeBalls[i];
+                b.trail.unshift({ x: b.x, y: b.y });
+                if (b.trail.length > maxTrail) b.trail.pop();
+            }
+
+            // Decay peg pulses smoothly
+            state.pegs.forEach(p => {
+                if (p.pulse > 0) p.pulse = Math.max(0, p.pulse - 0.05);
+            });
+
+            // Update Sparkles
+            for (let sIdx = state.sparkles.length - 1; sIdx >= 0; sIdx--) {
+                const s = state.sparkles[sIdx];
+                s.x += s.vx;
+                s.y += s.vy;
+                s.life -= 0.04;
+                if (s.life <= 0) state.sparkles.splice(sIdx, 1);
+            }
+        }
+
+        /* --- Ball Landing Outcome Resolution --- */
+        function onBallLanded(ball) {
+            // Determine which pocket slot index [0..16] the ball fell into
+            const bottomPegRowY = startY + ROWS_COUNT * rowSpacing;
+            const totalWidthAtBottom = canvasW * 0.94;
+            const startX = canvasW / 2 - totalWidthAtBottom / 2;
+            const pocketWidth = totalWidthAtBottom / POCKETS_COUNT;
+
+            let pocketIdx = Math.floor((ball.x - startX) / pocketWidth);
+            if (pocketIdx < 0) pocketIdx = 0;
+            if (pocketIdx >= POCKETS_COUNT) pocketIdx = POCKETS_COUNT - 1;
+
+            const basePocketMult = POCKET_MULTIPLIERS[pocketIdx];
+            const ballMult = ball.tier.mult;
+            let finalMult = parseFloat((basePocketMult * ballMult).toFixed(2));
+            if (finalMult > 100) finalMult = 100;
+            if (finalMult < 0.05) finalMult = 0.05;
+            const payout = ball.betAmount * finalMult;
+
+            // Highlight Pocket Slot in DOM
+            const slotEl = pocketsContainer.querySelector(`[data-idx="${pocketIdx}"]`);
+            if (slotEl) {
+                slotEl.classList.remove('hit');
+                void slotEl.offsetWidth;
+                slotEl.classList.add('hit');
+                setTimeout(() => slotEl.classList.remove('hit'), 350);
+            }
+
+            // Play win audio
+            sounds.pocketLand(finalMult);
+
+            // Credit Payout
+            creditWinAmount(ball.betAmount, payout, finalMult, `Pocket: ${basePocketMult}x | Ball: ${ballMult}x`);
+
+            // Push to Recent History
+            addHistoryRecord({
+                pocketMult: basePocketMult,
+                ballMult: ballMult,
+                totalMult: finalMult,
+                ballType: ball.type
+            });
+
+            // Display Visual Toast / Big Win
+            if (finalMult >= 50) {
+                showBigWinModal(finalMult, payout);
+            } else {
+                showWinToast(finalMult, payout, ball.color);
+            }
+
+            // If auto play is active, check next step
+            if (state.isAuto && state.activeBalls.length === 0) {
+                handleAutoPlayStep();
+            }
+        }
+
+        /* --- Win Notifications & Big Win Modal --- */
+        let toastTimeout = null;
+        function showWinToast(mult, payout, color) {
+            clearTimeout(toastTimeout);
+            const currSym = getActiveCurrencySymbol();
+            winMultBadge.textContent = `${mult >= 10 ? mult.toFixed(0) : mult >= 1 ? mult.toFixed(1) : mult.toFixed(2)}X`;
+            winMultBadge.style.color = color;
+            winAmountBadge.textContent = `+${currSym}${payout.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            winToast.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                winToast.classList.remove('show');
+            }, 1200);
+        }
+
+        function showBigWinModal(mult, payout) {
+            sounds.bigWinFanfare();
+            const currSym = getActiveCurrencySymbol();
+            bigWinTitle.textContent = mult >= 100 ? 'MAX WIN JACKPOT!' : mult >= 50 ? 'SUPER MEGA WIN!' : 'MEGA WIN!';
+            bigWinMult.textContent = `${mult.toLocaleString()}X`;
+            bigWinPayout.textContent = `+${currSym}${payout.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            bigWinModal.style.display = 'flex';
+        }
+
+        btnClaimWin.addEventListener('click', () => {
+            bigWinModal.style.display = 'none';
+        });
+
+        /* --- History Management --- */
+        function addHistoryRecord(item) {
+            state.recentHistory.unshift(item);
+            if (state.recentHistory.length > 25) state.recentHistory.pop();
+            renderHistory();
+        }
+
+        function renderHistory() {
+            historyList.innerHTML = '';
+            state.recentHistory.forEach(h => {
+                const el = document.createElement('div');
+                el.className = 'history-pill';
+
+                // Color code background
+                let bgGradient = 'linear-gradient(135deg, rgba(61, 90, 254, 0.4), rgba(26, 35, 126, 0.6))';
+                let textColor = '#8da2c0';
+                if (h.totalMult >= 100) {
+                    bgGradient = 'linear-gradient(135deg, #ff0055, #88002a)';
+                    textColor = '#ffffff';
+                } else if (h.totalMult >= 10) {
+                    bgGradient = 'linear-gradient(135deg, #ff6d00, #943800)';
+                    textColor = '#ffffff';
+                } else if (h.totalMult >= 3) {
+                    bgGradient = 'linear-gradient(135deg, #ffd600, #9e8200)';
+                    textColor = '#1a1a00';
+                } else if (h.totalMult >= 1.2) {
+                    bgGradient = 'linear-gradient(135deg, #00e676, #007033)';
+                    textColor = '#022010';
+                }
+
+                el.style.background = bgGradient;
+                el.style.color = textColor;
+
+                const ballBadgeColor = h.ballType === 'RED' ? '#ff2244' : h.ballType === 'YELLOW' ? '#ffb703' : '#ff007f';
+                el.innerHTML = `
+                    <span>${h.totalMult}X</span>
+                    <span class="history-ball-badge" style="background:${ballBadgeColor}; color:#fff;">${h.ballMult}X</span>
+                `;
+                historyList.appendChild(el);
+            });
+        }
+
+        /* --- Canvas Rendering Loop (Full HD High-DPI & Buttery Smooth 60/120 FPS) --- */
+        let lastRenderTime = performance.now();
+        let physicsAccumulator = 0;
+        const FIXED_TIMESTEP = 1000 / 60; // 16.666ms per physics step
+        const MAX_ACCUMULATOR = 100;
+
+        function renderCanvas(timestamp) {
+            if (!timestamp) timestamp = performance.now();
+            const elapsed = Math.min(timestamp - lastRenderTime, MAX_ACCUMULATOR);
+            lastRenderTime = timestamp;
+            physicsAccumulator += elapsed;
+
+            // Run physics at rock-solid fixed 60Hz with 2 sub-steps for butter-smooth collision
+            while (physicsAccumulator >= FIXED_TIMESTEP) {
+                updatePhysicsStep(0.5); // sub-step 1
+                updatePhysicsStep(0.5); // sub-step 2
+                postPhysicsFrame();
+                physicsAccumulator -= FIXED_TIMESTEP;
+            }
+
+            ctx.clearRect(0, 0, canvasW, canvasH);
+
+            // 1. Subtle Pyramid Neon Frame Glow
+            const topX = canvasW / 2;
+            const topY = startY - 8;
+            const botLeftX = canvasW * 0.02;
+            const botRightX = canvasW * 0.98;
+            const botY = endY + 4;
+
+            ctx.strokeStyle = 'rgba(0, 229, 255, 0.15)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(topX, topY);
+            ctx.lineTo(botLeftX, botY);
+            ctx.lineTo(botRightX, botY);
+            ctx.closePath();
+            ctx.stroke();
+
+            // 2. Ultra-Fast Batch Rendering of All Idle Pegs (Full HD Sharp Core)
+            ctx.save();
+            ctx.beginPath();
+            for (let i = 0; i < state.pegs.length; i++) {
+                const p = state.pegs[i];
+                if (p.pulse <= 0.05) {
+                    ctx.moveTo(p.x + pegRadius, p.y);
+                    ctx.arc(p.x, p.y, pegRadius, 0, Math.PI * 2);
+                }
+            }
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = 'rgba(0, 229, 255, 0.8)';
+            ctx.shadowBlur = 6;
+            ctx.fill();
+
+            // Inner metallic cyan pin center (Razor Sharp Full HD Detail)
+            ctx.shadowBlur = 0;
+            ctx.beginPath();
+            for (let i = 0; i < state.pegs.length; i++) {
+                const p = state.pegs[i];
+                if (p.pulse <= 0.05) {
+                    ctx.moveTo(p.x + pegRadius * 0.45, p.y);
+                    ctx.arc(p.x, p.y, pegRadius * 0.45, 0, Math.PI * 2);
+                }
+            }
+            ctx.fillStyle = 'rgba(0, 229, 255, 0.45)';
+            ctx.fill();
+            ctx.restore();
+
+            // 3. Draw Only Active / Pulsing Pegs (Explosive Neon Bloom)
+            for (let i = 0; i < state.pegs.length; i++) {
+                const p = state.pegs[i];
+                if (p.pulse > 0.05) {
+                    ctx.save();
+                    const rad = pegRadius + (p.pulse * 2.5);
+
+                    // Expanding Shockwave Ring
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, rad * 2.8 * p.pulse, 0, Math.PI * 2);
+                    ctx.strokeStyle = p.flashColor;
+                    ctx.lineWidth = 2.2 * p.pulse;
+                    ctx.globalAlpha = p.pulse;
+                    ctx.stroke();
+
+                    // Core Flash
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
+                    ctx.fillStyle = p.flashColor;
+                    ctx.shadowColor = p.flashColor;
+                    ctx.shadowBlur = 18 * p.pulse;
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            // 4. Draw Collision Sparkles
+            if (state.sparkles.length > 0) {
+                ctx.save();
+                for (let sIdx = 0; sIdx < state.sparkles.length; sIdx++) {
+                    const s = state.sparkles[sIdx];
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                    ctx.fillStyle = s.color;
+                    ctx.globalAlpha = s.life;
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            // 5. Draw Active Falling Balls in Full HD (3D Radial Shading & Specular Sheen)
+            state.activeBalls.forEach(b => {
+                ctx.save();
+
+                // High-Definition Neon Comet Trail
+                if (b.trail.length > 1) {
+                    ctx.beginPath();
+                    ctx.moveTo(b.trail[0].x, b.trail[0].y);
+                    for (let t = 1; t < b.trail.length; t++) {
+                        ctx.lineTo(b.trail[t].x, b.trail[t].y);
+                    }
+                    ctx.strokeStyle = b.trailColor;
+                    ctx.lineWidth = b.radius * 1.5;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.globalAlpha = 0.55;
+                    ctx.stroke();
+
+                    // Hot white inner core
+                    ctx.beginPath();
+                    ctx.moveTo(b.trail[0].x, b.trail[0].y);
+                    for (let t = 1; t < Math.min(b.trail.length, 5); t++) {
+                        ctx.lineTo(b.trail[t].x, b.trail[t].y);
+                    }
+                    ctx.lineWidth = b.radius * 0.7;
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.globalAlpha = 0.75;
+                    ctx.stroke();
+                }
+
+                // Ambient Glow
+                ctx.globalAlpha = 1.0;
+                ctx.shadowColor = b.color;
+                ctx.shadowBlur = 14;
+
+                // 3D Spherical Radial Gradient Body
+                const grad = ctx.createRadialGradient(
+                    b.x - b.radius * 0.35,
+                    b.y - b.radius * 0.35,
+                    b.radius * 0.08,
+                    b.x,
+                    b.y,
+                    b.radius
+                );
+                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0.35, b.color);
+                grad.addColorStop(0.85, '#071026');
+                grad.addColorStop(1, '#02050e');
+
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // Razor-Sharp Specular Glass Highlight Crescent (Full HD Glass Sheen)
+                ctx.shadowBlur = 0;
+                ctx.beginPath();
+                ctx.ellipse(
+                    b.x - b.radius * 0.32,
+                    b.y - b.radius * 0.34,
+                    b.radius * 0.36,
+                    b.radius * 0.18,
+                    -Math.PI / 4,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+                ctx.fill();
+
+                // Crisp Outer Neon Rim
+                ctx.lineWidth = 1.2;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.stroke();
+
+                ctx.restore();
+            });
+
+            requestAnimationFrame(renderCanvas);
+        }
+
+        /* --- Player Drop Action --- */
+        function triggerDrop() {
+            const count = state.dropCount;
+            const betPerBall = state.betAmount;
+            const totalStake = betPerBall * count;
+
+            if (!deductStake(totalStake)) {
+                alert('Insufficient balance! Please deposit to continue playing.');
+                stopAutoPlay();
+                return;
+            }
+
+            updateBalanceUI(false);
+
+            // Drop balls with rapid stagger
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const ballType = (i === 0) ? state.nextBallType : pickRandomBallType();
+                    dropBallInstance(ballType, betPerBall);
+                    updateNextBallUI();
+                }, i * (state.speedMode === 'turbo' ? 70 : 160));
+            }
+        }
+
+        btnDropBall.addEventListener('click', () => {
+            getAudioContext();
+            if (state.isAuto) return;
+            triggerDrop();
+        });
+
+        /* --- Quick Bet Amount Controls --- */
+        function setBetAmount(amt) {
+            const isUsd = getActiveCurrency() === 'USD';
+            const minAmt = isUsd ? 0.1 : 10;
+            const maxAmt = isUsd ? 500 : 50000;
+            state.betAmount = isUsd
+                ? Math.max(minAmt, Math.min(maxAmt, parseFloat(amt.toFixed(2))))
+                : Math.max(minAmt, Math.min(maxAmt, Math.round(amt)));
+            betAmountInput.value = state.betAmount;
+            updateDropButtonSub();
+            updateBalanceUI(false);
+        }
+
+        function updateDropButtonSub() {
+            const currSym = getActiveCurrencySymbol();
+            const total = state.betAmount * state.dropCount;
+            const formatted = getActiveCurrency() === 'USD' ? total.toFixed(2) : Math.round(total).toLocaleString();
+            btnDropSub.textContent = `TOTAL: ${currSym}${formatted}`;
+        }
+
+        betAmountInput.addEventListener('input', (e) => {
+            const val = parseFloat(e.target.value) || (getActiveCurrency() === 'USD' ? 0.5 : 10);
+            setBetAmount(val);
+        });
+
+        document.getElementById('btnBetMinus').addEventListener('click', () => {
+            const step = getActiveCurrency() === 'USD' ? 0.5 : 50;
+            setBetAmount(state.betAmount - step);
+        });
+        document.getElementById('btnBetPlus').addEventListener('click', () => {
+            const step = getActiveCurrency() === 'USD' ? 0.5 : 50;
+            setBetAmount(state.betAmount + step);
+        });
+        document.getElementById('btnBetHalf').addEventListener('click', () => setBetAmount(state.betAmount / 2));
+        document.getElementById('btnBetDouble').addEventListener('click', () => setBetAmount(state.betAmount * 2));
+        document.getElementById('btnBetMin').addEventListener('click', () => setBetAmount(getActiveCurrency() === 'USD' ? 0.1 : 10));
+        document.getElementById('btnBetMax').addEventListener('click', () => setBetAmount(getActiveCurrency() === 'USD' ? 200 : 10000));
+
+        document.querySelectorAll('.quick-chip').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const basePkrAmt = parseFloat(btn.getAttribute('data-amt'));
+                if (getActiveCurrency() === 'USD') {
+                    const rate = (window.wallet && window.wallet.exchangeRate) || 280;
+                    setBetAmount(parseFloat((basePkrAmt / rate).toFixed(2)));
+                } else {
+                    setBetAmount(basePkrAmt);
+                }
+            });
+        });
+
+        // Drop Count Buttons (1, 5, 10, 25 balls)
+        document.querySelectorAll('.drop-count-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.drop-count-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.dropCount = parseInt(btn.getAttribute('data-drops'), 10);
+                updateDropButtonSub();
+                updateBalanceUI(false);
+            });
+        });
+
+        // Speed Mode (Normal vs Turbo)
+        const btnSpeedNormal = document.getElementById('btnSpeedNormal');
+        const btnSpeedTurbo = document.getElementById('btnSpeedTurbo');
+        btnSpeedNormal.addEventListener('click', () => {
+            btnSpeedNormal.classList.add('active');
+            btnSpeedTurbo.classList.remove('active');
+            state.speedMode = 'normal';
+        });
+        btnSpeedTurbo.addEventListener('click', () => {
+            btnSpeedTurbo.classList.add('active');
+            btnSpeedNormal.classList.remove('active');
+            state.speedMode = 'turbo';
+        });
+
+        // Auto Mode Controls
+        const btnModeManual = document.getElementById('btnModeManual');
+        const btnModeAuto = document.getElementById('btnModeAuto');
+        const autoDrawer = document.getElementById('autoDrawer');
+        const btnStopAuto = document.getElementById('btnStopAuto');
+
+        btnModeManual.addEventListener('click', () => {
+            btnModeManual.classList.add('active');
+            btnModeAuto.classList.remove('active');
+            autoDrawer.classList.remove('open');
+            stopAutoPlay();
+        });
+
+        btnModeAuto.addEventListener('click', () => {
+            btnModeAuto.classList.add('active');
+            btnModeManual.classList.remove('active');
+            autoDrawer.classList.add('open');
+        });
+
+        document.querySelectorAll('.auto-round-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.auto-round-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const rounds = parseInt(btn.getAttribute('data-rounds'), 10);
+                startAutoPlay(rounds);
+            });
+        });
+
+        function startAutoPlay(rounds) {
+            state.isAuto = true;
+            state.autoRoundsRemaining = rounds;
+            btnStopAuto.style.display = 'block';
+            btnStopAuto.textContent = `STOP AUTO (${rounds >= 9999 ? '∞' : rounds} left)`;
+            btnDropBall.disabled = true;
+            btnDropText.textContent = 'AUTO RUNNING...';
+            handleAutoPlayStep();
+        }
+
+        function stopAutoPlay() {
+            state.isAuto = false;
+            state.autoRoundsRemaining = 0;
+            btnStopAuto.style.display = 'none';
+            btnDropBall.disabled = false;
+            btnDropText.textContent = state.dropCount > 1 ? `DROP ${state.dropCount} BALLS` : 'DROP BALL';
+        }
+
+        btnStopAuto.addEventListener('click', stopAutoPlay);
+
+        function handleAutoPlayStep() {
+            if (!state.isAuto) return;
+            if (state.autoRoundsRemaining <= 0) {
+                stopAutoPlay();
+                return;
+            }
+
+            state.autoRoundsRemaining--;
+            btnStopAuto.textContent = `STOP AUTO (${state.autoRoundsRemaining >= 9999 ? '∞' : state.autoRoundsRemaining} left)`;
+            triggerDrop();
+        }
+
+        // Header Actions: Sound, Rules, Fullscreen
+        const btnAudioToggle = document.getElementById('btnAudioToggle');
+        btnAudioToggle.addEventListener('click', togglePlinkoBGM);
+
+        document.getElementById('btnRulesToggle').addEventListener('click', () => {
+            rulesModal.style.display = 'flex';
+        });
+
+        document.getElementById('btnCloseRules').addEventListener('click', () => {
+            rulesModal.style.display = 'none';
+        });
+
+        rulesModal.addEventListener('click', (e) => {
+            if (e.target === rulesModal) rulesModal.style.display = 'none';
+        });
+
+        document.getElementById('btnFullscreenToggle').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        });
+
+        /* --- Smartsoft Loading Screen Animation --- */
+        (function initLoader() {
+            const screen = document.getElementById('loadingScreen');
+            const bar = document.getElementById('loaderBar');
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 12;
+                if (progress >= 100) {
+                    progress = 100;
+                    bar.style.width = '100%';
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        screen.style.opacity = '0';
+                        setTimeout(() => screen.remove(), 500);
+                    }, 250);
+                } else {
+                    bar.style.width = `${progress}%`;
+                }
+            }, 55);
+        })();
+
+        /* --- Initialization --- */
+        window.addEventListener('DOMContentLoaded', () => {
+            initPlinkoBGM();
+            window.addEventListener('resize', resizeCanvases);
+            window.addEventListener('orientationchange', () => setTimeout(resizeCanvases, 100));
+            resizeCanvases();
+            renderCosmicPlinkoXBackground();
+            animateGlassBowl();
+            renderHistory();
+            updateNextBallUI();
+            updateDropButtonSub();
+
+            // Currency toggle button
+            const btnCurrencyToggle = document.getElementById('btnCurrencyToggle');
+            if (btnCurrencyToggle) {
+                btnCurrencyToggle.addEventListener('click', toggleCurrency);
+            }
+
+            // Sync with backend server wallet and update UI
+            syncWithServerWallet();
+            updateBalanceUI(false);
+
+            // Listen to wallet engine events
+            if (window.wallet && window.wallet.on) {
+                window.wallet.on('balanceChange', () => updateBalanceUI(true));
+                window.wallet.on('change', () => updateBalanceUI(false));
+            } else if (window.walletEngine && window.walletEngine.on) {
+                window.walletEngine.on('balanceChange', () => updateBalanceUI(true));
+                window.walletEngine.on('change', () => updateBalanceUI(false));
+            }
+
+            // Cross-tab and storage sync
+            window.addEventListener('storage', (e) => {
+                if (!e.key || e.key.startsWith('bwn_wallet') || e.key === 'bwn_session_user') {
+                    updateBalanceUI(false);
+                }
+            });
+
+            // Periodic server balance refresh every 15 seconds
+            setInterval(() => {
+                syncWithServerWallet();
+            }, 15000);
+
+            renderCanvas();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🎲 Sic Bo Imperial 3D - Macau VIP Golden Shaker | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
+
+    <style>
+        :root {
+            --bg-base: #06090e;
+            --bg-card: #0b121c;
+            --bg-panel: rgba(14, 22, 34, 0.94);
+            --felt-red: #5c0f17;
+            --felt-border: #9e1d29;
+            --gold: #d4af37;
+            --gold-bright: #ffd700;
+            --gold-glow: rgba(255, 215, 0, 0.45);
+            --cyan-glow: rgba(0, 240, 255, 0.4);
+            --win-green: #00e676;
+            --lose-red: #ff334b;
+            --text-main: #f8fafc;
+            --text-muted: #8ba2c4;
+            --border-subtle: rgba(212, 175, 55, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: var(--bg-base);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text-main);
+        }
+
+        /* -------------------------------------------------------------
+           EXACT JILI OFFICIAL INTRO / LOADING SCREEN COMPONENT
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: #000000 !important;
+            z-index: 9999999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-direction: column !important;
+            transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden !important;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .jili-splash-overlay.loaded {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: auto;
+            max-width: 90vw;
+        }
+
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 136px;
+            max-width: 42vw;
+            line-height: 0;
+        }
+
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+        }
+
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/blackjack/jili_wordmark_tight.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/blackjack/jili_wordmark_tight.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes jiliGlintAnim {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+
+        .jili-loadline-track {
+            width: 128px;
+            max-width: 40vw;
+            height: 3.5px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.85);
+            transition: width 0.08s ease-out;
+        }
+
+        /* Full Viewport Container - Straight & Natural */
+        .table-viewport {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(158, 29, 41, 0.28) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #070c14 0%, #03060a 100%);
+        }
+
+        .table-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Optional manual rotation only if explicitly toggled */
+        body.manual-rotate .table-viewport {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 100vh !important;
+            width: 100dvh !important;
+            height: 100vw !important;
+            height: 100dvw !important;
+            transform: translate(-50%, -50%) rotate(90deg) !important;
+            transform-origin: center center !important;
+            overflow: hidden !important;
+            z-index: 10;
+        }
+
+        /* Top VIP Navigation Bar - Compact */
+        .sicbo-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 10px;
+            background: rgba(11, 18, 28, 0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            height: 38px;
+            flex-shrink: 0;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .btn-nav-back:hover {
+            border-color: var(--gold-bright);
+            background: rgba(255, 215, 0, 0.12);
+            color: var(--gold-bright);
+        }
+
+        .game-title-lockup {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .game-title-text {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #fff 0%, #ffe066 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-vip-jackpot {
+            font-size: 8.5px;
+            font-weight: 900;
+            padding: 2px 5px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #d61827 0%, #b80012 100%);
+            color: #fff;
+            box-shadow: 0 0 6px rgba(214, 24, 39, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .game-profile-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.55);
+            flex-shrink: 0;
+            display: block;
+        }
+
+        /* User Profile Avatar: Authentic 3D Sic Bo Profile Picture (Avatar Only - NO Name Popup) */
+        .user-avatar-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #0a0503;
+            border: 1.5px solid #ffd700;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex-shrink: 0;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            transition: transform 0.15s, border-color 0.2s;
+            position: relative;
+        }
+
+        .user-avatar-btn:active {
+            transform: scale(0.92);
+        }
+
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            pointer-events: none;
+        }
+
+        .header-wallet-card {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, rgba(20, 10, 5, 0.95), rgba(40, 20, 5, 0.9));
+            border: 1.5px solid var(--gold);
+            border-radius: 14px;
+            padding: 2px 10px;
+            height: 26px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .wallet-label {
+            font-size: 8.5px;
+            color: var(--text-muted);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .wallet-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-deposit-quick {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 26px;
+            padding: 0 8px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+            transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .btn-deposit-quick:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.6);
+        }
+
+        /* Hide floating music popup button on Sic Bo */
+        #bwn-sound-toggle-fixed,
+        .bwn-sound-toggle-btn {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+        }
+
+        .btn-header-tool {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-header-tool:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .btn-header-tool.active {
+            border-color: #00f0ff;
+            color: #00f0ff;
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Roadmap Bead History Bar (Ultra-Compact) */
+        .sicbo-roadmap-bar {
+            background: rgba(8, 14, 22, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .roadmap-title {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .roadmap-beads-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 1px 0;
+            flex: 1;
+        }
+
+        .roadmap-beads-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .roadmap-bead {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: default;
+        }
+
+        .bead-small {
+            background: radial-gradient(circle at 35% 35%, #2980b9 0%, #1a5276 100%);
+            border-color: #5dade2;
+            color: #fff;
+        }
+
+        .bead-big {
+            background: radial-gradient(circle at 35% 35%, #c0392b 0%, #7b1f15 100%);
+            border-color: #ec7063;
+            color: #fff;
+        }
+
+        .bead-triple {
+            background: radial-gradient(circle at 35% 35%, #f1c40f 0%, #884400 100%);
+            border-color: #ffd700;
+            color: #fff;
+        }
+
+        .bead-type {
+            font-size: 6.5px;
+            line-height: 1;
+        }
+
+        .bead-sum {
+            font-size: 8px;
+            line-height: 1;
+        }
+
+        .roadmap-stat-bar {
+            width: 80px;
+            height: 12px;
+            background: #111;
+            border-radius: 6px;
+            display: flex;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
+        }
+
+        .stat-seg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-seg.small { background: #2980b9; }
+        .stat-seg.big { background: #c0392b; }
+
+        /* Top Primary Bets Strip - Pinned above scroll (SMALL, ODD, EVEN, BIG) */
+        .top-primary-bets-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            padding: 3px 8px;
+            background: rgba(8, 14, 22, 0.96);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            flex-shrink: 0;
+            z-index: 80;
+        }
+
+        .primary-spot {
+            min-height: 32px;
+            padding: 2px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .primary-spot:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .primary-spot:active {
+            transform: scale(0.97);
+        }
+
+        .primary-spot.bet-spot-small {
+            background: linear-gradient(135deg, rgba(20, 60, 110, 0.85) 0%, rgba(10, 30, 60, 0.95) 100%);
+            border: 1.5px solid #2980b9;
+        }
+        .primary-spot.bet-spot-small:hover, .primary-spot.bet-spot-small.has-bet {
+            border-color: #5dade2;
+            background: linear-gradient(135deg, rgba(30, 85, 150, 0.9) 0%, rgba(15, 45, 85, 0.98) 100%);
+        }
+
+        .primary-spot.bet-spot-odd {
+            background: linear-gradient(135deg, rgba(120, 70, 15, 0.85) 0%, rgba(60, 35, 8, 0.95) 100%);
+            border: 1.5px solid #d35400;
+        }
+        .primary-spot.bet-spot-odd:hover, .primary-spot.bet-spot-odd.has-bet {
+            border-color: #f39c12;
+            background: linear-gradient(135deg, rgba(160, 95, 20, 0.9) 0%, rgba(80, 45, 10, 0.98) 100%);
+        }
+
+        .primary-spot.bet-spot-even {
+            background: linear-gradient(135deg, rgba(18, 90, 45, 0.85) 0%, rgba(8, 45, 22, 0.95) 100%);
+            border: 1.5px solid #27ae60;
+        }
+        .primary-spot.bet-spot-even:hover, .primary-spot.bet-spot-even.has-bet {
+            border-color: #2ecc71;
+            background: linear-gradient(135deg, rgba(25, 120, 60, 0.9) 0%, rgba(12, 60, 30, 0.98) 100%);
+        }
+
+        .primary-spot.bet-spot-big {
+            background: linear-gradient(135deg, rgba(120, 20, 30, 0.85) 0%, rgba(60, 10, 15, 0.95) 100%);
+            border: 1.5px solid #c0392b;
+        }
+        .primary-spot.bet-spot-big:hover, .primary-spot.bet-spot-big.has-bet {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, rgba(160, 30, 40, 0.9) 0%, rgba(80, 15, 20, 0.98) 100%);
+        }
+
+        .spot-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.1;
+        }
+
+        .primary-spot-title {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .primary-spot-sub {
+            font-size: 7.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .primary-spot-odds {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1px 4px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        /* Main Game Layout Container - Straight Responsive Layout */
+        .sicbo-viewport {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 6px 8px 64px;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 8px;
+            align-items: start;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .sicbo-viewport {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 6px 64px;
+            }
+            .shaker-stage-card {
+                width: 100% !important;
+                max-width: 360px !important;
+            }
+            #three-dome-canvas-container {
+                max-width: 320px !important;
+                height: 130px !important;
+            }
+            .betting-table-card {
+                width: 100% !important;
+                max-height: none !important;
+                overflow: visible !important;
+            }
+        }
+
+        /* 3D Glass Dome Shaker Arena */
+        .shaker-stage-card {
+            background: radial-gradient(circle at 50% 30%, rgba(30, 48, 72, 0.5) 0%, rgba(10, 16, 26, 0.95) 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 4px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        #three-dome-canvas-container {
+            width: 100%;
+            max-width: 205px;
+            height: 105px;
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        #three-dome-canvas-container.vibrating {
+            animation: domeShake 0.08s infinite ease-in-out;
+        }
+
+        @keyframes domeShake {
+            0% { transform: translate(1.5px, 1px) rotate(0.3deg); }
+            50% { transform: translate(-1.5px, -1px) rotate(-0.3deg); }
+            100% { transform: translate(1px, -1px) rotate(0deg); }
+        }
+
+        .shaker-hud-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 2px;
+            width: 100%;
+        }
+
+        .btn-toggle-dome {
+            padding: 2px 8px;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            color: var(--gold-bright);
+            font-size: 9px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .sicbo-hud-banner {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-align: center;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            color: var(--gold-bright);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 170px;
+        }
+
+        .sicbo-hud-banner.status-rolling {
+            border-color: #00f0ff;
+            color: #00f0ff;
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        .sicbo-hud-banner.status-win {
+            border-color: var(--win-green);
+            color: var(--win-green);
+            background: rgba(0, 230, 118, 0.2);
+        }
+
+        .sicbo-hud-banner.status-loss {
+            border-color: var(--lose-red);
+            color: var(--lose-red);
+            background: rgba(255, 51, 75, 0.2);
+        }
+
+        /* Authentic Macau Imperial Betting Felt Board - Ultra Compact */
+        .betting-table-card {
+            background: radial-gradient(circle at 50% 50%, var(--felt-red) 0%, #2e0509 100%);
+            border: 1.5px solid #8f1b26;
+            box-shadow: 0 0 0 1.5px #d4af37, 0 4px 15px rgba(0,0,0,0.8);
+            border-radius: 10px;
+            padding: 4px 6px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212, 175, 55, 0.4) transparent;
+        }
+
+        .betting-table-card::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .betting-table-card::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 2px;
+        }
+
+        /* Roll Button & Action Bar on top of the Red Betting Table */
+        .table-top-roll-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 5px 8px;
+            background: linear-gradient(180deg, rgba(25, 4, 8, 0.96) 0%, rgba(12, 2, 4, 0.98) 100%);
+            border: 1.5px solid var(--gold);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 215, 0, 0.25);
+            margin-bottom: 4px;
+        }
+
+        .table-roll-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 65px;
+        }
+
+        .roll-summary-label {
+            font-size: 8px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .roll-summary-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--gold-bright);
+        }
+
+        .btn-table-roll {
+            flex: 1;
+            max-width: 240px;
+            height: 36px !important;
+            padding: 0 16px !important;
+            font-size: 13px !important;
+            letter-spacing: 0.8px !important;
+            box-shadow: 0 0 14px rgba(255, 215, 0, 0.5) !important;
+            animation: rollPulse 2s infinite alternate;
+        }
+
+        @keyframes rollPulse {
+            0% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+            100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.85); }
+        }
+
+        .table-quick-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-table-util {
+            padding: 4px 7px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 9.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-table-util:hover:not(:disabled) {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-bright);
+        }
+
+        .btn-table-util:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        /* Generic Betting Spot - Compact */
+        .sicbo-bet-spot {
+            background: rgba(20, 5, 8, 0.65);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 4px;
+            padding: 2px 2px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+        }
+
+        .sicbo-bet-spot:hover {
+            border-color: var(--gold-bright);
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        .sicbo-bet-spot.has-bet {
+            border-color: var(--gold-bright);
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .sicbo-bet-spot.winner-glow {
+            border-color: #00e676 !important;
+            background: rgba(0, 230, 118, 0.3) !important;
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.8) !important;
+            z-index: 10;
+        }
+
+        .spot-name {
+            font-family: 'Cinzel', serif;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+        }
+
+        .spot-sub {
+            font-size: 7.5px;
+            color: var(--text-muted);
+            margin-top: 0.5px;
+            font-weight: 600;
+        }
+
+        .spot-odds {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            margin-top: 0.5px;
+        }
+
+        /* 3D Chip Badge on Betting Spot */
+        .table-chip-badge {
+            position: absolute;
+            top: -4px;
+            right: -3px;
+            background: radial-gradient(circle at 35% 35%, #ffd700 0%, #996515 100%);
+            border: 1px solid #fff;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7px;
+            font-weight: 900;
+            color: #000;
+            z-index: 5;
+        }
+
+        /* Table Grids */
+        .table-grid-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+        .table-grid-triples { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+        .table-grid-doubles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+        .table-grid-sums { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+        .table-grid-domino { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
+        .table-grid-singles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+
+        .section-label-banner {
+            font-family: 'Cinzel', serif;
+            font-size: 8px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 1px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .section-label-banner::before, .section-label-banner::after {
+            content: '';
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            flex: 1;
+        }
+
+        .dice-pair-display, .dice-triple-display {
+            display: flex;
+            gap: 2px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mini-die-icon {
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 2px;
+            color: #d61827;
+            font-size: 9px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            line-height: 1;
+        }
+
+        .mini-die-icon.black-pip {
+            color: #111;
+        }
+
+        /* Bottom Sticky Action Deck & Chip Tray - Ultra Compact */
+        .sicbo-bottom-dock {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 110;
+            background: rgba(9, 15, 24, 0.97);
+            backdrop-filter: blur(14px);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3px 8px 4px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.7);
+            flex-shrink: 0;
+        }
+
+        .bottom-dock-content {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .chip-selector-bar {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 1px 0;
+        }
+
+        .chip-selector-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .casino-chip {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+        }
+
+        .casino-chip.selected {
+            transform: translateY(-3px) scale(1.15);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.7);
+            border: 1.5px solid #fff;
+        }
+
+        .chip-inner {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px dashed rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chip-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5px;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .chip-10 { background: radial-gradient(circle, #7f8c8d, #34495e); border: 1px dashed #bdc3c7; }
+        .chip-50 { background: radial-gradient(circle, #2980b9, #1b4f72); border: 1px dashed #5dade2; }
+        .chip-100 { background: radial-gradient(circle, #27ae60, #145a32); border: 1px dashed #58d68d; }
+        .chip-500 { background: radial-gradient(circle, #8e44ad, #512e5f); border: 1px dashed #af7ac5; }
+        .chip-1000 { background: radial-gradient(circle, #e67e22, #7e3e06); border: 1px dashed #f5b041; }
+        .chip-5000 { background: radial-gradient(circle, #c0392b, #641e16); border: 1px dashed #ec7063; }
+        .chip-10000 { background: radial-gradient(circle, #f39c12, #b7950b); border: 1px dashed #ffd700; }
+        .chip-25000 { background: radial-gradient(circle, #2c3e50, #000000); border: 1px dashed #00f0ff; }
+
+        .controls-action-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-group-helpers {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-deck-util {
+            padding: 4px 7px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 9.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .btn-deck-util:hover:not(:disabled) {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-bright);
+        }
+
+        .btn-deck-util:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .bet-summary-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bet-summary-label {
+            font-size: 7.5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .bet-summary-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--gold-bright);
+        }
+
+        .btn-primary-roll {
+            height: 32px;
+            padding: 0 14px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 50%, #d4af37 100%);
+            color: #0b0f14;
+            font-family: 'Cinzel', serif;
+            font-size: 11.5px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.45);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-primary-roll:hover:not(:disabled) {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.65);
+        }
+
+        .btn-primary-roll:disabled {
+            background: #2a3340;
+            color: #5d6f85;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* Victory Popup */
+        .round-win-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .round-win-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .win-card {
+            background: radial-gradient(circle at 50% 20%, #200407 0%, #0c0204 100%);
+            border: 2px solid var(--gold-bright);
+            border-radius: 16px;
+            padding: 20px 28px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            max-width: 320px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .animate-win-pop {
+            animation: winPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes winPop {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .win-title {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: var(--gold-bright);
+            letter-spacing: 1px;
+        }
+
+        .win-dice-display {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hud-pip {
+            width: 34px;
+            height: 34px;
+            background: #fff;
+            border-radius: 6px;
+            color: #d61827;
+            font-size: 20px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .win-sum-badge {
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+
+        .win-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--win-green);
+        }
+
+        .win-sub {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        #celebration-canvas-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 210;
+        }
+
+        .gold-coin-particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffd700, #b8860b);
+            border-radius: 50%;
+            border: 1px solid #fff;
+            box-shadow: 0 0 6px #ffd700;
+            animation: coinExplode 1.2s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+        }
+
+        @keyframes coinExplode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.3); opacity: 0; }
+        }
+
+        .sicbo-toast {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: rgba(14, 22, 34, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #fff;
+            z-index: 250;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .sicbo-toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .sicbo-toast.toast-warning { border-color: #f39c12; color: #f39c12; }
+        .sicbo-toast.toast-error { border-color: #e74c3c; color: #e74c3c; }
+
+        /* Rules Modal */
+        .sicbo-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+        }
+
+        .sicbo-modal-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sicbo-modal-window {
+            background: #0d1522;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 16px;
+            color: #fff;
+        }
+
+        .rules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 11px;
+        }
+
+        .rules-table th, .rules-table td {
+            padding: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rules-table th {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+        }
+
+        .btn-rotate-badge {
+            width: auto !important;
+            padding: 2px 8px !important;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(180, 130, 20, 0.4) 100%) !important;
+            border: 1px solid var(--gold) !important;
+            color: var(--gold-bright) !important;
+            font-size: 10px !important;
+            font-weight: 800 !important;
+            gap: 4px !important;
+            white-space: nowrap !important;
+        }
+
+        /* Compact Scaling for Landscape Mode (when device is turned sideways or manually rotated) */
+        @media screen and (max-height: 520px) and (orientation: landscape), body.manual-rotate {
+            .sicbo-header {
+                height: 32px !important;
+                padding: 2px 6px !important;
+            }
+            .game-title-text {
+                font-size: 11px !important;
+            }
+            .btn-nav-back {
+                padding: 2px 6px !important;
+                font-size: 10px !important;
+            }
+            .header-wallet-card {
+                height: 22px !important;
+                padding: 1px 6px !important;
+            }
+            .wallet-value {
+                font-size: 10.5px !important;
+            }
+            .btn-header-tool {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 10px !important;
+            }
+            .btn-rotate-badge {
+                padding: 2px 6px !important;
+                font-size: 9px !important;
+            }
+            .sicbo-roadmap-bar {
+                height: 20px !important;
+                padding: 1px 6px !important;
+                gap: 4px !important;
+            }
+            .roadmap-title {
+                font-size: 7.5px !important;
+            }
+            .roadmap-bead {
+                width: 16px !important;
+                height: 16px !important;
+            }
+            .bead-type { font-size: 5.5px !important; }
+            .bead-sum { font-size: 6.5px !important; }
+            .top-primary-bets-strip {
+                padding: 2px 6px !important;
+                gap: 4px !important;
+            }
+            .primary-spot {
+                min-height: 26px !important;
+                padding: 1px 6px !important;
+            }
+            .primary-spot-title {
+                font-size: 9.5px !important;
+            }
+            .primary-spot-sub {
+                font-size: 6.5px !important;
+            }
+            .primary-spot-odds {
+                font-size: 8px !important;
+                padding: 1px 3px !important;
+            }
+            .sicbo-viewport {
+                grid-template-columns: 180px 1fr !important;
+                gap: 4px !important;
+                padding: 2px 4px 4px !important;
+            }
+            .shaker-stage-card {
+                padding: 2px !important;
+            }
+            #three-dome-canvas-container {
+                max-width: 175px !important;
+                height: 85px !important;
+            }
+            .sicbo-hud-banner {
+                font-size: 8.5px !important;
+                padding: 1px 6px !important;
+                max-width: 120px !important;
+            }
+            .btn-toggle-dome {
+                font-size: 8px !important;
+                padding: 1px 6px !important;
+            }
+            .betting-table-card {
+                padding: 2px 4px !important;
+                gap: 2px !important;
+                max-height: calc(100vh - 88px) !important;
+            }
+            .section-label-banner {
+                font-size: 7px !important;
+                margin: 0 !important;
+            }
+            .sicbo-bet-spot {
+                min-height: 20px !important;
+                padding: 1px !important;
+            }
+            .spot-name {
+                font-size: 8px !important;
+            }
+            .spot-odds {
+                font-size: 7px !important;
+            }
+            .mini-die-icon {
+                width: 9px !important;
+                height: 9px !important;
+                font-size: 7px !important;
+            }
+            .sicbo-bottom-dock {
+                padding: 2px 6px !important;
+            }
+            .casino-chip {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            .chip-inner {
+                width: 18px !important;
+                height: 18px !important;
+            }
+            .chip-label {
+                font-size: 6.5px !important;
+            }
+            .btn-deck-util {
+                padding: 3px 5px !important;
+                font-size: 8.5px !important;
+            }
+            .btn-primary-roll {
+                height: 26px !important;
+                padding: 0 10px !important;
+                font-size: 10px !important;
+            }
+        }
+    </style>
+</head>
+<body class="game-page bg-dice">
+
+    <!-- JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay">
+        <div class="jili-center-stage">
+            <div class="jili-logo-box">
+                <img src="../assets/games/blackjack/jili_wordmark_tight.png" alt="JILI" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+            <!-- Video-Style Yellow Loading Line -->
+            <div class="jili-loadline-track">
+                <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrapper Viewport for 90-degree Auto-Rotation and Landscape Support -->
+    <div class="table-viewport">
+
+        <!-- Top VIP Header Slot -->
+        <header class="sicbo-header">
+            <div class="header-left">
+                <a href="../casino.html" class="btn-nav-back">← Casino</a>
+                <img src="../assets/icons/sicbo_profile.png?v=777" class="game-profile-avatar" alt="Sic Bo">
+                <div class="game-title-lockup">
+                    <span class="game-title-text">SIC BO 3D</span>
+                    <span class="badge-vip-jackpot">180X</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="header-wallet-card" title="Your Current Playing Balance">
+                    <span class="wallet-label">BAL</span>
+                    <span id="stat-user-balance" class="wallet-value">₨ 0</span>
+                </div>
+                <a href="../deposit.html" class="btn-deposit-quick" title="Deposit Funds">+ Deposit</a>
+                <button id="btn-sound-toggle" class="btn-header-tool" title="Mute/Unmute Audio">🔊</button>
+                <button id="btn-rules-toggle" class="btn-header-tool" title="Game Rules & Payouts">ℹ️</button>
+                
+                <!-- Profile Avatar: Authentic 3D Sic Bo Profile Picture (Avatar Only - NO Name Popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar">
+                    <img src="../assets/icons/sicbo_profile.png?v=777" alt="Sic Bo Profile" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; pointer-events:none;">
+                </a>
+            </div>
+        </header>
+
+        <!-- Roadmap & Bead Plate Bar -->
+        <div class="sicbo-roadmap-bar">
+            <span class="roadmap-title">ROADMAP:</span>
+            <div id="sicbo-roadmap-beads" class="roadmap-beads-wrap"></div>
+            <div id="roadmap-stat-bar" class="roadmap-stat-bar"></div>
+        </div>
+
+        <!-- Pinned Top Primary Bets Bar (SMALL / ODD / EVEN / BIG) - Always visible without scrolling -->
+        <div class="top-primary-bets-strip">
+            <div class="sicbo-bet-spot primary-spot bet-spot-small" data-bet="small">
+                <div class="spot-meta">
+                    <span class="primary-spot-title">SMALL</span>
+                    <span class="primary-spot-sub">4 - 10</span>
+                </div>
+                <span class="primary-spot-odds">1 : 1</span>
+            </div>
+            <div class="sicbo-bet-spot primary-spot bet-spot-odd" data-bet="odd">
+                <div class="spot-meta">
+                    <span class="primary-spot-title">ODD</span>
+                    <span class="primary-spot-sub">SUM ODD</span>
+                </div>
+                <span class="primary-spot-odds">1 : 1</span>
+            </div>
+            <div class="sicbo-bet-spot primary-spot bet-spot-even" data-bet="even">
+                <div class="spot-meta">
+                    <span class="primary-spot-title">EVEN</span>
+                    <span class="primary-spot-sub">SUM EVEN</span>
+                </div>
+                <span class="primary-spot-odds">1 : 1</span>
+            </div>
+            <div class="sicbo-bet-spot primary-spot bet-spot-big" data-bet="big">
+                <div class="spot-meta">
+                    <span class="primary-spot-title">BIG</span>
+                    <span class="primary-spot-sub">11 - 17</span>
+                </div>
+                <span class="primary-spot-odds">1 : 1</span>
+            </div>
+        </div>
+
+        <!-- Main Game Viewport - 2-Column Responsive Landscape Grid -->
+        <main class="sicbo-viewport">
+
+            <!-- Left Column: 3D Dome Shaker Stage -->
+            <div class="shaker-stage-card">
+                <div id="three-dome-canvas-container" title="Click or tap to lift/cover glass bowl"></div>
+                <div class="shaker-hud-row">
+                    <div id="sicbo-hud-status" class="sicbo-hud-banner">PLACE YOUR BETS</div>
+                    <button id="btn-toggle-dome" class="btn-toggle-dome" title="Lift or cover the glass dome">👁️ Lift</button>
+                </div>
+            </div>
+
+            <!-- Right Column: Imperial Betting Felt Table -->
+            <div class="betting-table-card">
+
+                <!-- Roll Button & Total Bet Bar ON TOP OF RED TABLE -->
+                <div class="table-top-roll-bar">
+                    <div class="table-roll-summary">
+                        <span class="roll-summary-label">TOTAL BET</span>
+                        <span id="stat-table-total-bet" class="roll-summary-value">₨ 0</span>
+                    </div>
+
+                    <button id="btn-roll-action-table" class="btn-primary-roll btn-table-roll" disabled title="Roll the 3 dice">
+                        <span>🎲 ROLL DICE 🎲</span>
+                    </button>
+
+                    <div class="table-quick-actions">
+                        <button id="btn-table-clear" class="btn-table-util" title="Clear bets">🗑️ Clear</button>
+                        <button id="btn-table-double" class="btn-table-util" title="Double bets">2× Dbl</button>
+                    </div>
+                </div>
+
+                <!-- SECTION 1: SPECIFIC & ANY TRIPLES -->
+                <div class="section-label-banner">👑 SPECIFIC & ANY TRIPLES 👑</div>
+                <div class="table-grid-triples">
+                    <div class="sicbo-bet-spot" data-bet="triple_1">
+                        <div class="dice-triple-display"><span class="mini-die-icon">1</span><span class="mini-die-icon">1</span><span class="mini-die-icon">1</span></div>
+                        <span class="spot-odds">180:1</span>
+                    </div>
+                    <div class="sicbo-bet-spot" data-bet="triple_2">
+                        <div class="dice-triple-display"><span class="mini-die-icon black-pip">2</span><span class="mini-die-icon black-pip">2</span><span class="mini-die-icon black-pip">2</span></div>
+                        <span class="spot-odds">180:1</span>
+                    </div>
+                    <div class="sicbo-bet-spot" data-bet="triple_3">
+                        <div class="dice-triple-display"><span class="mini-die-icon black-pip">3</span><span class="mini-die-icon black-pip">3</span><span class="mini-die-icon black-pip">3</span></div>
+                        <span class="spot-odds">180:1</span>
+                    </div>
+                    <div class="sicbo-bet-spot" data-bet="triple_any" style="background: rgba(255, 215, 0, 0.15); border-color: var(--gold-bright);">
+                        <span class="spot-name" style="color:var(--gold-bright);">ANY TRIPLE</span>
+                        <span class="spot-odds">30 : 1</span>
+                    </div>
+                    <div class="sicbo-bet-spot" data-bet="triple_4">
+                        <div class="dice-triple-display"><span class="mini-die-icon">4</span><span class="mini-die-icon">4</span><span class="mini-die-icon">4</span></div>
+                        <span class="spot-odds">180:1</span>
+                    </div>
+                    <div class="sicbo-bet-spot" data-bet="triple_5">
+                        <div class="dice-triple-display"><span class="mini-die-icon black-pip">5</span><span class="mini-die-icon black-pip">5</span><span class="mini-die-icon black-pip">5</span></div>
+                        <span class="spot-odds">180:1</span>
+                    </div>
+                    <div class="sicbo-bet-spot" data-bet="triple_6">
+                        <div class="dice-triple-display"><span class="mini-die-icon black-pip">6</span><span class="mini-die-icon black-pip">6</span><span class="mini-die-icon black-pip">6</span></div>
+                        <span class="spot-odds">180:1</span>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: SPECIFIC DOUBLES -->
+                <div class="section-label-banner">SPECIFIC DOUBLES (10:1)</div>
+                <div class="table-grid-doubles">
+                    <div class="sicbo-bet-spot" data-bet="double_1"><div class="dice-pair-display"><span class="mini-die-icon">1</span><span class="mini-die-icon">1</span></div><span class="spot-odds">10:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="double_2"><div class="dice-pair-display"><span class="mini-die-icon black-pip">2</span><span class="mini-die-icon black-pip">2</span></div><span class="spot-odds">10:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="double_3"><div class="dice-pair-display"><span class="mini-die-icon black-pip">3</span><span class="mini-die-icon black-pip">3</span></div><span class="spot-odds">10:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="double_4"><div class="dice-pair-display"><span class="mini-die-icon">4</span><span class="mini-die-icon">4</span></div><span class="spot-odds">10:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="double_5"><div class="dice-pair-display"><span class="mini-die-icon black-pip">5</span><span class="mini-die-icon black-pip">5</span></div><span class="spot-odds">10:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="double_6"><div class="dice-pair-display"><span class="mini-die-icon black-pip">6</span><span class="mini-die-icon black-pip">6</span></div><span class="spot-odds">10:1</span></div>
+                </div>
+
+                <!-- SECTION 4: TOTAL SUMS (4 - 17) -->
+                <div class="section-label-banner">TOTAL SUM COMBINATIONS (4 - 17)</div>
+                <div class="table-grid-sums">
+                    <div class="sicbo-bet-spot" data-bet="sum_4"><span class="spot-name">4</span><span class="spot-odds">60:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_5"><span class="spot-name">5</span><span class="spot-odds">30:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_6"><span class="spot-name">6</span><span class="spot-odds">18:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_7"><span class="spot-name">7</span><span class="spot-odds">12:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_8"><span class="spot-name">8</span><span class="spot-odds">8:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_9"><span class="spot-name">9</span><span class="spot-odds">6:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_10"><span class="spot-name">10</span><span class="spot-odds">6:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_11"><span class="spot-name">11</span><span class="spot-odds">6:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_12"><span class="spot-name">12</span><span class="spot-odds">6:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_13"><span class="spot-name">13</span><span class="spot-odds">8:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_14"><span class="spot-name">14</span><span class="spot-odds">12:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_15"><span class="spot-name">15</span><span class="spot-odds">18:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_16"><span class="spot-name">16</span><span class="spot-odds">30:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="sum_17"><span class="spot-name">17</span><span class="spot-odds">60:1</span></div>
+                </div>
+
+                <!-- SECTION 5: TWO DICE COMBINATIONS (DOMINO) -->
+                <div class="section-label-banner">DOMINO COMBINATIONS (5:1)</div>
+                <div class="table-grid-domino">
+                    <div class="sicbo-bet-spot" data-bet="combo_1_2"><span class="spot-name">1 · 2</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_1_3"><span class="spot-name">1 · 3</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_1_4"><span class="spot-name">1 · 4</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_1_5"><span class="spot-name">1 · 5</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_1_6"><span class="spot-name">1 · 6</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_2_3"><span class="spot-name">2 · 3</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_2_4"><span class="spot-name">2 · 4</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_2_5"><span class="spot-name">2 · 5</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_2_6"><span class="spot-name">2 · 6</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_3_4"><span class="spot-name">3 · 4</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_3_5"><span class="spot-name">3 · 5</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_3_6"><span class="spot-name">3 · 6</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_4_5"><span class="spot-name">4 · 5</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_4_6"><span class="spot-name">4 · 6</span><span class="spot-odds">5:1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="combo_5_6"><span class="spot-name">5 · 6</span><span class="spot-odds">5:1</span></div>
+                </div>
+
+                <!-- SECTION 6: SINGLE DICE -->
+                <div class="section-label-banner">SINGLE DICE (1X: 1:1 · 2X: 2:1 · 3X: 3:1)</div>
+                <div class="table-grid-singles">
+                    <div class="sicbo-bet-spot" data-bet="single_1"><span class="mini-die-icon" style="width:16px; height:16px;">1</span><span class="spot-odds">1</span></div>
+                    <div class="sicbo-bet-spot" data-bet="single_2"><span class="mini-die-icon black-pip" style="width:16px; height:16px;">2</span><span class="spot-odds">2</span></div>
+                    <div class="sicbo-bet-spot" data-bet="single_3"><span class="mini-die-icon black-pip" style="width:16px; height:16px;">3</span><span class="spot-odds">3</span></div>
+                    <div class="sicbo-bet-spot" data-bet="single_4"><span class="mini-die-icon" style="width:16px; height:16px;">4</span><span class="spot-odds">4</span></div>
+                    <div class="sicbo-bet-spot" data-bet="single_5"><span class="mini-die-icon black-pip" style="width:16px; height:16px;">5</span><span class="spot-odds">5</span></div>
+                    <div class="sicbo-bet-spot" data-bet="single_6"><span class="mini-die-icon black-pip" style="width:16px; height:16px;">6</span><span class="spot-odds">6</span></div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Bottom Dock with Chip Selector and Controls -->
+        <div class="sicbo-bottom-dock">
+            <div class="bottom-dock-content">
+                <!-- Chip Selector Tray -->
+                <div id="chip-selector-tray" class="chip-selector-bar"></div>
+
+                <!-- Action Controls Row -->
+                <div class="controls-action-row">
+                    <div class="btn-group-helpers">
+                        <button id="btn-clear-bets" class="btn-deck-util" title="Clear chips">🗑️ Clear</button>
+                        <button id="btn-double-bets" class="btn-deck-util" title="Double bets">2× Dbl</button>
+                        <button id="btn-undo-bet" class="btn-deck-util" title="Undo chip">↩️ Undo</button>
+                        <button id="btn-rebet" class="btn-deck-util" title="Rebet previous round">🔁 Rebet</button>
+                    </div>
+
+                    <div class="bet-summary-center">
+                        <span class="bet-summary-label">BET</span>
+                        <span id="stat-total-bet" class="bet-summary-amount">₨ 0</span>
+                    </div>
+
+                    <button id="btn-roll-action" class="btn-primary-roll" disabled>
+                        <span>🎲 ROLL</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End .table-viewport -->
+
+    <!-- Victory Celebration Overlay -->
+    <div id="round-win-overlay" class="round-win-overlay"></div>
+    <div id="celebration-canvas-container"></div>
+
+    <!-- Rules & Payouts Modal -->
+    <div id="sicbo-rules-modal" class="sicbo-modal-backdrop">
+        <div class="sicbo-modal-window">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h2 style="font-family:'Cinzel',serif; color:var(--gold); font-size:16px;">📜 SIC BO IMPERIAL RULES</h2>
+                <button id="btn-rules-close" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer;">✕</button>
+            </div>
+            <p style="font-size:11.5px; color:var(--text-muted); line-height:1.4; margin-bottom:10px;">
+                Sic Bo is played with three dice shaken inside an ornate crystal bell jar. Players can place chips on multiple betting areas simultaneously.
+            </p>
+            <table class="rules-table">
+                <thead>
+                    <tr><th>Bet Type</th><th>Condition</th><th>Payout</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Small</td><td>Total 4 to 10 (Loses on Triple)</td><td>1 : 1</td></tr>
+                    <tr><td>Big</td><td>Total 11 to 17 (Loses on Triple)</td><td>1 : 1</td></tr>
+                    <tr><td>Odd / Even</td><td>Sum is Odd / Even (Loses on Triple)</td><td>1 : 1</td></tr>
+                    <tr><td>Specific Triple</td><td>Exact chosen 3 of a kind (e.g. 4-4-4)</td><td>180 : 1</td></tr>
+                    <tr><td>Any Triple</td><td>Any three identical dice (111-666)</td><td>30 : 1</td></tr>
+                    <tr><td>Specific Double</td><td>Two of chosen number (e.g. 5-5)</td><td>10 : 1</td></tr>
+                    <tr><td>Total 4 or 17</td><td>Sum of 3 dice equals 4 or 17</td><td>60 : 1</td></tr>
+                    <tr><td>Total 5 or 16</td><td>Sum of 3 dice equals 5 or 16</td><td>30 : 1</td></tr>
+                    <tr><td>Total 6 or 15</td><td>Sum of 3 dice equals 6 or 15</td><td>18 : 1</td></tr>
+                    <tr><td>Total 7 or 14</td><td>Sum of 3 dice equals 7 or 14</td><td>12 : 1</td></tr>
+                    <tr><td>Total 8 or 13</td><td>Sum of 3 dice equals 8 or 13</td><td>8 : 1</td></tr>
+                    <tr><td>Total 9, 10, 11, 12</td><td>Sum equals 9, 10, 11 or 12</td><td>6 : 1</td></tr>
+                    <tr><td>Domino Combo</td><td>Two chosen numbers appear (e.g. 2 & 5)</td><td>5 : 1</td></tr>
+                    <tr><td>Single Die</td><td>Chosen number appears 1x, 2x, or 3x</td><td>1:1, 2:1, 3:1</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/sicbo.js"></script>
+    <script>
+        // SCREEN ROTATION & LANDSCAPE ORIENTATION CONTROLLER
+        let isFullscreenPending = false;
+
+        function enforceLandscapeOrientation() {
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                } else if (screen.lockOrientation) {
+                    screen.lockOrientation('landscape');
+                } else if (screen.mozLockOrientation) {
+                    screen.mozLockOrientation('landscape');
+                } else if (screen.msLockOrientation) {
+                    screen.msLockOrientation('landscape');
+                }
+            } catch(e) {}
+        }
+
+        function requestFullScreenLandscape() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || isFullscreenPending) {
+                enforceLandscapeOrientation();
+                return;
+            }
+            const docEl = document.documentElement;
+            const req = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+            if (req) {
+                isFullscreenPending = true;
+                let prom;
+                try {
+                    prom = req.call(docEl, { navigationUI: 'hide' });
+                } catch(err) {
+                    try { prom = req.call(docEl); } catch(err2) {}
+                }
+                if (prom && prom.then) {
+                    prom.then(() => {
+                        isFullscreenPending = false;
+                        enforceLandscapeOrientation();
+                    }).catch(() => {
+                        isFullscreenPending = false;
+                    });
+                } else {
+                    setTimeout(() => { isFullscreenPending = false; }, 400);
+                    enforceLandscapeOrientation();
+                }
+            } else {
+                enforceLandscapeOrientation();
+            }
+        }
+
+        function toggleScreenRotation(e) {
+            if (e) e.stopPropagation();
+            requestFullScreenLandscape();
+            document.body.classList.toggle('manual-rotate');
+            document.documentElement.classList.toggle('manual-rotate');
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 100);
+            if (window.sicboImperial && typeof window.sicboImperial.speakDealer === 'function') {
+                window.sicboImperial.speakDealer("Screen rotated.");
+            }
+        }
+        window.toggleScreenRotation = toggleScreenRotation;
+        window.requestFullScreenLandscape = requestFullScreenLandscape;
+        window.enforceLandscapeOrientation = enforceLandscapeOrientation;
+
+
+
+        /* JILI Loading Screen Driver */
+        let jiliLoadingStarted = false;
+        function startJiliLoading() {
+            if (jiliLoadingStarted) return;
+            jiliLoadingStarted = true;
+
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            if (!splash) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            if (progressBar) progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1800;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.8 ? (p * 1.05) : (0.84 + (p - 0.8) * 0.8);
+                const pct = Math.min(100, Math.round(ease * 100));
+                if (progressBar) progressBar.style.width = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    finishLoading();
+                }
+            }
+
+            function finishLoading() {
+                splash.classList.add('loaded');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 550);
+            }
+
+            // Guaranteed failsafe dismiss after 2.4 seconds
+            setTimeout(finishLoading, 2400);
+
+            requestAnimationFrame(step);
+        }
+
+        // Start loading immediately
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startJiliLoading);
+        } else {
+            startJiliLoading();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.core && typeof window.core.init === 'function') {
+                window.core.init('casino');
+            }
+            if (window.sicboImperial && typeof window.sicboImperial.init === 'function') {
+                window.sicboImperial.init();
+            }
+        });
+    </script>
+</body>
+</html>

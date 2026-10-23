@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Video Poker VIP Studio - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .poker-stage-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 4px;
+        }
+        .poker-paytable-board {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(14, 6, 8, 0.85);
+            border: 1px solid rgba(245, 166, 35, 0.35);
+            border-radius: var(--radius-sm);
+            padding: 6px 10px;
+            margin-bottom: 12px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+        }
+        .poker-pay-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #b0b8c8;
+            transition: all 0.2s;
+        }
+        .poker-pay-row b {
+            font-family: var(--font-mono);
+            color: #ffd700;
+        }
+        .poker-pay-row.active {
+            background: rgba(0, 231, 0, 0.25);
+            color: #00e700;
+            box-shadow: 0 0 8px rgba(0, 231, 0, 0.4);
+            transform: scale(1.02);
+        }
+        .poker-pay-row.active b {
+            color: #ffffff;
+        }
+        .poker-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 440px;
+            margin: 10px 0;
+        }
+        .poker-card-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            flex: 1;
+            max-width: 72px;
+        }
+        .poker-card-slot .playing-card {
+            width: 100%;
+            height: 94px;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
+        }
+        .poker-hold-tag {
+            background: rgba(245, 166, 35, 0.2);
+            color: #f5a623;
+            border: 1px solid #f5a623;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+            visibility: hidden;
+        }
+        .poker-hold-tag.visible {
+            visibility: visible;
+            box-shadow: 0 0 8px rgba(245, 166, 35, 0.6);
+        }
+    </style>
+</head>
+<body class="game-page bg-poker">
+
+    <div id="app-header-slot"></div>
+
+    <main class="main-container">
+
+        <!-- Top Studio Bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <a href="../index.html" class="btn-secondary" style="padding:6px 12px; font-size:12px; text-decoration:none;">← Lobby</a>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <img src="../assets/covers/poker.png" alt="Poker Logo" style="width:36px; height:36px; border-radius:8px; border:1px solid #f5a623; box-shadow:0 0 10px rgba(245,166,35,0.4);">
+                    <div>
+                        <h1 style="font-size:17px; font-weight:800; margin:0; line-height:1.1;">Video Poker VIP</h1>
+                        <span style="font-size:10px; color:#ffd700; font-weight:700;">JACKS OR BETTER • 250X ROYAL FLUSH</span>
+                    </div>
+                </div>
+            </div>
+            <div style="font-size:11px; color:#ffd700; background:rgba(255,215,0,0.15); padding:4px 10px; border-radius:12px; font-weight:700;">
+                VIP HIGH ROLLER
+            </div>
+        </div>
+
+        <!-- Studio Stage Backdrop -->
+        <div class="game-stage-wrapper game-backdrop-poker" style="padding:12px 8px;">
+            <div class="poker-stage-container">
+
+                <!-- Dynamic Paytable Screen -->
+                <div class="poker-paytable-board">
+                    <div class="poker-pay-row" id="poker-pay-royal"><span>ROYAL FLUSH</span><b>250x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-strflush"><span>STRAIGHT FLUSH</span><b>50x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-4kind"><span>FOUR OF A KIND</span><b>25x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-fullhouse"><span>FULL HOUSE</span><b>9x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-flush"><span>FLUSH</span><b>6x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-straight"><span>STRAIGHT</span><b>4x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-3kind"><span>THREE OF A KIND</span><b>3x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-2pair"><span>TWO PAIR</span><b>2x</b></div>
+                    <div class="poker-pay-row" id="poker-pay-job"><span>JACKS OR BETTER</span><b>1x</b></div>
+                </div>
+
+                <!-- Hand Status Display -->
+                <div style="width:100%; max-width:440px; text-align:center; margin-bottom:6px;">
+                    <div id="poker-status-text" style="font-size:13px; font-weight:800; color:#ffffff;">
+                        Press DEAL to start Video Poker
+                    </div>
+                </div>
+
+                <!-- 5-Card Interactive Array -->
+                <div class="poker-cards-container">
+                    <div class="poker-card-slot" onclick="window.pokerGame.toggleHold(0)">
+                        <div id="poker-card-0"><div class="playing-card back"></div></div>
+                        <span id="poker-hold-0" class="poker-hold-tag">HELD</span>
+                    </div>
+                    <div class="poker-card-slot" onclick="window.pokerGame.toggleHold(1)">
+                        <div id="poker-card-1"><div class="playing-card back"></div></div>
+                        <span id="poker-hold-1" class="poker-hold-tag">HELD</span>
+                    </div>
+                    <div class="poker-card-slot" onclick="window.pokerGame.toggleHold(2)">
+                        <div id="poker-card-2"><div class="playing-card back"></div></div>
+                        <span id="poker-hold-2" class="poker-hold-tag">HELD</span>
+                    </div>
+                    <div class="poker-card-slot" onclick="window.pokerGame.toggleHold(3)">
+                        <div id="poker-card-3"><div class="playing-card back"></div></div>
+                        <span id="poker-hold-3" class="poker-hold-tag">HELD</span>
+                    </div>
+                    <div class="poker-card-slot" onclick="window.pokerGame.toggleHold(4)">
+                        <div id="poker-card-4"><div class="playing-card back"></div></div>
+                        <span id="poker-hold-4" class="poker-hold-tag">HELD</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Betting Control Panel -->
+        <div class="game-control-panel">
+            <div class="bet-amount-row">
+                <div class="bet-input-wrap">
+                    <span class="bet-currency-prefix">₨</span>
+                    <input type="number" id="poker-bet-input" class="bet-input" value="100" min="10">
+                </div>
+                <div class="bet-quick-btn-group">
+                    <button class="btn-bet-modifier" onclick="window.app.modifyBet('poker-bet-input', 'half')">½</button>
+                    <button class="btn-bet-modifier" onclick="window.app.modifyBet('poker-bet-input', 'double')">2×</button>
+                    <button class="btn-bet-modifier" onclick="window.app.modifyBet('poker-bet-input', 'max')">MAX</button>
+                </div>
+            </div>
+
+            <!-- Deal / Draw Action Button -->
+            <button id="poker-action-btn" class="btn-action-primary" onclick="window.pokerGame.handleAction(parseFloat(document.getElementById('poker-bet-input').value) || 100)">
+                <span>DEAL CARDS</span> <span>🃏</span>
+            </button>
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/poker.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.core.init('casino');
+            window.pokerGame.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#06070c">
+    <title>🐉 Dragon vs Tiger VIP Live - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="stylesheet" href="../css/games/dragon_tiger.css?v=22.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Pagoda Dragon Live VIP Theme - Ultra Dark 60FPS High Contrast HD */
+        .dvt-canvas {
+            background: 
+                radial-gradient(ellipse at 50% 36%, rgba(2, 4, 8, 0.48) 0%, rgba(1, 2, 4, 0.82) 100%),
+                url('../assets/backgrounds/dragontiger_bg.jpg?v=dark_hd') no-repeat center center !important;
+            background-size: cover !important;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        body.dragon-tiger-page {
+            background: #000000 !important;
+            background-color: #000000 !important;
+        }
+
+        /* Manual Rotation support on demand */
+        body.manual-rotate .dvt-screen {
+            width: 100vh !important;
+            width: 100dvh !important;
+            height: 100vw !important;
+            height: 100dvw !important;
+            transform: translate(-50%, -50%) rotate(90deg) !important;
+            transform-origin: center center !important;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            overflow: hidden !important;
+        }
+
+        /* Pragmatic Play Official VIP Loading Screen (100% Edge-to-Edge Pure Pitch Dark) */
+        .pp-loader-screen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            width: 100dvw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: #000000 !important;
+            background-color: #000000 !important;
+            z-index: 2147483647 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s ease;
+            overflow: hidden !important;
+            pointer-events: auto;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+            box-sizing: border-box;
+            transform: translate3d(0, 0, 0);
+            transition: transform 0.3s ease;
+        }
+
+        /* Rotate screen during loading when mobile is in portrait */
+        @media screen and (orientation: portrait) and (max-width: 900px) {
+            .pp-loader-container {
+                transform: rotate(90deg) scale(1.05) !important;
+                transform-origin: center center !important;
+            }
+        }
+
+        body.manual-rotate .pp-loader-container {
+            transform: rotate(90deg) scale(1.05) !important;
+            transform-origin: center center !important;
+        }
+
+        .pp-logo-wrap {
+            width: 100%;
+            max-width: 290px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pp-logo-img {
+            width: 100%;
+            max-width: 290px;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            filter: drop-shadow(0 0 10px rgba(255, 122, 0, 0.35));
+        }
+
+        .pp-bar-track {
+            width: 100%;
+            max-width: 320px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+        }
+
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff9500 0%, #ffb700 50%, #ffd000 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 14px rgba(255, 190, 0, 0.95), 0 0 6px #ffe066;
+            transition: width 0.16s ease-out;
+        }
+
+        /* Step 2: Cinematic Video Screen (100% Pure Pitch Black) */
+        .dt-intro-screen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            width: 100dvw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: #000000 !important;
+            background-color: #000000 !important;
+            z-index: 2147483640 !important;
+            display: none;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: auto;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .dt-intro-screen.active {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+
+        .dt-intro-screen.intro-fade-out {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 0.4s ease;
+        }
+
+        .dt-intro-wrapper {
+            position: relative;
+            width: 100vw;
+            width: 100dvw;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Rotate video on mobile portrait (matching loading screen, clash template, and game table) */
+        @media screen and (orientation: portrait) and (max-width: 900px) {
+            .dt-intro-wrapper {
+                position: fixed !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: 100vh !important;
+                width: 100dvh !important;
+                height: 100vw !important;
+                height: 100dvw !important;
+                transform: translate(-50%, -50%) rotate(90deg) !important;
+                transform-origin: center center !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                overflow: hidden !important;
+            }
+        }
+
+        body.manual-rotate .dt-intro-wrapper {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 100vh !important;
+            width: 100dvh !important;
+            height: 100vw !important;
+            height: 100dvw !important;
+            transform: translate(-50%, -50%) rotate(90deg) !important;
+            transform-origin: center center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+        }
+
+        .dt-intro-video {
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+            background: #000000;
+            display: block;
+        }
+
+        .dt-skip-intro-btn {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(0, 0, 0, 0.72);
+            border: 1px solid rgba(255, 215, 0, 0.6);
+            color: #ffd700;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 20;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.25);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: transform 0.15s ease, background 0.15s ease;
+        }
+
+        .dt-skip-intro-btn:active {
+            transform: scale(0.94);
+            background: rgba(255, 215, 0, 0.25);
+        }
+
+        .dt-unmute-prompt {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.82);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 7px 18px;
+            border-radius: 20px;
+            z-index: 20;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            animation: dtPulsePrompt 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes dtPulsePrompt {
+            from { transform: translateX(-50%) scale(0.96); opacity: 0.85; }
+            to { transform: translateX(-50%) scale(1.04); opacity: 1; }
+        }
+
+        /* Step 3: End-of-Video Clash Transition Template */
+        .dt-clash-template {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            width: 100dvw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            background: radial-gradient(ellipse at center, rgba(20, 14, 6, 0.96) 0%, rgba(2, 2, 4, 0.99) 80%, #000000 100%) !important;
+            z-index: 2147483645 !important;
+            display: none;
+            align-items: center !important;
+            justify-content: center !important;
+            opacity: 0;
+            overflow: hidden !important;
+            pointer-events: auto;
+            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .dt-clash-template.active {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+
+        .dt-clash-template.clash-fade-out {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .dt-trans-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 180, 0, 0.28) 0%, rgba(255, 80, 0, 0.12) 40%, transparent 70%);
+            animation: dtGlowBurst 0.8s ease-out forwards;
+            pointer-events: none;
+        }
+
+        .dt-trans-card {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            text-align: center;
+            padding: 20px;
+            animation: dtCardEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @media screen and (orientation: portrait) and (max-width: 900px) {
+            .dt-trans-card {
+                transform: rotate(90deg) scale(1.05) !important;
+                transform-origin: center center !important;
+            }
+        }
+        body.manual-rotate .dt-trans-card {
+            transform: rotate(90deg) scale(1.05) !important;
+            transform-origin: center center !important;
+        }
+
+        .dt-trans-badge {
+            font-size: clamp(11px, 2vw, 13px);
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        .dt-trans-title {
+            font-size: clamp(34px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            line-height: 1;
+            font-family: 'JetBrains Mono', 'Inter', sans-serif;
+        }
+
+        .dt-trans-d {
+            color: #38bdf8;
+            text-shadow: 0 0 25px rgba(56, 189, 248, 0.9), 0 0 50px rgba(56, 189, 248, 0.4);
+        }
+
+        .dt-trans-vs {
+            font-size: 0.6em;
+            color: #ffd700;
+            font-style: italic;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+        }
+
+        .dt-trans-t {
+            color: #f97316;
+            text-shadow: 0 0 25px rgba(249, 115, 22, 0.9), 0 0 50px rgba(249, 115, 22, 0.4);
+        }
+
+        .dt-trans-tag {
+            font-size: clamp(12px, 2.2vw, 16px);
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #ffd700;
+            background: linear-gradient(90deg, rgba(255,215,0,0.05), rgba(255,215,0,0.22), rgba(255,215,0,0.05));
+            border: 1px solid rgba(255, 215, 0, 0.55);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.28), inset 0 0 15px rgba(255, 215, 0, 0.15);
+            padding: 8px 24px;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+
+        .dt-trans-sub {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        @keyframes dtCardEnter {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes dtGlowBurst {
+            0% { transform: scale(0.4); opacity: 0; }
+            40% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="dragon-tiger-page">
+
+    <!-- Step 1: Pure Full Dark VIP Loading Screen (Official Name on Top + Yellow Loading Line Below) -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Cinematic Intro Video with Sound -->
+    <div id="dt-intro-video-screen" class="dt-intro-screen">
+        <div class="dt-intro-wrapper">
+            <video id="dt-intro-video" class="dt-intro-video" playsinline webkit-playsinline x5-playsinline preload="auto">
+                <source src="../assets/videos/dragontiger_intro.mp4?v=2.0" type="video/mp4">
+            </video>
+            <div id="dt-unmute-overlay" class="dt-unmute-prompt" style="display: none;">
+                <span>🔊 TAP FOR SOUND</span>
+            </div>
+            <button id="dt-skip-intro" class="dt-skip-intro-btn" type="button">SKIP ❯</button>
+        </div>
+    </div>
+
+    <!-- Step 3: End-of-Video Clash Transition Template -->
+    <div id="dt-clash-transition-template" class="dt-clash-template">
+        <div class="dt-trans-glow"></div>
+        <div class="dt-trans-card">
+            <div class="dt-trans-badge">PRAGMATIC PLAY LIVE</div>
+            <div class="dt-trans-title">
+                <span class="dt-trans-d">DRAGON</span>
+                <span class="dt-trans-vs">VS</span>
+                <span class="dt-trans-t">TIGER</span>
+            </div>
+            <div class="dt-trans-tag">⚔️ VIP LIVE TABLE ⚔️</div>
+            <div class="dt-trans-sub">ROUND STARTING...</div>
+        </div>
+    </div>
+
+    <div class="dvt-screen" id="dvt-game-screen">
+        <div class="dvt-canvas" id="dvt-game-canvas">
+            <!-- Navigation Buttons (Top Bar) -->
+            <a href="../casino.html" class="dvt-top-btn dvt-btn-back" title="Exit to Casino"></a>
+            <button class="dvt-top-btn dvt-btn-shop" onclick="window.location.href='../deposit.html'" title="Cashier / Shop"></button>
+            <button id="dvt-rotate-btn" class="dvt-top-btn dvt-btn-rotate" onclick="toggleScreenRotation(event)" title="Auto Rotate / Fullscreen">⛶</button>
+            <button id="dvt-sound-toggle" class="dvt-top-btn dvt-btn-sound" title="Casino Music ON">🔊</button>
+
+            <!-- VIP Winner Trophy Zone -->
+            <div class="dvt-vip-winner-zone" title="VIP10 Winner Showcase"></div>
+
+            <!-- Top Animated Live Beasts (Dragon & Tiger) -->
+            <div class="dvt-top-beast dvt-top-dragon" id="dvt-top-dragon" title="Azure Ice Dragon">
+                <div class="dvt-beast-aura dragon-aura"></div>
+                <img src="../assets/games/card/ui/dragon_live.png?v=fulltail" alt="Azure Dragon" class="dvt-beast-sprite dragon-sprite-live">
+                <div class="dvt-beast-flare dragon-eye-flare"></div>
+            </div>
+
+            <div class="dvt-top-beast dvt-top-tiger" id="dvt-top-tiger" title="Ferocious Fire Tiger">
+                <div class="dvt-beast-aura tiger-aura"></div>
+                <img src="../assets/games/card/ui/tiger_live.png?v=hd2" alt="Fire Tiger" class="dvt-beast-sprite tiger-sprite-live">
+                <div class="dvt-beast-flare tiger-eye-flare"></div>
+            </div>
+
+
+            <!-- Top Center Dealt Cards & Countdown Clock with Animated Fire FX -->
+            <div class="dvt-card-fire-fx dvt-fire-dragon" id="dragon-card-fire">
+                <div class="flame-base"></div>
+                <div class="flame-tongue t1"></div>
+                <div class="flame-tongue t2"></div>
+                <div class="flame-tongue t3"></div>
+                <div class="flame-embers">
+                    <span class="ember e1"></span>
+                    <span class="ember e2"></span>
+                    <span class="ember e3"></span>
+                    <span class="ember e4"></span>
+                    <span class="ember e5"></span>
+                </div>
+            </div>
+            <div class="dvt-card-slot" id="dragon-card-slot">
+                <div class="dvt-card-inner">
+                    <div class="dvt-card-face back"></div>
+                </div>
+            </div>
+
+            <div class="dvt-center-clock-wrap" id="dvt-center-badge">
+                <div class="dvt-timepiece-widget" id="dvt-timepiece">
+                    <div class="tp-top-loop"></div>
+                    <div class="tp-crown"></div>
+                    <div class="tp-case">
+                        <svg class="tp-ring-svg" viewBox="0 0 46 46">
+                            <defs>
+                                <linearGradient id="tp-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fef08a"/>
+                                    <stop offset="50%" stop-color="#f59e0b"/>
+                                    <stop offset="100%" stop-color="#b45309"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="tp-track" cx="23" cy="23" r="19.5"></circle>
+                            <circle class="tp-progress" id="tp-progress-bar" cx="23" cy="23" r="19.5"></circle>
+                        </svg>
+                        <div class="tp-dial">
+                            <div class="tp-ticks"></div>
+                            <div class="tp-sweeper" id="tp-sweeper-hand"></div>
+                            <div class="tp-glass-glare"></div>
+                            <div class="tp-pivot"></div>
+                            <div class="tp-display" id="tp-display-val">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dvt-card-fire-fx dvt-fire-tiger" id="tiger-card-fire">
+                <div class="flame-base"></div>
+                <div class="flame-tongue t1"></div>
+                <div class="flame-tongue t2"></div>
+                <div class="flame-tongue t3"></div>
+                <div class="flame-embers">
+                    <span class="ember e1"></span>
+                    <span class="ember e2"></span>
+                    <span class="ember e3"></span>
+                    <span class="ember e4"></span>
+                    <span class="ember e5"></span>
+                </div>
+            </div>
+            <div class="dvt-card-slot" id="tiger-card-slot">
+                <div class="dvt-card-inner">
+                    <div class="dvt-card-face back"></div>
+                </div>
+            </div>
+
+            <!-- VIP Main Betting Table Chassis (from User Reference Theme) -->
+            <div class="dvt-table-chassis" id="dvt-table-chassis">
+                <div class="dvt-chassis-decor left"></div>
+                <div class="dvt-chassis-decor right"></div>
+
+                <!-- Top Bead Road Bar (Matching Reference Picture) -->
+                <div class="dvt-table-road-bar">
+                    <div class="dvt-road-pills-wrap" id="dvt-road-beads">
+                        <!-- Dynamically populated D / T / Tie rounded square tiles -->
+                    </div>
+                    <button class="dvt-road-trend-btn" title="Trend History">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="#000" stroke="#000" stroke-width="0.8"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 3 Main Betting Cards -->
+                <div class="dvt-table-cards-row">
+                    <!-- DRAGON 2x -->
+                    <div class="dvt-zone dvt-zone-card dvt-card-dragon" id="dvt-bet-dragon" title="Bet on Dragon (2x)">
+                        <div class="dvt-zone-watermark watermark-dragon">
+                            <svg viewBox="0 0 100 100" class="svg-watermark">
+                                <path fill="currentColor" d="M72,25 C68,22 62,22 58,26 C54,23 48,22 42,26 C38,18 28,15 20,20 C14,24 12,32 15,38 C12,42 10,48 12,54 C15,62 24,68 32,68 C35,74 42,80 50,82 C58,84 68,80 72,74 C78,72 84,66 85,58 C86,50 82,44 76,40 C80,34 78,28 72,25 Z M32,42 C30,42 28,40 28,38 C28,36 30,34 32,34 C34,34 36,36 36,38 C36,40 34,42 32,42 Z" opacity="0.32"/>
+                            </svg>
+                        </div>
+                        <div class="dvt-zone-title-group">
+                            <div class="dvt-zone-name">DRAGON</div>
+                            <div class="dvt-zone-payout">2x</div>
+                        </div>
+                        <div class="dvt-zone-counter" id="dvt-room-dragon">0</div>
+                        <div class="dvt-chips-pool"></div>
+                        <div class="dvt-my-bet-tag" id="dvt-my-bet-dragon">MY: ₨ 0</div>
+                    </div>
+
+                    <!-- TIE 16x -->
+                    <div class="dvt-zone dvt-zone-card dvt-card-tie" id="dvt-bet-tie" title="Bet on Tie (16x)">
+                        <div class="dvt-zone-watermark watermark-tie">
+                            <svg viewBox="0 0 120 80" class="svg-watermark">
+                                <path fill="currentColor" d="M35,20 C30,15 20,18 15,25 C10,32 12,42 20,48 C25,52 35,50 40,42 M85,20 C90,15 100,18 105,25 C110,32 108,42 100,48 C95,52 85,50 80,42" opacity="0.32"/>
+                            </svg>
+                        </div>
+                        <div class="dvt-zone-title-group">
+                            <div class="dvt-zone-name">TIE</div>
+                            <div class="dvt-zone-payout">16x</div>
+                        </div>
+                        <div class="dvt-zone-counter" id="dvt-room-tie">0</div>
+                        <div class="dvt-chips-pool"></div>
+                        <div class="dvt-my-bet-tag" id="dvt-my-bet-tie">MY: ₨ 0</div>
+                    </div>
+
+                    <!-- TIGER 2x -->
+                    <div class="dvt-zone dvt-zone-card dvt-card-tiger" id="dvt-bet-tiger" title="Bet on Tiger (2x)">
+                        <div class="dvt-zone-watermark watermark-tiger">
+                            <svg viewBox="0 0 100 100" class="svg-watermark">
+                                <path fill="currentColor" d="M50,15 C42,15 35,20 30,26 C22,24 16,30 18,38 C14,44 16,52 20,58 C26,66 36,70 44,72 C48,74 52,74 56,72 C64,70 74,66 80,58 C84,52 86,44 82,38 C84,30 78,24 70,26 C65,20 58,15 50,15 Z M36,44 C34,44 32,42 32,40 C32,38 34,36 36,36 C38,36 40,38 40,40 C40,42 38,44 36,44 Z M64,44 C62,44 60,42 60,40 C60,38 62,36 64,36 C66,36 68,38 68,40 C68,42 66,44 64,44 Z" opacity="0.32"/>
+                            </svg>
+                        </div>
+                        <div class="dvt-zone-title-group">
+                            <div class="dvt-zone-name">TIGER</div>
+                            <div class="dvt-zone-payout">2x</div>
+                        </div>
+                        <div class="dvt-zone-counter" id="dvt-room-tiger">0</div>
+                        <div class="dvt-chips-pool"></div>
+                        <div class="dvt-my-bet-tag" id="dvt-my-bet-tiger">MY: ₨ 0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ratio Indicator Bar below table -->
+            <div class="dvt-ratio-bar-zone">
+                <div class="dvt-ratio-bar">
+                    <div class="dvt-ratio-d" id="dvt-ratio-d" style="width:48%;"></div>
+                    <div class="dvt-ratio-t" id="dvt-ratio-t" style="width:52%;"></div>
+                </div>
+                <div class="dvt-ratio-labels">
+                    <span id="dvt-ratio-d-label" style="color:#60a5fa;">D: 48%</span>
+                    <span id="dvt-ratio-t-label" style="color:#fb923c;">T: 52%</span>
+                </div>
+            </div>
+
+            <!-- Seated Online Players (Bot under dragon cleared) -->
+            <div id="seat-2" class="dvt-seat"></div>
+            <div id="seat-3" class="dvt-seat"></div>
+
+            <div id="seat-4" class="dvt-seat"></div>
+            <div id="seat-5" class="dvt-seat"></div>
+            <div id="seat-6" class="dvt-seat"></div>
+
+            <!-- Bottom Left: User Balance (Avatar Removed) -->
+            <div class="dvt-user-bal-zone" id="dvt-user-balance-num" title="Your Balance">
+                <span class="dvt-ub-icon">💰</span>
+                <span class="dvt-ub-label">BAL:</span>
+                <span class="dvt-ub-val" id="dvt-user-balance-val">₨ 0</span>
+            </div>
+
+            <!-- Bottom Center: Chips Rack OR Watching Bar -->
+            <div class="dvt-chips-rack-zone" id="dvt-chips-rack">
+                <!-- Dynamically populated casino chips -->
+            </div>
+
+            <div class="dvt-watching-bar" id="dvt-watching-bar">
+                <span>Watching... Balance should be more than 20 to play.</span>
+                <button class="dvt-btn-topup" onclick="window.location.href='../deposit.html'">🛒 Top Up</button>
+            </div>
+
+            <!-- Bottom Right: Rebet Click Zone -->
+            <button id="dvt-rebet-btn" class="dvt-rebet-zone" title="Rebet Previous Bets"></button>
+
+            <!-- Cinematic Overlays: Pure Vector Animated HD Stop Betting Banner -->
+            <div class="dvt-stop-betting-banner" id="dvt-stop-betting-banner">
+                <div class="dvt-sb-sunburst"></div>
+                <div class="dvt-sb-card">
+                    <div class="dvt-sb-shield">
+                        <div class="dvt-sb-top-tag">
+                            <span class="dvt-sb-star">★</span>
+                            <span class="dvt-sb-tag-txt">ROUND CLOSED</span>
+                            <span class="dvt-sb-star">★</span>
+                        </div>
+                        <div class="dvt-sb-main-title">
+                            <span class="dvt-sb-word stop">STOP</span>
+                            <span class="dvt-sb-word betting">BETTING</span>
+                        </div>
+                        <div class="dvt-sb-sub-bar">
+                            <div class="dvt-sb-lock-icon">🔒</div>
+                            <span class="dvt-sb-sub-txt">NO MORE BETS ACCEPTED</span>
+                            <div class="dvt-sb-lock-icon">🔒</div>
+                        </div>
+                        <div class="dvt-sb-shimmer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ultra HD Animated Dragon vs Tiger Clash Arena -->
+            <div class="dvt-vs-clash-overlay" id="dvt-vs-clash-overlay">
+                <div class="dvt-clash-bg-lightning"></div>
+                <div class="dvt-clash-arena">
+                    <div class="dvt-clash-beast-side dragon-side">
+                        <img src="../assets/games/card/ui/dragon_live.png?v=fulltail" alt="Dragon" class="dvt-clash-beast-img dragon-clash-img">
+                        <div class="dvt-clash-beast-label dragon-txt">DRAGON</div>
+                    </div>
+                    <div class="dvt-clash-center-zone">
+                        <div class="dvt-clash-shockwave"></div>
+                        <div class="dvt-clash-vs-emblem">
+                            <span class="dvt-clash-vs-txt">VS</span>
+                        </div>
+                        <div class="dvt-clash-sub-title">VIP SHOWDOWN</div>
+                    </div>
+                    <div class="dvt-clash-beast-side tiger-side">
+                        <img src="../assets/games/card/ui/tiger_live.png?v=hd2" alt="Tiger" class="dvt-clash-beast-img tiger-clash-img">
+                        <div class="dvt-clash-beast-label tiger-txt">TIGER</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Core Engine Scripts -->
+    <script src="../js/api_bridge.js?v=2.5"></script>
+    <script src="../js/wallet.js?v=2.5"></script>
+    <script src="../js/core.js?v=2.5"></script>
+    <script src="../js/games/card_game.js?v=31.0_rtp"></script>
+    <script>
+        let isFullscreenPending = false;
+        function enforceLandscapeOrientation() {
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                } else if (screen.lockOrientation) {
+                    screen.lockOrientation('landscape');
+                } else if (screen.mozLockOrientation) {
+                    screen.mozLockOrientation('landscape');
+                } else if (screen.msLockOrientation) {
+                    screen.msLockOrientation('landscape');
+                }
+            } catch(e) {}
+        }
+
+        function requestFullScreenLandscape() {
+            enforceLandscapeOrientation();
+            if (document.fullscreenElement || document.webkitFullscreenElement || isFullscreenPending) {
+                return;
+            }
+            const docEl = document.documentElement;
+            const req = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+            if (req) {
+                isFullscreenPending = true;
+                let prom;
+                try {
+                    prom = req.call(docEl, { navigationUI: 'hide' });
+                } catch(err) {
+                    try { prom = req.call(docEl); } catch(err2) {}
+                }
+                if (prom && prom.then) {
+                    prom.then(() => {
+                        isFullscreenPending = false;
+                        enforceLandscapeOrientation();
+                    }).catch(() => {
+                        isFullscreenPending = false;
+                    });
+                } else {
+                    setTimeout(() => { isFullscreenPending = false; }, 400);
+                    enforceLandscapeOrientation();
+                }
+            } else {
+                enforceLandscapeOrientation();
+            }
+            try { window.scrollTo(0, 0); } catch(e) {}
+        }
+
+        function toggleScreenRotation(e) {
+            if (e) e.stopPropagation();
+            requestFullScreenLandscape();
+            document.body.classList.toggle('manual-rotate');
+        }
+
+        // Suppress Google Chrome installation prompt popup
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Instant automatic attempts
+        try { requestFullScreenLandscape(); } catch(e) {}
+        window.addEventListener('load', () => { try { requestFullScreenLandscape(); } catch(e) {} });
+        window.addEventListener('bwn:loading_complete', () => { try { requestFullScreenLandscape(); } catch(e) {} });
+
+        // Capture user touch or click anywhere to immediately rotate screen into Fullscreen Landscape
+        window.addEventListener('pointerdown', (e) => {
+            requestFullScreenLandscape();
+        }, { capture: true, passive: true });
+
+        // Authentic Game Intro Controller:
+        // 1. Loading Screen (Official Pragmatic Play + Yellow Bar)
+        // 2. Dragon vs Tiger Cinematic Intro Video WITH FULL AUDIO
+        // 3. VIP Live Clash Transition Template
+        // 4. Reveal Live Table & Start Game Round
+        function ensureGameInit() {
+            if (window.cardGame && typeof window.cardGame.init === 'function') {
+                window.cardGame.init();
+            }
+
+            // Sync user avatar and ID from session
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    if (u && u.avatar) {
+                        const av = document.getElementById('dvt-user-avatar');
+                        if (av) av.src = u.avatar;
+                    }
+                }
+            } catch (e) {}
+        }
+
+        (function initGameIntroFlow() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            const introScreen = document.getElementById('dt-intro-video-screen');
+            const introVideo = document.getElementById('dt-intro-video');
+            const skipBtn = document.getElementById('dt-skip-intro');
+            const clashScreen = document.getElementById('dt-clash-transition-template');
+            const unmuteOverlay = document.getElementById('dt-unmute-overlay');
+
+            if (!ppScreen || !ppBar) {
+                ensureGameInit();
+                return;
+            }
+
+            // Enforce screen rotation & landscape immediately on load
+            if (typeof requestFullScreenLandscape === 'function') {
+                try { requestFullScreenLandscape(); } catch(e) {}
+            }
+
+            // Pre-arm / unlock audio on any early user touch during loading
+            let audioBlessed = false;
+            const unlockAudioEarly = () => {
+                audioBlessed = true;
+                if (introVideo) {
+                    introVideo.muted = false;
+                    introVideo.volume = 1.0;
+                }
+            };
+            window.addEventListener('pointerdown', unlockAudioEarly, { passive: true });
+            window.addEventListener('touchstart', unlockAudioEarly, { passive: true });
+            window.addEventListener('click', unlockAudioEarly, { passive: true });
+
+            let flowCompleted = false;
+
+            // Step 4: Reveal Game Table and initialize game engine
+            function launchGameTable() {
+                if (flowCompleted) return;
+                flowCompleted = true;
+
+                if (introVideo) {
+                    try {
+                        introVideo.pause();
+                        introVideo.muted = true;
+                        introVideo.currentTime = 0;
+                    } catch(e) {}
+                }
+
+                if (clashScreen) {
+                    clashScreen.classList.add('clash-fade-out');
+                    setTimeout(() => {
+                        if (clashScreen.parentNode) clashScreen.parentNode.removeChild(clashScreen);
+                    }, 400);
+                }
+                if (introScreen && introScreen.parentNode) {
+                    introScreen.parentNode.removeChild(introScreen);
+                }
+                if (ppScreen && ppScreen.parentNode) {
+                    ppScreen.parentNode.removeChild(ppScreen);
+                }
+
+                if (typeof requestFullScreenLandscape === 'function') {
+                    try { requestFullScreenLandscape(); } catch(e) {}
+                }
+
+                ensureGameInit();
+            }
+
+            // Step 3: End-of-Video Clash Transition Template (~850ms)
+            let clashTriggered = false;
+            function showClashTemplate() {
+                if (clashTriggered) return;
+                clashTriggered = true;
+
+                if (introVideo) {
+                    try {
+                        introVideo.pause();
+                        introVideo.muted = true;
+                        introVideo.currentTime = 0;
+                    } catch(e) {}
+                }
+                if (introScreen) {
+                    introScreen.classList.add('intro-fade-out');
+                    setTimeout(() => {
+                        introScreen.style.display = 'none';
+                    }, 350);
+                }
+
+                if (clashScreen) {
+                    clashScreen.classList.add('active');
+                    setTimeout(() => {
+                        launchGameTable();
+                    }, 850);
+                } else {
+                    launchGameTable();
+                }
+            }
+
+            // Step 2: Play Intro Video with Sound (Audio only during video)
+            function startIntroVideo() {
+                // Fade out loading screen smoothly
+                ppScreen.classList.add('pp-fade-out');
+                setTimeout(() => {
+                    ppScreen.style.display = 'none';
+                }, 400);
+
+                if (!introScreen || !introVideo) {
+                    showClashTemplate();
+                    return;
+                }
+
+                introScreen.classList.add('active');
+                introVideo.currentTime = 0;
+                introVideo.muted = false;
+                introVideo.volume = 1.0;
+
+                // On video end, stop video audio immediately and transition
+                introVideo.onended = () => {
+                    try { introVideo.pause(); introVideo.muted = true; } catch(e) {}
+                    showClashTemplate();
+                };
+
+                // Safety timeout in case video stalls or ends
+                const safetyTimer = setTimeout(() => {
+                    try { introVideo.pause(); introVideo.muted = true; } catch(e) {}
+                    showClashTemplate();
+                }, 4500);
+
+                introVideo.addEventListener('ended', () => clearTimeout(safetyTimer));
+
+                if (skipBtn) {
+                    skipBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        clearTimeout(safetyTimer);
+                        try { introVideo.pause(); introVideo.muted = true; } catch(err) {}
+                        showClashTemplate();
+                    };
+                }
+
+                // Play video with audio
+                try {
+                    const playPromise = introVideo.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                            // Browser autoplay policy blocked unmuted sound -> fallback to muted & prompt tap
+                            introVideo.muted = true;
+                            introVideo.play().catch(() => {
+                                showClashTemplate();
+                            });
+                            if (unmuteOverlay) {
+                                unmuteOverlay.style.display = 'flex';
+                            }
+                            const unmuteOnTap = () => {
+                                introVideo.muted = false;
+                                introVideo.volume = 1.0;
+                                if (unmuteOverlay) unmuteOverlay.style.display = 'none';
+                                window.removeEventListener('pointerdown', unmuteOnTap);
+                                window.removeEventListener('touchstart', unmuteOnTap);
+                                window.removeEventListener('click', unmuteOnTap);
+                            };
+                            window.addEventListener('pointerdown', unmuteOnTap, { once: true });
+                            window.addEventListener('touchstart', unmuteOnTap, { once: true });
+                            window.addEventListener('click', unmuteOnTap, { once: true });
+                        });
+                    }
+                } catch(e) {
+                    showClashTemplate();
+                }
+            }
+
+            // Step 1: Loading Progress Bar (0% to 100%)
+            let pct = 0;
+            const stepLoading = () => {
+                if (pct < 30) {
+                    pct += Math.floor(Math.random() * 8) + 12;
+                } else if (pct < 70) {
+                    pct += Math.floor(Math.random() * 10) + 10;
+                } else if (pct < 95) {
+                    pct += Math.floor(Math.random() * 8) + 6;
+                } else {
+                    pct = 100;
+                }
+
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+
+                if (pct < 100) {
+                    const delay = pct > 60 ? (Math.random() * 120 + 90) : (Math.random() * 80 + 60);
+                    setTimeout(stepLoading, delay);
+                } else {
+                    // Loading complete! Transition directly to Intro Video
+                    setTimeout(() => {
+                        startIntroVideo();
+                    }, 200);
+                }
+            };
+
+            setTimeout(stepLoading, 80);
+        })();
+    </script>
+</body>
+</html>

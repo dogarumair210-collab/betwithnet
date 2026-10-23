@@ -1,0 +1,4703 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#070913">
+    <title>Ludo Quick - JILI Official (#101392) | Bet With Net</title>
+    
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="../js/wallet.js?v=4.0"></script>
+    <script src="../js/core.js?v=4.0"></script>
+
+    <style>
+        /* =========================================================
+           1. RESET & VIEWPORT LOCK (100% Mobile & Desktop HD)
+           ========================================================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --gold: #ffbe1a;
+            --gold-bright: #ffe066;
+            --gold-dark: #b87b00;
+            --jili-red: #ff334b;
+            --jili-green: #00d26a;
+            --jili-yellow: #f59e0b;
+            --jili-blue: #00a2ff;
+            --bg-dark: #070913;
+            --board-border: #231b15;
+            --card-gold: linear-gradient(135deg, #ffd700, #ff8c00);
+            --ambient-bg: radial-gradient(circle at 50% 40%, rgba(55, 18, 80, 0.55) 0%, rgba(12, 9, 26, 0.96) 75%, #04030a 100%);
+            --grid-color: rgba(255, 215, 0, 0.045);
+            --board-bg: #161026;
+            --board-border-color: #ffd700;
+            --board-glow: 0 12px 45px rgba(0,0,0,0.85), 0 0 35px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.25);
+        }
+
+        /* 1. Royal VIP Gold Theme (Default) */
+        body.theme-royal-gold {
+            --ambient-bg: radial-gradient(circle at 50% 40%, rgba(55, 18, 80, 0.55) 0%, rgba(12, 9, 26, 0.96) 75%, #04030a 100%);
+            --grid-color: rgba(255, 215, 0, 0.045);
+            --board-bg: #161026;
+            --board-border-color: #ffd700;
+            --board-glow: 0 12px 45px rgba(0,0,0,0.85), 0 0 35px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.25);
+        }
+
+        /* 2. Cyber Neon Matrix Theme */
+        body.theme-cyber-neon {
+            --ambient-bg: radial-gradient(circle at 50% 40%, rgba(0, 50, 110, 0.55) 0%, rgba(4, 9, 22, 0.98) 75%, #010309 100%);
+            --grid-color: rgba(0, 240, 255, 0.08);
+            --board-bg: #070d1e;
+            --board-border-color: #00f0ff;
+            --board-glow: 0 12px 45px rgba(0,0,0,0.92), 0 0 40px rgba(0, 240, 255, 0.5), inset 0 0 15px rgba(255, 0, 128, 0.25);
+        }
+        body.theme-cyber-neon .board-tile:not([class*="tile-red"]):not([class*="tile-green"]):not([class*="tile-yellow"]):not([class*="tile-blue"]):not([class*="tile-money-bag"]):not([class*="tile-chance-card"]) {
+            background: #0d1b30 !important;
+            border: 1px solid rgba(0, 240, 255, 0.3) !important;
+            box-shadow: inset 0 0 5px rgba(0, 240, 255, 0.2) !important;
+        }
+        body.theme-cyber-neon .dice-station {
+            filter: drop-shadow(0 0 12px #00f0ff);
+        }
+
+        /* 3. Emerald Monte Carlo Theme */
+        body.theme-emerald-classic {
+            --ambient-bg: radial-gradient(circle at 50% 40%, rgba(6, 52, 30, 0.65) 0%, rgba(4, 18, 11, 0.96) 75%, #010804 100%);
+            --grid-color: rgba(0, 255, 136, 0.05);
+            --board-bg: #0a1f14;
+            --board-border-color: #ffd700;
+            --board-glow: 0 12px 45px rgba(0,0,0,0.9), 0 0 35px rgba(0, 210, 106, 0.4), inset 0 0 20px rgba(0,0,0,0.85);
+        }
+        body.theme-emerald-classic .board-tile:not([class*="tile-red"]):not([class*="tile-green"]):not([class*="tile-yellow"]):not([class*="tile-blue"]):not([class*="tile-money-bag"]):not([class*="tile-chance-card"]) {
+            background: #fbf7ee !important;
+            border: 1px solid rgba(13, 71, 38, 0.2) !important;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background: #05070d;
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #ffffff;
+            position: fixed;
+            inset: 0;
+            transition: background 0.4s ease;
+        }
+
+        /* Ambient luxury casino room backdrop */
+        .ambient-backdrop {
+            position: fixed;
+            inset: 0;
+            background: var(--ambient-bg);
+            z-index: 0;
+            pointer-events: none;
+            transition: background 0.5s ease;
+        }
+
+        .ambient-grid {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 1;
+            transition: background-image 0.5s ease;
+        }
+
+        /* =========================================================
+           2. JILI OFFICIAL INTRO SCREEN (#101392)
+           ========================================================= */
+        #jiliLoadingScreen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 45%, #151128 0%, #080914 60%, #020307 100%);
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.6s ease;
+        }
+
+        #jiliLoadingScreen.loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .jili-brand-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            animation: jiliPulse 2.4s ease-in-out infinite;
+        }
+
+        .jili-crown-icon {
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 0 25px rgba(255, 190, 26, 0.7));
+        }
+
+        .jili-game-title {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 0%, #ffe066 40%, #ff9900 80%, #b85d00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 18px rgba(255, 153, 0, 0.55));
+        }
+
+        .jili-badge-sub {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 190, 26, 0.12);
+            border: 1px solid rgba(255, 190, 26, 0.35);
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 190, 26, 0.2);
+        }
+
+        .jili-loader-bar-wrap {
+            width: 260px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 999px;
+            margin-top: 28px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 190, 26, 0.25);
+        }
+
+        .jili-loader-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff9900, #ffd700, #fff5a6);
+            border-radius: 999px;
+            box-shadow: 0 0 12px #ffc107;
+            transition: width 0.15s ease-out;
+        }
+
+        .jili-loading-text {
+            margin-top: 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @keyframes jiliPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* =========================================================
+           3. GAME CABINET & TOP NAVIGATION BAR
+           ========================================================= */
+        .game-cabinet {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .game-header {
+            height: 52px;
+            padding: 0 14px;
+            background: linear-gradient(180deg, rgba(14, 18, 32, 0.96) 0%, rgba(8, 10, 20, 0.85) 100%);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+            flex-shrink: 0;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-header-back {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-header-back:active {
+            transform: scale(0.92);
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .header-title-box {
+            display: flex;
+            flex-direction: column;
+        }
+        .header-game-name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+        .header-game-id {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #ffbe1a;
+            letter-spacing: 0.5px;
+        }
+
+        /* Balance display chip */
+        .header-wallet-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 0 8px rgba(255, 215, 0, 0.1);
+        }
+        .wallet-info {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            line-height: 1.15;
+        }
+        .wallet-label {
+            font-size: 8px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+        .wallet-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            color: #55ff99;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-chip-deposit {
+            background: linear-gradient(135deg, #00d26a, #009944);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 9px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 210, 106, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.15s ease;
+        }
+        .btn-chip-deposit:active { transform: scale(0.92); }
+
+        .btn-icon-hud {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .btn-icon-hud:active { transform: scale(0.92); }
+
+        /* =========================================================
+           4. MAIN ARENA (LUDO BOARD & AVATARS)
+           ========================================================= */
+        .game-arena {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6px;
+            overflow: hidden;
+        }
+
+        /* 4 Player Banners / Info Badges */
+        .player-pod {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 9px;
+            border-radius: 14px;
+            background: rgba(12, 16, 30, 0.85);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            z-index: 15;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease;
+            max-width: 145px;
+        }
+
+        .player-pod.active-turn {
+            border-color: #ffd700;
+            box-shadow: 0 0 18px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 215, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .pod-avatar-wrap {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .pod-timer-svg {
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 44px;
+            height: 44px;
+            transform: rotate(-90deg);
+            pointer-events: none;
+            z-index: 5;
+        }
+        .timer-track {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 2.5;
+        }
+        .timer-stroke {
+            fill: none;
+            stroke: #00ff88;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-dasharray: 120;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.12s linear, stroke 0.3s ease;
+        }
+        .pod-avatar-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid #fff;
+            z-index: 2;
+        }
+        .pod-flag {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            font-size: 11px;
+            line-height: 1;
+            z-index: 6;
+        }
+
+        .pod-meta {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .pod-name {
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pod-status {
+            font-size: 9px;
+            font-weight: 700;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .pod-score-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            color: #ffd700;
+        }
+
+        /* Speech bubbles for emoji reactions */
+        .pod-speech {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: #ffffff;
+            color: #111;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            white-space: nowrap;
+            pointer-events: none;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 25;
+        }
+        .pod-speech.show {
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* Pod positions */
+        .pod-red { bottom: 12px; left: 12px; border-left: 4px solid var(--jili-red); }
+        .pod-green { top: 12px; left: 12px; border-left: 4px solid var(--jili-green); }
+        .pod-yellow { top: 12px; right: 12px; border-right: 4px solid var(--jili-yellow); }
+        .pod-blue { bottom: 12px; right: 12px; border-right: 4px solid var(--jili-blue); }
+
+        /* FLOATING CHAT / EMOTE PICKER PANEL */
+        .chat-emote-panel {
+            position: absolute;
+            bottom: 125px;
+            right: 14px;
+            background: radial-gradient(circle at 50% 0%, #251642 0%, #0d0918 100%);
+            border: 2px solid #ffd700;
+            border-radius: 18px;
+            padding: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 25px rgba(255,215,0,0.35);
+            z-index: 100;
+            width: 240px;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9) translateY(10px);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .chat-emote-panel.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1) translateY(0);
+        }
+        .emote-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .btn-close-emotes {
+            background: none;
+            border: none;
+            color: #bbb;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .emotes-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .btn-quick-emote {
+            width: 36px;
+            height: 36px;
+            font-size: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease, background 0.15s ease;
+        }
+        .btn-quick-emote:hover, .btn-quick-emote:active {
+            transform: scale(1.18);
+            background: rgba(255, 215, 0, 0.25);
+        }
+        .quick-phrases-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .btn-quick-phrase {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 8px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-quick-phrase:hover, .btn-quick-phrase:active {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        /* KNOCKOUT EXPLOSION EFFECT */
+        .knockout-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 50;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            opacity: 0;
+        }
+        .knockout-overlay.show {
+            transform: translate(-50%, -50%) scale(1.15);
+            opacity: 1;
+        }
+        .knockout-badge {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ff2a44;
+            text-shadow: 0 0 15px rgba(255, 42, 68, 0.8), 0 4px 8px #000;
+            letter-spacing: 1px;
+            animation: knockoutShake 0.4s ease-in-out;
+        }
+        @keyframes knockoutShake {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-8deg) scale(1.1); }
+            75% { transform: rotate(8deg) scale(1.1); }
+        }
+        .knockout-bounty-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+            color: #ffd700;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #ffd700;
+            padding: 2px 10px;
+            border-radius: 999px;
+            margin-top: 4px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* MONEY BAG COIN CASCADE PARTICLES */
+        .coin-float-particle {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff 0%, #ffd700 60%, #cc8800 100%);
+            box-shadow: 0 0 10px #ffd700, inset 0 1px 1px #fff;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 100;
+            animation: coinFlyUp 0.8s ease-out forwards;
+        }
+        @keyframes coinFlyUp {
+            0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { opacity: 0; transform: translate(var(--tx, 0px), var(--ty, -90px)) scale(0.6) rotate(360deg); }
+        }
+
+        /* =========================================================
+           5. THE 15x15 LUDO BOARD CABINET (Authentic 1xBet / JILI 3D Table)
+           ========================================================= */
+        .board-container {
+            width: min(92vw, calc(100vh - 210px), 430px);
+            height: min(92vw, calc(100vh - 210px), 430px);
+            aspect-ratio: 1 / 1;
+            background: radial-gradient(circle at 50% 50%, var(--board-bg, #1e1538) 0%, #0d0918 100%);
+            border-radius: 24px;
+            /* Luxurious 3D Wood & Gold Cushioned Casino Table Rail */
+            border: 5px solid #cca03a;
+            outline: 3px solid rgba(255, 215, 0, 0.45);
+            outline-offset: -2px;
+            box-shadow: 
+                0 22px 65px rgba(0, 0, 0, 0.96), 
+                0 0 45px rgba(255, 190, 26, 0.38), 
+                inset 0 0 35px rgba(0, 0, 0, 0.9),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-template-rows: repeat(15, 1fr);
+            gap: 1.5px;
+            padding: 4px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        /* 4 Decorative Golden Brass Corner Rivets/Studs */
+        .board-container::before, .board-container::after {
+            content: '';
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ffd700 45%, #8a5e00 100%);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.85), inset 0 1px 1px #fff;
+            z-index: 6;
+            pointer-events: none;
+        }
+        .board-container::before { top: 5px; left: 5px; }
+        .board-container::after { top: 5px; right: 5px; }
+
+        /* Board Home Bases (6x6 corners) */
+        .ludo-base {
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.22);
+            overflow: hidden;
+        }
+
+        .base-inner-yard {
+            width: 78%;
+            height: 78%;
+            border-radius: 12px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.98) 0%, rgba(240, 240, 246, 0.95) 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            padding: 6px;
+            gap: 7px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.55), inset 0 1px 3px rgba(255,255,255,0.8);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .base-green { grid-column: 1 / 7; grid-row: 1 / 7; background: radial-gradient(circle at 30% 30%, #00f07c 0%, #009e4f 60%, #005a2d 100%); }
+        .base-yellow { grid-column: 10 / 16; grid-row: 1 / 7; background: radial-gradient(circle at 30% 30%, #ffd24d 0%, #f59e0b 60%, #995c00 100%); }
+        .base-red { grid-column: 1 / 7; grid-row: 10 / 16; background: radial-gradient(circle at 30% 30%, #ff5266 0%, #d9142b 60%, #73000d 100%); }
+        .base-blue { grid-column: 10 / 16; grid-row: 10 / 16; background: radial-gradient(circle at 30% 30%, #38bdf8 0%, #0284c7 60%, #034870 100%); }
+
+        .yard-token-slot {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4), 0 1px 1px rgba(255,255,255,0.6);
+            border: 1px dashed rgba(0, 0, 0, 0.18);
+            position: relative;
+        }
+
+        /* Center Finish Triangle / Podium (3x3 center) */
+        .ludo-center-podium {
+            grid-column: 7 / 10;
+            grid-row: 7 / 10;
+            background: radial-gradient(circle, #331554 0%, #150826 100%);
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #ffd700;
+            box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.45), 0 0 16px rgba(255, 215, 0, 0.35);
+        }
+
+        .center-triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .center-tri-top { top: 0; left: 0; right: 0; border-width: 25px 25px 0 25px; border-color: #00d26a transparent transparent transparent; }
+        .center-tri-bottom { bottom: 0; left: 0; right: 0; border-width: 0 25px 25px 25px; border-color: transparent transparent #ff334b transparent; }
+        .center-tri-left { left: 0; top: 0; bottom: 0; border-width: 25px 0 25px 25px; border-color: transparent transparent transparent #f59e0b; }
+        .center-tri-right { right: 0; top: 0; bottom: 0; border-width: 25px 25px 25px 0; border-color: transparent #00a2ff transparent transparent; }
+
+        .center-trophy-pedestal {
+            position: relative;
+            z-index: 5;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff6a1 0%, #ffd700 50%, #d47a00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.9), inset 0 2px 4px #fff;
+            border: 1.5px solid #fff;
+            animation: trophyGlow 2s infinite alternate;
+        }
+        @keyframes trophyGlow {
+            0% { transform: scale(0.96) rotate(-2deg); box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+            100% { transform: scale(1.08) rotate(2deg); box-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 140, 0, 0.6); }
+        }
+
+        /* Generic Board Square Cell (High Quality 3D Ivory Tiles) */
+        .board-tile {
+            background: linear-gradient(135deg, #ffffff 0%, #ececf2 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 
+                inset 0 1.5px 2px rgba(255,255,255,0.95), 
+                inset 0 -1.5px 2px rgba(0,0,0,0.14), 
+                0 1px 2px rgba(0,0,0,0.3);
+            border: 0.5px solid rgba(0,0,0,0.06);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Colored Home columns and start paths with luxury velvet felt gradients */
+        .tile-red { 
+            background: linear-gradient(135deg, #ff4d64 0%, #d1001f 100%) !important; 
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -2px 3px rgba(0,0,0,0.35) !important;
+        }
+        .tile-green { 
+            background: linear-gradient(135deg, #00e676 0%, #008f44 100%) !important; 
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -2px 3px rgba(0,0,0,0.35) !important;
+        }
+        .tile-yellow { 
+            background: linear-gradient(135deg, #ffca28 0%, #d97706 100%) !important; 
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -2px 3px rgba(0,0,0,0.35) !important;
+        }
+        .tile-blue { 
+            background: linear-gradient(135deg, #38bdf8 0%, #0277bd 100%) !important; 
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -2px 3px rgba(0,0,0,0.35) !important;
+        }
+
+        /* Directional Run Arrows for Player Starting Tiles */
+        .tile-start-arrow {
+            position: absolute;
+            font-size: 11px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+            z-index: 2;
+            animation: startArrowBounce 1.5s infinite ease-in-out;
+        }
+        @keyframes startArrowBounce {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 0 5px #ffd700); }
+        }
+
+        /* Star Safe Tiles (⭐️) */
+        .tile-safe {
+            background: radial-gradient(circle, #fff9db 0%, #ffe066 100%) !important;
+        }
+        .tile-safe::after {
+            content: '⭐';
+            font-size: 13px;
+            position: absolute;
+            color: #ffd700;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.85)) drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+            animation: starSafeGlint 2s infinite ease-in-out;
+        }
+        @keyframes starSafeGlint {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7)); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(255, 215, 0, 1)) drop-shadow(0 0 15px #ff9900); }
+        }
+
+        /* Money Bag Tiles (💰) - JILI Special feature */
+        .tile-money-bag {
+            background: radial-gradient(circle at 35% 35%, #fff3b0 0%, #ffd700 70%, #d48800 100%) !important;
+            animation: moneyBagPulse 1.4s infinite alternate;
+        }
+        .tile-money-bag::after {
+            content: '💰';
+            font-size: 14px;
+            position: absolute;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.6));
+        }
+        @keyframes moneyBagPulse {
+            0% { box-shadow: inset 0 0 5px #ffd700, 0 1px 2px rgba(0,0,0,0.3); transform: scale(1); }
+            100% { box-shadow: 0 0 12px #ff9900, inset 0 0 8px #fff; transform: scale(1.05); }
+        }
+
+        /* Chance Card Tiles (🃏) - JILI Special feature */
+        .tile-chance-card {
+            background: radial-gradient(circle at 35% 35%, #f3e8ff 0%, #c084fc 70%, #7e22ce 100%) !important;
+            animation: cardTilePulse 1.4s infinite alternate;
+        }
+        .tile-chance-card::after {
+            content: '🃏';
+            font-size: 13px;
+            position: absolute;
+            filter: drop-shadow(0 2px 5px rgba(147, 51, 234, 0.7));
+        }
+        @keyframes cardTilePulse {
+            0% { transform: scale(1); box-shadow: inset 0 0 4px #c084fc; }
+            100% { transform: scale(1.06); box-shadow: 0 0 12px #a855f7, inset 0 0 8px #fff; }
+        }
+
+        /* Highlight destination cell */
+        .tile-target-hint {
+            background: #ffff55 !important;
+            box-shadow: 0 0 14px #ffff00, inset 0 0 8px #fff !important;
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           6. 3D SCULPTED CASINO TOKEN PIECES (Real Figurine Pawns)
+           ========================================================= */
+        .token-pawn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 3D Figurine Weighted Base Shadow on Table Felt */
+            box-shadow: 
+                0 6px 10px rgba(0, 0, 0, 0.75), 
+                inset 0 3px 4px rgba(255, 255, 255, 0.85), 
+                inset 0 -3px 4px rgba(0, 0, 0, 0.6);
+            transition: top 0.16s ease, left 0.16s ease;
+            cursor: pointer;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Figurine Brass Collar Ring */
+        .token-pawn::before {
+            content: '';
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ffd700 60%, #996c00 100%);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5), inset 0 1px 1px #fff;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Specular Glass Glint on Pawn Dome */
+        .token-pawn::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 6px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            transform: rotate(-35deg);
+            pointer-events: none;
+        }
+
+        .token-red {
+            background: radial-gradient(circle at 35% 35%, #ff5c72, #d6001c 65%, #61000b 100%);
+            border: 1.5px solid #ffccd2;
+        }
+        .token-green {
+            background: radial-gradient(circle at 35% 35%, #4eed99, #009e49 65%, #004721 100%);
+            border: 1.5px solid #c7fce0;
+        }
+        .token-yellow {
+            background: radial-gradient(circle at 35% 35%, #ffdf73, #e68a00 65%, #7a4900 100%);
+            border: 1.5px solid #fff2cc;
+        }
+        .token-blue {
+            background: radial-gradient(circle at 35% 35%, #5ac4ff, #006ec4 65%, #00335c 100%);
+            border: 1.5px solid #cceeff;
+        }
+
+        /* Pulsing ring for selectable player pawns */
+        .token-selectable {
+            animation: tokenHopSelect 0.65s infinite alternate ease-in-out;
+            box-shadow: 0 0 18px #ffd700, 0 6px 14px rgba(0,0,0,0.85) !important;
+            cursor: pointer !important;
+            z-index: 25 !important;
+        }
+        @keyframes tokenHopSelect {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-5px) scale(1.22); }
+        }
+
+        /* Dynamic 3D Arc Hop Animation when moving on track */
+        .token-pawn.pawn-hopping {
+            animation: pawnStepHop 0.16s ease-out;
+            z-index: 30;
+        }
+        @keyframes pawnStepHop {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.3); filter: drop-shadow(0 12px 8px rgba(0,0,0,0.35)); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        /* Shield aura when protected by chance card */
+        .token-shielded::after {
+            content: '🛡️';
+            position: absolute;
+            top: -14px;
+            font-size: 12px;
+            filter: drop-shadow(0 0 6px #00f0ff);
+        }
+
+        /* =========================================================
+           7. 3D DICE & CONTROLS STATION
+           ========================================================= */
+        .bottom-hud-station {
+            height: 120px;
+            background: linear-gradient(180deg, rgba(16, 20, 36, 0.92) 0%, rgba(9, 11, 20, 0.98) 100%);
+            border-top: 1px solid rgba(255, 215, 0, 0.25);
+            padding: 8px 14px 10px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 20;
+            box-shadow: 0 -8px 25px rgba(0,0,0,0.6);
+            flex-shrink: 0;
+        }
+
+        .hud-row-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* Bet selector chip stepper */
+        .bet-adjuster-box {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 3px 6px;
+            gap: 8px;
+        }
+
+        .btn-bet-step {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffd700;
+            font-size: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-bet-step:active { transform: scale(0.9); }
+
+        .bet-input-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+        .bet-caption {
+            font-size: 8px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.5px;
+        }
+        .bet-amount-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+            color: #ffd700;
+        }
+
+        /* Multiplier & Potential Win badge */
+        .payout-pool-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, rgba(255, 190, 26, 0.15), rgba(255, 140, 0, 0.15));
+            border: 1px solid rgba(255, 190, 26, 0.4);
+            border-radius: 10px;
+            padding: 4px 10px;
+        }
+        .pool-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffbe1a;
+            letter-spacing: 0.5px;
+        }
+        .pool-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        /* Bet presets quick bar */
+        .chip-presets-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 2px 0;
+        }
+        .chip-presets-row::-webkit-scrollbar { display: none; }
+
+        .btn-chip {
+            padding: 4px 9px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #ddd;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .btn-chip.active {
+            background: linear-gradient(135deg, rgba(255, 190, 26, 0.35), rgba(255, 140, 0, 0.35));
+            border-color: #ffd700;
+            color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        .btn-chip:active { transform: scale(0.92); }
+
+        /* Actions Bar: Dice + Big Roll button */
+        .hud-row-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        /* 3D Dice Graphic */
+        .dice-station {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dice-cube-wrap {
+            width: 48px;
+            height: 48px;
+            perspective: 300px;
+            position: relative;
+        }
+
+        .dice-cube {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 
+                0 6px 14px rgba(0,0,0,0.6),
+                inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            padding: 5px;
+            gap: 3px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease;
+        }
+
+        .dice-pip {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff334b;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+            margin: auto;
+            visibility: hidden;
+        }
+
+        /* Animated rolling state */
+        .dice-rolling {
+            animation: diceRollAnim 0.45s infinite linear;
+        }
+        @keyframes diceRollAnim {
+            0% { transform: rotate(0deg) scale(0.92); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(0.92); }
+        }
+
+        /* Main Big Roll / Play Button */
+        .btn-main-roll {
+            flex: 1;
+            height: 44px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700 0%, #ff9900 50%, #e65c00 100%);
+            color: #1a0800;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(255, 153, 0, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+        .btn-main-roll:hover:not(:disabled) {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+        .btn-main-roll:active:not(:disabled) {
+            transform: translateY(2px);
+            box-shadow: 0 2px 8px rgba(255, 153, 0, 0.4);
+        }
+        .btn-main-roll:disabled {
+            background: #33394d;
+            color: #778199;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* Turbo & Auto buttons */
+        .toggle-hud-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #aaa;
+            font-size: 9px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            gap: 2px;
+        }
+        .toggle-hud-btn.active {
+            background: rgba(0, 210, 106, 0.25);
+            border-color: #00d26a;
+            color: #00d26a;
+            box-shadow: 0 0 10px rgba(0, 210, 106, 0.4);
+        }
+        .toggle-hud-btn:active { transform: scale(0.92); }
+
+        /* =========================================================
+           8. SPECIAL CARDS & MONEY BAG OVERLAY MODALS
+           ========================================================= */
+        .event-card-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .event-card-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .event-card-modal {
+            width: 290px;
+            background: radial-gradient(circle at 50% 20%, #2e1c45 0%, #120b1f 100%);
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: scale(0.7);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .event-card-overlay.active .event-card-modal {
+            transform: scale(1);
+        }
+
+        .event-card-icon {
+            font-size: 54px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.8));
+            animation: cardFloat 1.8s ease-in-out infinite alternate;
+        }
+        @keyframes cardFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .event-card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffd700;
+            margin-bottom: 6px;
+        }
+        .event-card-desc {
+            font-size: 13px;
+            color: #ffffff;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+        .event-card-btn {
+            background: linear-gradient(135deg, #00d26a, #009944);
+            color: #fff;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 210, 106, 0.4);
+        }
+
+        /* =========================================================
+           9. VICTORY CELEBRATION MODAL (1ST PLACE PAYOUT)
+           ========================================================= */
+        #victoryModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #victoryModal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .victory-box {
+            width: min(90vw, 360px);
+            background: radial-gradient(circle at 50% 15%, #35154d 0%, #170724 70%, #0c0214 100%);
+            border: 3px solid #ffd700;
+            border-radius: 24px;
+            padding: 24px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 45px rgba(255, 215, 0, 0.5);
+            transform: scale(0.6);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #victoryModal.active .victory-box {
+            transform: scale(1);
+        }
+
+        .victory-crown-badge {
+            font-size: 58px;
+            line-height: 1;
+            margin-bottom: 4px;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+
+        .victory-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: linear-gradient(180deg, #ffffff, #ffe066, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .victory-rank-pill {
+            font-size: 12px;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 999px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            margin-bottom: 14px;
+        }
+
+        .victory-amount-box {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .victory-amt-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+        .victory-amt-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+        }
+        .victory-breakdown {
+            font-size: 11px;
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .btn-victory-play {
+            width: 100%;
+            height: 46px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #00d26a 0%, #009944 100%);
+            color: #fff;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 210, 106, 0.5);
+            transition: all 0.2s ease;
+        }
+        .btn-victory-play:active { transform: scale(0.95); }
+
+        /* =========================================================
+           10. RULES / HELP MODAL
+           ========================================================= */
+        #rulesModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #rulesModal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .rules-content-box {
+            width: min(92vw, 420px);
+            max-height: 80vh;
+            background: #110f1e;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+        .rules-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+        }
+        .rules-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffd700;
+        }
+        .rules-close {
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+        .rules-item {
+            margin-bottom: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #ccc;
+        }
+        .rules-item strong {
+            color: #ffd700;
+        }
+
+        /* =========================================================
+           11. HEADER PILLS FOR TABLES & THEMES
+           ========================================================= */
+        .btn-header-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 11px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15));
+            border: 1px solid rgba(255, 215, 0, 0.45);
+            color: #ffd700;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4), inset 0 0 8px rgba(255, 215, 0, 0.15);
+            white-space: nowrap;
+        }
+        .btn-header-pill:active {
+            transform: scale(0.92);
+            background: rgba(255, 215, 0, 0.3);
+        }
+        .btn-header-pill.pill-theme {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(126, 34, 206, 0.2));
+            border-color: rgba(192, 132, 252, 0.5);
+            color: #f3e8ff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4), inset 0 0 8px rgba(168, 85, 247, 0.2);
+        }
+
+        /* =========================================================
+           12. MODAL OVERLAY BASE
+           ========================================================= */
+        .vip-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 5, 12, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            padding: 12px;
+        }
+        .vip-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* =========================================================
+           13. CINEMATIC CASINO ENTRANCE PORTAL & BANNER
+           ========================================================= */
+        .casino-entrance-portal {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .casino-entrance-portal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 3D Casino Vault / Curtain Split Doors */
+        .portal-curtain-left, .portal-curtain-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            background: radial-gradient(circle at 50% 50%, #201438 0%, #0e091a 60%, #05030a 100%);
+            box-shadow: 0 0 50px rgba(0,0,0,0.95);
+            transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 10;
+        }
+        .portal-curtain-left {
+            left: 0;
+            border-right: 3px solid #ffd700;
+        }
+        .portal-curtain-right {
+            right: 0;
+            border-left: 3px solid #ffd700;
+        }
+        .casino-entrance-portal.active.opening .portal-curtain-left {
+            transform: translateX(-102%);
+        }
+        .casino-entrance-portal.active.opening .portal-curtain-right {
+            transform: translateX(102%);
+        }
+
+        /* Portal Core Content Box */
+        .portal-core-box {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 24px 30px;
+            background: rgba(12, 8, 24, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 28px;
+            box-shadow: 0 0 50px rgba(255, 190, 26, 0.5), 0 20px 60px rgba(0,0,0,0.9);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .casino-entrance-portal.active .portal-core-box {
+            transform: scale(1);
+        }
+
+        .portal-brand-tag {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            padding: 3px 14px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+        }
+        .portal-crown-icon {
+            font-size: 48px;
+            margin-bottom: 4px;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+            animation: portalCrownBounce 1.2s infinite alternate ease-in-out;
+        }
+        @keyframes portalCrownBounce {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-8px) scale(1.12); }
+        }
+        .portal-table-title {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(180deg, #ffffff 0%, #ffe066 50%, #ff9900 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .portal-entry-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #55ff99;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .portal-live-pulse {
+            animation: liveDotPulse 1s infinite alternate;
+        }
+        @keyframes liveDotPulse {
+            0% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .portal-spinner-wrap {
+            width: 42px;
+            height: 42px;
+            border: 3px solid rgba(255, 215, 0, 0.2);
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            animation: portalSpin 0.75s linear infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+        @keyframes portalSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* FLOATING TABLE WELCOME BANNER (Lands with camera slam) */
+        .table-welcome-banner {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50px) scale(0.8);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.95), rgba(255, 140, 0, 0.95));
+            border: 2px solid #ffffff;
+            color: #111;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 13.5px;
+            font-weight: 800;
+            padding: 6px 20px;
+            border-radius: 999px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7), 0 0 30px rgba(255, 215, 0, 0.8);
+            z-index: 60;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .table-welcome-banner.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        /* Camera slam animation for table arrival */
+        .game-arena.arena-entrance-slam {
+            animation: arenaSlam 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        @keyframes arenaSlam {
+            0% { transform: scale(1.12); filter: blur(4px); }
+            50% { transform: scale(0.97); }
+            100% { transform: scale(1); filter: blur(0); }
+        }
+
+        /* =========================================================
+           14. TABLE SELECTION MODAL (#tableSelectModal)
+           ========================================================= */
+        .table-modal-card {
+            width: min(96vw, 760px);
+            max-height: 94vh;
+            background: radial-gradient(circle at 50% 0%, #281947 0%, #110c22 60%, #05040a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.55);
+            border-radius: 28px;
+            padding: 22px 18px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.98), 0 0 50px rgba(255, 190, 26, 0.35);
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.92);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+        }
+        .vip-modal-overlay.active .table-modal-card {
+            transform: scale(1);
+        }
+        .table-modal-card.entering {
+            transform: scale(1.6) !important;
+            opacity: 0 !important;
+            filter: blur(8px) !important;
+        }
+
+        .table-modal-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+        .table-modal-badge {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.14);
+            border: 1px solid rgba(255, 215, 0, 0.45);
+            padding: 4px 14px;
+            border-radius: 999px;
+            margin-bottom: 6px;
+            box-shadow: 0 0 14px rgba(255, 215, 0, 0.25);
+        }
+        .table-modal-title {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 29px;
+            font-weight: 800;
+            background: linear-gradient(180deg, #ffffff 0%, #ffe066 45%, #ff9900 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+            filter: drop-shadow(0 2px 14px rgba(255, 190, 26, 0.45));
+        }
+        .table-modal-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.78);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        .table-user-bal-pill {
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(0, 210, 106, 0.55);
+            padding: 4px 16px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #bbb;
+        }
+        .table-user-bal-pill strong {
+            color: #00ff88;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
+        }
+
+        /* 3 Table Cards Grid */
+        .table-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            width: 100%;
+            margin-bottom: 14px;
+            perspective: 1000px;
+        }
+        @media (max-width: 680px) {
+            .table-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        .table-item-card {
+            background: rgba(18, 14, 34, 0.92);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 22px;
+            padding: 18px 14px 16px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+        .table-item-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.75);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 25px rgba(255, 215, 0, 0.35);
+        }
+
+        /* Table 1: Bronze */
+        .table-item-card.table-classic {
+            border-color: rgba(205, 127, 50, 0.4);
+        }
+        .table-item-card.table-classic:hover {
+            border-color: #e6a760;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.7), 0 0 25px rgba(205, 127, 50, 0.4);
+        }
+
+        /* Table 2: Featured VIP Gold Table */
+        .table-item-card.featured {
+            background: radial-gradient(circle at 50% 0%, rgba(255, 190, 26, 0.25) 0%, rgba(20, 15, 38, 0.98) 75%);
+            border: 2.5px solid #ffd700;
+            box-shadow: 0 0 35px rgba(255, 190, 26, 0.5), 0 12px 35px rgba(0,0,0,0.8);
+            transform: scale(1.03);
+        }
+        .table-item-card.featured:hover {
+            transform: translateY(-6px) scale(1.06);
+            box-shadow: 0 0 45px rgba(255, 190, 26, 0.7), 0 18px 45px rgba(0,0,0,0.9);
+        }
+
+        /* Table 3: Diamond Royale */
+        .table-item-card.table-diamond {
+            border-color: rgba(0, 240, 255, 0.45);
+        }
+        .table-item-card.table-diamond:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.7), 0 0 30px rgba(0, 240, 255, 0.5);
+        }
+
+        .table-card-ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff2a44, #ff8000);
+            color: #fff;
+            font-size: 9.5px;
+            font-weight: 900;
+            padding: 3px 12px;
+            border-bottom-left-radius: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(255, 42, 68, 0.6);
+        }
+        .table-card-badge-tier {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .tier-bronze { background: rgba(205, 127, 50, 0.22); color: #e6a760; border: 1px solid rgba(205, 127, 50, 0.5); }
+        .tier-gold { background: rgba(255, 215, 0, 0.25); color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.65); box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+        .tier-diamond { background: rgba(0, 240, 255, 0.22); color: #00f0ff; border: 1px solid rgba(0, 240, 255, 0.6); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+
+        .table-card-icon-wrap {
+            font-size: 38px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+            line-height: 1;
+            transition: transform 0.25s ease;
+        }
+        .table-item-card:hover .table-card-icon-wrap {
+            transform: scale(1.15) rotate(4deg);
+        }
+
+        .table-tier-title {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .table-specs-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 8px 6px;
+            margin-bottom: 12px;
+        }
+        .table-spec-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .table-spec-lbl {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #888;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .table-spec-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+        }
+        .highlight-gold { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        .highlight-green { color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+        .table-spec-divider {
+            width: 1px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .table-meta-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 12px;
+            font-size: 10px;
+            color: #ccc;
+        }
+        .table-player-count { font-weight: 700; color: #55ff99; display: flex; align-items: center; gap: 4px; }
+        .table-speed-pill {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+        .speed-fast { background: rgba(255, 190, 26, 0.22); color: #ffd700; border: 1px solid rgba(255, 190, 26, 0.45); }
+        .speed-ultra { background: rgba(0, 240, 255, 0.22); color: #00f0ff; border: 1px solid rgba(0, 240, 255, 0.45); }
+
+        /* High-Definition 3D Buttons with Laser Shine Animation */
+        .btn-select-table {
+            width: 100%;
+            height: 42px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 140, 0, 0.18));
+            border: 1.5px solid rgba(255, 215, 0, 0.55);
+            color: #ffd700;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 14.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4), inset 0 0 10px rgba(255, 215, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-select-table::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: rotate(25deg);
+            animation: laserShine 2.8s infinite;
+        }
+        @keyframes laserShine {
+            0% { left: -60%; }
+            35%, 100% { left: 140%; }
+        }
+
+        .btn-select-table:hover, .btn-select-table:active {
+            transform: scale(0.96);
+            background: linear-gradient(135deg, #ffd700, #ff9900);
+            color: #111;
+            box-shadow: 0 6px 20px rgba(255, 190, 26, 0.6);
+        }
+        .featured-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            color: #111;
+            border: none;
+            box-shadow: 0 6px 22px rgba(255, 190, 26, 0.65), inset 0 1px 2px #fff;
+        }
+        .featured-btn:hover {
+            box-shadow: 0 8px 28px rgba(255, 190, 26, 0.85);
+        }
+        .table-modal-bot-note {
+            font-size: 11px;
+            color: #888;
+            text-align: center;
+        }
+
+        /* =========================================================
+           14. MATCHMAKING RADAR MODAL (#matchmakingModal)
+           ========================================================= */
+        .radar-modal-card {
+            width: min(94vw, 440px);
+            background: radial-gradient(circle at 50% 15%, #1d1433 0%, #0c0918 70%, #030208 100%);
+            border: 2px solid #ffd700;
+            border-radius: 26px;
+            padding: 22px 16px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.95), 0 0 40px rgba(255, 215, 0, 0.35);
+            text-align: center;
+            position: relative;
+            transform: scale(0.92);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .vip-modal-overlay.active .radar-modal-card {
+            transform: scale(1);
+        }
+        .radar-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        .radar-status-badge {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.12);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            padding: 3px 12px;
+            border-radius: 999px;
+            animation: radarBadgePulse 1.8s infinite ease-in-out;
+        }
+        @keyframes radarBadgePulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; filter: drop-shadow(0 0 8px #00ff88); }
+        }
+        .radar-table-name {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+        .radar-pool-text {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #ccc;
+        }
+
+        /* Radar arena */
+        .radar-arena {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .radar-rings {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 215, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .radar-ring.ring-1 {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            position: absolute;
+        }
+        .radar-ring.ring-2 {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 215, 0, 0.22);
+            position: absolute;
+        }
+        .radar-ring.ring-3 {
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            position: absolute;
+        }
+        .radar-sweep-beam {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, rgba(255, 215, 0, 0.35) 0deg, transparent 65deg, transparent 360deg);
+            animation: radarSweep 2.2s linear infinite;
+        }
+        @keyframes radarSweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 4 Player Slots around the radar */
+        .radar-player-slot {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            width: 70px;
+        }
+        .slot-p1 { bottom: 8px; left: 16px; }  /* RED */
+        .slot-p2 { top: 8px; left: 16px; }     /* GREEN */
+        .slot-p3 { top: 8px; right: 16px; }    /* YELLOW */
+        .slot-p4 { bottom: 8px; right: 16px; } /* BLUE */
+
+        .radar-slot-avatar-wrap {
+            position: relative;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: #111;
+            overflow: visible;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+        }
+        .radar-player-slot.ready .radar-slot-avatar-wrap {
+            border-color: #00ff88;
+            box-shadow: 0 0 16px rgba(0, 255, 136, 0.7);
+        }
+        .radar-avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .radar-slot-flag {
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            font-size: 13px;
+            line-height: 1;
+        }
+        .radar-check-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00d26a;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 900;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+        .radar-player-slot.ready .radar-check-badge {
+            display: flex;
+        }
+        .radar-slot-name {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 4px;
+            max-width: 70px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .radar-slot-state {
+            font-size: 8.5px;
+            font-weight: 700;
+            color: #888;
+        }
+        .status-ready { color: #00ff88 !important; }
+
+        .radar-footer {
+            margin-top: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .radar-countdown-msg {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+            min-height: 22px;
+        }
+        .btn-cancel-search {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ccc;
+            padding: 6px 20px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-cancel-search:active { transform: scale(0.92); }
+
+        /* =========================================================
+           15. THEME SWITCHER MODAL (#themeModal)
+           ========================================================= */
+        .theme-modal-card {
+            width: min(92vw, 420px);
+            background: #120e24;
+            border: 2px solid rgba(255, 215, 0, 0.45);
+            border-radius: 26px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.95);
+            transform: scale(0.92);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .vip-modal-overlay.active .theme-modal-card {
+            transform: scale(1);
+        }
+        .theme-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .theme-modal-title {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #ffd700;
+        }
+        .theme-close-btn {
+            background: transparent;
+            border: none;
+            color: #aaa;
+            font-size: 20px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .theme-close-btn:active { background: rgba(255, 255, 255, 0.1); }
+        .theme-modal-sub {
+            font-size: 11.5px;
+            color: #888;
+            margin-top: 4px;
+            margin-bottom: 14px;
+        }
+        .theme-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .theme-choice-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .theme-choice-card:hover {
+            border-color: rgba(255, 215, 0, 0.45);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .theme-choice-card.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.25);
+        }
+        .theme-preview-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .preview-royal { background: radial-gradient(circle, #421a60, #130a20); }
+        .preview-cyber { background: radial-gradient(circle, #0c3e6c, #040d1e); }
+        .preview-emerald { background: radial-gradient(circle, #0e522d, #03170d); }
+        .theme-choice-info {
+            flex: 1;
+        }
+        .theme-choice-info h4 {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .theme-choice-info p {
+            font-size: 10.5px;
+            color: #999;
+            line-height: 1.3;
+        }
+        .theme-check-icon {
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffd700;
+            display: none;
+        }
+        .theme-choice-card.active .theme-check-icon {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Backdrops -->
+    <div class="ambient-backdrop"></div>
+    <div class="ambient-grid"></div>
+
+    <!-- =========================================================
+         JILI OFFICIAL LOADING SCREEN (#101392)
+         ========================================================= -->
+    <div id="jiliLoadingScreen">
+        <div class="jili-brand-wrap">
+            <svg class="jili-crown-icon" viewBox="0 0 64 64" fill="none">
+                <path d="M6 46L14 18L26 34L32 12L38 34L50 18L58 46H6Z" fill="url(#crownGold)" stroke="#ffd700" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="14" cy="16" r="3.5" fill="#ffffff" filter="drop-shadow(0 0 4px #ffd700)"/>
+                <circle cx="32" cy="10" r="4.5" fill="#ffffff" filter="drop-shadow(0 0 6px #ffd700)"/>
+                <circle cx="50" cy="16" r="3.5" fill="#ffffff" filter="drop-shadow(0 0 4px #ffd700)"/>
+                <rect x="10" y="48" width="44" height="6" rx="3" fill="#ff9900"/>
+                <defs>
+                    <linearGradient id="crownGold" x1="6" y1="12" x2="58" y2="48" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#fff5a6"/>
+                        <stop offset="0.4" stop-color="#ffd700"/>
+                        <stop offset="0.8" stop-color="#ff9900"/>
+                        <stop offset="1" stop-color="#b85d00"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h1 class="jili-game-title">LUDO QUICK</h1>
+            <div class="jili-badge-sub">
+                <span>JILI GAMES</span>
+                <span>•</span>
+                <span>ID: #101392</span>
+            </div>
+        </div>
+
+        <div class="jili-loader-bar-wrap">
+            <div id="jiliProgressFill" class="jili-loader-bar-fill"></div>
+        </div>
+        <div id="jiliProgressText" class="jili-loading-text">CONNECTING TABLE... 0%</div>
+    </div>
+
+    <!-- =========================================================
+         MAIN GAME CABINET
+         ========================================================= -->
+    <div class="game-cabinet">
+        
+        <!-- TOP NAVIGATION HUD -->
+        <header class="game-header">
+            <div class="header-left">
+                <a href="../casino.html" class="btn-header-back" title="Back to Lobby">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <div class="header-title-box">
+                    <span class="header-game-name">LUDO QUICK</span>
+                    <span class="header-game-id">JILI • #101392</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Select Table Button -->
+                <button id="btnOpenTables" class="btn-header-pill" title="Select Table">
+                    <span>🪑 TABLES</span>
+                </button>
+
+                <!-- Select Theme Button -->
+                <button id="btnSwitchTheme" class="btn-header-pill pill-theme" title="Select Theme">
+                    <span>🎨 THEME</span>
+                </button>
+
+                <!-- Live Wallet Chip -->
+                <div class="header-wallet-chip">
+                    <div class="wallet-info">
+                        <span class="wallet-label">BALANCE</span>
+                        <span id="cabinetBalance" class="wallet-val">₨ 0.00</span>
+                    </div>
+                    <a href="../deposit.html" class="btn-chip-deposit">+ DEPOSIT</a>
+                </div>
+
+                <!-- Sound toggle -->
+                <button id="btnSoundToggle" class="btn-icon-hud" title="Sound Mute/Unmute">
+                    🔊
+                </button>
+
+                <!-- Rules / Help -->
+                <button id="btnOpenRules" class="btn-icon-hud" title="Game Rules">
+                    ❓
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN ARENA -->
+        <main class="game-arena">
+            
+            <!-- Dynamic Floating Table Welcome Banner -->
+            <div id="tableWelcomeBanner" class="table-welcome-banner">
+                <span>👑</span>
+                <span id="tableWelcomeText">WELCOME TO VIP GOLD TABLE</span>
+                <span>✨</span>
+            </div>
+
+            <!-- KNOCKOUT EXPLOSION OVERLAY -->
+            <div id="knockoutOverlay" class="knockout-overlay">
+                <div class="knockout-badge">💥 KNOCKOUT!</div>
+                <div id="knockoutBountyText" class="knockout-bounty-text">+₨ 50.00 BOUNTY!</div>
+            </div>
+
+            <!-- MONEY BAG COIN CASCADE -->
+            <div id="coinCascadeContainer" class="coin-cascade-container"></div>
+
+            <!-- Player 1: RED (YOU) -->
+            <div id="pod-red" class="player-pod pod-red active-turn">
+                <div class="pod-avatar-wrap">
+                    <svg class="pod-timer-svg" viewBox="0 0 44 44">
+                        <circle class="timer-track" cx="22" cy="22" r="19"></circle>
+                        <circle id="timer-stroke-red" class="timer-stroke" cx="22" cy="22" r="19"></circle>
+                    </svg>
+                    <img id="userAvatarImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=LuckyPlayer" alt="Player" class="pod-avatar-img">
+                    <span id="flag-red" class="pod-flag">👑</span>
+                </div>
+                <div class="pod-meta">
+                    <span id="userNameText" class="pod-name">YOU</span>
+                    <span class="pod-status">Home: <span id="redHomeCount" class="pod-score-badge">0/4</span></span>
+                </div>
+                <div id="speech-red" class="pod-speech">Let's Win! 🚀</div>
+            </div>
+
+            <!-- Player 2: GREEN -->
+            <div id="pod-green" class="player-pod pod-green">
+                <div class="pod-avatar-wrap">
+                    <svg class="pod-timer-svg" viewBox="0 0 44 44">
+                        <circle class="timer-track" cx="22" cy="22" r="19"></circle>
+                        <circle id="timer-stroke-green" class="timer-stroke" cx="22" cy="22" r="19"></circle>
+                    </svg>
+                    <img id="avatar-green" src="https://api.dicebear.com/7.x/bottts/svg?seed=VikramPro" alt="Player 2" class="pod-avatar-img">
+                    <span id="flag-green" class="pod-flag">🇮🇳</span>
+                </div>
+                <div class="pod-meta">
+                    <span id="name-green" class="pod-name">Vikram</span>
+                    <span class="pod-status">Home: <span id="greenHomeCount" class="pod-score-badge">0/4</span></span>
+                </div>
+                <div id="speech-green" class="pod-speech">Good Luck! 👍</div>
+            </div>
+
+            <!-- Player 3: YELLOW -->
+            <div id="pod-yellow" class="player-pod pod-yellow">
+                <div class="pod-avatar-wrap">
+                    <svg class="pod-timer-svg" viewBox="0 0 44 44">
+                        <circle class="timer-track" cx="22" cy="22" r="19"></circle>
+                        <circle id="timer-stroke-yellow" class="timer-stroke" cx="22" cy="22" r="19"></circle>
+                    </svg>
+                    <img id="avatar-yellow" src="https://api.dicebear.com/7.x/bottts/svg?seed=ZaraQueen" alt="Player 3" class="pod-avatar-img">
+                    <span id="flag-yellow" class="pod-flag">🇵🇰</span>
+                </div>
+                <div class="pod-meta">
+                    <span id="name-yellow" class="pod-name">Zara</span>
+                    <span class="pod-status">Home: <span id="yellowHomeCount" class="pod-score-badge">0/4</span></span>
+                </div>
+                <div id="speech-yellow" class="pod-speech">Roll a 6! 🎲</div>
+            </div>
+
+            <!-- Player 4: BLUE -->
+            <div id="pod-blue" class="player-pod pod-blue">
+                <div class="pod-avatar-wrap">
+                    <svg class="pod-timer-svg" viewBox="0 0 44 44">
+                        <circle class="timer-track" cx="22" cy="22" r="19"></circle>
+                        <circle id="timer-stroke-blue" class="timer-stroke" cx="22" cy="22" r="19"></circle>
+                    </svg>
+                    <img id="avatar-blue" src="https://api.dicebear.com/7.x/bottts/svg?seed=AlexTitan" alt="Player 4" class="pod-avatar-img">
+                    <span id="flag-blue" class="pod-flag">🇬🇧</span>
+                </div>
+                <div class="pod-meta">
+                    <span id="name-blue" class="pod-name">Alex</span>
+                    <span class="pod-status">Home: <span id="blueHomeCount" class="pod-score-badge">0/4</span></span>
+                </div>
+                <div id="speech-blue" class="pod-speech">Watch out! 🔥</div>
+            </div>
+
+            <!-- THE 15x15 LUDO BOARD GRID -->
+            <div id="boardContainer" class="board-container">
+                
+                <!-- Base Green (Top-Left 6x6) -->
+                <div class="ludo-base base-green">
+                    <div class="base-inner-yard">
+                        <div id="slot-green-0" class="yard-token-slot"></div>
+                        <div id="slot-green-1" class="yard-token-slot"></div>
+                        <div id="slot-green-2" class="yard-token-slot"></div>
+                        <div id="slot-green-3" class="yard-token-slot"></div>
+                    </div>
+                </div>
+
+                <!-- Base Yellow (Top-Right 6x6) -->
+                <div class="ludo-base base-yellow">
+                    <div class="base-inner-yard">
+                        <div id="slot-yellow-0" class="yard-token-slot"></div>
+                        <div id="slot-yellow-1" class="yard-token-slot"></div>
+                        <div id="slot-yellow-2" class="yard-token-slot"></div>
+                        <div id="slot-yellow-3" class="yard-token-slot"></div>
+                    </div>
+                </div>
+
+                <!-- Base Red (Bottom-Left 6x6 - Player) -->
+                <div class="ludo-base base-red">
+                    <div class="base-inner-yard">
+                        <div id="slot-red-0" class="yard-token-slot"></div>
+                        <div id="slot-red-1" class="yard-token-slot"></div>
+                        <div id="slot-red-2" class="yard-token-slot"></div>
+                        <div id="slot-red-3" class="yard-token-slot"></div>
+                    </div>
+                </div>
+
+                <!-- Base Blue (Bottom-Right 6x6) -->
+                <div class="ludo-base base-blue">
+                    <div class="base-inner-yard">
+                        <div id="slot-blue-0" class="yard-token-slot"></div>
+                        <div id="slot-blue-1" class="yard-token-slot"></div>
+                        <div id="slot-blue-2" class="yard-token-slot"></div>
+                        <div id="slot-blue-3" class="yard-token-slot"></div>
+                    </div>
+                </div>
+
+                <!-- Center Finish Podium (3x3 Center) -->
+                <div class="ludo-center-podium">
+                    <div class="center-triangle center-tri-top"></div>
+                    <div class="center-triangle center-tri-bottom"></div>
+                    <div class="center-triangle center-tri-left"></div>
+                    <div class="center-triangle center-tri-right"></div>
+                    <div class="center-trophy-pedestal">👑</div>
+                </div>
+
+                <!-- Board Tiles injected dynamically via JS for 100% precision -->
+            </div>
+
+        </main>
+
+        <!-- BOTTOM HUD (BETTING & DICE) -->
+        <footer class="bottom-hud-station">
+            <div class="hud-row-top">
+                <!-- Stepper Bet Control -->
+                <div class="bet-adjuster-box">
+                    <button id="btnBetMinus" class="btn-bet-step">-</button>
+                    <div class="bet-input-display">
+                        <span class="bet-caption">BET AMOUNT</span>
+                        <span id="betDisplayVal" class="bet-amount-text">₨ 50</span>
+                    </div>
+                    <button id="btnBetPlus" class="btn-bet-step">+</button>
+                </div>
+
+                <!-- Quick Presets -->
+                <div class="chip-presets-row">
+                    <button class="btn-chip" data-amt="20">20</button>
+                    <button class="btn-chip active" data-amt="50">50</button>
+                    <button class="btn-chip" data-amt="100">100</button>
+                    <button class="btn-chip" data-amt="500">500</button>
+                    <button class="btn-chip" data-amt="1000">1K</button>
+                    <button class="btn-chip" data-amt="5000">5K</button>
+                </div>
+
+                <!-- Multiplier Pool -->
+                <div class="payout-pool-badge">
+                    <span class="pool-label">1ST WIN:</span>
+                    <span id="poolWinVal" class="pool-value">₨ 190.00 (3.8x)</span>
+                </div>
+            </div>
+
+            <div class="hud-row-actions">
+                <!-- 3D Dice Display -->
+                <div class="dice-station">
+                    <div class="dice-cube-wrap">
+                        <div id="diceCube" class="dice-cube">
+                            <!-- 9 pips positions -->
+                            <div class="dice-pip" id="pip-0"></div>
+                            <div class="dice-pip" id="pip-1"></div>
+                            <div class="dice-pip" id="pip-2"></div>
+                            <div class="dice-pip" id="pip-3"></div>
+                            <div class="dice-pip" id="pip-4"></div>
+                            <div class="dice-pip" id="pip-5"></div>
+                            <div class="dice-pip" id="pip-6"></div>
+                            <div class="dice-pip" id="pip-7"></div>
+                            <div class="dice-pip" id="pip-8"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Action Button -->
+                <button id="btnMainRoll" class="btn-main-roll">
+                    <span>🎲 ROLL DICE</span>
+                </button>
+
+                <!-- Turbo Speed -->
+                <button id="btnTurboToggle" class="toggle-hud-btn" title="Turbo Speed x2">
+                    <span>⚡</span>
+                    <span id="turboLabel">1X</span>
+                </button>
+
+                <!-- Auto Roll -->
+                <button id="btnAutoToggle" class="toggle-hud-btn" title="Auto Roll">
+                    <span>🔄</span>
+                    <span id="autoLabel">AUTO</span>
+                </button>
+
+                <!-- Chat / Emote Reactions -->
+                <button id="btnChatEmote" class="toggle-hud-btn" title="Reactions & Chat">
+                    <span>💬</span>
+                    <span>CHAT</span>
+                </button>
+            </div>
+        </footer>
+
+        <!-- FLOATING CHAT & EMOTE PICKER PANEL -->
+        <div id="chatEmotePanel" class="chat-emote-panel">
+            <div class="emote-panel-header">
+                <span>QUICK REACTIONS</span>
+                <button id="btnCloseEmotes" class="btn-close-emotes">✕</button>
+            </div>
+            <div class="emotes-grid">
+                <button class="btn-quick-emote" data-msg="😎">😎</button>
+                <button class="btn-quick-emote" data-msg="🔥">🔥</button>
+                <button class="btn-quick-emote" data-msg="🚀">🚀</button>
+                <button class="btn-quick-emote" data-msg="🎲">🎲</button>
+                <button class="btn-quick-emote" data-msg="👑">👑</button>
+                <button class="btn-quick-emote" data-msg="💥">💥</button>
+                <button class="btn-quick-emote" data-msg="😭">😭</button>
+                <button class="btn-quick-emote" data-msg="👍">👍</button>
+                <button class="btn-quick-emote" data-msg="💰">💰</button>
+                <button class="btn-quick-emote" data-msg="⚡">⚡</button>
+            </div>
+            <div class="quick-phrases-list">
+                <button class="btn-quick-phrase" data-msg="Hurry Up! ⏰">Hurry Up! ⏰</button>
+                <button class="btn-quick-phrase" data-msg="Good Luck! 🍀">Good Luck! 🍀</button>
+                <button class="btn-quick-phrase" data-msg="Nice Move! 👏">Nice Move! 👏</button>
+                <button class="btn-quick-phrase" data-msg="Watch out! 🔥">Watch out! 🔥</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =========================================================
+         EVENT CHANCE CARD / MONEY BAG MODAL
+         ========================================================= -->
+    <div id="eventOverlay" class="event-card-overlay">
+        <div class="event-card-modal">
+            <div id="eventIcon" class="event-card-icon">💰</div>
+            <h3 id="eventTitle" class="event-card-title">MONEY BAG HIT!</h3>
+            <p id="eventDesc" class="event-card-desc">You landed on a golden Money Bag and unlocked a 5x instant multiplier!</p>
+            <button id="btnClaimEvent" class="event-card-btn">COLLECT</button>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         VICTORY CELEBRATION MODAL
+         ========================================================= -->
+    <div id="victoryModal">
+        <div class="victory-box">
+            <div id="victoryCrown" class="victory-crown-badge">👑</div>
+            <h2 id="victoryHeading" class="victory-title">VICTORY!</h2>
+            <div id="victoryRankBadge" class="victory-rank-pill">1ST PLACE CHAMPION</div>
+            <div class="victory-amount-box">
+                <span class="victory-amt-label">TOTAL PAYOUT</span>
+                <span id="victoryPayoutVal" class="victory-amt-val">+₨ 190.00</span>
+                <span id="victoryBreakdown" class="victory-breakdown">Win Multiplier: 3.80x</span>
+            </div>
+            <div style="display: flex; gap: 8px; width: 100%;">
+                <button id="btnPlayAgain" class="btn-victory-play" style="flex: 1;">REMATCH</button>
+                <button id="btnVictoryChangeTable" class="btn-victory-play" style="flex: 1; background: linear-gradient(135deg, #ffd700, #ff8c00); color: #111;">CHANGE TABLE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         RULES & PAYOUTS MODAL
+         ========================================================= -->
+    <div id="rulesModal">
+        <div class="rules-content-box">
+            <div class="rules-header">
+                <h3 class="rules-title">Ludo Quick (#101392) Rules</h3>
+                <button id="btnCloseRules" class="rules-close">✕</button>
+            </div>
+            <div class="rules-item">
+                <strong>⚡ Quick Pacing:</strong> Fast-paced casino board race against 3 global players/bots. First player whose tokens reach the Home Center finishes the match!
+            </div>
+            <div class="rules-item">
+                <strong>🎲 Dice Movement:</strong> Roll a 6 to bring a pawn out of the yard. Rolling a 6 also gives you an instant bonus roll!
+            </div>
+            <div class="rules-item">
+                <strong>⭐ Safe Zones:</strong> Squares marked with golden stars are safe havens. Tokens on star tiles cannot be captured by opponents.
+            </div>
+            <div class="rules-item">
+                <strong>💰 Money Bag Feature:</strong> Landing on Money Bag tiles rewards instant mystery multiplier payouts (1.5x up to 25x stake)!
+            </div>
+            <div class="rules-item">
+                <strong>🃏 Special Cards:</strong> Landing on Card tiles triggers instant power-ups like Rocket (+5 steps), Shield (immune from knockouts), and Lucky 6!
+            </div>
+            <div class="rules-item">
+                <strong>💥 Knockouts:</strong> Landing on an enemy pawn outside safe zones knocks them back to their yard and grants you a free bonus roll!
+            </div>
+            <div class="rules-item">
+                <strong>🏆 Payouts:</strong>
+                <br>• 1st Place: <strong>3.80x Bet</strong>
+                <br>• 2nd Place: <strong>1.20x Bet</strong>
+                <br>• Money Bag bonuses credited directly to your balance!
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         CINEMATIC CASINO TABLE ENTRANCE PORTAL (#casinoEntrancePortal)
+         ========================================================= -->
+    <div id="casinoEntrancePortal" class="casino-entrance-portal">
+        <div class="portal-curtain-left"></div>
+        <div class="portal-curtain-right"></div>
+        <div class="portal-core-box">
+            <div class="portal-brand-tag">🏆 1xBET VIP CASINO • JILI #101392</div>
+            <div class="portal-crown-icon">👑</div>
+            <h2 id="portalTableTitle" class="portal-table-title">VIP GOLD TABLE</h2>
+            <div class="portal-entry-badge">
+                <span class="portal-live-pulse">🟢</span>
+                <span id="portalEntrySub">CONNECTING HIGH-ROLLER ARENA...</span>
+            </div>
+            <div class="portal-spinner-wrap"></div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         3 TABLE SELECTION MODAL (Appears on launch)
+         ========================================================= -->
+    <div id="tableSelectModal" class="vip-modal-overlay">
+        <div class="table-modal-card">
+            <div class="table-modal-header">
+                <div class="table-modal-badge">🏆 MULTIPLAYER ARENA • JILI #101392</div>
+                <h2 class="table-modal-title">CHOOSE YOUR TABLE</h2>
+                <p class="table-modal-sub">Pick your stakes to match with live players or competitive bots</p>
+                <div class="table-user-bal-pill">
+                    <span>WALLET BALANCE:</span>
+                    <strong id="tableModalBal">₨ 0.00</strong>
+                </div>
+            </div>
+
+            <div class="table-cards-grid">
+                <!-- Table 1: Classic Club (Bronze) -->
+                <div class="table-item-card table-classic" data-table="classic" data-bet="50" onclick="window.selectBettingTable && window.selectBettingTable('classic')">
+                    <div class="table-card-badge-tier tier-bronze">🥉 BRONZE LOUNGE</div>
+                    <div class="table-card-icon-wrap">🎲</div>
+                    <h3 class="table-tier-title">CLASSIC CLUB</h3>
+                    <div class="table-specs-row">
+                        <div class="table-spec-col">
+                            <span class="table-spec-lbl">ENTRY BET</span>
+                            <span class="table-spec-val highlight-gold">₨ 50</span>
+                        </div>
+                        <div class="table-spec-divider"></div>
+                        <div class="table-spec-col">
+                            <span class="table-spec-lbl">1ST PRIZE (3.8x)</span>
+                            <span class="table-spec-val highlight-green">₨ 190.00</span>
+                        </div>
+                    </div>
+                    <div class="table-meta-footer">
+                        <span class="table-player-count">🟢 148 In Room</span>
+                        <span class="table-speed-pill">Normal 1.0x</span>
+                    </div>
+                    <button class="btn-select-table" data-table="classic" onclick="event.stopPropagation(); window.selectBettingTable && window.selectBettingTable('classic')">
+                        <span>ENTER TABLE</span>
+                    </button>
+                </div>
+
+                <!-- Table 2: VIP Gold Table (Featured - Most Popular) -->
+                <div class="table-item-card table-gold featured" data-table="gold" data-bet="200" onclick="window.selectBettingTable && window.selectBettingTable('gold')">
+                    <div class="table-card-ribbon">🔥 MOST POPULAR</div>
+                    <div class="table-card-badge-tier tier-gold">👑 VIP GOLD PALACE</div>
+                    <div class="table-card-icon-wrap">💰</div>
+                    <h3 class="table-tier-title">VIP GOLD TABLE</h3>
+                    <div class="table-specs-row">
+                        <div class="table-spec-col">
+                            <span class="table-spec-lbl">ENTRY BET</span>
+                            <span class="table-spec-val highlight-gold">₨ 200</span>
+                        </div>
+                        <div class="table-spec-divider"></div>
+                        <div class="table-spec-col">
+                            <span class="table-spec-lbl">1ST PRIZE (3.8x)</span>
+                            <span class="table-spec-val highlight-green">₨ 760.00</span>
+                        </div>
+                    </div>
+                    <div class="table-meta-footer">
+                        <span class="table-player-count">🟢 92 In Room</span>
+                        <span class="table-speed-pill speed-fast">Turbo 1.5x</span>
+                    </div>
+                    <button class="btn-select-table featured-btn" data-table="gold" onclick="event.stopPropagation(); window.selectBettingTable && window.selectBettingTable('gold')">
+                        <span>ENTER TABLE</span>
+                    </button>
+                </div>
+
+                <!-- Table 3: Diamond Royale (High Roller) -->
+                <div class="table-item-card table-diamond" data-table="diamond" data-bet="500" onclick="window.selectBettingTable && window.selectBettingTable('diamond')">
+                    <div class="table-card-ribbon" style="background: linear-gradient(135deg, #00d2ff, #0066ff);">💎 ELITE</div>
+                    <div class="table-card-badge-tier tier-diamond">💎 DIAMOND ROYALE</div>
+                    <div class="table-card-icon-wrap">👑</div>
+                    <h3 class="table-tier-title">DIAMOND ROYALE</h3>
+                    <div class="table-specs-row">
+                        <div class="table-spec-col">
+                            <span class="table-spec-lbl">ENTRY BET</span>
+                            <span class="table-spec-val highlight-gold">₨ 500</span>
+                        </div>
+                        <div class="table-spec-divider"></div>
+                        <div class="table-spec-col">
+                            <span class="table-spec-lbl">1ST PRIZE (3.8x)</span>
+                            <span class="table-spec-val highlight-green">₨ 1,900.00</span>
+                        </div>
+                    </div>
+                    <div class="table-meta-footer">
+                        <span class="table-player-count">🟢 46 In Room</span>
+                        <span class="table-speed-pill speed-ultra">Ultra 2.0x</span>
+                    </div>
+                    <button class="btn-select-table" data-table="diamond" onclick="event.stopPropagation(); window.selectBettingTable && window.selectBettingTable('diamond')">
+                        <span>ENTER TABLE</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-modal-bot-note">
+                🛡️ <em>Live Multiplayer • Real Users Match Automatically or Seamlessly Compete with Bots</em>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         MATCHMAKING RADAR OVERLAY (#matchmakingModal)
+         ========================================================= -->
+    <div id="matchmakingModal" class="vip-modal-overlay">
+        <div class="radar-modal-card">
+            <div class="radar-header">
+                <span class="radar-status-badge">🛰️ LIVE MATCHMAKING</span>
+                <h3 id="radarTableTitle" class="radar-table-name">VIP GOLD TABLE</h3>
+                <span id="radarPoolBadge" class="radar-pool-text">ENTRY: ₨ 200 • PRIZE POOL: ₨ 760.00</span>
+            </div>
+
+            <!-- Radar animation with 4 player slots -->
+            <div class="radar-arena">
+                <div class="radar-rings">
+                    <div class="radar-ring ring-1"></div>
+                    <div class="radar-ring ring-2"></div>
+                    <div class="radar-ring ring-3"></div>
+                    <div class="radar-sweep-beam"></div>
+                </div>
+
+                <!-- Slot 1: RED (YOU) -->
+                <div id="radarSlot1" class="radar-player-slot slot-p1 ready">
+                    <div class="radar-slot-avatar-wrap">
+                        <img id="radarAvatar1" src="https://api.dicebear.com/7.x/bottts/svg?seed=LuckyPlayer" alt="Player 1" class="radar-avatar-img">
+                        <span id="radarFlag1" class="radar-slot-flag">👑</span>
+                        <span class="radar-check-badge">✓</span>
+                    </div>
+                    <span id="radarName1" class="radar-slot-name">YOU</span>
+                    <span class="radar-slot-state status-ready">READY</span>
+                </div>
+
+                <!-- Slot 2: GREEN -->
+                <div id="radarSlot2" class="radar-player-slot slot-p2">
+                    <div class="radar-slot-avatar-wrap">
+                        <img id="radarAvatar2" src="https://api.dicebear.com/7.x/bottts/svg?seed=Empty2" alt="Player 2" class="radar-avatar-img">
+                        <span id="radarFlag2" class="radar-slot-flag">🌐</span>
+                        <span class="radar-check-badge">✓</span>
+                    </div>
+                    <span id="radarName2" class="radar-slot-name">Searching...</span>
+                    <span id="radarState2" class="radar-slot-state">CONNECTING</span>
+                </div>
+
+                <!-- Slot 3: YELLOW -->
+                <div id="radarSlot3" class="radar-player-slot slot-p3">
+                    <div class="radar-slot-avatar-wrap">
+                        <img id="radarAvatar3" src="https://api.dicebear.com/7.x/bottts/svg?seed=Empty3" alt="Player 3" class="radar-avatar-img">
+                        <span id="radarFlag3" class="radar-slot-flag">🌐</span>
+                        <span class="radar-check-badge">✓</span>
+                    </div>
+                    <span id="radarName3" class="radar-slot-name">Searching...</span>
+                    <span id="radarState3" class="radar-slot-state">CONNECTING</span>
+                </div>
+
+                <!-- Slot 4: BLUE -->
+                <div id="radarSlot4" class="radar-player-slot slot-p4">
+                    <div class="radar-slot-avatar-wrap">
+                        <img id="radarAvatar4" src="https://api.dicebear.com/7.x/bottts/svg?seed=Empty4" alt="Player 4" class="radar-avatar-img">
+                        <span id="radarFlag4" class="radar-slot-flag">🌐</span>
+                        <span class="radar-check-badge">✓</span>
+                    </div>
+                    <span id="radarName4" class="radar-slot-name">Searching...</span>
+                    <span id="radarState4" class="radar-slot-state">CONNECTING</span>
+                </div>
+            </div>
+
+            <div class="radar-footer">
+                <div id="radarCountdownText" class="radar-countdown-msg">SCANNING FOR OPPONENTS...</div>
+                <button id="btnCancelMatch" class="btn-cancel-search">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         THEME SWITCHER MODAL (#themeModal)
+         ========================================================= -->
+    <div id="themeModal" class="vip-modal-overlay">
+        <div class="theme-modal-card">
+            <div class="theme-modal-header">
+                <h3 class="theme-modal-title">🎨 SELECT GAME THEME</h3>
+                <button id="btnCloseTheme" class="theme-close-btn">✕</button>
+            </div>
+            <p class="theme-modal-sub">Choose your custom luxury visual ambiance</p>
+            <div class="theme-cards-list">
+                <!-- Theme 1 -->
+                <div class="theme-choice-card active" data-theme="theme-royal-gold">
+                    <div class="theme-preview-box preview-royal">👑</div>
+                    <div class="theme-choice-info">
+                        <h4>ROYAL GOLD CASINO</h4>
+                        <p>Luxurious 24K gold accents with royal purple velvet felt.</p>
+                    </div>
+                    <span class="theme-check-icon">✓</span>
+                </div>
+
+                <!-- Theme 2 -->
+                <div class="theme-choice-card" data-theme="theme-cyber-neon">
+                    <div class="theme-preview-box preview-cyber">⚡</div>
+                    <div class="theme-choice-info">
+                        <h4>CYBER NEON MATRIX</h4>
+                        <p>Electric cyan & magenta neon matrix with glowing track tiles.</p>
+                    </div>
+                    <span class="theme-check-icon">✓</span>
+                </div>
+
+                <!-- Theme 3 -->
+                <div class="theme-choice-card" data-theme="theme-emerald-classic">
+                    <div class="theme-preview-box preview-emerald">💎</div>
+                    <div class="theme-choice-info">
+                        <h4>EMERALD MONTE CARLO</h4>
+                        <p>Classic European casino high-roller felt & mahogany brass wood.</p>
+                    </div>
+                    <span class="theme-check-icon">✓</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         COMPLETE GAME ENGINE & CUSTOM RIG LOGIC (Detto Same to Same)
+         ========================================================= -->
+    <script>
+    (function () {
+        'use strict';
+
+        /* -------------------------------------------------------------
+           1. SYNTHESIZED WEB AUDIO API SYSTEM (Authentic JILI SFX)
+           ------------------------------------------------------------- */
+        class JiliAudioSystem {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) this.ctx = new AudioContext();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume().catch(() => {});
+                }
+            }
+
+            playTone(freq, type = 'sine', duration = 0.15, vol = 0.25) {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(vol, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch (e) {}
+            }
+
+            playDiceRoll() {
+                if (this.muted) return;
+                this.init();
+                // Rhythmic click bounce
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        this.playTone(320 + Math.random() * 240, 'triangle', 0.04, 0.18);
+                    }, i * 65);
+                }
+            }
+
+            playPawnStep() {
+                // Crisp wooden marble tap on felt
+                this.playTone(580, 'sine', 0.05, 0.28);
+                setTimeout(() => this.playTone(290, 'triangle', 0.06, 0.2), 20);
+            }
+
+            playEntranceWhoosh() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    // Deep cinematic table entrance rush
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(340, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(75, this.ctx.currentTime + 0.38);
+                    gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.38);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.38);
+
+                    // Casino triumphant entrance chime chords
+                    [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
+                        setTimeout(() => this.playTone(freq, 'triangle', 0.3, 0.25), 80 + idx * 55);
+                    });
+                } catch (e) {}
+            }
+
+            playTableLand() {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    // Bass impact slam on table arrival
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(45, this.ctx.currentTime + 0.22);
+                    gain.gain.setValueAtTime(0.32, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.22);
+                } catch (e) {}
+            }
+
+            playKnockout() {
+                // Energetic crash
+                this.playTone(180, 'sawtooth', 0.25, 0.35);
+                setTimeout(() => this.playTone(480, 'sine', 0.18, 0.25), 80);
+            }
+
+            playMoneyBag() {
+                // Golden jingle
+                [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                    setTimeout(() => this.playTone(freq, 'sine', 0.22, 0.28), idx * 75);
+                });
+            }
+
+            playVictory() {
+                // Fanfare chords
+                const chords = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+                chords.forEach((freq, i) => {
+                    setTimeout(() => this.playTone(freq, 'triangle', 0.4, 0.3), i * 90);
+                });
+            }
+
+            playSix() {
+                this.playTone(880, 'sine', 0.12, 0.3);
+                setTimeout(() => this.playTone(1174.66, 'sine', 0.25, 0.35), 100);
+            }
+
+            playRadarPing() {
+                this.playTone(720, 'sine', 0.08, 0.15);
+            }
+
+            playPlayerJoin() {
+                this.playTone(440, 'triangle', 0.08, 0.22);
+                setTimeout(() => this.playTone(880, 'sine', 0.14, 0.22), 70);
+            }
+
+            playMatchStart() {
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    setTimeout(() => this.playTone(freq, 'triangle', 0.2, 0.3), idx * 80);
+                });
+            }
+        }
+
+        const sound = new JiliAudioSystem();
+
+        /* -------------------------------------------------------------
+           2. BOARD MAPPING & COORDINATES (15x15 Standard Ludo Track)
+           ------------------------------------------------------------- */
+        // Define coordinates of outer track: 52 squares
+        // Format: [row, col] (1-indexed, 1 to 15)
+        const TRACK_TILES = [
+            // Red Arm Up (Left side of vertical arm)
+            [14, 7], [13, 7], [12, 7], [11, 7], [10, 7], // 0-4
+            // Top-Left Arm horizontal
+            [9, 6], [9, 5], [9, 4], [9, 3], [9, 2], [9, 1], // 5-10
+            [8, 1], // 11
+            [7, 1], [7, 2], [7, 3], [7, 4], [7, 5], [7, 6], // 12-17
+            // Green Arm Up (vertical arm)
+            [6, 7], [5, 7], [4, 7], [3, 7], [2, 7], [1, 7], // 18-23
+            [1, 8], // 24
+            [1, 9], [2, 9], [3, 9], [4, 9], [5, 9], [6, 9], // 25-30
+            // Top-Right Arm horizontal (Yellow)
+            [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], // 31-36
+            [8, 15], // 37
+            [9, 15], [9, 14], [9, 13], [9, 12], [9, 11], [9, 10], // 38-43
+            // Bottom-Right Arm vertical (Blue)
+            [10, 9], [11, 9], [12, 9], [13, 9], [14, 9], [15, 9], // 44-49
+            [15, 8], // 50
+            [15, 7]  // 51
+        ];
+
+        // Player Starting Tile on main track (where token lands on rolling 6)
+        const START_INDICES = {
+            red: 0,     // [14, 7]
+            green: 13,  // [7, 2]
+            yellow: 26, // [2, 9]
+            blue: 39    // [9, 14]
+        };
+
+        // Home Columns (leading to center triangle)
+        const HOME_COLUMNS = {
+            red:    [[14, 8], [13, 8], [12, 8], [11, 8], [10, 8]],
+            green:  [[8, 2], [8, 3], [8, 4], [8, 5], [8, 6]],
+            yellow: [[2, 8], [3, 8], [4, 8], [5, 8], [6, 8]],
+            blue:   [[8, 14], [8, 13], [8, 12], [8, 11], [8, 10]]
+        };
+
+        // Safe Star Tiles indices on Track (⭐️)
+        const SAFE_INDICES = [0, 8, 13, 21, 26, 34, 39, 47];
+
+        // Money Bag Tile indices (💰) - JILI Special
+        const MONEY_BAG_INDICES = [4, 17, 30, 43];
+
+        // Chance Card Tile indices (🃏) - JILI Special
+        const CHANCE_CARD_INDICES = [10, 23, 36, 49];
+
+        /* -------------------------------------------------------------
+           3. TABLES CONFIG & MULTIPLAYER PROFILES
+           ------------------------------------------------------------- */
+        const TABLES_CONFIG = {
+            classic: { name: 'CLASSIC CLUB', bet: 50, winMult: 3.80, speed: 1.0, activeUsers: 148 },
+            gold: { name: 'VIP GOLD TABLE', bet: 200, winMult: 3.80, speed: 1.5, activeUsers: 92 },
+            diamond: { name: 'DIAMOND ROYALE', bet: 500, winMult: 3.80, speed: 2.0, activeUsers: 46 }
+        };
+
+        const BOT_PROFILES = [
+            { name: 'Hamza_King', flag: '🇵🇰', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=Hamza786' },
+            { name: 'Zain_Pro', flag: '🇵🇰', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=ZainLudo' },
+            { name: 'Ayesha_VIP', flag: '🇵🇰', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=AyeshaStar' },
+            { name: 'Tariq_DXB', flag: '🇦🇪', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=TariqDubai' },
+            { name: 'Sultan_KSA', flag: '🇸🇦', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=SultanRiyadh' },
+            { name: 'Ali_Lahori', flag: '🇵🇰', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=AliLahore' },
+            { name: 'Bilal_Racer', flag: '🇵🇰', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=BilalSpeed' },
+            { name: 'Zara_Queen', flag: '🇵🇰', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=ZaraQueen' },
+            { name: 'Alex_UK', flag: '🇬🇧', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=AlexTitan' },
+            { name: 'Vikram_Pro', flag: '🇮🇳', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=VikramPro' }
+        ];
+
+        let selectedTableKey = 'gold';
+        let matchTimers = [];
+        let isMatchmakingActive = false;
+
+        /* -------------------------------------------------------------
+           4. GAME STATE & PLAYERS
+           ------------------------------------------------------------- */
+        const state = {
+            betAmount: 200,
+            roundActive: false,
+            currentTurn: 'red', // red (player), green, yellow, blue
+            diceValue: 1,
+            isRolling: false,
+            speedMultiplier: 1, // 1 or 2
+            autoPlay: false,
+            winner: null,
+            players: {
+                red:    { name: 'YOU', color: 'red', tokens: [-1, -1, -1, -1], homeCount: 0, isBot: false, shielded: false },
+                green:  { name: 'Vikram', color: 'green', tokens: [-1, -1, -1, -1], homeCount: 0, isBot: true, shielded: false },
+                yellow: { name: 'Zara', color: 'yellow', tokens: [-1, -1, -1, -1], homeCount: 0, isBot: true, shielded: false },
+                blue:   { name: 'Alex', color: 'blue', tokens: [-1, -1, -1, -1], homeCount: 0, isBot: true, shielded: false }
+            },
+            playerOrder: ['red', 'green', 'yellow', 'blue'],
+            moneyBagBonuses: 0,
+            bountyBonuses: 0
+        };
+
+        /* -------------------------------------------------------------
+           5. DOM ELEMENTS
+           ------------------------------------------------------------- */
+        const dom = {
+            cabinetBalance: document.getElementById('cabinetBalance'),
+            betDisplayVal: document.getElementById('betDisplayVal'),
+            poolWinVal: document.getElementById('poolWinVal'),
+            btnBetMinus: document.getElementById('btnBetMinus'),
+            btnBetPlus: document.getElementById('btnBetPlus'),
+            chipButtons: document.querySelectorAll('.btn-chip'),
+            btnMainRoll: document.getElementById('btnMainRoll'),
+            btnTurboToggle: document.getElementById('btnTurboToggle'),
+            turboLabel: document.getElementById('turboLabel'),
+            btnAutoToggle: document.getElementById('btnAutoToggle'),
+            autoLabel: document.getElementById('autoLabel'),
+            btnSoundToggle: document.getElementById('btnSoundToggle'),
+            btnOpenRules: document.getElementById('btnOpenRules'),
+            btnCloseRules: document.getElementById('btnCloseRules'),
+            rulesModal: document.getElementById('rulesModal'),
+            diceCube: document.getElementById('diceCube'),
+            pips: Array.from({length: 9}, (_, i) => document.getElementById(`pip-${i}`)),
+            boardContainer: document.getElementById('boardContainer'),
+            eventOverlay: document.getElementById('eventOverlay'),
+            eventIcon: document.getElementById('eventIcon'),
+            eventTitle: document.getElementById('eventTitle'),
+            eventDesc: document.getElementById('eventDesc'),
+            btnClaimEvent: document.getElementById('btnClaimEvent'),
+            victoryModal: document.getElementById('victoryModal'),
+            victoryCrown: document.getElementById('victoryCrown'),
+            victoryHeading: document.getElementById('victoryHeading'),
+            victoryRankBadge: document.getElementById('victoryRankBadge'),
+            victoryPayoutVal: document.getElementById('victoryPayoutVal'),
+            victoryBreakdown: document.getElementById('victoryBreakdown'),
+            btnPlayAgain: document.getElementById('btnPlayAgain'),
+            btnVictoryChangeTable: document.getElementById('btnVictoryChangeTable'),
+            userAvatarImg: document.getElementById('userAvatarImg'),
+            userNameText: document.getElementById('userNameText'),
+            // New Tables, Radar & Theme Modals
+            tableSelectModal: document.getElementById('tableSelectModal'),
+            tableModalBal: document.getElementById('tableModalBal'),
+            matchmakingModal: document.getElementById('matchmakingModal'),
+            radarTableTitle: document.getElementById('radarTableTitle'),
+            radarPoolBadge: document.getElementById('radarPoolBadge'),
+            radarCountdownText: document.getElementById('radarCountdownText'),
+            btnCancelMatch: document.getElementById('btnCancelMatch'),
+            btnOpenTables: document.getElementById('btnOpenTables'),
+            btnSwitchTheme: document.getElementById('btnSwitchTheme'),
+            themeModal: document.getElementById('themeModal'),
+            btnCloseTheme: document.getElementById('btnCloseTheme'),
+            casinoEntrancePortal: document.getElementById('casinoEntrancePortal'),
+            portalTableTitle: document.getElementById('portalTableTitle'),
+            portalEntrySub: document.getElementById('portalEntrySub'),
+            tableWelcomeBanner: document.getElementById('tableWelcomeBanner'),
+            tableWelcomeText: document.getElementById('tableWelcomeText'),
+            gameArena: document.querySelector('.game-arena'),
+            btnChatEmote: document.getElementById('btnChatEmote'),
+            chatEmotePanel: document.getElementById('chatEmotePanel'),
+            btnCloseEmotes: document.getElementById('btnCloseEmotes'),
+            knockoutOverlay: document.getElementById('knockoutOverlay'),
+            knockoutBountyText: document.getElementById('knockoutBountyText'),
+            coinCascadeContainer: document.getElementById('coinCascadeContainer')
+        };
+
+        /* -------------------------------------------------------------
+           5. WALLET SYNCHRONIZATION
+           ------------------------------------------------------------- */
+        function getWallet() {
+            return window.wallet || null;
+        }
+
+        function getActiveCurrency() {
+            const w = getWallet();
+            return (w && typeof w.getCurrency === 'function') ? w.getCurrency() : 'PKR';
+        }
+
+        function updateBalanceHUD() {
+            const w = getWallet();
+            const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 0;
+            const cur = getActiveCurrency();
+            const symbol = (cur === 'PKR') ? '₨ ' : (cur === 'USD' ? '$' : '₨ ');
+            if (dom.cabinetBalance) {
+                dom.cabinetBalance.textContent = symbol + Number(bal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        function updatePayoutPoolDisplay() {
+            const cur = getActiveCurrency();
+            const symbol = (cur === 'PKR') ? '₨ ' : '$';
+            const winVal = (state.betAmount * 3.80).toFixed(2);
+            if (dom.poolWinVal) dom.poolWinVal.textContent = `${symbol}${Number(winVal).toLocaleString()} (3.8x)`;
+            if (dom.betDisplayVal) dom.betDisplayVal.textContent = `${symbol}${state.betAmount}`;
+        }
+
+        function syncChipActive() {
+            const chipButtons = dom.chipButtons || document.querySelectorAll('.btn-chip');
+            if (chipButtons) {
+                chipButtons.forEach(btn => {
+                    if (parseInt(btn.dataset.amt, 10) === state.betAmount) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        /* -------------------------------------------------------------
+           6. BOARD GENERATION & TILE PLACEMENT
+           ------------------------------------------------------------- */
+        const tileElements = new Map(); // key: 'r-c' -> HTMLElement
+
+        function buildBoardTiles() {
+            // Render 52 track tiles
+            TRACK_TILES.forEach((coord, index) => {
+                const [r, c] = coord;
+                const tile = document.createElement('div');
+                tile.className = 'board-tile';
+                tile.style.gridRow = r;
+                tile.style.gridColumn = c;
+                tile.dataset.trackIndex = index;
+
+                // Color code starts and inject directional movement arrows
+                if (index === START_INDICES.red) {
+                    tile.classList.add('tile-red');
+                    const arrow = document.createElement('span');
+                    arrow.className = 'tile-start-arrow';
+                    arrow.textContent = '▲';
+                    tile.appendChild(arrow);
+                } else if (index === START_INDICES.green) {
+                    tile.classList.add('tile-green');
+                    const arrow = document.createElement('span');
+                    arrow.className = 'tile-start-arrow';
+                    arrow.textContent = '►';
+                    tile.appendChild(arrow);
+                } else if (index === START_INDICES.yellow) {
+                    tile.classList.add('tile-yellow');
+                    const arrow = document.createElement('span');
+                    arrow.className = 'tile-start-arrow';
+                    arrow.textContent = '▼';
+                    tile.appendChild(arrow);
+                } else if (index === START_INDICES.blue) {
+                    tile.classList.add('tile-blue');
+                    const arrow = document.createElement('span');
+                    arrow.className = 'tile-start-arrow';
+                    arrow.textContent = '◄';
+                    tile.appendChild(arrow);
+                }
+
+                // Star Safe tiles
+                if (SAFE_INDICES.includes(index)) {
+                    tile.classList.add('tile-safe');
+                }
+
+                // Money Bag tiles
+                if (MONEY_BAG_INDICES.includes(index)) {
+                    tile.classList.add('tile-money-bag');
+                }
+
+                // Chance Card tiles
+                if (CHANCE_CARD_INDICES.includes(index)) {
+                    tile.classList.add('tile-chance-card');
+                }
+
+                dom.boardContainer.appendChild(tile);
+                tileElements.set(`${r}-${c}`, tile);
+            });
+
+            // Render Home Columns for all 4 players
+            Object.entries(HOME_COLUMNS).forEach(([color, coords]) => {
+                coords.forEach(([r, c]) => {
+                    const tile = document.createElement('div');
+                    tile.className = `board-tile tile-${color}`;
+                    tile.style.gridRow = r;
+                    tile.style.gridColumn = c;
+                    dom.boardContainer.appendChild(tile);
+                    tileElements.set(`${r}-${c}`, tile);
+                });
+            });
+        }
+
+        /* -------------------------------------------------------------
+           7. 3D DICE ENGINE
+           ------------------------------------------------------------- */
+        const PIP_PATTERNS = {
+            1: [4],
+            2: [0, 8],
+            3: [0, 4, 8],
+            4: [0, 2, 6, 8],
+            5: [0, 2, 4, 6, 8],
+            6: [0, 2, 3, 5, 6, 8]
+        };
+
+        function renderDicePips(val) {
+            dom.pips.forEach(p => p.style.visibility = 'hidden');
+            const active = PIP_PATTERNS[val] || [4];
+            active.forEach(idx => {
+                if (dom.pips[idx]) dom.pips[idx].style.visibility = 'visible';
+            });
+        }
+
+        /* -------------------------------------------------------------
+           8. TOKEN PAWNS & RENDERING
+           ------------------------------------------------------------- */
+        const pawnElements = []; // list of pawn DOM objects
+
+        function createPawn(color, pIdx) {
+            const pawn = document.createElement('div');
+            pawn.className = `token-pawn token-${color}`;
+            pawn.dataset.color = color;
+            pawn.dataset.pawnIndex = pIdx;
+            dom.boardContainer.appendChild(pawn);
+            pawnElements.push(pawn);
+
+            pawn.addEventListener('click', () => {
+                if (state.currentTurn === 'red' && color === 'red' && pawn.classList.contains('token-selectable')) {
+                    handlePawnSelection(pIdx);
+                }
+            });
+
+            return pawn;
+        }
+
+        function initAllPawns() {
+            // Remove existing pawns if any
+            pawnElements.forEach(p => p.remove());
+            pawnElements.length = 0;
+
+            ['red', 'green', 'yellow', 'blue'].forEach(color => {
+                for (let i = 0; i < 4; i++) {
+                    createPawn(color, i);
+                }
+            });
+            positionAllPawns();
+        }
+
+        function getCoordinateForPosition(color, pos) {
+            // pos -1: in base yard
+            // pos 0 to 50: on track relative to player start
+            // pos 51 to 55: in home column
+            // pos 56: Home Center Crown
+            if (pos === -1) return null;
+
+            if (pos >= 0 && pos <= 50) {
+                const trackIdx = (START_INDICES[color] + pos) % 52;
+                return TRACK_TILES[trackIdx];
+            } else if (pos >= 51 && pos <= 55) {
+                const homeIdx = pos - 51;
+                return HOME_COLUMNS[color][homeIdx];
+            } else {
+                // Center Crown
+                return [8, 8];
+            }
+        }
+
+        function positionAllPawns() {
+            pawnElements.forEach(pawn => {
+                const color = pawn.dataset.color;
+                const pIdx = parseInt(pawn.dataset.pawnIndex, 10);
+                const pos = state.players[color].tokens[pIdx];
+
+                if (pos === -1) {
+                    // Place inside player base yard slot
+                    const slot = document.getElementById(`slot-${color}-${pIdx}`);
+                    if (slot) {
+                        const rect = slot.getBoundingClientRect();
+                        const bRect = dom.boardContainer.getBoundingClientRect();
+                        pawn.style.top = `${rect.top - bRect.top + 4}px`;
+                        pawn.style.left = `${rect.left - bRect.left + 4}px`;
+                    }
+                } else {
+                    const coord = getCoordinateForPosition(color, pos);
+                    if (coord) {
+                        const [r, c] = coord;
+                        // Center inside grid cell
+                        const cellWidth = dom.boardContainer.clientWidth / 15;
+                        const cellHeight = dom.boardContainer.clientHeight / 15;
+                        pawn.style.top = `${(r - 1) * cellHeight + (cellHeight - 22) / 2}px`;
+                        pawn.style.left = `${(c - 1) * cellWidth + (cellWidth - 22) / 2}px`;
+                    }
+                }
+
+                // Show shield if player shielded
+                if (state.players[color].shielded) {
+                    pawn.classList.add('token-shielded');
+                } else {
+                    pawn.classList.remove('token-shielded');
+                }
+            });
+        }
+
+        /* -------------------------------------------------------------
+           9. RIG LOGIC / CASINO ALGORITHM ("apna logic bnao is ka pichy")
+           ------------------------------------------------------------- */
+        function getDecisionRTP() {
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    // Forced loss bias check
+                    if (u && (u.outcome_bias === 'force_loss' || u.outcomeBias === 'force_loss')) {
+                        if (state.betAmount > 300) return 'force_loss';
+                        if (typeof window.checkLossRigOutcome === 'function') {
+                            const canWin = window.checkLossRigOutcome(state.betAmount, u);
+                            if (canWin === false) return 'force_loss';
+                            if (canWin === true) return 'force_win';
+                        }
+                        return 'force_loss';
+                    }
+                    if (u && (u.outcome_bias === 'force_win' || u.outcomeBias === 'force_win')) {
+                        return 'force_win';
+                    }
+                    const customRate = parseInt(u.custom_win_rate !== undefined ? u.custom_win_rate : (u.customWinRate !== undefined ? u.customWinRate : -1), 10);
+                    if (!isNaN(customRate) && customRate >= 0 && customRate <= 100) {
+                        return (Math.random() * 100 < customRate) ? 'win' : 'loss';
+                    }
+                }
+
+                const cfg = JSON.parse(localStorage.getItem('bwn_admin_config') || 'null');
+                if (cfg) {
+                    if (cfg.rigMode === 'force_win') return 'force_win';
+                    if (cfg.rigMode === 'force_loss') return 'force_loss';
+                    if (typeof cfg.globalWinRate === 'number') {
+                        return (Math.random() * 100 < cfg.globalWinRate) ? 'win' : 'loss';
+                    }
+                }
+            } catch (e) {}
+
+            // Default strict casino house edge: 88% loss rate for player (bots win)
+            return (Math.random() < 0.12) ? 'win' : 'force_loss';
+        }
+
+        function calculateDiceRoll(playerColor) {
+            const decision = getDecisionRTP();
+            const isPlayer = (playerColor === 'red');
+
+            if (isPlayer) {
+                if (decision === 'force_win' || decision === 'win') {
+                    // Check if player has tokens in base; grant a 6 with high probability
+                    const hasInYard = state.players.red.tokens.some(t => t === -1);
+                    if (hasInYard && Math.random() < 0.75) return 6;
+                    // Otherwise favorable moves (5 or 6)
+                    return (Math.random() < 0.5) ? 6 : (Math.floor(Math.random() * 3) + 4);
+                } else {
+                    // Strict casino house edge: player gets tough rolls, hard to leave yard
+                    const hasInYard = state.players.red.tokens.some(t => t === -1);
+                    if (hasInYard && Math.random() < 0.90) {
+                        const nonSix = [1, 2, 3, 4, 5];
+                        return nonSix[Math.floor(Math.random() * nonSix.length)];
+                    }
+                    if (Math.random() < 0.45) return Math.floor(Math.random() * 3) + 1; // 1, 2, 3 small steps
+                }
+            } else {
+                // Bots rolling: when player is losing, bots roll aggressively (lots of 6s and captures)
+                if (decision === 'force_loss' || decision === 'loss') {
+                    const botHasInYard = state.players[playerColor].tokens.some(t => t === -1);
+                    if (botHasInYard && Math.random() < 0.65) return 6; // Bots quickly exit yard
+                    if (Math.random() < 0.40) return 6; // Frequent bonus rolls for bots
+                }
+            }
+
+            // Normal standard random roll 1 to 6
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        /* -------------------------------------------------------------
+           10. TURN & MOVEMENT SYSTEM
+           ------------------------------------------------------------- */
+        async function rollDiceForTurn() {
+            if (state.isRolling) return;
+            state.isRolling = true;
+            dom.btnMainRoll.disabled = true;
+
+            const activeColor = state.currentTurn;
+            sound.playDiceRoll();
+            dom.diceCube.classList.add('dice-rolling');
+
+            const rollDuration = (state.speedMultiplier === 2) ? 220 : 450;
+            await new Promise(r => setTimeout(r, rollDuration));
+
+            state.diceValue = calculateDiceRoll(activeColor);
+            dom.diceCube.classList.remove('dice-rolling');
+            renderDicePips(state.diceValue);
+
+            if (state.diceValue === 6) {
+                sound.playSix();
+                showSpeech(activeColor, 'ROLL 6! 🎉');
+            }
+
+            // Find valid movable tokens
+            const validTokens = getValidTokensForRoll(activeColor, state.diceValue);
+
+            if (validTokens.length === 0) {
+                // No valid moves -> Next turn
+                showSpeech(activeColor, 'No Move! 😅');
+                await delay(500);
+                finishTurn(false);
+            } else if (validTokens.length === 1 || activeColor !== 'red') {
+                // Single move or bot turn -> Auto move chosen token
+                const chosenIdx = pickBestToken(activeColor, validTokens, state.diceValue);
+                await moveToken(activeColor, chosenIdx, state.diceValue);
+            } else {
+                // Player has multiple choices! Highlight them
+                highlightSelectableTokens(validTokens);
+                state.isRolling = false; // waiting for user tap
+            }
+        }
+
+        function getValidTokensForRoll(color, dice) {
+            const valid = [];
+            const tokens = state.players[color].tokens;
+
+            tokens.forEach((pos, idx) => {
+                if (pos === -1) {
+                    // Needs a 6 to exit yard
+                    if (dice === 6) valid.push(idx);
+                } else if (pos + dice <= 56) {
+                    // Can move within track or home
+                    valid.push(idx);
+                }
+            });
+
+            return valid;
+        }
+
+        function highlightSelectableTokens(validIndices) {
+            pawnElements.forEach(pawn => {
+                if (pawn.dataset.color === 'red') {
+                    const idx = parseInt(pawn.dataset.pawnIndex, 10);
+                    if (validIndices.includes(idx)) {
+                        pawn.classList.add('token-selectable');
+                    }
+                }
+            });
+            dom.btnMainRoll.innerHTML = '<span>👆 TAP YOUR PAWN</span>';
+        }
+
+        function clearSelectableTokens() {
+            pawnElements.forEach(p => p.classList.remove('token-selectable'));
+            dom.btnMainRoll.innerHTML = '<span>🎲 ROLL DICE</span>';
+        }
+
+        async function handlePawnSelection(pIdx) {
+            clearSelectableTokens();
+            state.isRolling = true;
+            await moveToken('red', pIdx, state.diceValue);
+        }
+
+        function pickBestToken(color, validIndices, dice) {
+            // Intelligent Bot & Auto-play AI
+            // Priority 1: Tokens in yard on a 6
+            // Priority 2: Tokens that can capture an opponent
+            // Priority 3: Tokens that can land on Money Bag or Safe star
+            // Priority 4: Furthest token along track
+            let bestIdx = validIndices[0];
+            let maxScore = -999;
+
+            validIndices.forEach(idx => {
+                const pos = state.players[color].tokens[idx];
+                let score = 0;
+
+                if (pos === -1 && dice === 6) {
+                    score += 50; // Get out of yard
+                } else {
+                    const targetPos = pos + dice;
+                    score += targetPos * 2; // Forward progress
+
+                    // Check capture
+                    const targetCoord = getCoordinateForPosition(color, targetPos);
+                    if (targetCoord && targetPos <= 50) {
+                        const targetTrackIdx = (START_INDICES[color] + targetPos) % 52;
+                        if (!SAFE_INDICES.includes(targetTrackIdx)) {
+                            // Check opponents here
+                            Object.entries(state.players).forEach(([otherColor, oData]) => {
+                                if (otherColor !== color && !oData.shielded) {
+                                    oData.tokens.forEach(oPos => {
+                                        if (oPos >= 0 && oPos <= 50) {
+                                            const oTrackIdx = (START_INDICES[otherColor] + oPos) % 52;
+                                            if (oTrackIdx === targetTrackIdx) {
+                                                score += 100; // Big bonus for capture!
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
+                        // Money Bag bonus
+                        if (MONEY_BAG_INDICES.includes(targetTrackIdx)) score += 30;
+                    }
+
+                    if (targetPos === 56) score += 200; // Finish!
+                }
+
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestIdx = idx;
+                }
+            });
+
+            return bestIdx;
+        }
+
+        function triggerPawnHop(color, pIdx) {
+            const pawn = pawnElements.find(p => p.dataset.color === color && parseInt(p.dataset.pawnIndex, 10) === pIdx);
+            if (pawn) {
+                pawn.classList.remove('pawn-hopping');
+                void pawn.offsetWidth;
+                pawn.classList.add('pawn-hopping');
+                setTimeout(() => pawn.classList.remove('pawn-hopping'), 150);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           11. MOVE TOKEN ANIMATION & STEP-BY-STEP TRAVERSAL
+           ------------------------------------------------------------- */
+        async function moveToken(color, pIdx, steps) {
+            const currentPos = state.players[color].tokens[pIdx];
+
+            if (currentPos === -1) {
+                // Exit Yard onto Start square (pos = 0)
+                state.players[color].tokens[pIdx] = 0;
+                sound.playPawnStep();
+                triggerPawnHop(color, pIdx);
+                positionAllPawns();
+                await delay(250);
+            } else {
+                // Step by step animation
+                for (let s = 1; s <= steps; s++) {
+                    state.players[color].tokens[pIdx] += 1;
+                    sound.playPawnStep();
+                    triggerPawnHop(color, pIdx);
+                    positionAllPawns();
+                    await delay(state.speedMultiplier === 2 ? 80 : 160);
+                }
+            }
+
+            const finalPos = state.players[color].tokens[pIdx];
+
+            // 1. Check Home Reach (Finish)
+            if (finalPos === 56) {
+                state.players[color].homeCount += 1;
+                document.getElementById(`${color}HomeCount`).textContent = `${state.players[color].homeCount}/4`;
+                sound.playVictory();
+                showSpeech(color, 'HOME REACHED! 🏆');
+
+                // In Quick Ludo: 1st player to get 1 token (or 2) home wins the match!
+                // Quick match threshold = 1 pawn home (Ultra-fast arcade style)
+                if (state.players[color].homeCount >= 1) {
+                    endMatch(color);
+                    return;
+                }
+            }
+
+            // 2. Check Knockout Capture
+            let hasCaptured = false;
+            if (finalPos >= 0 && finalPos <= 50) {
+                const trackIdx = (START_INDICES[color] + finalPos) % 52;
+                if (!SAFE_INDICES.includes(trackIdx)) {
+                    Object.entries(state.players).forEach(([oppColor, oppData]) => {
+                        if (oppColor !== color && !oppData.shielded) {
+                            oppData.tokens.forEach((oppPos, oppIdx) => {
+                                if (oppPos >= 0 && oppPos <= 50) {
+                                    const oppTrackIdx = (START_INDICES[oppColor] + oppPos) % 52;
+                                    if (oppTrackIdx === trackIdx) {
+                                        // KNOCKOUT! Send back to yard
+                                        oppData.tokens[oppIdx] = -1;
+                                        hasCaptured = true;
+                                        sound.playKnockout();
+                                        showSpeech(color, 'KNOCKOUT! 💥');
+                                        showSpeech(oppColor, 'Oh no! 😭');
+
+                                        const bounty = (state.betAmount * 0.25);
+                                        if (color === 'red') {
+                                            state.bountyBonuses += bounty;
+                                            showKnockoutVFX(bounty, 'YOU');
+                                        } else {
+                                            showKnockoutVFX(0, state.players[color].name);
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+
+                // 3. Check Money Bag
+                if (MONEY_BAG_INDICES.includes(trackIdx)) {
+                    await handleMoneyBagHit(color);
+                }
+
+                // 4. Check Chance Card
+                if (CHANCE_CARD_INDICES.includes(trackIdx)) {
+                    await handleChanceCardHit(color, pIdx);
+                }
+            }
+
+            positionAllPawns();
+
+            // Rule: Rolling a 6 OR capturing an opponent earns a bonus roll!
+            const bonusRoll = (steps === 6 || hasCaptured);
+            finishTurn(bonusRoll);
+        }
+
+        /* -------------------------------------------------------------
+           12. SPECIAL EVENTS: MONEY BAG, CHANCE CARDS & VFX
+           ------------------------------------------------------------- */
+        function showKnockoutVFX(bounty = 0, attackerName = '') {
+            if (!dom.knockoutOverlay) return;
+            if (dom.knockoutBountyText) {
+                if (bounty > 0) {
+                    dom.knockoutBountyText.textContent = `+₨ ${bounty.toFixed(2)} BOUNTY REWARD!`;
+                } else {
+                    dom.knockoutBountyText.textContent = `${attackerName.toUpperCase()} TOOK THE TILE!`;
+                }
+            }
+            dom.knockoutOverlay.classList.remove('show');
+            void dom.knockoutOverlay.offsetWidth;
+            dom.knockoutOverlay.classList.add('show');
+            setTimeout(() => {
+                if (dom.knockoutOverlay) dom.knockoutOverlay.classList.remove('show');
+            }, 1200);
+        }
+
+        function showCoinCascade(count = 7) {
+            if (!dom.coinCascadeContainer) return;
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const coin = document.createElement('div');
+                    coin.className = 'coin-float-particle';
+                    coin.textContent = '🪙';
+                    const rndX = (Math.random() - 0.5) * 130;
+                    const rndY = -70 - Math.random() * 85;
+                    coin.style.setProperty('--tx', `${rndX}px`);
+                    coin.style.setProperty('--ty', `${rndY}px`);
+                    coin.style.left = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
+                    coin.style.top = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
+                    dom.coinCascadeContainer.appendChild(coin);
+                    sound.playTone(850 + Math.random() * 250, 'sine', 0.08, 0.22);
+                    setTimeout(() => coin.remove(), 850);
+                }, i * 65);
+            }
+        }
+
+        async function handleMoneyBagHit(color) {
+            sound.playMoneyBag();
+            showCoinCascade(8);
+            const multipliers = [0.5, 0.8, 1.0, 1.2, 1.5];
+            const mult = multipliers[Math.floor(Math.random() * multipliers.length)];
+            const cash = state.betAmount * mult;
+
+            if (color === 'red') {
+                state.moneyBagBonuses += cash;
+                dom.eventIcon.textContent = '💰';
+                dom.eventTitle.textContent = `MONEY BAG! +${mult}X`;
+                dom.eventDesc.textContent = `Golden Fortune Bag! You just won an instant ₨ ${cash.toFixed(2)} bonus added to your round!`;
+                dom.eventOverlay.classList.add('active');
+                await new Promise(res => {
+                    dom.btnClaimEvent.onclick = () => {
+                        dom.eventOverlay.classList.remove('active');
+                        res();
+                    };
+                });
+            } else {
+                showSpeech(color, `+${mult}x Money Bag! 💰`);
+                await delay(600);
+            }
+        }
+
+        async function handleChanceCardHit(color, pIdx) {
+            sound.playSix();
+            const cards = [
+                { title: 'ROCKET BOOST 🚀', desc: 'Forward +4 extra spaces instantly!', action: () => { state.players[color].tokens[pIdx] += 4; } },
+                { title: 'GOLDEN SHIELD 🛡️', desc: 'Protected from all knockouts for your next turns!', action: () => { state.players[color].shielded = true; } },
+                { title: 'LUCKY 6 🎲', desc: 'Earned a free roll with guaranteed 6 on your next turn!', action: () => {} }
+            ];
+            const card = cards[Math.floor(Math.random() * cards.length)];
+
+            if (color === 'red') {
+                dom.eventIcon.textContent = '🃏';
+                dom.eventTitle.textContent = card.title;
+                dom.eventDesc.textContent = card.desc;
+                dom.eventOverlay.classList.add('active');
+                await new Promise(res => {
+                    dom.btnClaimEvent.onclick = () => {
+                        dom.eventOverlay.classList.remove('active');
+                        card.action();
+                        positionAllPawns();
+                        res();
+                    };
+                });
+            } else {
+                showSpeech(color, card.title);
+                card.action();
+                positionAllPawns();
+                await delay(600);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           13. TURN TIMER & COUNTDOWN RING SYSTEM (JILI Style)
+           ------------------------------------------------------------- */
+        let turnTimerInterval = null;
+        let turnTimerRemaining = 10;
+
+        function stopTurnTimer() {
+            if (turnTimerInterval) {
+                clearInterval(turnTimerInterval);
+                turnTimerInterval = null;
+            }
+            ['red', 'green', 'yellow', 'blue'].forEach(col => {
+                const stroke = document.getElementById(`timer-stroke-${col}`);
+                if (stroke) {
+                    stroke.style.strokeDashoffset = '0';
+                    stroke.style.stroke = '#00ff88';
+                }
+            });
+        }
+
+        function startTurnTimer(color) {
+            stopTurnTimer();
+            if (!state.roundActive || state.winner) return;
+
+            const stroke = document.getElementById(`timer-stroke-${color}`);
+            const totalDurationSec = (state.speedMultiplier === 2) ? 6 : 10;
+            turnTimerRemaining = totalDurationSec;
+
+            if (stroke) {
+                stroke.style.strokeDashoffset = '0';
+                stroke.style.stroke = '#00ff88';
+            }
+
+            const stepMs = 100;
+            const totalSteps = (totalDurationSec * 1000) / stepMs;
+            let currentStep = 0;
+
+            turnTimerInterval = setInterval(() => {
+                if (!state.roundActive || state.winner || state.currentTurn !== color) {
+                    stopTurnTimer();
+                    return;
+                }
+
+                currentStep++;
+                const progressRatio = currentStep / totalSteps;
+                const offset = progressRatio * 120; // 120 circumference
+                if (stroke) {
+                    stroke.style.strokeDashoffset = offset.toFixed(1);
+                    if (progressRatio >= 0.7) {
+                        stroke.style.stroke = '#ff334b';
+                    } else if (progressRatio >= 0.45) {
+                        stroke.style.stroke = '#ffd700';
+                    }
+                }
+
+                if (currentStep >= totalSteps) {
+                    stopTurnTimer();
+                    // On expiry: auto roll / auto move for the current player
+                    if (color === 'red') {
+                        if (!state.isRolling) {
+                            showSpeech('red', 'Auto Rolled! ⚡');
+                            rollDiceForTurn();
+                        }
+                    }
+                }
+            }, stepMs);
+        }
+
+        /* -------------------------------------------------------------
+           14. TURN SWITCHING & BOT EXECUTION
+           ------------------------------------------------------------- */
+        function finishTurn(bonusRoll = false) {
+            state.isRolling = false;
+            stopTurnTimer();
+
+            if (bonusRoll && !state.winner) {
+                showSpeech(state.currentTurn, 'EXTRA ROLL! 🎲');
+                startTurnTimer(state.currentTurn);
+                if (state.currentTurn === 'red') {
+                    dom.btnMainRoll.disabled = false;
+                    if (state.autoPlay) setTimeout(rollDiceForTurn, 600);
+                } else {
+                    setTimeout(rollDiceForTurn, state.speedMultiplier === 2 ? 400 : 800);
+                }
+                return;
+            }
+
+            // Next player in order
+            const currentIdx = state.playerOrder.indexOf(state.currentTurn);
+            const nextIdx = (currentIdx + 1) % state.playerOrder.length;
+            state.currentTurn = state.playerOrder[nextIdx];
+
+            // Update UI active pod
+            document.querySelectorAll('.player-pod').forEach(pod => pod.classList.remove('active-turn'));
+            const activePod = document.getElementById(`pod-${state.currentTurn}`);
+            if (activePod) activePod.classList.add('active-turn');
+
+            startTurnTimer(state.currentTurn);
+
+            if (state.currentTurn === 'red') {
+                // Player's turn
+                dom.btnMainRoll.disabled = false;
+                if (state.autoPlay) {
+                    setTimeout(rollDiceForTurn, 500);
+                }
+            } else {
+                // Bot's turn
+                dom.btnMainRoll.disabled = true;
+                const delayMs = state.speedMultiplier === 2 ? 450 : 900;
+                setTimeout(rollDiceForTurn, delayMs);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           15. MATCH END & CASINO PAYOUT
+           ------------------------------------------------------------- */
+        function endMatch(winnerColor) {
+            state.winner = winnerColor;
+            state.roundActive = false;
+            dom.btnMainRoll.disabled = true;
+            stopTurnTimer();
+
+            const isPlayerWinner = (winnerColor === 'red');
+            const w = getWallet();
+
+            if (isPlayerWinner) {
+                // VICTORY!
+                sound.playVictory();
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 80,
+                        origin: { y: 0.6 }
+                    });
+                }
+
+                const mult = 3.80;
+                const winAmount = (state.betAmount * mult) + state.moneyBagBonuses + state.bountyBonuses;
+
+                if (w && typeof w.creditWin === 'function') {
+                    w.creditWin(state.betAmount, winAmount, 'Ludo Quick', mult, '1st Place Win');
+                }
+                updateBalanceHUD();
+
+                dom.victoryCrown.textContent = '👑';
+                dom.victoryHeading.textContent = 'VICTORY!';
+                dom.victoryRankBadge.textContent = '1ST PLACE CHAMPION';
+                dom.victoryPayoutVal.textContent = `+₨ ${winAmount.toFixed(2)}`;
+                dom.victoryBreakdown.textContent = `Race Multiplier: 3.8x | Bonus: ₨ ${(state.moneyBagBonuses + state.bountyBonuses).toFixed(2)}`;
+                dom.victoryModal.classList.add('active');
+
+            } else {
+                // Bot Won (Player lost)
+                sound.playKnockout();
+                if (w && typeof w.creditWin === 'function') {
+                    // Credit loss / zero win
+                    w.creditWin(state.betAmount, 0, 'Ludo Quick', 0, `${state.players[winnerColor].name} Won`);
+                }
+                updateBalanceHUD();
+
+                dom.victoryCrown.textContent = '🥈';
+                dom.victoryHeading.textContent = `${state.players[winnerColor].name.toUpperCase()} WON!`;
+                dom.victoryRankBadge.textContent = 'ROUND FINISHED';
+                dom.victoryPayoutVal.textContent = `₨ 0.00`;
+                dom.victoryBreakdown.textContent = 'Better luck next race! Tap below to rematch.';
+                dom.victoryModal.classList.add('active');
+            }
+        }
+
+        /* -------------------------------------------------------------
+           16. START ROUND & BET PLACEMENT
+           ------------------------------------------------------------- */
+        function startNewRound() {
+            stopTurnTimer();
+            const w = getWallet();
+            if (w && typeof w.placeBet === 'function') {
+                const curBal = (typeof w.getBalance === 'function') ? w.getBalance() : 0;
+                if (curBal >= state.betAmount) {
+                    w.placeBet(state.betAmount, 'Ludo Quick');
+                } else if (curBal > 0) {
+                    w.placeBet(curBal, 'Ludo Quick');
+                } else {
+                    // Demo mode if balance is 0 so player is never blocked from playing
+                    showSpeech('red', 'Demo Play! 🎲');
+                }
+            }
+
+            updateBalanceHUD();
+
+            // Reset Game state
+            state.roundActive = true;
+            state.winner = null;
+            state.currentTurn = 'red';
+            state.moneyBagBonuses = 0;
+            state.bountyBonuses = 0;
+
+            ['red', 'green', 'yellow', 'blue'].forEach(color => {
+                state.players[color].tokens = [-1, -1, -1, -1];
+                state.players[color].homeCount = 0;
+                state.players[color].shielded = false;
+                document.getElementById(`${color}HomeCount`).textContent = '0/4';
+            });
+
+            dom.victoryModal.classList.remove('active');
+            document.querySelectorAll('.player-pod').forEach(p => p.classList.remove('active-turn'));
+            document.getElementById('pod-red').classList.add('active-turn');
+
+            initAllPawns();
+            dom.btnMainRoll.disabled = false;
+            dom.btnMainRoll.innerHTML = '<span>🎲 ROLL DICE</span>';
+
+            startTurnTimer('red');
+            showSpeech('red', 'Race Starts! 🏁');
+            return true;
+        }
+
+        /* -------------------------------------------------------------
+           16. EVENT LISTENERS & UI WIRING
+           ------------------------------------------------------------- */
+        function setupEventListeners() {
+            // Main Roll button
+            dom.btnMainRoll.addEventListener('click', () => {
+                if (!state.roundActive) {
+                    if (startNewRound()) {
+                        rollDiceForTurn();
+                    }
+                } else if (state.currentTurn === 'red') {
+                    rollDiceForTurn();
+                }
+            });
+
+            // Bet Steppers
+            dom.btnBetMinus.addEventListener('click', () => {
+                if (state.roundActive) return;
+                const steps = [20, 50, 100, 200, 500, 1000, 2500, 5000];
+                const currentIdx = steps.indexOf(state.betAmount);
+                if (currentIdx > 0) {
+                    state.betAmount = steps[currentIdx - 1];
+                    updatePayoutPoolDisplay();
+                    syncChipActive();
+                }
+            });
+
+            dom.btnBetPlus.addEventListener('click', () => {
+                if (state.roundActive) return;
+                const steps = [20, 50, 100, 200, 500, 1000, 2500, 5000];
+                const currentIdx = steps.indexOf(state.betAmount);
+                if (currentIdx < steps.length - 1) {
+                    state.betAmount = steps[currentIdx + 1];
+                    updatePayoutPoolDisplay();
+                    syncChipActive();
+                }
+            });
+
+            // Chips
+            dom.chipButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (state.roundActive) return;
+                    state.betAmount = parseInt(btn.dataset.amt, 10);
+                    updatePayoutPoolDisplay();
+                    syncChipActive();
+                });
+            });
+
+            // Turbo Toggle
+            dom.btnTurboToggle.addEventListener('click', () => {
+                state.speedMultiplier = (state.speedMultiplier === 1) ? 2 : 1;
+                dom.turboLabel.textContent = `${state.speedMultiplier}X`;
+                dom.btnTurboToggle.classList.toggle('active', state.speedMultiplier === 2);
+            });
+
+            // Auto Toggle
+            dom.btnAutoToggle.addEventListener('click', () => {
+                state.autoPlay = !state.autoPlay;
+                dom.btnAutoToggle.classList.toggle('active', state.autoPlay);
+                if (state.autoPlay && state.currentTurn === 'red' && !state.isRolling) {
+                    if (!state.roundActive) startNewRound();
+                    rollDiceForTurn();
+                }
+            });
+
+            // Sound Toggle
+            dom.btnSoundToggle.addEventListener('click', () => {
+                sound.muted = !sound.muted;
+                dom.btnSoundToggle.textContent = sound.muted ? '🔇' : '🔊';
+            });
+
+            // Rules Modal
+            dom.btnOpenRules.addEventListener('click', () => dom.rulesModal.classList.add('active'));
+            dom.btnCloseRules.addEventListener('click', () => dom.rulesModal.classList.remove('active'));
+
+            // Play Again (Rematch on same table)
+            dom.btnPlayAgain.addEventListener('click', () => {
+                dom.victoryModal.classList.remove('active');
+                startMatchmakingRadar(selectedTableKey);
+            });
+
+            // Victory Change Table
+            if (dom.btnVictoryChangeTable) {
+                dom.btnVictoryChangeTable.addEventListener('click', () => {
+                    dom.victoryModal.classList.remove('active');
+                    openTableModal();
+                });
+            }
+
+            // Header Tables Button
+            if (dom.btnOpenTables) {
+                dom.btnOpenTables.addEventListener('click', () => openTableModal());
+            }
+
+            // Header Theme Button
+            if (dom.btnSwitchTheme) {
+                dom.btnSwitchTheme.addEventListener('click', () => openThemeModal());
+            }
+            if (dom.btnCloseTheme) {
+                dom.btnCloseTheme.addEventListener('click', () => closeThemeModal());
+            }
+
+            // Matchmaking Cancel Button
+            if (dom.btnCancelMatch) {
+                dom.btnCancelMatch.addEventListener('click', () => cancelMatchmaking());
+            }
+
+            // Table Selection Cards & Buttons
+            document.querySelectorAll('.table-item-card, .btn-select-table').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const tableKey = el.dataset.table || el.closest('.table-item-card')?.dataset.table;
+                    if (tableKey) selectBettingTable(tableKey);
+                });
+            });
+
+            // Theme Cards Selection
+            document.querySelectorAll('.theme-choice-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const theme = card.dataset.theme;
+                    if (theme) applyTheme(theme);
+                    setTimeout(closeThemeModal, 250);
+                });
+            });
+
+            // Quick Emote & Chat Reactions Panel
+            if (dom.btnChatEmote && dom.chatEmotePanel) {
+                dom.btnChatEmote.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dom.chatEmotePanel.classList.toggle('active');
+                    sound.playTone(600, 'sine', 0.05, 0.15);
+                });
+            }
+
+            if (dom.btnCloseEmotes && dom.chatEmotePanel) {
+                dom.btnCloseEmotes.addEventListener('click', () => {
+                    dom.chatEmotePanel.classList.remove('active');
+                });
+            }
+
+            // Close chat panel on outside click
+            document.addEventListener('click', (e) => {
+                if (dom.chatEmotePanel && dom.chatEmotePanel.classList.contains('active')) {
+                    if (!dom.chatEmotePanel.contains(e.target) && e.target !== dom.btnChatEmote) {
+                        dom.chatEmotePanel.classList.remove('active');
+                    }
+                }
+            });
+
+            // Quick Emotes & Phrases click handlers
+            document.querySelectorAll('.btn-quick-emote, .btn-quick-phrase').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const msg = btn.dataset.msg || btn.textContent.trim();
+                    showSpeech('red', msg);
+                    sound.playTone(800, 'triangle', 0.08, 0.2);
+                    if (dom.chatEmotePanel) dom.chatEmotePanel.classList.remove('active');
+                });
+            });
+
+            // Periodic Bot Quick Reactions during active match
+            setInterval(() => {
+                if (!state.roundActive || state.winner) return;
+                const botColors = ['green', 'yellow', 'blue'];
+                const randomBot = botColors[Math.floor(Math.random() * botColors.length)];
+                const botReactions = ['🔥', '😎', '🎲', 'Good Luck! 👍', 'Watch out! 🔥', 'Roll a 6! 🎲', 'Nice move! 👏'];
+                const randomMsg = botReactions[Math.floor(Math.random() * botReactions.length)];
+                showSpeech(randomBot, randomMsg);
+            }, 12000);
+
+            // Re-align pawns on resize
+            window.addEventListener('resize', () => {
+                positionAllPawns();
+            });
+        }
+
+        /* -------------------------------------------------------------
+           17. TABLE SELECTION & MULTIPLAYER RADAR MATCHMAKING
+           ------------------------------------------------------------- */
+        function openTableModal() {
+            const w = getWallet();
+            const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 0;
+            const cur = getActiveCurrency();
+            const sym = (cur === 'PKR') ? '₨ ' : '$';
+            if (dom.tableModalBal) {
+                dom.tableModalBal.textContent = `${sym}${Number(bal).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+            }
+            if (dom.tableSelectModal) {
+                dom.tableSelectModal.classList.add('active');
+            }
+        }
+
+        function closeTableModal() {
+            if (dom.tableSelectModal) {
+                dom.tableSelectModal.classList.remove('active');
+            }
+        }
+
+        function selectBettingTable(tableKey) {
+            const table = TABLES_CONFIG[tableKey] || TABLES_CONFIG.classic;
+            if (!table) return;
+
+            selectedTableKey = tableKey;
+            state.betAmount = table.bet;
+            state.speedMultiplier = (table.speed >= 1.5) ? 2 : 1;
+            if (dom.turboLabel) dom.turboLabel.textContent = `${state.speedMultiplier}X`;
+            if (dom.btnTurboToggle) dom.btnTurboToggle.classList.toggle('active', state.speedMultiplier === 2);
+
+            updatePayoutPoolDisplay();
+            syncChipActive();
+
+            // Trigger Authentic 1xBet Cinematic Table Entrance
+            playTableEntranceFlow(tableKey, table);
+        }
+
+        function playTableEntranceFlow(tableKey, table) {
+            sound.playEntranceWhoosh();
+
+            if (dom.portalTableTitle) dom.portalTableTitle.textContent = table.name.toUpperCase();
+            if (dom.portalEntrySub) dom.portalEntrySub.textContent = `JOINING ${table.name.toUpperCase()} (₨ ${table.bet})...`;
+
+            const card = document.querySelector('.table-modal-card');
+            if (card) card.classList.add('entering');
+
+            if (dom.casinoEntrancePortal) {
+                dom.casinoEntrancePortal.classList.remove('opening');
+                dom.casinoEntrancePortal.classList.add('active');
+            }
+
+            setTimeout(() => {
+                if (dom.casinoEntrancePortal) {
+                    dom.casinoEntrancePortal.classList.add('opening');
+                }
+                closeTableModal();
+                if (card) card.classList.remove('entering');
+            }, 250);
+
+            setTimeout(() => {
+                if (dom.casinoEntrancePortal) {
+                    dom.casinoEntrancePortal.classList.remove('active', 'opening');
+                }
+
+                // Table arrival slam
+                sound.playTableLand();
+                if (dom.gameArena) {
+                    dom.gameArena.classList.remove('arena-entrance-slam');
+                    void dom.gameArena.offsetWidth;
+                    dom.gameArena.classList.add('arena-entrance-slam');
+                }
+
+                // Floating welcome banner
+                if (dom.tableWelcomeBanner && dom.tableWelcomeText) {
+                    dom.tableWelcomeText.textContent = `WELCOME TO ${table.name.toUpperCase()}`;
+                    dom.tableWelcomeBanner.classList.add('show');
+                    setTimeout(() => dom.tableWelcomeBanner.classList.remove('show'), 1400);
+                }
+
+                startMatchmakingRadar(tableKey);
+            }, 550);
+        }
+
+        // Global functions for inline HTML calls
+        window.selectBettingTable = selectBettingTable;
+        window.openTableModal = openTableModal;
+        window.closeTableModal = closeTableModal;
+        window.openThemeModal = openThemeModal;
+        window.closeThemeModal = closeThemeModal;
+        window.applyTheme = applyTheme;
+
+        function startMatchmakingRadar(tableKey) {
+            cancelMatchTimers();
+            isMatchmakingActive = true;
+            const table = TABLES_CONFIG[tableKey] || TABLES_CONFIG.gold;
+            const cur = getActiveCurrency();
+            const sym = (cur === 'PKR') ? '₨ ' : '$';
+
+            if (dom.radarTableTitle) dom.radarTableTitle.textContent = table.name;
+            if (dom.radarPoolBadge) {
+                dom.radarPoolBadge.textContent = `ENTRY: ${sym}${table.bet} • PRIZE POOL: ${sym}${(table.bet * 3.8).toFixed(2)}`;
+            }
+
+            // Slot 1 (Red / User)
+            const p1Avatar = document.getElementById('radarAvatar1');
+            const p1Name = document.getElementById('radarName1');
+            const p1Flag = document.getElementById('radarFlag1');
+            const p1Slot = document.getElementById('radarSlot1');
+            if (p1Avatar && dom.userAvatarImg) p1Avatar.src = dom.userAvatarImg.src;
+            if (p1Name && dom.userNameText) p1Name.textContent = dom.userNameText.textContent || 'YOU';
+            if (p1Flag) p1Flag.textContent = '👑';
+            if (p1Slot) p1Slot.classList.add('ready');
+
+            // Reset Slots 2, 3, 4
+            [2, 3, 4].forEach(i => {
+                const s = document.getElementById(`radarSlot${i}`);
+                const a = document.getElementById(`radarAvatar${i}`);
+                const n = document.getElementById(`radarName${i}`);
+                const f = document.getElementById(`radarFlag${i}`);
+                const st = document.getElementById(`radarState${i}`);
+                if (s) s.classList.remove('ready');
+                if (a) a.src = `https://api.dicebear.com/7.x/bottts/svg?seed=SearchingP${i}`;
+                if (n) n.textContent = 'Searching...';
+                if (f) f.textContent = '🌐';
+                if (st) {
+                    st.textContent = 'CONNECTING';
+                    st.classList.remove('status-ready');
+                }
+            });
+
+            if (dom.radarCountdownText) dom.radarCountdownText.textContent = 'SCANNING FOR OPPONENTS...';
+            if (dom.matchmakingModal) dom.matchmakingModal.classList.add('active');
+
+            sound.playRadarPing();
+
+            // Pick 3 random distinct opponents
+            const shuffled = [...BOT_PROFILES].sort(() => 0.5 - Math.random());
+            const matchedOpponents = [shuffled[0], shuffled[1], shuffled[2]];
+
+            // Step 1: Opponent 1 joins (250ms)
+            matchTimers.push(setTimeout(() => {
+                if (!isMatchmakingActive) return;
+                const p2 = matchedOpponents[0];
+                const s = document.getElementById('radarSlot2');
+                const a = document.getElementById('radarAvatar2');
+                const n = document.getElementById('radarName2');
+                const f = document.getElementById('radarFlag2');
+                const st = document.getElementById('radarState2');
+                if (a) a.src = p2.avatar;
+                if (n) n.textContent = p2.name;
+                if (f) f.textContent = p2.flag;
+                if (st) {
+                    st.textContent = 'READY';
+                    st.classList.add('status-ready');
+                }
+                if (s) s.classList.add('ready');
+                sound.playPlayerJoin();
+                if (dom.radarCountdownText) dom.radarCountdownText.textContent = '1/3 OPPONENTS JOINED...';
+            }, 250));
+
+            // Step 2: Opponent 2 joins (600ms)
+            matchTimers.push(setTimeout(() => {
+                if (!isMatchmakingActive) return;
+                const p3 = matchedOpponents[1];
+                const s = document.getElementById('radarSlot3');
+                const a = document.getElementById('radarAvatar3');
+                const n = document.getElementById('radarName3');
+                const f = document.getElementById('radarFlag3');
+                const st = document.getElementById('radarState3');
+                if (a) a.src = p3.avatar;
+                if (n) n.textContent = p3.name;
+                if (f) f.textContent = p3.flag;
+                if (st) {
+                    st.textContent = 'READY';
+                    st.classList.add('status-ready');
+                }
+                if (s) s.classList.add('ready');
+                sound.playPlayerJoin();
+                if (dom.radarCountdownText) dom.radarCountdownText.textContent = '2/3 OPPONENTS JOINED...';
+            }, 600));
+
+            // Step 3: Opponent 3 joins (950ms)
+            matchTimers.push(setTimeout(() => {
+                if (!isMatchmakingActive) return;
+                const p4 = matchedOpponents[2];
+                const s = document.getElementById('radarSlot4');
+                const a = document.getElementById('radarAvatar4');
+                const n = document.getElementById('radarName4');
+                const f = document.getElementById('radarFlag4');
+                const st = document.getElementById('radarState4');
+                if (a) a.src = p4.avatar;
+                if (n) n.textContent = p4.name;
+                if (f) f.textContent = p4.flag;
+                if (st) {
+                    st.textContent = 'READY';
+                    st.classList.add('status-ready');
+                }
+                if (s) s.classList.add('ready');
+                sound.playPlayerJoin();
+                if (dom.radarCountdownText) dom.radarCountdownText.textContent = 'ALL PLAYERS CONNECTED! 🏁';
+            }, 950));
+
+            // Step 4: Fanfare & Ready
+            matchTimers.push(setTimeout(() => {
+                if (!isMatchmakingActive) return;
+                sound.playMatchStart();
+                if (dom.radarCountdownText) dom.radarCountdownText.textContent = 'STARTING MATCH... READY!';
+            }, 1300));
+
+            // Step 5: Start Match & Update Game Pods & Kick off roll (1750ms)
+            matchTimers.push(setTimeout(() => {
+                if (!isMatchmakingActive) return;
+                isMatchmakingActive = false;
+                if (dom.matchmakingModal) dom.matchmakingModal.classList.remove('active');
+
+                // Update In-Game Pods
+                const [op2, op3, op4] = matchedOpponents;
+                
+                // Green (Player 2)
+                const avG = document.getElementById('avatar-green');
+                const flG = document.getElementById('flag-green');
+                const nmG = document.getElementById('name-green');
+                if (avG) avG.src = op2.avatar;
+                if (flG) flG.textContent = op2.flag;
+                if (nmG) nmG.textContent = op2.name;
+                state.players.green.name = op2.name;
+
+                // Yellow (Player 3)
+                const avY = document.getElementById('avatar-yellow');
+                const flY = document.getElementById('flag-yellow');
+                const nmY = document.getElementById('name-yellow');
+                if (avY) avY.src = op3.avatar;
+                if (flY) flY.textContent = op3.flag;
+                if (nmY) nmY.textContent = op3.name;
+                state.players.yellow.name = op3.name;
+
+                // Blue (Player 4)
+                const avB = document.getElementById('avatar-blue');
+                const flB = document.getElementById('flag-blue');
+                const nmB = document.getElementById('name-blue');
+                if (avB) avB.src = op4.avatar;
+                if (flB) flB.textContent = op4.flag;
+                if (nmB) nmB.textContent = op4.name;
+                state.players.blue.name = op4.name;
+
+                // Start round & auto roll first turn for the player
+                startNewRound();
+                setTimeout(() => {
+                    if (state.roundActive && state.currentTurn === 'red' && !state.isRolling) {
+                        rollDiceForTurn();
+                    }
+                }, 350);
+
+            }, 1750));
+        }
+
+        function cancelMatchTimers() {
+            matchTimers.forEach(t => clearTimeout(t));
+            matchTimers = [];
+            isMatchmakingActive = false;
+        }
+
+        function cancelMatchmaking() {
+            cancelMatchTimers();
+            if (dom.matchmakingModal) dom.matchmakingModal.classList.remove('active');
+            openTableModal();
+        }
+
+        /* -------------------------------------------------------------
+           18. THEME ENGINE (Royal Gold, Cyber Neon, Emerald Monte Carlo)
+           ------------------------------------------------------------- */
+        function applyTheme(themeName) {
+            document.body.classList.remove('theme-royal-gold', 'theme-cyber-neon', 'theme-emerald-classic');
+            document.body.classList.add(themeName);
+
+            document.querySelectorAll('.theme-choice-card').forEach(card => {
+                if (card.dataset.theme === themeName) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            try {
+                localStorage.setItem('bwn_ludo_theme', themeName);
+            } catch (e) {}
+
+            sound.playTone(550, 'sine', 0.12, 0.2);
+        }
+
+        function openThemeModal() {
+            if (dom.themeModal) dom.themeModal.classList.add('active');
+        }
+
+        function closeThemeModal() {
+            if (dom.themeModal) dom.themeModal.classList.remove('active');
+        }
+
+        function initTheme() {
+            let saved = 'theme-royal-gold';
+            try {
+                saved = localStorage.getItem('bwn_ludo_theme') || 'theme-royal-gold';
+            } catch (e) {}
+            applyTheme(saved);
+        }
+
+        function showSpeech(color, msg) {
+            const speech = document.getElementById(`speech-${color}`);
+            if (speech) {
+                speech.textContent = msg;
+                speech.classList.add('show');
+                setTimeout(() => speech.classList.remove('show'), 1600);
+            }
+        }
+
+        function delay(ms) {
+            return new Promise(r => setTimeout(r, ms));
+        }
+
+        /* -------------------------------------------------------------
+           19. INITIALIZATION FLOW (Progress Bar & Launch)
+           ------------------------------------------------------------- */
+        function initUserSession() {
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    if (u.name && dom.userNameText) dom.userNameText.textContent = u.name.split(' ')[0];
+                    if (u.avatar && dom.userAvatarImg) dom.userAvatarImg.src = u.avatar;
+                }
+            } catch (e) {}
+        }
+
+        function startLoadingSequence() {
+            const fill = document.getElementById('jiliProgressFill');
+            const text = document.getElementById('jiliProgressText');
+            let pct = 0;
+
+            const interval = setInterval(() => {
+                pct += Math.floor(Math.random() * 12) + 8;
+                if (pct >= 100) {
+                    pct = 100;
+                    clearInterval(interval);
+                    fill.style.width = '100%';
+                    text.textContent = 'READY! 100%';
+
+                    setTimeout(() => {
+                        const loader = document.getElementById('jiliLoadingScreen');
+                        if (loader) loader.classList.add('loaded');
+                        // Unlock sound context on user touch
+                        sound.init();
+                        // Open 3 Table Selection Modal immediately on launch
+                        openTableModal();
+                    }, 400);
+                } else {
+                    fill.style.width = `${pct}%`;
+                    text.textContent = `CONNECTING TABLE... ${pct}%`;
+                }
+            }, 80);
+        }
+
+        // Boot
+        function bootGame() {
+            buildBoardTiles();
+            initAllPawns();
+            renderDicePips(1);
+            setupEventListeners();
+            initUserSession();
+            initTheme();
+            updateBalanceHUD();
+            updatePayoutPoolDisplay();
+            startLoadingSequence();
+        }
+
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', bootGame);
+        } else {
+            bootGame();
+        }
+
+    })();
+    </script>
+</body>
+</html>

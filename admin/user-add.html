@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Add New User - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">User Management / <a href="users.html" style="color:#8e9bb0; text-decoration:none;">Users</a> / <b style="color:#fff;">Create User</b></span>
+            </div>
+            <div class="navbar-right">
+                <a href="users.html" class="btn-lte btn-lte-secondary">
+                    <span>← Back to Directory</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>➕</span> Create New Player Account
+                    </h1>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-top:4px;">
+                        Configure player credentials, initial wallet deposit, VIP rank, and outcome rigging bias.
+                    </p>
+                </div>
+            </div>
+
+            <div class="lte-card" style="max-width:800px;">
+                <form id="add-user-form" onsubmit="handleCreateUser(event)">
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Username (Unique ID):</label>
+                            <input type="text" id="add-username" class="form-ctrl" placeholder="e.g. king_player" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Full Legal Name:</label>
+                            <input type="text" id="add-fullname" class="form-ctrl" placeholder="e.g. Asad Mehmood" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Email Address:</label>
+                            <input type="email" id="add-email" class="form-ctrl" placeholder="e.g. player@gmail.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Mobile Number:</label>
+                            <input type="text" id="add-phone" class="form-ctrl" placeholder="0300-1234567" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Initial Opening Balance (PKR ₨):</label>
+                            <input type="number" id="add-balance" class="form-ctrl" value="25000" min="0" required>
+                        </div>
+                        <div class="form-field">
+                            <label>VIP Tier Level:</label>
+                            <select id="add-vip" class="form-ctrl">
+                                <option value="Bronze VIP">Bronze VIP</option>
+                                <option value="Silver VIP">Silver VIP</option>
+                                <option value="Gold VIP" selected>Gold VIP</option>
+                                <option value="Platinum VIP">Platinum VIP</option>
+                                <option value="Diamond VIP">Diamond VIP</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Outcome Rigging / Loss Average Setting -->
+                    <div style="background:rgba(255,255,255,0.03); border:1px solid var(--lte-border); border-radius:8px; padding:16px; margin-bottom:18px;">
+                        <label style="color:var(--lte-gold); font-size:12px; font-weight:800; display:block; margin-bottom:6px;">
+                            🎯 Outcome Rigging / Loss Average Bias:
+                        </label>
+                        <p style="font-size:11px; color:#8e9bb0; margin-bottom:12px;">
+                            Control whether this specific user should always lose, always win, or follow a custom win/loss ratio!
+                        </p>
+
+                        <div class="form-grid-2">
+                            <div class="form-field">
+                                <label>Rigging Profile Mode:</label>
+                                <select id="add-bias" class="form-ctrl" onchange="toggleCustomWinRate(this.value)">
+                                    <option value="fair" selected>⚖️ Fair Standard (98% RTP)</option>
+                                    <option value="force_loss">💀 Force Loss (Always Lose / House Profit)</option>
+                                    <option value="force_win">👑 Force Win (Always Win / High Roller Demo)</option>
+                                    <option value="custom">⚙️ Custom Win Rate %</option>
+                                </select>
+                            </div>
+                            <div class="form-field" id="custom-winrate-wrap" style="display:none;">
+                                <label>Custom Win Percentage % (1 to 99):</label>
+                                <input type="number" id="add-custom-rate" class="form-ctrl" value="25" min="1" max="99">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-field">
+                            <label>Account Status:</label>
+                            <select id="add-status" class="form-ctrl">
+                                <option value="active" selected>Active 🟢</option>
+                                <option value="suspended">Suspended / Banned 🔴</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Security Cashier PIN:</label>
+                            <input type="text" id="add-pin" class="form-ctrl" value="1234" maxlength="4" required>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:10px; margin-top:20px;">
+                        <button type="submit" class="btn-lte btn-lte-primary" style="padding:12px 24px; font-size:13px;">
+                            <span>💾</span> <span>CREATE PLAYER ACCOUNT</span>
+                        </button>
+                        <a href="users.html" class="btn-lte btn-lte-secondary" style="padding:12px 18px;">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/user_manager.js"></script>
+    <script>
+        function toggleCustomWinRate(val) {
+            const wrap = document.getElementById('custom-winrate-wrap');
+            if (wrap) wrap.style.display = (val === 'custom') ? 'block' : 'none';
+        }
+
+        function handleCreateUser(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('add-username').value.trim();
+            const fullName = document.getElementById('add-fullname').value.trim();
+            const email = document.getElementById('add-email').value.trim();
+            const phone = document.getElementById('add-phone').value.trim();
+            const balancePKR = parseFloat(document.getElementById('add-balance').value) || 0;
+            const vipTier = document.getElementById('add-vip').value;
+            const outcomeBias = document.getElementById('add-bias').value;
+            const customWinRate = parseInt(document.getElementById('add-custom-rate').value, 10) || 48;
+            const status = document.getElementById('add-status').value;
+            const securityPin = document.getElementById('add-pin').value.trim();
+
+            const newUser = window.userManager.addUser({
+                username,
+                fullName,
+                email,
+                phone,
+                balancePKR,
+                vipTier,
+                outcomeBias,
+                customWinRate,
+                status,
+                securityPin
+            });
+
+            alert(`User ${newUser.username} (${newUser.id}) successfully created!`);
+            window.location.href = 'users.html';
+        }
+    </script>
+    <script src="js/adminlte.js"></script>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Withdrawal Approvals - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">Cashier Desk / <b style="color:#fff;">Withdrawal Approvals Queue</b></span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="loadWithdrawals()" class="btn-lte btn-lte-secondary">
+                    <span>🔄 Refresh Withdrawals</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>💸</span> Player Withdrawal & Cash-Out Approvals
+                    </h1>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-top:4px;">
+                        Approve or reject player cashouts to EasyPaisa, JazzCash, or Pakistani local bank accounts.
+                    </p>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; background:#111722; padding:8px 16px; border-radius:8px; border:1px solid var(--lte-border);">
+                    <input type="checkbox" id="chk-auto-wth" onchange="toggleAutoApprove(this.checked)" style="width:16px; height:16px; cursor:pointer;">
+                    <label for="chk-auto-wth" style="font-size:12px; font-weight:700; color:#fff; cursor:pointer;">
+                        ⚡ Auto-Approve Withdrawals Instant
+                    </label>
+                </div>
+            </div>
+
+            <!-- Stats Ribbon -->
+            <div class="metrics-grid" style="margin-bottom:20px;">
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(245,197,24,0.1); color:var(--lte-gold);">⏳</div>
+                    <div class="metric-label">Pending Payouts</div>
+                    <div class="metric-val" style="color:var(--lte-gold);" id="count-pending">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(0,231,0,0.1); color:var(--lte-green);">💸</div>
+                    <div class="metric-label">Disbursed Withdrawals</div>
+                    <div class="metric-val" style="color:var(--lte-green);" id="count-approved">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background:rgba(255,71,87,0.1); color:var(--lte-red);">📊</div>
+                    <div class="metric-label">Total Outflow Volume</div>
+                    <div class="metric-val" id="total-volume">₨ 0</div>
+                </div>
+            </div>
+
+            <!-- Table Card with Search Engine & Pagination -->
+            <div class="lte-card">
+                
+                <!-- Search Engine & Filter Toolbar -->
+                <div class="datatable-header-toolbar">
+                    <div class="datatable-search-wrap">
+                        <span class="datatable-search-icon">🔍</span>
+                        <input type="text" id="wth-search-input" class="form-ctrl datatable-search-input" placeholder="Search by Txn ID, title, account, method..." oninput="onWthSearchChange(this.value)">
+                    </div>
+
+                    <div class="datatable-filters">
+                        <!-- Status Filter -->
+                        <select id="wth-filter-status" class="datatable-select" onchange="onWthFilterChange('status', this.value)">
+                            <option value="all">All Statuses</option>
+                            <option value="Pending">Pending ⏳</option>
+                            <option value="Approved">Disbursed 🟢</option>
+                            <option value="Rejected">Rejected 🔴</option>
+                        </select>
+
+                        <!-- Method Filter -->
+                        <select id="wth-filter-method" class="datatable-select" onchange="onWthMethodChange(this.value)">
+                            <option value="all">All Channels</option>
+                            <option value="EasyPaisa">EasyPaisa</option>
+                            <option value="JazzCash">JazzCash</option>
+                            <option value="USDT">USDT Crypto</option>
+                            <option value="Bank">Bank / Raast</option>
+                            <option value="Binance">Binance Pay</option>
+                        </select>
+
+                        <!-- Per Page -->
+                        <select id="wth-filter-pagesize" class="datatable-select" onchange="onWthPageSizeChange(this.value)">
+                            <option value="10" selected>10 per page</option>
+                            <option value="25">25 per page</option>
+                            <option value="50">50 per page</option>
+                        </select>
+
+                        <!-- Reset -->
+                        <button class="btn-lte btn-lte-secondary" style="padding:7px 12px; font-size:12px;" onclick="resetWthFilters()">
+                            ↺ Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Withdrawals Table -->
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th style="cursor:pointer;" onclick="wthPager.setSort('id')">Txn ID ↕</th>
+                                <th>Channel</th>
+                                <th style="cursor:pointer;" onclick="wthPager.setSort('amountPKR')">Amount (USD / Local) ↕</th>
+                                <th>Account Title</th>
+                                <th>Account Number / Wallet</th>
+                                <th>Status</th>
+                                <th style="cursor:pointer;" onclick="wthPager.setSort('date')">Timestamp ↕</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="withdrawals-table-body">
+                            <!-- Populated by LTEDataPager -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="datatable-footer" id="withdrawals-footer">
+                    <!-- Populated by LTEDataPager -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="js/adminlte.js?v=notify_v24"></script>
+    <script>
+        let wthPager = null;
+        let allWithdrawals = [];
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        async function loadWithdrawals() {
+            const chk = document.getElementById('chk-auto-wth');
+            if (chk) chk.checked = window.adminConfig ? window.adminConfig.config.autoApproveWithdrawals : false;
+
+            try {
+                const res = await fetch('/api/admin.php?action=transactions&type=withdraw&limit=200&admin_pin=9824', { 
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    cache: 'no-store' 
+                });
+                const json = await res.json();
+                if (json && json.success && json.data && json.data.transactions) {
+                    allWithdrawals = json.data.transactions.map(t => {
+                        let title = t.sender_account || t.user_id;
+                        let accNum = t.sender_account || '-';
+                        if (t.sender_account && t.sender_account.includes('(')) {
+                            const m = t.sender_account.match(/^([^(]+)\(([^)]+)\)/);
+                            if (m) {
+                                title = m[1].trim();
+                                accNum = m[2].trim();
+                            }
+                        }
+                        return {
+                            id: t.id,
+                            userId: t.user_id,
+                            method: t.method,
+                            amountUSD: parseFloat(t.amount_usd || 0),
+                            amountPKR: parseFloat(t.amount_pkr || 0),
+                            accountTitle: title,
+                            accountNumber: accNum,
+                            status: t.status || 'Pending',
+                            date: t.transaction_date || t.created_at || '-'
+                        };
+                    });
+                } else {
+                    allWithdrawals = [];
+                }
+            } catch (e) {
+                console.error('Failed to load DB withdrawals:', e);
+                allWithdrawals = [];
+            }
+
+            // Stats
+            const pending = allWithdrawals.filter(t => t.status === 'Pending').length;
+            const approved = allWithdrawals.filter(t => t.status === 'Approved' || t.status === 'Completed').length;
+            const sumUSD = allWithdrawals.filter(t => t.status === 'Approved' || t.status === 'Completed').reduce((acc, t) => acc + (t.amountUSD || 0), 0);
+            const sumPKR = allWithdrawals.filter(t => t.status === 'Approved' || t.status === 'Completed').reduce((acc, t) => acc + (t.amountPKR || 0), 0);
+
+            document.getElementById('count-pending').innerText = pending;
+            document.getElementById('count-approved').innerText = approved;
+            // Prioritize Pending withdrawals at the top, then sort by latest date
+            allWithdrawals.sort((a, b) => {
+                if (a.status === 'Pending' && b.status !== 'Pending') return -1;
+                if (b.status === 'Pending' && a.status !== 'Pending') return 1;
+                return (new Date(b.date || 0)) - (new Date(a.date || 0));
+            });
+
+            if (!wthPager) {
+                wthPager = new LTEDataPager({
+                    refName: 'wthPager',
+                    data: allWithdrawals,
+                    pageSize: 10,
+                    containerId: 'withdrawals-table-body',
+                    footerId: 'withdrawals-footer',
+                    defaultSortKey: 'date',
+                    defaultSortAsc: false,
+                    filterFn: (t, query, filters) => {
+                        if (query) {
+                            const q = query.toLowerCase();
+                            const matchId = (t.id || '').toLowerCase().includes(q);
+                            const matchTitle = (t.accountTitle || '').toLowerCase().includes(q);
+                            const matchAcc = (t.accountNumber || '').toLowerCase().includes(q);
+                            const matchMethod = (t.method || '').toLowerCase().includes(q);
+                            const matchUser = (t.userId || '').toLowerCase().includes(q);
+                            if (!matchId && !matchTitle && !matchAcc && !matchMethod && !matchUser) return false;
+                        }
+                        if (filters.status) {
+                            if (filters.status === 'Approved' && !(t.status === 'Approved' || t.status === 'Completed')) return false;
+                            if (filters.status !== 'Approved' && t.status !== filters.status) return false;
+                        }
+                        if (filters.methodKeyword) {
+                            if (!t.method.toLowerCase().includes(filters.methodKeyword.toLowerCase())) return false;
+                        }
+                        return true;
+                    },
+                    renderRow: (t, idx) => {
+                        let badge = '<span class="badge-status badge-rigged">Pending ⏳</span>';
+                        if (t.status === 'Approved' || t.status === 'Completed') {
+                            badge = '<span class="badge-status badge-active">Disbursed 🟢</span>';
+                        } else if (t.status === 'Rejected') {
+                            badge = '<span class="badge-status badge-suspended">Rejected (Refunded) 🔴</span>';
+                        }
+
+                        const canAction = (t.status === 'Pending');
+                        const pkrVal = t.amountPKR || (t.amountUSD ? t.amountUSD * 280 : 0);
+                        const usdVal = t.amountUSD || (pkrVal / 280);
+
+                        return `
+                            <tr>
+                                <td style="font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:800; color:var(--lte-cyan); white-space:nowrap;">
+                                    ${escapeHtml(t.id)}
+                                </td>
+                                <td style="font-weight:800; color:#fff;">
+                                    ${escapeHtml(t.method)}
+                                </td>
+                                <td>
+                                    <div style="font-family:'JetBrains Mono',monospace; font-weight:900; color:var(--lte-red); font-size:13px;">
+                                        $ ${usdVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                    </div>
+                                    <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8e9bb0;">
+                                        ₨ ${Number(pkrVal).toLocaleString()}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-size:12px; font-weight:700; color:#fff;">${escapeHtml(t.accountTitle || 'Player Direct')}</div>
+                                    <div style="font-size:10px; color:#64748b; font-family:monospace;">User: ${escapeHtml(t.userId)}</div>
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--lte-gold); font-weight:700;">${escapeHtml(t.accountNumber || '-')}</td>
+                                <td>${badge}</td>
+                                <td style="font-size:11px; color:#8e9bb0; white-space:nowrap;">${escapeHtml(t.date)}</td>
+                                <td style="text-align:right; white-space:nowrap;">
+                                    ${canAction ? `
+                                        <button class="btn-lte btn-lte-primary" style="padding:4px 10px; font-size:11px;" onclick="approveWithdrawal('${t.id}')">Approve & Disburse</button>
+                                        <button class="btn-lte btn-lte-danger" style="padding:4px 10px; font-size:11px;" onclick="rejectWithdrawal('${t.id}')">Reject</button>
+                                    ` : `<span style="font-size:11px; color:#64748b; font-weight:600;">Processed</span>`}
+                                </td>
+                            </tr>
+                        `;
+                    }
+                });
+            } else {
+                wthPager.setData(allWithdrawals);
+            }
+
+            wthPager.render();
+        }
+
+        function onWthSearchChange(val) {
+            wthPager.setSearch(val);
+        }
+
+        function onWthFilterChange(key, val) {
+            wthPager.setFilter(key, val);
+        }
+
+        function onWthMethodChange(val) {
+            if (val === 'all') {
+                delete wthPager.activeFilters.methodKeyword;
+            } else {
+                wthPager.activeFilters.methodKeyword = val;
+            }
+            wthPager.currentPage = 1;
+            wthPager.render();
+        }
+
+        function onWthPageSizeChange(val) {
+            wthPager.setPageSize(val);
+        }
+
+        function resetWthFilters() {
+            document.getElementById('wth-search-input').value = '';
+            document.getElementById('wth-filter-status').value = 'all';
+            document.getElementById('wth-filter-method').value = 'all';
+            document.getElementById('wth-filter-pagesize').value = '10';
+
+            wthPager.searchQuery = '';
+            wthPager.activeFilters = {};
+            wthPager.pageSize = 10;
+            wthPager.currentPage = 1;
+            wthPager.render();
+        }
+
+        async function approveWithdrawal(id) {
+            if (!confirm(`Approve and mark withdrawal ${id} as disbursed?`)) return;
+            try {
+                const res = await fetch('/api/admin.php?action=update_transaction', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, status: 'Approved' })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    await loadWithdrawals();
+                    alert(`Withdrawal ${id} Approved! Payment marked as disbursed.`);
+                } else {
+                    alert((json && json.message) ? json.message : 'Failed to approve withdrawal.');
+                }
+            } catch (e) {
+                alert('Error updating withdrawal: ' + e.message);
+            }
+        }
+
+        async function rejectWithdrawal(id) {
+            const reason = prompt('Rejection reason (funds will be refunded to player):', 'KYC Verification Required');
+            if (reason === null) return;
+            try {
+                const res = await fetch('/api/admin.php?action=update_transaction', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, status: 'Rejected' })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    await loadWithdrawals();
+                    alert(`Withdrawal ${id} Rejected. Funds returned to player balance.`);
+                } else {
+                    alert((json && json.message) ? json.message : 'Failed to reject withdrawal.');
+                }
+            } catch (e) {
+                alert('Error rejecting withdrawal: ' + e.message);
+            }
+        }
+
+        function toggleAutoApprove(checked) {
+            window.adminConfig.config.autoApproveWithdrawals = checked;
+            window.adminConfig.save();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadWithdrawals();
+            setInterval(loadWithdrawals, 4000);
+        });
+    </script>
+</body>
+</html>

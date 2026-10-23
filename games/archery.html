@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🎯 Bullseye Archery 3D - Elite Championship - Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* ==================================================================
+           BULLSEYE ARCHERY 3D - AAA CASINO STUDIO SUITE
+           ================================================================== */
+        :root {
+            --arc-primary: #ffd700;
+            --arc-accent: #00e5ff;
+            --arc-glow: rgba(0, 229, 255, 0.4);
+            --arc-bullseye: #ffd700;
+            --arc-red: #ff1744;
+            --arc-blue: #0091ea;
+            --arc-black: #1e293b;
+            --arc-white: #f8fafc;
+            --arc-bg-overlay: rgba(5, 10, 18, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background 0.6s ease;
+        }
+
+        /* -------------------------------------------------------------
+           TOP VIP CASINO HEADER HUD
+           ------------------------------------------------------------- */
+        .arc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 18px;
+            background: rgba(3, 7, 18, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .hud-left, .hud-right, .hud-center {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hud-back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .hud-back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--arc-primary);
+            color: var(--arc-primary);
+            transform: translateX(-2px);
+        }
+
+        .hud-brand-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hud-brand-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--arc-primary);
+        }
+
+        .hud-game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffd700, #ff9100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hud-status-badge {
+            font-size: 9.5px;
+            color: #94a3b8;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .hud-wallet-pill {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1.5px solid var(--arc-primary);
+            border-radius: 24px;
+            padding: 4px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .wallet-label {
+            font-size: 9px;
+            font-weight: 900;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        .wallet-currency {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--arc-primary);
+        }
+
+        .wallet-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            color: #00e676;
+        }
+
+        .wallet-refresh-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .wallet-refresh-btn:hover {
+            transform: rotate(180deg);
+            color: #ffffff;
+        }
+
+        .hud-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hud-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--arc-accent);
+            color: var(--arc-accent);
+        }
+
+        .deposit-btn {
+            background: linear-gradient(180deg, #10b981, #059669);
+            border: 1px solid #34d399;
+            color: #ffffff;
+            font-weight: 800;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+            text-decoration: none;
+        }
+        .deposit-btn:hover {
+            background: linear-gradient(180deg, #059669, #047857);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.6);
+        }
+
+        /* -------------------------------------------------------------
+           MAIN GAME CONTAINER & COMPACT LAYOUT
+           ------------------------------------------------------------- */
+        .arc-main-layout {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Top Security / League Bar */
+        .arc-league-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(12, 18, 30, 0.88);
+            border: 1.5px solid var(--arc-glow);
+            border-radius: 8px;
+            padding: 4px 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .league-badge-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .league-pulse-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulseGlow 1.5s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 16px #10b981; }
+        }
+
+        .league-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.8px;
+        }
+        .league-text b { color: var(--arc-accent); }
+
+        .jackpot-banner-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11.5px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* -------------------------------------------------------------
+           3D ARCHERY STAGE WRAPPER
+           ------------------------------------------------------------- */
+        .archery-stage-wrapper {
+            position: relative;
+            width: 100%;
+            height: 330px;
+            border-radius: 14px;
+            border: 2px solid var(--arc-glow);
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.95), inset 0 0 80px rgba(0, 0, 0, 0.85);
+            background-color: #030712;
+            background-size: cover;
+            background-position: center;
+            transition: border-color 0.4s;
+        }
+
+        @media (max-width: 600px) {
+            .archery-stage-wrapper {
+                height: 290px;
+            }
+        }
+
+        /* Environmental Particle Layer */
+        .stage-particles-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        /* Real-Time Wind & Weather HUD Overlay */
+        .wind-hud-card {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(3, 10, 20, 0.88);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--arc-accent);
+            border-radius: 8px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 30;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .wind-arrow-wrap {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(0, 229, 255, 0.15);
+            border: 1px solid var(--arc-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .wind-arrow-icon {
+            font-size: 13px;
+            color: var(--arc-accent);
+            line-height: 1;
+        }
+
+        .wind-info-col {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .wind-label {
+            font-size: 8px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .wind-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .wind-rating-tag {
+            font-size: 8px;
+            font-weight: 800;
+            color: var(--arc-accent);
+            letter-spacing: 0.5px;
+        }
+
+        /* Multiplier Score Radar HUD (Top Right) */
+        .score-radar-hud {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(3, 10, 20, 0.88);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--arc-primary);
+            border-radius: 8px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 30;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .score-radar-label {
+            font-size: 8px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+
+        .score-radar-mult {
+            font-family: 'Orbitron', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+
+        /* -------------------------------------------------------------
+           3D TARGET BOARD MOUNT & SCORING RINGS
+           ------------------------------------------------------------- */
+        .target-stand-rig {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            transition: transform 0.15s ease-out;
+            cursor: crosshair;
+        }
+
+        .target-stand-rig.wobble-impact {
+            animation: targetRecoil 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes targetRecoil {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            20% { transform: translate(-50%, -48%) scale(0.96) rotate(-1.5deg); }
+            50% { transform: translate(-50%, -51%) scale(1.02) rotate(1.2deg); }
+            80% { transform: translate(-50%, -49.5%) scale(0.99) rotate(-0.5deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+        }
+
+        /* Target Boss Image / Container */
+        .target-boss-disc {
+            position: relative;
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            background: url('../assets/games/archery/target_boss.jpg') center center / cover no-repeat;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 215, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            transition: box-shadow 0.3s;
+            z-index: 5;
+        }
+
+        @media (max-width: 600px) {
+            .target-boss-disc {
+                width: 155px;
+                height: 155px;
+            }
+        }
+
+        /* 3D Center Pin Pulsing Glow */
+        .target-center-pin-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 26px;
+            height: 26px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 215, 0, 0.7) 45%, transparent 100%);
+            box-shadow: 0 0 16px #ffd700;
+            pointer-events: none;
+            animation: pinGlowPulse 1.8s infinite alternate ease-in-out;
+        }
+
+        @keyframes pinGlowPulse {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.65; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; box-shadow: 0 0 24px #ffd700; }
+        }
+
+        /* Red Fluttering Wind Streamer Ribbon */
+        .target-wind-ribbon {
+            position: absolute;
+            bottom: -18px;
+            left: 18px;
+            width: 4px;
+            height: 38px;
+            background: linear-gradient(180deg, #ff1744 0%, #ff5252 80%, #ff8a80 100%);
+            border-radius: 2px;
+            transform-origin: top center;
+            animation: ribbonFlutter 1.6s infinite ease-in-out;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            z-index: 6;
+        }
+
+        @keyframes ribbonFlutter {
+            0%, 100% { transform: rotate(12deg) skewX(6deg); }
+            50% { transform: rotate(28deg) skewX(16deg); }
+        }
+
+        /* Realistic Wooden Easel Stand Legs */
+        .target-easel-legs {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .easel-leg {
+            position: absolute;
+            width: 6px;
+            height: 95px;
+            background: linear-gradient(180deg, #78350f 0%, #451a03 100%);
+            border-radius: 3px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .easel-leg.left {
+            left: 24px;
+            transform: rotate(18deg);
+            transform-origin: top center;
+        }
+
+        .easel-leg.right {
+            right: 24px;
+            transform: rotate(-18deg);
+            transform-origin: top center;
+        }
+
+        .easel-crossbar {
+            position: absolute;
+            top: 48px;
+            left: 16px;
+            right: 16px;
+            height: 5px;
+            background: #5c2406;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+
+        .easel-ground-shadow {
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 14px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* Camera Zoom Impact Punch */
+        .archery-stage-wrapper.camera-punch {
+            animation: cameraZoomPunch 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes cameraZoomPunch {
+            0% { transform: scale(1); }
+            35% { transform: scale(1.025); }
+            100% { transform: scale(1); }
+        }
+
+        /* Arrows Stuck In Target */
+        .stuck-arrow {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            transform: translate(-50%, -50%);
+            z-index: 25;
+            pointer-events: none;
+        }
+
+        .stuck-arrow-notch {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffd700 0%, #ff6d00 60%, #000 100%);
+            box-shadow: 0 0 12px #ffd700, inset 0 0 4px #fff;
+            animation: arrowQuiver 0.35s ease-out;
+        }
+
+        .stuck-arrow-shaft {
+            position: absolute;
+            width: 4px;
+            height: 38px;
+            background: linear-gradient(180deg, #ffd700 0%, #475569 80%, #000 100%);
+            top: -30px;
+            left: 3px;
+            border-radius: 2px;
+            transform-origin: bottom center;
+            transform: rotate(var(--shaft-angle, 8deg));
+            box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+        }
+
+        @keyframes arrowQuiver {
+            0% { transform: scale(1.5); }
+            30% { transform: scale(0.85); }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* -------------------------------------------------------------
+           FLYING ARROW IN 3D PERSPECTIVE
+           ------------------------------------------------------------- */
+        .flying-arrow-projectile {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 18px;
+            height: 140px;
+            transform: translateX(-50%) scale(1);
+            pointer-events: none;
+            z-index: 40;
+            display: none;
+            transform-origin: bottom center;
+        }
+
+        .flying-arrow-projectile.in-flight {
+            display: block;
+            animation: arrowShoot3D 0.48s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+        }
+
+        @keyframes arrowShoot3D {
+            0% {
+                bottom: -20px;
+                left: 50%;
+                transform: translateX(-50%) scale(1.2) translateY(0);
+                opacity: 1;
+            }
+            70% {
+                bottom: calc(52% + var(--target-y-offset, 0px));
+                left: calc(50% + var(--target-x-offset, 0px));
+                transform: translateX(-50%) scale(0.35) translateY(-20px);
+                opacity: 0.95;
+            }
+            100% {
+                bottom: calc(52% + var(--target-y-offset, 0px));
+                left: calc(50% + var(--target-x-offset, 0px));
+                transform: translateX(-50%) scale(0.18) translateY(0);
+                opacity: 0;
+            }
+        }
+
+        .arrow-graphic-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 10px var(--arc-glow));
+        }
+
+        /* Dynamic Aiming Crosshair / Reticle */
+        .aiming-reticle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 38px;
+            height: 38px;
+            transform: translate(-50%, -50%);
+            border: 1.5px dashed var(--arc-accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 35;
+            box-shadow: 0 0 12px var(--arc-glow);
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
+            animation: reticlePulse 2s infinite ease-in-out;
+        }
+
+        .aiming-reticle::before, .aiming-reticle::after {
+            content: '';
+            position: absolute;
+            background: var(--arc-accent);
+        }
+        .aiming-reticle::before {
+            top: 50%;
+            left: -4px;
+            right: -4px;
+            height: 1.5px;
+            transform: translateY(-50%);
+        }
+        .aiming-reticle::after {
+            left: 50%;
+            top: -4px;
+            bottom: -4px;
+            width: 1.5px;
+            transform: translateX(-50%);
+        }
+
+        .aiming-reticle.drawing {
+            width: 24px;
+            height: 24px;
+            border-color: #ffd700;
+            border-style: solid;
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        @keyframes reticlePulse {
+            0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+        }
+
+        /* Bottom Archer Foreground Bow Rig */
+        .archer-bow-rig {
+            position: absolute;
+            bottom: -42px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 310px;
+            height: 145px;
+            pointer-events: none;
+            z-index: 30;
+            transition: transform 0.25s ease-out;
+            transform-origin: bottom center;
+        }
+
+        .archer-bow-rig.drawing {
+            transform: translateX(-50%) translateY(16px) scale(0.95);
+        }
+
+        .bow-svg-layer {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.9));
+        }
+
+        /* Hit Impact Spark Particles */
+        .impact-sparks-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        .hit-spark-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff 0%, #ffd700 60%, #ff6d00 100%);
+            box-shadow: 0 0 14px #ffd700;
+            animation: sparkErupt 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        @keyframes sparkErupt {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(calc(var(--rand-x, 20px)), calc(var(--rand-y, -30px))) scale(0); opacity: 0; }
+        }
+
+        /* -------------------------------------------------------------
+           STATUS TICKER (Under Stage)
+           ------------------------------------------------------------- */
+        .arc-status-ticker {
+            width: 100%;
+            margin-top: 6px;
+            background: rgba(10, 15, 25, 0.92);
+            border: 1.5px solid var(--arc-glow);
+            border-radius: 8px;
+            padding: 6px 12px;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .arc-status-ticker.aiming {
+            border-color: var(--arc-accent);
+            color: var(--arc-accent);
+        }
+
+        .arc-status-ticker.won {
+            border-color: #ffd700;
+            background: rgba(30, 20, 5, 0.95);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.7);
+        }
+
+        .status-win-headline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14.5px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.8px;
+            text-shadow: 0 0 14px rgba(255, 215, 0, 0.9);
+        }
+
+        .status-win-payout {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 19px;
+            font-weight: 900;
+            color: #00e676;
+            margin: 2px 0;
+            text-shadow: 0 0 15px #00e676;
+        }
+
+        .status-win-sub {
+            font-size: 10.5px;
+            color: #ffcc80;
+            font-weight: 700;
+        }
+
+        .arc-status-ticker.lost {
+            border-color: #ff3344;
+            background: rgba(30, 5, 5, 0.95);
+            box-shadow: 0 0 30px rgba(255, 51, 68, 0.7);
+        }
+
+        .status-lose-headline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ff3344;
+            letter-spacing: 0.8px;
+        }
+
+        .status-lose-sub {
+            font-size: 10.5px;
+            color: #fca5a5;
+            margin-top: 2px;
+        }
+
+        /* -------------------------------------------------------------
+           BETTING CONTROL PANEL & PRESET CHIPS
+           ------------------------------------------------------------- */
+        .arc-control-deck {
+            background: rgba(15, 23, 42, 0.94);
+            border: 1px solid var(--arc-glow);
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.75);
+        }
+
+        .arc-bet-inputs-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .bet-label-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .bet-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .arc-bet-input-wrap {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1.5px solid var(--arc-glow);
+            border-radius: 8px;
+            padding: 3px 10px;
+            gap: 6px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85);
+        }
+
+        .arc-currency-sign {
+            font-weight: 900;
+            color: var(--arc-primary);
+            font-size: 14px;
+        }
+
+        .arc-bet-input {
+            width: 100px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 900;
+            outline: none;
+        }
+
+        .arc-modifier-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-mod {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-mod:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: var(--arc-primary);
+            color: var(--arc-primary);
+        }
+
+        /* Preset Chips Row */
+        .arc-chips-deck {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .arc-chip-btn {
+            background: radial-gradient(circle at 35% 35%, #2a3b53 0%, #111a26 100%);
+            border: 1.5px solid var(--arc-glow);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 900;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            transition: all 0.2s;
+        }
+
+        .arc-chip-currency {
+            font-size: 9.5px;
+            color: var(--arc-primary);
+        }
+
+        .arc-chip-btn:hover {
+            border-color: var(--arc-primary);
+            box-shadow: 0 0 14px var(--arc-primary);
+            transform: translateY(-1px);
+        }
+
+        .arc-chip-btn.active {
+            background: linear-gradient(135deg, var(--arc-primary) 0%, #ff8f00 100%);
+            border-color: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 18px var(--arc-primary);
+            transform: translateY(-1px);
+        }
+
+        .arc-chip-btn.active .arc-chip-currency {
+            color: #000000;
+            font-weight: 900;
+        }
+
+        /* Massive Action Button */
+        .btn-release-action {
+            width: 100%;
+            padding: 10px 16px;
+            background: linear-gradient(180deg, #ffd700 0%, #ff8f00 100%);
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            color: #040914;
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.85);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-release-action:hover {
+            transform: scale(1.015);
+            box-shadow: 0 0 35px #ffd700, 0 6px 20px rgba(0, 0, 0, 0.95);
+        }
+
+        .btn-release-action:active {
+            transform: scale(0.99);
+        }
+
+        .btn-release-action.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            filter: grayscale(0.5);
+        }
+
+        /* -------------------------------------------------------------
+           RECENT SHOTS HISTORY & TARGET STATS BAR
+           ------------------------------------------------------------- */
+        .arc-stats-deck {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .arc-stats-deck {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .arc-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid var(--arc-glow);
+            border-radius: 12px;
+            padding: 10px 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .arc-card-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .arc-history-stream {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .arc-history-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 4px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            min-width: 65px;
+            flex-shrink: 0;
+            font-size: 9px;
+        }
+
+        .arc-history-item.win {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+        }
+        .arc-history-item.loss {
+            border-color: #ff3344;
+            background: rgba(255, 51, 68, 0.1);
+        }
+
+        .arc-hist-zone {
+            font-weight: 800;
+            color: #ffffff;
+            font-size: 8.5px;
+        }
+
+        .arc-hist-mult {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 10px;
+        }
+        .arc-history-item.win .arc-hist-mult { color: #ffd700; }
+        .arc-history-item.loss .arc-hist-mult { color: #ff3344; }
+
+        .arc-hist-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+            color: #00e676;
+        }
+        .arc-history-item.loss .arc-hist-amount { color: #94a3b8; }
+
+        /* Floating Win Toast Banner */
+        .spin-win-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            border: 2px solid #ffffff;
+            border-radius: 30px;
+            padding: 10px 24px;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.8);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .spin-win-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* -------------------------------------------------------------
+           MODALS (THEMES & RULES)
+           ------------------------------------------------------------- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-card {
+            background: #0b1320;
+            border: 1.5px solid var(--arc-glow);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--arc-primary);
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close-btn:hover { color: #ffffff; }
+
+        .theme-picker-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .theme-picker-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--arc-primary);
+            transform: translateX(3px);
+        }
+
+        .theme-picker-card.active {
+            border-color: var(--arc-primary);
+            background: rgba(255, 215, 0, 0.12);
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+        }
+
+        .theme-card-thumb {
+            width: 60px;
+            height: 42px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-card-body { flex: 1; }
+
+        .theme-card-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .theme-card-desc {
+            font-size: 9.5px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        .theme-card-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .theme-picker-card.active .theme-card-indicator {
+            background: var(--arc-primary);
+            border-color: #ffffff;
+            box-shadow: 0 0 10px var(--arc-primary);
+        }
+
+        /* Paytable Grid */
+        .paytable-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pay-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        .pay-row.jackpot {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            font-weight: 800;
+        }
+
+        .pay-mult {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            color: #00e676;
+            font-size: 12px;
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY OFFICIAL VIP LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 240px;
+        }
+        .pp-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 16px rgba(255, 170, 0, 0.4));
+        }
+        .pp-bar-track {
+            width: 100%;
+            height: 4.5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff8c00, #ffd700, #ff8c00);
+            border-radius: 3px;
+            box-shadow: 0 0 10px #ffd700;
+            transition: width 0.12s linear;
+        }
+        .pp-loading-txt {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            color: #e2e8f0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pragmatic Play VIP Loading Screen -->
+    <div class="pp-loader-screen" id="ppLoader">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/archery/pragmatic_play_loading.png" class="pp-logo-img" alt="Pragmatic Play">
+            </div>
+            <div class="pp-bar-track">
+                <div class="pp-bar-fill" id="ppFill"></div>
+            </div>
+            <div class="pp-loading-txt" id="ppStatus">LOADING RANGE ASSETS...</div>
+        </div>
+    </div>
+
+    <!-- Top Casino Header HUD -->
+    <header class="arc-header">
+        <div class="hud-left">
+            <a href="../casino.html" class="hud-back-btn" title="Back to Casino">
+                &larr; CASINO
+            </a>
+            <div class="hud-brand-tag">
+                <img src="../assets/covers/archery.png" class="hud-brand-logo" alt="Bullseye Archery 3D">
+                <div class="hud-brand-info">
+                    <span class="hud-game-title">BULLSEYE 3D</span>
+                    <span class="hud-status-badge">100X CENTER PIN &bull; 97.2% RTP</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Real Wallet Balance -->
+        <div class="hud-center">
+            <div class="hud-wallet-pill">
+                <span class="wallet-label">REAL BALANCE</span>
+                <span class="wallet-currency">PKR</span>
+                <span class="wallet-amount" id="walletBalance">17,681.00</span>
+                <button class="wallet-refresh-btn" onclick="window.archeryGame.updateWalletDisplay()" title="Refresh Wallet Balance">&#8635;</button>
+            </div>
+        </div>
+
+        <!-- Right HUD Actions -->
+        <div class="hud-right">
+            <button class="hud-btn" id="soundToggleBtn" onclick="window.archeryGame.toggleSound(this)" title="Toggle Sound Effects">
+                🔊 SOUND ON
+            </button>
+            <button class="hud-btn" onclick="openModal('themeModal')" id="currentThemeLabel" title="Change Archery Theme">
+                🏅 Olympic Arena
+            </button>
+            <button class="hud-btn" onclick="openModal('rulesModal')" title="View Heist Paytable & Rules">
+                ℹ️ RULES
+            </button>
+            <a href="../wallet.html" class="hud-btn deposit-btn" title="Deposit Funds">
+                + DEPOSIT
+            </a>
+            <button class="hud-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+                ⛶
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Game Layout -->
+    <main class="arc-main-layout">
+
+        <!-- Top League / Competition Banner -->
+        <div class="arc-league-banner">
+            <div class="league-badge-group">
+                <div class="league-pulse-dot"></div>
+                <div class="league-text">RANGE: <b>WORLD CHAMPIONSHIP FINAL</b></div>
+            </div>
+            <div class="jackpot-banner-tag">
+                <span>🏆 TOP BULLSEYE:</span>
+                <span>100X GOLDEN PIN</span>
+            </div>
+        </div>
+
+        <!-- 3D Archery Stage Wrapper -->
+        <div class="archery-stage-wrapper" id="archeryStage">
+
+            <!-- Real-Time Wind & Weather HUD -->
+            <div class="wind-hud-card" id="windHud">
+                <div class="wind-arrow-wrap" id="windArrowWrap">
+                    <span class="wind-arrow-icon" id="windArrowIcon">&#10148;</span>
+                </div>
+                <div class="wind-info-col">
+                    <span class="wind-label">WIND VECTOR</span>
+                    <span class="wind-value" id="windValue">3.2 m/s</span>
+                    <span class="wind-rating-tag" id="windRating">MILD BREEZE</span>
+                </div>
+            </div>
+
+            <!-- Multiplier Target Radar HUD -->
+            <div class="score-radar-hud">
+                <span class="score-radar-label">MAX HIT:</span>
+                <span class="score-radar-mult">100X</span>
+            </div>
+
+            <!-- Environmental Particles Container (Cherry petals, pollen, dust) -->
+            <div class="stage-particles-layer" id="stageParticles"></div>
+
+            <!-- Target Stand Rig (Interactive 3D Target on Easel) -->
+            <div class="target-stand-rig" id="targetRig" onclick="window.archeryGame.aimAtTarget(event)">
+                <div class="target-boss-disc" id="targetBossDisc">
+                    <div class="target-center-pin-glow"></div>
+                    <div class="target-wind-ribbon"></div>
+                    <div class="target-rings-overlay"></div>
+                    <div id="stuckArrowsContainer"></div>
+                </div>
+                <!-- Realistic Wooden Easel Stand Legs -->
+                <div class="target-easel-legs">
+                    <div class="easel-leg left"></div>
+                    <div class="easel-leg right"></div>
+                    <div class="easel-crossbar"></div>
+                    <div class="easel-ground-shadow"></div>
+                </div>
+            </div>
+
+            <!-- Flying Arrow in 3D Perspective -->
+            <div class="flying-arrow-projectile" id="flyingArrow">
+                <svg class="arrow-graphic-svg" viewBox="0 0 30 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Broadhead Arrow Tip -->
+                    <polygon points="15,0 7,24 23,24" fill="#ffd700" stroke="#fff" stroke-width="1.5"/>
+                    <!-- Arrow Shaft -->
+                    <rect x="13.5" y="24" width="3" height="130" fill="#cbd5e1" stroke="#334155" stroke-width="0.5"/>
+                    <!-- Feathers / Fletchings -->
+                    <polygon points="13.5,125 4,145 13.5,150" fill="#ffd700"/>
+                    <polygon points="16.5,125 26,145 16.5,150" fill="#ffd700"/>
+                    <polygon points="13.5,135 7,152 13.5,154" fill="#ff6d00"/>
+                    <polygon points="16.5,135 23,152 16.5,154" fill="#ff6d00"/>
+                    <!-- Nock -->
+                    <rect x="13.5" y="154" width="3" height="8" rx="1.5" fill="#ffffff"/>
+                </svg>
+            </div>
+
+            <!-- Dynamic Aiming Reticle -->
+            <div class="aiming-reticle" id="aimReticle"></div>
+
+            <!-- Hit Impact Spark Particles Layer -->
+            <div class="impact-sparks-layer" id="impactSparksLayer"></div>
+
+            <!-- Bottom Archer Foreground Luxury 3D Bow Rig -->
+            <div class="archer-bow-rig" id="archerBow">
+                <svg class="bow-svg-layer" viewBox="0 0 380 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="carbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#334155"/>
+                            <stop offset="45%" stop-color="#0f172a"/>
+                            <stop offset="100%" stop-color="#020617"/>
+                        </linearGradient>
+                        <linearGradient id="goldLimbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#fff8db"/>
+                            <stop offset="35%" stop-color="#ffd700"/>
+                            <stop offset="85%" stop-color="#b45309"/>
+                            <stop offset="100%" stop-color="#78350f"/>
+                        </linearGradient>
+                        <radialGradient id="sightGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#00ff66"/>
+                            <stop offset="100%" stop-color="#008033"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Carbon Stabilizer Rod extending into 3D range -->
+                    <line x1="190" y1="120" x2="190" y2="40" stroke="#1e293b" stroke-width="6" stroke-linecap="round"/>
+                    <line x1="190" y1="120" x2="190" y2="40" stroke="#ffd700" stroke-width="1.8" stroke-dasharray="10 4"/>
+                    <circle cx="190" cy="40" r="8" fill="#ffd700" filter="drop-shadow(0 0 8px #ffd700)"/>
+
+                    <!-- Green Fiber-Optic Competition Sight Pin -->
+                    <rect x="168" y="55" width="2" height="30" fill="#94a3b8"/>
+                    <circle cx="169" cy="70" r="5" fill="none" stroke="#ffd700" stroke-width="1.5"/>
+                    <circle cx="169" cy="70" r="3" fill="url(#sightGlow)" filter="drop-shadow(0 0 6px #00ff66)"/>
+
+                    <!-- Upper & Lower Recurve Carbon Limbs -->
+                    <path d="M 15 190 Q 60 70 190 120 Q 320 70 365 190" stroke="url(#goldLimbGrad)" stroke-width="10" stroke-linecap="round" fill="none" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.8))"/>
+                    <path d="M 22 185 Q 65 78 190 124 Q 315 78 358 185" stroke="url(#carbonGrad)" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+                    <!-- Bow Riser / Ergonomic Grip -->
+                    <rect x="175" y="108" width="30" height="34" rx="6" fill="#1e293b" stroke="#ffd700" stroke-width="1.5"/>
+                    <path d="M 178 114 Q 190 110 202 114 L 200 136 Q 190 140 180 136 Z" fill="#475569"/>
+
+                    <!-- Bowstring with Center Serving -->
+                    <path id="bowstringPath" d="M 15 190 Q 190 120 365 190" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.95" filter="drop-shadow(0 0 4px #fff)"/>
+
+                    <!-- High-Detail Nocked Competition Arrow -->
+                    <g id="readyArrowGraphic">
+                        <line x1="190" y1="120" x2="190" y2="8" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round"/>
+                        <polygon points="190,0 184,14 196,14" fill="#ffd700" filter="drop-shadow(0 0 8px #ffd700)"/>
+                        <!-- Vanes / Fletchings -->
+                        <polygon points="188,95 178,115 188,118" fill="#ffd700"/>
+                        <polygon points="192,95 202,115 192,118" fill="#ffd700"/>
+                        <polygon points="188,102 182,118 188,120" fill="#ff6d00"/>
+                        <polygon points="192,102 198,118 192,120" fill="#ff6d00"/>
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+
+        <!-- Status Readout Ticker Outside Stage -->
+        <div class="arc-status-ticker" id="arcStatus">
+            READY TO SHOOT: AIM &bull; INNER GOLD: 100x | GOLD: 25x | RED: 8x | BLUE: 3.5x | OUTER: 1.8x
+        </div>
+
+        <!-- Betting Deck & Controls -->
+        <div class="arc-control-deck">
+            <div class="arc-bet-inputs-row">
+                <div class="bet-label-group">
+                    <span class="bet-title">WAGER AMOUNT</span>
+                    <div class="arc-bet-input-wrap">
+                        <span class="arc-currency-sign">₨</span>
+                        <input type="number" id="arc-bet-input" class="arc-bet-input" value="100" min="10" step="10">
+                    </div>
+                </div>
+
+                <div class="arc-modifier-group">
+                    <button class="btn-mod" onclick="window.archeryGame.modifyBet('half')">&frac12;</button>
+                    <button class="btn-mod" onclick="window.archeryGame.modifyBet('double')">2&times;</button>
+                    <button class="btn-mod" onclick="window.archeryGame.modifyBet('max')">MAX</button>
+                </div>
+
+                <!-- Preset Chips -->
+                <div class="arc-chips-deck" id="arcChipsGroup"></div>
+            </div>
+
+            <button id="arc-release-btn" class="btn-release-action" onclick="window.archeryGame.releaseArrow()">
+                <span>DRAW & RELEASE ARROW</span>
+                <span>🎯</span>
+            </button>
+        </div>
+
+        <!-- Recent Shots History Stream -->
+        <div class="arc-stats-deck">
+            <div class="arc-card">
+                <div class="arc-card-title">
+                    <span>RECENT ARROW HITS</span>
+                    <span style="color:var(--arc-primary);">LIVE STREAM</span>
+                </div>
+                <div class="arc-history-stream" id="arcHistoryList">
+                    <div class="arc-history-item win"><span class="arc-hist-zone">CENTER PIN</span><span class="arc-hist-mult">100x</span><span class="arc-hist-amount">+₨ 10,000</span></div>
+                    <div class="arc-history-item win"><span class="arc-hist-zone">GOLD BULL</span><span class="arc-hist-mult">25x</span><span class="arc-hist-amount">+₨ 2,500</span></div>
+                    <div class="arc-history-item win"><span class="arc-hist-zone">RED RING</span><span class="arc-hist-mult">8x</span><span class="arc-hist-amount">+₨ 800</span></div>
+                    <div class="arc-history-item win"><span class="arc-hist-zone">BLUE RING</span><span class="arc-hist-mult">3.5x</span><span class="arc-hist-amount">+₨ 350</span></div>
+                    <div class="arc-history-item loss"><span class="arc-hist-zone">MISSED</span><span class="arc-hist-mult">0x</span><span class="arc-hist-amount">-₨ 100</span></div>
+                </div>
+            </div>
+
+            <div class="arc-card">
+                <div class="arc-card-title">
+                    <span>RANGE SPECS</span>
+                    <span>97.2% RTP</span>
+                </div>
+                <div style="font-size:11.5px; color:#cbd5e1; line-height:1.6;">
+                    <div>🎯 <b>Distance:</b> 70m Olympic Boss</div>
+                    <div>💎 <b>Top Multiplier:</b> 100x Center Pin</div>
+                    <div>⚡ <b>Instant Credit:</b> BWN Real Wallet</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Floating Win Toast Banner -->
+    <div class="spin-win-toast" id="spinWinToast">
+        🎯 BULLSEYE HIT! +<span id="toastWinAmount">PKR 0.00</span>
+    </div>
+
+    <!-- Theme Selection Modal -->
+    <div class="modal-overlay" id="themeModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">🎨 SELECT ARCHERY THEME</div>
+                <button class="modal-close-btn" onclick="closeModal('themeModal')">&times;</button>
+            </div>
+            <div id="themeCardsList"></div>
+        </div>
+    </div>
+
+    <!-- Rules & Paytable Modal -->
+    <div class="modal-overlay" id="rulesModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">ℹ️ ARCHERY SCORING RULES</div>
+                <button class="modal-close-btn" onclick="closeModal('rulesModal')">&times;</button>
+            </div>
+            <div class="paytable-grid">
+                <div class="pay-row jackpot">
+                    <span>🎯 GOLDEN X-PIN (DEAD CENTER)</span>
+                    <span class="pay-mult">100.00X</span>
+                </div>
+                <div class="pay-row">
+                    <span>🟡 INNER GOLD BULLSEYE (10-RING)</span>
+                    <span class="pay-mult">25.00X</span>
+                </div>
+                <div class="pay-row">
+                    <span>🔴 RED INNER SCORING (8-9 RING)</span>
+                    <span class="pay-mult">8.00X</span>
+                </div>
+                <div class="pay-row">
+                    <span>🔵 BLUE MIDDLE SCORING (6-7 RING)</span>
+                    <span class="pay-mult">3.50X</span>
+                </div>
+                <div class="pay-row">
+                    <span>⚪ BLACK / WHITE OUTER RING (1-5)</span>
+                    <span class="pay-mult">1.80X</span>
+                </div>
+                <div class="pay-row">
+                    <span>💨 STAND WOOD / WIND MISS</span>
+                    <span class="pay-mult" style="color:#ff3344;">0.00X</span>
+                </div>
+            </div>
+            <div style="margin-top:14px; font-size:11px; color:#94a3b8; line-height:1.5;">
+                <p>• <b>Dynamic Wind Physics:</b> Wind vector drifts your arrow. Time your shot or compensate with the aim reticle!</p>
+                <p>• <b>Real Balance:</b> Wins are credited instantaneously to your Bet With Net balance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/wallet.js"></script>
+    <script src="../js/games/archery.js"></script>
+
+    <script>
+        // Modal helpers
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (m) m.classList.add('open');
+        }
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (m) m.classList.remove('open');
+        }
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // Pragmatic VIP Loader Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.archeryGame && window.archeryGame.init) window.archeryGame.init();
+
+            const ppLoader = document.getElementById('ppLoader');
+            const ppFill = document.getElementById('ppFill');
+            const ppStatus = document.getElementById('ppStatus');
+
+            if (ppLoader && ppFill) {
+                let progress = 0;
+                const statusTexts = [
+                    'CALIBRATING 3D RANGE...',
+                    'TUNING WIND VECTOR ENGINES...',
+                    'ALIGNING 100X BULLSEYE...',
+                    'VIP RANGE READY!'
+                ];
+                let textIdx = 0;
+
+                const timer = setInterval(() => {
+                    progress += Math.floor(Math.random() * 18) + 12;
+                    if (progress > 100) progress = 100;
+                    ppFill.style.width = progress + '%';
+
+                    if (progress >= 30 && textIdx === 0) { textIdx = 1; ppStatus.innerText = statusTexts[1]; }
+                    if (progress >= 65 && textIdx === 1) { textIdx = 2; ppStatus.innerText = statusTexts[2]; }
+                    if (progress >= 95 && textIdx === 2) { textIdx = 3; ppStatus.innerText = statusTexts[3]; }
+
+                    if (progress >= 100) {
+                        clearInterval(timer);
+                        setTimeout(() => {
+                            ppLoader.classList.add('pp-fade-out');
+                            setTimeout(() => {
+                                ppLoader.style.display = 'none';
+                            }, 500);
+                        }, 250);
+                    }
+                }, 80);
+            }
+        });
+    </script>
+</body>
+</html>

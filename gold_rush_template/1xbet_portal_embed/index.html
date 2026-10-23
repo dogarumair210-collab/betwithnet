@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Gold Rush Game Online | Play For Real Money at 1x-betpk.mobi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png">
+    <style>
+        :root {
+            --1x-navy-dark: #0a1322;
+            --1x-navy-header: #0e1e36;
+            --1x-navy-subnav: #142847;
+            --1x-blue: #1c8ffa;
+            --1x-blue-hover: #38bdf8;
+            --1x-green: #10b981;
+            --1x-green-hover: #059669;
+            --1x-gold: #ffd700;
+            --1x-gray-bg: #070d18;
+            --1x-card-bg: #0e1c31;
+            --1x-border: #1a2f4d;
+            --1x-text-dim: #7f99b8;
+            --1x-text-light: #dce7f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--1x-gray-bg);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* 1. TOP 1XBET MASTER HEADER */
+        .portal-header {
+            background: linear-gradient(180deg, #10213d 0%, #0c182c 100%);
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--1x-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-1x-logo {
+            font-family: 'Cinzel', -apple-system, sans-serif;
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .brand-1x-logo span {
+            color: var(--1x-blue);
+        }
+
+        .header-badge-slots {
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-main-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            list-style: none;
+        }
+
+        .nav-tab-link {
+            color: var(--1x-text-dim);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-tab-link:hover, .nav-tab-link.active {
+            color: #ffffff;
+            background: rgba(28, 143, 250, 0.15);
+        }
+
+        .header-auth-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-1x-login {
+            background: #193256;
+            color: #ffffff;
+            border: 1px solid #23497d;
+            border-radius: 6px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-1x-login:hover {
+            background: #214373;
+        }
+
+        .btn-1x-reg {
+            background: linear-gradient(180deg, #1c8ffa 0%, #0284c7 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-1x-reg:hover {
+            filter: brightness(1.1);
+        }
+
+        /* 2. SUB NAVIGATION BAR */
+        .portal-subnav {
+            background: var(--1x-navy-subnav);
+            height: 42px;
+            border-bottom: 2px solid var(--1x-blue);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .subnav-links-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .subnav-item {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--1x-text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .subnav-item:hover, .subnav-item.active {
+            color: #ffffff;
+        }
+
+        .subnav-tools-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-direct-clean {
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-direct-clean:hover {
+            background: rgba(28, 143, 250, 0.25);
+            border-color: var(--1x-blue);
+            color: var(--1x-blue-hover);
+        }
+
+        /* 3. PORTAL WORKSPACE */
+        .portal-workspace {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Left Side Navigation */
+        .portal-sidebar {
+            width: 240px;
+            background: #091322;
+            border-right: 1px solid var(--1x-border);
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .sidebar-section-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            padding-left: 8px;
+        }
+
+        .sidebar-menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            color: var(--1x-text-dim);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: #11233e;
+            color: #ffffff;
+        }
+        .sidebar-link.active {
+            border-left: 3px solid var(--1x-blue);
+        }
+
+        /* Provider Filter Badge */
+        .provider-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #cbd5e1;
+            cursor: pointer;
+        }
+        .provider-item:hover, .provider-item.active {
+            background: rgba(28, 143, 250, 0.15);
+            color: #38bdf8;
+        }
+        .provider-count {
+            background: #1e293b;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        /* Main Arena */
+        .portal-main-stage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #050a12;
+            min-width: 0;
+        }
+
+        /* Breadcrumb Ribbon */
+        .game-breadcrumb-ribbon {
+            background: #0d1a2d;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--1x-border);
+        }
+
+        .breadcrumb-trail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--1x-text-dim);
+        }
+        .breadcrumb-trail a {
+            color: var(--1x-text-dim);
+            text-decoration: none;
+        }
+        .breadcrumb-trail a:hover {
+            color: var(--1x-blue);
+        }
+        .breadcrumb-trail span.sep {
+            color: #475569;
+        }
+        .breadcrumb-trail span.current {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .ribbon-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ribbon-action-trailer-btn {
+            background: linear-gradient(180deg, #d97706, #b45309);
+            border: 1px solid #ffd700;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(217, 119, 6, 0.5);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .ribbon-action-trailer-btn:hover {
+            background: linear-gradient(180deg, #f59e0b, #d97706);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        .ribbon-action-rules-btn {
+            background: linear-gradient(180deg, #374151, #1f2937);
+            border: 1px solid #9ca3af;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .ribbon-action-rules-btn:hover {
+            background: linear-gradient(180deg, #4b5563, #374151);
+            color: #ffd700;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .mode-toggle-group {
+            display: flex;
+            background: #070d17;
+            border: 1px solid var(--1x-border);
+            border-radius: 20px;
+            padding: 2px;
+        }
+
+        .mode-toggle-btn {
+            padding: 3px 10px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--1x-text-dim);
+            transition: all 0.2s;
+        }
+        .mode-toggle-btn.active {
+            background: #10b981;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+
+        .ribbon-icon-btn {
+            background: #102138;
+            border: 1px solid var(--1x-border);
+            color: var(--1x-text-light);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .ribbon-icon-btn:hover {
+            background: #162f52;
+            color: #ffffff;
+            border-color: var(--1x-blue);
+        }
+
+        /* 4. GAME VIEWPORT CONTAINER */
+        .game-viewport-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 146px);
+            min-height: 640px;
+            background: #020509;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-viewport-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* 1xBet Portal Trailer Banner */
+        .portal-trailer-banner {
+            position: relative;
+            background: #140b05;
+            border: 2px solid var(--1x-gold);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 16px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+        .portal-trailer-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            border-color: #ffe066;
+        }
+        .ptrailer-bg-img {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center bottom;
+            opacity: 0.25;
+            filter: blur(1px);
+        }
+        .ptrailer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 60%;
+        }
+        .ptrailer-tag {
+            color: var(--1x-gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .ptrailer-title {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+        .ptrailer-desc {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .ptrailer-play-btn {
+            background: linear-gradient(180deg, #ffd700, #ff9800);
+            border: none;
+            color: #000;
+            font-size: 12px;
+            font-weight: 900;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+            transition: all 0.2s;
+        }
+        .ptrailer-play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        .ptrailer-cart-img {
+            position: relative;
+            z-index: 2;
+            max-height: 110px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+            animation: cartBounce 2s ease-in-out infinite alternate;
+        }
+        @keyframes cartBounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        /* 5. GAME INFO ACCORDION & RECOMMENDED SLOTS */
+        .game-info-tray {
+            background: #091322;
+            border-top: 1px solid var(--1x-border);
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .info-stats-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .meta-pill-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-pill {
+            background: #11223b;
+            border: 1px solid #1e3a63;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .meta-pill span.label {
+            color: var(--1x-text-dim);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .meta-pill span.val {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Recommended Games Row */
+        .related-games-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .related-card {
+            background: var(--1x-card-bg);
+            border: 1px solid var(--1x-border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .related-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--1x-blue);
+            box-shadow: 0 4px 12px rgba(28, 143, 250, 0.3);
+        }
+
+        .related-thumb {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            background: #050b14;
+        }
+
+        .related-title {
+            padding: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .portal-sidebar { display: none; }
+            .header-main-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Master Header -->
+    <header class="portal-header">
+        <div class="header-brand-wrap">
+            <a href="/casino" class="brand-1x-logo">1X<span>BET</span></a>
+            <span class="header-badge-slots">CASINO SLOTS</span>
+        </div>
+
+        <nav>
+            <ul class="header-main-nav">
+                <li><a href="/" class="nav-tab-link">SPORTS</a></li>
+                <li><a href="/" class="nav-tab-link">LIVE</a></li>
+                <li><a href="/casino" class="nav-tab-link active">CASINO</a></li>
+                <li><a href="/casino" class="nav-tab-link">LIVE CASINO</a></li>
+                <li><a href="/" class="nav-tab-link">1XGAMES</a></li>
+                <li><a href="/" class="nav-tab-link">PROMO</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-auth-area">
+            <button class="btn-1x-login">LOG IN</button>
+            <button class="btn-1x-reg">REGISTRATION</button>
+        </div>
+    </header>
+
+    <!-- Subnav Tabs -->
+    <div class="portal-subnav">
+        <div class="subnav-links-left">
+            <a href="/casino" class="subnav-item active">🔥 Popular</a>
+            <a href="/casino" class="subnav-item">⭐ Favorites</a>
+            <a href="/casino" class="subnav-item">🎰 Slots</a>
+            <a href="/casino" class="subnav-item">💎 Jackpots</a>
+            <a href="/casino" class="subnav-item">🎲 Table Games</a>
+        </div>
+
+        <div class="subnav-tools-right">
+            <a href="/gold_rush_template/standalone_game/index.html" target="_blank" class="btn-direct-clean">↗ Open Game Fullscreen</a>
+            <a href="/garuda" class="btn-direct-clean">🦅 Garuda 500</a>
+            <a href="/fortune-gems-2" class="btn-direct-clean">💎 Fortune Gems 2</a>
+        </div>
+    </div>
+
+    <!-- Portal Workspace -->
+    <div class="portal-workspace">
+        <!-- Sidebar Navigation -->
+        <aside class="portal-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Providers</div>
+                <div class="sidebar-menu-list">
+                    <div class="provider-item active">
+                        <span>Mega7 / MannaPlay</span>
+                        <span class="provider-count">24</span>
+                    </div>
+                    <div class="provider-item">
+                        <span>JILI Gaming</span>
+                        <span class="provider-count">48</span>
+                    </div>
+                    <div class="provider-item">
+                        <span>Pragmatic Play</span>
+                        <span class="provider-count">112</span>
+                    </div>
+                    <div class="provider-item">
+                        <span>PG Soft</span>
+                        <span class="provider-count">65</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Categories</div>
+                <div class="sidebar-menu-list">
+                    <a href="/casino" class="sidebar-link active">⛏️ Mining & Wild West</a>
+                    <a href="/casino" class="sidebar-link">🔥 Cascading Reels</a>
+                    <a href="/casino" class="sidebar-link">💥 Multiplier Bombs</a>
+                    <a href="/casino" class="sidebar-link">👑 Classic 5-Reels</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Game Stage -->
+        <main class="portal-main-stage">
+            <!-- Breadcrumbs & Game Ribbon -->
+            <div class="game-breadcrumb-ribbon">
+                <div class="breadcrumb-trail">
+                    <a href="/casino">Casino</a>
+                    <span class="sep">&gt;</span>
+                    <a href="/casino">Slots</a>
+                    <span class="sep">&gt;</span>
+                    <a href="/casino">Mega7</a>
+                    <span class="sep">&gt;</span>
+                    <span class="current">Gold Rush (Game ID: 71040)</span>
+                </div>
+
+                <div class="ribbon-actions">
+                    <button class="ribbon-action-trailer-btn" onclick="triggerTrailerInGame()" title="Watch Official Game Trailer">🎬 Watch Trailer</button>
+                    <button class="ribbon-action-rules-btn" onclick="triggerRulesInGame()" title="Game Paytable & Rules">ℹ️ Rules</button>
+                    <div class="mode-toggle-group">
+                        <button class="mode-toggle-btn active">DEMO</button>
+                        <button class="mode-toggle-btn">REAL</button>
+                    </div>
+                    <button class="ribbon-icon-btn" title="Add to Favorites">⭐</button>
+                    <button class="ribbon-icon-btn" id="btnExpand" title="Toggle Fullscreen" onclick="toggleIframeFullscreen()">⛶</button>
+                </div>
+            </div>
+
+            <!-- Standalone Game Iframe -->
+            <div class="game-viewport-container" id="gameFrameContainer">
+                <iframe src="/gold_rush_template/standalone_game/index.html" id="gameIframe" allow="autoplay; fullscreen"></iframe>
+            </div>
+
+            <!-- Game Details & Related Games Tray -->
+            <div class="game-info-tray">
+                <div class="info-stats-row">
+                    <div>
+                        <h2 style="font-size: 18px; font-weight: 800; color: #fff;">Gold Rush &bull; Mega7 Gaming</h2>
+                        <p style="font-size: 12px; color: #94a3b8; margin-top: 3px;">
+                            Official 1xBet certified slot machine featuring tumbling reels, explosive dynamite multipliers (up to 100x), and free spins!
+                        </p>
+                    </div>
+
+                    <div class="meta-pill-group">
+                        <div class="meta-pill">
+                            <span class="label">RTP</span>
+                            <span class="val">96.50%</span>
+                        </div>
+                        <div class="meta-pill">
+                            <span class="label">VOLATILITY</span>
+                            <span class="val" style="color: #ff9800;">HIGH</span>
+                        </div>
+                        <div class="meta-pill">
+                            <span class="label">MAX MULTIPLIER</span>
+                            <span class="val" style="color: #ffd700;">x5000</span>
+                        </div>
+                        <div class="meta-pill">
+                            <span class="label">WAYS</span>
+                            <span class="val">1024 WAYS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Official Cinematic Trailer Card -->
+                <div class="portal-trailer-banner" onclick="triggerTrailerInGame()" title="Click to Watch Official Game Trailer">
+                    <div class="ptrailer-bg-img" style="background-image: url('/gold_rush_template/standalone_game/assets/images/atlas_all_bg.png');"></div>
+                    <div class="ptrailer-content">
+                        <div class="ptrailer-tag">🎬 OFFICIAL GAME CINEMATIC TRAILER</div>
+                        <h3 class="ptrailer-title">GOLD RUSH &bull; 1024 WAYS &bull; 5,000X MAX WIN</h3>
+                        <p class="ptrailer-desc">Experience the explosive story trailer: Prehistoric Caverns, Sacred Gem Carts, and Detonating Multiplier Bombs!</p>
+                        <button class="ptrailer-play-btn">▶ WATCH CINEMATIC TRAILER</button>
+                    </div>
+                    <img src="/gold_rush_template/standalone_game/assets/images/spine_free_transitions_free_transitions.png" class="ptrailer-cart-img" alt="Gem Cart">
+                </div>
+
+                <div>
+                    <h3 style="font-size: 13px; font-weight: 800; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.5px;">More Slots You May Like</h3>
+                    <div class="related-games-row">
+                        <a href="/garuda" class="related-card">
+                            <img src="/fortune_garuda_500_template/standalone_game/assets/garuda_table_landed.png" alt="Fortune Garuda 500" class="related-thumb">
+                            <span class="related-title">Fortune Garuda 500</span>
+                        </a>
+                        <a href="/fortune-gems-2" class="related-card">
+                            <img src="/fortune_gems_2_extracted_assets/images/spritesheet_pack1.png" alt="Fortune Gems 2" class="related-thumb">
+                            <span class="related-title">Fortune Gems 2</span>
+                        </a>
+                        <a href="/roulettex" class="related-card">
+                            <img src="/screen1.webp" alt="Roulette VIP" class="related-thumb">
+                            <span class="related-title">Roulette VIP</span>
+                        </a>
+                        <a href="/plinko" class="related-card">
+                            <img src="/screen2.webp" alt="Plinko X" class="related-thumb">
+                            <span class="related-title">Plinko X</span>
+                        </a>
+                        <a href="/coinflip" class="related-card">
+                            <img src="/screen3.webp" alt="Coin Flip" class="related-thumb">
+                            <span class="related-title">Coin Flip</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleIframeFullscreen() {
+            const container = document.getElementById('gameFrameContainer');
+            if (!document.fullscreenElement) {
+                container.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function triggerTrailerInGame() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ action: 'playTrailer' }, '*');
+            }
+        }
+
+        function triggerRulesInGame() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ action: 'openRules' }, '*');
+            }
+        }
+
+        function triggerFsInGame() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ action: 'triggerFs' }, '*');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>RouletteX Live Studio | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #050a12;
+            --bg-surface: #0a1320;
+            --border: #223755;
+            --accent: #00dc82;
+            --accent-gold: #ffbe2e;
+            --accent-red: #e73636;
+            --text-primary: #ffffff;
+            --text-secondary: #8fa3c0;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header */
+        header {
+            position: relative;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background: rgba(10, 19, 32, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 52px;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: #1a2b44;
+            border-color: var(--accent);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo-img {
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+
+        .badge-live {
+            background: linear-gradient(135deg, #e73636, #ff4757);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            animation: pulse-red 2s infinite ease-in-out;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(231, 54, 54, 0.7); }
+            50% { box-shadow: 0 0 0 6px rgba(231, 54, 54, 0); }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .balance-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 190, 46, 0.4);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .balance-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .balance-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .deposit-btn {
+            background: linear-gradient(135deg, #ffbe2e, #f39c12);
+            color: #000;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .deposit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .ctrl-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            background: #1a2b44;
+            border-color: var(--accent-gold);
+        }
+
+        /* Live Game Container */
+        .live-game-wrapper {
+            flex: 1;
+            width: 100%;
+            height: calc(100% - 52px);
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #liveGameIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #000;
+        }
+
+        /* Floating Wallet Pill (Non-intrusive Top Left) */
+        .floating-live-wallet {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(10, 19, 32, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 190, 46, 0.4);
+            padding: 5px 14px;
+            border-radius: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.7);
+            pointer-events: auto;
+        }
+
+        .floating-live-wallet span {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .floating-live-wallet strong {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-gold);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 6px 10px;
+                height: 48px;
+            }
+            .brand-logo-img {
+                height: 20px;
+            }
+            .game-title {
+                font-size: 15px;
+            }
+            .live-game-wrapper {
+                height: calc(100% - 48px);
+            }
+            .floating-live-wallet {
+                top: 8px;
+                left: 8px;
+                padding: 4px 10px;
+                gap: 6px;
+            }
+            .floating-live-wallet strong {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header>
+        <div class="header-left">
+            <a href="../casino.html" class="back-btn">
+                ◀ Lobby
+            </a>
+            <div class="brand-container">
+                <img src="../game_assets/promo_and_branding/Astriona_logo.svg" alt="Astriona" class="brand-logo-img">
+                <span class="game-title">RouletteX</span>
+                <span class="badge-live">
+                    <span class="live-dot"></span> LIVE
+                </span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="balance-badge" title="Live Account Balance">
+                <span class="balance-label">WALLET</span>
+                <span class="balance-val" id="topWalletBalance">₨ 0.00</span>
+                <span id="topWalletDualBalance" style="font-size: 10px; color: var(--text-secondary); font-family: 'JetBrains Mono';">($0.00)</span>
+            </div>
+            <a href="../deposit.html" class="deposit-btn" title="Add Funds to Wallet">+ Deposit</a>
+            <button class="ctrl-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+        </div>
+    </header>
+
+    <!-- Main Live Game Container: Exactly the Live Game Client -->
+    <div class="live-game-wrapper">
+        <div class="floating-live-wallet">
+            <span style="font-size:13px;">👛</span>
+            <span>Account Balance:</span>
+            <strong id="floatingBal">₨ 0.00</strong>
+        </div>
+
+        <iframe 
+            id="liveGameIframe" 
+            src="https://integrations.astriona.games/launcher/string/launch?gameId=61&currency=USD&operatorId=1&casinoId=1&token=222&languageCode=en&playerId=8fe58af0-9d24-4a14-ad80-db337086fa1d" 
+            allow="autoplay; fullscreen; encrypted-media"
+            title="RouletteX Official Live Client">
+        </iframe>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="../js/wallet.js"></script>
+
+    <script>
+        function syncWallet() {
+            try {
+                let bal = 0;
+                let rate = (window.wallet && window.wallet.exchangeRate) ? window.wallet.exchangeRate : 280;
+
+                if (window.wallet && typeof window.wallet.getBalance === 'function') {
+                    bal = window.wallet.getBalance();
+                } else if (localStorage.getItem('bwn_session_user')) {
+                    const u = JSON.parse(localStorage.getItem('bwn_session_user'));
+                    bal = parseFloat(u.balance_pkr !== undefined ? u.balance_pkr : (u.balancePKR || 0));
+                } else if (localStorage.getItem('bwn_wallet_state_v1')) {
+                    const st = JSON.parse(localStorage.getItem('bwn_wallet_state_v1'));
+                    bal = parseFloat(st.balancePKR || 0);
+                }
+
+                const balUSD = (bal / rate).toFixed(2);
+                const pkrFormatted = `₨ ${bal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+                const topBal = document.getElementById('topWalletBalance');
+                if (topBal) topBal.textContent = pkrFormatted;
+
+                const topDual = document.getElementById('topWalletDualBalance');
+                if (topDual) topDual.textContent = `($${balUSD})`;
+
+                const floatingBal = document.getElementById('floatingBal');
+                if (floatingBal) floatingBal.textContent = pkrFormatted;
+            } catch(e) {
+                console.warn('syncWallet error:', e);
+            }
+        }
+
+        async function fetchServerBalance() {
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) {
+                    const u = JSON.parse(sess);
+                    if (u && (u.username || u.phone)) {
+                        const res = await fetch(`../api/get_profile.php?user=${encodeURIComponent(u.username || u.phone)}`);
+                        const json = await res.json();
+                        if (json && json.status === 'success' && json.data) {
+                            const balPkr = parseFloat(json.data.balance_pkr || 0);
+                            const balUsd = parseFloat(json.data.balance_usd || (balPkr / 280));
+                            if (window.wallet) {
+                                window.wallet.state.balancePKR = balPkr;
+                                window.wallet.state.balanceUSD = balUsd;
+                                window.wallet.saveState();
+                            }
+                        }
+                    }
+                }
+            } catch(e) {}
+            syncWallet();
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            syncWallet();
+            fetchServerBalance();
+
+            if (window.wallet && window.wallet.on) {
+                window.wallet.on('balanceChange', () => syncWallet());
+                window.wallet.on('change', () => syncWallet());
+            }
+            window.addEventListener('storage', () => syncWallet());
+            setInterval(fetchServerBalance, 5000);
+        });
+    </script>
+</body>
+</html>

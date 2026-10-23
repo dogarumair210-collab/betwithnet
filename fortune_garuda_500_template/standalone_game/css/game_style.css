@@ -1,0 +1,745 @@
+/* Fortune Garuda 500 - Official Game Style */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap');
+
+:root {
+    --gold-primary: #ffd700;
+    --gold-bright: #fff2a3;
+    --gold-dark: #b8860b;
+    --ruby-glow: #ff1744;
+    --sapphire-glow: #00b0ff;
+    --emerald-glow: #00e676;
+    --cabinet-bg: #070402;
+    --reel-width: 104px;
+    --reel-height: 98px;
+    --multiplier-width: 82px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #030100;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #ffffff;
+}
+
+/* Master Viewport Container */
+.garuda-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 30%, #301605 0%, #150902 45%, #050201 100%);
+    overflow: hidden;
+}
+
+/* Atmospheric Temple Background Layer */
+.temple-ambient-bg {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 50% 15%, rgba(255, 170, 0, 0.22) 0%, transparent 65%),
+        url('../assets/garuda_table_landed.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    opacity: 0.85;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Floating Embers Particle Canvas */
+#embersCanvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Top Floating Nav Bar */
+.top-nav-bar {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.nav-pill-btn {
+    background: rgba(18, 9, 3, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: var(--gold-bright);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+.nav-pill-btn:hover {
+    background: rgba(45, 23, 8, 0.9);
+    border-color: var(--gold-primary);
+    transform: translateY(-1px);
+}
+
+/* Master Game Cabinet */
+.game-cabinet {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    height: 100%;
+    max-height: 840px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 6px 10px;
+}
+
+/* Garuda Guardian Stage (Top of Temple) */
+.garuda-guardian-stage {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+}
+
+.guardian-video {
+    position: absolute;
+    bottom: -15px;
+    width: 260px;
+    height: auto;
+    max-height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 180, 0, 0.6));
+    z-index: 2;
+    pointer-events: none;
+}
+
+.guardian-fallback {
+    position: absolute;
+    bottom: -10px;
+    width: 240px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 180, 0, 0.6));
+    display: none;
+    z-index: 1;
+}
+
+/* Temple Carved Lintel */
+.temple-lintel {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    height: 38px;
+    background: url('../assets/table_lintel_hd.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -4px;
+    z-index: 12;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+}
+
+.temple-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffd700 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+/* Reels Main Arena */
+.reels-stage {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    background: rgba(14, 7, 3, 0.94);
+    border: 3px solid #b8860b;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.95), inset 0 0 15px rgba(255, 190, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    overflow: hidden;
+    z-index: 11;
+}
+
+/* Left Extra Bet Switch */
+.extra-bet-switch {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(180deg, #1c1007 0%, #0d0603 100%);
+    border: 1.5px solid #d4af37;
+    border-radius: 10px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    z-index: 25;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.extra-bet-switch:hover {
+    transform: translateY(-50%) scale(1.05);
+}
+.extra-bet-switch.active {
+    background: linear-gradient(180deg, #b8860b 0%, #d4af37 50%, #8b6508 100%);
+    border-color: #fff2a3;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.9);
+}
+.extra-bet-switch.active .extra-bet-title {
+    color: #1a0f00;
+    text-shadow: none;
+}
+.extra-bet-switch.active .extra-bet-status {
+    background: #00e676;
+    color: #000;
+}
+.extra-bet-title {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+.extra-bet-badge {
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #ff334b;
+    background: rgba(255, 51, 75, 0.15);
+    padding: 1px 4px;
+    border-radius: 4px;
+}
+.extra-bet-status {
+    font-size: 9px;
+    font-weight: 900;
+    background: #332214;
+    color: #888;
+    padding: 2px 6px;
+    border-radius: 6px;
+    margin-top: 2px;
+}
+
+/* Temple Frame Inner */
+.temple-frame-inner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 32px 0 44px; /* padding for extra bet switch */
+}
+
+/* Payline Canvas Overlay */
+#paylineCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* 3x3 Symbol Reels Wrapper */
+.symbol-reels-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(8, 4, 1, 0.85);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.reel-column {
+    width: var(--reel-width);
+    height: calc(var(--reel-height) * 3);
+    overflow: hidden;
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.reel-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+}
+
+.slot-cell {
+    width: var(--reel-width);
+    height: var(--reel-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 4px;
+}
+
+.slot-tile-img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7));
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Nudge & Win Highlight animations */
+.slot-cell.win-pulse .slot-tile-img {
+    animation: winPulse 0.6s infinite alternate;
+}
+@keyframes winPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 8px #ffd700); }
+    100% { transform: scale(1.15); filter: drop-shadow(0 0 20px #fff2a3); }
+}
+
+.slot-cell.nudge-anim {
+    animation: nudgeBounce 0.4s ease-out;
+}
+@keyframes nudgeBounce {
+    0% { transform: translateY(-20px); }
+    60% { transform: translateY(8px); }
+    100% { transform: translateY(0); }
+}
+
+/* 4th Multiplier Reel */
+.multiplier-reel-wrap {
+    width: var(--multiplier-width);
+    height: calc(var(--reel-height) * 3);
+    position: relative;
+    background: linear-gradient(180deg, #1c0e04 0%, #2f1807 50%, #1c0e04 100%);
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 12px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mult-center-indicator {
+    position: absolute;
+    width: 100%;
+    height: var(--reel-height);
+    top: var(--reel-height);
+    left: 0;
+    border-top: 2px solid #fff2a3;
+    border-bottom: 2px solid #fff2a3;
+    background: rgba(255, 215, 0, 0.15);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.multiplier-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+}
+
+.multiplier-cell {
+    width: var(--multiplier-width);
+    height: var(--reel-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.mult-badge-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.mult-text-val {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 2px 4px #000;
+}
+.mult-text-val.super-500 {
+    font-size: 22px;
+    color: #ff334b;
+    text-shadow: 0 0 14px #ff334b, 0 2px 4px #000;
+    animation: superGlow 0.8s infinite alternate;
+}
+@keyframes superGlow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 4px #ff334b); }
+    100% { transform: scale(1.1); filter: drop-shadow(0 0 15px #ffea00); }
+}
+
+/* Divine Gift of Garuda Blessing Alert */
+.blessing-banner {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    background: linear-gradient(180deg, #ffd700 0%, #b8860b 100%);
+    border: 2px solid #fff2a3;
+    border-radius: 30px;
+    padding: 10px 24px;
+    color: #1a0f00;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.95);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.blessing-banner.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Bottom Controls Console */
+.bottom-console {
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 15;
+}
+
+/* Win Meter Row */
+.win-meter-row {
+    background: linear-gradient(180deg, #180c05 0%, #0c0502 100%);
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 5px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.win-label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+.win-amount-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+/* Action Controls Row */
+.action-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: rgba(18, 9, 3, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 12px;
+    padding: 8px 12px;
+}
+
+/* Bet Selector */
+.bet-selector-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #080401;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.btn-bet-step {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid #d4af37;
+    background: #1f0f04;
+    color: #ffd700;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+}
+.btn-bet-step:active {
+    transform: scale(0.92);
+    background: #ffd700;
+    color: #000;
+}
+
+.bet-display-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 76px;
+}
+.bet-sub {
+    font-size: 9px;
+    font-weight: 700;
+    color: #a18260;
+    text-transform: uppercase;
+}
+.bet-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* Master Golden Spin Button */
+.spin-master-btn {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 30%, #fff7b8 0%, #ffd700 45%, #b8860b 80%, #573a02 100%);
+    border: 3px solid #fff5a6;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.spin-master-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 28px rgba(255, 215, 0, 1);
+}
+.spin-master-btn:active {
+    transform: scale(0.95);
+}
+.spin-master-btn.spinning {
+    animation: masterSpinPulse 0.5s infinite alternate;
+    pointer-events: none;
+    opacity: 0.85;
+}
+@keyframes masterSpinPulse {
+    0% { transform: scale(0.98); filter: brightness(0.9); }
+    100% { transform: scale(1.04); filter: brightness(1.2); }
+}
+
+.spin-btn-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 900;
+    color: #2b1704;
+    letter-spacing: 1px;
+}
+
+/* Turbo & Auto Buttons */
+.side-toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pill-toggle-btn {
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: #0d0603;
+    color: #a18260;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+}
+.pill-toggle-btn.active {
+    background: #ffd700;
+    color: #000;
+    border-color: #fff2a3;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+/* Bottom Balance Footer Bar */
+.bottom-footer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 6px;
+    font-size: 11px;
+    color: #a18260;
+}
+.balance-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffd700;
+}
+
+/* Big Win Celebration Modal */
+.celebration-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: fgFadeIn 0.3s ease;
+}
+.celebration-overlay.active {
+    display: flex;
+}
+@keyframes fgFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.celebration-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fgPopScale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes fgPopScale {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.celebration-title {
+    font-family: 'Cinzel', serif;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffd700 50%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
+    margin-bottom: 8px;
+}
+
+.celebration-sub {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff2a3;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.celebration-win-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 42px;
+    font-weight: 900;
+    color: #00e676;
+    text-shadow: 0 0 25px rgba(0, 230, 118, 0.8);
+    margin-bottom: 24px;
+}
+
+.btn-collect-win {
+    background: linear-gradient(180deg, #ffd700 0%, #d4af37 100%);
+    color: #1a0f00;
+    border: none;
+    padding: 12px 36px;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    transition: all 0.2s;
+}
+.btn-collect-win:hover {
+    transform: scale(1.08);
+}
+
+/* JILI Loading Splash Screen */
+.jili-splash-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+.jili-splash-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.jili-brand-logo {
+    width: 140px;
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+}
+.jili-progress-track {
+    width: 220px;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.jili-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff9100, #ffd700);
+    transition: width 0.1s linear;
+}

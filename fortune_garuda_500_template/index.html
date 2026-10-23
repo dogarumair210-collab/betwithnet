@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fortune Garuda 500 - Complete Template Kit & 1xBet Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-gold: #ffd700;
+            --brand-cyan: #00b0ff;
+            --bg-dark: #040810;
+            --panel-bg: #0b1524;
+            --border-line: #1c324e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Master Control Bar */
+        .master-nav-header {
+            background: linear-gradient(180deg, #0d1b30 0%, #08111f 100%);
+            border-bottom: 2px solid var(--brand-gold);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .master-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .master-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 19px;
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff7b8, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .master-badge {
+            background: var(--brand-cyan);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .template-tabs-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(180deg, #1c8ffa 0%, #0284c7 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(28, 143, 250, 0.4);
+        }
+
+        .master-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-live-preview {
+            background: linear-gradient(180deg, #ffd700 0%, #d4af37 100%);
+            color: #000;
+            font-weight: 900;
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Showcase Preview Frame */
+        .showcase-viewport-wrap {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 64px);
+            position: relative;
+            background: #020509;
+        }
+
+        .showcase-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Master Header Navigation -->
+    <header class="master-nav-header">
+        <div class="master-logo">
+            <span class="master-logo-text">FORTUNE GARUDA 500</span>
+            <span class="master-badge">ID: 177041</span>
+        </div>
+
+        <!-- Template View Switcher -->
+        <div class="template-tabs-group">
+            <button class="tab-btn active" onclick="switchView('/fortune_garuda_500_template/1xbet_portal_embed/index.html', this)">
+                🌐 1xBet Official Embed
+            </button>
+            <button class="tab-btn" onclick="switchView('/fortune_garuda_500_template/standalone_game/index.html', this)">
+                📱 Standalone Game View
+            </button>
+            <a href="/fortune_garuda_500_template/README.md" target="_blank" class="tab-btn">
+                📄 Documentation
+            </a>
+        </div>
+
+        <div class="master-actions">
+            <a href="/casino.html" class="btn-live-preview">
+                ◀ Casino Lobby
+            </a>
+        </div>
+    </header>
+
+    <!-- Master Interactive Viewport -->
+    <div class="showcase-viewport-wrap">
+        <iframe id="mainPreviewFrame" class="showcase-iframe" src="/fortune_garuda_500_template/1xbet_portal_embed/index.html" title="Preview"></iframe>
+    </div>
+
+    <script>
+        function switchView(url, btn) {
+            document.getElementById('mainPreviewFrame').src = url;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>

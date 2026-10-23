@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Space XY Rocket - JILI / BGaming | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <style>
+        /* -------------------------------------------------------------
+           COMPLETE SUPPRESSION OF INJECTED TEMPLATE OVERLAYS
+           ------------------------------------------------------------- */
+        #bwn-sound-toggle-fixed,
+        .bwn-sound-toggle-btn,
+        #bwn-game-splash, 
+        #app-luxury-footer, 
+        #app-bottom-nav-slot,
+        #app-header-slot,
+        #vip-apk-modal,
+        #daily-bonus-modal-root,
+        .daily-bonus-overlay,
+        .daily-bonus-dialog,
+        .daily-bonus-floating-trigger,
+        .vip-apk-modal-overlay,
+        .vip-apk-modal-dialog,
+        .drawer-nav,
+        .side-drawer,
+        .app-header,
+        .app-bottom-nav,
+        .luxury-casino-footer,
+        .game-balance-hud,
+        .live-ticker,
+        .hero-banner,
+        .drawer-overlay {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            pointer-events: none !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --space-bg: #03060f;
+            --space-panel: #070b16;
+            --space-border: rgba(0, 229, 255, 0.2);
+            --space-cyan: #00e5ff;
+            --space-cyan-glow: rgba(0, 229, 255, 0.45);
+            --space-gold: #ffcc00;
+            --space-red: #ff3366;
+            --space-green: #00e676;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            max-height: 100dvh;
+            overflow: hidden !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #020409;
+            color: #ffffff;
+            font-family: var(--font-main);
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* -------------------------------------------------------------
+           FULL CHOTA / EXTRA COMPACT MOBILE GAME CABINET
+           Width: 94vw (Max 360px), Height: 92dvh (Max 580px)
+           ------------------------------------------------------------- */
+        .space-app-container {
+            width: 95vw;
+            max-width: 360px;
+            height: 92vh;
+            height: 92dvh;
+            max-height: 580px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: var(--space-bg);
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-radius: 14px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 229, 255, 0.12);
+            overflow: hidden;
+        }
+
+        /* -------------------------------------------------------------
+           JILI OFFICIAL LOADING SCREEN OVERLAY
+           ------------------------------------------------------------- */
+        .jili-splash-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 9999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .jili-splash-overlay.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .jili-center-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: auto;
+            max-width: 90vw;
+        }
+        .jili-logo-box {
+            position: relative;
+            display: inline-block;
+            width: 125px;
+            max-width: 40vw;
+            line-height: 0;
+        }
+        .jili-img-brand {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+        }
+        .jili-sheen-mask {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            -webkit-mask-image: url('../assets/games/limbo/jili_wordmark_tight.png');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('../assets/games/limbo/jili_wordmark_tight.png');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+        .jili-glint-bar {
+            position: absolute;
+            top: -20%;
+            left: -120%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 100%
+            );
+            transform: skewX(-24deg);
+            mix-blend-mode: overlay;
+            animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @keyframes jiliGlintAnim {
+            0% { left: -120%; opacity: 0; }
+            12% { opacity: 1; }
+            60% { left: 160%; opacity: 1; }
+            66% { opacity: 0; }
+            100% { left: 160%; opacity: 0; }
+        }
+        .jili-loadline-track {
+            width: 115px;
+            max-width: 36vw;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        .jili-loadline-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.85);
+            transition: width 0.08s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           1. TOP HEADER (SLIM COMPACT ~32px)
+           ------------------------------------------------------------- */
+        .space-top-bar {
+            height: 32px;
+            min-height: 32px;
+            max-height: 32px;
+            background: rgba(5, 8, 16, 0.95);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            z-index: 50;
+        }
+
+        .space-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            color: #8da2c0;
+            font-size: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .space-back-btn:active {
+            color: #ffffff;
+            background: rgba(0, 229, 255, 0.15);
+            border-color: var(--space-cyan);
+        }
+
+        .space-brand {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .space-brand-title {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            background: linear-gradient(90deg, #ffffff 0%, #00e5ff 70%, #ffcc00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+        .space-rtp-badge {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #00e676;
+            background: rgba(0, 230, 118, 0.12);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .space-top-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .space-sound-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .space-sound-btn:active {
+            transform: scale(0.92);
+        }
+        .space-wallet-pill {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+        .space-wallet-label {
+            font-size: 8.5px;
+            color: #8da2c0;
+            font-weight: 600;
+        }
+        .space-wallet-amt {
+            font-family: var(--font-mono);
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #00e676;
+        }
+
+        /* -------------------------------------------------------------
+           2. MULTIPLIER HISTORY BAR (TIGHT ~20px)
+           ------------------------------------------------------------- */
+        .space-history-bar {
+            height: 20px;
+            min-height: 20px;
+            background: #040710;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            gap: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            z-index: 40;
+        }
+        .space-history-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .history-tag {
+            flex-shrink: 0;
+            font-family: var(--font-mono);
+            font-size: 8.5px;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+        .history-tag.tier-low {
+            color: #7993ba;
+            background: rgba(121, 147, 186, 0.15);
+            border: 1px solid rgba(121, 147, 186, 0.25);
+        }
+        .history-tag.tier-med {
+            color: #00e5ff;
+            background: rgba(0, 229, 255, 0.12);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+        }
+        .history-tag.tier-high {
+            color: #ffcc00;
+            background: rgba(255, 204, 0, 0.15);
+            border: 1px solid rgba(255, 204, 0, 0.4);
+        }
+        .history-tag.tier-epic {
+            color: #e040fb;
+            background: rgba(224, 64, 251, 0.2);
+            border: 1px solid rgba(224, 64, 251, 0.5);
+        }
+
+        /* -------------------------------------------------------------
+           3. RADAR ARENA CANVAS (FLEX 1 - TIGHT COMPACT)
+           ------------------------------------------------------------- */
+        .space-stage-container {
+            flex: 1;
+            min-height: 0;
+            position: relative;
+            width: 100%;
+            background: radial-gradient(circle at 75% 20%, #0d162d 0%, #050813 60%, #020409 100%);
+            overflow: hidden;
+        }
+
+        #space-radar-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Center Multiplier Overlay (Full Chota & Crisp) */
+        .space-hud-overlay {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+            z-index: 20;
+            text-align: center;
+        }
+        .space-multiplier-text {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 900;
+            color: #00e5ff;
+            text-shadow: 0 0 16px rgba(0, 229, 255, 0.7);
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
+        .space-multiplier-text.state-crash {
+            color: #ff3366 !important;
+            text-shadow: 0 0 20px rgba(255, 51, 102, 0.85) !important;
+            animation: crashShake 0.4s ease;
+        }
+        .space-multiplier-text.tier-gold {
+            color: #ffcc00;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.75);
+        }
+        .space-multiplier-text.tier-purple {
+            color: #e040fb;
+            text-shadow: 0 0 22px rgba(224, 64, 251, 0.8);
+        }
+
+        .space-hud-sub {
+            margin-top: 3px;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #7993ba;
+        }
+
+        /* Cashout Celebration Banner */
+        .space-cashout-banner {
+            position: absolute;
+            top: 18%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.85);
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.25) 0%, rgba(6, 18, 12, 0.95) 100%);
+            border: 1px solid #00e676;
+            border-radius: 8px;
+            padding: 5px 12px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.45);
+            z-index: 30;
+            pointer-events: none;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .space-cashout-banner.show {
+            display: flex;
+        }
+        .banner-cash-title {
+            font-size: 8px;
+            font-weight: 800;
+            color: #8dfac1;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+        .banner-cash-val {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 900;
+            color: #00e676;
+            text-shadow: 0 0 10px rgba(0, 230, 118, 0.8);
+        }
+
+        /* -------------------------------------------------------------
+           4. FULL CHOTA MOBILE CONTROL PANEL (~95px)
+           ------------------------------------------------------------- */
+        .space-controls {
+            background: #060914;
+            border-top: 1px solid rgba(0, 229, 255, 0.16);
+            padding: 5px 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 45;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Row 1: Bet input + Quick presets */
+        .space-bet-row {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .bet-input-box {
+            flex: 1.1;
+            height: 28px;
+            background: #020409;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            gap: 2px;
+        }
+        .bet-currency {
+            color: #00e5ff;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .bet-number-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .bet-quick-chips {
+            display: flex;
+            gap: 2px;
+            flex: 1.9;
+        }
+        .bet-chip {
+            flex: 1;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0c4de;
+            font-family: var(--font-mono);
+            font-size: 9.5px;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bet-chip:active {
+            transform: scale(0.92);
+            background: rgba(0, 229, 255, 0.2);
+            border-color: var(--space-cyan);
+            color: #fff;
+        }
+
+        /* Row 2: Auto Cashout selector */
+        .space-auto-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(2, 4, 10, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+            padding: 2px 6px;
+            height: 22px;
+        }
+        .auto-label-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .auto-checkbox {
+            accent-color: #00e5ff;
+            width: 12px;
+            height: 12px;
+            cursor: pointer;
+        }
+        .auto-text {
+            font-size: 9px;
+            font-weight: 700;
+            color: #8da2c0;
+        }
+        .auto-target-box {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .auto-btn-step {
+            width: 17px;
+            height: 17px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .auto-target-input {
+            width: 38px;
+            height: 17px;
+            background: #020409;
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 3px;
+            color: #00e5ff;
+            font-family: var(--font-mono);
+            font-size: 9.5px;
+            font-weight: 800;
+            text-align: center;
+            outline: none;
+        }
+
+        /* Row 3: Action Launch / Cashout Button */
+        .space-action-btn {
+            width: 100%;
+            height: 36px;
+            border-radius: 7px;
+            border: none;
+            outline: none;
+            font-family: var(--font-main);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+        .space-action-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Launch State (Idle) */
+        .btn-state-launch {
+            background: linear-gradient(135deg, #00e5ff 0%, #00b0ff 50%, #00e676 100%);
+            color: #040814;
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Flying State (Cashout Active) */
+        .btn-state-cashout {
+            background: linear-gradient(135deg, #ff9100 0%, #ff6d00 50%, #ff3d00 100%);
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 109, 0, 0.6);
+            animation: pulseGlow 1.2s infinite alternate;
+        }
+
+        /* Cashed Out State */
+        .btn-state-won {
+            background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+            color: #040814;
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.5);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 8px rgba(255, 109, 0, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(255, 109, 0, 0.9); }
+        }
+
+        @keyframes crashShake {
+            0%, 100% { transform: translate(-50%, -50%); }
+            20% { transform: translate(-53%, -50%); }
+            40% { transform: translate(-47%, -50%); }
+            60% { transform: translate(-52%, -50%); }
+            80% { transform: translate(-48%, -50%); }
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JILI OFFICIAL LOADING SCREEN -->
+    <div id="jiliLoadingScreen" class="jili-splash-overlay">
+        <div class="jili-center-stage">
+            <div class="jili-logo-box">
+                <img src="../assets/games/limbo/jili_wordmark_tight.png" alt="JILI" class="jili-img-brand">
+                <div class="jili-sheen-mask">
+                    <div class="jili-glint-bar"></div>
+                </div>
+            </div>
+            <!-- Video-Style Yellow Loading Line -->
+            <div class="jili-loadline-track">
+                <div id="jiliLoadProgress" class="jili-loadline-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN FULL CHOTA COMPACT MOBILE CABINET -->
+    <div class="space-app-container">
+        <!-- 1. Top Bar -->
+        <header class="space-top-bar">
+            <a href="../casino.html" class="space-back-btn">← Casino</a>
+            <div class="space-brand">
+                <span style="font-size: 11px;">🚀</span>
+                <span class="space-brand-title">Space XY</span>
+                <span class="space-rtp-badge">97.0%</span>
+            </div>
+            <div class="space-top-right">
+                <button id="space-sound-toggle" class="space-sound-btn" title="Toggle Sound">🔊</button>
+                <div class="space-wallet-pill">
+                    <span class="space-wallet-label">₨</span>
+                    <span id="space-user-balance" class="space-wallet-amt">0.00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Multiplier History Bar -->
+        <div id="space-history-container" class="space-history-bar">
+            <!-- Injected dynamically -->
+        </div>
+
+        <!-- 3. Space Radar Arena (Dynamic Flex Canvas) -->
+        <main class="space-stage-container">
+            <canvas id="space-radar-canvas"></canvas>
+
+            <!-- Dynamic Multiplier Overlay -->
+            <div class="space-hud-overlay">
+                <div id="space-hud-multiplier" class="space-multiplier-text">1.00x</div>
+                <div id="space-hud-status" class="space-hud-sub">SPACE COORDINATE XY</div>
+            </div>
+
+            <!-- Cashout Banner -->
+            <div id="space-cashout-popup" class="space-cashout-banner">
+                <div class="banner-cash-title">YOU CASHED OUT!</div>
+                <div id="space-cashout-amount" class="banner-cash-val">₨ 0</div>
+            </div>
+        </main>
+
+        <!-- 4. Full Chota Mobile Control Panel -->
+        <footer class="space-controls">
+            <!-- Row 1: Bet Input & Quick Chips -->
+            <div class="space-bet-row">
+                <div class="bet-input-box">
+                    <span class="bet-currency">₨</span>
+                    <input type="number" id="space-bet-amount" class="bet-number-input" value="100" min="10" max="50000" step="10">
+                </div>
+                <div class="bet-quick-chips">
+                    <button type="button" class="bet-chip" onclick="window.spaceGame.adjustBet('half')">½</button>
+                    <button type="button" class="bet-chip" onclick="window.spaceGame.adjustBet('double')">2×</button>
+                    <button type="button" class="bet-chip" onclick="window.spaceGame.adjustBet('+50')">+50</button>
+                    <button type="button" class="bet-chip" onclick="window.spaceGame.adjustBet('+100')">+100</button>
+                    <button type="button" class="bet-chip" onclick="window.spaceGame.adjustBet('+500')">+500</button>
+                    <button type="button" class="bet-chip" onclick="window.spaceGame.adjustBet('max')">MAX</button>
+                </div>
+            </div>
+
+            <!-- Row 2: Auto Cashout -->
+            <div class="space-auto-row">
+                <label class="auto-label-wrap">
+                    <input type="checkbox" id="space-auto-check" class="auto-checkbox">
+                    <span class="auto-text">Auto Cashout</span>
+                </label>
+                <div class="auto-target-box">
+                    <button type="button" class="auto-btn-step" onclick="window.spaceGame.stepAuto(-0.1)">−</button>
+                    <input type="number" id="space-auto-val" class="auto-target-input" value="2.00" min="1.05" max="100.00" step="0.10">
+                    <button type="button" class="auto-btn-step" onclick="window.spaceGame.stepAuto(0.1)">+</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Action Launch / Cashout Button -->
+            <button id="space-main-btn" type="button" class="space-action-btn btn-state-launch" onclick="window.spaceGame.handleAction()">
+                <span>LAUNCH ROCKET</span>
+                <span>🚀</span>
+            </button>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/game_launcher.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/games/space_xy.js"></script>
+    <script>
+        // JILI Loading Splash Controller
+        function runJiliSplash() {
+            const splash = document.getElementById('jiliLoadingScreen');
+            const progressBar = document.getElementById('jiliLoadProgress');
+            if (!splash || !progressBar) return;
+
+            splash.style.display = 'flex';
+            splash.classList.remove('loaded');
+            progressBar.style.width = '0%';
+
+            const startTime = performance.now();
+            const totalDuration = 1800;
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const p = Math.min(1, elapsed / totalDuration);
+                const ease = p < 0.8 ? (p * 1.05) : (0.84 + (p - 0.8) * 0.8);
+                const pct = Math.min(100, Math.round(ease * 100));
+                progressBar.style.width = pct + '%';
+
+                if (p < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    setTimeout(() => {
+                        splash.classList.add('loaded');
+                        setTimeout(() => {
+                            splash.style.display = 'none';
+                            if (window.spaceGame && window.spaceGame.startBgmOnReady) {
+                                window.spaceGame.startBgmOnReady();
+                            }
+                        }, 500);
+                    }, 150);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            runJiliSplash();
+            if (window.core && window.core.init) {
+                window.core.init('casino');
+            }
+            if (window.spaceGame && window.spaceGame.init) {
+                window.spaceGame.init();
+            }
+        });
+    </script>
+</body>
+</html>

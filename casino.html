@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Casino Gaming Hall - Bet With Net</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/app.css?v=2026_deposit_popup_v1">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header injected by core.js -->
+    <div id="app-header-slot"></div>
+
+    <main class="main-container">
+        
+        <div class="page-title-row" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+            <div>
+                <h1 style="font-size:clamp(18px, 4vw, 24px); font-weight:900;">🎰 Casino & Originals Hall</h1>
+                <p style="font-size:12px; color:var(--text-muted);">Explore all 60 realistic casino, cards, arcade & lottery games</p>
+            </div>
+            <div class="search-box" style="flex:1; min-width:180px; max-width:320px;">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="casino-search-input" placeholder="Search games...">
+            </div>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="category-pills" style="margin-bottom:20px;">
+            <button class="category-pill active" onclick="filterGames('all')">🔥 All 60 Games</button>
+            <button class="category-pill" onclick="filterGames('originals')">⚡ Originals</button>
+            <button class="category-pill" onclick="filterGames('cards')">🃏 Cards & Table</button>
+            <button class="category-pill" onclick="filterGames('slots')">🎰 Slots</button>
+            <button class="category-pill" onclick="filterGames('arcade')">🎯 Arcade & Lottery</button>
+        </div>
+
+        <!-- 7 Official Studios Grid -->
+        <div id="casino-games-grid" class="games-grid">
+            <!-- 1. Crash -->
+            <a href="games/crash.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <video autoplay loop muted playsinline poster="assets/aviator_banner_poster.jpg" style="width:100%; height:100%; object-fit:cover;">
+                        <source src="assets/aviator_banner.webm" type="video/webm">
+                        <source src="assets/aviator_banner.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </a>
+
+            <!-- 2. Coin Flip VIP (Pure Picture Poster Cover) -->
+            <a href="games/coinflip.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/coinflip.webp?v=poseidon" alt="Coin Flip VIP">
+                </div>
+            </a>
+
+            <!-- 3. Speedy Andar Bahar (Pure Picture Poster Cover) -->
+            <a href="games/andarbahar.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/andarbahar.jpg" alt="Speedy Andar Bahar">
+                </div>
+            </a>
+
+            <!-- Chicken Road 1xBet Official Arcade (UNDER MAINTENANCE) -->
+            <a href="games/chicken_road.html" onclick="showUnderRepairNotice(event, 'Chicken Road');" class="game-card game-card-poster-only" data-cat="originals arcade slots hot" style="text-decoration:none; position:relative;">
+                <div class="game-card-img-wrap" style="position:relative;">
+                    <img src="assets/covers/chicken_road.png" alt="Chicken Road" style="filter:grayscale(0.4) brightness(0.85);">
+                    <div style="position:absolute; top:8px; right:8px; background:rgba(239,68,68,0.92); color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:6px; letter-spacing:0.5px; border:1px solid rgba(255,255,255,0.4); box-shadow:0 2px 8px rgba(0,0,0,0.6); z-index:5;">
+                        🛠️ UNDER MAINTENANCE
+                    </div>
+                </div>
+            </a>
+
+            <!-- 4. Tower Rush (Galaxsys Official) -->
+            <a href="games/tower_legend.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/tower_legend.png?v=towerrush_v4" alt="Tower Rush"></div>
+            </a>
+
+            <!-- 1. Solitaire (1xBet #158) -->
+            <a href="games/solitaire.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-158.webp" alt="Solitaire"></div>
+            </a>
+
+            <!-- 2. 21 (1xBet #58) -->
+            <a href="games/twenty_one.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-58.webp" alt="21 (Twenty-One)"></div>
+            </a>
+
+            <!-- 3. Indian Poker (1xBet #184) -->
+            <a href="games/indian_poker.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-184.webp" alt="Indian Poker"></div>
+            </a>
+
+            <!-- 4. Killer Clubs (1xBet #270) -->
+            <a href="games/killer_clubs.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-270.webp" alt="Killer Clubs"></div>
+            </a>
+
+            <!-- 5. Solitaire Battle Arena (1xBet #569) -->
+            <a href="games/solitaire_arena.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-569.webp" alt="Solitaire Battle Arena"></div>
+            </a>
+
+            <!-- 6. Card Odds (1xBet #90) -->
+            <a href="games/card_odds.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-90.webp" alt="Card Odds"></div>
+            </a>
+
+            <!-- 7. Lucky Card (1xBet #122) -->
+            <a href="games/lucky_card.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-122.webp" alt="Lucky Card"></div>
+            </a>
+
+            <!-- 8. PF Poker Light (1xBet #71) -->
+            <a href="games/pf_poker.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-71.webp" alt="PF Poker Light"></div>
+            </a>
+
+            <!-- 9. Royal Hi-Lo (1xBet #207) -->
+            <a href="games/royal_hilo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-207.webp" alt="Royal Hi-Lo"></div>
+            </a>
+
+            <!-- 10. Truth or Lie (1xBet #195) -->
+            <a href="games/truth_or_lie.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-195.webp" alt="Truth or Lie"></div>
+            </a>
+
+            <!-- 11. Deluxe cards (1xBet #345) -->
+            <a href="games/deluxe_cards.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-345.webp" alt="Deluxe cards"></div>
+            </a>
+
+            <!-- 12. Flip Card (1xBet #517) -->
+            <a href="games/flip_card.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-517.webp" alt="Flip Card"></div>
+            </a>
+
+            <!-- 13. Heroes of the Storm 21 (1xBet #432) -->
+            <a href="games/twenty_one_hots.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-432.webp" alt="Heroes of the Storm 21"></div>
+            </a>
+
+            <!-- 14. DOTA 21 (1xBet #431) -->
+            <a href="games/twenty_one_dota.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-431.webp" alt="DOTA 21"></div>
+            </a>
+
+            <!-- 15. Card War (1xBet #265) -->
+            <a href="games/card_war.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-265.webp" alt="Card War"></div>
+            </a>
+
+            <!-- 16. Triple Pocket Holdem Poker (1xBet #377) -->
+            <a href="games/triple_pocket_holdem.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-377.webp" alt="Triple Pocket Holdem Poker"></div>
+            </a>
+
+            <!-- 17. Andar Bahar (1xBet #363) -->
+            <a href="games/andarbahar.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-363.webp" alt="Andar Bahar"></div>
+            </a>
+
+            <!-- 18. Red Dog (1xBet #210) -->
+            <a href="games/red_dog.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-210.webp" alt="Red Dog"></div>
+            </a>
+
+            <!-- 19. Circus Poker (1xBet #519) -->
+            <a href="games/circus_poker.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-519.webp" alt="Circus Poker"></div>
+            </a>
+
+            <!-- 20. Wonderland (1xBet #362) -->
+            <a href="games/wonderland.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/card_games/game-362.webp" alt="Wonderland"></div>
+            </a>
+
+            <!-- 3. Greyhound Racing Virtual (1xBet #114801) -->
+            <a href="games/greyhound.html" class="game-card game-card-poster-only" data-cat="arcade originals cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/greyhound_1xbet_logo.jpg?v=1xbet" alt="Greyhound Racing Virtual">
+                </div>
+            </a>
+
+            <!-- 3. Card Game (Dragon vs Tiger Pure Picture Cover) -->
+            <a href="games/card.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/card.png?v=vip_poster" alt="Dragon vs Tiger">
+                </div>
+            </a>
+
+            <!-- 4. Roulette VIP (Pure Picture Poster Cover) -->
+            <a href="games/roulettex.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/roulette.png?v=vip_poster" alt="Roulette VIP">
+                </div>
+            </a>
+
+            <!-- 4. Lucky 777 Slots (LIVE) -->
+            <a href="games/slots.html" class="game-card game-card-poster-only" data-cat="slots" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/slots.png" alt="Lucky 777 Slots">
+                    
+                    
+                </div>
+            </a>
+
+            <!-- 4B. Fortune Gems 2 - JILI (Under Maintenance) -->
+            <a href="games/fortunegems2.html" class="game-card game-card-poster-only" data-cat="slots" style="text-decoration:none; position:relative;" onclick="if(window.core && window.core.showGameMaintenanceModal){window.core.showGameMaintenanceModal('Fortune Gems 2 (JILI Slot)', event); return false;}">
+                <span style="position:absolute; top:8px; right:8px; background:linear-gradient(135deg, #e74c3c, #c0392b); color:#fff; font-size:10px; font-weight:900; padding:3px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.6); z-index:10; letter-spacing:0.5px; border:1px solid rgba(255,255,255,0.25);">MAINTENANCE</span>
+                <div class="game-card-img-wrap" style="filter:grayscale(0.4) brightness(0.85);">
+                    <img src="assets/covers/fortunegems2.png" alt="Fortune Gems 2">
+                </div>
+            </a>
+
+
+
+
+
+
+            <!-- 5. First Person XXXtreme Lightning Roulette (1xBet #97478) -->
+            <a href="games/lightning_roulette.html" class="game-card game-card-poster-only" data-cat="cards originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/lightning_roulette.png?v=xxxtreme_1xbet_v2" alt="First Person XXXtreme Lightning Roulette">
+                </div>
+            </a>
+
+            <!-- 6. Aztec Sun Wheel -->
+            <a href="games/wheel.html?v=filmi_v1" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/wheel.png" alt="Aztec Sun Wheel"></div>
+            </a>
+
+            <!-- 7. Plinko X (Pure Picture Poster Cover) -->
+            <a href="games/plinko.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/plinko.png?v=poster_hq" alt="Plinko X">
+                </div>
+            </a>
+
+            <!-- 8. Keno Lottery (Pure Picture Poster Cover) -->
+            <a href="games/keno.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/keno.png?v=vip_poster" alt="Keno Lottery">
+                </div>
+            </a>
+
+            <!-- 9. Limbo Turbo (Pure Picture Poster Cover) -->
+            <a href="games/limbo.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/limbo.png?v=poster_pure" alt="Limbo Turbo">
+                </div>
+            </a>
+
+            <!-- 10. Mines Land (Pure Picture Poster Cover) -->
+            <a href="games/mines.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/mines.png?v=mines_land" alt="Mines Land VIP">
+                </div>
+            </a>
+
+            <!-- 11. Bingo 75-Ball (Pure Picture Poster Cover) -->
+            <a href="games/bingo.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/bingo.png" alt="Bingo 75 VIP">
+                </div>
+            </a>
+
+            <!-- 12. Blackjack 21 (Pure Picture Poster Cover) -->
+            <a href="games/blackjack.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/blackjack.png?v=vip_poster" alt="Blackjack 21">
+                </div>
+            </a>
+
+            <!-- 13. Caribbean Poker -->
+            <a href="games/poker.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/poker.png?v=vip_caribbean" alt="Caribbean Poker VIP"></div>
+            </a>
+
+            <!-- 14. Lucky Number 777 -->
+            <a href="games/lucky.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/lucky.png" alt="Lucky Number"></div>
+            </a>
+
+            <!-- 15. Lucky Scratch VIP -->
+            <a href="games/scratch.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/scratch.png" alt="Lucky Scratch"></div>
+            </a>
+
+            <!-- 16. Coin Flip VIP -->
+            <a href="games/coinflip.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/coinflip.webp?v=poseidon" alt="Coin Flip VIP"></div>
+            </a>
+
+            <!-- 17. Hi-Lo VIP -->
+            <a href="games/hilo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/hilo.png" alt="Hi-Lo VIP"></div>
+            </a>
+            <!-- 18. Tao Yuan Instant Baccarat VIP -->
+            <a href="games/baccarat_squeeze.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/baccarat_squeeze.png" alt="Tao Yuan Instant Baccarat"></div>
+            </a>
+
+            <!-- 19. Space XY Rocket -->
+            <a href="games/space_xy.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/space_xy.png" alt="Space XY Rocket"></div>
+            </a>
+
+            <!-- 20. Sic Bo Imperial -->
+            <a href="games/sicbo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/sicbo.png" alt="Sic Bo Imperial"></div>
+            </a>
+
+            <!-- 21. Penalty Shootout Pro -->
+            <a href="games/penalty.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/penalty.png" alt="Penalty Shootout Pro"></div>
+            </a>
+
+            <!-- 22. Horse Racing Derby -->
+            <a href="games/derby.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/derby.png" alt="Horse Racing Derby"></div>
+            </a>
+
+            <!-- 23. Teen Patti Royal -->
+            <a href="games/teenpatti.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/teenpatti.png" alt="Teen Patti Royal"></div>
+            </a>
+
+            <!-- 24. Speedy Andar Bahar (Pure Picture Poster Cover) -->
+            <a href="games/andarbahar.html?v=20261010_final" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img loading="lazy" decoding="async" src="assets/covers/andarbahar.jpg" alt="Speedy Andar Bahar">
+                </div>
+            </a>
+
+            <!-- 25. Magic Cups VIP (Pure Picture Poster Cover) -->
+            <a href="games/cups.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/cups.png" alt="Magic Cups VIP">
+                </div>
+            </a>
+
+
+
+            <!-- 30. Gold Rush Minecart -->
+            <a href="games/goldmine.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/goldmine.png" alt="Gold Rush Minecart"></div>
+            </a>
+
+
+            <!-- 32. Spinning Top 3D -->
+            <a href="games/topspin.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/topspin.png" alt="Spinning Top 3D"></div>
+            </a>
+
+
+            <!-- 34. Lucky 88 Pearls -->
+            <a href="games/lucky88.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/lucky88.png" alt="Lucky 88 Pearls"></div>
+            </a>
+
+            <!-- 36. Fruit Blade Ninja -->
+            <a href="games/fruitslice.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/fruitslice.png" alt="Fruit Blade Ninja"></div>
+            </a>
+
+            <!-- 37. Rock Paper Scissors VIP -->
+            <a href="games/rps.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/rps.png" alt="Rock Paper Scissors VIP"></div>
+            </a>
+
+            <!-- 39. Color Prediction VIP -->
+            <a href="games/color.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/color.png" alt="Color Prediction"></div>
+            </a>
+
+            <!-- 42. Dragon Tiger VIP -->
+            <a href="games/dragontiger.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/dragontiger.png" alt="Dragon Tiger VIP"></div>
+            </a>
+
+            <!-- 43. Jhandi Munda Imperial -->
+            <a href="games/jhandi_munda.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/jhandi_munda.png" alt="Jhandi Munda Imperial"></div>
+            </a>
+
+            <!-- 43B. Ludo Quick - JILI Official (#101392) -->
+            <a href="games/ludo_quick.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/ludo_quick.png" alt="Ludo Quick JILI #101392"></div>
+            </a>
+
+            <!-- 44. Gold Vault Safe Cracker -->
+            <a href="games/safecracker.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/safecracker.png" alt="Safe Cracker"></div>
+            </a>
+
+            <!-- 45. Steampunk Zeppelin -->
+            <a href="games/zeppelin.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/zeppelin.png" alt="Steampunk Zeppelin"></div>
+            </a>
+
+            <!-- 46. Meow Hi-Lo VIP -->
+            <a href="games/hilo.html" class="game-card game-card-poster-only" data-cat="cards" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/hilo.jpg" alt="Meow Hi-Lo VIP"></div>
+            </a>
+
+            <!-- 47. Ice Hockey Shootout -->
+            <a href="games/hockey_shootout.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/hockey_shootout.png" alt="Ice Hockey Shootout"></div>
+            </a>
+
+            <!-- 48. Dice Bet (Pure Picture Poster Cover) -->
+            <a href="games/dice.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/dice.png?v=official_neon" alt="Dice Bet"></div>
+            </a>
+
+            <!-- 49. Russian Chamber Survival -->
+            <a href="games/russian_roulette.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/russian_roulette.png" alt="Russian Chamber"></div>
+            </a>
+
+            <!-- 50. Mines of El Dorado -->
+            <a href="games/eldorado.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/eldorado.png" alt="Mines of El Dorado"></div>
+            </a>
+
+            <!-- 51. Bullseye Archery 3D -->
+            <a href="games/archery.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/archery.png" alt="Bullseye Archery"></div>
+            </a>
+
+            <!-- 52. Golden Dragon 777 Slots (LIVE) -->
+            <a href="games/dragon_slots.html" class="game-card game-card-poster-only" data-cat="slots" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/dragon_slots.png" alt="Golden Dragon Slots">
+                    
+                    
+                </div>
+            </a>
+
+            <!-- 53. Pirate Treasure Chests -->
+            <a href="games/treasure_chest.html" class="game-card game-card-poster-only" data-cat="originals" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/treasure_chest.png" alt="Pirate Treasure Chests"></div>
+            </a>
+
+            <!-- 54. Strike Master Bowling -->
+            <a href="games/bowling.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/bowling.png" alt="Strike Master Bowling"></div>
+            </a>
+
+            <!-- 55. Cyber Keno Neon 80 (Pure Picture Poster Cover) -->
+            <a href="games/cyber_keno.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap">
+                    <img src="assets/covers/cyber_keno.png?v=vip_poster" alt="Cyber Keno 80">
+                </div>
+            </a>
+
+            <!-- 56. Turbo Grand Prix F1 -->
+            <a href="games/f1_racing.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/f1_racing.png" alt="Turbo Grand Prix F1"></div>
+            </a>
+
+
+            <!-- 58. Cyber Blade Samurai -->
+            <a href="games/cyber_ninja.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/cyber_ninja.png" alt="Cyber Blade Samurai"></div>
+            </a>
+
+            <!-- 59. Pinball Arcade Deluxe -->
+            <a href="games/pinball_deluxe.html" class="game-card game-card-poster-only" data-cat="arcade" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/pinball_deluxe.png" alt="Pinball Arcade Deluxe"></div>
+            </a>
+
+
+
+            <!-- 61. Fish Hunter Arcade (Last Position) -->
+            <a href="games/fishhunter.html?v=maint_v10" onclick="showUnderRepairNotice(event, 'Fish Hunter');" class="game-card game-card-poster-only" data-cat="arcade fishing" style="text-decoration:none;">
+                <div class="game-card-img-wrap"><img src="assets/covers/fishhunter.png" alt="Fish Hunter Arcade"></div>
+            </a>
+        </div>
+
+        <!-- 1. VIP Progressive Jackpot Live Ticker -->
+        <section class="jackpot-banner-section" style="margin-top:36px;">
+            <div class="jackpot-banner-inner">
+                <div class="jackpot-info-col">
+                    <div class="jackpot-badge-live">
+                        <span class="live-pulse-dot"></span>
+                        <span>LIVE GLOBAL PROGRESSIVE POOL</span>
+                    </div>
+                    <div class="jackpot-counter-val" id="casino-jackpot-counter">$ 3,842,912.45</div>
+                    <p class="jackpot-desc">Shared network prize pool accumulating from all 60 studio games. Automatically drops when threshold is triggered.</p>
+                </div>
+                <div class="jackpot-tier-card tier-mini">
+                    <div class="tier-name">MINI JACKPOT</div>
+                    <div class="tier-val" style="color:#00e5ff;">$ 49,150.00</div>
+                    <div class="tier-winner">🏆 Won by @Tariq_M (2m ago)</div>
+                </div>
+                <div class="jackpot-tier-card tier-major">
+                    <div class="tier-name">MAJOR JACKPOT</div>
+                    <div class="tier-val" style="color:#00e700;">$ 482,105.80</div>
+                    <div class="tier-winner">⚡ Active Qualifying Tier</div>
+                </div>
+                <div class="jackpot-tier-card tier-mega">
+                    <div class="tier-name">MEGA GRAND JACKPOT</div>
+                    <div class="tier-val" style="color:var(--primary-gold);">$ 3,842,912.45</div>
+                    <div class="tier-winner">🔥 Must Drop Under $4,000,000</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Certified Official Game Studios & Providers Banner -->
+        <section style="margin-top:36px; background:rgba(13, 19, 28, 0.7); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:24px; text-align:center;">
+            <div style="font-size:11px; font-weight:800; color:var(--primary-gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Official Certified Studio Partners</div>
+            <h3 style="font-size:18px; font-weight:900; color:#ffffff; margin-bottom:18px;">World-Class High-RTP Game Providers</h3>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:24px; opacity:0.85;">
+                <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px 18px; font-weight:800; font-size:13px; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>⚡</span> SPRIBE AVIATOR
+                </div>
+                <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px 18px; font-weight:800; font-size:13px; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>🎰</span> PRAGMATIC PLAY
+                </div>
+                <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px 18px; font-weight:800; font-size:13px; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>🎡</span> EVOLUTION GAMING
+                </div>
+                <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px 18px; font-weight:800; font-size:13px; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>💎</span> BGAMING STUDIOS
+                </div>
+                <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px 18px; font-weight:800; font-size:13px; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>🔥</span> HACKSAW GAMING
+                </div>
+                <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px 18px; font-weight:800; font-size:13px; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>👑</span> STAKE ORIGINALS
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Provably Fair Verification Bar -->
+        <section style="margin-top:24px; background:linear-gradient(135deg, rgba(16, 24, 38, 0.8), rgba(9, 14, 22, 0.9)); border:1px solid rgba(0, 229, 255, 0.25); border-radius:var(--radius-lg); padding:20px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+            <div style="display:flex; align-items:center; gap:14px;">
+                <div style="font-size:32px;">🛡️</div>
+                <div>
+                    <h4 style="font-size:15px; font-weight:800; color:#fff; margin:0 0 4px 0;">100% Cryptographic Provably Fair Architecture</h4>
+                    <p style="font-size:12px; color:var(--text-muted); margin:0;">Every round outcome is pre-determined via client seed, server seed, and SHA-256 nonces.</p>
+                </div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <span style="font-size:11px; font-weight:700; background:rgba(0, 229, 255, 0.12); color:#00e5ff; border:1px solid rgba(0, 229, 255, 0.3); padding:4px 10px; border-radius:6px;">SHA-256 Verified</span>
+                <span style="font-size:11px; font-weight:700; background:rgba(0, 231, 0, 0.12); color:#00e700; border:1px solid rgba(0, 231, 0, 0.3); padding:4px 10px; border-radius:6px;">99.5% Peak RTP</span>
+                <span style="font-size:11px; font-weight:700; background:rgba(245, 166, 35, 0.12); color:#f5a623; border:1px solid rgba(245, 166, 35, 0.3); padding:4px 10px; border-radius:6px;">Instant Escrow Payouts</span>
+            </div>
+        </section>
+
+        <!-- 4. Real-Time Live Casino Bets Stream -->
+        <section class="live-bets-feed-section" style="margin-top:36px;">
+            <div class="section-header-wrap">
+                <div>
+                    <h2 class="section-title-luxury">🔥 Live Casino Floor Bets & High Rollers</h2>
+                    <p class="section-subtitle-luxury">Real-time provably fair wagers across all active VIP studios</p>
+                </div>
+                <div class="live-bets-pills">
+                    <span class="live-pill active">⚡ Live Wagers</span>
+                </div>
+            </div>
+            <div class="live-bets-table-wrap">
+                <table class="live-bets-table">
+                    <thead>
+                        <tr>
+                            <th>GAME</th>
+                            <th>VIP PLAYER</th>
+                            <th>BET AMOUNT</th>
+                            <th>MULTIPLIER</th>
+                            <th>PAYOUT</th>
+                            <th>TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="casino-live-bets-tbody">
+                        <!-- Populated dynamically via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/audio.js"></script>
+    <script src="js/wallet.js?v=3.5"></script>
+    <script src="js/api_bridge.js?v=3.5"></script>
+    <script src="js/core.js?v=2026_fgems_maint_v1"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.core.init('casino');
+
+            // Search filter
+            const searchInput = document.getElementById('casino-search-input');
+            if (searchInput) {
+                searchInput.oninput = (e) => {
+                    const q = e.target.value.toLowerCase().trim();
+                    document.querySelectorAll('.game-card').forEach(card => {
+                        const imgEl = card.querySelector('img');
+                        const href = card.getAttribute('href') || '';
+                        const name = (imgEl ? (imgEl.alt || '') : '') + ' ' + href;
+                        card.style.display = name.toLowerCase().includes(q) ? 'flex' : 'none';
+                    });
+                };
+            }
+
+            // Progressive Jackpot Accumulator
+            let jackpotBase = 3842912.45;
+            const jackpotEl = document.getElementById('casino-jackpot-counter');
+            setInterval(() => {
+                jackpotBase += (Math.random() * 0.45);
+                if (jackpotEl) {
+                    jackpotEl.innerText = '$ ' + jackpotBase.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            }, 2500);
+
+            // Live Bets Table Generator & Real-time Stream
+            const tbody = document.getElementById('casino-live-bets-tbody');
+            if (tbody) {
+                const sampleGames = [
+                    { name: '🚀 Aviator Crash', path: 'games/crash.html' },
+                    { name: '🐔 Chicken Road', path: 'games/chicken_road.html' },
+                    { name: '🎡 European Roulette', path: 'games/roulette.html' },
+                    { name: '🚀 Limbo Turbo', path: 'games/limbo.html' },
+                    { name: '♠️ Blackjack 21', path: 'games/blackjack.html' },
+                    { name: '💣 Mines Field', path: 'games/mines.html' },
+                    { name: '🎱 Keno Lottery', path: 'games/keno.html' },
+                    { name: '🪙 Coin Flip VIP', path: 'games/coinflip.html' },
+                    { name: '⚪ Plinko X 100x', path: 'games/plinko.html' },
+                    { name: '🎴 Dragon vs Tiger', path: 'games/card.html' },
+                    { name: '🃏 Hi-Lo VIP', path: 'games/hilo.html' }
+                ];
+                const sampleUsers = ['Hamza_VIP', 'Ali_Raza', 'Zeeshan_786', 'Malik_Whale', 'Shahid_Afridi', 'Babar_99', 'Crypto_King', 'Fatima_K', 'Sikandar_Pro', 'Usman_Pak'];
+
+                function createBetRow() {
+                    const g = sampleGames[Math.floor(Math.random() * sampleGames.length)];
+                    const u = sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+                    const isWin = Math.random() > 0.45;
+                    const betUsd = (10 + Math.random() * 250).toFixed(2);
+                    const mult = isWin ? (1.2 + Math.random() * 15).toFixed(2) : '0.00';
+                    const payoutUsd = isWin ? (betUsd * mult).toFixed(2) : '0.00';
+                    const now = new Date().toLocaleTimeString('en-US', { hour12: false });
+
+                    return `
+                        <tr>
+                            <td><b>${g.name}</b></td>
+                            <td class="td-player-user">👤 ${u}</td>
+                            <td>$ ${parseFloat(betUsd).toFixed(2)}</td>
+                            <td><span class="badge-mult ${isWin ? 'mult-win' : 'mult-loss'}">${mult}x</span></td>
+                            <td class="${isWin ? 'payout-win' : 'payout-loss'}">${isWin ? '+ $ ' + parseFloat(payoutUsd).toFixed(2) : '$ 0.00'}</td>
+                            <td class="td-time">${now}</td>
+                        </tr>
+                    `;
+                }
+
+                // Initial 8 rows
+                let initialRows = '';
+                for (let i = 0; i < 8; i++) {
+                    initialRows += createBetRow();
+                }
+                tbody.innerHTML = initialRows;
+
+                // Prepend live bet every 3.5s
+                setInterval(() => {
+                    if (document.hidden) return;
+                    const newRow = createBetRow();
+                    tbody.insertAdjacentHTML('afterbegin', newRow);
+                    if (tbody.children.length > 10) {
+                        tbody.removeChild(tbody.lastElementChild);
+                    }
+                }, 3500);
+            }
+
+            // ==========================================
+            // CASINO LOBBY AVIATOR DP TICKER
+            // ==========================================
+            function initCasinoAviatorDPTicker() {
+                const multTextEl = document.getElementById('casino-dp-mult-text');
+                const multPillEl = multTextEl ? multTextEl.closest('.dp-aviator-live-mult') : null;
+
+                let state = 'FLYING';
+                let stateTime = 0;
+                let currentMult = 1.00;
+                let crashMult = generateTargetMult();
+
+                function generateTargetMult() {
+                    const r = Math.random();
+                    if (r < 0.28) return +(1.15 + Math.random() * 0.7).toFixed(2);
+                    if (r < 0.72) return +(1.85 + Math.random() * 2.6).toFixed(2);
+                    if (r < 0.92) return +(4.40 + Math.random() * 5.5).toFixed(2);
+                    return +(10.50 + Math.random() * 15.0).toFixed(2);
+                }
+
+                let lastTimestamp = performance.now();
+
+                function loop(now) {
+                    if (document.hidden) {
+                        lastTimestamp = now;
+                        requestAnimationFrame(loop);
+                        return;
+                    }
+
+                    const dt = Math.min((now - lastTimestamp) / 1000, 0.1);
+                    lastTimestamp = now;
+                    stateTime += dt;
+
+                    if (state === 'FLYING') {
+                        const speed = 0.40 + (currentMult * 0.28);
+                        currentMult += speed * dt;
+
+                        if (multTextEl) multTextEl.innerText = currentMult.toFixed(2) + 'x';
+                        if (multPillEl) multPillEl.classList.remove('crashed');
+
+                        if (currentMult >= crashMult) {
+                            state = 'CRASHED';
+                            stateTime = 0;
+                            if (multTextEl) multTextEl.innerText = crashMult.toFixed(2) + 'x';
+                            if (multPillEl) multPillEl.classList.add('crashed');
+                        }
+                    } else if (state === 'CRASHED') {
+                        if (stateTime >= 2.4) {
+                            state = 'WAITING';
+                            stateTime = 0;
+                        }
+                    } else if (state === 'WAITING') {
+                        if (multTextEl) multTextEl.innerText = '1.00x';
+                        if (multPillEl) multPillEl.classList.remove('crashed');
+
+                        if (stateTime >= 2.5) {
+                            state = 'FLYING';
+                            stateTime = 0;
+                            currentMult = 1.00;
+                            crashMult = generateTargetMult();
+                        }
+                    }
+
+                    requestAnimationFrame(loop);
+                }
+
+                requestAnimationFrame(loop);
+            }
+
+            initCasinoAviatorDPTicker();
+        });
+
+        function filterGames(cat) {
+            document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+            if (window.event && window.event.target) window.event.target.classList.add('active');
+
+            document.querySelectorAll('.game-card').forEach(card => {
+                if (cat === 'all' || (card.dataset.cat && card.dataset.cat.includes(cat))) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            if (window.sound) window.sound.playClick();
+        }
+
+        function showUnderRepairNotice(e, gameName) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (window.core && typeof window.core.showToast === 'function') {
+                window.core.showToast(`🛠️ ${gameName || 'Slot Game'} Under Repair: Game is currently undergoing scheduled maintenance. Access locked.`, 'error');
+            } else {
+                alert(`🛠️ ${gameName || 'Slot Game'} Under Repair!\n\nThis game is currently undergoing essential server maintenance and mechanical repair. Access is temporarily locked.`);
+            }
+        }
+    </script>
+</body>
+</html>

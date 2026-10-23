@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Player Bet Slips & Gaming Ledger - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script src="js/adminlte.js"></script>
+    <style>
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            background: #090e17;
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--lte-border);
+            margin-bottom: 20px;
+        }
+        .filter-input, .filter-select {
+            padding: 8px 12px;
+            background: #111722;
+            border: 1px solid var(--lte-border-light);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+        }
+        .filter-input:focus, .filter-select:focus {
+            border-color: var(--lte-green);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:var(--lte-green); font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Master Dashboard</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>Users & Players</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="betslips.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📋</span>
+                        <span style="font-weight:800; color:#00e700;">Player Bet Slips</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#00e700; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">REAL PKR</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="crash-control.html#andarbahar-radar" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🃏</span>
+                        <span style="color:#ffd700; font-weight:800;">Andar Bahar Radar</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-header-label">NAVIGATION</li>
+            <li class="sidebar-item">
+                <a href="../admin.html" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚡</span>
+                        <span>Master CMS Standalone</span>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="../index.html" target="_blank" class="sidebar-link">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎮</span>
+                        <span>Player Lobby</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar Fold (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">
+                    Gaming History / <b style="color:#fff;">Player Bet Slips Ledger (Audited Real PKR)</b>
+                </span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="loadBetslipsData(1)" class="btn-lte btn-lte-primary">
+                    <span>🔄 Refresh Real Bets</span>
+                </button>
+                <a href="../admin.html" class="btn-lte btn-lte-secondary">
+                    <span>← Standalone Admin</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>📋</span> Player Bet Slips & Gaming History Ledger
+                    </h1>
+                    <p class="page-subtitle">
+                        Complete cryptographic database audit trail of all real wagers placed by players across Aviator, Aztec Sun, Plinko, Limbo, Roulette, and all 17 studios with real-time PKR calculations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Financial KPI Summary Cards in Real PKR -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Total Real Bets Placed</div>
+                        <div class="metric-icon" style="color:var(--lte-cyan);">🎲</div>
+                    </div>
+                    <div class="metric-val" id="kpi-total-bets">0 Bets</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;">Audited Database Records</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Total Real Turnover (PKR)</div>
+                        <div class="metric-icon" style="color:var(--lte-gold);">🪙</div>
+                    </div>
+                    <div class="metric-val" id="kpi-turnover-pkr" style="color:var(--lte-gold);">₨ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;">Total Gross Player Stakes</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">Disbursed Winnings (PKR)</div>
+                        <div class="metric-icon" style="color:var(--lte-green);">🏆</div>
+                    </div>
+                    <div class="metric-val" id="kpi-payouts-pkr" style="color:var(--lte-green);">₨ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;">Won Player Cashouts</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-top">
+                        <div class="metric-label">House Gross Gaming Rev (GGR)</div>
+                        <div class="metric-icon" style="color:#00e5ff;">📈</div>
+                    </div>
+                    <div class="metric-val" id="kpi-ggr-pkr" style="color:#00e5ff;">₨ 0.00</div>
+                    <div style="font-size:11px; color:var(--lte-muted); margin-top:6px;">Net Casino Hold in PKR</div>
+                </div>
+            </div>
+
+            <!-- Search & Filters Bar -->
+            <div class="filter-bar">
+                <div style="flex:2; min-width:220px;">
+                    <input type="text" id="filter-search" class="filter-input" style="width:100%; box-sizing:border-box;" placeholder="🔍 Search player username, mobile, bet ID, game..." oninput="debounceSearch()">
+                </div>
+                <div style="flex:1.2; min-width:160px;">
+                    <select id="filter-game" class="filter-select" style="width:100%; box-sizing:border-box;" onchange="loadBetslipsData(1)">
+                        <option value="all">🎮 All Casino Games</option>
+                    </select>
+                </div>
+                <div style="flex:1; min-width:140px;">
+                    <select id="filter-status" class="filter-select" style="width:100%; box-sizing:border-box;" onchange="loadBetslipsData(1)">
+                        <option value="all">⚡ All Outcomes</option>
+                        <option value="WIN">🏆 Wins Only</option>
+                        <option value="LOSS">💀 Losses Only</option>
+                    </select>
+                </div>
+                <div style="width:120px;">
+                    <select id="filter-limit" class="filter-select" style="width:100%; box-sizing:border-box;" onchange="loadBetslipsData(1)">
+                        <option value="25">25 / page</option>
+                        <option value="50" selected>50 / page</option>
+                        <option value="100">100 / page</option>
+                    </select>
+                </div>
+                <button onclick="loadBetslipsData(1)" class="btn-lte btn-lte-primary" style="padding:8px 16px;">
+                    Filter
+                </button>
+            </div>
+
+            <!-- Data Table Card -->
+            <div class="lte-card">
+                <div class="table-responsive">
+                    <table class="lte-table">
+                        <thead>
+                            <tr>
+                                <th>Bet Slip ID</th>
+                                <th>Player (User)</th>
+                                <th>Game Studio</th>
+                                <th>Stake (PKR)</th>
+                                <th>Multiplier</th>
+                                <th>Payout (PKR)</th>
+                                <th>Profit / Loss (PKR)</th>
+                                <th>Status</th>
+                                <th>Timestamp</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="betslips-tbody">
+                            <tr>
+                                <td colspan="10" style="text-align:center; padding:35px; color:#8e9bb0;">
+                                    <div style="font-size:24px; margin-bottom:8px;">⏳</div>
+                                    <div>Loading real player bet slips from SQL database...</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Bar -->
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-top:1px solid var(--lte-border); font-size:12px; color:var(--lte-muted);">
+                    <div id="pagination-count-label">Showing 0 bets</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-lte btn-lte-secondary" id="btn-prev" onclick="changePage(-1)">« Prev</button>
+                        <span id="page-indicator" style="padding:6px 12px; font-weight:800; color:#fff; background:#111722; border-radius:6px; border:1px solid var(--lte-border-light);">Page 1</span>
+                        <button class="btn-lte btn-lte-secondary" id="btn-next" onclick="changePage(1)">Next »</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        let currentPage = 1;
+        let totalPages = 1;
+        let searchTimer = null;
+
+        async function loadBetslipsData(page = 1) {
+            currentPage = page;
+            const tbody = document.getElementById('betslips-tbody');
+            if (tbody) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" style="text-align:center; padding:35px; color:#8e9bb0;">
+                            <div style="font-size:24px; margin-bottom:8px;">⏳</div>
+                            <div>Loading real player bet slips from SQL database...</div>
+                        </td>
+                    </tr>
+                `;
+            }
+
+            const q = document.getElementById('filter-search').value.trim();
+            const game = document.getElementById('filter-game').value;
+            const status = document.getElementById('filter-status').value;
+            const limit = document.getElementById('filter-limit').value;
+
+            try {
+                const res = await fetch(`../api/admin.php?action=betslips&page=${page}&limit=${limit}&q=${encodeURIComponent(q)}&game=${encodeURIComponent(game)}&status=${encodeURIComponent(status)}&admin_pin=9824`, {
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include'
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const json = await res.json();
+                if (!json || !json.success) throw new Error(json.message || 'Failed');
+
+                const data = json.data;
+                const bets = data.bets || [];
+                totalPages = data.total_pages || 1;
+
+                // KPI Summaries
+                const summary = data.summary || {};
+                document.getElementById('kpi-total-bets').innerText = (data.total || 0).toLocaleString() + ' Bets';
+                document.getElementById('kpi-turnover-pkr').innerText = '₨ ' + Number(summary.total_turnover_pkr || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('kpi-payouts-pkr').innerText = '₨ ' + Number(summary.total_payouts_pkr || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                const houseNet = Number(summary.total_turnover_pkr || 0) - Number(summary.total_payouts_pkr || 0);
+                const ggrEl = document.getElementById('kpi-ggr-pkr');
+                ggrEl.innerText = (houseNet >= 0 ? '+' : '') + '₨ ' + houseNet.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                ggrEl.style.color = houseNet >= 0 ? 'var(--lte-green)' : 'var(--lte-red)';
+
+                // Games filter options
+                const selGame = document.getElementById('filter-game');
+                if (selGame && selGame.options.length <= 1 && data.games) {
+                    data.games.forEach(g => {
+                        const opt = document.createElement('option');
+                        opt.value = g;
+                        opt.textContent = '🎮 ' + g;
+                        selGame.appendChild(opt);
+                    });
+                    if (game !== 'all') selGame.value = game;
+                }
+
+                // Table rows
+                if (bets.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="10" style="text-align:center; padding:35px; color:#8e9bb0;">
+                                <div style="font-size:24px; margin-bottom:8px;">🎲</div>
+                                <div>No bets recorded matching criteria.</div>
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    tbody.innerHTML = bets.map(b => {
+                        const isWin = (b.status === 'WIN' || Number(b.profit_pkr || b.profit) > 0);
+                        const betPkr = Number(b.bet_amount_pkr !== undefined ? b.bet_amount_pkr : (b.bet_amount * 280));
+                        const payPkr = Number(b.payout_pkr !== undefined ? b.payout_pkr : (b.payout * 280));
+                        const profitPkr = Number(b.profit_pkr !== undefined ? b.profit_pkr : (payPkr - betPkr));
+                        const mult = b.multiplier_formatted || (Number(b.multiplier || 1).toFixed(2) + 'x');
+                        const timeStr = b.played_at || b.bet_time || '-';
+
+                        return `
+                            <tr>
+                                <td style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8e9bb0;">
+                                    <span style="user-select:all; cursor:pointer;" title="Click to copy ID" onclick="navigator.clipboard.writeText('${escapeHtml(b.id)}')">
+                                        ${escapeHtml(b.id)}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div style="font-weight:700; color:#fff;">
+                                        <a href="user-view.html?id=${encodeURIComponent(b.user_id)}" style="color:#38bdf8; text-decoration:none;">
+                                            👤 ${escapeHtml(b.username)}
+                                        </a>
+                                    </div>
+                                    <div style="font-size:10px; color:#8e9bb0; font-family:'JetBrains Mono',monospace;">
+                                        ${escapeHtml(b.phone || b.user_id)}
+                                    </div>
+                                </td>
+                                <td>
+                                    <span style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:4px; padding:3px 8px; font-weight:700; color:#e2e8f0; font-size:11px;">
+                                        ${escapeHtml(b.game)}
+                                    </span>
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--lte-gold);">
+                                    ₨ ${betPkr.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--lte-cyan);">
+                                    ${escapeHtml(mult)}
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${isWin ? 'var(--lte-green)' : '#8e9bb0'};">
+                                    ₨ ${payPkr.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                </td>
+                                <td style="font-family:'JetBrains Mono',monospace; font-weight:800; color:${profitPkr >= 0 ? 'var(--lte-green)' : 'var(--lte-red)'};">
+                                    ${profitPkr >= 0 ? '+' : ''}₨ ${profitPkr.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                </td>
+                                <td>
+                                    <span class="badge-status ${isWin ? 'badge-active' : 'badge-suspended'}" style="font-size:10px; padding:2px 8px;">
+                                        ${isWin ? 'WIN 🏆' : 'LOSS 💀'}
+                                    </span>
+                                </td>
+                                <td style="font-size:11px; color:#8e9bb0; font-family:'JetBrains Mono',monospace; white-space:nowrap;">
+                                    ${escapeHtml(timeStr)}
+                                </td>
+                                <td style="text-align:right;">
+                                    <a href="user-view.html?id=${encodeURIComponent(b.user_id)}" class="btn-lte btn-lte-secondary" style="padding:3px 8px; font-size:11px; text-decoration:none;">
+                                        View Player →
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+
+                // Pagination text
+                const start = bets.length > 0 ? (page - 1) * limit + 1 : 0;
+                const end = (page - 1) * limit + bets.length;
+                document.getElementById('pagination-count-label').innerText = `Showing ${start} - ${end} of ${(data.total || 0).toLocaleString()} real bets`;
+                document.getElementById('page-indicator').innerText = `Page ${page} of ${totalPages}`;
+                document.getElementById('btn-prev').disabled = page <= 1;
+                document.getElementById('btn-next').disabled = page >= totalPages;
+
+            } catch (e) {
+                console.error('Error fetching betslips:', e);
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" style="text-align:center; padding:30px; color:var(--lte-red);">
+                            Failed to load betslips: ${escapeHtml(e.message)}
+                            <br><button onclick="loadBetslipsData(1)" class="btn-lte btn-lte-primary" style="margin-top:10px;">Retry</button>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function debounceSearch() {
+            if (searchTimer) clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => loadBetslipsData(1), 350);
+        }
+
+        function changePage(delta) {
+            const next = currentPage + delta;
+            if (next >= 1 && next <= totalPages) loadBetslipsData(next);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBetslipsData(1);
+        });
+    </script>
+</body>
+</html>

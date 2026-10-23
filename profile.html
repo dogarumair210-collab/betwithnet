@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>User Profile & Security - Bet With Net</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/cashier.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app-header-slot"></div>
+
+    <main class="cashier-container">
+
+        <div style="margin-bottom:18px;">
+            <h1 style="font-size:22px; font-weight:900;">👤 Account Settings & Security</h1>
+            <p style="font-size:12px; color:var(--text-muted);">Manage your player profile, verification tiers and security credentials</p>
+        </div>
+
+        <!-- Profile Card -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:20px; margin-bottom:18px; display:flex; align-items:center; gap:16px;">
+            <div style="width:60px; height:60px; border-radius:50%; border:2.5px solid #ffd700; overflow:hidden; display:flex; align-items:center; justify-content:center; box-shadow:0 0 16px rgba(255,215,0,0.5); background:#0b121c; flex-shrink:0;">
+                <img src="assets/icons/betwithnet_profile_4k.png" alt="User Profile" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <div style="flex:1;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <h2 style="font-size:18px; font-weight:800; color:#ffffff;">VIP Member</h2>
+                    <span style="background:rgba(0,231,0,0.15); color:#00e700; font-size:10px; font-weight:800; padding:2px 6px; border-radius:4px;">VERIFIED</span>
+                </div>
+                <div style="font-size:12px; color:#8e9bb0; font-family:var(--font-mono); margin-top:2px;">Player ID: BWN-786910</div>
+                <div style="font-size:11px; color:#f5a623; margin-top:4px;" id="profile-vip-tier">⭐ VIP Tier: Bronze</div>
+            </div>
+        </div>
+
+        <!-- Simulated KYC Verification Tier -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:18px; margin-bottom:18px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <h3 style="font-size:15px; font-weight:800;">🪪 Identity Verification (KYC)</h3>
+                <span style="color:#00e700; font-size:12px; font-weight:700;">Level 2 Completed</span>
+            </div>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Simulated CNIC / Passport verification active for unlimited deposit & withdrawal testing.</p>
+            <div style="background:#111823; padding:10px 14px; border-radius:8px; font-size:12px; display:flex; justify-content:space-between;">
+                <span style="color:#8e9bb0;">Document Type:</span>
+                <span style="font-weight:700; color:#ffffff;">National ID (Verified)</span>
+            </div>
+        </div>
+
+        <!-- Security PIN Settings -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:18px; margin-bottom:18px;">
+            <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">🔐 Withdrawal Security PIN</h3>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">Set a 4-digit code required to authorize withdrawal requests. (Default: <b>1234</b>)</p>
+
+            <div class="form-group">
+                <label class="form-label">New 4-Digit PIN:</label>
+                <input type="password" id="profile-new-pin" class="form-input" placeholder="e.g. 1234" maxlength="4">
+            </div>
+
+            <button class="btn-secondary" onclick="updateSecurityPin()">SAVE SECURITY PIN</button>
+        </div>
+
+        <!-- Language & System Reset -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:18px;">
+            <h3 style="font-size:15px; font-weight:800; margin-bottom:12px;">⚙️ App Preferences</h3>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <div>
+                    <div style="font-weight:700; font-size:13px;">App Language</div>
+                    <div style="font-size:11px; color:#8e9bb0;">Switch between English and Urdu</div>
+                </div>
+                <button class="btn-secondary" onclick="window.core.toggleLanguage()">Toggle Language</button>
+            </div>
+
+            <div style="border-top:1px solid var(--border-color); padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <div style="font-weight:700; font-size:13px; color:#ff3b30;">Reset Practice Account</div>
+                    <div style="font-size:11px; color:#8e9bb0;">Restore default ₨ 25,000 balance and clear test history</div>
+                </div>
+                <button class="btn-secondary" style="border-color:#ff3b30; color:#ff3b30;" onclick="resetAccountData()">RESET DATA</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/audio.js"></script>
+    <script src="js/wallet.js"></script>
+    <script src="js/api_bridge.js"></script>
+    <script src="js/core.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.core.init('home');
+            const vip = window.wallet.getVIPTier();
+            document.getElementById('profile-vip-tier').innerText = `⭐ VIP Tier: ${vip.name}`;
+        });
+
+        function updateSecurityPin() {
+            const pin = document.getElementById('profile-new-pin').value.trim();
+            if (pin.length !== 4 || isNaN(pin)) {
+                window.core.showToast('PIN must be 4 digits', 'error');
+                return;
+            }
+            window.wallet.state.securityPin = pin;
+            window.wallet.saveState();
+            window.core.showToast('Security PIN updated successfully!', 'success');
+        }
+
+        function resetAccountData() {
+            if (confirm('Are you sure you want to reset your practice account back to ₨ 25,000?')) {
+                localStorage.removeItem('bwn_wallet_state_v1');
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

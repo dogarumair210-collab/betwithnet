@@ -1,0 +1,3124 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#03000a">
+    <title>Bingo 75-Ball VIP Vegas Studio - Authentic 4K Casino Edition | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+
+    <style>
+        /* -------------------------------------------------------------
+           RESET & MOBILE OPTIMIZED FULLSCREEN VIEWPORT (0-SCROLL)
+           ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-luxury-footer, #app-bottom-nav-slot, #app-header-slot,
+        .luxury-casino-footer, .app-bottom-nav, .game-balance-hud,
+        .live-ticker, .hero-banner {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        :root {
+            --bingo-bg: #03050d;
+            --accent-main: #ffd700;
+            --accent-gold: #ffd700;
+            --accent-cyan: #00f0ff;
+            --accent-green: #00e700;
+            --accent-red: #ff3344;
+            --card-border: rgba(255, 215, 0, 0.35);
+            --card-bg: rgba(12, 18, 34, 0.94);
+            --cell-bg: rgba(22, 32, 56, 0.9);
+            --cell-border: rgba(255, 255, 255, 0.12);
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background: #020308;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            position: fixed;
+            inset: 0;
+        }
+
+        /* -------------------------------------------------------------
+           4 DISTINCT CASINO THEMES & TEMPLATES
+           ------------------------------------------------------------- */
+        body.theme-vegas {
+            --bingo-bg: #080402;
+            --accent-main: #ffd700;
+            --card-border: rgba(255, 215, 0, 0.45);
+            --card-bg: rgba(24, 16, 8, 0.95);
+        }
+
+        body.theme-dubai {
+            --bingo-bg: #090600;
+            --accent-main: #f5a623;
+            --card-border: rgba(245, 166, 35, 0.5);
+            --card-bg: rgba(28, 20, 8, 0.95);
+        }
+
+        body.theme-cyber {
+            --bingo-bg: #030612;
+            --accent-main: #00f0ff;
+            --card-border: rgba(0, 240, 255, 0.45);
+            --card-bg: rgba(10, 18, 36, 0.95);
+        }
+
+        body.theme-macau {
+            --bingo-bg: #020a06;
+            --accent-main: #00e700;
+            --card-border: rgba(0, 231, 0, 0.45);
+            --card-bg: rgba(8, 24, 16, 0.95);
+        }
+
+        /* Dynamic Template Background Layers */
+        .bingo-bg-layer {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-image: url('../assets/covers/bingo.png');
+            opacity: 0.28;
+            transition: opacity 0.5s ease, filter 0.5s ease;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(4px) brightness(0.65);
+        }
+
+        body.theme-vegas .bingo-bg-layer { filter: blur(3px) brightness(0.7); }
+        body.theme-dubai .bingo-bg-layer { filter: blur(3px) hue-rotate(25deg) brightness(0.75); }
+        body.theme-cyber .bingo-bg-layer { filter: blur(3px) hue-rotate(180deg) brightness(0.7); }
+        body.theme-macau .bingo-bg-layer { filter: blur(3px) hue-rotate(90deg) brightness(0.75); }
+
+        .bingo-vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(2, 3, 8, 0.85) 80%, #010205 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Canvas FX Layer */
+        #fxCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 150;
+        }
+
+        /* -------------------------------------------------------------
+           MAIN STUDIO SHELL & TOPBAR
+           ------------------------------------------------------------- */
+        .bingo-studio-shell {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar */
+        .bingo-topbar {
+            height: 48px;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(5, 10, 20, 0.88);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-lobby-back {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 9px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 7px;
+            color: #cbd5e1;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-lobby-back:active { transform: scale(0.95); }
+
+        .bingo-brand {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .bingo-brand-icon {
+            font-size: 18px;
+            filter: drop-shadow(0 0 8px var(--accent-main, #ffd700));
+        }
+        .bingo-brand-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 13px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+        .bingo-brand-sub {
+            font-size: 8.5px;
+            color: var(--accent-main, #ffd700);
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-select-bingo {
+            height: 30px;
+            padding: 0 8px;
+            border-radius: 7px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--accent-main, rgba(255, 215, 0, 0.4));
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .hud-icon-btn {
+            height: 30px;
+            padding: 0 8px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .hud-icon-btn:active { transform: scale(0.94); }
+
+        /* Music Equalizer */
+        .music-eq-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+            width: 12px;
+            overflow: hidden;
+        }
+        .music-eq-bars .eq-bar {
+            width: 2.5px;
+            background: var(--accent-main, #ffd700);
+            border-radius: 1px;
+            height: 3px;
+            transition: height 0.2s ease;
+        }
+        .music-eq-bars.playing .bar-1 { animation: eqAnim1 0.65s infinite ease-in-out alternate; }
+        .music-eq-bars.playing .bar-2 { animation: eqAnim2 0.5s infinite ease-in-out alternate 0.15s; }
+        .music-eq-bars.playing .bar-3 { animation: eqAnim3 0.75s infinite ease-in-out alternate 0.3s; }
+        @keyframes eqAnim1 { 0% { height: 2px; } 100% { height: 12px; } }
+        @keyframes eqAnim2 { 0% { height: 11px; } 100% { height: 3px; } }
+        @keyframes eqAnim3 { 0% { height: 4px; } 100% { height: 10px; } }
+
+        /* Balance Pill */
+        .bingo-wallet-chip {
+            display: flex;
+            align-items: center;
+            background: rgba(11, 19, 34, 0.95);
+            border: 1.5px solid rgba(0, 231, 0, 0.4);
+            border-radius: 8px;
+            padding: 2px 4px 2px 8px;
+            gap: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .wallet-chip-info {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            line-height: 1.15;
+        }
+        .wallet-chip-label {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #8e9bb0;
+            letter-spacing: 0.5px;
+        }
+        .wallet-chip-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #00e700;
+        }
+        .btn-chip-deposit {
+            background: linear-gradient(135deg, #00e700, #00b300);
+            color: #000;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 3px 6px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.15s;
+        }
+        .btn-chip-deposit:active { transform: scale(0.93); }
+
+        .user-avatar-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1.5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* -------------------------------------------------------------
+           ARENA LAYOUT (DESKTOP & MOBILE RESPONSIVE)
+           ------------------------------------------------------------- */
+        .bingo-arena-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            gap: 16px;
+            padding: 10px 16px;
+            max-width: 960px;
+            width: 100%;
+            height: calc(100vh - 48px);
+            height: calc(100dvh - 48px);
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* LEFT DOCK: BETTING & ROUND CONTROLS */
+        .bingo-control-dock {
+            background: rgba(11, 18, 32, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(14px);
+            overflow: visible;
+        }
+
+        .dock-inputs-cluster {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-group-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: #8e9bb0;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Bet Input */
+        .bet-input-container {
+            display: flex;
+            align-items: center;
+            background: rgba(4, 8, 16, 0.95);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            border-radius: 10px;
+            padding: 4px 9px;
+            transition: border-color 0.2s;
+        }
+        .bet-input-container:focus-within {
+            border-color: var(--accent-main, #ffd700);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+        }
+        .bet-currency-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 13px;
+            color: #ffd700;
+            margin-right: 6px;
+        }
+        .bet-amount-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 900;
+            outline: none;
+            width: 100%;
+        }
+
+        .bet-modifiers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            margin-top: 5px;
+        }
+        .btn-mod {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            font-weight: 800;
+            font-size: 10.5px;
+            padding: 5px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-mod:active { transform: scale(0.92); background: rgba(255, 255, 255, 0.12); }
+
+        /* Speed and Shuffle Pills */
+        .dock-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .btn-option-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 7px 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .btn-option-pill:active { transform: scale(0.94); }
+        .btn-option-pill.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(245, 166, 35, 0.2));
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        /* Action Buttons */
+        .bingo-action-panel {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .btn-bingo-action {
+            width: 100%;
+            padding: 13px 10px;
+            border-radius: 12px;
+            font-size: 14.5px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
+            transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(135deg, #ffd700, #f5a623);
+            color: #0b0701;
+        }
+        .btn-bingo-action:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+        .btn-bingo-action:active { transform: scale(0.97); }
+        .btn-bingo-action.running {
+            background: linear-gradient(135deg, #00f0ff, #0088ff);
+            color: #030814;
+            animation: drawPulse 1.2s infinite alternate;
+        }
+        @keyframes drawPulse {
+            0% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.85); }
+        }
+
+        /* -------------------------------------------------------------
+           RIGHT STAGE: 3D BALL CALLER + TICKET CARD + PAYTABLE
+           ------------------------------------------------------------- */
+        .bingo-stage-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            gap: 8px;
+        }
+
+        /* 3D Live Ball Caller Display */
+        .bingo-caller-unit {
+            width: 100%;
+            max-width: 410px;
+            background: rgba(8, 14, 26, 0.92);
+            border: 1.5px solid var(--card-border, rgba(255, 215, 0, 0.4));
+            border-radius: 14px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(14px);
+        }
+
+        .caller-orb-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .bingo-ball-orb {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #ffffff, #ffd700 45%, #b8860b 85%);
+            color: #0b0701;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        /* Ball Color Classes by Letter */
+        .bingo-ball-orb.ball-B { background: radial-gradient(circle at 35% 30%, #ffffff, #ff3344 45%, #990011 85%); color: #fff; box-shadow: 0 0 20px rgba(255, 51, 68, 0.6); }
+        .bingo-ball-orb.ball-I { background: radial-gradient(circle at 35% 30%, #ffffff, #ffd700 45%, #b8860b 85%); color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+        .bingo-ball-orb.ball-N { background: radial-gradient(circle at 35% 30%, #ffffff, #00e700 45%, #008800 85%); color: #000; box-shadow: 0 0 20px rgba(0, 231, 0, 0.6); }
+        .bingo-ball-orb.ball-G { background: radial-gradient(circle at 35% 30%, #ffffff, #00f0ff 45%, #0055aa 85%); color: #000; box-shadow: 0 0 20px rgba(0, 240, 255, 0.6); }
+        .bingo-ball-orb.ball-O { background: radial-gradient(circle at 35% 30%, #ffffff, #b347ff 45%, #5500aa 85%); color: #fff; box-shadow: 0 0 20px rgba(179, 71, 255, 0.6); }
+
+        .bingo-ball-orb.pop-in {
+            animation: orbBouncePop 0.22s cubic-bezier(0.18, 0.89, 0.32, 1.25);
+        }
+        @keyframes orbBouncePop {
+            0% { transform: scale(0.6) translateY(-6px); opacity: 0.6; }
+            65% { transform: scale(1.12) translateY(0); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .caller-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .caller-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .caller-sub {
+            font-size: 10px;
+            color: #8e9bb0;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Called Balls Carousel Track */
+        .bingo-calls-track-wrap {
+            width: 100%;
+            max-width: 410px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 2px 0;
+        }
+        .bingo-calls-track-wrap::-webkit-scrollbar { display: none; }
+
+        .mini-ball {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #141f36;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ccd6e8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .mini-ball.matched {
+            background: #00e700 !important;
+            color: #000 !important;
+            border-color: #fff !important;
+            box-shadow: 0 0 10px rgba(0, 231, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* -------------------------------------------------------------
+           5×5 BINGO TICKET CARD
+           ------------------------------------------------------------- */
+        .bingo-ticket-card {
+            width: 100%;
+            max-width: 410px;
+            background: var(--card-bg, rgba(12, 18, 34, 0.94));
+            border: 2px solid var(--card-border, rgba(255, 215, 0, 0.45));
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 215, 0, 0.08);
+            backdrop-filter: blur(16px);
+        }
+
+        .bingo-header-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .bingo-header-cell {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 900;
+            padding: 4px 0;
+            border-radius: 6px;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .hdr-B { background: linear-gradient(180deg, #ff3344, #aa0011); }
+        .hdr-I { background: linear-gradient(180deg, #ffd700, #b8860b); color: #000; }
+        .hdr-N { background: linear-gradient(180deg, #00e700, #008800); color: #000; }
+        .hdr-G { background: linear-gradient(180deg, #00f0ff, #0055aa); color: #000; }
+        .hdr-O { background: linear-gradient(180deg, #b347ff, #5500aa); }
+
+        .bingo-numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .bingo-tile {
+            position: relative;
+            aspect-ratio: 1;
+            background: var(--cell-bg, rgba(22, 32, 56, 0.9));
+            border: 1px solid var(--cell-border, rgba(255, 255, 255, 0.12));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1), 0 2px 6px rgba(0, 0, 0, 0.4);
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        .bingo-tile:hover {
+            border-color: var(--accent-main, #ffd700);
+            transform: scale(1.03);
+        }
+        .bingo-tile:active { transform: scale(0.95); }
+
+        /* Marked Daub Tile */
+        .bingo-tile.marked {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 231, 0, 0.4) 0%, rgba(10, 36, 20, 0.95) 75%) !important;
+            border-color: #00e700 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 12px rgba(0, 231, 0, 0.5), inset 0 0 10px rgba(0, 231, 0, 0.4) !important;
+            animation: daubStampPop 0.22s cubic-bezier(0.18, 0.89, 0.32, 1.25);
+        }
+        @keyframes daubStampPop {
+            0% { transform: scale(0.75); }
+            65% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .bingo-tile.marked::after {
+            content: '⭐';
+            position: absolute;
+            font-size: 18px;
+            filter: drop-shadow(0 0 6px #00e700);
+            opacity: 0.85;
+        }
+
+        /* Center Free Tile */
+        .bingo-tile.free-space {
+            background: linear-gradient(135deg, #ffd700, #f5a623) !important;
+            color: #0d0701 !important;
+            font-size: 10px !important;
+            font-weight: 900 !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8) !important;
+            animation: freeSpaceGlow 2s infinite ease-in-out;
+        }
+        @keyframes freeSpaceGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px #ffd700); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 15px #ffd700); }
+        }
+
+        /* Winning Line Completion Glow */
+        .bingo-tile.winning-line {
+            border-color: #ffd700 !important;
+            box-shadow: 0 0 20px #ffd700, inset 0 0 12px rgba(255, 215, 0, 0.6) !important;
+            animation: winTilePulse 0.6s infinite alternate ease-in-out !important;
+        }
+        @keyframes winTilePulse {
+            0% { transform: scale(0.96); filter: brightness(1); }
+            100% { transform: scale(1.04); filter: brightness(1.3); }
+        }
+
+        /* -------------------------------------------------------------
+           DYNAMIC PRIZE MULTIPLIER LADDER
+           ------------------------------------------------------------- */
+        .bingo-prizes-strip {
+            display: flex;
+            gap: 5px;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 410px;
+        }
+        .bingo-prize-pill {
+            flex: 1;
+            background: rgba(10, 16, 30, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 4px 2px;
+            text-align: center;
+            font-size: 9.5px;
+            color: #8e9bb0;
+            transition: all 0.25s;
+        }
+        .bingo-prize-pill b {
+            display: block;
+            font-size: 11.5px;
+            color: #ffd700;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+        }
+        .bingo-prize-pill.active {
+            background: linear-gradient(135deg, rgba(0, 231, 0, 0.25), rgba(0, 180, 0, 0.35));
+            border-color: #00e700;
+            color: #00e700;
+            box-shadow: 0 0 12px rgba(0, 231, 0, 0.5);
+            transform: scale(1.05);
+        }
+        .bingo-prize-pill.active b {
+            color: #00e700;
+        }
+
+        /* -------------------------------------------------------------
+           VIP TABLE CASINO CHASSIS & FELT SYSTEM
+           ------------------------------------------------------------- */
+        .vip-table-chassis {
+            position: relative;
+            width: 100%;
+            max-width: 430px;
+            background: radial-gradient(circle at 50% 25%, #0e2e1c 0%, #081d11 60%, #030a06 100%);
+            border: 2.5px solid #d4af37;
+            border-radius: 20px;
+            padding: 8px 10px 10px 10px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.9),
+                inset 0 0 0 1.5px rgba(255, 215, 0, 0.45),
+                inset 0 0 35px rgba(0, 0, 0, 0.75),
+                0 0 25px rgba(212, 175, 55, 0.28);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.35s ease;
+        }
+
+        /* Stitched Padded Leather Armrest Rail */
+        .vip-table-chassis::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #2b1f14, #140d08 50%, #2b1f14);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            z-index: -1;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.95);
+        }
+
+        /* Dynamic Table Felt Varieties */
+        .vip-table-chassis.felt-vegas {
+            background: radial-gradient(circle at 50% 25%, #0e2e1c 0%, #081d11 60%, #030a06 100%);
+            border-color: #ffd700;
+        }
+        .vip-table-chassis.felt-velvet {
+            background: radial-gradient(circle at 50% 25%, #2e0e27 0%, #1c0617 60%, #090108 100%);
+            border-color: #e0a3ff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1.5px rgba(224, 163, 255, 0.45), 0 0 25px rgba(179, 71, 255, 0.3);
+        }
+        .vip-table-chassis.felt-dubai {
+            background: radial-gradient(circle at 50% 25%, #30210a 0%, #1c1305 60%, #0a0702 100%);
+            border-color: #ffd700;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1.5px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.35);
+        }
+        .vip-table-chassis.felt-diamond {
+            background: radial-gradient(circle at 50% 25%, #082136 0%, #04121e 60%, #01060b 100%);
+            border-color: #00f0ff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1.5px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.4);
+        }
+
+        /* -------------------------------------------------------------
+           VIP TABLE SIDE FLAMES & BURSTING FIRE COLUMNS
+           ------------------------------------------------------------- */
+        .vip-side-fire {
+            position: absolute;
+            top: 2%;
+            bottom: 2%;
+            width: 24px;
+            pointer-events: none;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .vip-side-fire.fire-left {
+            left: -19px;
+        }
+        .vip-side-fire.fire-right {
+            right: -19px;
+        }
+
+        .flame-torch-body {
+            position: relative;
+            width: 100%;
+            height: 94%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .flame-layer {
+            position: absolute;
+            bottom: 0;
+            border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%;
+            transform-origin: bottom center;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .flame-outer {
+            height: 100%;
+            width: 22px;
+            background: radial-gradient(ellipse at bottom, #ff1a00 0%, #ff5500 50%, rgba(255, 69, 0, 0) 90%);
+            animation: flameOuterAnim 0.75s infinite alternate ease-in-out;
+            box-shadow: 0 0 12px rgba(255, 34, 0, 0.75);
+            opacity: 0.88;
+        }
+
+        .flame-mid {
+            height: 82%;
+            width: 16px;
+            background: radial-gradient(ellipse at bottom, #ff7700 0%, #ffaa00 60%, rgba(255, 170, 0, 0) 90%);
+            animation: flameMidAnim 0.52s infinite alternate ease-in-out 0.1s;
+            box-shadow: 0 0 8px rgba(255, 153, 0, 0.7);
+            opacity: 0.95;
+        }
+
+        .flame-core {
+            height: 56%;
+            width: 10px;
+            background: radial-gradient(ellipse at bottom, #ffffff 0%, #fff799 40%, #ffd700 80%, rgba(255, 215, 0, 0) 100%);
+            animation: flameCoreAnim 0.38s infinite alternate ease-in-out 0.05s;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes flameOuterAnim {
+            0% { transform: scaleY(0.92) scaleX(0.95) rotate(-3deg); }
+            50% { transform: scaleY(1.1) scaleX(1.06) rotate(3deg); }
+            100% { transform: scaleY(0.96) scaleX(0.98) rotate(-1deg); }
+        }
+
+        @keyframes flameMidAnim {
+            0% { transform: scaleY(0.94) scaleX(1.04) rotate(3deg); }
+            50% { transform: scaleY(1.14) scaleX(0.92) rotate(-2deg); }
+            100% { transform: scaleY(0.98) scaleX(1) rotate(2deg); }
+        }
+
+        @keyframes flameCoreAnim {
+            0% { transform: scaleY(0.88) scaleX(0.9); }
+            100% { transform: scaleY(1.22) scaleX(1.12); }
+        }
+
+        /* Floating Rising Embers */
+        .fire-ember {
+            position: absolute;
+            width: 3.5px;
+            height: 3.5px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 6px #ffcc00, 0 0 10px #ff3300;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .fire-ember.emb-1 { left: 20%; animation: riseEmber 1.5s infinite ease-out; }
+        .fire-ember.emb-2 { left: 55%; animation: riseEmber 1.2s infinite ease-out 0.35s; }
+        .fire-ember.emb-3 { left: 80%; animation: riseEmber 1.7s infinite ease-out 0.75s; }
+        .fire-ember.emb-4 { left: 35%; animation: riseEmber 1.4s infinite ease-out 1.05s; }
+
+        @keyframes riseEmber {
+            0% { bottom: 2%; opacity: 1; transform: scale(1) translateX(0); }
+            50% { opacity: 0.85; transform: scale(1.3) translateX(5px); }
+            100% { bottom: 96%; opacity: 0; transform: scale(0.3) translateX(-6px); }
+        }
+
+        /* Golden Torch Brazier Base */
+        .flame-brazier-base {
+            width: 20px;
+            height: 11px;
+            background: linear-gradient(180deg, #ffd700 0%, #b8860b 60%, #452600 100%);
+            border: 1px solid #ffe066;
+            border-radius: 2px 2px 7px 7px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.8), 0 0 10px rgba(255, 140, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            z-index: 16;
+            line-height: 1;
+        }
+
+        /* Roaring Intense Flames (During Active Rounds) */
+        .vip-table-chassis.fire-roaring .flame-outer {
+            transform: scaleY(1.28) scaleX(1.22);
+            filter: blur(2px) drop-shadow(0 0 24px #ff3300);
+            opacity: 1;
+        }
+        .vip-table-chassis.fire-roaring .flame-mid {
+            transform: scaleY(1.32) scaleX(1.18);
+            filter: blur(1.5px) drop-shadow(0 0 18px #ffaa00);
+        }
+        .vip-table-chassis.fire-roaring .flame-core {
+            transform: scaleY(1.4) scaleX(1.3);
+            filter: blur(1px) drop-shadow(0 0 14px #ffffff);
+        }
+
+        /* Ambient Side Fire Glow on Table Edge */
+        .vip-table-chassis {
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.9),
+                inset 0 0 0 1.5px rgba(255, 215, 0, 0.45),
+                inset 0 0 35px rgba(0, 0, 0, 0.75),
+                -12px 0 25px rgba(255, 69, 0, 0.38),
+                12px 0 25px rgba(255, 69, 0, 0.38),
+                0 0 25px rgba(212, 175, 55, 0.28);
+        }
+
+        /* VIP Table Brass Plaque / Placard */
+        .vip-table-plaque {
+            width: 100%;
+            background: linear-gradient(90deg, #1c1407 0%, #3a2a0e 50%, #1c1407 100%);
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: inset 0 1px 2px rgba(255, 215, 0, 0.5), 0 3px 8px rgba(0,0,0,0.6);
+            cursor: pointer;
+            transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .vip-table-plaque:hover {
+            border-color: #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+        }
+        .vip-table-plaque:active { transform: scale(0.98); }
+
+        .plaque-left {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            min-width: 0;
+        }
+        .plaque-icon {
+            font-size: 17px;
+            filter: drop-shadow(0 0 6px #ffd700);
+            flex-shrink: 0;
+        }
+        .plaque-titles {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+            min-width: 0;
+        }
+        .plaque-name {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .plaque-sub {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #d1d5db;
+            letter-spacing: 0.3px;
+        }
+
+        .plaque-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .plaque-pot-wrap {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            line-height: 1.15;
+        }
+        .plaque-pot-label {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: #9ca3af;
+            letter-spacing: 0.4px;
+        }
+        .plaque-pot-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #00e700;
+            text-shadow: 0 0 6px rgba(0, 231, 0, 0.5);
+        }
+        .btn-switch-table {
+            background: linear-gradient(135deg, #ffd700, #f5a623);
+            color: #000;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 3px 7px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: 0.3px;
+        }
+
+        /* Table Felt Watermark / Footer */
+        .table-felt-footer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 4px 0 4px;
+            font-size: 8.5px;
+            color: rgba(255, 215, 0, 0.65);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .table-live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #86efac;
+        }
+        .live-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 6px #22c55e;
+            animation: livePulse 1.5s infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        /* 3D VIP CHIPS FAST-BET TRAY */
+        .vip-chips-tray {
+            margin-top: 2px;
+        }
+        .vip-chips-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 4px;
+        }
+        .vip-chip {
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            font-size: 9px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+            transition: transform 0.12s, box-shadow 0.12s;
+            user-select: none;
+        }
+        .vip-chip:hover { transform: translateY(-2px) scale(1.06); }
+        .vip-chip:active, .vip-chip.chip-tapped { transform: scale(0.92); }
+
+        .vip-chip.chip-10 { background: radial-gradient(circle, #3b82f6 45%, #1e40af 90%); color: #fff; border-color: #93c5fd; }
+        .vip-chip.chip-50 { background: radial-gradient(circle, #ef4444 45%, #991b1b 90%); color: #fff; border-color: #fca5a5; }
+        .vip-chip.chip-100 { background: radial-gradient(circle, #10b981 45%, #065f46 90%); color: #fff; border-color: #6ee7b7; }
+        .vip-chip.chip-500 { background: radial-gradient(circle, #374151 45%, #111827 90%); color: #ffd700; border-color: #ffd700; }
+        .vip-chip.chip-1k { background: radial-gradient(circle, #8b5cf6 45%, #5b21b6 90%); color: #fff; border-color: #c4b5fd; }
+        .vip-chip.chip-5k { background: radial-gradient(circle, #ffd700 45%, #b45309 90%); color: #000; border-color: #ffffff; box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+
+        /* VIP TABLE SELECTOR MODAL */
+        .vip-table-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 600;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+        }
+        .vip-table-modal-overlay.active { display: flex; }
+
+        .vip-table-modal-card {
+            background: radial-gradient(circle at 50% 15%, #181208 0%, #0a0704 70%, #020202 100%);
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 16px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 215, 0, 0.35);
+            animation: modalPopIn 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .vip-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+            padding-bottom: 8px;
+        }
+        .vip-modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-close-vip-modal {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .vip-tables-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 58vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        .vip-table-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid rgba(255, 215, 0, 0.22);
+            border-radius: 12px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .vip-table-item:hover {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+            transform: translateY(-1px);
+        }
+        .vip-table-item.active-table {
+            border-color: #00e700 !important;
+            background: linear-gradient(135deg, rgba(0, 231, 0, 0.12), rgba(0, 180, 0, 0.06)) !important;
+            box-shadow: 0 0 15px rgba(0, 231, 0, 0.25);
+        }
+        .vip-table-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vip-table-badge-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 0 8px #ffd700);
+        }
+        .vip-table-item-name {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .vip-table-item-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 0.5px;
+        }
+        .vip-table-item-stats {
+            font-size: 9.5px;
+            color: #94a3b8;
+            margin-top: 2px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .vip-table-item-right {
+            text-align: right;
+        }
+        .vip-table-item-pot {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 900;
+            color: #00e700;
+        }
+        .vip-table-item-status {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffd700;
+            text-transform: uppercase;
+        }
+
+        .hud-vip-table-btn {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(245, 166, 35, 0.1));
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            font-weight: 800;
+        }
+
+        /* -------------------------------------------------------------
+           CELEBRATION WIN MODAL
+           ------------------------------------------------------------- */
+        .bingo-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .bingo-modal-overlay.active { display: flex; }
+        .bingo-modal-card {
+            background: radial-gradient(circle at 50% 30%, #1a1628 0%, #0d0a18 70%, #030208 100%);
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 24px 18px;
+            max-width: 320px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.35);
+            animation: modalPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes modalPopIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .modal-win-mult {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            margin: 6px 0;
+        }
+        .modal-win-amt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            color: #00e700;
+            margin-bottom: 16px;
+        }
+        .btn-modal-claim {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700, #f5a623);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 13.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY VIP LOADING SCREEN
+           ------------------------------------------------------------- */
+        .pp-loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .pp-loader-screen.pp-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pp-loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 240px;
+        }
+        .pp-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
+        .pp-bar-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .pp-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #ffcc00;
+            box-shadow: 0 0 10px #ffcc00;
+            border-radius: 3px;
+            transition: width 0.15s ease-out;
+        }
+
+        /* -------------------------------------------------------------
+           MOBILE SCREEN RESPONSIVENESS (100% 0-SCROLL VIEWPORT)
+           ------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .bingo-topbar {
+                height: 42px;
+                padding: 0 4px;
+                gap: 3px;
+                overflow: hidden;
+            }
+            .topbar-left { gap: 4px; flex-shrink: 0; }
+            .btn-lobby-back { padding: 3px 5px; font-size: 10px; border-radius: 5px; }
+            .btn-lobby-text { display: none; }
+            .bingo-brand { gap: 3px; }
+            .bingo-brand-icon { font-size: 14px; }
+            .bingo-brand-title { font-size: 10px; letter-spacing: 0; }
+            .bingo-brand-sub { display: none; }
+            .topbar-right { gap: 2px; flex-shrink: 0; }
+            .hud-vip-table-btn { height: 25px; padding: 0 4px; font-size: 8.5px; border-radius: 5px; }
+            .theme-select-bingo { height: 25px; padding: 0 2px; font-size: 8px; max-width: 52px; border-radius: 5px; }
+            .hud-icon-btn { height: 25px; padding: 0 4px; font-size: 9.5px; border-radius: 5px; }
+            #musicLabel { display: none; }
+            .bingo-wallet-chip { padding: 1px 4px; gap: 3px; border-radius: 6px; flex-shrink: 0; }
+            .wallet-chip-label { font-size: 6.5px; letter-spacing: 0; }
+            .wallet-chip-val { font-size: 9.5px !important; }
+            .btn-chip-deposit { padding: 2px 4px; font-size: 7.5px; border-radius: 4px; }
+            .user-avatar-btn { width: 24px; height: 24px; flex-shrink: 0; }
+
+            .bingo-arena-layout {
+                display: flex;
+                flex-direction: column;
+                height: calc(100vh - 42px);
+                height: calc(100dvh - 42px);
+                padding: 2px 6px 4px 6px;
+                gap: 3px;
+                overflow: hidden;
+            }
+            .bingo-stage-wrap {
+                order: 1;
+                flex: 1;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                overflow: visible;
+                gap: 2px;
+                position: relative;
+            }
+            .vip-table-chassis {
+                max-width: min(84vw, 268px);
+                padding: 3px 6px 5px 6px;
+                border-radius: 12px;
+                gap: 2.5px;
+                position: relative;
+            }
+            .vip-table-chassis::before {
+                inset: -3px;
+                border-radius: 15px;
+            }
+
+            /* Fire Columns on Mobile - 100% Visible on Sides */
+            .vip-side-fire {
+                width: 14px;
+                top: 0;
+                bottom: 0;
+            }
+            .vip-side-fire.fire-left {
+                left: -14px;
+            }
+            .vip-side-fire.fire-right {
+                right: -14px;
+            }
+            .flame-outer { width: 13px; }
+            .flame-mid { width: 9px; }
+            .flame-core { width: 5px; }
+            .flame-brazier-base { width: 13px; height: 8px; font-size: 5px; }
+
+            .vip-table-plaque {
+                padding: 2px 5px;
+                border-radius: 5px;
+            }
+            .plaque-icon { font-size: 11px; }
+            .plaque-name { font-size: 8.5px; }
+            .plaque-sub { font-size: 7px; }
+            .plaque-pot-label { font-size: 6px; }
+            .plaque-pot-val { font-size: 8.5px; }
+            .btn-switch-table { font-size: 7px; padding: 1.5px 4px; }
+            .table-felt-footer { font-size: 6.5px; padding: 1px; }
+
+            .bingo-caller-unit {
+                max-width: 100%;
+                padding: 2px 6px;
+                gap: 6px;
+                border-radius: 8px;
+            }
+            .bingo-ball-orb {
+                width: 32px;
+                height: 32px;
+                font-size: 11.5px;
+            }
+            .caller-title { font-size: 10.5px; }
+            .caller-sub { font-size: 8px; }
+
+            .bingo-calls-track-wrap {
+                max-width: 100%;
+                padding: 1px 0;
+            }
+            .mini-ball {
+                width: 17px;
+                height: 17px;
+                font-size: 7.5px;
+            }
+
+            .bingo-ticket-card {
+                max-width: 100%;
+                padding: 4px;
+                border-radius: 10px;
+            }
+            .bingo-header-strip {
+                gap: 2.5px;
+                margin-bottom: 3px;
+            }
+            .bingo-header-cell {
+                font-size: 11px;
+                padding: 1.5px 0;
+            }
+            .bingo-numbers-grid {
+                gap: 2.5px;
+            }
+            .bingo-tile {
+                font-size: 11px;
+                border-radius: 4px;
+            }
+            .bingo-tile.free-space { font-size: 7.5px !important; }
+            .bingo-tile.marked::after { font-size: 12px; }
+
+            .bingo-prizes-strip {
+                max-width: 100%;
+                gap: 2px;
+            }
+            .bingo-prize-pill {
+                padding: 1.5px 1px;
+                font-size: 7px;
+            }
+            .bingo-prize-pill b { font-size: 8.5px; }
+
+            .bingo-control-dock {
+                order: 2;
+                max-width: min(94vw, 320px);
+                margin: 0 auto;
+                width: 100%;
+                padding: 4px 6px;
+                gap: 3px;
+                border-radius: 10px;
+                max-height: none;
+                overflow: visible;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            .dock-inputs-cluster {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+            .control-group-title { font-size: 8px; margin-bottom: 1px; }
+            .bet-input-container { padding: 1px 5px; border-radius: 6px; }
+            .bet-currency-tag { font-size: 10px; margin-right: 2px; }
+            .bet-amount-input { font-size: 11.5px; }
+            .bet-modifiers-grid { gap: 2px; margin-top: 2px; }
+            .btn-mod { padding: 2px 0; font-size: 8px; border-radius: 4px; }
+
+            .vip-chips-tray { margin-top: 2px; }
+            .vip-chips-grid { gap: 2px; }
+            .vip-chip { font-size: 7.5px; }
+
+            .dock-options-grid { gap: 3px; }
+            .btn-option-pill { padding: 4px 2px; font-size: 8.5px; border-radius: 5px; }
+
+            .btn-bingo-action {
+                padding: 8px 6px;
+                font-size: 12.5px;
+                border-radius: 8px;
+            }
+        }
+
+        /* Short-screen mobile optimization (< 700px height) */
+        @media (max-width: 768px) and (max-height: 700px) {
+            .bingo-topbar { height: 38px; }
+            .bingo-arena-layout { height: calc(100vh - 38px); height: calc(100dvh - 38px); gap: 1.5px; }
+            .vip-table-chassis { max-width: min(80vw, 240px); gap: 1.5px; padding: 2px 4px; }
+            .bingo-caller-unit { padding: 1px 4px; gap: 4px; }
+            .bingo-ball-orb { width: 28px; height: 28px; font-size: 10.5px; }
+            .caller-title { font-size: 9.5px; }
+            .caller-sub { display: none; }
+            .bingo-calls-track-wrap { display: none; }
+            .bingo-ticket-card { padding: 2px; }
+            .bingo-tile { font-size: 9.5px; }
+            .btn-bingo-action { padding: 7px 5px; font-size: 11.5px; }
+        }
+    </style>
+</head>
+<body class="theme-vegas">
+
+    <!-- Pragmatic Play Official VIP Loading Screen -->
+    <div id="pp-loading-screen" class="pp-loader-screen">
+        <div class="pp-loader-container">
+            <div class="pp-logo-wrap">
+                <img src="../assets/games/card/ui/pragmatic_play_loading.png?v=official_hd" alt="Pragmatic Play" class="pp-logo-img">
+            </div>
+            <div class="pp-bar-track">
+                <div id="pp-bar-fill" class="pp-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4K Background Graphic Layer -->
+    <div class="bingo-bg-layer" id="bingoBgLayer"></div>
+    <div class="bingo-vignette"></div>
+    <canvas id="fxCanvas"></canvas>
+    <audio id="bgmAudio" src="../assets/audio/card/casino_bgm.mp3" loop preload="auto" autoplay></audio>
+
+    <div class="bingo-studio-shell">
+        <!-- TOP STUDIO BAR -->
+        <header class="bingo-topbar">
+            <div class="topbar-left">
+                <a href="../casino.html" class="btn-lobby-back">
+                    <span>←</span> <span class="btn-lobby-text">CASINO</span>
+                </a>
+                <div class="bingo-brand">
+                    <span class="bingo-brand-icon">🎫</span>
+                    <div>
+                        <div class="bingo-brand-title">BINGO 75</div>
+                        <div class="bingo-brand-sub">VEGAS LIVE HALL</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <!-- VIP Table Switcher Button -->
+                <button id="btnVipTableTop" class="hud-icon-btn hud-vip-table-btn" onclick="openVipTableModal()" title="VIP Tables">
+                    <span style="font-size:12px;">👑</span>
+                    <span id="topbarTableTag">TABLE #77</span>
+                </button>
+
+                <!-- Theme Selector (4 Distinct Bingo Themes) -->
+                <select id="themeSelectBingo" class="theme-select-bingo" onchange="switchBingoTheme(this.value)">
+                    <option value="theme-vegas">🌟 Vegas</option>
+                    <option value="theme-dubai">👑 Dubai</option>
+                    <option value="theme-cyber">🌌 Cyber</option>
+                    <option value="theme-macau">🌊 Macau</option>
+                </select>
+
+                <!-- Music BGM Toggle -->
+                <button id="btnMusicToggle" class="hud-icon-btn hud-music-btn" onclick="toggleBingoMusic()" title="Background Music">
+                    <span class="music-eq-bars" id="musicEqBars">
+                        <span class="eq-bar bar-1"></span>
+                        <span class="eq-bar bar-2"></span>
+                        <span class="eq-bar bar-3"></span>
+                    </span>
+                    <span id="musicLabel">BGM</span>
+                </button>
+
+                <!-- Sound FX Toggle -->
+                <button id="btnSoundToggle" class="hud-icon-btn" onclick="toggleBingoSound()" title="Sound FX">
+                    <span id="soundIcon">🔊</span>
+                </button>
+
+                <!-- Balance Pill -->
+                <div class="bingo-wallet-chip">
+                    <div class="wallet-chip-info">
+                        <span class="wallet-chip-label">BALANCE</span>
+                        <span id="headerBalance" class="wallet-chip-val wallet-balance-display">₨ 0.00</span>
+                    </div>
+                    <a href="../deposit.html" class="btn-chip-deposit">+ DEPOSIT</a>
+                </div>
+
+                <!-- User Profile Avatar (Avatar Only - No Name Popup) -->
+                <a href="../profile.html" class="user-avatar-btn" id="headerUserAvatar" title="My Profile">
+                    <span id="headerAvatarIcon" style="font-size:15px;">👑</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- ARENA LAYOUT -->
+        <main class="bingo-arena-layout">
+            <!-- LEFT CONTROL DOCK -->
+            <section class="bingo-control-dock">
+                <div class="dock-inputs-cluster">
+                    <!-- Bet Amount -->
+                    <div class="dock-input-group">
+                        <div class="control-group-title">
+                            <span>TICKET BET</span>
+                            <span id="betLimitLabel" style="font-size:9px; color:#8e9bb0;">MIN: ₨ 10 • MAX: ₨ 250,000</span>
+                        </div>
+                        <div class="bet-input-container">
+                            <span class="bet-currency-tag" id="betCurrencyTag">₨</span>
+                            <input type="number" id="betInput" class="bet-amount-input" value="100" min="10" max="250000" step="10">
+                        </div>
+                        <div class="bet-modifiers-grid">
+                            <button class="btn-mod" onclick="adjustBet('min')">MIN</button>
+                            <button class="btn-mod" onclick="adjustBet('half')">½</button>
+                            <button class="btn-mod" onclick="adjustBet('double')">2×</button>
+                            <button class="btn-mod" onclick="adjustBet('max')">MAX</button>
+                        </div>
+                        <!-- 3D VIP CHIPS FAST-BET SELECTOR -->
+                        <div class="vip-chips-tray">
+                            <div class="control-group-title" style="margin-top:5px;">
+                                <span>VIP CHIPS</span>
+                                <span style="font-size:8.5px; color:#ffd700;">FAST BET</span>
+                            </div>
+                            <div class="vip-chips-grid">
+                                <button type="button" class="vip-chip chip-10" id="chip-10" onclick="bingoEngine.addChipBet(10)"><span>10</span></button>
+                                <button type="button" class="vip-chip chip-50" id="chip-50" onclick="bingoEngine.addChipBet(50)"><span>50</span></button>
+                                <button type="button" class="vip-chip chip-100" id="chip-100" onclick="bingoEngine.addChipBet(100)"><span>100</span></button>
+                                <button type="button" class="vip-chip chip-500" id="chip-500" onclick="bingoEngine.addChipBet(500)"><span>500</span></button>
+                                <button type="button" class="vip-chip chip-1k" id="chip-1000" onclick="bingoEngine.addChipBet(1000)"><span>1K</span></button>
+                                <button type="button" class="vip-chip chip-5k" id="chip-5000" onclick="bingoEngine.addChipBet(5000)"><span>5K</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ticket Options & Speed -->
+                    <div class="dock-input-group">
+                        <div class="control-group-title">
+                            <span>TICKET CONTROLS</span>
+                            <span id="speedIndicatorTag" style="font-size:9.5px; color:#ffd700; font-weight:800;">NORMAL</span>
+                        </div>
+                        <div class="dock-options-grid">
+                            <button class="btn-option-pill" id="btnShuffleCard" onclick="bingoEngine.shuffleCard()">
+                                <span>🔄</span> <span>SHUFFLE</span>
+                            </button>
+                            <button class="btn-option-pill" id="btnTurboToggle" onclick="bingoEngine.toggleTurbo()">
+                                <span>⚡</span> <span id="turboLabel">TURBO: OFF</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="bingo-action-panel">
+                    <button id="btnMainAction" class="btn-bingo-action" onclick="bingoEngine.startRound()">
+                        <span>BUY TICKET & START 🎫</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- RIGHT STAGE: VIP CASINO TABLE FELT & CHASSIS WITH SIDE FIRE -->
+            <section class="bingo-stage-wrap">
+                <div class="vip-table-chassis felt-diamond" id="vipTableChassis">
+                    <!-- LEFT SIDE FIRE COLUMN & TORCH -->
+                    <div class="vip-side-fire fire-left" aria-hidden="true">
+                        <div class="flame-torch-body">
+                            <div class="flame-layer flame-outer"></div>
+                            <div class="flame-layer flame-mid"></div>
+                            <div class="flame-layer flame-core"></div>
+                            <div class="fire-ember emb-1"></div>
+                            <div class="fire-ember emb-2"></div>
+                            <div class="fire-ember emb-3"></div>
+                            <div class="fire-ember emb-4"></div>
+                        </div>
+                        <div class="flame-brazier-base">🔥</div>
+                    </div>
+
+                    <!-- RIGHT SIDE FIRE COLUMN & TORCH -->
+                    <div class="vip-side-fire fire-right" aria-hidden="true">
+                        <div class="flame-torch-body">
+                            <div class="flame-layer flame-outer"></div>
+                            <div class="flame-layer flame-mid"></div>
+                            <div class="flame-layer flame-core"></div>
+                            <div class="fire-ember emb-1"></div>
+                            <div class="fire-ember emb-2"></div>
+                            <div class="fire-ember emb-3"></div>
+                            <div class="fire-ember emb-4"></div>
+                        </div>
+                        <div class="flame-brazier-base">🔥</div>
+                    </div>
+
+                    <!-- VIP Table Brass Plaque / Placard Header -->
+                    <div class="vip-table-plaque" onclick="openVipTableModal()" title="Click to Change VIP Table">
+                        <div class="plaque-left">
+                            <span class="plaque-icon" id="plaqueIcon">💎</span>
+                            <div class="plaque-titles">
+                                <div class="plaque-name" id="plaqueTableName">TABLE #77: MACAU DIAMOND SUITE</div>
+                                <div class="plaque-sub" id="plaqueTableSub">HIGH ROLLER VIP • 38 BALLS • 100× MAX</div>
+                            </div>
+                        </div>
+                        <div class="plaque-right">
+                            <div class="plaque-pot-wrap">
+                                <span class="plaque-pot-label">JACKPOT POOL</span>
+                                <span class="plaque-pot-val" id="plaqueJackpotVal">₨ 3,248,500</span>
+                            </div>
+                            <button class="btn-switch-table" type="button">SWITCH</button>
+                        </div>
+                    </div>
+
+                    <!-- 3D Ball Caller Unit -->
+                    <div class="bingo-caller-unit">
+                        <div class="caller-orb-wrapper">
+                            <div id="callerBallOrb" class="bingo-ball-orb">--</div>
+                        </div>
+                        <div class="caller-info">
+                            <div class="caller-title" id="callerTitleText">Live Blower Ready</div>
+                            <div class="caller-sub" id="callerSubText">38 balls live draw • Match lines to win</div>
+                        </div>
+                    </div>
+
+                    <!-- Rolling Called Balls Track -->
+                    <div class="bingo-calls-track-wrap" id="callsTrackWrap">
+                        <!-- Populated dynamically as balls are drawn -->
+                    </div>
+
+                    <!-- 5x5 Bingo Ticket Card -->
+                    <div class="bingo-ticket-card">
+                        <div class="bingo-header-strip">
+                            <div class="bingo-header-cell hdr-B">B</div>
+                            <div class="bingo-header-cell hdr-I">I</div>
+                            <div class="bingo-header-cell hdr-N">N</div>
+                            <div class="bingo-header-cell hdr-G">G</div>
+                            <div class="bingo-header-cell hdr-O">O</div>
+                        </div>
+                        <div class="bingo-numbers-grid" id="bingoGrid">
+                            <!-- 25 Cells Generated Dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Prize Multiplier Ladder -->
+                    <div class="bingo-prizes-strip">
+                        <div class="bingo-prize-pill" id="prize-line-1"><span id="prize-name-1">1 Line</span><b id="prize-val-1">4×</b></div>
+                        <div class="bingo-prize-pill" id="prize-line-2"><span id="prize-name-2">2 Lines</span><b id="prize-val-2">10×</b></div>
+                        <div class="bingo-prize-pill" id="prize-line-3"><span id="prize-name-3">3 Lines</span><b id="prize-val-3">30×</b></div>
+                        <div class="bingo-prize-pill" id="prize-line-4"><span id="prize-name-4">4 Lines</span><b id="prize-val-4">60×</b></div>
+                        <div class="bingo-prize-pill" id="prize-line-5"><span id="prize-name-5">Full House</span><b id="prize-val-5">100×</b></div>
+                    </div>
+
+                    <!-- Table Felt Engraving & Live Indicator -->
+                    <div class="table-felt-footer">
+                        <span class="table-live-indicator"><span class="live-dot"></span> LIVE TABLE • <span id="tableActivePlayers">28 VIPs Active</span></span>
+                        <span class="table-brand-engraving">★ VIP SALON • BET WITH NET ★</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- VIP TABLE SELECTION MODAL -->
+    <div id="vipTableModal" class="vip-table-modal-overlay">
+        <div class="vip-table-modal-card">
+            <div class="vip-modal-header">
+                <div class="vip-modal-title">
+                    <span>👑</span>
+                    <span>VIP CASINO TABLES LOUNGE</span>
+                </div>
+                <button class="btn-close-vip-modal" onclick="closeVipTableModal()">✕</button>
+            </div>
+            <div class="vip-tables-list" id="vipTablesList">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CASHOUT / WIN CELEBRATION MODAL -->
+    <div id="bingoWinModal" class="bingo-modal-overlay">
+        <div class="bingo-modal-card">
+            <div style="font-size:38px; margin-bottom:6px;">🏆</div>
+            <h2 style="font-size:18px; font-weight:900; color:#fff;" id="modalWinTitle">BINGO WIN!</h2>
+            <div class="modal-win-mult" id="modalWinMult">5.00×</div>
+            <div class="modal-win-amt" id="modalWinAmt">₨ 500.00</div>
+            <button class="btn-modal-claim" onclick="bingoEngine.closeWinModal()">PLAY NEXT TICKET ⚡</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/core.js"></script>
+
+    <script>
+        /* -------------------------------------------------------------
+           WEB AUDIO API SOUND SYNTHESIZER (0 Latency)
+           ------------------------------------------------------------- */
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) audioCtx = new AudioContextClass();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        const sfx = {
+            click() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(700, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(350, ctx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.04);
+            },
+            chip() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(2600, now);
+                osc.frequency.exponentialRampToValueAtTime(750, now + 0.04);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.04);
+            },
+            tableSwitch() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc1 = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc1.type = 'triangle';
+                osc2.type = 'sine';
+                osc1.frequency.setValueAtTime(587.33, now); // D5
+                osc2.frequency.setValueAtTime(880, now + 0.07); // A5
+                gain.gain.setValueAtTime(0.16, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+                osc1.start(now);
+                osc2.start(now + 0.07);
+                osc1.stop(now + 0.22);
+                osc2.stop(now + 0.32);
+            },
+            ballDrop() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(450, now);
+                osc.frequency.exponentialRampToValueAtTime(180, now + 0.08);
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            },
+            daub() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc1 = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc1.type = 'sine';
+                osc2.type = 'triangle';
+                osc1.frequency.setValueAtTime(880, now); // A5
+                osc2.frequency.setValueAtTime(1320, now); // E6
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + 0.28);
+                osc2.stop(now + 0.28);
+            },
+            lineWin() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C, E, G, C Major
+                notes.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.07);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime + idx * 0.07);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.07 + 0.32);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + idx * 0.07);
+                    osc.stop(ctx.currentTime + idx * 0.07 + 0.32);
+                });
+            },
+            fullHouse() {
+                if (!soundEnabled) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const fanfare = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
+                fanfare.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.09);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime + idx * 0.09);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.09 + 0.45);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + idx * 0.09);
+                    osc.stop(ctx.currentTime + idx * 0.09 + 0.45);
+                });
+            }
+        };
+
+        function toggleBingoSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (icon) icon.textContent = soundEnabled ? '🔊' : '🔇';
+        }
+
+        /* -------------------------------------------------------------
+           BACKGROUND MUSIC CONTROLLER (BGM)
+           ------------------------------------------------------------- */
+        let musicEnabled = true;
+        const bgm = document.getElementById('bgmAudio');
+
+        function initMusicPreference() {
+            const saved = localStorage.getItem('bwn_bingo_music');
+            if (saved !== null) {
+                musicEnabled = (saved === '1');
+            } else {
+                musicEnabled = true;
+            }
+            updateMusicUI();
+        }
+
+        function updateMusicUI() {
+            const bars = document.getElementById('musicEqBars');
+            const label = document.getElementById('musicLabel');
+            if (musicEnabled) {
+                if (bars) bars.classList.add('playing');
+                if (label) label.textContent = 'BGM';
+            } else {
+                if (bars) bars.classList.remove('playing');
+                if (label) label.textContent = 'OFF';
+            }
+        }
+
+        function playBGM() {
+            if (!bgm || !musicEnabled) return;
+            bgm.volume = 0.35;
+            const p = bgm.play();
+            if (p !== undefined) {
+                p.then(() => {
+                    updateMusicUI();
+                }).catch(() => {
+                    // Browser awaiting gesture
+                });
+            }
+        }
+
+        function pauseBGM() {
+            if (bgm) bgm.pause();
+            updateMusicUI();
+        }
+
+        function toggleBingoMusic() {
+            musicEnabled = !musicEnabled;
+            localStorage.setItem('bwn_bingo_music', musicEnabled ? '1' : '0');
+            updateMusicUI();
+            if (musicEnabled) playBGM();
+            else pauseBGM();
+            sfx.click();
+        }
+
+        // Auto-unlock audio and BGM on user gesture
+        function unlockAudio() {
+            getAudioContext();
+            if (musicEnabled && bgm && bgm.paused) {
+                playBGM();
+            }
+        }
+        ['click', 'touchstart', 'touchend', 'pointerdown', 'keydown'].forEach(evt => {
+            window.addEventListener(evt, unlockAudio, { passive: true });
+        });
+
+        /* -------------------------------------------------------------
+           CANVAS PARTICLE FX CELEBRATION ENGINE (60 FPS)
+           ------------------------------------------------------------- */
+        const canvas = document.getElementById('fxCanvas');
+        const fxCtx = canvas ? canvas.getContext('2d') : null;
+        let particles = [];
+        let ambientParticles = [];
+
+        let cachedChassisRect = null;
+        function updateChassisRect() {
+            const chassis = document.getElementById('vipTableChassis');
+            if (chassis) cachedChassisRect = chassis.getBoundingClientRect();
+        }
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            updateChassisRect();
+        }
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, vx, vy, color, size, life, decay, isCoin = false) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.color = color;
+                this.size = size;
+                this.life = life;
+                this.maxLife = life;
+                this.decay = decay;
+                this.isCoin = isCoin;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.rotation += this.rotSpeed;
+                this.vy += 0.16; // gravity
+                this.vx *= 0.98;
+                this.life -= this.decay;
+            }
+            draw(c) {
+                const alpha = Math.max(0, this.life / this.maxLife);
+                if (alpha <= 0) return;
+                c.save();
+                c.globalAlpha = alpha;
+                if (this.isCoin) {
+                    c.translate(this.x, this.y);
+                    c.rotate(this.rotation);
+                    c.beginPath();
+                    c.arc(0, 0, this.size, 0, Math.PI * 2);
+                    c.fillStyle = this.color;
+                    c.fill();
+                    c.strokeStyle = '#fff';
+                    c.lineWidth = 1;
+                    c.stroke();
+                } else {
+                    c.fillStyle = this.color;
+                    c.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+                }
+                c.restore();
+            }
+        }
+
+        function initAmbientMotes() {
+            ambientParticles = [];
+            const w = canvas ? canvas.width : window.innerWidth;
+            const h = canvas ? canvas.height : window.innerHeight;
+            for (let i = 0; i < 30; i++) {
+                ambientParticles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: -0.2 - Math.random() * 0.4,
+                    size: Math.random() * 2.5 + 1,
+                    alpha: Math.random() * 0.4 + 0.15
+                });
+            }
+        }
+        initAmbientMotes();
+
+        const fx = {
+            spawnDaubSparkles(x, y) {
+                if (!canvas) return;
+                const colors = ['#00e700', '#ffd700', '#ffffff', '#00f0ff'];
+                for (let i = 0; i < 22; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 6 + 2;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particles.push(new Particle(
+                        x, y,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed - 2,
+                        color,
+                        Math.random() * 4 + 2,
+                        1.0,
+                        0.025 + Math.random() * 0.02
+                    ));
+                }
+            },
+            spawnLineCelebration(x, y) {
+                if (!canvas) return;
+                const colors = ['#ffd700', '#00e700', '#ffffff', '#ffaa00'];
+                for (let i = 0; i < 35; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 8 + 3;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const isCoin = Math.random() > 0.5;
+                    particles.push(new Particle(
+                        x, y,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed - 2.5,
+                        color,
+                        isCoin ? (Math.random() * 5 + 4) : (Math.random() * 4 + 2),
+                        1.1,
+                        0.018 + Math.random() * 0.015,
+                        isCoin
+                    ));
+                }
+            },
+            spawnFullHouseJackpot() {
+                if (!canvas) return;
+                const cx = canvas.width / 2;
+                const cy = canvas.height * 0.65;
+                const colors = ['#ffd700', '#00e700', '#00f0ff', '#ffffff', '#ff3344'];
+                for (let i = 0; i < 80; i++) {
+                    const angle = -Math.PI / 2 + (Math.random() - 0.5) * 1.6;
+                    const speed = Math.random() * 14 + 6;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const isCoin = Math.random() > 0.45;
+                    particles.push(new Particle(
+                        cx + (Math.random() - 0.5) * 260,
+                        cy,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed,
+                        color,
+                        isCoin ? (Math.random() * 5 + 4) : (Math.random() * 5 + 3),
+                        1.3,
+                        0.012 + Math.random() * 0.01,
+                        isCoin
+                    ));
+                }
+            },
+            spawnSideFireEmbers() {
+                if (!canvas) return;
+                if (!cachedChassisRect) updateChassisRect();
+                if (!cachedChassisRect || cachedChassisRect.width <= 0) return;
+                const rect = cachedChassisRect;
+
+                const fireColors = ['#ff4400', '#ff8800', '#ffd700'];
+
+                // Left side fire particle
+                const yL = rect.top + Math.random() * (rect.height * 0.85) + 15;
+                const xL = rect.left - 2 + (Math.random() - 0.5) * 6;
+                particles.push(new Particle(
+                    xL, yL,
+                    (Math.random() - 0.6) * 0.8,
+                    -(Math.random() * 2.2 + 1),
+                    fireColors[Math.floor(Math.random() * fireColors.length)],
+                    Math.random() * 2.5 + 1.5,
+                    0.7,
+                    0.03
+                ));
+
+                // Right side fire particle
+                const yR = rect.top + Math.random() * (rect.height * 0.85) + 15;
+                const xR = rect.right + 2 + (Math.random() - 0.5) * 6;
+                particles.push(new Particle(
+                    xR, yR,
+                    (Math.random() - 0.4) * 0.8,
+                    -(Math.random() * 2.2 + 1),
+                    fireColors[Math.floor(Math.random() * fireColors.length)],
+                    Math.random() * 2.5 + 1.5,
+                    0.7,
+                    0.03
+                ));
+            }
+        };
+
+        function fxRenderLoop() {
+            if (fxCtx && canvas) {
+                fxCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Emitted side fire embers only during active playing round, throttled
+                if (bingoEngine && bingoEngine.isPlaying) {
+                    if (Math.random() > 0.4) {
+                        fx.spawnSideFireEmbers();
+                    }
+                }
+
+                // Ultra-fast batch rendering for ambient particles with zero save/restore or shadowBlur
+                if (ambientParticles.length > 0) {
+                    fxCtx.fillStyle = '#ffd700';
+                    const len = ambientParticles.length;
+                    for (let i = 0; i < len; i++) {
+                        const p = ambientParticles[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        if (p.y < 0) p.y = canvas.height;
+                        if (p.x < 0) p.x = canvas.width;
+                        if (p.x > canvas.width) p.x = 0;
+
+                        fxCtx.globalAlpha = p.alpha;
+                        fxCtx.fillRect(p.x, p.y, p.size, p.size);
+                    }
+                }
+
+                // Draw active celebration & fire particles
+                const pLen = particles.length;
+                if (pLen > 0) {
+                    if (pLen > 80) particles.splice(0, pLen - 80);
+                    for (let i = particles.length - 1; i >= 0; i--) {
+                        const p = particles[i];
+                        p.update();
+                        p.draw(fxCtx);
+                        if (p.life <= 0) particles.splice(i, 1);
+                    }
+                }
+            }
+            requestAnimationFrame(fxRenderLoop);
+        }
+        requestAnimationFrame(fxRenderLoop);
+
+        /* -------------------------------------------------------------
+           VIP CASINO TABLES DATA & CONFIGURATION
+           ------------------------------------------------------------- */
+        const VIP_TABLES = [
+            {
+                id: 'table-01',
+                num: '#01',
+                name: 'TABLE #01: VEGAS CLASSIC HALL',
+                sub: 'REGULAR SALON • 35 BALLS • 50× MAX',
+                tag: 'STANDARD',
+                icon: '🎲',
+                minBetPKR: 10,
+                maxBetPKR: 50000,
+                minBetUSD: 0.50,
+                maxBetUSD: 500,
+                balls: 35,
+                multipliers: [2.0, 5.0, 15.0, 30.0, 50.0],
+                jackpotBase: 250000,
+                feltClass: 'felt-vegas',
+                players: 14
+            },
+            {
+                id: 'table-07',
+                num: '#07',
+                name: 'TABLE #07: ROYAL VELVET VIP',
+                sub: 'VIP SUITE • 36 BALLS • 60× MAX',
+                tag: 'VIP SILVER',
+                icon: '🥈',
+                minBetPKR: 100,
+                maxBetPKR: 100000,
+                minBetUSD: 2.0,
+                maxBetUSD: 1000,
+                balls: 36,
+                multipliers: [2.5, 6.0, 18.0, 35.0, 60.0],
+                jackpotBase: 650000,
+                feltClass: 'felt-velvet',
+                players: 21
+            },
+            {
+                id: 'table-18',
+                num: '#18',
+                name: 'TABLE #18: DUBAI GOLD SALON',
+                sub: 'HIGH ROLLER • 37 BALLS • 75× MAX',
+                tag: 'GOLD VIP',
+                icon: '👑',
+                minBetPKR: 500,
+                maxBetPKR: 200000,
+                minBetUSD: 10.0,
+                maxBetUSD: 2000,
+                balls: 37,
+                multipliers: [3.0, 8.0, 22.0, 45.0, 75.0],
+                jackpotBase: 1450000,
+                feltClass: 'felt-dubai',
+                players: 32
+            },
+            {
+                id: 'table-77',
+                num: '#77',
+                name: 'TABLE #77: MACAU DIAMOND SUITE',
+                sub: 'ROYALE HIGH STAKES • 38 BALLS • 100× MAX',
+                tag: 'VIP ROYALE',
+                icon: '💎',
+                minBetPKR: 2000,
+                maxBetPKR: 250000,
+                minBetUSD: 25.0,
+                maxBetUSD: 2500,
+                balls: 38,
+                multipliers: [4.0, 10.0, 30.0, 60.0, 100.0],
+                jackpotBase: 3248500,
+                feltClass: 'felt-diamond',
+                players: 48
+            }
+        ];
+
+        let dynamicJackpots = {
+            'table-01': 258400,
+            'table-07': 682100,
+            'table-18': 1520300,
+            'table-77': 3248500
+        };
+
+        /* -------------------------------------------------------------
+           AUTHENTIC BINGO 75-BALL GAME ENGINE
+           ------------------------------------------------------------- */
+        class BingoStudioEngine {
+            constructor() {
+                this.card = []; // 5x5 numbers
+                this.marked = []; // 5x5 booleans
+                this.calledBalls = [];
+                this.isPlaying = false;
+                this.betAmount = 100;
+                this.callInterval = null;
+                this.maxCalls = 38;
+                this.isTurbo = false;
+                this.lastWinLines = 0;
+                this.currentTable = VIP_TABLES[3]; // Default Macau Diamond
+            }
+
+            init() {
+                const savedTableId = localStorage.getItem('bwn_bingo_vip_table') || 'table-77';
+                this.applyVipTable(savedTableId, false);
+                this.shuffleCard();
+                this.updatePrizeStrip(0);
+                this.updateUI();
+            }
+
+            applyVipTable(tableId, playSound = false) {
+                const found = VIP_TABLES.find(t => t.id === tableId) || VIP_TABLES[3];
+                this.currentTable = found;
+                this.maxCalls = found.balls;
+                localStorage.setItem('bwn_bingo_vip_table', found.id);
+
+                // Update table felt chassis style
+                const chassis = document.getElementById('vipTableChassis');
+                if (chassis) {
+                    chassis.className = `vip-table-chassis ${found.feltClass}`;
+                    if (typeof updateChassisRect === 'function') updateChassisRect();
+                }
+
+                // Update brass plaque
+                const pIcon = document.getElementById('plaqueIcon');
+                if (pIcon) pIcon.textContent = found.icon;
+
+                const pName = document.getElementById('plaqueTableName');
+                if (pName) pName.textContent = found.name;
+
+                const pSub = document.getElementById('plaqueTableSub');
+                if (pSub) pSub.textContent = found.sub;
+
+                const topTag = document.getElementById('topbarTableTag');
+                if (topTag) topTag.textContent = found.num;
+
+                const actPlayers = document.getElementById('tableActivePlayers');
+                if (actPlayers) actPlayers.textContent = `${found.players} VIPs Active`;
+
+                // Update caller unit subtext
+                const callerSub = document.getElementById('callerSubText');
+                if (callerSub && !this.isPlaying) {
+                    callerSub.textContent = `${found.balls} balls live draw • Match lines to win`;
+                }
+
+                // Update multipliers on ladder strip
+                found.multipliers.forEach((m, idx) => {
+                    const el = document.getElementById(`prize-val-${idx + 1}`);
+                    if (el) el.textContent = `${m}×`;
+                });
+
+                // Update bet limits and clamp bet amount
+                const curr = getActiveCurrency();
+                const minBet = (curr === 'USD') ? found.minBetUSD : found.minBetPKR;
+                const maxBet = (curr === 'USD') ? found.maxBetUSD : found.maxBetPKR;
+
+                const input = document.getElementById('betInput');
+                if (input) {
+                    let curVal = parseFloat(input.value) || minBet;
+                    if (curVal < minBet) curVal = minBet;
+                    if (curVal > maxBet) curVal = maxBet;
+                    input.value = (curr === 'USD') ? curVal.toFixed(2) : Math.round(curVal);
+                }
+
+                updateBalanceUI();
+
+                if (playSound) {
+                    sfx.tableSwitch();
+                    if (window.core && typeof window.core.showToast === 'function') {
+                        window.core.showToast(`Switched to ${found.name}`, 'success');
+                    }
+                }
+            }
+
+            addChipBet(chipValue) {
+                if (this.isPlaying) return;
+                const input = document.getElementById('betInput');
+                if (!input) return;
+
+                const curr = getActiveCurrency();
+                const minBet = (curr === 'USD') ? this.currentTable.minBetUSD : this.currentTable.minBetPKR;
+                const maxBet = (curr === 'USD') ? this.currentTable.maxBetUSD : this.currentTable.maxBetPKR;
+
+                let curVal = parseFloat(input.value) || 0;
+                let inc = (curr === 'USD') ? (chipValue / 50) : chipValue;
+                let nextVal = Math.min(maxBet, Math.max(minBet, curVal + inc));
+
+                input.value = (curr === 'USD') ? nextVal.toFixed(2) : Math.round(nextVal);
+                sfx.chip();
+
+                const chipBtn = document.getElementById(`chip-${chipValue}`);
+                if (chipBtn) {
+                    chipBtn.classList.add('chip-tapped');
+                    setTimeout(() => chipBtn.classList.remove('chip-tapped'), 140);
+                }
+            }
+
+            getLetter(num) {
+                if (num <= 15) return 'B';
+                if (num <= 30) return 'I';
+                if (num <= 45) return 'N';
+                if (num <= 60) return 'G';
+                return 'O';
+            }
+
+            toggleTurbo() {
+                this.isTurbo = !this.isTurbo;
+                const label = document.getElementById('turboLabel');
+                const tag = document.getElementById('speedIndicatorTag');
+                const btn = document.getElementById('btnTurboToggle');
+                if (label) label.textContent = this.isTurbo ? 'TURBO: ON' : 'TURBO: OFF';
+                if (tag) {
+                    tag.textContent = this.isTurbo ? 'TURBO 2X' : 'NORMAL';
+                    tag.style.color = this.isTurbo ? '#00e700' : '#ffd700';
+                }
+                if (btn) btn.classList.toggle('active', this.isTurbo);
+                sfx.click();
+            }
+
+            shuffleCard() {
+                if (this.isPlaying) return;
+
+                const ranges = [
+                    [1, 15],   // B
+                    [16, 30],  // I
+                    [31, 45],  // N
+                    [46, 60],  // G
+                    [61, 75]   // O
+                ];
+
+                this.card = [];
+                this.marked = [];
+
+                for (let r = 0; r < 5; r++) {
+                    this.card[r] = [];
+                    this.marked[r] = [];
+                }
+
+                for (let col = 0; col < 5; col++) {
+                    const [min, max] = ranges[col];
+                    const pool = [];
+                    for (let n = min; n <= max; n++) pool.push(n);
+
+                    for (let row = 0; row < 5; row++) {
+                        if (row === 2 && col === 2) {
+                            this.card[row][col] = 'FREE';
+                            this.marked[row][col] = true;
+                        } else {
+                            const idx = Math.floor(Math.random() * pool.length);
+                            this.card[row][col] = pool.splice(idx, 1)[0];
+                            this.marked[row][col] = false;
+                        }
+                    }
+                }
+
+                this.calledBalls = [];
+                this.lastWinLines = 0;
+                this.renderCard();
+
+                const orb = document.getElementById('callerBallOrb');
+                if (orb) {
+                    orb.className = 'bingo-ball-orb';
+                    orb.textContent = '--';
+                }
+
+                const title = document.getElementById('callerTitleText');
+                if (title) title.textContent = 'Live Blower Ready';
+
+                const sub = document.getElementById('callerSubText');
+                if (sub) sub.textContent = `${this.currentTable.balls} balls live draw • Match lines to win`;
+
+                const track = document.getElementById('callsTrackWrap');
+                if (track) track.innerHTML = '';
+
+                this.updatePrizeStrip(0);
+                sfx.click();
+            }
+
+            buildGridDOM() {
+                const grid = document.getElementById('bingoGrid');
+                if (!grid) return;
+                grid.innerHTML = '';
+                this.gridCells = [];
+
+                for (let r = 0; r < 5; r++) {
+                    this.gridCells[r] = [];
+                    for (let c = 0; c < 5; c++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'bingo-tile';
+                        cell.id = `cell-${r}-${c}`;
+                        cell.onclick = () => this.handleTileClick(r, c);
+                        grid.appendChild(cell);
+                        this.gridCells[r][c] = cell;
+                    }
+                }
+            }
+
+            renderCard(winningLines = []) {
+                if (!this.gridCells || this.gridCells.length !== 5) {
+                    this.buildGridDOM();
+                }
+
+                // Build O(1) set of winning tiles
+                const winSet = new Set();
+                if (winningLines && winningLines.length > 0) {
+                    for (let l = 0; l < winningLines.length; l++) {
+                        const line = winningLines[l];
+                        for (let p = 0; p < line.length; p++) {
+                            winSet.add((line[p][0] << 3) | line[p][1]);
+                        }
+                    }
+                }
+
+                for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 5; c++) {
+                        const cell = this.gridCells[r][c];
+                        if (!cell) continue;
+                        const val = this.card[r][c];
+                        const isMarked = this.marked[r][c];
+                        const isFree = (val === 'FREE');
+                        const isWinning = winSet.has((r << 3) | c);
+
+                        if (isFree) {
+                            if (cell.textContent !== '⭐ FREE') {
+                                cell.className = 'bingo-tile free-space';
+                                cell.textContent = '⭐ FREE';
+                            }
+                        } else {
+                            let cls = 'bingo-tile';
+                            if (isMarked) cls += ' marked';
+                            if (isWinning) cls += ' winning-line';
+                            if (cell.className !== cls) cell.className = cls;
+                            const textVal = String(val);
+                            if (cell.textContent !== textVal) cell.textContent = textVal;
+                        }
+                    }
+                }
+            }
+
+            handleTileClick(r, c) {
+                // Interactive manual daubing if tile is in called balls
+                if (!this.isPlaying) return;
+                const val = this.card[r][c];
+                if (val === 'FREE') return;
+
+                if (this.calledBalls.includes(val) && !this.marked[r][c]) {
+                    this.marked[r][c] = true;
+                    sfx.daub();
+
+                    const tile = document.getElementById(`cell-${r}-${c}`);
+                    if (tile) {
+                        const rect = tile.getBoundingClientRect();
+                        fx.spawnDaubSparkles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                    }
+
+                    const { count, lines } = this.checkPatterns();
+                    this.renderCard(lines);
+                    this.updatePrizeStrip(count);
+                }
+            }
+
+            startRound() {
+                if (this.isPlaying) return;
+                const input = document.getElementById('betInput');
+                const curr = getActiveCurrency();
+                const minBet = (curr === 'USD') ? this.currentTable.minBetUSD : this.currentTable.minBetPKR;
+                const maxBet = (curr === 'USD') ? this.currentTable.maxBetUSD : this.currentTable.maxBetPKR;
+
+                let bet = parseFloat(input ? input.value : minBet) || minBet;
+                if (bet < minBet) bet = minBet;
+                if (bet > maxBet) bet = maxBet;
+                this.betAmount = bet;
+                if (input) input.value = (curr === 'USD') ? bet.toFixed(2) : Math.round(bet);
+
+                const w = getWallet();
+                if (w && typeof w.placeBet === 'function') {
+                    if (!w.placeBet(this.betAmount, `Bingo 75 ${this.currentTable.name}`)) {
+                        if (window.core && typeof window.core.showToast === 'function') {
+                            window.core.showToast('Insufficient wallet balance!', 'error');
+                        } else {
+                            alert('Insufficient wallet balance! Please deposit to play.');
+                        }
+                        return;
+                    }
+                }
+
+                updateBalanceUI();
+
+                // Auto-start BGM if enabled
+                if (musicEnabled && bgm && bgm.paused) {
+                    playBGM();
+                }
+
+                this.isPlaying = true;
+                this.calledBalls = [];
+                this.lastWinLines = 0;
+                this.shuffleCard();
+
+                const btn = document.getElementById('btnMainAction');
+                if (btn) {
+                    btn.classList.add('running');
+                    btn.disabled = true;
+                    btn.innerHTML = '<span>CALLING BALLS...</span> <span>⏳</span>';
+                }
+
+                const chassis = document.getElementById('vipTableChassis');
+                if (chassis) chassis.classList.add('fire-roaring');
+
+                const shuffleBtn = document.getElementById('btnShuffleCard');
+                if (shuffleBtn) shuffleBtn.disabled = true;
+
+                const title = document.getElementById('callerTitleText');
+                if (title) title.textContent = 'Live Air Blower Active';
+
+                // 75 balls pool
+                const pool = [];
+                for (let i = 1; i <= 75; i++) pool.push(i);
+
+                let callsCount = 0;
+                const drawDelay = this.isTurbo ? 180 : 380;
+                const totalCalls = this.currentTable.balls;
+
+                this.callInterval = setInterval(() => {
+                    const idx = Math.floor(Math.random() * pool.length);
+                    const ball = pool.splice(idx, 1)[0];
+                    const letter = this.getLetter(ball);
+                    this.calledBalls.push(ball);
+                    callsCount++;
+
+                    // Visual Caller Orb
+                    const orb = document.getElementById('callerBallOrb');
+                    if (orb) {
+                        orb.className = `bingo-ball-orb ball-${letter} pop-in`;
+                        orb.textContent = `${letter}${ball}`;
+                        setTimeout(() => { if (orb) orb.classList.remove('pop-in'); }, this.isTurbo ? 120 : 200);
+                    }
+
+                    const sub = document.getElementById('callerSubText');
+                    if (sub) {
+                        sub.textContent = `Call #${callsCount}: ${letter}-${ball} • ${totalCalls - callsCount} left`;
+                    }
+
+                    sfx.ballDrop();
+
+                    let hasMatched = false;
+                    let matchedR = -1, matchedC = -1;
+
+                    // Auto-mark matched ball on card
+                    for (let r = 0; r < 5; r++) {
+                        for (let c = 0; c < 5; c++) {
+                            if (this.card[r][c] === ball) {
+                                this.marked[r][c] = true;
+                                hasMatched = true;
+                                matchedR = r;
+                                matchedC = c;
+                            }
+                        }
+                    }
+
+                    // Prepend to called balls track
+                    const track = document.getElementById('callsTrackWrap');
+                    if (track) {
+                        const mini = document.createElement('div');
+                        mini.className = `mini-ball ${hasMatched ? 'matched' : ''}`;
+                        mini.textContent = ball;
+                        track.insertBefore(mini, track.firstChild);
+                    }
+
+                    if (hasMatched) {
+                        sfx.daub();
+                        const tile = document.getElementById(`cell-${matchedR}-${matchedC}`);
+                        if (tile) {
+                            const rect = tile.getBoundingClientRect();
+                            fx.spawnDaubSparkles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                        }
+                    }
+
+                    // Check completed lines
+                    const { count, lines } = this.checkPatterns();
+                    this.renderCard(lines);
+                    this.updatePrizeStrip(count);
+
+                    if (count > this.lastWinLines) {
+                        this.lastWinLines = count;
+                        if (count >= 5) {
+                            sfx.fullHouse();
+                            fx.spawnFullHouseJackpot();
+                        } else {
+                            sfx.lineWin();
+                            const grid = document.getElementById('bingoGrid');
+                            if (grid) {
+                                const rect = grid.getBoundingClientRect();
+                                fx.spawnLineCelebration(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                            }
+                        }
+                    }
+
+                    // Round ends after totalCalls or Full House
+                    if (callsCount >= totalCalls || count >= 5) {
+                        clearInterval(this.callInterval);
+                        this.finishRound(count);
+                    }
+                }, drawDelay);
+            }
+
+            checkPatterns() {
+                const lines = [];
+
+                // Check 5 rows
+                for (let r = 0; r < 5; r++) {
+                    if (this.marked[r].every(v => v)) {
+                        lines.push([[r,0], [r,1], [r,2], [r,3], [r,4]]);
+                    }
+                }
+
+                // Check 5 columns
+                for (let c = 0; c < 5; c++) {
+                    if ([0, 1, 2, 3, 4].every(r => this.marked[r][c])) {
+                        lines.push([[0,c], [1,c], [2,c], [3,c], [4,c]]);
+                    }
+                }
+
+                // Main diagonal (top-left to bottom-right)
+                if ([0, 1, 2, 3, 4].every(i => this.marked[i][i])) {
+                    lines.push([[0,0], [1,1], [2,2], [3,3], [4,4]]);
+                }
+
+                // Anti-diagonal (top-right to bottom-left)
+                if ([0, 1, 2, 3, 4].every(i => this.marked[i][4 - i])) {
+                    lines.push([[0,4], [1,3], [2,2], [3,1], [4,0]]);
+                }
+
+                return { count: lines.length, lines };
+            }
+
+            updatePrizeStrip(completedLines) {
+                for (let i = 1; i <= 5; i++) {
+                    const pill = document.getElementById(`prize-line-${i}`);
+                    if (pill) {
+                        if (completedLines >= i) pill.classList.add('active');
+                        else pill.classList.remove('active');
+                    }
+                }
+            }
+
+            finishRound(linesCount) {
+                this.isPlaying = false;
+
+                const chassis = document.getElementById('vipTableChassis');
+                if (chassis) chassis.classList.remove('fire-roaring');
+
+                const btn = document.getElementById('btnMainAction');
+                if (btn) {
+                    btn.classList.remove('running');
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>BUY TICKET & START 🎫</span>';
+                }
+
+                const shuffleBtn = document.getElementById('btnShuffleCard');
+                if (shuffleBtn) shuffleBtn.disabled = false;
+
+                const title = document.getElementById('callerTitleText');
+                if (title) title.textContent = 'Draw Complete';
+
+                // VIP Table Multipliers
+                const mults = this.currentTable.multipliers;
+                let mult = 0;
+                if (linesCount === 1) mult = mults[0];
+                else if (linesCount === 2) mult = mults[1];
+                else if (linesCount === 3) mult = mults[2];
+                else if (linesCount === 4) mult = mults[3];
+                else if (linesCount >= 5) mult = mults[4];
+
+                const winAmount = this.betAmount * mult;
+                const w = getWallet();
+                if (w && typeof w.creditWin === 'function') {
+                    w.creditWin(this.betAmount, winAmount, `Bingo 75 ${this.currentTable.name}`, mult, `${linesCount} Lines Completed`);
+                }
+
+                updateBalanceUI();
+
+                const sub = document.getElementById('callerSubText');
+                if (mult > 0) {
+                    if (chassis) {
+                        chassis.classList.add('fire-roaring');
+                        setTimeout(() => { if (!this.isPlaying && chassis) chassis.classList.remove('fire-roaring'); }, 3500);
+                    }
+                    if (sub) sub.textContent = `WINNER! ${linesCount} Lines Completed (${mult}×)`;
+                    // Show celebration modal
+                    const modal = document.getElementById('bingoWinModal');
+                    const mTitle = document.getElementById('modalWinTitle');
+                    const mMult = document.getElementById('modalWinMult');
+                    const mAmt = document.getElementById('modalWinAmt');
+                    if (mTitle) mTitle.textContent = (linesCount >= 5) ? '🌟 FULL HOUSE JACKPOT! 🌟' : `🎉 ${linesCount} LINES COMPLETED!`;
+                    if (mMult) mMult.textContent = `${mult.toFixed(2)}×`;
+                    if (mAmt) mAmt.textContent = formatCurrency(winAmount);
+                    if (modal) modal.classList.add('active');
+                } else {
+                    if (sub) sub.textContent = 'Draw ended. Better luck next ticket!';
+                }
+            }
+
+            closeWinModal() {
+                const modal = document.getElementById('bingoWinModal');
+                if (modal) modal.classList.remove('active');
+            }
+
+            updateUI() {
+                updateBalanceUI();
+            }
+        }
+
+        const bingoEngine = new BingoStudioEngine();
+
+        /* -------------------------------------------------------------
+           VIP TABLE SELECTION MODAL LOGIC
+           ------------------------------------------------------------- */
+        function openVipTableModal() {
+            const modal = document.getElementById('vipTableModal');
+            const list = document.getElementById('vipTablesList');
+            if (!modal || !list) return;
+
+            const curr = getActiveCurrency();
+            const activeId = bingoEngine.currentTable.id;
+
+            list.innerHTML = VIP_TABLES.map(table => {
+                const isActive = (table.id === activeId);
+                const minBet = (curr === 'USD') ? `$ ${table.minBetUSD}` : `₨ ${table.minBetPKR.toLocaleString()}`;
+                const maxBet = (curr === 'USD') ? `$ ${table.maxBetUSD.toLocaleString()}` : `₨ ${table.maxBetPKR.toLocaleString()}`;
+                const pot = dynamicJackpots[table.id] || table.jackpotBase;
+                const potFormatted = (curr === 'USD') ? `$ ${(pot / 280).toFixed(0)}` : `₨ ${pot.toLocaleString()}`;
+
+                return `
+                    <div class="vip-table-item ${isActive ? 'active-table' : ''}" onclick="selectVipTable('${table.id}')">
+                        <div class="vip-table-item-left">
+                            <span class="vip-table-badge-icon">${table.icon}</span>
+                            <div>
+                                <div class="vip-table-item-name">${table.name}</div>
+                                <div class="vip-table-item-tag">${table.tag} • ${table.balls} BALLS DRAWN</div>
+                                <div class="vip-table-item-stats">LIMIT: ${minBet} - ${maxBet} • UP TO ${table.multipliers[4]}×</div>
+                            </div>
+                        </div>
+                        <div class="vip-table-item-right">
+                            <div class="vip-table-item-pot">${potFormatted}</div>
+                            <div class="vip-table-item-status">${isActive ? '● PLAYING' : 'ENTER TABLE →'}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            modal.classList.add('active');
+            sfx.click();
+        }
+
+        function closeVipTableModal() {
+            const modal = document.getElementById('vipTableModal');
+            if (modal) modal.classList.remove('active');
+            sfx.click();
+        }
+
+        function selectVipTable(tableId) {
+            bingoEngine.applyVipTable(tableId, true);
+            closeVipTableModal();
+        }
+
+        // Live Progressive Jackpot Ticker
+        setInterval(() => {
+            Object.keys(dynamicJackpots).forEach(k => {
+                dynamicJackpots[k] += Math.floor(Math.random() * 240) + 40;
+            });
+            const currTableId = bingoEngine.currentTable ? bingoEngine.currentTable.id : 'table-77';
+            const plaquePot = document.getElementById('plaqueJackpotVal');
+            if (plaquePot) {
+                const amt = dynamicJackpots[currTableId] || 3248500;
+                const cur = getActiveCurrency();
+                const displayAmt = (cur === 'USD') ? (amt / 280) : amt;
+                plaquePot.textContent = formatCurrency(displayAmt);
+            }
+        }, 2200);
+
+        /* -------------------------------------------------------------
+           THEME & WALLET CONTROLS
+           ------------------------------------------------------------- */
+        function switchBingoTheme(themeName, playSound = true) {
+            document.body.className = '';
+            document.body.classList.add(themeName);
+            localStorage.setItem('bwn_bingo_theme', themeName);
+            if (playSound) sfx.click();
+        }
+
+        function adjustBet(type) {
+            const input = document.getElementById('betInput');
+            if (!input || bingoEngine.isPlaying) return;
+            let val = parseFloat(input.value) || 10;
+            const curr = getActiveCurrency();
+            const tbl = bingoEngine.currentTable || VIP_TABLES[3];
+            const minBet = (curr === 'USD') ? tbl.minBetUSD : tbl.minBetPKR;
+            const maxBet = (curr === 'USD') ? tbl.maxBetUSD : tbl.maxBetPKR;
+
+            if (type === 'min') val = minBet;
+            else if (type === 'half') val = Math.max(minBet, val / 2);
+            else if (type === 'double') val = Math.min(maxBet, val * 2);
+            else if (type === 'max') val = maxBet;
+
+            input.value = (curr === 'USD') ? val.toFixed(2) : Math.round(val);
+            sfx.click();
+        }
+
+        function getWallet() {
+            return window.wallet || null;
+        }
+
+        function getActiveCurrency() {
+            const w = getWallet();
+            return (w && typeof w.getCurrency === 'function') ? w.getCurrency() : 'PKR';
+        }
+
+        function formatCurrency(amt) {
+            const curr = getActiveCurrency();
+            const sym = (curr === 'USD') ? '$ ' : '₨ ';
+            return sym + Number(amt || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function updateBalanceUI() {
+            const w = getWallet();
+            const bal = (w && typeof w.getBalance === 'function') ? w.getBalance() : 0;
+            const el = document.getElementById('headerBalance');
+            if (el) el.textContent = formatCurrency(bal);
+
+            const curr = getActiveCurrency();
+            const tag = document.getElementById('betCurrencyTag');
+            if (tag) tag.textContent = (curr === 'USD') ? '$' : '₨';
+
+            const limit = document.getElementById('betLimitLabel');
+            if (limit) {
+                const tbl = (bingoEngine && bingoEngine.currentTable) ? bingoEngine.currentTable : VIP_TABLES[3];
+                const minBet = (curr === 'USD') ? `$ ${tbl.minBetUSD}` : `₨ ${tbl.minBetPKR.toLocaleString()}`;
+                const maxBet = (curr === 'USD') ? `$ ${tbl.maxBetUSD.toLocaleString()}` : `₨ ${tbl.maxBetPKR.toLocaleString()}`;
+                limit.textContent = `MIN: ${minBet} • MAX: ${maxBet}`;
+            }
+        }
+
+        async function syncWalletSession() {
+            let activeUser = null;
+            try {
+                const sess = localStorage.getItem('bwn_session_user');
+                if (sess) activeUser = JSON.parse(sess);
+            } catch(e) {}
+
+            try {
+                const res = await fetch('/api/auth.php?action=me', { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.success && data.data && data.data.id) {
+                        activeUser = data.data;
+                        localStorage.setItem('bwn_session_user', JSON.stringify(activeUser));
+                    }
+                }
+            } catch(e) {}
+
+            // User avatar sync
+            try {
+                const avWrap = document.getElementById('headerUserAvatar');
+                if (avWrap && activeUser) {
+                    if (activeUser.avatar && (activeUser.avatar.startsWith('http') || activeUser.avatar.startsWith('data:') || activeUser.avatar.includes('/'))) {
+                        avWrap.innerHTML = `<img src="${activeUser.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" alt="Avatar">`;
+                    } else if (activeUser.avatar) {
+                        avWrap.innerHTML = `<span style="font-size:15px;">${activeUser.avatar}</span>`;
+                    }
+                }
+            } catch(e) {}
+
+            updateBalanceUI();
+        }
+
+        /* -------------------------------------------------------------
+           INITIALIZATION & DOM BUILD
+           ------------------------------------------------------------- */
+        document.addEventListener('DOMContentLoaded', async () => {
+            await syncWalletSession();
+            initMusicPreference();
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('bwn_bingo_theme') || 'theme-vegas';
+            switchBingoTheme(savedTheme, false);
+            const themeSel = document.getElementById('themeSelectBingo');
+            if (themeSel) themeSel.value = savedTheme;
+
+            bingoEngine.init();
+        });
+
+        /* -------------------------------------------------------------
+           PRAGMATIC PLAY LOADING FLOW (Direct entry & auto-music)
+           ------------------------------------------------------------- */
+        (function initLoading() {
+            const ppScreen = document.getElementById('pp-loading-screen');
+            const ppBar = document.getElementById('pp-bar-fill');
+            if (!ppScreen || !ppBar) return;
+
+            let pct = 0;
+            let finished = false;
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                ppBar.style.width = '100%';
+                setTimeout(() => {
+                    ppScreen.classList.add('pp-fade-out');
+                    // Automatically trigger music right after loader finishes
+                    playBGM();
+                    setTimeout(() => {
+                        if (ppScreen.parentNode) ppScreen.parentNode.removeChild(ppScreen);
+                    }, 500);
+                }, 200);
+            }
+
+            const step = () => {
+                if (finished) return;
+                pct += Math.floor(Math.random() * 15) + 12;
+                if (pct > 100) pct = 100;
+                ppBar.style.width = pct + '%';
+                if (pct < 100) setTimeout(step, 70);
+                else finish();
+            };
+
+            setTimeout(finish, 2000);
+            setTimeout(step, 80);
+        })();
+    </script>
+</body>
+</html>

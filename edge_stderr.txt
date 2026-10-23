@@ -1,0 +1,21 @@
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:30] EACPolicyManager::Create C:\Users\as\AppData\Local\Temp\HeadlessEdge79646778750 1
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:164] EACPolicyStore load from disk failed: no policy file exists at C:\Users\as\AppData\Local\Temp\HeadlessEdge79646778750\Policy\Machine Policy
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:252] EACPolicyStore policy loaded: result.status=EACPolicyLoadStatusForUma(1), scope=TOKEN
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:262] EACPolicyStore policy load failed: No policy found on disk, scope=TOKEN
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:30] EACPolicyManager::Create C:\Users\as\AppData\Local\Temp\HeadlessEdge79646778750 1
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:164] EACPolicyStore load from disk failed: no policy file exists at C:\Users\as\AppData\Local\Temp\HeadlessEdge79646778750\Policy\Profile Machine Policy
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:252] EACPolicyStore policy loaded: result.status=EACPolicyLoadStatusForUma(1), scope=PROFILE_MACHINE
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:262] EACPolicyStore policy load failed: No policy found on disk, scope=PROFILE_MACHINE
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:30] EACPolicyManager::Create C:\Users\as\AppData\Local\Temp\HeadlessEdge79646778750 1
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:164] EACPolicyStore load from disk failed: no policy file exists at C:\Users\as\AppData\Local\Temp\HeadlessEdge79646778750\Policy\Web Content Filtering Tasks
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:252] EACPolicyStore policy loaded: result.status=EACPolicyLoadStatusForUma(1), scope=UNKNOWN
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_store.cc:262] EACPolicyStore policy load failed: No policy found on disk, scope=UNKNOWN
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:60] EACPolicyManager initializing, scope=TOKEN 0x23e80002c500
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:176] EACPolicyManager store loaded, scope=TOKEN
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:124] EACPolicyManager publishing policies, scope=TOKEN 0x23e80002c500
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:60] EACPolicyManager initializing, scope=PROFILE_MACHINE 0x23e80002c600
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:176] EACPolicyManager store loaded, scope=PROFILE_MACHINE
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:124] EACPolicyManager publishing policies, scope=PROFILE_MACHINE 0x23e80002c600
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:60] EACPolicyManager initializing, scope=UNKNOWN 0x23e80002c700
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:176] EACPolicyManager store loaded, scope=UNKNOWN
+[7964:12592:0926/084421.128:VERBOSE1:components\policy\core\common\edge_admin_center\eac_policy_manager.cc:124] EACPolicyManager publishing policies, scope=UNKNOWN 0x23e80002c700

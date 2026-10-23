@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /games/tp_engine/
+
+# If file exists statically, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Otherwise forward to cdn_proxy.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ cdn_proxy.php?file=$1 [QSA,L]
+</IfModule>

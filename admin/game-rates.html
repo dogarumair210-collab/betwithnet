@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>17 Games RTP Matrix - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .rtp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+        .rtp-card {
+            background: #111722;
+            border: 1px solid var(--lte-border);
+            border-radius: 8px;
+            padding: 16px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .rtp-card:hover {
+            border-color: rgba(0, 231, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        .rtp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .rtp-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #1b2433;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .rtp-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--lte-green);
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--lte-green);
+        }
+        .rtp-btn-preset {
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8e9bb0;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .rtp-btn-preset:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)">
+                    <span>⋮</span>
+                </button>
+                <span class="navbar-breadcrumb">Casino Studios / <b style="color:#fff;">17 Games RTP & Betting Limits</b></span>
+            </div>
+            <div class="navbar-right">
+                <button onclick="resetAllToDefault()" class="btn-lte btn-lte-secondary">
+                    <span>↺ Reset All Defaults</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">
+                        <span>🎯</span> 17 Games Return-To-Player (RTP) & Win/Loss Matrix
+                    </h1>
+                    <p style="font-size:12px; color:var(--lte-muted); margin-top:4px;">
+                        Control mathematical payout percentages for every individual game or trigger platform-wide rig overrides.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Global Casino Master Overrides -->
+            <div class="lte-card" style="margin-bottom:24px; background:linear-gradient(135deg, rgba(245,197,24,0.06) 0%, #111722 100%);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                    <div>
+                        <div style="font-size:12px; font-weight:800; color:var(--lte-gold); text-transform:uppercase; letter-spacing:0.5px;">
+                            👑 Platform-Wide Global Override Switch:
+                        </div>
+                        <div style="font-size:11px; color:var(--lte-muted); margin-top:2px;">
+                            Overrules all games simultaneously when active.
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button id="btn-rig-normal" class="btn-lte btn-lte-secondary" onclick="setGlobalRig('normal')">
+                            <span>⚖️ Fair Mode (Calculated)</span>
+                        </button>
+                        <button id="btn-rig-win" class="btn-lte btn-lte-secondary" style="color:var(--lte-green);" onclick="setGlobalRig('force_win')">
+                            <span>👑 Force Win (100% Win)</span>
+                        </button>
+                        <button id="btn-rig-loss" class="btn-lte btn-lte-secondary" style="color:var(--lte-red);" onclick="setGlobalRig('force_loss')">
+                            <span>💀 Force Loss (100% House)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <hr style="border:0; border-top:1px solid rgba(255,255,255,0.07); margin:16px 0;">
+
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                    <div>
+                        <div style="font-size:12px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:0.5px;">
+                            🌐 Platform Global Bet Limits (USD $):
+                        </div>
+                        <div style="font-size:11px; color:var(--lte-muted); margin-top:2px;">
+                            Fallback bounds enforced on all games unless overridden below.
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                        <div>
+                            <span style="font-size:11px; color:var(--lte-muted); margin-right:6px;">Global Min:</span>
+                            <input type="number" id="global-min-bet" step="0.10" class="form-ctrl" style="width:85px; display:inline-block; padding:4px 8px; font-size:12px;" value="0.50">
+                        </div>
+                        <div>
+                            <span style="font-size:11px; color:var(--lte-muted); margin-right:6px;">Global Max:</span>
+                            <input type="number" id="global-max-bet" step="10" class="form-ctrl" style="width:105px; display:inline-block; padding:4px 8px; font-size:12px;" value="1000">
+                        </div>
+                        <button class="btn-lte btn-lte-primary" onclick="saveGlobalLimits()">
+                            <span>💾 Save Global Limits</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search / Filter -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+                <input type="text" id="game-search" class="form-ctrl" style="max-width:320px;" placeholder="🔍 Search games (e.g. Crash, Mines, Keno)..." oninput="filterGames(this.value)">
+                <div style="font-size:12px; color:var(--lte-muted);">
+                    Showing <b style="color:#fff;" id="game-count-label">17</b> Active Casino Studios
+                </div>
+            </div>
+
+            <!-- 17 Games RTP Grid -->
+            <div class="rtp-grid" id="games-grid">
+                <!-- Dynamically populated -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        const ALL_GAMES = [
+            { id: 'crash', name: '🚀 Crash Game', defaultRate: 35 },
+            { id: 'card', name: '🎴 Card Game (Dragon/BJ)', defaultRate: 48 },
+            { id: 'roulette', name: '🎡 Roulette European', defaultRate: 48 },
+            { id: 'slots', name: '🎰 Slots Vegas 5-Reel', defaultRate: 45 },
+            { id: 'dice', name: '🎲 Dice Game', defaultRate: 49 },
+            { id: 'wheel', name: '🎡 Wheel Spin Game', defaultRate: 45 },
+            { id: 'plinko', name: '⚪ Plinko Pegboard', defaultRate: 48 },
+            { id: 'limbo', name: '🚀 Limbo Turbo Rocket', defaultRate: 6 },
+            { id: 'mines', name: '💣 Mines Field 5x5', defaultRate: 48 },
+            { id: 'keno', name: '🎱 Keno 80-Ball Lottery', defaultRate: 45 },
+            { id: 'bingo', name: '🎫 Bingo 75-Ball Vegas', defaultRate: 45 },
+            { id: 'blackjack', name: '♠️ Blackjack 21 VIP', defaultRate: 49 },
+            { id: 'poker', name: '🃏 Video Poker (Jacks)', defaultRate: 45 },
+            { id: 'lucky', name: '🍀 Lucky Number 777', defaultRate: 48 },
+            { id: 'scratch', name: '🎟️ Lucky Scratch VIP', defaultRate: 45 },
+            { id: 'coinflip', name: '🪙 Coin Flip VIP', defaultRate: 49 },
+            { id: 'hilo', name: '🃏 Hi-Lo VIP Studio', defaultRate: 48 }
+        ];
+
+        function renderRTPGrid(filter = '') {
+            const container = document.getElementById('games-grid');
+            const filtered = ALL_GAMES.filter(g => g.name.toLowerCase().includes(filter.toLowerCase()) || g.id.includes(filter.toLowerCase()));
+            document.getElementById('game-count-label').innerText = filtered.length;
+
+            // Load global limits
+            const cfg = window.adminConfig.config || {};
+            document.getElementById('global-min-bet').value = cfg.globalMinBet || 0.50;
+            document.getElementById('global-max-bet').value = cfg.globalMaxBet || 1000;
+
+            container.innerHTML = filtered.map(g => {
+                const currentRate = window.adminConfig.getGameWinRate(g.id);
+                const minBet = window.adminConfig.getGameMinBet(g.id);
+                const maxBet = window.adminConfig.getGameMaxBet(g.id);
+                return `
+                    <div class="rtp-card" id="card-${g.id}">
+                        <div class="rtp-header">
+                            <span style="font-weight:800; font-size:14px; color:#fff;">${g.name}</span>
+                            <span class="badge-status badge-rigged" id="badge-${g.id}">${currentRate}% Win</span>
+                        </div>
+                        <div style="font-size:11px; color:var(--lte-muted); margin-bottom:4px;">
+                            House Edge: <b style="color:var(--lte-red);">${100 - currentRate}%</b>
+                        </div>
+                        <input type="range" class="rtp-slider" min="0" max="100" value="${currentRate}" oninput="updateRate('${g.id}', this.value)">
+                        <div style="display:flex; gap:5px; margin-top:8px;">
+                            <button class="rtp-btn-preset" onclick="setPreset('${g.id}', 20)">20% (Rogue)</button>
+                            <button class="rtp-btn-preset" onclick="setPreset('${g.id}', 35)">35% (House)</button>
+                            <button class="rtp-btn-preset" onclick="setPreset('${g.id}', 48)">48% (Standard)</button>
+                            <button class="rtp-btn-preset" onclick="setPreset('${g.id}', 75)">75% (Promo)</button>
+                            <button class="rtp-btn-preset" style="color:var(--lte-gold);" onclick="setPreset('${g.id}', 100)">100%</button>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:12px; background:rgba(0,0,0,0.25); padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+                            <div>
+                                <label style="font-size:10px; font-weight:700; color:#8e9bb0; display:block; margin-bottom:2px;">Min Bet ($)</label>
+                                <input type="number" step="0.10" class="form-ctrl" style="padding:4px 8px; font-size:12px; width:100%;" id="min-${g.id}" value="${minBet}" onchange="saveLimits('${g.id}')">
+                            </div>
+                            <div>
+                                <label style="font-size:10px; font-weight:700; color:#8e9bb0; display:block; margin-bottom:2px;">Max Bet ($)</label>
+                                <input type="number" step="10" class="form-ctrl" style="padding:4px 8px; font-size:12px; width:100%;" id="max-${g.id}" value="${maxBet}" onchange="saveLimits('${g.id}')">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateGlobalRigButtons();
+        }
+
+        function updateRate(gameId, val) {
+            window.adminConfig.setGameWinRate(gameId, val);
+            const badge = document.getElementById(`badge-${gameId}`);
+            if (badge) badge.innerText = `${val}% Win`;
+        }
+
+        function setPreset(gameId, val) {
+            const card = document.getElementById(`card-${gameId}`);
+            if (card) {
+                const slider = card.querySelector('.rtp-slider');
+                if (slider) slider.value = val;
+            }
+            updateRate(gameId, val);
+        }
+
+        function saveLimits(gameId) {
+            const min = parseFloat(document.getElementById(`min-${gameId}`).value) || 0.50;
+            const max = parseFloat(document.getElementById(`max-${gameId}`).value) || 1000;
+            if (min > max) {
+                alert('Min bet cannot exceed Max bet!');
+                return;
+            }
+            window.adminConfig.setGameBetLimits(gameId, min, max);
+        }
+
+        function saveGlobalLimits() {
+            const min = parseFloat(document.getElementById('global-min-bet').value) || 0.50;
+            const max = parseFloat(document.getElementById('global-max-bet').value) || 1000;
+            if (min > max) {
+                alert('Global Min bet cannot exceed Global Max bet!');
+                return;
+            }
+            window.adminConfig.setGlobalBetLimits(min, max);
+            alert(`Global bet limits saved: Min $${min.toFixed(2)}, Max $${max.toFixed(2)}`);
+        }
+
+        function filterGames(val) {
+            renderRTPGrid(val);
+        }
+
+        function setGlobalRig(mode) {
+            window.adminConfig.setRigMode(mode);
+            updateGlobalRigButtons();
+            alert(`Platform Rigging Mode set to: ${mode.toUpperCase()}`);
+            renderRTPGrid(document.getElementById('game-search').value);
+        }
+
+        function updateGlobalRigButtons() {
+            const mode = window.adminConfig.config.rigMode || 'normal';
+            document.getElementById('btn-rig-normal').style.background = (mode === 'normal') ? 'rgba(255,255,255,0.2)' : '';
+            document.getElementById('btn-rig-win').style.background = (mode === 'force_win') ? 'rgba(0,231,0,0.3)' : '';
+            document.getElementById('btn-rig-loss').style.background = (mode === 'force_loss') ? 'rgba(255,71,87,0.3)' : '';
+        }
+
+        function resetAllToDefault() {
+            if (confirm('Reset all 17 games to their standard 48% fair casino RTP?')) {
+                ALL_GAMES.forEach(g => {
+                    window.adminConfig.setGameWinRate(g.id, g.defaultRate);
+                });
+                renderRTPGrid();
+                alert('All game win percentages reset to standard RTP.');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => renderRTPGrid());
+    </script>
+</body>
+</html>

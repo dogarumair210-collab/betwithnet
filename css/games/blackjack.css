@@ -1,0 +1,900 @@
+/**
+ * Bet With Net - Pragmatic Play American Blackjack VIP Suite
+ * Authentic Casino Edition with Exact Table Shoe, Logo, Betting Boxes, Sliced Action Buttons & 52 Cards.
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#whatsapp-floating-root,
+.whatsapp-floating-widget {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: #03120a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #ffffff;
+    position: fixed;
+    inset: 0;
+}
+
+.bj-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: radial-gradient(circle at 50% 30%, #0d4a2d 0%, #062416 65%, #020d08 100%);
+    overflow: hidden;
+}
+
+/* Authentic Table Felt Master Layer */
+.bj-table-felt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/games/blackjack/table_felt_master.jpg');
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.92;
+    z-index: 1;
+}
+
+/* Top Casino HUD Header */
+.bj-header {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background: linear-gradient(180deg, rgba(8, 14, 24, 0.95) 0%, rgba(6, 10, 18, 0.8) 100%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    min-height: 52px;
+}
+
+.bj-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bj-back-btn {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 12px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.bj-back-btn:hover {
+    background: rgba(255, 215, 0, 0.25);
+    border-color: #ffd700;
+    transform: translateX(-2px);
+}
+
+.bj-logo-badge {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    color: #fff;
+    font-weight: 900;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 1.2px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.bj-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #f7d070;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 0.5px;
+}
+
+.bj-balance-box {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(212, 175, 55, 0.6);
+    border-radius: 24px;
+    padding: 5px 18px;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    transition: all 0.2s ease;
+}
+
+.bj-balance-box:hover {
+    border-color: #ffd700;
+    transform: scale(1.02);
+}
+
+.balance-label {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.balance-val {
+    font-size: 15px;
+    font-weight: 800;
+    color: #4ade80;
+    font-family: monospace;
+}
+
+.bj-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.bj-btn-icon {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.bj-btn-icon:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: #f7d070;
+}
+
+/* Authentic Shoe Dispenser at Top Right */
+.bj-shoe-container {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.bj-shoe-img {
+    width: 110px;
+    height: auto;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.85));
+    transform: rotate(-10deg);
+}
+
+/* Center Table Branding & Rules */
+.bj-table-brand-center {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.95;
+}
+
+.bj-table-logo-img {
+    width: 170px;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+    margin-bottom: 2px;
+}
+
+.bj-blackjack-tag-img {
+    width: 135px;
+    height: auto;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.7));
+    margin-bottom: 2px;
+}
+
+.bj-rules-text {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(247, 208, 112, 0.75);
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    text-align: center;
+}
+
+/* Main Playing Area */
+.bj-table-area {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Dealer Zone */
+.bj-dealer-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    min-height: 85px;
+}
+
+.bj-dealer-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #e2e8f0;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.bj-score-pill {
+    background: rgba(0,0,0,0.85);
+    border: 1px solid #d4af37;
+    color: #ffd700;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 1px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+
+/* Cards Row with authentic overlapping cascade */
+.bj-cards-row {
+    display: flex;
+    min-height: 78px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bj-card-img {
+    height: 78px;
+    width: auto;
+    border-radius: 5px;
+    box-shadow: -2px 4px 10px rgba(0,0,0,0.85);
+    transition: transform 0.2s ease;
+}
+
+.bj-cards-row .bj-card-img:not(:first-child) {
+    margin-left: -28px;
+}
+
+/* Card Deal Animation - slides in from shoe dispenser at top right */
+.bj-card-animated {
+    animation: cardDealFromShoe 0.32s cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+@keyframes cardDealFromShoe {
+    0% {
+        transform: translate(320px, -240px) rotate(30deg) scale(0.35);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Player Betting Spots */
+.bj-spots-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 860px;
+    margin-bottom: 4px;
+    gap: 14px;
+}
+
+.bj-spot-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    flex: 1;
+}
+
+/* Authentic Pragmatic Betting Box Frame */
+.bj-bet-box-container {
+    position: relative;
+    width: 74px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.bj-bet-box-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.7));
+    transition: all 0.25s ease;
+}
+
+.bj-spot-wrapper:hover .bj-bet-box-frame {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px rgba(255,215,0,0.6));
+}
+
+.bj-spot-wrapper.active-spot .bj-bet-box-frame {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(74, 222, 128, 0.9));
+}
+
+.bj-bet-box-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bj-spot-chip-img {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.9));
+    animation: chipDropAnim 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes chipDropAnim {
+    0% { transform: translateY(-24px) scale(1.25); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.spot-hint {
+    font-size: 8.5px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1.2px;
+    margin-top: 2px;
+}
+
+.spot-bet-val {
+    font-size: 10.5px;
+    font-weight: 900;
+    color: #ffd700;
+    margin-top: 1px;
+    font-family: monospace;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+}
+
+/* Result Badges */
+.bj-spot-result {
+    position: absolute;
+    top: -22px;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+    display: none;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+}
+
+.bj-spot-result.win {
+    background: #15803d;
+    color: #fff;
+    border: 1px solid #4ade80;
+}
+
+.bj-spot-result.lose {
+    background: #b91c1c;
+    color: #fff;
+    border: 1px solid #f87171;
+}
+
+.bj-spot-result.push {
+    background: #ca8a04;
+    color: #fff;
+    border: 1px solid #facc15;
+}
+
+/* Bottom Controls Bar */
+.bj-bottom-bar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.6) 80%, transparent 100%);
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+    min-height: 56px;
+}
+
+/* Authentic Pragmatic Action Buttons */
+.bj-action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pragmatic-action-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 2px;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.pragmatic-action-btn img {
+    width: 42px;
+    height: 42px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+    transition: transform 0.15s ease;
+}
+
+.pragmatic-action-btn:hover img {
+    transform: scale(1.12);
+    filter: drop-shadow(0 6px 14px rgba(255,215,0,0.75));
+}
+
+.pragmatic-action-btn:active img {
+    transform: scale(0.94);
+}
+
+.pragmatic-action-btn .btn-lbl {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+/* Real Chips Rack */
+.bj-chips-rack {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.bj-chip-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.bj-chip-item img {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+    transition: all 0.2s ease;
+}
+
+.bj-chip-item:hover img, .bj-chip-item.selected img {
+    transform: translateY(-6px) scale(1.14);
+    filter: drop-shadow(0 8px 16px rgba(255,215,0,0.75));
+}
+
+.bj-chip-label {
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #ffd700;
+    margin-top: 2px;
+    font-family: monospace;
+}
+
+/* Toast */
+.bj-toast {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(0,0,0,0.92);
+    color: #ffd700;
+    padding: 10px 24px;
+    border-radius: 20px;
+    border: 1px solid #d4af37;
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    z-index: 100;
+}
+
+.bj-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Insurance Modal Overlay */
+.bj-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.bj-modal-box {
+    background: linear-gradient(145deg, #132f20 0%, #081a11 100%);
+    border: 2px solid #d4af37;
+    border-radius: 18px;
+    padding: 24px 32px;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.85), 0 0 24px rgba(212,175,55,0.4);
+    animation: modalIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes modalIn {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.bj-modal-header {
+    font-size: 20px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.bj-modal-body p {
+    font-size: 13px;
+    color: #e2e8f0;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.modal-terms {
+    font-size: 11px !important;
+    color: #94a3b8 !important;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.bj-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   OFFICIAL JILI SPLASH LOADING SCREEN
+   ========================================================================== */
+.jili-splash-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000000 !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.jili-splash-overlay.loaded {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.jili-center-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: auto;
+    max-width: 90vw;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.jili-logo-box {
+    position: relative;
+    display: inline-block;
+    width: 140px;
+    max-width: 42vw;
+    line-height: 0;
+}
+
+.jili-img-brand {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95));
+}
+
+.jili-sheen-mask {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    -webkit-mask-image: url('../../assets/games/blackjack/jili_wordmark_tight.png');
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-image: url('../../assets/games/blackjack/jili_wordmark_tight.png');
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.jili-glint-bar {
+    position: absolute;
+    top: -20%;
+    left: -120%;
+    width: 55%;
+    height: 140%;
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 100%
+    );
+    transform: skewX(-24deg);
+    mix-blend-mode: overlay;
+    animation: jiliGlintAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes jiliGlintAnim {
+    0% { left: -120%; opacity: 0; }
+    12% { opacity: 1; }
+    60% { left: 160%; opacity: 1; }
+    66% { opacity: 0; }
+    100% { left: 160%; opacity: 0; }
+}
+
+.jili-loadline-track {
+    width: 132px;
+    max-width: 40vw;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.jili-loadline-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #d97706 0%, #f59e0b 35%, #fbbf24 75%, #fef08a 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.85);
+    transition: width 0.08s ease-out;
+}
+
+/* ==========================================================================
+   MOBILE AUTO-ROTATION (PORTRAIT -> LANDSCAPE) & MANUAL ROTATION
+   ========================================================================== */
+@media screen and (orientation: portrait) and (max-width: 900px) {
+    html, body {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    .bj-container {
+        width: 100vh !important;
+        width: 100dvh !important;
+        height: 100vw !important;
+        height: 100dvw !important;
+        transform: translate(-50%, -50%) rotate(90deg) !important;
+        transform-origin: center center !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        overflow: hidden !important;
+    }
+}
+
+html.mobile-auto-rotated .bj-container,
+body.mobile-auto-rotated .bj-container,
+body.manual-rotate .bj-container {
+    width: 100vh !important;
+    width: 100dvh !important;
+    height: 100vw !important;
+    height: 100dvw !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+    transform-origin: center center !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    overflow: hidden !important;
+    z-index: 10;
+}
+
+/* Mobile Viewport Proportions (Compact Table Scaling) */
+@media screen and (max-height: 520px), screen and (orientation: portrait) and (max-width: 900px) {
+    .bj-header {
+        padding: 4px 12px;
+        min-height: 38px;
+    }
+    .bj-brand {
+        gap: 6px;
+    }
+    .bj-logo-badge {
+        font-size: 8px;
+        padding: 1px 5px;
+    }
+    .bj-title {
+        font-size: 11px;
+    }
+    .bj-back-btn {
+        font-size: 11px;
+        padding: 2px 7px;
+    }
+    .balance-label {
+        font-size: 10px;
+    }
+    .balance-val {
+        font-size: 12px;
+    }
+    .bj-btn-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .bj-shoe-container {
+        top: 38px;
+        right: 10px;
+    }
+    .bj-shoe-img {
+        width: 88px;
+    }
+
+    .bj-table-brand-center {
+        top: 42px;
+    }
+    .bj-table-logo-img {
+        width: 140px;
+        margin-bottom: 2px;
+    }
+    .bj-blackjack-tag-img {
+        width: 110px;
+        margin-bottom: 2px;
+    }
+    .bj-rules-text {
+        font-size: 7.5px;
+        letter-spacing: 0.8px;
+    }
+
+    .bj-table-area {
+        padding: 4px 10px;
+    }
+    .bj-dealer-zone {
+        margin-top: 2px;
+        min-height: 75px;
+    }
+    .bj-dealer-label {
+        font-size: 11px;
+        margin-bottom: 2px;
+    }
+    .bj-score-pill {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+
+    .bj-cards-row {
+        min-height: 70px;
+    }
+    .bj-card-img {
+        height: 70px;
+    }
+    .bj-cards-row .bj-card-img:not(:first-child) {
+        margin-left: -25px;
+    }
+
+    .bj-spots-container {
+        gap: 8px;
+        margin-bottom: 2px;
+    }
+    .bj-bet-box-container {
+        width: 66px;
+        height: 86px;
+    }
+    .bj-spot-chip-img {
+        width: 32px;
+        height: 32px;
+    }
+    .spot-hint {
+        font-size: 8.5px;
+    }
+    .spot-bet-val {
+        font-size: 10.5px;
+    }
+
+    .bj-bottom-bar {
+        padding: 4px 10px;
+        min-height: 50px;
+    }
+    .bj-action-buttons {
+        gap: 6px;
+    }
+    .pragmatic-action-btn img {
+        width: 38px;
+        height: 38px;
+    }
+    .pragmatic-action-btn .btn-lbl {
+        font-size: 7.5px;
+    }
+    .bj-chips-rack {
+        gap: 6px;
+    }
+    .bj-chip-item img {
+        width: 32px;
+        height: 32px;
+    }
+    .bj-chip-label {
+        font-size: 8.5px;
+    }
+}

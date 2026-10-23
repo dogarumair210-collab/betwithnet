@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aviator - SPRIBE Official Game Studio | Bet With Net</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --spribe-bg: #0b0e14;
+            --spribe-card-bg: #141a24;
+            --spribe-card-sub: #10151f;
+            --spribe-red: #e71d36;
+            --spribe-red-glow: rgba(231, 29, 54, 0.4);
+            --spribe-green: #28a745;
+            --spribe-green-glow: rgba(40, 167, 69, 0.4);
+            --spribe-orange: #ff9f1c;
+            --spribe-blue-pill: #2b7de9;
+            --spribe-purple-pill: #9b51e0;
+            --spribe-gold-pill: #f39c12;
+            --spribe-text-dim: #7f8c9d;
+            --spribe-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: #05070a;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Compact authentic mobile video app container */
+        .aviator-app-shell {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #090c12;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* -------------------------------------------------------------
+           1. AUTHENTIC SPRIBE AVIATOR LOADING SPLASH SCREEN
+           ------------------------------------------------------------- */
+        /* -------------------------------------------------------------
+           1. AUTHENTIC SPRIBE VIDEO ENTRANCE LOADING SCREEN (1:1 TO VIDEO)
+           ------------------------------------------------------------- */
+        #aviator-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #aviator-splash.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .spribe-entrance-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            transition: opacity 0.4s ease;
+        }
+        .spribe-entrance-wrap.hidden {
+            display: none !important;
+            opacity: 0;
+        }
+        .spribe-entrance-logo-img {
+            width: 250px;
+            max-width: 78vw;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .spribe-loading-dots-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 4px;
+        }
+        .spribe-red-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e71d36;
+            box-shadow: 0 0 10px rgba(231, 29, 54, 0.85);
+            animation: spribeDotGlow 0.85s infinite ease-in-out alternate;
+        }
+        .spribe-red-dot.dot-2 {
+            animation-delay: 0.42s;
+        }
+        @keyframes spribeDotGlow {
+            0% { transform: scale(0.85); opacity: 0.45; }
+            100% { transform: scale(1.15); opacity: 1.0; box-shadow: 0 0 14px #ff1e38; }
+        }
+
+        /* Phase 2: Connection... */
+        .spribe-connection-wrap {
+            display: none;
+            opacity: 0;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease;
+        }
+        .spribe-connection-wrap.active {
+            display: flex !important;
+            opacity: 1;
+        }
+        .spribe-connection-label {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 19px;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        /* -------------------------------------------------------------
+           2. TOP COMPACT AVIATOR NAV BAR (DITTO 1:1 TO OFFICIAL AVIATOR)
+           ------------------------------------------------------------- */
+        .aviator-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: #090c12;
+            border-bottom: 1px solid var(--spribe-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .aviator-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .aviator-nav-wordmark {
+            height: 25px;
+            width: auto;
+            max-width: 105px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(231, 29, 54, 0.6));
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .aviator-top-plane-icon {
+            width: 33px;
+            height: 20px;
+            filter: drop-shadow(0 2px 8px rgba(231, 29, 54, 0.7));
+            animation: topPlaneFloat 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes topPlaneFloat {
+            0% { transform: translateY(0) rotate(-2deg); }
+            100% { transform: translateY(-3px) rotate(3deg); }
+        }
+
+        .aviator-top-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .aviator-user-bal {
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .aviator-bal-num {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: #00e700;
+            letter-spacing: 0.2px;
+        }
+        .aviator-bal-curr {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8e9bb0;
+            letter-spacing: 0.5px;
+        }
+        .aviator-icon-btn {
+            background: transparent;
+            border: none;
+            color: #8e9bb0;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.15s;
+        }
+        .aviator-icon-btn:hover {
+            color: #ffffff;
+        }
+
+        /* -------------------------------------------------------------
+           3. SPRIBE MULTIPLIER HISTORY PILLS BAR
+           ------------------------------------------------------------- */
+        .spribe-history-bar-wrap {
+            display: flex;
+            align-items: center;
+            background: #0d121b;
+            padding: 6px 12px;
+            border-bottom: 1px solid var(--spribe-border);
+            gap: 8px;
+        }
+        .spribe-pills-scroll {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            flex: 1;
+            align-items: center;
+        }
+        .spribe-pills-scroll::-webkit-scrollbar { display: none; }
+        .spribe-pill {
+            padding: 3px 9px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 800;
+            white-space: nowrap;
+            display: inline-block;
+            transition: transform 0.15s;
+        }
+        .spribe-pill:hover { transform: scale(1.06); }
+        .spribe-pill.pill-blue {
+            background: rgba(43, 125, 233, 0.18);
+            color: #5dade2;
+            border: 1px solid rgba(43, 125, 233, 0.35);
+        }
+        .spribe-pill.pill-purple {
+            background: rgba(155, 81, 224, 0.22);
+            color: #bb86fc;
+            border: 1px solid rgba(155, 81, 224, 0.45);
+        }
+        .spribe-pill.pill-pink {
+            background: rgba(231, 29, 54, 0.25);
+            color: #ff5252;
+            border: 1px solid rgba(231, 29, 54, 0.55);
+            box-shadow: 0 0 8px rgba(231, 29, 54, 0.35);
+        }
+        .btn-history-more {
+            background: #182232;
+            border: 1px solid var(--spribe-border);
+            color: #7f8c9d;
+            border-radius: 8px;
+            padding: 3px 8px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        /* -------------------------------------------------------------
+           4. STAGE CANVAS & AUTHENTIC AVIATOR SUNBURST COCKPIT
+           ------------------------------------------------------------- */
+        .stage-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            background-color: #05070a;
+            overflow: hidden;
+            border-bottom: 1px solid var(--spribe-border);
+        }
+        /* Balanced Dynamic Multiplier-Reactive Background Neon Light (Behind Rays, 1xBet Spribe 1:1) */
+        .stage-neon-glow {
+            position: absolute;
+            inset: -22%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            background:
+                radial-gradient(
+                    ellipse 62% 58% at 50% 48%,
+                    rgba(var(--neon-core-r, 35), var(--neon-core-g, 175), var(--neon-core-b, 255), var(--neon-core-alpha, 0.65)) 0%,
+                    rgba(var(--neon-r, 0), var(--neon-g, 135), var(--neon-b, 250), var(--neon-mid-alpha, 0.42)) 36%,
+                    rgba(var(--neon-r2, 10), var(--neon-g2, 80), var(--neon-b2, 220), 0.18) 64%,
+                    transparent 88%
+                );
+            filter: blur(8px) saturate(1.15);
+            animation: aviatorNeonBreath 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes aviatorNeonBreath {
+            0% { transform: scale(0.97); filter: blur(8px) saturate(1.12) brightness(0.98); }
+            100% { transform: scale(1.05); filter: blur(10px) saturate(1.22) brightness(1.08); }
+        }
+        /* Smooth Rotating Authentic Spribe Sunburst Rays (Balanced transparency) */
+        .stage-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 1400px;
+            height: 1400px;
+            margin-left: -700px;
+            margin-bottom: -700px;
+            border-radius: 50%;
+            background-image: 
+                repeating-conic-gradient(from 0deg at 50% 50%, rgba(20, 25, 34, 0.38) 0deg 7.5deg, rgba(5, 7, 10, 0.84) 7.5deg 15deg);
+            animation: aviatorSunburstSpin 38s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Soft Front Neon Bloom Overlay (Smooth 1xBet center aura, not harsh) */
+        .stage-neon-bloom {
+            position: absolute;
+            inset: -10%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            mix-blend-mode: screen;
+            background:
+                radial-gradient(
+                    ellipse 52% 48% at 50% 48%,
+                    rgba(var(--neon-core-r, 50), var(--neon-core-g, 185), var(--neon-core-b, 255), var(--neon-bloom-alpha, 0.28)) 0%,
+                    rgba(var(--neon-r, 0), var(--neon-g, 140), var(--neon-b, 255), 0.14) 45%,
+                    transparent 74%
+                );
+            filter: blur(10px);
+        }
+        @keyframes aviatorSunburstSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        #crash-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Home Button on Canvas (Top Left) */
+        .stage-home-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 15;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.15s, background 0.15s;
+            text-decoration: none;
+        }
+        .stage-home-btn:hover {
+            transform: scale(1.08);
+            background: #ffffff;
+        }
+
+        /* Official Watermarks: UFC | Aviator OFFICIAL PARTNERS & SPRIBE Badge */
+        .stage-watermark {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            pointer-events: none;
+            z-index: 4;
+            transition: opacity 0.4s ease;
+            width: max-content;
+        }
+        .stage-watermark.dimmed {
+            opacity: 0.15;
+        }
+
+        /* UFC x Aviator Partners Banner (100% Crisp HD) */
+        .ufc-aviator-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5px;
+        }
+        .ufc-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ufc-brand-box {
+            font-family: 'Impact', 'Inter', -apple-system, sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 19px;
+            color: #d20a11;
+            letter-spacing: 0.8px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            line-height: 1;
+            display: inline-block;
+            transform: scaleY(0.96);
+            -webkit-font-smoothing: antialiased;
+        }
+        .ufc-divider-bar {
+            width: 1.5px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.38);
+            border-radius: 2px;
+        }
+        .aviator-watermark-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .aviator-watermark-wordmark {
+            height: 15px;
+            width: auto;
+            max-width: 72px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .watermark-plane-icon {
+            width: 24px;
+            height: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+        }
+        .ufc-partners-text {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 8px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1;
+            opacity: 0.95;
+        }
+        .ufc-accent-bar {
+            display: flex;
+            width: 125px;
+            height: 2px;
+            border-radius: 1px;
+            overflow: hidden;
+            margin-top: 1px;
+        }
+        .ufc-accent-bar .accent-red {
+            flex: 1;
+            background: #d20a11;
+        }
+        .ufc-accent-bar .accent-gray {
+            flex: 1;
+            background: #2b3544;
+        }
+
+        /* SPRIBE Official Game Badge (100% Pure Vector HD - Crystal Clear) */
+        .spribe-official-hd-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            background: linear-gradient(180deg, #1d2c16 0%, #121c0e 100%);
+            border: 1.5px solid #4a7534;
+            border-radius: 10px;
+            padding: 4px 12px 3.5px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            margin: 1px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            transform: scale(0.95);
+        }
+        .spribe-hd-header {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .spribe-s-emblem {
+            display: block;
+        }
+        .spribe-hd-title {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 900;
+            font-size: 13.5px;
+            letter-spacing: 1.2px;
+            color: #ffffff;
+            line-height: 1;
+        }
+        .spribe-hd-pill {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #0d160a;
+            border: 1px solid #456f30;
+            border-radius: 12px;
+            padding: 1.5px 8px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        .spribe-pill-text {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            color: #72bf44;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+        .spribe-check-svg {
+            display: block;
+        }
+        .spribe-hd-since {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 8px;
+            font-weight: 600;
+            color: #9cb591;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        /* Authentic Waiting Loading Bar ("Loading ki patti" - 100% Vector HD) */
+        .stage-waiting-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4.5px;
+            width: 185px;
+            max-width: 80vw;
+            margin: 1px 0;
+            background: rgba(13, 18, 26, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 5px 12px 6px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .waiting-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .waiting-propeller-spin {
+            animation: spinPropeller 0.9s linear infinite;
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            filter: drop-shadow(0 0 4px rgba(231, 29, 54, 0.6));
+        }
+        @keyframes spinPropeller {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .waiting-title-text {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #e2e8f0;
+            letter-spacing: 1.0px;
+            text-transform: uppercase;
+        }
+        .waiting-progress-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        .waiting-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #e71d36, #ff2a44);
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(231, 29, 54, 0.95);
+            transition: width 0.08s linear;
+        }
+
+        /* Ensure fixed floating music popup is suppressed on crash page */
+        #bwn-sound-toggle-fixed,
+        .bwn-sound-toggle-btn,
+        .stage-lamp-widget {
+            display: none !important;
+        }
+
+        /* Live Active Players Badge (Bottom Right) */
+        .stage-active-players-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 14px;
+            background: rgba(14, 20, 30, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--spribe-border);
+            border-radius: 20px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #bdc3c7;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .avatar-mini-stack {
+            display: flex;
+            align-items: center;
+        }
+        .avatar-mini-dot {
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            border: 1.5px solid #0a0d13;
+            margin-left: -5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            overflow: hidden;
+        }
+        .avatar-mini-dot:first-child { margin-left: 0; }
+        .live-dot-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00e700;
+            box-shadow: 0 0 6px #00e700;
+            animation: pulseGlow 1.2s infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+
+        /* Center Multiplier Display */
+        .stage-center-multiplier {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95);
+            pointer-events: none;
+            z-index: 12;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .flew-away-label {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+        }
+        .multiplier-val {
+            font-size: 54px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -1.5px;
+            line-height: 1;
+        }
+        .multiplier-val.crashed {
+            color: #e71d36;
+            text-shadow: 0 0 35px rgba(231, 29, 54, 0.7);
+        }
+
+        /* -------------------------------------------------------------
+           5. SPRIBE DUAL BETTING CONTROLS (COMPACT 1:1 TO OFFICIAL VIDEO)
+           ------------------------------------------------------------- */
+        .spribe-bet-arena {
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: #090c12;
+        }
+        .spribe-bet-card {
+            background: var(--spribe-card-bg);
+            border: 1px solid var(--spribe-border);
+            border-radius: 12px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: all 0.2s ease;
+        }
+
+        /* Tab Switch (Bet | Auto) */
+        .spribe-tab-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .spribe-tab-pill {
+            display: flex;
+            background: #0c1017;
+            padding: 2px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .spribe-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 3px 14px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--spribe-text-dim);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .spribe-tab-btn.active {
+            background: #252f40;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+        .btn-minimize-panel {
+            background: transparent;
+            border: none;
+            color: #7f8c9d;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 1px 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 2-Column Split: Controls vs Big Button */
+        .spribe-bet-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            align-items: stretch;
+        }
+
+        /* Left Side: Stepper + 2x2 Chips */
+        .spribe-controls-col {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .spribe-stepper-wrap {
+            display: flex;
+            align-items: center;
+            background: #0d121b;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2px 5px;
+        }
+        .btn-stepper {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #1e2838;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.1s;
+        }
+        .btn-stepper:active { background: #2b3a52; }
+        .spribe-amount-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            text-align: center;
+            outline: none;
+            width: 100%;
+            min-width: 0;
+        }
+
+        /* 2x2 Quick Chips: 64, 160, 320, 1600 */
+        .spribe-chips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+        .btn-spribe-chip {
+            background: #111722;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 5px;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 0;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.12s;
+        }
+        .btn-spribe-chip:hover {
+            background: #1c2738;
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        /* Right Side: Signature Action Button */
+        .btn-spribe-action {
+            width: 100%;
+            height: 100%;
+            min-height: 68px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 10px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            transition: transform 0.1s, filter 0.15s, background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-spribe-action:active { transform: scale(0.97); }
+        .spribe-btn-main-text {
+            font-size: 19px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        .spribe-btn-sub-text {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 13.5px;
+            font-weight: 800;
+            margin-top: 2px;
+            line-height: 1;
+            opacity: 0.95;
+            letter-spacing: 0.2px;
+        }
+
+        /* Button States: Authentic Spribe Green Bet, Golden Cashout, Red Cancel */
+        .btn-spribe-action.state-bet {
+            background: linear-gradient(180deg, #28a909 0%, #1e8705 100%);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 6px 20px rgba(40, 169, 9, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        }
+        .btn-spribe-action.state-bet:hover {
+            background: linear-gradient(180deg, #2fc20c 0%, #249907 100%);
+            box-shadow: 0 8px 24px rgba(40, 169, 9, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+        }
+        .btn-spribe-action.state-waiting {
+            background: #151d28;
+            color: #f5a623;
+            border: 1px solid rgba(245, 166, 35, 0.45);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+        .btn-spribe-action.state-cancel {
+            background: linear-gradient(180deg, #e71d36 0%, #be1226 100%);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 6px 20px rgba(231, 29, 54, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        }
+        .btn-spribe-action.state-cashout {
+            background: linear-gradient(180deg, #ff9f1c 0%, #e67e22 100%);
+            color: #0b0e14;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 6px 22px rgba(255, 159, 28, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+            animation: cashoutPulse 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes cashoutPulse {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.15); box-shadow: 0 0 25px rgba(243, 156, 18, 0.8); }
+        }
+
+        /* Auto Cashout Strip */
+        .spribe-auto-row {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 10px;
+            background: #0d121b;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.06);
+            font-size: 11px;
+            font-weight: 700;
+            color: #8e9bb0;
+            margin-top: 4px;
+        }
+        .spribe-auto-row.visible { display: flex; }
+        .spribe-auto-input {
+            width: 70px;
+            background: #1a2332;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 4px 8px;
+            color: #00e700;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            outline: none;
+        }
+
+        /* -------------------------------------------------------------
+           6. SPRIBE LIVE COMMUNITY MULTIPLAYER BETS TABLE
+           ------------------------------------------------------------- */
+        .spribe-ledger-container {
+            background: #0b0f17;
+            padding: 12px;
+            border-top: 1px solid var(--spribe-border);
+        }
+        .spribe-ledger-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        .btn-ledger-tab {
+            background: #131a26;
+            border: 1px solid var(--spribe-border);
+            color: #7f8c9d;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-ledger-tab.active {
+            background: #252f40;
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .spribe-ledger-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 12px;
+            background: #0f1520;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #7f8c9d;
+            font-weight: 700;
+            margin-bottom: 6px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .spribe-ledger-stats b { color: #ffffff; }
+
+        .spribe-table-header {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1.5fr;
+            padding: 6px 10px;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spribe-table-body {
+            max-height: 280px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        .spribe-table-body::-webkit-scrollbar { width: 4px; }
+        .spribe-table-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        .spribe-player-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1.5fr;
+            align-items: center;
+            padding: 7px 10px;
+            font-size: 11.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: background 0.2s;
+        }
+        .spribe-player-row:hover { background: rgba(255,255,255,0.02); }
+        .spribe-player-row.cashed-out {
+            background: rgba(40, 167, 69, 0.08);
+        }
+
+        .player-info-cell {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .player-avatar-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .player-name-text {
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+        .player-bet-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .player-mult-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            color: #64748b;
+        }
+        .player-mult-pill.won {
+            background: rgba(40, 167, 69, 0.2);
+            color: #00e700;
+            border: 1px solid rgba(0, 231, 0, 0.3);
+        }
+        .player-win-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            color: #64748b;
+            text-align: right;
+        }
+        .player-win-text.won {
+            color: #00e700;
+        }
+
+        /* Genuine Player Live Bet Row Highlighting */
+        .spribe-player-row.my-genuine-bet {
+            background: rgba(0, 229, 255, 0.08) !important;
+            border-left: 3px solid #00e5ff !important;
+        }
+        .spribe-player-row.my-genuine-bet.cashed-out {
+            background: rgba(40, 167, 69, 0.22) !important;
+            border-left: 3px solid #00e700 !important;
+        }
+        .spribe-player-row.other-genuine-bet {
+            background: rgba(245, 166, 35, 0.10) !important;
+            border-left: 3px solid #f5a623 !important;
+        }
+        .spribe-player-row.other-genuine-bet.cashed-out {
+            background: rgba(40, 167, 69, 0.20) !important;
+            border-left: 3px solid #00e700 !important;
+        }
+        .genuine-pill {
+            font-size: 8.5px;
+            font-weight: 900;
+            padding: 1px 5px;
+            border-radius: 4px;
+            margin-left: 5px;
+            display: inline-block;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .spribe-table-footer {
+            padding: 12px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10.5px;
+            color: #64748b;
+            border-top: 1px solid var(--spribe-border);
+            margin-top: 8px;
+        }
+        .spribe-table-footer a {
+            color: #00e5ff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="game-page bg-crash">
+
+    <!-- 1. AUTHENTIC SPRIBE VIDEO ENTRANCE LOADING SCREEN (1:1 TO VIDEO) -->
+    <div id="aviator-splash">
+        <!-- Phase 1: POWERED BY SPRIBE with 2 Pulsing Red Dots -->
+        <div class="spribe-entrance-wrap" id="spribe-entrance-phase1">
+            <img src="../assets/spribe_powered_by.jpg?v=1" alt="POWERED BY SPRIBE" class="spribe-entrance-logo-img">
+            <!-- Two Glowing Pulsating Red Dots -->
+            <div class="spribe-loading-dots-row">
+                <span class="spribe-red-dot dot-1"></span>
+                <span class="spribe-red-dot dot-2"></span>
+            </div>
+        </div>
+
+        <!-- Phase 2: Connection... -->
+        <div class="spribe-connection-wrap" id="spribe-entrance-phase2">
+            <div class="spribe-connection-label">Connection...</div>
+        </div>
+    </div>
+
+    <!-- Compact authentic mobile app shell -->
+    <div class="aviator-app-shell">
+
+    <!-- 2. TOP COMPACT AVIATOR NAV BAR (DITTO 1:1 TO OFFICIAL AVIATOR) -->
+    <header class="aviator-top-bar">
+        <a href="../index.html" class="aviator-brand" title="Aviator Lobby">
+            <img src="../assets/aviator_wordmark.png?v=2" alt="Aviator" class="aviator-nav-wordmark">
+        </a>
+
+        <div class="aviator-top-right">
+            <button class="aviator-icon-btn" id="aviatorSoundBtn" onclick="toggleAviatorSound()" title="Sound On/Off" style="margin-right:6px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
+                <span id="aviatorSoundIcon" style="font-size:16px;">🔊</span>
+            </button>
+            <div class="aviator-user-bal" id="aviator-user-bal-box" onclick="window.location.href='../deposit.html'" style="cursor:pointer;" title="Click to Deposit">
+                <span class="aviator-bal-num" id="top-balance-display">0.00</span>
+                <span class="aviator-bal-curr" id="top-currency-display">PKR</span>
+            </div>
+            <button class="aviator-icon-btn" onclick="window.location.href='../index.html'" title="Menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#8e9bb0"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 3. SPRIBE MULTIPLIER HISTORY PILLS BAR -->
+    <div class="spribe-history-bar-wrap">
+        <div class="spribe-pills-scroll" id="crash-history-bar">
+            <!-- Dynamically populated pills (Blue, Purple, Pink) -->
+        </div>
+        <button class="btn-history-more" onclick="window.crashGame.toggleHistoryModal()" title="Round History">•••</button>
+    </div>
+
+    <!-- 4. STAGE CANVAS & SPRIBE RADAR COCKPIT -->
+    <div class="stage-container" id="stage-container">
+        <div class="stage-neon-glow" id="stage-neon-glow"></div>
+        <div class="stage-neon-bloom" id="stage-neon-bloom"></div>
+        <canvas id="crash-canvas"></canvas>
+
+        <!-- Home Button on Canvas (Top Left) -->
+        <a href="../index.html" class="stage-home-btn" title="Back to Lobby">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="#111827"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        </a>
+
+        <!-- Official Watermarks: UFC | Aviator OFFICIAL PARTNERS & SPRIBE Badge (100% Vector HD) -->
+        <div class="stage-watermark" id="stage-watermark">
+            <div class="ufc-aviator-badge">
+                <div class="ufc-logo-row">
+                    <span class="ufc-brand-box">UFC</span>
+                    <span class="ufc-divider-bar"></span>
+                    <div class="aviator-watermark-row">
+                        <img src="../assets/aviator_wordmark.png?v=2" alt="Aviator" class="aviator-watermark-wordmark">
+                    </div>
+                </div>
+                <div class="ufc-partners-text">OFFICIAL PARTNERS</div>
+                <div class="ufc-accent-bar">
+                    <span class="accent-red"></span>
+                    <span class="accent-gray"></span>
+                </div>
+            </div>
+
+            <!-- SPRIBE Official Game Badge (100% Crisp Vector HD) -->
+            <div class="spribe-official-hd-badge">
+                <div class="spribe-hd-header">
+                    <svg class="spribe-s-emblem" viewBox="0 0 32 32" width="18" height="18">
+                        <circle cx="16" cy="16" r="15" fill="#24361a" stroke="#486e32" stroke-width="1.2"/>
+                        <path d="M21.5 10.8 C21.5 8.2 19 6.5 16 6.5 C12.5 6.5 10.2 8.2 10.2 11.2 C10.2 17.5 21.8 14.8 21.8 21.2 C21.8 23.8 19.4 25.5 16 25.5 C12.2 25.5 10 23.4 9.8 20.2 L12.8 20.2 C13 22 14.2 23 16 23 C17.8 23 18.8 22 18.8 20.8 C18.8 15.2 7.2 17.2 7.2 11.2 C7.2 6.8 11 4 16 4 C21.2 4 24.5 6.8 24.5 10.8 Z" fill="#ffffff"/>
+                        <circle cx="16" cy="16" r="13" fill="none" stroke="rgba(255,255,255,0.2)" stroke-dasharray="2,2"/>
+                    </svg>
+                    <span class="spribe-hd-title">SPRIBE</span>
+                </div>
+                <div class="spribe-hd-pill">
+                    <span class="spribe-pill-text">Official Game</span>
+                    <svg class="spribe-check-svg" viewBox="0 0 16 16" width="12" height="12">
+                        <circle cx="8" cy="8" r="7.5" fill="#10b981"/>
+                        <path d="M4.5 8.2 L6.8 10.5 L11.5 5.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="spribe-hd-since">Since 2019</span>
+            </div>
+
+            <!-- Authentic Waiting Countdown Bar ("Loading ki patti" - 100% Vector HD) -->
+            <div class="stage-waiting-container" id="stage-waiting-container">
+                <div class="waiting-title-row">
+                    <svg class="waiting-propeller-spin" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#e71d36" stroke-width="2.5" stroke-linecap="round">
+                        <line x1="12" y1="12" x2="12" y2="3"/>
+                        <line x1="12" y1="12" x2="19.79" y2="16.5"/>
+                        <line x1="12" y1="12" x2="4.21" y2="16.5"/>
+                        <circle cx="12" cy="12" r="2.5" fill="#ffffff" stroke="none"/>
+                    </svg>
+                    <span class="waiting-title-text">WAITING FOR NEXT ROUND</span>
+                </div>
+                <div class="waiting-progress-track">
+                    <div class="waiting-progress-fill" id="waiting-fill"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Live Active Players Badge (Bottom Right) -->
+        <div class="stage-active-players-badge">
+            <div class="avatar-mini-stack">
+                <span class="avatar-mini-dot" style="background:#e74c3c;">🧑</span>
+                <span class="avatar-mini-dot" style="background:#3498db;">👨</span>
+                <span class="avatar-mini-dot" style="background:#2ecc71;">👩</span>
+            </div>
+            <span class="live-dot-pulse"></span>
+            <span id="stage-player-count">337</span>
+        </div>
+
+        <!-- Center Multiplier Display (Hidden during waiting, shows during flight & crash) -->
+        <div id="crash-multiplier-text" class="stage-center-multiplier" style="display:none;">
+            <div class="flew-away-label" id="flew-away-label" style="display:none;">FLEW AWAY!</div>
+            <div class="multiplier-val" id="multiplier-val">1.00x</div>
+        </div>
+    </div>
+
+    <!-- 5. SPRIBE DUAL BETTING CONTROLS (BET 1 & BET 2) -->
+    <div class="spribe-bet-arena">
+
+        <!-- PANEL 1 -->
+        <div class="spribe-bet-card" id="spribe-bet-panel-1">
+            <div class="spribe-tab-row">
+                <div class="spribe-tab-pill">
+                    <button class="spribe-tab-btn active" id="tab-bet-1" onclick="window.crashGame.setMode(1, 'manual')">Bet</button>
+                    <button class="spribe-tab-btn" id="tab-auto-1" onclick="window.crashGame.setMode(1, 'auto')">Auto</button>
+                </div>
+            </div>
+
+            <div class="spribe-bet-body">
+                <!-- Left: Stepper + 2x2 Chips (64, 160, 320, 1600) -->
+                <div class="spribe-controls-col">
+                    <div class="spribe-stepper-wrap">
+                        <button class="btn-stepper" onclick="window.crashGame.adjustBet(1, -1)">−</button>
+                        <input type="number" id="crash-bet-input" class="spribe-amount-input" value="16.00" min="16" step="1">
+                        <button class="btn-stepper" onclick="window.crashGame.adjustBet(1, 1)">+</button>
+                    </div>
+                    <div class="spribe-chips-grid">
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(1, 64)">64</button>
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(1, 160)">160</button>
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(1, 320)">320</button>
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(1, 1600)">1,600</button>
+                    </div>
+                </div>
+
+                <!-- Right: Big Signature Action Button -->
+                <button id="crash-action-btn" class="btn-spribe-action state-bet" onclick="window.crashGame.handleActionBtn(1)">
+                    <span class="spribe-btn-main-text">Bet</span>
+                    <span class="spribe-btn-sub-text" id="btn-sub-text-1">16.00 PKR</span>
+                </button>
+            </div>
+
+            <!-- Auto Cashout Row -->
+            <div class="spribe-auto-row" id="auto-row-1">
+                <span>Auto Cash Out:</span>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <input type="number" id="crash-auto-cashout" class="spribe-auto-input" value="2.00" step="0.1" min="1.01">
+                    <span style="color:#fff; font-weight:800;">X</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL 2 (HEDGE BET WITH COLLAPSE/EXPAND) -->
+        <div class="spribe-bet-card" id="spribe-bet-panel-2">
+            <div class="spribe-tab-row">
+                <div class="spribe-tab-pill">
+                    <button class="spribe-tab-btn active" id="tab-bet-2" onclick="window.crashGame.setMode(2, 'manual')">Bet</button>
+                    <button class="spribe-tab-btn" id="tab-auto-2" onclick="window.crashGame.setMode(2, 'auto')">Auto</button>
+                </div>
+                <button class="btn-minimize-panel" onclick="window.crashGame.togglePanel2()" id="btn-minimize-2" title="Minimize / Expand">⊟</button>
+            </div>
+
+            <div class="spribe-bet-body" id="bet-body-2">
+                <!-- Left: Stepper + 2x2 Chips (64, 160, 320, 1600) -->
+                <div class="spribe-controls-col">
+                    <div class="spribe-stepper-wrap">
+                        <button class="btn-stepper" onclick="window.crashGame.adjustBet(2, -1)">−</button>
+                        <input type="number" id="crash-bet-input-2" class="spribe-amount-input" value="16.00" min="16" step="1">
+                        <button class="btn-stepper" onclick="window.crashGame.adjustBet(2, 1)">+</button>
+                    </div>
+                    <div class="spribe-chips-grid">
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(2, 64)">64</button>
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(2, 160)">160</button>
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(2, 320)">320</button>
+                        <button class="btn-spribe-chip" onclick="window.crashGame.setBetAmount(2, 1600)">1,600</button>
+                    </div>
+                </div>
+
+                <!-- Right: Big Signature Action Button -->
+                <button id="crash-action-btn-2" class="btn-spribe-action state-bet" onclick="window.crashGame.handleActionBtn(2)">
+                    <span class="spribe-btn-main-text">Bet</span>
+                    <span class="spribe-btn-sub-text" id="btn-sub-text-2">16.00 PKR</span>
+                </button>
+            </div>
+
+            <!-- Auto Cashout Row -->
+            <div class="spribe-auto-row" id="auto-row-2">
+                <span>Auto Cash Out:</span>
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <input type="number" id="crash-auto-cashout-2" class="spribe-auto-input" value="1.50" step="0.1" min="1.01">
+                    <span style="color:#fff; font-weight:800;">X</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 6. SPRIBE LIVE COMMUNITY MULTIPLAYER BETS TABLE -->
+    <div class="spribe-ledger-container">
+        <div class="spribe-ledger-tabs">
+            <button class="btn-ledger-tab active" id="tab-all-bets" onclick="window.crashGame.switchLedgerTab('all')">All Bets</button>
+            <button class="btn-ledger-tab" id="tab-prev-bets" onclick="window.crashGame.switchLedgerTab('prev')">Previous</button>
+            <button class="btn-ledger-tab" id="tab-top-bets" onclick="window.crashGame.switchLedgerTab('top')">Top</button>
+        </div>
+
+        <div class="spribe-ledger-stats">
+            <div style="display:flex; align-items:center; gap:6px;">
+                <span class="avatar-mini-stack">
+                    <span class="avatar-mini-dot" style="background:#e74c3c;">🧑</span>
+                    <span class="avatar-mini-dot" style="background:#3498db;">👨</span>
+                </span>
+                <b id="ledger-count-label">0/0 Bets</b>
+            </div>
+            <div>
+                <b style="color:#ffffff;" id="ledger-total-win">0.00</b>
+                <span>Total win PKR</span>
+            </div>
+        </div>
+
+        <div class="spribe-table-header">
+            <div>Player</div>
+            <div>Bet, PKR</div>
+            <div>X</div>
+            <div style="text-align:right;">Win PKR</div>
+        </div>
+
+        <div class="spribe-table-body" id="spribe-table-body">
+            <!-- Dynamic Real-time Multiplayer Casino Rows -->
+        </div>
+
+        <div class="spribe-table-footer">
+            <span>✔ Provably Fair Game</span>
+            <span>Powered by <a href="javascript:void(0)">SPRIBE</a></span>
+        </div>
+    </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="aviator-crash-audio" src="../assets/audio/aviator_crash.mp3?v=spribe_real_crash_v9" preload="auto" playsinline></audio>
+
+    <!-- Scripts -->
+    <script src="../js/audio.js?v=9.8"></script>
+    <script src="../js/wallet.js?v=2.8"></script>
+    <script src="../js/core.js?v=2.8"></script>
+    <script src="../js/games/crash.js?v=every4bets_106_v31"></script>
+    <script>
+        window.toggleAviatorSound = function() {
+            if (window.sound) {
+                window.sound.toggleMute();
+                const icon = document.getElementById('aviatorSoundIcon');
+                if (icon) icon.textContent = window.sound.muted ? '🔇' : '🔊';
+            }
+        };
+
+        function bootAviator() {
+            // Remove any unwanted top music pill / legacy fixed launcher buttons
+            const purgeToggles = () => {
+                const btn = document.getElementById('bwn-sound-toggle-fixed');
+                if (btn) btn.remove();
+            };
+            purgeToggles();
+            setTimeout(purgeToggles, 200);
+            setTimeout(purgeToggles, 600);
+            setTimeout(purgeToggles, 1200);
+
+            // Connect universal wallet sync, toast container & SQL balance watchdog
+            if (window.core) {
+                if (window.core.renderToastContainer) window.core.renderToastContainer();
+                if (window.core.setupSync) window.core.setupSync();
+                if (window.core._injectApiBridge) window.core._injectApiBridge();
+                const syncBal = () => {
+                    const u = window.core.getLoggedInUser ? window.core.getLoggedInUser() : null;
+                    if (u && u.id && window.core.syncServerBalance) {
+                        window.core.syncServerBalance(u.id);
+                    }
+                };
+                syncBal();
+                setInterval(syncBal, 3500);
+                window.addEventListener('focus', syncBal);
+            }
+            if (window.wallet) {
+                window.wallet.on('balanceChange', () => {
+                    if (window.crashGame && window.crashGame.updateTopBalance) {
+                        window.crashGame.updateTopBalance();
+                    }
+                });
+            }
+
+            // Continuous Endless Aviator BGM Loop & Crash Audio Unlock Watchdog
+            const ensureContinuousBgm = () => {
+                if (window.sound) {
+                    window.sound.init();
+                    if (window.sound.ctx && window.sound.ctx.state === 'suspended') {
+                        window.sound.ctx.resume();
+                    }
+                    if (!window.sound.aviatorBgmAudio || window.sound.aviatorBgmAudio.paused) {
+                        window.sound.startAviatorBGM();
+                    }
+                }
+                const crashEl = document.getElementById('aviator-crash-audio');
+                if (crashEl && !crashEl._unlocked) {
+                    crashEl.volume = 0.001;
+                    const p = crashEl.play();
+                    if (p && typeof p.then === 'function') {
+                        p.then(() => {
+                            crashEl.pause();
+                            crashEl.currentTime = 0;
+                            crashEl.volume = 1.0;
+                            crashEl._unlocked = true;
+                        }).catch(() => {});
+                    } else {
+                        crashEl.pause();
+                        crashEl.currentTime = 0;
+                        crashEl.volume = 1.0;
+                        crashEl._unlocked = true;
+                    }
+                }
+            };
+
+            // Start immediately
+            ensureContinuousBgm();
+
+            // Unconditionally keep playing / resume on ANY user interaction
+            ['pointerdown', 'touchstart', 'mousedown', 'click', 'keydown'].forEach(evt => {
+                document.addEventListener(evt, ensureContinuousBgm, { passive: true });
+            });
+
+            // Resume automatically when tab is focused
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    ensureContinuousBgm();
+                }
+            });
+
+            // Authentic Spribe Entrance Video Sequence (Phase 1 -> Phase 2 -> Cockpit)
+            const phase1 = document.getElementById('spribe-entrance-phase1');
+            const phase2 = document.getElementById('spribe-entrance-phase2');
+            const splash = document.getElementById('aviator-splash');
+
+            setTimeout(() => {
+                if (phase1) phase1.classList.add('hidden');
+                if (phase2) phase2.classList.add('active');
+
+                setTimeout(() => {
+                    if (splash) splash.classList.add('fade-out');
+                    ensureContinuousBgm();
+                }, 1400);
+            }, 1800);
+
+            // Initialize game engine
+            if (window.crashGame) {
+                window.crashGame.init();
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bootAviator);
+        } else {
+            bootAviator();
+        }
+    </script>
+</body>
+</html>

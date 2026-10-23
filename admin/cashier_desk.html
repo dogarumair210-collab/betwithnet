@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#070d14">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Cashier Desk Mobile - Bet With Net Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-dark: #070d14;
+            --bg-card: #0e1724;
+            --bg-card-sub: #132032;
+            --border-line: #1c2c42;
+            --accent-gold: #f5a623;
+            --accent-green: #00e700;
+            --accent-cyan: #00d2ff;
+            --accent-red: #ff3b30;
+            --text-main: #f8fafc;
+            --text-muted: #8e9bb0;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            scroll-behavior: smooth;
+        }
+
+        .list-container, .user-card, .tx-card {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* App Shell */
+        .app-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Top App Bar */
+        .app-header {
+            height: 56px;
+            background: rgba(14, 23, 36, 0.98);
+            border-bottom: 1px solid var(--border-line);
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            flex-shrink: 0;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f5a623, #d97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(245, 166, 35, 0.35);
+        }
+
+        .brand-titles {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-main {
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: #fff;
+            line-height: 1.1;
+        }
+        .brand-sub {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pulseDot 1.5s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hdr-action {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-line);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-hdr-action:active { transform: scale(0.92); }
+
+        /* Stats Ribbon */
+        .stats-ribbon {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(11, 19, 30, 0.9);
+            border-bottom: 1px solid var(--border-line);
+            flex-shrink: 0;
+        }
+
+        .stat-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-meta {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .stat-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .stat-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Segmented Tabs */
+        .tabs-container {
+            display: flex;
+            padding: 8px 14px;
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-line);
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-line);
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(245, 166, 35, 0.2), rgba(217, 119, 6, 0.2));
+            border-color: var(--accent-gold);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(245, 166, 35, 0.25);
+        }
+        .tab-btn.tab-withdraw.active {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(0, 150, 255, 0.2));
+            border-color: var(--accent-cyan);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.25);
+        }
+
+        .tab-badge {
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+        .tab-btn.active .tab-badge {
+            background: var(--accent-gold);
+            color: #000;
+        }
+        .tab-btn.tab-withdraw.active .tab-badge {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+
+        /* Scrollable List Body */
+        .list-container {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 12px 14px 80px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Transaction Card */
+        .tx-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+        .tx-card:active {
+            transform: scale(0.99);
+        }
+
+        .tx-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-card-sub);
+            border: 1.5px solid var(--border-line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .user-names {
+            display: flex;
+            flex-direction: column;
+        }
+        .user-fullname {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .user-submeta {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .method-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-easypaisa { background: rgba(0, 231, 0, 0.15); color: #00e700; border: 1px solid rgba(0, 231, 0, 0.35); }
+        .badge-jazzcash { background: rgba(255, 59, 48, 0.15); color: #ff3b30; border: 1px solid rgba(255, 59, 48, 0.35); }
+        .badge-bank { background: rgba(0, 210, 255, 0.15); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.35); }
+        .badge-crypto { background: rgba(245, 166, 35, 0.15); color: #f5a623; border: 1px solid rgba(245, 166, 35, 0.35); }
+
+        /* Amount & Details Block */
+        .tx-details-box {
+            background: var(--bg-card-sub);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .amount-display {
+            display: flex;
+            flex-direction: column;
+        }
+        .amount-pkr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--accent-green);
+        }
+        .amount-usd {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .tid-box {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .tid-label {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .tid-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Sender / Recipient info */
+        .account-info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11.5px;
+            color: #cbd5e1;
+            padding: 0 4px;
+        }
+        .account-num-bold {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* Action Buttons */
+        .tx-actions-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .btn-action {
+            height: 42px;
+            border-radius: 12px;
+            border: none;
+            font-size: 13px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-action:active { transform: scale(0.95); }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #00e700, #00a800);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(0, 231, 0, 0.3);
+        }
+        .btn-reject {
+            background: rgba(255, 59, 48, 0.15);
+            border: 1px solid rgba(255, 59, 48, 0.35);
+            color: #ff3b30;
+        }
+        .btn-view-proof {
+            grid-column: span 2;
+            height: 36px;
+            background: rgba(0, 210, 255, 0.12);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            color: var(--accent-cyan);
+            font-size: 12px;
+            border-radius: 10px;
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+        }
+        .empty-icon {
+            font-size: 48px;
+            opacity: 0.8;
+        }
+        .empty-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .empty-desc {
+            font-size: 12px;
+            max-width: 260px;
+            line-height: 1.4;
+        }
+
+        /* Image Proof Modal */
+        #proofModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        #proofModal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .proof-modal-hdr {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border-line);
+        }
+        .proof-modal-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            overflow: auto;
+        }
+        .proof-modal-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        /* Toast notification */
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(14, 23, 36, 0.95);
+            border: 1px solid var(--accent-gold);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.8);
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- USERS DIRECTORY STYLES --- */
+        .tab-btn.tab-users.active {
+            background: linear-gradient(135deg, rgba(0, 231, 0, 0.22), rgba(0, 180, 80, 0.22));
+            border-color: var(--accent-green);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 231, 0, 0.25);
+        }
+        .tab-btn.tab-users.active .tab-badge {
+            background: var(--accent-green);
+            color: #000;
+        }
+
+        .users-toolbar-wrap {
+            padding: 10px 14px 6px;
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-line);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .users-search-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .search-box-input {
+            flex: 1;
+            height: 38px;
+            background: #0d1522;
+            border: 1px solid var(--border-line);
+            border-radius: 10px;
+            padding: 0 12px 0 34px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box-input:focus {
+            border-color: var(--accent-cyan);
+        }
+        .search-icon-pos {
+            position: absolute;
+            left: 11px;
+            top: 10px;
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .users-filter-row {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+        .filter-chip {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .filter-chip.active {
+            background: rgba(0, 231, 0, 0.15);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* User Card */
+        .user-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 13px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .user-card.is-playing-card {
+            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 16px rgba(0, 255, 136, 0.2);
+        }
+        .user-card-hdr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user-card-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #162438, #0e1724);
+            border: 1px solid var(--border-line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .user-names-col {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .user-name-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .user-sub-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        .user-balances-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: #080f18;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 8px 12px;
+        }
+        .bal-field-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .bal-field-lbl {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .bal-field-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--accent-green);
+        }
+        .bal-field-val.usd {
+            color: var(--accent-cyan);
+        }
+
+        /* Playing Game Live Pill */
+        @keyframes pulsePlayingPill {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 0 18px rgba(0, 255, 136, 0.85); transform: scale(1.02); }
+        }
+        @keyframes blinkDot {
+            0% { opacity: 0.2; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1.3); }
+        }
+        .live-playing-bar {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 180, 216, 0.15));
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: pulsePlayingPill 2s infinite ease-in-out;
+            cursor: pointer;
+        }
+        .playing-text {
+            font-size: 11px;
+            font-weight: 900;
+            color: #00ff88;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.3px;
+        }
+        .playing-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: blinkDot 0.8s infinite alternate;
+        }
+
+        /* Rigging selector and action buttons */
+        .user-actions-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 2px;
+        }
+        .btn-user-action {
+            height: 34px;
+            padding: 0 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+        }
+        .btn-user-action:active { transform: scale(0.95); }
+        .btn-bal-add {
+            background: rgba(0, 231, 0, 0.15);
+            border-color: rgba(0, 231, 0, 0.4);
+            color: var(--accent-green);
+            flex: 1;
+        }
+        .btn-bal-deduct {
+            background: rgba(255, 59, 48, 0.15);
+            border-color: rgba(255, 59, 48, 0.4);
+            color: var(--accent-red);
+            flex: 1;
+        }
+        .btn-user-monitor {
+            background: rgba(0, 210, 255, 0.12);
+            border-color: rgba(0, 210, 255, 0.35);
+            color: var(--accent-cyan);
+            padding: 0 10px;
+        }
+        .bias-select {
+            height: 34px;
+            background: #0d1522;
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 0 6px;
+            outline: none;
+            cursor: pointer;
+        }
+        .bias-select.force_loss {
+            border-color: var(--accent-red);
+            color: #ff6b6b;
+            background: rgba(255, 59, 48, 0.12);
+        }
+        .bias-select.force_win {
+            border-color: #ffd700;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.12);
+        }
+        .bias-select.fair {
+            color: #94a3b8;
+        }
+
+        /* Generic Modal Shell */
+        .admin-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            backdrop-filter: blur(6px);
+        }
+        .admin-modal.show {
+            display: flex;
+        }
+        .admin-modal-card {
+            background: #0e1724;
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="brand-icon-box">👑</div>
+                <div class="brand-titles">
+                    <span class="brand-main">BWN CASHIER</span>
+                    <span class="brand-sub">
+                        <span class="live-dot"></span>
+                        REAL-TIME DESK
+                    </span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="btnSound" class="btn-hdr-action" title="Audio Alert Toggle">🔔</button>
+                <button id="btnRefresh" class="btn-hdr-action" title="Manual Refresh">🔄</button>
+            </div>
+        </header>
+
+        <!-- 30-Second Alarm Banner -->
+        <div id="alarmBanner" style="display:none; background:linear-gradient(135deg, #ff3b30, #b91c1c); color:#fff; padding:10px 16px; font-weight:800; font-size:12px; align-items:center; justify-content:space-between; box-shadow:0 4px 15px rgba(255,59,48,0.5); z-index:100; flex-shrink:0;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:18px;">🚨</span>
+                <span id="alarmBannerText">NEW CASHIER REQUEST! Bell ringing for 30s...</span>
+            </div>
+            <button onclick="stop30SecondBellAlarm()" style="background:#fff; color:#b91c1c; border:none; border-radius:8px; padding:5px 12px; font-size:11px; font-weight:900; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.3);">🔕 STOP</button>
+        </div>
+
+        <!-- Stats Ribbon -->
+        <div class="stats-ribbon">
+            <div class="stat-pill">
+                <div class="stat-meta">
+                    <span class="stat-label">Pending Deposits</span>
+                    <span id="statDepPending" class="stat-val" style="color:var(--accent-gold);">0</span>
+                </div>
+                <div class="stat-badge" style="background:rgba(245,166,35,0.15); color:var(--accent-gold);">💳</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-meta">
+                    <span class="stat-label">Pending Payouts</span>
+                    <span id="statWithPending" class="stat-val" style="color:var(--accent-cyan);">0</span>
+                </div>
+                <div class="stat-badge" style="background:rgba(0,210,255,0.15); color:var(--accent-cyan);">💸</div>
+            </div>
+        </div>
+
+        <!-- Segmented Tab Bar -->
+        <div class="tabs-container">
+            <button id="tabBtnDeposits" class="tab-btn active" onclick="switchTab('deposits')">
+                <span>💳 DEPOSITS</span>
+                <span id="badgeDepCount" class="tab-badge">0</span>
+            </button>
+            <button id="tabBtnWithdrawals" class="tab-btn tab-withdraw" onclick="switchTab('withdrawals')">
+                <span>💸 PAYOUTS</span>
+                <span id="badgeWithCount" class="tab-badge">0</span>
+            </button>
+            <button id="tabBtnUsers" class="tab-btn tab-users" onclick="switchTab('users')">
+                <span>👥 USERS</span>
+                <span id="badgeUsersCount" class="tab-badge" style="background:var(--accent-green); color:#000;">0</span>
+            </button>
+        </div>
+
+        <!-- Users Search & Filter Toolbar (Visible when Users tab is active) -->
+        <div id="usersToolbar" class="users-toolbar-wrap" style="display:none;">
+            <div class="users-search-row" style="position:relative;">
+                <span class="search-icon-pos">🔍</span>
+                <input type="text" id="userSearchInput" class="search-box-input" placeholder="Search user ID, username, phone, email, IP..." oninput="onUserSearchInput(this.value)">
+                <button class="btn-hdr-action" style="width:38px; height:38px; background:rgba(0,231,0,0.15); border-color:var(--accent-green); color:var(--accent-green);" onclick="refreshUsersList()" title="Refresh Users">🔄</button>
+            </div>
+            <div class="users-filter-row">
+                <span class="filter-chip active" id="chip-all" onclick="setUserFilter('all')">All Players</span>
+                <span class="filter-chip" id="chip-playing" onclick="setUserFilter('playing')" style="border-color:#00ff88; color:#00ff88;">🎮 Playing Game Now</span>
+                <span class="filter-chip" id="chip-loss" onclick="setUserFilter('force_loss')">💀 Rigged Loss</span>
+                <span class="filter-chip" id="chip-win" onclick="setUserFilter('force_win')">👑 Rigged Win</span>
+                <span class="filter-chip" id="chip-active" onclick="setUserFilter('active')">🟢 Active</span>
+                <span class="filter-chip" id="chip-suspended" onclick="setUserFilter('suspended')">⛔ Suspended</span>
+            </div>
+        </div>
+
+        <!-- Transaction Cards Feed -->
+        <main id="txFeed" class="list-container">
+            <!-- Rendered dynamically -->
+        </main>
+
+        <!-- Real Users Cards Feed -->
+        <main id="usersFeed" class="list-container" style="display:none;">
+            <!-- Rendered dynamically -->
+        </main>
+
+    </div>
+
+    <!-- Receipt / Screenshot Proof Modal -->
+    <div id="proofModal">
+        <div class="proof-modal-hdr">
+            <span style="font-weight:800; font-size:14px; color:#fff;">📸 Transaction Receipt Proof</span>
+            <button class="btn-hdr-action" onclick="closeProofModal()">✕</button>
+        </div>
+        <div class="proof-modal-body">
+            <img id="modalProofImg" class="proof-modal-img" src="" alt="Proof">
+        </div>
+    </div>
+
+    <!-- Real-Time Game Monitor & Rigging Modal -->
+    <div id="liveGameModal" class="admin-modal">
+        <div class="admin-modal-card" style="border-color:#00ff88; box-shadow:0 0 35px rgba(0,255,136,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:20px; animation:blinkDot 0.8s infinite alternate;">🎮</span>
+                    <div>
+                        <div style="font-size:15px; font-weight:900; color:#fff;">Live Player Game Monitor</div>
+                        <div style="font-size:10px; font-weight:700; color:#00ff88;">REAL-TIME IN-ROUND RIGGING</div>
+                    </div>
+                </div>
+                <button class="btn-hdr-action" style="width:30px; height:30px;" onclick="closeLiveGameModal()">✕</button>
+            </div>
+
+            <div style="background:#070d14; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span style="color:var(--text-muted);">Player Identity:</span>
+                    <span style="color:#fff; font-weight:800;" id="lgm-username">-</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span style="color:var(--text-muted);">User ID:</span>
+                    <span style="color:var(--accent-cyan); font-family:monospace; font-weight:800;" id="lgm-userid">-</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span style="color:var(--text-muted);">Active Game:</span>
+                    <span style="color:#00ff88; font-weight:900; text-transform:uppercase;" id="lgm-game">-</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span style="color:var(--text-muted);">Live Status:</span>
+                    <span style="color:var(--accent-cyan); font-weight:700;" id="lgm-status">Actively in Round</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span style="color:var(--text-muted);">Recent Bet / Round:</span>
+                    <span style="color:var(--accent-gold); font-family:monospace; font-weight:800;" id="lgm-bet">₨ 0</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span style="color:var(--text-muted);">Current Rig Bias:</span>
+                    <span style="font-weight:900;" id="lgm-current-bias">⚖️ Fair</span>
+                </div>
+            </div>
+
+            <div>
+                <label style="display:block; font-size:10px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">⚡ One-Click Game Rigging Controls</label>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <button class="btn-user-action" style="background:#ff3b30; color:#fff; font-weight:900;" onclick="quickSetBiasFromModal('force_loss')">
+                        💀 Force Loss (100%)
+                    </button>
+                    <button class="btn-user-action" style="background:#ffd700; color:#000; font-weight:900;" onclick="quickSetBiasFromModal('force_win')">
+                        👑 Force Win (100%)
+                    </button>
+                    <button class="btn-user-action" style="background:#1e293b; color:#fff; border:1px solid #334155;" onclick="quickSetBiasFromModal('fair')">
+                        ⚖️ Fair (Normal RTP)
+                    </button>
+                    <button class="btn-user-action" style="background:#00d2ff; color:#000; font-weight:900;" onclick="quickAdjustFromModal()">
+                        💰 Adjust Balance
+                    </button>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end;">
+                <button class="btn-user-action" style="background:rgba(255,255,255,0.08); color:#fff;" onclick="closeLiveGameModal()">Close Monitor</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Balance Adjustment (+ / -) Modal -->
+    <div id="adjustBalModal" class="admin-modal">
+        <div class="admin-modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                <div style="font-size:15px; font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;">
+                    <span>💰</span> Manual Balance Adjustment
+                </div>
+                <button class="btn-hdr-action" style="width:30px; height:30px;" onclick="closeAdjustBalModal()">✕</button>
+            </div>
+
+            <div style="background:#070d14; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; font-size:12px; display:flex; flex-direction:column; gap:6px;">
+                <div style="color:var(--text-muted);">Target Player: <b id="abm-user" style="color:#fff;"></b> (<span id="abm-id" style="color:var(--accent-cyan); font-family:monospace;"></span>)</div>
+                <div style="display:flex; justify-content:space-between; margin-top:4px;">
+                    <div>Current PKR: <b id="abm-pkr" style="color:var(--accent-green); font-family:monospace;">₨ 0</b></div>
+                    <div>Current USD: <b id="abm-usd" style="color:var(--accent-cyan); font-family:monospace;">$ 0.00</b></div>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div>
+                    <label style="display:block; font-size:10px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Operation Type</label>
+                    <div style="display:flex; gap:8px;">
+                        <label style="flex:1; cursor:pointer; background:rgba(0,231,0,0.12); border:1px solid rgba(0,231,0,0.3); border-radius:10px; padding:10px; display:flex; align-items:center; gap:8px; font-size:12px; color:#fff; font-weight:800;">
+                            <input type="radio" name="abm_type" value="add" checked> ➕ Add (+) Credit
+                        </label>
+                        <label style="flex:1; cursor:pointer; background:rgba(255,59,48,0.12); border:1px solid rgba(255,59,48,0.3); border-radius:10px; padding:10px; display:flex; align-items:center; gap:8px; font-size:12px; color:#fff; font-weight:800;">
+                            <input type="radio" name="abm_type" value="deduct"> ➖ Minus (-) Debit
+                        </label>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <div style="flex:1;">
+                        <label style="display:block; font-size:10px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Currency</label>
+                        <select id="abm-currency" class="search-box-input" style="width:100%; height:40px; padding-left:10px;">
+                            <option value="PKR" selected>PKR (₨)</option>
+                            <option value="USD">USD ($)</option>
+                        </select>
+                    </div>
+                    <div style="flex:2;">
+                        <label style="display:block; font-size:10px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Amount</label>
+                        <input type="number" id="abm-amount" class="search-box-input" placeholder="e.g. 5000" min="1" step="any" style="width:100%; height:40px; padding-left:12px; font-family:monospace; font-weight:900; font-size:15px; color:#00ff88;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:10px; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Reason / Admin Note</label>
+                    <input type="text" id="abm-reason" class="search-box-input" value="Cashier Manual Adjustment" placeholder="Reason..." style="width:100%; height:38px; padding-left:12px;">
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+                <button class="btn-user-action" style="background:rgba(255,255,255,0.08); color:#fff;" onclick="closeAdjustBalModal()">Cancel</button>
+                <button id="abm-submit-btn" class="btn-user-action" style="background:var(--accent-green); color:#000; font-weight:900; padding:0 18px;" onclick="submitAdjustBalance()">Save Balance</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastBox" class="toast-msg">Success</div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        let currentTab = 'deposits';
+        let soundEnabled = true;
+        let lastPendingCount = -1; // -1 to detect initial load
+        let pollingTimer = null;
+
+        // Audio synthesizer for incoming deposit/withdraw alert
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+        // Unlock AudioContext on first touch/click
+        document.addEventListener('click', () => { getAudioContext(); }, { once: true });
+        document.addEventListener('touchstart', () => { getAudioContext(); }, { once: true });
+
+        function playDing() {
+            if (!soundEnabled) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            try {
+                const now = ctx.currentTime;
+                // Double loud chime (Ding-Dong 880Hz -> 1320Hz)
+                const osc1 = ctx.createOscillator();
+                const gain1 = ctx.createGain();
+                osc1.frequency.setValueAtTime(880, now);
+                gain1.gain.setValueAtTime(0.5, now);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                osc1.connect(gain1);
+                gain1.connect(ctx.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.35);
+
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.frequency.setValueAtTime(1320, now + 0.18);
+                gain2.gain.setValueAtTime(0.55, now + 0.18);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.start(now + 0.18);
+                osc2.stop(now + 0.65);
+
+                if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            } catch (e) {}
+        }
+
+        let alarmInterval = null;
+        let alarmTimeout = null;
+
+        function start30SecondBellAlarm(count) {
+            stop30SecondBellAlarm();
+
+            const banner = document.getElementById('alarmBanner');
+            const bannerTxt = document.getElementById('alarmBannerText');
+            if (banner) {
+                banner.style.display = 'flex';
+                if (bannerTxt) bannerTxt.textContent = `🚨 ${count} NEW CASHIER REQUEST(S)!`;
+            }
+
+            alarmTimeout = setTimeout(() => {
+                stop30SecondBellAlarm();
+            }, 30000);
+        }
+
+        window.stop30SecondBellAlarm = function () {
+            if (alarmTimeout) {
+                clearTimeout(alarmTimeout);
+                alarmTimeout = null;
+            }
+            const banner = document.getElementById('alarmBanner');
+            if (banner) banner.style.display = 'none';
+        };
+
+        // Cache for transactions & users
+        let depositsData = [];
+        let withdrawalsData = [];
+        let usersData = [];
+        let activeUserFilter = 'all';
+        let userSearchQuery = '';
+        let targetUserForAdjustment = null;
+        let activePlayerForMonitor = null;
+
+        async function fetchNotifications() {
+            try {
+                const res = await fetch('../api/admin.php?action=pending_notifications&admin_pin=7777', {
+                    headers: { 'X-Admin-Pin': '7777' },
+                    cache: 'no-store'
+                });
+                const json = await res.json();
+
+                if (json && (json.success === true || json.status === 'success') && json.data) {
+                    const data = json.data;
+                    document.getElementById('statDepPending').textContent = data.pending_deposits_count || 0;
+                    document.getElementById('statWithPending').textContent = data.pending_withdrawals_count || 0;
+                    document.getElementById('badgeDepCount').textContent = data.pending_deposits_count || 0;
+                    document.getElementById('badgeWithCount').textContent = data.pending_withdrawals_count || 0;
+
+                    const total = (data.pending_deposits_count || 0) + (data.pending_withdrawals_count || 0);
+                    if (lastPendingCount === -1) {
+                        lastPendingCount = total;
+                        if (total > 0) {
+                            start30SecondBellAlarm(total);
+                            showToast(`🚨 ${total} Pending Request(s) Waiting for Cashier!`);
+                        }
+                    } else if (total > lastPendingCount) {
+                        const diff = total - lastPendingCount;
+                        start30SecondBellAlarm(diff);
+                        showToast(`🚨 ${diff} New Request(s) Received!`);
+                        lastPendingCount = total;
+                    } else {
+                        lastPendingCount = total;
+                    }
+
+                    // Separate into deposits & withdrawals
+                    const items = data.items || [];
+                    depositsData = items.filter(t => t.type === 'deposit');
+                    withdrawalsData = items.filter(t => t.type === 'withdraw' || t.type === 'withdrawal');
+
+                    renderList();
+                } else {
+                    fetchTransactionsList();
+                }
+            } catch (err) {
+                fetchTransactionsList();
+            }
+        }
+
+        async function fetchTransactionsList() {
+            try {
+                const depRes = await fetch('../api/admin.php?action=transactions&type=deposit&status=Pending&limit=50&admin_pin=7777', {
+                    headers: { 'X-Admin-Pin': '7777' }
+                });
+                const depJson = await depRes.json();
+                if (depJson && (depJson.success === true || depJson.status === 'success') && depJson.data && depJson.data.transactions) {
+                    depositsData = depJson.data.transactions;
+                    document.getElementById('statDepPending').textContent = depositsData.length;
+                    document.getElementById('badgeDepCount').textContent = depositsData.length;
+                }
+
+                const withRes = await fetch('../api/admin.php?action=transactions&type=withdraw&status=Pending&limit=50&admin_pin=7777', {
+                    headers: { 'X-Admin-Pin': '7777' }
+                });
+                const withJson = await withRes.json();
+                if (withJson && (withJson.success === true || withJson.status === 'success') && withJson.data && withJson.data.transactions) {
+                    withdrawalsData = withJson.data.transactions;
+                    document.getElementById('statWithPending').textContent = withdrawalsData.length;
+                    document.getElementById('badgeWithCount').textContent = withdrawalsData.length;
+                }
+
+                renderList();
+            } catch (e) {
+                renderList();
+            }
+        }
+
+        function renderList() {
+            const feed = document.getElementById('txFeed');
+            feed.innerHTML = '';
+
+            const list = (currentTab === 'deposits') ? depositsData : withdrawalsData;
+
+            if (!list || list.length === 0) {
+                feed.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">${currentTab === 'deposits' ? '💳' : '💸'}</div>
+                        <div class="empty-title">All Caught Up!</div>
+                        <div class="empty-desc">No pending ${currentTab} at this moment. You will hear an audible alert when a real user submits a request.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            list.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'tx-card';
+
+                const pkr = Number(item.amount_pkr || (item.amount_usd ? item.amount_usd * 278 : 0));
+                const usd = Number(item.amount_usd || (pkr / 278)).toFixed(2);
+                const methodLower = (item.method || '').toLowerCase();
+
+                let badgeClass = 'badge-easypaisa';
+                if (methodLower.includes('jazz')) badgeClass = 'badge-jazzcash';
+                else if (methodLower.includes('bank') || methodLower.includes('raast')) badgeClass = 'badge-bank';
+                else if (methodLower.includes('usdt') || methodLower.includes('crypto')) badgeClass = 'badge-crypto';
+
+                const senderNum = item.sender_account || item.account_number || item.phone || '-';
+                const trxId = item.trx_id || item.trxId || '-';
+                const userName = item.full_name || item.username || `User #${item.user_id}`;
+                const hasProof = (item.proof_image || item.proofImage || item.proof);
+                const notes = item.notes || '';
+
+                card.innerHTML = `
+                    <div class="tx-card-header">
+                        <div class="user-info">
+                            <div class="user-avatar-circle">👤</div>
+                            <div class="user-names">
+                                <span class="user-fullname">${escapeHtml(userName)}</span>
+                                <span class="user-submeta">ID: ${escapeHtml(item.user_id || item.id)}</span>
+                            </div>
+                        </div>
+                        <span class="method-badge ${badgeClass}">${escapeHtml(item.method || 'Cashier')}</span>
+                    </div>
+
+                    <div class="tx-details-box">
+                        <div class="amount-display">
+                            <span class="amount-pkr">₨ ${pkr.toLocaleString()}</span>
+                            <span class="amount-usd">$ ${usd} USD</span>
+                        </div>
+                        <div class="tid-box">
+                            <span class="tid-label">TRX / TID</span>
+                            <span class="tid-val" onclick="copyText('${escapeHtml(trxId)}')">
+                                ${escapeHtml(trxId)} 📋
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="account-info-row">
+                        <span>Account / Phone:</span>
+                        <span class="account-num-bold" onclick="copyText('${escapeHtml(senderNum)}')">${escapeHtml(senderNum)} 📋</span>
+                    </div>
+
+                    ${notes ? `
+                        <div style="font-size:11px; color:#f59e0b; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25); border-radius:8px; padding:6px 10px; margin-top:6px;">
+                            ${escapeHtml(notes)}
+                        </div>
+                    ` : ''}
+
+                    <div class="tx-actions-row">
+                        ${hasProof ? `
+                            <button class="btn-action btn-view-proof" onclick="viewProof('${escapeHtml(hasProof)}')">
+                                📸 View Receipt Screenshot
+                            </button>
+                        ` : ''}
+                        <button class="btn-action btn-approve" onclick="handleAction('${item.id}', 'Approved')">
+                            ✓ Approve
+                        </button>
+                        <button class="btn-action btn-reject" onclick="handleAction('${item.id}', 'Rejected')">
+                            ✕ Reject
+                        </button>
+                    </div>
+                `;
+
+                feed.appendChild(card);
+            });
+        }
+
+        window.switchTab = function (tab) {
+            currentTab = tab;
+            const btnDep = document.getElementById('tabBtnDeposits');
+            const btnWith = document.getElementById('tabBtnWithdrawals');
+            const btnUsers = document.getElementById('tabBtnUsers');
+            const txFeed = document.getElementById('txFeed');
+            const usersFeed = document.getElementById('usersFeed');
+            const usersToolbar = document.getElementById('usersToolbar');
+
+            if (btnDep) btnDep.classList.toggle('active', tab === 'deposits');
+            if (btnWith) btnWith.classList.toggle('active', tab === 'withdrawals');
+            if (btnUsers) btnUsers.classList.toggle('active', tab === 'users');
+
+            if (tab === 'users') {
+                if (txFeed) txFeed.style.display = 'none';
+                if (usersFeed) usersFeed.style.display = 'flex';
+                if (usersToolbar) usersToolbar.style.display = 'flex';
+                fetchUsersList();
+            } else {
+                if (txFeed) txFeed.style.display = 'flex';
+                if (usersFeed) usersFeed.style.display = 'none';
+                if (usersToolbar) usersToolbar.style.display = 'none';
+                renderList();
+            }
+        };
+
+        // --- USERS SECTION LOGIC ---
+        async function fetchUsersList(query = '') {
+            try {
+                const q = query || userSearchQuery;
+                const base = q ? `../api/admin.php?action=users&search=${encodeURIComponent(q)}&sort=balance_desc` : `../api/admin.php?action=users&limit=1000&sort=balance_desc`;
+                const url = base + (base.includes('?') ? '&' : '?') + 'admin_pin=7777';
+                const res = await fetch(url, {
+                    headers: { 'X-Admin-Pin': '7777' },
+                    cache: 'no-store'
+                });
+                const json = await res.json();
+                if (json && json.success && json.data && Array.isArray(json.data.users)) {
+                    usersData = json.data.users.map(u => ({
+                        id: String(u.id || ''),
+                        username: String(u.username || ''),
+                        fullName: String(u.full_name || u.fullName || u.username || ''),
+                        phone: String(u.phone || ''),
+                        email: String(u.email || ''),
+                        balanceUSD: parseFloat(u.balance_usd || 0),
+                        balancePKR: parseFloat(u.balance_pkr || 0),
+                        vipTier: String(u.vip_tier || 'Bronze VIP'),
+                        outcomeBias: String(u.outcome_bias || 'fair'),
+                        status: String(u.status || 'active'),
+                        ipAddress: String(u.ip_address || '-'),
+                        deviceType: String(u.device_type || 'Web'),
+                        isPlaying: Boolean(u.is_playing),
+                        activeGame: String(u.active_game || ''),
+                        playingSecondsAgo: (u.playing_seconds_ago !== undefined && u.playing_seconds_ago !== null) ? Number(u.playing_seconds_ago) : null,
+                        recentBetPkr: u.recent_bet_pkr ? parseFloat(u.recent_bet_pkr) : 0
+                    }));
+
+                    const badgeUsers = document.getElementById('badgeUsersCount');
+                    if (badgeUsers) badgeUsers.textContent = (json.data.total !== undefined ? json.data.total : usersData.length);
+
+                    renderUsersList();
+                }
+            } catch (err) {
+                console.error('Failed to fetch real users:', err);
+            }
+        }
+
+        window.refreshUsersList = function () {
+            showToast('Syncing all player wallets...');
+            fetchUsersList();
+        };
+
+        window.onUserSearchInput = function (val) {
+            userSearchQuery = val ? val.trim() : '';
+            renderUsersList();
+        };
+
+        window.setUserFilter = function (filter) {
+            activeUserFilter = filter;
+            document.querySelectorAll('.filter-chip').forEach(el => el.classList.remove('active'));
+            const activeChip = document.getElementById('chip-' + (filter === 'force_loss' ? 'loss' : filter === 'force_win' ? 'win' : filter));
+            if (activeChip) activeChip.classList.add('active');
+            renderUsersList();
+        };
+
+        function renderUsersList() {
+            const feed = document.getElementById('usersFeed');
+            if (!feed) return;
+            feed.innerHTML = '';
+
+            let list = [...usersData];
+
+            // Search filter
+            if (userSearchQuery) {
+                const sq = userSearchQuery.toLowerCase();
+                list = list.filter(u => 
+                    u.username.toLowerCase().includes(sq) ||
+                    u.id.toLowerCase().includes(sq) ||
+                    u.fullName.toLowerCase().includes(sq) ||
+                    u.phone.toLowerCase().includes(sq) ||
+                    u.email.toLowerCase().includes(sq) ||
+                    u.ipAddress.toLowerCase().includes(sq)
+                );
+            }
+
+            // Category filter
+            if (activeUserFilter === 'playing') {
+                list = list.filter(u => u.isPlaying);
+            } else if (activeUserFilter === 'force_loss') {
+                list = list.filter(u => u.outcomeBias === 'force_loss');
+            } else if (activeUserFilter === 'force_win') {
+                list = list.filter(u => u.outcomeBias === 'force_win');
+            } else if (activeUserFilter === 'active') {
+                list = list.filter(u => u.status === 'active');
+            } else if (activeUserFilter === 'suspended') {
+                list = list.filter(u => u.status === 'suspended');
+            }
+
+            // Sort: Highest Balance (PKR / USD) ALWAYS at the very top
+            list.sort((a, b) => {
+                const balA = Math.max(Number(a.balancePKR || 0), Number(a.balanceUSD || 0) * 278);
+                const balB = Math.max(Number(b.balancePKR || 0), Number(b.balanceUSD || 0) * 278);
+                return balB - balA;
+            });
+
+            if (!list || list.length === 0) {
+                feed.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">👥</div>
+                        <div class="empty-title">No Players Found</div>
+                        <div class="empty-desc">No registered users matched the selected filter or query.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            list.forEach(u => {
+                const card = document.createElement('div');
+                card.className = 'user-card' + (u.isPlaying ? ' is-playing-card' : '');
+
+                const balPKR = u.balancePKR !== undefined ? Number(u.balancePKR) : (Number(u.balanceUSD || 0) * 278);
+                const balUSD = u.balanceUSD !== undefined ? Number(u.balanceUSD) : (balPKR / 278);
+
+                // Live In-Game Session Banner
+                let playingHtml = '';
+                if (u.isPlaying) {
+                    const gameName = escapeHtml(u.activeGame || 'Casino Game');
+                    const agoText = u.playingSecondsAgo !== null ? `(${u.playingSecondsAgo}s ago)` : '🟢 Active Round';
+                    playingHtml = `
+                        <div class="live-playing-bar" onclick="openLiveGameModal('${escapeHtml(u.id)}')">
+                            <span class="playing-text">
+                                <span class="playing-dot"></span>
+                                🎮 PLAYING NOW: ${gameName}
+                            </span>
+                            <span style="font-size:10px; font-weight:800; color:#00ff88; font-family:monospace;">${agoText} ⚡</span>
+                        </div>
+                    `;
+                }
+
+                // Outcome Bias Selector Class
+                const biasClass = (u.outcomeBias === 'force_loss') ? 'force_loss' : (u.outcomeBias === 'force_win') ? 'force_win' : 'fair';
+
+                card.innerHTML = `
+                    <div class="user-card-hdr">
+                        <div class="user-card-left">
+                            <div class="user-avatar">${u.isPlaying ? '🎮' : '👤'}</div>
+                            <div class="user-names-col">
+                                <div style="display:flex; align-items:center; gap:6px;">
+                                    <span class="user-name-title">${escapeHtml(u.username)}</span>
+                                    <span style="font-size:9.5px; font-weight:800; color:var(--accent-gold);">${escapeHtml(u.vipTier.replace(' VIP',''))}</span>
+                                </div>
+                                <span class="user-sub-id">ID: ${escapeHtml(u.id)} ${u.phone ? '• ' + escapeHtml(u.phone) : ''}</span>
+                            </div>
+                        </div>
+                        <span class="status-badge" style="background:${u.status === 'active' ? 'rgba(0,231,0,0.15)' : 'rgba(255,59,48,0.15)'}; color:${u.status === 'active' ? 'var(--accent-green)' : 'var(--accent-red)'}; font-size:10px; font-weight:800; padding:2px 7px; border-radius:6px;">
+                            ${u.status === 'active' ? '🟢 Active' : '⛔ Suspended'}
+                        </span>
+                    </div>
+
+                    ${playingHtml}
+
+                    <div class="user-balances-grid">
+                        <div class="bal-field-col">
+                            <span class="bal-field-lbl">Real PKR Balance</span>
+                            <span class="bal-field-val">₨ ${(isNaN(balPKR) ? 0 : balPKR).toLocaleString()}</span>
+                        </div>
+                        <div class="bal-field-col">
+                            <span class="bal-field-lbl">Equivalent USD</span>
+                            <span class="bal-field-val usd">$ ${(isNaN(balUSD) ? 0 : balUSD).toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <!-- Rigging & Controls Row -->
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px;">
+                        <div style="display:flex; align-items:center; gap:5px; flex:1;">
+                            <span style="font-size:11px; font-weight:800; color:var(--text-muted);">Rig:</span>
+                            <select class="bias-select ${biasClass}" style="flex:1;" onchange="updatePlayerRig('${escapeHtml(u.id)}', this.value)">
+                                <option value="fair" ${u.outcomeBias === 'fair' ? 'selected' : ''}>⚖️ Fair (48% RTP)</option>
+                                <option value="force_loss" ${u.outcomeBias === 'force_loss' ? 'selected' : ''}>💀 Force Loss (100%)</option>
+                                <option value="force_win" ${u.outcomeBias === 'force_win' ? 'selected' : ''}>👑 Force Win (100%)</option>
+                            </select>
+                        </div>
+                        <button class="btn-user-action btn-user-monitor" onclick="openLiveGameModal('${escapeHtml(u.id)}')" title="Game Details & Real-Time Rig">
+                            🎮 Monitor
+                        </button>
+                    </div>
+
+                    <!-- Balance Plus / Minus Actions -->
+                    <div class="user-actions-bar">
+                        <button class="btn-user-action btn-bal-add" onclick="openAdjustBalModal('${escapeHtml(u.id)}', 'add')">
+                            ➕ Add Balance (+)
+                        </button>
+                        <button class="btn-user-action btn-bal-deduct" onclick="openAdjustBalModal('${escapeHtml(u.id)}', 'deduct')">
+                            ➖ Deduct Balance (-)
+                        </button>
+                    </div>
+                `;
+
+                feed.appendChild(card);
+            });
+        }
+
+        // --- RIGGING UPDATE FUNCTION ---
+        window.updatePlayerRig = async function (userId, newBias) {
+            try {
+                showToast(`Updating rig bias to ${newBias.toUpperCase()}...`);
+                const res = await fetch('../api/admin.php?action=update_user&admin_pin=7777', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '7777' },
+                    body: JSON.stringify({ id: userId, outcome_bias: newBias, admin_pin: '7777' })
+                });
+                const json = await res.json();
+                if (json && (json.success === true || json.status === 'success')) {
+                    showToast(`✓ Player Rigging set to: ${newBias.toUpperCase()}`);
+                    const user = usersData.find(u => u.id === userId);
+                    if (user) user.outcomeBias = newBias;
+                    renderUsersList();
+                } else {
+                    alert('Failed to update rig: ' + (json.message || 'Error'));
+                }
+            } catch (e) {
+                alert('Network error updating rig: ' + e.message);
+            }
+        };
+
+        // --- BALANCE ADJUSTMENT MODAL LOGIC (+ / -) ---
+        window.openAdjustBalModal = function (userId, defaultType = 'add') {
+            const user = usersData.find(u => u.id === userId);
+            if (!user) return;
+            targetUserForAdjustment = user;
+
+            document.getElementById('abm-user').textContent = user.username;
+            document.getElementById('abm-id').textContent = user.id;
+            document.getElementById('abm-pkr').textContent = `₨ ${Number(user.balancePKR || 0).toLocaleString()}`;
+            document.getElementById('abm-usd').textContent = `$ ${Number(user.balanceUSD || 0).toFixed(2)}`;
+
+            document.getElementById('abm-amount').value = '';
+            const radio = document.querySelector(`input[name="abm_type"][value="${defaultType}"]`);
+            if (radio) radio.checked = true;
+
+            const modal = document.getElementById('adjustBalModal');
+            if (modal) modal.classList.add('show');
+            setTimeout(() => {
+                const inp = document.getElementById('abm-amount');
+                if (inp) inp.focus();
+            }, 100);
+        };
+
+        window.closeAdjustBalModal = function () {
+            const modal = document.getElementById('adjustBalModal');
+            if (modal) modal.classList.remove('show');
+            targetUserForAdjustment = null;
+        };
+
+        window.submitAdjustBalance = async function () {
+            if (!targetUserForAdjustment) return;
+            const typeRadio = document.querySelector('input[name="abm_type"]:checked');
+            const type = typeRadio ? typeRadio.value : 'add';
+            const currency = document.getElementById('abm-currency').value;
+            const amount = parseFloat(document.getElementById('abm-amount').value);
+            const reason = document.getElementById('abm-reason').value.trim() || 'Cashier Desk Manual Adjustment';
+
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount greater than 0.');
+                return;
+            }
+
+            const btn = document.getElementById('abm-submit-btn');
+            if (btn) btn.disabled = true;
+
+            try {
+                showToast(`Saving ${type === 'deduct' ? '-' : '+'}${amount} ${currency}...`);
+                const res = await fetch('../api/admin.php?action=adjust_balance&admin_pin=7777', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '7777' },
+                    body: JSON.stringify({
+                        admin_pin: '7777',
+                        user_id: targetUserForAdjustment.id,
+                        type: type,
+                        currency: currency,
+                        amount: amount,
+                        reason: reason
+                    })
+                });
+                const json = await res.json();
+                if (json && (json.success === true || json.status === 'success') && json.data) {
+                    const sign = (type === 'deduct') ? '-' : '+';
+                    alert(`✅ Balance Updated Successfully!\nUser: ${targetUserForAdjustment.username}\nAdjustment: ${sign}${amount.toLocaleString()} ${currency}\n\nNew Live Balance:\n₨ ${Number(json.data.balance_pkr).toLocaleString()} ($ ${Number(json.data.balance_usd).toFixed(2)})`);
+                    closeAdjustBalModal();
+                    await fetchUsersList();
+                } else {
+                    alert('❌ Failed to adjust balance: ' + ((json && json.message) || 'Error'));
+                }
+            } catch (e) {
+                alert('❌ Error: ' + e.message);
+            } finally {
+                if (btn) btn.disabled = false;
+            }
+        };
+
+        // --- LIVE GAME MONITOR MODAL ---
+        window.openLiveGameModal = function (userId) {
+            const user = usersData.find(u => u.id === userId);
+            if (!user) return;
+            activePlayerForMonitor = user;
+
+            document.getElementById('lgm-username').textContent = user.username;
+            document.getElementById('lgm-userid').textContent = '#' + user.id;
+            document.getElementById('lgm-game').textContent = user.activeGame || (user.isPlaying ? 'Active Casino Round' : 'Not in Round (Lobby)');
+            document.getElementById('lgm-status').textContent = user.isPlaying ? (user.playingSecondsAgo !== null ? `🟢 Actively in Round (~${user.playingSecondsAgo}s ago)` : '🟢 Active Round') : 'Idle / In Menu';
+            document.getElementById('lgm-bet').textContent = `₨ ${Number(user.recentBetPkr || 0).toLocaleString()}`;
+
+            let bTxt = '⚖️ Fair (48% RTP)';
+            if (user.outcomeBias === 'force_loss') bTxt = '💀 Force Loss (100% Guaranteed House Win)';
+            else if (user.outcomeBias === 'force_win') bTxt = '👑 Force Win (100% Player Jackpot)';
+            document.getElementById('lgm-current-bias').textContent = bTxt;
+
+            const modal = document.getElementById('liveGameModal');
+            if (modal) modal.classList.add('show');
+        };
+
+        window.closeLiveGameModal = function () {
+            const modal = document.getElementById('liveGameModal');
+            if (modal) modal.classList.remove('show');
+            activePlayerForMonitor = null;
+        };
+
+        window.quickSetBiasFromModal = async function (bias) {
+            if (!activePlayerForMonitor) return;
+            const uid = activePlayerForMonitor.id;
+            await updatePlayerRig(uid, bias);
+            let bTxt = '⚖️ Fair (48% RTP)';
+            if (bias === 'force_loss') bTxt = '💀 Force Loss (100% Guaranteed House Win)';
+            else if (bias === 'force_win') bTxt = '👑 Force Win (100% Player Jackpot)';
+            document.getElementById('lgm-current-bias').textContent = bTxt;
+        };
+
+        window.quickAdjustFromModal = function () {
+            if (!activePlayerForMonitor) return;
+            const uid = activePlayerForMonitor.id;
+            closeLiveGameModal();
+            openAdjustBalModal(uid, 'add');
+        };
+
+        window.handleAction = async function (txId, newStatus) {
+            const confirmMsg = (newStatus === 'Approved')
+                ? `Confirm APPROVE transaction #${txId}?`
+                : `Confirm REJECT transaction #${txId}?`;
+
+            if (!confirm(confirmMsg)) return;
+
+            try {
+                showToast(`Processing #${txId}...`);
+                const res = await fetch('../api/admin.php?action=update_transaction&admin_pin=7777', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '7777' },
+                    body: JSON.stringify({ id: txId, status: newStatus, admin_pin: '7777' })
+                });
+                const json = await res.json();
+
+                if (json && (json.success === true || json.status === 'success')) {
+                    showToast(`✓ Transaction #${txId} marked ${newStatus}!`);
+                    fetchNotifications();
+                } else {
+                    alert(json.message || 'Action failed.');
+                }
+            } catch (err) {
+                alert('Network error while processing.');
+            }
+        };
+
+        window.viewProof = function (imgUrl) {
+            const modal = document.getElementById('proofModal');
+            const img = document.getElementById('modalProofImg');
+            img.src = imgUrl;
+            modal.classList.add('active');
+        };
+
+        window.closeProofModal = function () {
+            document.getElementById('proofModal').classList.remove('active');
+        };
+
+        window.copyText = function (txt) {
+            if (!txt || txt === '-') return;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(txt).then(() => showToast(`Copied: ${txt}`));
+            } else {
+                showToast(`Copied: ${txt}`);
+            }
+        };
+
+        function showToast(msg) {
+            const box = document.getElementById('toastBox');
+            box.textContent = msg;
+            box.classList.add('show');
+            setTimeout(() => box.classList.remove('show'), 2200);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // Event listeners
+        document.getElementById('btnRefresh').addEventListener('click', () => {
+            showToast('Refreshing ledger...');
+            fetchNotifications();
+            if (currentTab === 'users') {
+                fetchUsersList();
+            }
+        });
+
+        document.getElementById('btnSound').addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            document.getElementById('btnSound').textContent = soundEnabled ? '🔔' : '🔕';
+            showToast(soundEnabled ? 'Alert chime ON' : 'Alert chime OFF');
+        });
+
+        // Initialize polling loop every 5 seconds
+        fetchNotifications();
+        fetchUsersList(); // preload users
+        pollingTimer = setInterval(() => {
+            fetchNotifications();
+            if (currentTab === 'users') {
+                fetchUsersList();
+            }
+        }, 5000);
+
+    })();
+    </script>
+</body>
+</html>

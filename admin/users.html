@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Users Directory - AdminLTE Master Back-Office</title>
+    <link rel="stylesheet" href="css/adminlte.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Ultra-Compact High-Density Dashboard Styling */
+        .adminlte-main .content-body {
+            padding: 12px 18px 24px !important;
+            max-width: 100% !important;
+        }
+        .page-header {
+            margin-bottom: 8px !important;
+            padding-bottom: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+        .page-title {
+            font-size: 15px !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+        }
+        .metrics-grid {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 8px !important;
+            margin-bottom: 8px !important;
+        }
+        @keyframes pulsePlayingBadge {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 14px 3px rgba(0, 229, 255, 0.85);
+                transform: scale(1.03);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+                transform: scale(1);
+            }
+        }
+        @keyframes blinkPlayingDot {
+            0% { opacity: 0.2; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+        .badge-playing-pill {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .badge-playing-pill:hover {
+            filter: brightness(1.2) contrast(1.1);
+            transform: scale(1.06) !important;
+        }
+        .metric-card {
+            padding: 6px 12px !important;
+            border-radius: 8px !important;
+            background: #0f1726 !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            min-height: auto !important;
+        }
+        .metric-card-top {
+            margin-bottom: 0 !important;
+        }
+        .metric-label {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            color: #8e9bb0 !important;
+            text-transform: uppercase !important;
+            line-height: 1.2 !important;
+        }
+        .metric-val {
+            font-size: 15px !important;
+            font-weight: 900 !important;
+            line-height: 1.15 !important;
+            font-family: var(--font-mono) !important;
+        }
+        .metric-icon {
+            width: 26px !important;
+            height: 26px !important;
+            font-size: 13px !important;
+            border-radius: 6px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0 !important;
+        }
+        .lte-card {
+            padding: 10px 14px 14px !important;
+            border-radius: 10px !important;
+            margin-bottom: 12px !important;
+            border: 1px solid rgba(255, 255, 255, 0.09) !important;
+        }
+        .datatable-header-toolbar {
+            margin-bottom: 8px !important;
+            padding-bottom: 8px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            flex-wrap: wrap !important;
+        }
+        .datatable-search-input {
+            height: 30px !important;
+            font-size: 11.5px !important;
+            padding: 4px 8px 4px 28px !important;
+            border-radius: 6px !important;
+        }
+        .datatable-search-icon {
+            top: 7px !important;
+            font-size: 12px !important;
+        }
+        .datatable-select {
+            height: 30px !important;
+            padding: 2px 8px !important;
+            font-size: 11px !important;
+            background: #111a28 !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 6px !important;
+            color: #cbd5e1 !important;
+        }
+        .btn-compact {
+            padding: 3px 7px !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            border-radius: 5px !important;
+            line-height: 1.2 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 3px !important;
+            height: 24px !important;
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .table-lte {
+            width: 100% !important;
+            min-width: 820px !important;
+            font-size: 11px !important;
+            border-collapse: collapse !important;
+        }
+        .table-lte th {
+            padding: 6px 8px !important;
+            font-size: 10px !important;
+            letter-spacing: 0.5px !important;
+            background: #090e17 !important;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.12) !important;
+            height: 28px !important;
+            white-space: nowrap !important;
+            color: #94a3b8 !important;
+        }
+        .table-lte td {
+            padding: 5px 8px !important;
+            font-size: 11px !important;
+            line-height: 1.25 !important;
+            vertical-align: middle !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        }
+        .table-lte tbody tr:hover td {
+            background: rgba(0, 231, 0, 0.08) !important;
+        }
+        .badge-status {
+            padding: 2px 5px !important;
+            font-size: 9px !important;
+            font-weight: 800 !important;
+            border-radius: 4px !important;
+            letter-spacing: 0.2px !important;
+        }
+        .datatable-footer {
+            padding-top: 8px !important;
+            font-size: 11px !important;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 900px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .datatable-header-toolbar {
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+            .datatable-search-wrap {
+                width: 100% !important;
+            }
+            .datatable-filters {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px !important;
+            }
+            .mobile-table-hint {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+        <!-- AdminLTE Sidebar -->
+    <aside class="adminlte-sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="sidebar-brand-icon">👑</div>
+            <div>
+                <div class="sidebar-brand-text">BET WITH NET</div>
+                <div class="sidebar-brand-sub">VIP MASTER CMS</div>
+            </div>
+        </a>
+
+        <div class="sidebar-user-panel">
+            <div class="sidebar-avatar-wrap">
+                <div class="sidebar-avatar">👤</div>
+                <div class="sidebar-online-dot"></div>
+            </div>
+            <div>
+                <div style="font-weight:800; font-size:12px; color:#fff;">Casino Administrator</div>
+                <div style="font-size:10px; color:#00e700; font-weight:700;">🟢 Super Admin Access</div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-header-label">MAIN MONITOR</li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📊</span>
+                        <span>Casino Dashboard</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">MEMBERSHIP & USERS</li>
+            <li class="sidebar-item">
+                <a href="users.html" class="sidebar-link active">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">👥</span>
+                        <span>All Users Directory</span>
+                    </div>
+                    <span class="sidebar-badge badge-primary">Active</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="user-add.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">➕</span>
+                        <span>Add New User</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">P2P OTC TRADING</li>
+            <li class="sidebar-item">
+                <a href="merchants.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🏪</span>
+                        <span>P2P Merchants</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-orders.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔄</span>
+                        <span>P2P Trades & Escrow</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="p2p-disputes.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚖️</span>
+                        <span>Dispute Resolution</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASINO STUDIOS</li>
+            <li class="sidebar-item">
+                <a href="crash-control.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🚀</span>
+                        <span>Crash Live Controller</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="game-rates.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎯</span>
+                        <span>17 Games RTP Matrix</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CASHIER LEDGER</li>
+            <li class="sidebar-item">
+                <a href="deposits.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💳</span>
+                        <span>Deposit Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="withdrawals.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💸</span>
+                        <span>Withdrawal Approvals</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="betslips.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📋</span>
+                        <span style="font-weight:700;">Player Bet Slips</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#00e700; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">REAL PKR</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statement.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📑</span>
+                        <span>Win/Loss Statement</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment-methods.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">⚙️</span>
+                        <span>Payment Gateways</span>
+                    </div>
+                    
+                </a>
+            </li>
+
+            <li class="sidebar-header-label">CMS & SETTINGS</li>
+            <li class="sidebar-item">
+                <a href="cms-pages.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">📄</span>
+                        <span>CMS Policy Pages</span>
+                    </div>
+                    
+                </a>
+            </li>
+                        <li class="sidebar-item">
+                <a href="whatsapp.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon" style="color:#25D366;">💬</span>
+                        <span style="font-weight:700;">WhatsApp Group Link</span>
+                    </div>
+                    <span class="sidebar-badge badge-success" style="background:#25D366; color:#000; font-weight:800; font-size:10px; padding:2px 6px; border-radius:4px;">LIVE</span>
+                </a>
+            </li>
+<li class="sidebar-item">
+                <a href="site-settings.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🎨</span>
+                        <span>Site Branding & SMTP</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="backup-restore.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">💾</span>
+                        <span>Backup & Restore</span>
+                    </div>
+                    
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link ">
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-icon">🔐</span>
+                        <span>Admin Security</span>
+                    </div>
+                    
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="adminlte-main">
+
+        <!-- Navbar -->
+        <nav class="adminlte-navbar">
+            <div class="navbar-left">
+                <button class="btn-sidebar-toggle" onclick="toggleSidebarFold()" title="Toggle Sidebar (⋮)"><span>⋮</span></button>
+                <span style="font-weight:800; font-size:13px; color:#8e9bb0;">User Management / <b style="color:#fff;">All Users</b></span>
+            </div>
+            <div class="navbar-right">
+                <a href="user-add.html" class="btn-lte btn-lte-primary">
+                    <span>➕</span> <span>Create User</span>
+                </a>
+                <a href="../index.html" class="btn-lte btn-lte-secondary">
+                    <span>Lobby ↗</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="content-body">
+
+            <div class="page-header">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <h1 class="page-title">
+                        <span>👥</span> Users Directory
+                    </h1>
+                    <span style="font-size:11px; color:#8e9bb0; font-weight:600;">• Live Players & Balance Ledger</span>
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <a href="user-add.html" class="btn-lte btn-lte-primary btn-compact" style="height:26px;">
+                        <span>➕ Add Player</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- KPI Metric Tiles -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Total Players</div>
+                        <div class="metric-val" id="kpi-total-users" style="color:var(--lte-green);">0</div>
+                    </div>
+                    <div class="metric-icon" style="background:rgba(0,231,0,0.1); color:var(--lte-green);">👥</div>
+                </div>
+
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Active Players</div>
+                        <div class="metric-val" style="color:var(--lte-cyan);" id="kpi-active-users">0</div>
+                    </div>
+                    <div class="metric-icon" style="background:rgba(0,207,232,0.1); color:var(--lte-cyan);">🟢</div>
+                </div>
+
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Suspended</div>
+                        <div class="metric-val" style="color:var(--lte-red);" id="kpi-suspended-users">0</div>
+                    </div>
+                    <div class="metric-icon" style="background:rgba(255,71,87,0.1); color:var(--lte-red);">⛔</div>
+                </div>
+
+                <div class="metric-card">
+                    <div>
+                        <div class="metric-label">Total Wallets</div>
+                        <div class="metric-val" style="color:var(--lte-gold);" id="kpi-total-balance">$0.00</div>
+                        <div id="kpi-total-pkr" style="font-size:10px; color:#8e9bb0; font-weight:600; margin-top:2px;">₨ 0</div>
+                    </div>
+                    <div class="metric-icon" style="background:rgba(245,197,24,0.1); color:var(--lte-gold);">💵</div>
+                </div>
+
+                <div class="metric-card" style="border-left: 3px solid #00ff88;">
+                    <div>
+                        <div class="metric-label">🎮 In Games Now</div>
+                        <div class="metric-val" style="color:#00ff88;" id="kpi-playing-users">0</div>
+                        <div id="kpi-playing-sub" style="font-size:10px; color:#8e9bb0; font-weight:600; margin-top:2px;">Live Active Players</div>
+                    </div>
+                    <div class="metric-icon" style="background:rgba(0,255,136,0.15); color:#00ff88; animation: pulsePlayingBadge 2s infinite;">🎮</div>
+                </div>
+            </div>
+
+            <!-- Table Card with Search Engine & Pagination -->
+            <div class="lte-card">
+                
+                <!-- Search Engine & Filter Toolbar -->
+                <div class="datatable-header-toolbar" style="flex-wrap:wrap; gap:10px;">
+                    <div class="datatable-search-wrap" style="display:flex; gap:6px; flex:1; min-width:280px;">
+                        <div style="position:relative; flex:1;">
+                            <span class="datatable-search-icon">🔍</span>
+                            <input type="text" id="user-search-input" class="form-ctrl datatable-search-input" placeholder="Search by ID, username, name, phone, email..." oninput="onSearchChange(this.value)" onkeydown="if(event.key==='Enter') doExplicitSearch()">
+                        </div>
+                        <button class="btn-lte btn-lte-primary" style="padding:0 16px; font-weight:800; font-size:12px; cursor:pointer;" onclick="doExplicitSearch()">
+                            Search
+                        </button>
+                        <button class="btn-lte btn-lte-secondary" style="padding:0 12px; font-size:13px; cursor:pointer;" onclick="refreshUsersTable()" title="Reload from Database">
+                            🔄
+                        </button>
+                        <button id="btn-live-sync" class="btn-lte" style="background:#00ff88; color:#031d1d; font-weight:900; font-size:11px; padding:0 12px; cursor:pointer; display:inline-flex; align-items:center; gap:5px;" onclick="toggleLiveAutoSync()" title="Auto Refresh every 5s">
+                            <span style="width:7px; height:7px; background:#031d1d; border-radius:50%; display:inline-block; animation:blinkPlayingDot 0.8s infinite alternate;"></span>
+                            <span id="live-sync-text">⚡ Live (Auto 5s)</span>
+                        </button>
+                    </div>
+
+                    <div class="datatable-filters" style="flex-wrap:wrap; gap:8px;">
+                        <!-- Playing Status Filter -->
+                        <select id="filter-playing" class="datatable-select" onchange="onFilterChange('playing', this.value)" style="border-color:#00ff88;">
+                            <option value="all">All Play Status</option>
+                            <option value="playing">🎮 Playing Game Now</option>
+                        </select>
+
+                        <!-- Status Filter -->
+                        <select id="filter-status" class="datatable-select" onchange="onFilterChange('status', this.value)">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active 🟢</option>
+                            <option value="suspended">Suspended 🔴</option>
+                        </select>
+
+                        <!-- VIP Tier Filter -->
+                        <select id="filter-vip" class="datatable-select" onchange="onFilterChange('vipTier', this.value)">
+                            <option value="all">All VIP Tiers</option>
+                            <option value="Bronze VIP">Bronze VIP</option>
+                            <option value="Silver VIP">Silver VIP</option>
+                            <option value="Gold VIP">Gold VIP</option>
+                            <option value="Platinum VIP">Platinum VIP</option>
+                            <option value="Diamond VIP">Diamond VIP</option>
+                            <option value="VIP Royale">VIP Royale 👑</option>
+                        </select>
+
+                        <!-- Bias Filter -->
+                        <select id="filter-bias" class="datatable-select" onchange="onFilterChange('outcomeBias', this.value)">
+                            <option value="all">All Rig / Biases</option>
+                            <option value="fair">Fair (48%)</option>
+                            <option value="force_loss">Force Loss 💀</option>
+                            <option value="force_win">Force Win 👑</option>
+                        </select>
+
+                        <!-- Sort Order -->
+                        <select id="filter-sort" class="datatable-select" onchange="onSortChange(this.value)">
+                            <option value="balanceUSD_desc">Balance: High to Low</option>
+                            <option value="balanceUSD_asc">Balance: Low to High</option>
+                            <option value="totalWagered_desc">Most Wagered</option>
+                            <option value="username_asc">Username (A - Z)</option>
+                            <option value="id_desc">Newest Joined</option>
+                        </select>
+
+                        <!-- Per Page -->
+                        <select id="filter-pagesize" class="datatable-select" onchange="onPageSizeChange(this.value)">
+                            <option value="10" selected>10 per page</option>
+                            <option value="25">25 per page</option>
+                            <option value="50">50 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+
+                        <!-- Reset -->
+                        <button class="btn-lte btn-lte-secondary" style="padding:7px 12px; font-size:12px; cursor:pointer;" onclick="resetAllFilters()">
+                            ↺ Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mobile-table-hint" style="display:none; font-size:11px; color:#8e9bb0; padding:8px 12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:6px; margin:10px 0;">
+                    ↔ <b>Table View:</b> Swipe horizontally on the table below to view all columns, live balances, and player action buttons.
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-responsive">
+                    <table class="table-lte">
+                        <thead>
+                            <tr>
+                                <th style="cursor:pointer;" onclick="pager.setSort('id')">User ID & Platform ↕</th>
+                                <th style="cursor:pointer;" onclick="pager.setSort('username')">Player Identity ↕</th>
+                                <th>Device & IP</th>
+                                <th style="cursor:pointer;" onclick="pager.setSort('balanceUSD')">Wallet Balance (USD / PKR) ↕</th>
+                                <th>VIP Level</th>
+                                <th>Loss / Win Bias</th>
+                                <th>Account Status</th>
+                                <th>Activity / Session</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-tbody">
+                            <!-- Populated by LTEDataPager -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="datatable-footer" id="users-footer">
+                    <!-- Populated by LTEDataPager -->
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Live Playing Monitor Modal -->
+        <div id="playing-details-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; backdrop-filter:blur(6px);">
+            <div style="background:#0e1724; border:1px solid #00ff88; border-radius:14px; width:92%; max-width:480px; padding:24px; box-shadow:0 0 35px rgba(0,255,136,0.35); position:relative;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid #1a2736; padding-bottom:12px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span style="font-size:22px; animation:blinkPlayingDot 0.8s infinite alternate;">🎮</span>
+                        <div>
+                            <h3 style="margin:0; font-size:16px; color:#fff; font-weight:900;">Live Player Monitor</h3>
+                            <div style="font-size:11px; color:#00ff88; font-weight:700;">🟢 Active In-Game Session</div>
+                        </div>
+                    </div>
+                    <button onclick="closePlayingPopup()" style="background:none; border:none; color:#8e9bb0; font-size:24px; cursor:pointer; line-height:1;">&times;</button>
+                </div>
+                
+                <div style="background:#070d14; border:1px solid #1e2c3d; border-radius:10px; padding:14px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="color:#8e9bb0; font-size:12px;">Player:</span>
+                        <span style="color:#fff; font-weight:800; font-size:13px;" id="pm-username">User</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="color:#8e9bb0; font-size:12px;">User ID:</span>
+                        <span style="color:var(--lte-cyan); font-weight:800; font-size:12px; font-family:monospace;" id="pm-userid">#usr_xxx</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="color:#8e9bb0; font-size:12px;">Current Game:</span>
+                        <span style="color:#00ff88; font-weight:900; font-size:14px; text-transform:uppercase;" id="pm-game">Crash (Aviator)</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="color:#8e9bb0; font-size:12px;">Live Status:</span>
+                        <span style="color:#00e5ff; font-weight:800; font-size:12px;" id="pm-status">Actively in Game</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="color:#8e9bb0; font-size:12px;">Recent Bet:</span>
+                        <span style="color:#ffd700; font-weight:800; font-size:13px; font-family:monospace;" id="pm-bet">₨ 0</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span style="color:#8e9bb0; font-size:12px;">Active Rig Bias:</span>
+                        <span style="font-weight:800; font-size:12px;" id="pm-bias">⚖️ Fair</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-size:11px; font-weight:800; color:#8e9bb0; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">⚡ One-Click Game Rigging Controls</label>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                        <button class="btn-lte" style="background:#ff3b30; color:#fff; font-weight:900; font-size:11.5px; padding:9px 6px; border:none; border-radius:6px; cursor:pointer;" onclick="quickSetBiasFromPopup('force_loss')">
+                            💀 Force Loss (3/50, &gt;300)
+                        </button>
+                        <button class="btn-lte" style="background:#ffd700; color:#000; font-weight:900; font-size:11.5px; padding:9px 6px; border:none; border-radius:6px; cursor:pointer;" onclick="quickSetBiasFromPopup('force_win')">
+                            👑 Force Win (100%)
+                        </button>
+                        <button class="btn-lte" style="background:#1e293b; color:#fff; font-weight:800; font-size:11.5px; padding:9px 6px; border:1px solid #334155; border-radius:6px; cursor:pointer;" onclick="quickSetBiasFromPopup('fair')">
+                            ⚖️ Fair (Normal RTP)
+                        </button>
+                        <button class="btn-lte" style="background:#00e5ff; color:#000; font-weight:900; font-size:11.5px; padding:9px 6px; border:none; border-radius:6px; cursor:pointer;" onclick="quickAdjustFromPopup()">
+                            💰 Adjust Balance
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <a id="pm-view-link" href="#" class="btn-lte btn-lte-secondary" style="font-size:11.5px; padding:7px 12px;">
+                        👁️ View Bet Slips & History
+                    </a>
+                    <button class="btn-lte btn-lte-secondary" onclick="closePlayingPopup()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adjust Balance Modal -->
+        <div id="adjust-balance-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; backdrop-filter:blur(6px);">
+            <div style="background:#111722; border:1px solid #233247; border-radius:12px; width:90%; max-width:480px; padding:24px; box-shadow:0 20px 50px rgba(0,0,0,0.8);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h3 style="margin:0; font-size:16px; color:#fff; font-weight:800; display:flex; align-items:center; gap:8px;">
+                        <span>💰</span> Manual Balance Adjustment
+                    </h3>
+                    <button onclick="closeAdjustBalanceModal()" style="background:none; border:none; color:#8e9bb0; font-size:24px; cursor:pointer; line-height:1;">&times;</button>
+                </div>
+                
+                <div style="background:#0a0f16; border:1px solid #1a2536; border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px;">
+                    <div style="color:#8e9bb0; margin-bottom:4px;">Target User: <b id="adj-target-username" style="color:#fff;"></b> (<span id="adj-target-userid" style="color:var(--lte-cyan); font-family:monospace;"></span>)</div>
+                    <div style="display:flex; gap:16px; margin-top:8px;">
+                        <div>Current USD: <b id="adj-current-usd" style="color:var(--lte-green); font-family:monospace;">$ 0.00</b></div>
+                        <div>Current PKR: <b id="adj-current-pkr" style="color:var(--lte-green); font-family:monospace;">₨ 0</b></div>
+                    </div>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                    <div>
+                        <label style="display:block; font-size:11px; font-weight:700; color:#8e9bb0; margin-bottom:6px; text-transform:uppercase;">Operation Type</label>
+                        <div style="display:flex; gap:10px;">
+                            <label style="flex:1; cursor:pointer; background:#182232; border:1px solid #233247; border-radius:8px; padding:10px; display:flex; align-items:center; gap:8px; font-size:13px; color:#fff; font-weight:700;">
+                                <input type="radio" name="adj_type" value="add" checked> ➕ Add (+) Credit
+                            </label>
+                            <label style="flex:1; cursor:pointer; background:#182232; border:1px solid #233247; border-radius:8px; padding:10px; display:flex; align-items:center; gap:8px; font-size:13px; color:#fff; font-weight:700;">
+                                <input type="radio" name="adj_type" value="deduct"> ➖ Deduct (-) Debit
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:10px;">
+                        <div style="flex:1;">
+                            <label style="display:block; font-size:11px; font-weight:700; color:#8e9bb0; margin-bottom:6px; text-transform:uppercase;">Currency</label>
+                            <select id="adj-currency" class="form-ctrl" style="width:100%;">
+                                <option value="PKR" selected>PKR (₨ Pakistani Rupee)</option>
+                                <option value="USD">USD ($ United States Dollar)</option>
+                            </select>
+                        </div>
+                        <div style="flex:2;">
+                            <label style="display:block; font-size:11px; font-weight:700; color:#8e9bb0; margin-bottom:6px; text-transform:uppercase;">Amount</label>
+                            <input type="number" id="adj-amount" class="form-ctrl" placeholder="e.g. 5000" min="1" step="any" style="width:100%; font-family:monospace; font-weight:800; font-size:15px;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size:11px; font-weight:700; color:#8e9bb0; margin-bottom:6px; text-transform:uppercase;">Reason / Internal Note</label>
+                        <input type="text" id="adj-reason" class="form-ctrl" placeholder="e.g. VIP Bonus, Manual deposit approval, Correction..." value="Admin Manual Adjustment" style="width:100%;">
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                    <button class="btn-lte btn-lte-secondary" onclick="closeAdjustBalanceModal()">Cancel</button>
+                    <button class="btn-lte btn-lte-primary" style="padding:8px 18px; font-weight:800;" onclick="submitAdjustBalance()">Save Balance Change</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../js/audio.js"></script>
+    <script src="../js/wallet.js"></script>
+    <script src="../js/admin_config.js"></script>
+    <script src="../js/user_manager.js"></script>
+    <script src="js/adminlte.js"></script>
+    <script>
+        let pager = null;
+        let cachedUsersList = [];
+        let adjustTargetUser = null;
+        let searchDebounceTimer = null;
+
+        function normalizeVipTier(tier) {
+            if (!tier) return 'Bronze VIP';
+            const t = String(tier).toLowerCase();
+            if (t.includes('royale')) return 'VIP Royale';
+            if (t.includes('diamond')) return 'Diamond VIP';
+            if (t.includes('platinum')) return 'Platinum VIP';
+            if (t.includes('gold')) return 'Gold VIP';
+            if (t.includes('silver')) return 'Silver VIP';
+            return 'Bronze VIP';
+        }
+
+        // Guarantee execution regardless of document.readyState
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => initUsersTable());
+        } else {
+            initUsersTable();
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        async function initUsersTable(searchQuery = '') {
+            const tbody = document.getElementById('users-tbody');
+            if (tbody && (!pager || cachedUsersList.length === 0)) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="12" style="text-align:center; padding:40px 20px; color:#8e9bb0;">
+                            <div style="margin:0 auto 10px auto; width:32px; height:32px; border:3px solid rgba(0,231,0,0.2); border-top-color:#00e700; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+                            <div style="font-weight:700; color:#fff; font-size:14px;">Loading registered players from database...</div>
+                        </td>
+                    </tr>
+                `;
+            }
+
+            let users = [];
+            try {
+                const base = searchQuery ? `../api/admin.php?action=users&search=${encodeURIComponent(searchQuery)}` : `../api/admin.php?action=users&limit=500`;
+                const url = base + (base.includes('?') ? '&' : '?') + 'admin_pin=9824';
+                const res = await fetch(url, { 
+                    headers: { 'X-Admin-Pin': '9824' },
+                    credentials: 'include' 
+                });
+                const json = await res.json();
+                if (json && json.success && json.data && Array.isArray(json.data.users)) {
+                    users = json.data.users.map(u => ({
+                        id: String(u.id || ''),
+                        username: String(u.username || ''),
+                        fullName: String(u.full_name || u.fullName || u.username || ''),
+                        phone: String(u.phone || ''),
+                        email: String(u.email || ''),
+                        balanceUSD: parseFloat(u.balance_usd || 0),
+                        balancePKR: parseFloat(u.balance_pkr || 0),
+                        vipTier: normalizeVipTier(u.vip_tier),
+                        outcomeBias: String(u.outcome_bias || 'fair'),
+                        customWinRate: parseInt(u.custom_win_rate || 48),
+                        status: String(u.status || 'active'),
+                        totalWagered: parseFloat(u.total_wagered || 0),
+                        deviceType: String(u.device_type || 'Web'),
+                        ipAddress: String(u.ip_address || '-'),
+                        lastActive: String(u.last_active || u.created_at || ''),
+                        isPlaying: Boolean(u.is_playing),
+                        activeGame: String(u.active_game || ''),
+                        playingSecondsAgo: u.playing_seconds_ago !== undefined ? u.playing_seconds_ago : null,
+                        recentBetPkr: u.recent_bet_pkr ? parseFloat(u.recent_bet_pkr) : 0
+                    }));
+                }
+            } catch (e) {
+                console.error('Failed to load users from DB:', e);
+            }
+
+            cachedUsersList = users;
+            if (!searchQuery) {
+                updateKPITiles(users);
+            }
+
+            if (!pager) {
+                pager = new LTEDataPager({
+                    refName: 'pager',
+                    data: users,
+                    pageSize: 10,
+                    containerId: 'users-tbody',
+                    footerId: 'users-footer',
+                    defaultSortKey: 'balancePKR',
+                    defaultSortAsc: false,
+                    filterFn: (u, query, filters) => {
+                        // Search Query match
+                        if (query) {
+                            const q = query.toLowerCase().trim();
+                            const matchId = (u.id || '').toLowerCase().includes(q);
+                            const matchUser = (u.username || '').toLowerCase().includes(q);
+                            const matchName = (u.fullName || '').toLowerCase().includes(q);
+                            const matchPhone = (u.phone || '').toLowerCase().includes(q);
+                            const matchEmail = (u.email || '').toLowerCase().includes(q);
+                            const matchIp = (u.ipAddress || '').toLowerCase().includes(q);
+                            const matchDev = (u.deviceType || '').toLowerCase().includes(q);
+                            if (!matchId && !matchUser && !matchName && !matchPhone && !matchEmail && !matchIp && !matchDev) {
+                                return false;
+                            }
+                        }
+
+                        // Playing filter
+                        if (filters.playing && filters.playing === 'playing' && !u.isPlaying) return false;
+
+                        // Status filter
+                        if (filters.status && filters.status !== 'all' && u.status !== filters.status) return false;
+
+                        // VIP Tier filter
+                        if (filters.vipTier && filters.vipTier !== 'all' && u.vipTier !== filters.vipTier) return false;
+
+                        // Bias filter
+                        if (filters.outcomeBias && filters.outcomeBias !== 'all' && u.outcomeBias !== filters.outcomeBias) return false;
+
+                        return true;
+                    },
+                    renderRow: (u, idx) => {
+                        try {
+                            const activeUser = window.userManager ? window.userManager.getActiveUser() : null;
+                            const isActive = activeUser && String(activeUser.id) === String(u.id);
+                            const isSuspended = u.status === 'suspended';
+
+                            // Balance calculations
+                            const balPKR = u.balancePKR !== undefined ? Number(u.balancePKR) : (Number(u.balanceUSD || 0) * 280);
+                            const balUSD = u.balanceUSD !== undefined ? Number(u.balanceUSD) : (balPKR / 280);
+
+                            // Platform badge
+                            const devStr = String(u.deviceType || 'Web');
+                            let devBadge = `<span style="background:rgba(0,229,255,0.12); color:#00e5ff; font-size:9.5px; font-weight:700; padding:1px 5px; border-radius:3px;">🌐 ${escapeHtml(devStr)}</span>`;
+                            if (devStr.includes('Android')) {
+                                devBadge = `<span style="background:rgba(0,231,0,0.15); color:#00e700; font-size:9.5px; font-weight:700; padding:1px 5px; border-radius:3px;">🤖 ${escapeHtml(devStr)}</span>`;
+                            } else if (devStr.includes('iOS')) {
+                                devBadge = `<span style="background:rgba(255,255,255,0.15); color:#fff; font-size:9.5px; font-weight:700; padding:1px 5px; border-radius:3px;">🍏 ${escapeHtml(devStr)}</span>`;
+                            }
+
+                            // Playing Pill
+                            let playingPill = '';
+                            if (u.isPlaying) {
+                                const gName = escapeHtml(u.activeGame || 'Casino Game');
+                                playingPill = `
+                                    <span class="badge-playing-pill" onclick="openPlayingPopup('${escapeHtml(u.id)}', '${escapeHtml(u.username)}', '${escapeHtml(u.activeGame || 'Game')}', ${u.playingSecondsAgo || 0}, ${u.recentBetPkr || 0}, '${escapeHtml(u.outcomeBias || 'fair')}')" title="Real-Time Player: Click for Live Game Controls" style="
+                                        background: linear-gradient(135deg, #00ff88 0%, #00b4d8 100%);
+                                        color: #011c1e;
+                                        font-weight: 900;
+                                        font-size: 10px;
+                                        padding: 2.5px 8px;
+                                        border-radius: 12px;
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 5px;
+                                        box-shadow: 0 0 12px rgba(0, 255, 136, 0.7);
+                                        border: 1px solid rgba(255,255,255,0.5);
+                                        cursor: pointer;
+                                        letter-spacing: 0.4px;
+                                        animation: pulsePlayingBadge 1.5s infinite ease-in-out;
+                                        white-space: nowrap;
+                                        vertical-align: middle;
+                                    ">
+                                        <span style="width:6px; height:6px; background:#011c1e; border-radius:50%; display:inline-block; animation: blinkPlayingDot 0.8s infinite alternate;"></span>
+                                        🎮 PLAYING: ${gName}
+                                    </span>
+                                `;
+                            }
+
+                            // Bias Badge
+                            let biasBadge = `<span class="badge-status badge-rigged" style="background:rgba(255,255,200,0.06); color:#8e9bb0;">⚖️ Fair</span>`;
+                            if (u.outcomeBias === 'force_loss') {
+                                biasBadge = `<span class="badge-status badge-suspended" title="Force Loss">💀 Loss</span>`;
+                            } else if (u.outcomeBias === 'force_win') {
+                                biasBadge = `<span class="badge-status badge-active" title="Force Win">👑 Win</span>`;
+                            } else if (u.outcomeBias === 'custom') {
+                                biasBadge = `<span class="badge-status badge-rigged">⚙️ ${u.customWinRate || 48}%</span>`;
+                            }
+
+                            // VIP color accent
+                            let vipColor = '#ffd700';
+                            const vipTierStr = String(u.vipTier || 'Bronze VIP');
+                            if (vipTierStr.includes('Platinum')) vipColor = '#00e5ff';
+                            else if (vipTierStr.includes('Diamond')) vipColor = '#a855f7';
+                            else if (vipTierStr.includes('Royale')) vipColor = '#f5c518';
+                            else if (vipTierStr.includes('Silver')) vipColor = '#94a3b8';
+                            else if (vipTierStr.includes('Bronze')) vipColor = '#cd7f32';
+
+                            // Status Badge
+                            const statusBadge = isSuspended 
+                                ? `<span class="badge-status badge-suspended">Suspended</span>`
+                                : `<span class="badge-status badge-active">Active</span>`;
+
+                            return `
+                                <tr>
+                                    <td style="font-family:var(--font-mono); font-weight:800; color:var(--lte-cyan); white-space:nowrap; font-size:10.5px;">
+                                        <div>#${escapeHtml(u.id)}</div>
+                                        <div style="margin-top:2px;">${devBadge}</div>
+                                    </td>
+                                    <td>
+                                        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                            ${playingPill}
+                                            <b style="color:#ffffff; font-size:12px;">${escapeHtml(u.username)}</b>
+                                            ${u.fullName && u.fullName !== u.username ? `<span style="font-size:10px; color:#8e9bb0;">(${escapeHtml(u.fullName)})</span>` : ''}
+                                        </div>
+                                        ${(u.phone || u.email) ? `<div style="font-size:9.5px; color:#64748b; font-family:var(--font-mono);">${escapeHtml(u.phone || u.email)}</div>` : ''}
+                                    </td>
+                                    <td>
+                                        <div style="font-family:var(--font-mono); font-size:11px; color:#fff;">${escapeHtml(u.ipAddress || '-')}</div>
+                                        <div style="font-size:10px; color:#8e9bb0;">${escapeHtml(devStr)}</div>
+                                    </td>
+                                    <td>
+                                        <div style="font-family:var(--font-mono); font-weight:800; font-size:12px; color:#00e700; white-space:nowrap;">
+                                            ₨ ${(isNaN(balPKR) ? 0 : balPKR).toLocaleString()}
+                                            <span style="font-size:10px; color:#8e9bb0; font-weight:600;">/ $ ${(isNaN(balUSD) ? 0 : balUSD).toFixed(2)}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="font-weight:700; font-size:10px; color:${vipColor}; white-space:nowrap;">
+                                            ⭐ ${escapeHtml(vipTierStr.replace(' VIP', ''))}
+                                        </span>
+                                    </td>
+                                    <td>${biasBadge}</td>
+                                    <td>${statusBadge}</td>
+                                    <td>
+                                        ${isActive ? `
+                                            <span style="color:#00e700; font-weight:800; font-size:10px; white-space:nowrap;">
+                                                🟢 Live
+                                            </span>
+                                        ` : `
+                                            <span style="font-size:10px; color:#8e9bb0;">${u.lastActive ? String(u.lastActive).split(' ')[0] : 'Inactive'}</span>
+                                        `}
+                                    </td>
+                                    <td style="text-align:right; white-space:nowrap;">
+                                        <div style="display:inline-flex; gap:3px; align-items:center;">
+                                            <button class="btn-lte btn-lte-primary btn-compact" style="background:#00e700; color:#000; font-weight:800;" onclick="openAdjustBalanceModal('${u.id}', 'add')" title="Add Balance (+)">
+                                                ➕ Add
+                                            </button>
+                                            <button class="btn-lte btn-lte-danger btn-compact" style="background:#ff4757; color:#fff; font-weight:800;" onclick="openAdjustBalanceModal('${u.id}', 'deduct')" title="Deduct Balance (-)">
+                                                ➖ Minus
+                                            </button>
+                                            <a href="user-view.html?id=${encodeURIComponent(u.id)}" class="btn-lte btn-lte-secondary btn-compact" title="View Profile & Bet Slips">
+                                                👁️
+                                            </a>
+                                            <a href="user-edit.html?id=${encodeURIComponent(u.id)}" class="btn-lte btn-lte-secondary btn-compact" title="Edit Profile & Rigging">
+                                                ✏️
+                                            </a>
+                                            <button class="btn-lte ${isSuspended ? 'btn-lte-primary' : 'btn-lte-danger'} btn-compact" onclick="toggleSuspendUser('${u.id}', '${u.status}')" title="${isSuspended ? 'Unsuspend' : 'Suspend'}">
+                                                ${isSuspended ? '✓' : '⏸️'}
+                                            </button>
+                                            <button class="btn-lte btn-lte-secondary btn-compact" style="color:#ff4757;" onclick="deleteUserRow('${u.id}')" title="Delete User">
+                                                🗑️
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `;
+                        } catch (err) {
+                            console.error('Error rendering row:', u, err);
+                            return `<tr><td colspan="12" style="color:#ff4757; font-size:11px; padding:6px;">Error rendering user #${escapeHtml(u && u.id ? u.id : '')}</td></tr>`;
+                        }
+                    }
+                });
+            } else {
+                const savedPage = pager.currentPage || 1;
+                pager.setData(users);
+                pager.currentPage = savedPage;
+            }
+
+            pager.render();
+        }
+
+        function openAdjustBalanceModal(id, defaultType = 'add') {
+            const user = cachedUsersList.find(u => String(u.id) === String(id));
+            if (!user) return;
+            adjustTargetUser = user;
+            document.getElementById('adj-target-username').innerText = user.username;
+            document.getElementById('adj-target-userid').innerText = user.id;
+            document.getElementById('adj-current-usd').innerText = `$ ${Number(user.balanceUSD || 0).toFixed(2)}`;
+            document.getElementById('adj-current-pkr').innerText = `₨ ${Number(user.balancePKR || 0).toLocaleString()}`;
+            document.getElementById('adj-amount').value = '';
+            const radio = document.querySelector(`input[name="adj_type"][value="${defaultType}"]`);
+            if (radio) radio.checked = true;
+            document.getElementById('adjust-balance-modal').style.display = 'flex';
+            setTimeout(() => {
+                const inp = document.getElementById('adj-amount');
+                if (inp) inp.focus();
+            }, 50);
+        }
+
+        function closeAdjustBalanceModal() {
+            document.getElementById('adjust-balance-modal').style.display = 'none';
+            adjustTargetUser = null;
+        }
+
+        async function submitAdjustBalance() {
+            if (!adjustTargetUser) return;
+            const typeRadio = document.querySelector('input[name="adj_type"]:checked');
+            const type = typeRadio ? typeRadio.value : 'add';
+            const currency = document.getElementById('adj-currency').value;
+            const amount = parseFloat(document.getElementById('adj-amount').value);
+            const reason = document.getElementById('adj-reason').value.trim() || 'Admin Manual Adjustment';
+
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount greater than 0.');
+                return;
+            }
+
+            const btn = document.querySelector('#adjust-balance-modal button.btn-lte-primary');
+            if (btn) btn.disabled = true;
+
+            try {
+                const res = await fetch('../api/admin.php?action=adjust_balance&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-Admin-Pin': '9824'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        admin_pin: '9824',
+                        user_id: adjustTargetUser.id,
+                        type: type,
+                        currency: currency,
+                        amount: amount,
+                        reason: reason
+                    })
+                });
+                const json = await res.json();
+                if (json && json.success && json.data) {
+                    const sign = (type === 'deduct') ? '-' : '+';
+                    alert(`✅ Balance Updated Successfully!\nUser: ${adjustTargetUser.username}\nAdjustment: ${sign}${amount.toLocaleString()} ${currency}\n\nNew Balance:\n₨ ${Number(json.data.balance_pkr).toLocaleString()} ($ ${Number(json.data.balance_usd).toFixed(2)})`);
+                    closeAdjustBalanceModal();
+                    await initUsersTable();
+                } else {
+                    alert('❌ Failed to adjust balance: ' + ((json && json.message) || (json && json.error) || 'Unknown error'));
+                }
+            } catch (e) {
+                alert('❌ Network error submitting adjustment: ' + e.message);
+            } finally {
+                if (btn) btn.disabled = false;
+            }
+        }
+
+        async function toggleSuspendUser(id, currentStatus) {
+            const newStatus = currentStatus === 'suspended' ? 'active' : 'suspended';
+            try {
+                await fetch('/api/admin.php?action=update_user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, status: newStatus })
+                });
+            } catch (e) {}
+
+            if (window.userManager && window.userManager.toggleSuspend) {
+                window.userManager.toggleSuspend(id);
+            }
+            await initUsersTable();
+        }
+
+        async function deleteUserRow(id) {
+            if (confirm(`Are you sure you want to delete user ${id}? This action cannot be undone.`)) {
+                try {
+                    await fetch('/api/admin.php?action=update_user', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: id, status: 'deleted' })
+                    });
+                } catch(e) {}
+                if (window.userManager && window.userManager.deleteUser) {
+                    window.userManager.deleteUser(id);
+                }
+                await initUsersTable();
+            }
+        }
+
+        function updateKPITiles(users) {
+            if (!Array.isArray(users)) users = [];
+            const elTotal = document.getElementById('kpi-total-users');
+            if (elTotal) elTotal.innerText = users.length;
+            const activeCount = users.filter(u => u && u.status === 'active').length;
+            const elActive = document.getElementById('kpi-active-users');
+            if (elActive) elActive.innerText = activeCount;
+            const elSuspended = document.getElementById('kpi-suspended-users');
+            if (elSuspended) elSuspended.innerText = Math.max(0, users.length - activeCount);
+
+            const playingCount = users.filter(u => u && u.isPlaying).length;
+            const elPlaying = document.getElementById('kpi-playing-users');
+            if (elPlaying) elPlaying.innerText = playingCount;
+
+            let totalUSD = 0;
+            let totalPKR = 0;
+            users.forEach(u => {
+                if (!u) return;
+                const uUSD = u.balanceUSD !== undefined ? Number(u.balanceUSD) : (Number(u.balancePKR || 0) / 280);
+                const uPKR = u.balancePKR !== undefined ? Number(u.balancePKR) : (uUSD * 280);
+                totalUSD += (isNaN(uUSD) ? 0 : uUSD);
+                totalPKR += (isNaN(uPKR) ? 0 : uPKR);
+            });
+
+            const elTotalBal = document.getElementById('kpi-total-balance');
+            if (elTotalBal) {
+                elTotalBal.innerText = `$ ${totalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
+            const elTotalPkr = document.getElementById('kpi-total-pkr');
+            if (elTotalPkr) {
+                elTotalPkr.innerText = `₨ ${totalPKR.toLocaleString('en-US', { minimumFractionDigits: 0 })}`;
+            }
+        }
+
+        let activePlayingUser = null;
+        let liveSyncInterval = null;
+        let isLiveSyncActive = true;
+
+        function openPlayingPopup(id, username, game, secondsAgo, betPkr, bias) {
+            activePlayingUser = { id, username, game, secondsAgo, betPkr, bias };
+            document.getElementById('pm-username').innerText = `${username}`;
+            document.getElementById('pm-userid').innerText = `#${id}`;
+            document.getElementById('pm-game').innerText = `${game}`;
+            document.getElementById('pm-status').innerText = secondsAgo > 0 ? `Active in game (~${secondsAgo}s ago)` : '🟢 Actively in Round';
+            document.getElementById('pm-bet').innerText = `₨ ${Number(betPkr || 0).toLocaleString()}`;
+            
+            let biasText = '⚖️ Fair (48%)';
+            if (bias === 'force_loss') biasText = '💀 Force Loss (Max 3/50, >300 Loss)';
+            else if (bias === 'force_win') biasText = '👑 Force Win (100%)';
+            document.getElementById('pm-bias').innerText = biasText;
+            document.getElementById('pm-view-link').href = `user-view.html?id=${encodeURIComponent(id)}`;
+
+            document.getElementById('playing-details-modal').style.display = 'flex';
+        }
+
+        function closePlayingPopup() {
+            document.getElementById('playing-details-modal').style.display = 'none';
+            activePlayingUser = null;
+        }
+
+        async function quickSetBiasFromPopup(bias) {
+            if (!activePlayingUser) return;
+            const uid = activePlayingUser.id;
+            try {
+                const res = await fetch('../api/admin.php?action=update_user&admin_pin=9824', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Pin': '9824' },
+                    credentials: 'include',
+                    body: JSON.stringify({ id: uid, outcome_bias: bias })
+                });
+                const json = await res.json();
+                if (json && json.success) {
+                    alert(`✅ Rigging updated to: ${bias.toUpperCase()} for ${activePlayingUser.username}!`);
+                    closePlayingPopup();
+                    await initUsersTable();
+                } else {
+                    alert('❌ Failed to update bias: ' + ((json && json.message) || 'Error'));
+                }
+            } catch(e) {
+                alert('❌ Error: ' + e.message);
+            }
+        }
+
+        function quickAdjustFromPopup() {
+            if (!activePlayingUser) return;
+            const uid = activePlayingUser.id;
+            closePlayingPopup();
+            openAdjustBalanceModal(uid, 'add');
+        }
+
+        function toggleLiveAutoSync() {
+            isLiveSyncActive = !isLiveSyncActive;
+            const btn = document.getElementById('btn-live-sync');
+            const txt = document.getElementById('live-sync-text');
+            if (isLiveSyncActive) {
+                if (btn) btn.style.background = '#00ff88';
+                if (txt) txt.innerText = '⚡ Live (Auto 5s)';
+                startLiveSyncTimer();
+            } else {
+                if (btn) btn.style.background = '#475569';
+                if (txt) txt.innerText = '⏸️ Sync Paused';
+                if (liveSyncInterval) clearInterval(liveSyncInterval);
+            }
+        }
+
+        function startLiveSyncTimer() {
+            if (liveSyncInterval) clearInterval(liveSyncInterval);
+            liveSyncInterval = setInterval(() => {
+                if (!isLiveSyncActive) return;
+                const adjModal = document.getElementById('adjust-balance-modal');
+                const playModal = document.getElementById('playing-details-modal');
+                const searchInput = document.getElementById('user-search-input');
+                if (adjModal && adjModal.style.display === 'flex') return;
+                if (playModal && playModal.style.display === 'flex') return;
+                if (searchInput && document.activeElement === searchInput && searchInput.value.trim().length > 0) return;
+
+                initUsersTable(searchInput ? searchInput.value.trim() : '');
+            }, 5000);
+        }
+
+        // Initialize live sync
+        startLiveSyncTimer();
+
+        function onSearchChange(val) {
+            if (pager) {
+                pager.setSearch(val);
+            }
+            // Debounced deep server search for thorough matching
+            clearTimeout(searchDebounceTimer);
+            if (val && val.trim().length >= 2) {
+                searchDebounceTimer = setTimeout(() => {
+                    initUsersTable(val.trim());
+                }, 400);
+            } else if (!val || !val.trim()) {
+                searchDebounceTimer = setTimeout(() => {
+                    initUsersTable();
+                }, 400);
+            }
+        }
+
+        function doExplicitSearch() {
+            const input = document.getElementById('user-search-input');
+            const val = input ? input.value.trim() : '';
+            if (pager) {
+                pager.setSearch(val);
+            }
+            initUsersTable(val);
+        }
+
+        function refreshUsersTable() {
+            const input = document.getElementById('user-search-input');
+            if (input) input.value = '';
+            if (pager) {
+                pager.searchQuery = '';
+                pager.activeFilters = {};
+            }
+            initUsersTable();
+        }
+
+        function onFilterChange(key, val) {
+            if (pager) pager.setFilter(key, val);
+        }
+
+        function onPageSizeChange(val) {
+            if (pager) pager.setPageSize(val);
+        }
+
+        function onSortChange(val) {
+            if (!pager) return;
+            if (val === 'balanceUSD_desc') {
+                pager.sortKey = 'balanceUSD';
+                pager.sortAsc = false;
+            } else if (val === 'balanceUSD_asc') {
+                pager.sortKey = 'balanceUSD';
+                pager.sortAsc = true;
+            } else if (val === 'totalWagered_desc') {
+                pager.sortKey = 'totalWagered';
+                pager.sortAsc = false;
+            } else if (val === 'username_asc') {
+                pager.sortKey = 'username';
+                pager.sortAsc = true;
+            } else if (val === 'id_desc') {
+                pager.sortKey = 'id';
+                pager.sortAsc = false;
+            }
+            pager.render();
+        }
+
+        function resetAllFilters() {
+            const input = document.getElementById('user-search-input');
+            if (input) input.value = '';
+            document.getElementById('filter-status').value = 'all';
+            document.getElementById('filter-vip').value = 'all';
+            document.getElementById('filter-bias').value = 'all';
+            document.getElementById('filter-sort').value = 'balanceUSD_desc';
+            document.getElementById('filter-pagesize').value = '10';
+
+            if (pager) {
+                pager.searchQuery = '';
+                pager.activeFilters = {};
+                pager.sortKey = 'balanceUSD';
+                pager.sortAsc = false;
+                pager.pageSize = 10;
+                pager.currentPage = 1;
+            }
+            initUsersTable();
+        }
+
+        function switchUser(id) {
+            if (window.userManager && window.userManager.setActiveUser) {
+                window.userManager.setActiveUser(id);
+            }
+            if (pager) pager.render();
+            alert(`Switched active player to: ${id}`);
+        }
+    </script>
+</body>
+</html>

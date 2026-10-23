@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deposit Cashier Portal - Bet With Net</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/app.css?v=2026_deposit_popup_v1">
+    <link rel="stylesheet" href="css/cashier.css?v=2026_ijaz_v5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="js/site_settings.js?v=2026_ijaz_v5"></script>
+    <script src="js/payment_manager.js?v=2026_jc_popup_clean_v2"></script>
+</head>
+<body class="cashier-page">
+
+    <div id="app-header-slot"></div>
+
+    <main class="cashier-container">
+
+        <!-- Cashier Header -->
+        <div class="cashier-header-card">
+            <div>
+                <div class="cashier-balance-label">Current Available Balance</div>
+                <div class="cashier-balance-val wallet-balance-display">₨ 25,000.00</div>
+            </div>
+            <div>
+                <a href="withdraw.html" class="btn-secondary" style="text-decoration:none; font-size:12px;">Go to Withdraw 💸</a>
+            </div>
+        </div>
+
+        <div class="cashier-tabs">
+            <a href="deposit.html" class="cashier-tab-btn active">💳 Deposit (Add Funds)</a>
+            <a href="withdraw.html" class="cashier-tab-btn">💸 Withdraw</a>
+            <a href="history.html" class="cashier-tab-btn">📋 Payment History</a>
+        </div>
+
+        <h2 style="font-size:16px; font-weight:800; margin-bottom:12px;">Select Payment Gateway:</h2>
+
+                                <!-- Gateway Cards Container (Dynamic) -->
+        <div class="gateways-grid" id="gateways-container">
+            <div id="gw-dep-jazzcash" class="gateway-card active" onclick="selectGateway('dep-jazzcash')">
+                <span class="gateway-badge-popular" style="background:#ff3b30; color:white;">FAST</span>
+                <div class="gateway-icon">
+                    <img src="assets/jazzcash.png" alt="JazzCash" style="width:38px; height:38px; object-fit:contain; border-radius:8px; display:inline-block;">
+                </div>
+                <div class="gateway-title">JazzCash</div>
+                <div class="gateway-sub">03246533046 - Muhammad Ijaz</div>
+            </div>
+
+            <div id="gw-dep-nayapay" class="gateway-card" onclick="selectGateway('dep-nayapay')">
+                <span class="gateway-badge-popular" style="background:#00d084; color:#000;">INSTANT</span>
+                <div class="gateway-icon">
+                    <img src="assets/nayapay.png" alt="NayaPay" style="width:38px; height:38px; object-fit:contain; border-radius:8px; display:inline-block;">
+                </div>
+                <div class="gateway-title">NayaPay</div>
+                <div class="gateway-sub">03246533046 - Muhammad Ijaz</div>
+            </div>
+
+            <div id="gw-dep-binance" class="gateway-card" onclick="selectGateway('dep-binance')">
+                <span class="gateway-badge-popular" style="background:#f5a623; color:black;">CRYPTO</span>
+                <div class="gateway-icon" style="display:flex; align-items:center; justify-content:center;">
+                    <div style="background:#181a20; border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+                        <img src="assets/binance.svg" alt="Binance" style="width:24px; height:24px; object-fit:contain; display:block;">
+                    </div>
+                </div>
+                <div class="gateway-title">Binance Pay</div>
+                <div class="gateway-sub">Crypto / USDT (Instant)</div>
+            </div>
+        </div>
+
+        <!-- Dynamic Payment Voucher Details Box -->
+        <div class="voucher-box">
+            <div class="voucher-timer-row">
+                <span>ORDER #BWN-<span id="voucher-order-id">981245</span></span>
+                <span>Order Valid: <b id="voucher-timer">14:59</b></span>
+            </div>
+
+            <div id="voucher-fields">
+                <div class="voucher-detail-row"><span class="voucher-label">Gateway:</span><b style="color:#0f172a; font-weight:700;"><img src="assets/jazzcash.png" alt="JazzCash" style="width:20px; height:20px; vertical-align:middle; object-fit:contain; border-radius:4px; margin-right:6px;">JazzCash Wallet</b></div>
+                <div class="voucher-detail-row"><span class="voucher-label">Account Title (Name):</span><b style="color:#0f172a; font-size:16px; font-weight:800;">Muhammad Ijaz</b></div>
+                <div class="voucher-detail-row">
+                    <span class="voucher-label">Account Number:</span>
+                    <div class="voucher-val-copy">
+                        <span style="font-family:var(--font-mono); font-weight:800; color:#059669; font-size:17px;">03246533046</span>
+                        <button class="btn-copy-chip" onclick="copyText('03246533046')">COPY</button>
+                    </div>
+                </div>
+                <div class="voucher-detail-row"><span class="voucher-label">Limits:</span><b>Rs. 500 - Rs. 100,000</b></div>
+                <div style="font-size:11.5px; color:#475569; margin-top:8px; line-height:1.5; background:#f8fafc; border:1px solid #e2e8f0; padding:10px 14px; border-radius:8px;"><b>Instructions:</b> Transfer funds via JazzCash to <b>03246533046 (Muhammad Ijaz)</b>. Upload the transaction screenshot below for immediate verification.</div>
+            </div>
+
+            <!-- Transaction Screenshot Upload Directly Below Account Number & Name -->
+            <div id="screenshot-upload-box" style="margin-top:14px; padding-top:14px; border-top:1.5px dashed #cbd5e1;">
+                <label class="form-label" style="display:flex; align-items:center; justify-content:space-between; color:#059669; font-size:13.5px; font-weight:800; margin-bottom:8px;">
+                    <span>Transaction Screenshot:</span>
+                    <span style="font-size:10px; background:#e6fcf5; color:#059669; padding:2px 8px; border-radius:4px; border:1px solid #10b981;">REQUIRED PROOF</span>
+                </label>
+                <label for="cashier-proof-input" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:18px 12px; background:#f0fdf4; border:2px dashed #10b981; border-radius:10px; cursor:pointer; text-align:center; transition:all 0.2s;">
+                    <span style="font-size:26px;">📤</span>
+                    <span style="font-size:13.5px; font-weight:800; color:#0f172a;">Tap Here to Upload Transaction Screenshot</span>
+                    <span style="font-size:11px; color:#64748b;">Attach JazzCash payment receipt image (JPG / PNG)</span>
+                </label>
+                <input type="file" id="cashier-proof-input" class="form-input" accept="image/*" onchange="handleProofImage(this)" style="margin-top:8px; padding:8px; background:#f8fafc; border:1px solid #cbd5e1; color:#0f172a;">
+                <div id="proof-preview-wrap" style="display:none; margin-top:12px; background:#ffffff; padding:14px; border-radius:10px; border:1.5px solid #10b981; box-shadow:0 4px 15px rgba(0,0,0,0.06); text-align:center;">
+                    <div style="font-size:12.5px; color:#059669; margin-bottom:8px; font-weight:800;">Screenshot Attached Successfully:</div>
+                    <img id="proof-preview-img" style="max-height:220px; max-width:100%; border-radius:8px; display:inline-block; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.08);" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Amount & Submission Form (Clean White Card) -->
+        <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:var(--radius-md); padding:20px; margin-bottom:20px; box-shadow:0 4px 20px rgba(0,0,0,0.08); color:#111827;">
+            
+            <div class="form-group" style="margin-bottom:16px;">
+                <label class="form-label" style="color:#0f172a; font-weight:700; font-size:13px; margin-bottom:6px; display:block;">Deposit Amount (PKR ₨):</label>
+                <input type="number" id="cashier-amount-input" class="form-input" value="5000" min="500" step="500" style="background:#f8fafc; border:1.5px solid #cbd5e1; color:#0f172a; font-weight:800; font-size:16px; border-radius:8px; padding:10px 12px; width:100%;">
+                <div class="quick-amounts" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="btn-quick-amount" onclick="setCashierAmount(1000)" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#1e293b; font-weight:700; border-radius:6px; padding:6px 12px; cursor:pointer;">₨ 1,000</button>
+                    <button class="btn-quick-amount" onclick="setCashierAmount(2500)" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#1e293b; font-weight:700; border-radius:6px; padding:6px 12px; cursor:pointer;">₨ 2,500</button>
+                    <button class="btn-quick-amount" onclick="setCashierAmount(5000)" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#1e293b; font-weight:700; border-radius:6px; padding:6px 12px; cursor:pointer;">₨ 5,000</button>
+                    <button class="btn-quick-amount" onclick="setCashierAmount(10000)" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#1e293b; font-weight:700; border-radius:6px; padding:6px 12px; cursor:pointer;">₨ 10,000</button>
+                    <button class="btn-quick-amount" onclick="setCashierAmount(25000)" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#1e293b; font-weight:700; border-radius:6px; padding:6px 12px; cursor:pointer;">₨ 25,000</button>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:16px;">
+                <label class="form-label" style="color:#0f172a; font-weight:700; font-size:13px; margin-bottom:6px; display:block;">Your Sender Mobile / Account Number:</label>
+                <input type="text" id="cashier-sender-input" class="form-input" placeholder="03XXXXXXXXX" style="background:#f8fafc; border:1.5px solid #cbd5e1; color:#0f172a; font-weight:700; border-radius:8px; padding:10px 12px; width:100%;">
+            </div>
+
+            <div class="form-group" style="margin-bottom:20px;">
+                <label class="form-label" style="color:#0f172a; font-weight:700; font-size:13px; margin-bottom:6px; display:block;">Transaction ID / TID / Reference No (Optional):</label>
+                <input type="text" id="cashier-trx-input" class="form-input" placeholder="e.g. 11-digit TID or Txn ID (Optional)" style="background:#f8fafc; border:1.5px solid #cbd5e1; color:#0f172a; font-weight:700; border-radius:8px; padding:10px 12px; width:100%;">
+            </div>
+
+            <button id="cashier-submit-btn" class="btn-submit-action" onclick="submitCashierDeposit()" style="background:linear-gradient(135deg, #059669, #10b981); color:#ffffff; font-weight:900; font-size:15px; border:none; border-radius:10px; padding:14px; width:100%; cursor:pointer; box-shadow:0 4px 18px rgba(16,185,129,0.35); display:flex; align-items:center; justify-content:center; gap:8px;">
+                <span>CONFIRM & SUBMIT DEPOSIT</span> <span>⚡</span>
+            </button>
+        </div>
+
+    </main>
+
+    <script src="js/audio.js?v=2026_bgm_v3"></script>
+    <script src="js/wallet.js?v=2026_ijaz_v5"></script>
+    <script src="js/api_bridge.js?v=2026_ijaz_v5"></script>
+    <script src="js/core.js?v=2026_ep_logos_v1"></script>
+    <script>
+        let currentGw = 'dep-jazzcash';
+
+        const GATEWAYS_DATA = {
+            'dep-jazzcash': {
+                id: 'dep-jazzcash',
+                name: 'JazzCash Wallet',
+                logo: 'assets/jazzcash.png',
+                accountTitle: 'Muhammad Ijaz',
+                accountNumber: '03246533046',
+                numberLabel: 'Account Number:',
+                limits: 'Rs. 500 - Rs. 100,000',
+                instructions: 'Transfer funds via JazzCash to <b>03246533046 (Muhammad Ijaz)</b>. Upload the transaction screenshot below for immediate verification.',
+                proofLabel: 'Attach JazzCash payment receipt image (JPG / PNG)'
+            },
+            'dep-nayapay': {
+                id: 'dep-nayapay',
+                name: 'NayaPay Wallet',
+                logo: 'assets/nayapay.png',
+                accountTitle: 'Muhammad Ijaz',
+                accountNumber: '03246533046',
+                numberLabel: 'Account Number:',
+                limits: 'Rs. 500 - Rs. 100,000',
+                instructions: 'Transfer funds via NayaPay to <b>03246533046 (Muhammad Ijaz)</b>. Upload transaction screenshot below for immediate verification.',
+                proofLabel: 'Attach NayaPay payment receipt image (JPG / PNG)'
+            },
+            'dep-binance': {
+                id: 'dep-binance',
+                name: 'Binance Pay ID (Zero Fee)',
+                logo: 'assets/binance.svg',
+                accountTitle: 'BetWithNet VIP PayID',
+                accountNumber: '987654321',
+                numberLabel: 'Binance Pay ID:',
+                limits: '$10 - $25,000 (Rs. 2,800 - Rs. 7,000,000)',
+                instructions: 'Use Binance App -> Pay -> Send to Pay ID <b>987654321</b>. Upload transaction screenshot below for immediate verification.',
+                proofLabel: 'Attach Binance Pay transaction screenshot (JPG / PNG)'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.core.init('deposit');
+            selectGateway('dep-jazzcash');
+            startVoucherTimer();
+        });
+
+        function initGateways() {
+            selectGateway('dep-jazzcash');
+        }
+
+        function selectGateway(mId) {
+            if (!GATEWAYS_DATA[mId]) mId = 'dep-jazzcash';
+            currentGw = mId;
+            const gw = GATEWAYS_DATA[mId];
+
+            document.querySelectorAll('.gateway-card').forEach(c => c.classList.remove('active'));
+            const el = document.getElementById('gw-' + mId);
+            if (el) el.classList.add('active');
+
+            const vf = document.getElementById('voucher-fields');
+            if (vf) {
+                vf.innerHTML = `
+                    <div class="voucher-detail-row"><span class="voucher-label">Gateway:</span><b style="color:#0f172a; font-weight:700;"><img src="${gw.logo}" alt="${gw.name}" style="width:20px; height:20px; vertical-align:middle; object-fit:contain; border-radius:4px; margin-right:6px;">${gw.name}</b></div>
+                    <div class="voucher-detail-row"><span class="voucher-label">Account Title (Name):</span><b style="color:#0f172a; font-size:16px; font-weight:800;" id="cashier-acc-title-val">${gw.accountTitle}</b></div>
+                    <div class="voucher-detail-row">
+                        <span class="voucher-label">${gw.numberLabel}</span>
+                        <div class="voucher-val-copy">
+                            <span style="font-family:var(--font-mono); font-weight:800; color:#059669; font-size:17px;" id="cashier-acc-num-val">${gw.accountNumber}</span>
+                            <button class="btn-copy-chip" onclick="copyText('${gw.accountNumber}')">COPY</button>
+                        </div>
+                    </div>
+                    <div class="voucher-detail-row"><span class="voucher-label">Limits:</span><b style="color:#0f172a; font-weight:700;">${gw.limits}</b></div>
+                    <div style="font-size:11.5px; color:#475569; margin-top:8px; line-height:1.5; background:#f8fafc; border:1px solid #e2e8f0; padding:10px 14px; border-radius:8px;"><b>Instructions:</b> ${gw.instructions}</div>
+                `;
+            }
+
+            const proofSub = document.querySelector('#screenshot-upload-box label span:last-child');
+            if (proofSub) proofSub.textContent = gw.proofLabel;
+
+            if (window.sound) window.sound.playClick();
+        }
+
+        function setCashierAmount(amt) {
+            document.getElementById('cashier-amount-input').value = amt;
+            if (window.sound) window.sound.playClick();
+        }
+
+        function copyText(txt) {
+            navigator.clipboard.writeText(txt);
+            window.core.showToast('Copied: ' + txt, 'success');
+            if (window.sound) window.sound.playChip();
+        }
+
+        function startVoucherTimer() {
+            let sec = 15 * 60;
+            setInterval(() => {
+                sec--;
+                if (sec <= 0) sec = 15 * 60;
+                const m = Math.floor(sec / 60);
+                const s = sec % 60;
+                const el = document.getElementById('voucher-timer');
+                if (el) el.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+            }, 1000);
+        }
+
+        let uploadedProofBase64 = null;
+
+        function handleProofImage(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const rawDataUrl = e.target.result;
+                    const img = new Image();
+                    img.onload = function() {
+                        try {
+                            const canvas = document.createElement('canvas');
+                            const maxDim = 900;
+                            let w = img.width;
+                            let h = img.height;
+                            if (w > maxDim || h > maxDim) {
+                                if (w > h) {
+                                    h = Math.round((h * maxDim) / w);
+                                    w = maxDim;
+                                } else {
+                                    w = Math.round((w * maxDim) / h);
+                                    h = maxDim;
+                                }
+                            }
+                            canvas.width = w;
+                            canvas.height = h;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, w, h);
+                            uploadedProofBase64 = canvas.toDataURL('image/jpeg', 0.78);
+                        } catch (err) {
+                            uploadedProofBase64 = rawDataUrl;
+                        }
+                        const preview = document.getElementById('proof-preview-img');
+                        const wrap = document.getElementById('proof-preview-wrap');
+                        if (preview && wrap) {
+                            preview.src = uploadedProofBase64;
+                            wrap.style.display = 'block';
+                        }
+                    };
+                    img.onerror = function() {
+                        uploadedProofBase64 = rawDataUrl;
+                        const preview = document.getElementById('proof-preview-img');
+                        const wrap = document.getElementById('proof-preview-wrap');
+                        if (preview && wrap) {
+                            preview.src = uploadedProofBase64;
+                            wrap.style.display = 'block';
+                        }
+                    };
+                    img.src = rawDataUrl;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function submitCashierDeposit() {
+            const user = (window.core && window.core.getLoggedInUser) ? window.core.getLoggedInUser() : null;
+            if (!user || !user.id) {
+                window.core.showToast('Please sign in or create an account before depositing!', 'error');
+                if (window.core.openAuthModal) window.core.openAuthModal('login');
+                return;
+            }
+
+            const amountInput = document.getElementById('cashier-amount-input');
+            const amount = parseFloat(amountInput ? amountInput.value : 0);
+            const senderInputVal = document.getElementById('cashier-sender-input')?.value.trim() || '';
+            const sender = senderInputVal || user.phone || user.username || 'Via Screenshot';
+            const trx = document.getElementById('cashier-trx-input')?.value.trim() || ('TID' + Date.now().toString().slice(-8));
+            const btn = document.getElementById('cashier-submit-btn');
+
+            if (!amount || amount < 500) {
+                window.core.showToast('Minimum deposit amount is ₨ 500', 'error');
+                return;
+            }
+            if (!uploadedProofBase64) {
+                window.core.showToast('Please upload your Transaction Screenshot first!', 'error');
+                const ssBox = document.getElementById('screenshot-upload-box');
+                if (ssBox) ssBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = 'Submitting Deposit Request...';
+
+            const rate = window.wallet ? window.wallet.exchangeRate : 280;
+            const amountUsd = parseFloat((amount / rate).toFixed(2));
+            const gwMethod = window.paymentManager ? window.paymentManager.getDepositMethodById(currentGw) : null;
+            const gwName = gwMethod ? gwMethod.name : (currentGw || 'JazzCash');
+
+            let serverTxId = 'trx_' + Date.now().toString().slice(-8);
+            try {
+                const res = await fetch('/api/wallet.php?action=deposit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        user_id: user.id,
+                        username: user.username || user.fullName || user.phone || 'Player',
+                        phone: user.phone || sender,
+                        amount: amount,
+                        amount_pkr: amount,
+                        amount_usd: amountUsd,
+                        currency: 'PKR',
+                        method: gwName,
+                        sender_account: sender,
+                        sender: sender,
+                        trx_id: trx,
+                        proof_image: uploadedProofBase64
+                    })
+                });
+                const json = await res.json();
+                if (json && json.data && json.data.transaction_id) {
+                    serverTxId = json.data.transaction_id;
+                }
+            } catch (e) {
+                console.warn('[Deposit] Backend fetch error, saved locally:', e);
+            }
+
+            // Record locally in wallet transactions
+            if (window.wallet) {
+                if (!window.wallet.state.transactions) window.wallet.state.transactions = [];
+                window.wallet.state.transactions.unshift({
+                    id: serverTxId,
+                    type: 'deposit',
+                    method: gwName,
+                    currency: 'PKR',
+                    amountPKR: amount,
+                    amountUSD: amountUsd,
+                    sender: sender,
+                    trxId: trx,
+                    proofImage: uploadedProofBase64,
+                    status: 'Pending',
+                    date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+                    timestamp: new Date().toISOString()
+                });
+                window.wallet.saveState();
+            }
+
+            btn.disabled = false;
+            // Broadcast to Admin Panel for instantaneous modal alert
+            try {
+                localStorage.setItem('bwn_latest_tx_broadcast', JSON.stringify({
+                    id: serverTxId,
+                    type: 'deposit',
+                    amount: amount,
+                    amount_pkr: amount,
+                    amount_usd: amountUsd,
+                    method: gwName,
+                    sender_account: sender,
+                    user_id: user.username,
+                    trx_id: trx,
+                    proof_image: uploadedProofBase64,
+                    timestamp: Date.now()
+                }));
+            } catch(e) {}
+
+            // Public notification - standard toast message (no intrusive modal on player screen)
+            window.core.showToast(`Deposit of ₨ ${amount.toLocaleString()} submitted! Status: Pending Admin Approval.`, 'success');
+
+            window.core.updateAllBalances();
+            setTimeout(() => {
+                window.location.href = 'history.html';
+            }, 1800);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gold Rush - Mega7 / MannaPlay Official Slot</title>
+    <link rel="stylesheet" href="/gold_rush_template/standalone_game/css/game_style.css">
+    <link rel="shortcut icon" href="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png">
+</head>
+<body>
+    <div class="game-viewport">
+        <!-- Backdrop & Ambience -->
+        <div class="backdrop-layer"></div>
+        <div class="backdrop-vignette"></div>
+        <canvas id="ambientDustCanvas" class="ambient-dust-layer"></canvas>
+
+        <!-- Main Game Layout: Miner Character on Left + Cabinet in Center -->
+        <div class="main-game-layout">
+            <!-- 3D Miner Mascot & Plunger Stage -->
+            <div class="miner-stage">
+                <div class="speech-bubble" id="minerSpeech">Ready to blast?! ⛏️</div>
+                <div class="miner-mascot" id="minerMascot">
+                    <img id="minerImg" src="/gold_rush_template/standalone_game/assets/images/miner_anim/miner_state_idle.png" alt="Gold Rush Miner Girl" class="miner-sprite-img">
+                    <div class="plunger-sparks-fx" id="plungerSparks"></div>
+                </div>
+                <div class="tnt-dynamite-box">
+                    <div class="tnt-label">DYNAMITE</div>
+                    <div class="tnt-sticks">
+                        <span class="tnt-stick"></span>
+                        <span class="tnt-stick"></span>
+                        <span class="tnt-stick"></span>
+                    </div>
+                </div>
+                <!-- Authentic Rock Pedestal Cliff -->
+                <img src="/gold_rush_template/standalone_game/assets/images/miner_rock_pedestal.png" class="miner-rock-pedestal" alt="Rock Cliff">
+            </div>
+
+            <!-- Authentic Slot Machine Cabinet with Carved Beams -->
+            <div class="cabinet-wrapper" id="cabinetWrapper">
+                <!-- Carved Wooden Beam Frame Overlays -->
+                <img src="/gold_rush_template/standalone_game/assets/images/cabinet_top_beam.png" class="cabinet-wood-top" alt="Caution Top Beam">
+                <img src="/gold_rush_template/standalone_game/assets/images/cabinet_left_beam.png" class="cabinet-wood-left" alt="Left Beam">
+                <img src="/gold_rush_template/standalone_game/assets/images/cabinet_right_beam.png" class="cabinet-wood-right" alt="1024 Ways Right Beam">
+                <img src="/gold_rush_template/standalone_game/assets/images/cabinet_gear.png" class="cabinet-gear-cog left" alt="Gear">
+                <img src="/gold_rush_template/standalone_game/assets/images/cabinet_gear.png" class="cabinet-gear-cog right" alt="Gear">
+
+                <!-- Authentic Hanging Miner Lantern -->
+                <div class="hanging-lantern-wrap">
+                    <img src="/gold_rush_template/standalone_game/assets/images/spine_lightbulb_light.png" class="cabinet-lantern-img" alt="Miner Lantern">
+                    <div class="lantern-glow-halo"></div>
+                </div>
+
+                <!-- Authentic Animated Desert Lizard Mascot -->
+                <div class="lizard-perch-wrap" id="lizardMascot" title="MannaPlay Desert Gecko">
+                    <img src="/gold_rush_template/standalone_game/assets/images/spine_lizard_Lizard_MP.png" class="lizard-sprite-img" alt="Desert Lizard">
+                </div>
+
+                <!-- Top Cabinet Header -->
+                <div class="cabinet-header">
+                    <div class="game-logo-banner">
+                        <img src="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png" alt="Gold Rush Cover" class="game-logo-img">
+                        <div class="game-title-group">
+                            <h1>GOLD RUSH</h1>
+                            <div class="game-provider-tag">Mega7 &bull; Manna Gaming</div>
+                        </div>
+                    </div>
+
+                    <!-- Trailer & Rules Action Buttons -->
+                    <div class="header-action-pills">
+                        <button class="btn-trailer-watch" id="btnWatchTrailer" title="Watch Official Game Cinematic Trailer">
+                            🎬 TRAILER
+                        </button>
+                        <button class="btn-rules-pill" id="btnPaytableRules" title="View Official Game Paytable & Rules">
+                            ℹ️ RULES
+                        </button>
+                    </div>
+
+                    <div class="multiplier-meter">
+                        <div class="bomb-icon"></div>
+                        <div class="multiplier-value" id="valMultiplier">x1</div>
+                    </div>
+                </div>
+
+                <!-- Reels Stage -->
+                <div class="reels-stage">
+                    <canvas id="paylineCanvas"></canvas>
+                    <div class="reels-grid" id="reelsGrid">
+                        <!-- Reels and symbols rendered dynamically by game_engine.js -->
+                    </div>
+
+                    <!-- Multiplier Bomb Drop Animation -->
+                    <div class="multiplier-bomb-drop" id="bombDropContainer">
+                        <img src="/gold_rush_template/standalone_game/assets/images/spine_multiply_bomb_multiply_bomb.png" class="bomb-drop-img" alt="TNT Bomb">
+                        <div class="bomb-drop-badge" id="bombDropBadge">x5</div>
+                    </div>
+
+                    <!-- Authentic Combo Multiplier Banner -->
+                    <div class="combo-banner-popup" id="comboBanner">
+                        <img src="/gold_rush_template/standalone_game/assets/images/spine_combo_combo.png" class="combo-banner-img" alt="Combo!">
+                        <div class="combo-count-text" id="comboText">COMBO x2!</div>
+                    </div>
+                </div>
+
+                <!-- Bottom Controls & Payout Status -->
+                <div class="cabinet-footer">
+                    <div class="info-display-box">
+                        <span class="info-label">BALANCE</span>
+                        <span class="info-value" id="valBalance">50,000.00</span>
+                    </div>
+
+                    <div class="bet-selector-group">
+                        <button class="btn-bet-adjust" id="btnBetMinus" title="Decrease Bet">-</button>
+                        <div class="info-display-box clickable" id="boxTotalBet" title="Click to Pick Bet">
+                            <span class="info-label">TOTAL BET ▾</span>
+                            <span class="info-value" id="valBet">100</span>
+                        </div>
+                        <button class="btn-bet-adjust" id="btnBetPlus" title="Increase Bet">+</button>
+
+                        <!-- Quick Bet Popover -->
+                        <div class="quick-bet-popover" id="quickBetPopover">
+                            <div class="quick-bet-title">QUICK BET SELECTION</div>
+                            <div class="quick-bet-grid">
+                                <button class="btn-quick-chip" data-bet="10">10</button>
+                                <button class="btn-quick-chip" data-bet="25">25</button>
+                                <button class="btn-quick-chip" data-bet="50">50</button>
+                                <button class="btn-quick-chip" data-bet="100">100</button>
+                                <button class="btn-quick-chip" data-bet="250">250</button>
+                                <button class="btn-quick-chip" data-bet="500">500</button>
+                                <button class="btn-quick-chip" data-bet="1000">1,000</button>
+                                <button class="btn-quick-chip" data-bet="2500">2,500</button>
+                                <button class="btn-quick-chip max-bet-chip" data-bet="5000">MAX 5,000</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-display-box">
+                        <span class="info-label">WIN</span>
+                        <span class="info-value" id="valWin">0.00</span>
+                    </div>
+
+                    <div class="controls-right">
+                        <button class="btn-secondary" id="btnTurbo" title="Toggle Turbo Mode">⚡ Turbo</button>
+                        <button class="btn-secondary" id="btnAuto" title="Toggle Auto Spin">🔄 Auto</button>
+                        <button class="btn-secondary active" id="btnSound" title="Toggle Sound">🔊</button>
+                        <button class="btn-spin-main" id="btnSpin" title="Spin Reels">SPIN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Big Win Celebration Modal -->
+        <div class="modal-bigwin" id="bigwinModal">
+            <img src="/gold_rush_template/standalone_game/assets/images/spine_bigwin_big_win.png" alt="Big Win" class="bigwin-banner-img">
+            <div class="bigwin-counter" id="bigwinCount">0.00</div>
+        </div>
+
+        <!-- Official Interactive Paytable & Rules Modal -->
+        <div class="modal-paytable" id="paytableModal">
+            <div class="paytable-container">
+                <div class="paytable-header">
+                    <div class="paytable-title-wrap">
+                        <img src="/gold_rush_template/standalone_game/assets/images/gold_rush_cover.png" class="paytable-logo-thumb" alt="Gold Rush">
+                        <div>
+                            <h2>GOLD RUSH &bull; PAYTABLE & RULES</h2>
+                            <span class="paytable-sub">1024 WAYS TO WIN &bull; HIGH VOLATILITY &bull; RTP 96.5%</span>
+                        </div>
+                    </div>
+                    <button class="btn-close-paytable" id="btnClosePaytable">&times; CLOSE</button>
+                </div>
+
+                <div class="paytable-body">
+                    <!-- Feature 1: 1024 Ways Rule -->
+                    <div class="paytable-card feature-banner">
+                        <div class="feature-badge">GAMEPLAY MECHANIC</div>
+                        <h3>1024 WAYS TO WIN & CASCADING REELS</h3>
+                        <p>Winning combinations pay left-to-right on adjacent reels in any position. After wins are awarded, winning symbols detonate and cascade to create consecutive chain-reaction wins!</p>
+                    </div>
+
+                    <!-- Payout Grid -->
+                    <div class="paytable-section-title">SYMBOL PAYOUT TABLE (x BET MULTIPLIER)</div>
+                    <div class="paytable-grid">
+                        <div class="symbol-pay-card gold-border">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/p1.png" alt="Gem Cart">
+                            <div class="symbol-name">Motherlode Cart</div>
+                            <div class="symbol-tiers">5x: <b>500x</b><br>4x: <b>250x</b><br>3x: <b>100x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/p2.png" alt="Ruby">
+                            <div class="symbol-name">Precious Ruby</div>
+                            <div class="symbol-tiers">5x: <b>250x</b><br>4x: <b>125x</b><br>3x: <b>50x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/p3.png" alt="Emerald">
+                            <div class="symbol-name">Imperial Emerald</div>
+                            <div class="symbol-tiers">5x: <b>150x</b><br>4x: <b>75x</b><br>3x: <b>35x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/p4.png" alt="Sapphire">
+                            <div class="symbol-name">Royal Sapphire</div>
+                            <div class="symbol-tiers">5x: <b>100x</b><br>4x: <b>50x</b><br>3x: <b>25x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/p5.png" alt="Topaz">
+                            <div class="symbol-name">Golden Topaz</div>
+                            <div class="symbol-tiers">5x: <b>75x</b><br>4x: <b>35x</b><br>3x: <b>20x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/a.png" alt="T-Rex Skull">
+                            <div class="symbol-name">T-Rex Skull Relic</div>
+                            <div class="symbol-tiers">5x: <b>50x</b><br>4x: <b>25x</b><br>3x: <b>15x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/k.png" alt="Ammonite Fossil">
+                            <div class="symbol-name">Ammonite Fossil</div>
+                            <div class="symbol-tiers">5x: <b>40x</b><br>4x: <b>20x</b><br>3x: <b>10x</b></div>
+                        </div>
+                        <div class="symbol-pay-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/symbols/wild.png" alt="WILD Dynamite">
+                            <div class="symbol-name special">WILD Dynamite</div>
+                            <div class="symbol-tiers special">Substitutes ALL<br>Triggers Bombs<br>Up to 100x</div>
+                        </div>
+                    </div>
+
+                    <!-- Special Features -->
+                    <div class="paytable-features-row">
+                        <div class="feature-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/spine_multiply_bomb_multiply_bomb.png" class="feature-thumb" alt="TNT Multiplier">
+                            <div class="feature-info">
+                                <h4>🧨 DYNAMITE MULTIPLIER BOMBS</h4>
+                                <p>Wild Dynamite detonates random multiplier bombs (x2, x5, x10, x50, x100) on any win! In Free Spins, multiplier bombs persist across cascade chains!</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <img src="/gold_rush_template/standalone_game/assets/images/spine_free_transitions_free_transitions.png" class="feature-thumb" alt="Free Spins">
+                            <div class="feature-info">
+                                <h4>💥 10 FREE SPINS BONUS</h4>
+                                <p>Landing 3 or more Wild Dynamite symbols triggers 10 Free Spins with guaranteed dynamite plunges and elevated jackpot multiplier boosts up to 5,000x!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Cinematic Story Trailer & Authentic Video Modal -->
+        <div class="modal-cinematic-trailer" id="cinematicTrailerModal">
+            <div class="trailer-progress-track">
+                <div class="trailer-progress-bar" id="trailerProgressBar"></div>
+            </div>
+            <div class="trailer-top-bar">
+                <div class="trailer-title-meta">
+                    <img src="/gold_rush_template/standalone_game/assets/images/manna_play_logo.png" class="trailer-manna-logo" alt="Manna Play">
+                    <div class="trailer-title-text">GOLD RUSH &bull; OFFICIAL CINEMATIC TRAILER</div>
+                </div>
+                <div class="trailer-action-buttons">
+                    <button class="btn-skip-trailer" id="btnCloseTrailer" title="Skip to Slot Game">SKIP TO GAME ⏩</button>
+                </div>
+            </div>
+
+            <div class="trailer-stage">
+                <!-- Navigation Arrows -->
+                <button class="trailer-nav-arrow prev" id="btnTrailerPrev" title="Previous Chapter">&#10094;</button>
+                <button class="trailer-nav-arrow next" id="btnTrailerNext" title="Next Chapter">&#10095;</button>
+
+                <!-- Interactive Animated Story Trailer View with Authentic Assets -->
+                <div class="trailer-story-view" id="trailerStoryView" style="display: flex;">
+                    <!-- Story Slide 1: Mine Shaft Entrance -->
+                    <div class="trailer-slide active" id="tslide1">
+                        <img src="/gold_rush_template/standalone_game/assets/images/atlas_all_bg.png" class="tslide-bg-wall" alt="Prehistoric Dinosaur Mine">
+                        <div class="tslide-overlay">
+                            <div class="tslide-tag">CHAPTER I: PREHISTORIC CAVERN</div>
+                            <h2>A LEGENDARY GOLD VEIN AWAITS</h2>
+                            <p>Beneath the desert cliffs lies an ancient abandoned mine filled with priceless gems and glowing dinosaur fossils.</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Slide 2: Gem Cart Discovery -->
+                    <div class="trailer-slide" id="tslide2">
+                        <img src="/gold_rush_template/standalone_game/assets/images/atlas_mountain.png" class="tslide-bg-wall" alt="Mountain Mine Entrance">
+                        <div class="tslide-bg-gems">
+                            <img src="/gold_rush_template/standalone_game/assets/images/spine_bg_fg_jam_bg_fg_jam.png" class="tslide-floating-gems" alt="Gems">
+                        </div>
+                        <img src="/gold_rush_template/standalone_game/assets/images/spine_free_transitions_free_transitions.png" class="tslide-cart" alt="Minecart">
+                        <div class="tslide-overlay">
+                            <div class="tslide-tag">CHAPTER II: THE MOTHERLODE</div>
+                            <h2>THE SACRED GEM CART</h2>
+                            <p>Rubies, Emeralds, Sapphires, and prehistoric relics! 1024 ways to unlock explosive payouts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Slide 3: Dynamite & Plunger -->
+                    <div class="trailer-slide" id="tslide3">
+                        <img src="/gold_rush_template/standalone_game/assets/images/atlas_all_bg.png" class="tslide-bg-wall" alt="Detonation Shaft">
+                        <div class="tnt-blast-scene">
+                            <img src="/gold_rush_template/standalone_game/assets/images/miner_anim/miner_state_spin.png" class="tslide-miner" alt="Miner">
+                            <div class="countdown-circle" id="trailerCountdown">3</div>
+                        </div>
+                        <div class="tslide-overlay">
+                            <div class="tslide-tag">CHAPTER III: DETONATION</div>
+                            <h2>FIRE IN THE HOLE!</h2>
+                            <p>Plunge the TNT detonator to trigger cascading spins and blast open locked paylines!</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Slide 4: Multiplier Explosions -->
+                    <div class="trailer-slide" id="tslide4">
+                        <img src="/gold_rush_template/standalone_game/assets/images/atlas_all_bg.png" class="tslide-bg-wall" alt="Multiplier Chamber">
+                        <img src="/gold_rush_template/standalone_game/assets/images/spine_symbol_symbol_explosion.png" class="tslide-explosion-sheet" alt="Explosion">
+                        <div class="multiplier-bombs-display">
+                            <div class="bomb-badge b2">x2</div>
+                            <div class="bomb-badge b5">x5</div>
+                            <div class="bomb-badge b10">x10</div>
+                            <div class="bomb-badge b50">x50</div>
+                            <div class="bomb-badge b100">x100!</div>
+                        </div>
+                        <div class="tslide-overlay">
+                            <div class="tslide-tag">CHAPTER IV: DYNAMITE MULTIPLIERS</div>
+                            <h2>UP TO 100x MULTIPLIER BOMBS</h2>
+                            <p>Every Wild Dynamite triggers random cascading multiplier explosions on any win!</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Slide 5: Mega Win Finale -->
+                    <div class="trailer-slide" id="tslide5">
+                        <img src="/gold_rush_template/standalone_game/assets/images/atlas_mountain.png" class="tslide-bg-wall" alt="Jackpot Mountain">
+                        <img src="/gold_rush_template/standalone_game/assets/images/spine_bigwin_big_win.png" class="tslide-mega-win" alt="Mega Win">
+                        <div class="jackpot-glow-banner">WIN UP TO 5,000x YOUR BET</div>
+                        <div class="tslide-overlay">
+                            <button class="btn-trailer-play" id="btnTrailerPlay">🎰 PLAY NOW & WIN!</button>
+                        </div>
+                    </div>
+
+                    <!-- Nav Dots -->
+                    <div class="trailer-nav-dots" id="trailerDots">
+                        <span class="tdot active" data-step="1"></span>
+                        <span class="tdot" data-step="2"></span>
+                        <span class="tdot" data-step="3"></span>
+                        <span class="tdot" data-step="4"></span>
+                        <span class="tdot" data-step="5"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="trailer-letterbox bottom"></div>
+        </div>
+
+        <!-- Official MannaPlay Loading Screen -->
+        <div class="splash-trailer-overlay" id="splashTrailer">
+            <div class="mannaplay-splash-stage">
+                <img src="/gold_rush_template/standalone_game/assets/images/manna_play_logo.png" alt="Manna Play" class="mannaplay-logo-img">
+                <div class="mannaplay-loader-track">
+                    <div class="mannaplay-loader-bar" id="dynamiteBarFill"></div>
+                </div>
+                <div class="mannaplay-loader-status" id="loaderStatus">LOADING 0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio & Game Engine Scripts -->
+    <script src="/gold_rush_template/standalone_game/js/audio_engine.js"></script>
+    <script src="/gold_rush_template/standalone_game/js/game_engine.js"></script>
+</body>
+</html>

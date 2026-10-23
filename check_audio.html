@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+async function checkAudio(url, name) {
+    try {
+        console.log('Fetching ' + name + '...');
+        const resp = await fetch(url);
+        const buf = await resp.arrayBuffer();
+        console.log(name + ' fetched: ' + buf.byteLength + ' bytes');
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const audioBuf = await ctx.decodeAudioData(buf);
+        console.log('RESULT_' + name + ': channels=' + audioBuf.numberOfChannels + ' duration=' + audioBuf.duration + ' rate=' + audioBuf.sampleRate);
+    } catch(err) {
+        console.log('ERROR_' + name + ': ' + err.message);
+    }
+}
+async function run() {
+    await checkAudio('/assets/games/wheel/ref_video.mp4', 'VIDEO1');
+    await checkAudio('/assets/games/wheel/ref_video2.mp4', 'VIDEO2');
+}
+run();
+</script>
+</body>
+</html>

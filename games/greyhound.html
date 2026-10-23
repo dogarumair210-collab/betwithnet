@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Greyhound Racing Virtual - Bet With Net</title>
+	<link href="../assets/games/greyhound_atlas/css/style.css?v=1.9" type="text/css" rel="stylesheet">
+	<style>
+		#bwn-sound-toggle-fixed, .bwn-sound-toggle-btn, #bwn-game-splash, #app-luxury-footer,
+		#app-bottom-nav-slot, #app-header-slot, #vip-apk-modal, #daily-bonus-modal-root,
+		.daily-bonus-overlay, .daily-bonus-dialog, .daily-bonus-floating-trigger,
+		.vip-apk-modal-overlay, .vip-apk-modal-dialog, .drawer-nav, .side-drawer,
+		.app-header, .app-bottom-nav, .luxury-casino-footer, .game-balance-hud,
+		.live-ticker, .hero-banner, .drawer-overlay, #mobile_rotate {
+			display: none !important;
+			visibility: hidden !important;
+			pointer-events: none !important;
+		}
+		.bwn-top-float {
+			position: fixed;
+			top: 8px;
+			left: 8px;
+			z-index: 99999;
+			display: flex;
+			gap: 6px;
+			align-items: center;
+		}
+		.bwn-back-pill, .bwn-race-now-pill {
+			background: rgba(4, 30, 56, 0.92);
+			border: 1px solid #0092FF;
+			color: #ffffff;
+			font-family: Arial, sans-serif;
+			font-size: 11px;
+			font-weight: 700;
+			padding: 5px 10px;
+			border-radius: 5px;
+			text-decoration: none;
+			cursor: pointer;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+		}
+		.bwn-race-now-pill {
+			background: linear-gradient(180deg, #28a745 0%, #19692c 100%);
+			border-color: #37FDAD;
+		}
+	</style>
+</head>
+<body class="home fairness global_wrapper">
+
+	<div class="bwn-top-float">
+		<a href="../casino.html" class="bwn-back-pill">← Casino</a>
+		<button type="button" class="bwn-race-now-pill" onclick="if(window.bwnTriggerRaceNow) window.bwnTriggerRaceNow();">▶ RACE NOW</button>
+	</div>
+
+	<div class="loader">
+		<div class="loader_inner">
+			<svg xmlns="http://www.w3.org/2000/svg" class="loader_logo1" version="1.1" viewBox="0 -2 402 103"><path stroke-width="1"  stroke="#0092FF" d="M0.5,70.5L35.4,1.4h18.5l34.7,69.2H67L48.5,34.4c-0.8-1.6-1.5-3-2.1-4.4c-0.6-1.3-1.2-2.7-1.6-3.9c-0.5-1.2-0.9-2.5-1.3-3.6c-0.4-1.2-0.8-2.3-1.1-3.4h4.3c-0.3,1.2-0.7,2.4-1.1,3.6c-0.4,1.2-0.9,2.5-1.4,3.7c-0.5,1.3-1.1,2.5-1.7,3.9c-0.6,1.3-1.3,2.7-2,4.1L21.7,70.5H0.5z"></path><path stroke-width="1"  stroke="#0092FF" d="M87.3,70.5v-51H68.5L58.9,1.4h68.7v18.2h-18.9v51L87.3,70.5L87.3,70.5z"></path><path stroke-width="1"  stroke="#0092FF" d="M166,48.7l24.8-47.3h18.5l34.8,69.2h-21.6l-18.6-36.2c-0.8-1.6-1.5-3-2.1-4.4c-0.6-1.3-1.2-2.7-1.6-3.9c-0.5-1.2-0.9-2.5-1.3-3.6c-0.4-1.2-0.8-2.3-1.1-3.4h4.3c-0.3,1.2-0.7,2.4-1.1,3.6c-0.4,1.2-0.9,2.5-1.4,3.7c-0.5,1.3-1.1,2.5-1.7,3.9c-0.6,1.3-1.3,2.7-2,4.1l-8.4,14.3H166z"></path><path stroke-width="1"  stroke="#0092FF" d="M350,70.5L318,1.4h21.3l13.1,29.4c0.4,0.9,1,2.2,1.7,3.8c0.8,1.6,1.6,3.4,2.5,5.5s1.8,4.3,2.6,6.7c0.9,2.4,1.6,4.8,2.3,7.4h-4c1-3.2,2-6.1,3.1-8.8s2.2-5.3,3.3-7.7c1.1-2.4,2-4.6,2.8-6.6l13-29.7h20.8l-31.2,69.2L350,70.5L350,70.5z"></path><path stroke-width="1"  stroke="#0092FF" d="M306.2,33.2c0.2,0.3,0.4,0.6,0.6,0.8c2.4,3.5,3.7,8,3.7,13.6c0,0.9-0.1,1.9-0.2,2.8h24.2l-8.6-17.2C325.9,33.2,306.2,33.2,306.2,33.2z"></path><path stroke-width="1"  stroke="#0092FF" d="M301.9,36.5c-1.9-2.7-4.5-4.8-7.7-6.2c-3.2-1.4-6.8-2.4-10.7-2.9c-3.9-0.6-7.9-1-11.9-1.3c-1.3-0.1-3-0.2-4.9-0.3c-2-0.1-3.9-0.3-5.8-0.5c-1.9-0.3-3.5-0.7-4.7-1.3c-1.3-0.6-1.9-1.4-1.9-2.5c0-1.2,0.6-2.1,1.7-2.7c1.2-0.6,2.7-1.1,4.7-1.3c2-0.2,4.2-0.3,6.8-0.3c2.6,0,5.5,0.2,8.4,0.6c3,0.4,5.9,1,8.8,1.7s5.4,1.6,7.6,2.7l8.8-14.5c-2.1-1.2-4.7-2.4-7.8-3.7c-3.1-1.3-6.8-2.4-10.9-3.2c-4.1-0.9-8.8-1.3-14-1.3c-5,0-9.8,0.5-14.2,1.5s-8.4,2.5-11.8,4.5s-6.1,4.4-8,7.4c-1.9,2.9-2.9,6.3-2.9,10.1c0,3.2,0.8,6.1,2.3,8.6s3.7,4.7,6.5,6.5s6.1,3.2,10,4.3s8.2,1.8,13,2.1c2.6,0.2,5,0.4,7,0.5c2.1,0.2,3.8,0.4,5.3,0.6c1.5,0.2,2.7,0.5,3.7,0.8s1.7,0.7,2.2,1.2s0.7,1.1,0.7,1.8c0,1.5-0.7,2.6-2,3.2c-1.3,0.6-2.9,1-4.6,1.1c-1.8,0.1-3.3,0.2-4.6,0.2c-4.7,0-10.2-0.8-16.4-2.3c-5.9-1.4-11.8-3.7-17.8-6.9l12.3,24.5c1,0.2,2,0.5,3.1,0.7c5.1,1,10.6,1.5,16.7,1.5c6.7,0,12.7-0.9,18.2-2.8c5.4-1.8,9.7-4.5,12.9-8.1c3.2-3.6,4.8-7.9,4.8-13C304.8,42.9,303.8,39.2,301.9,36.5z"></path><polygon stroke-width="1"  stroke="#0092FF" points="153.6,52.3 153.5,1.4 132.1,1.4 132.1,70.5 175.7,70.5 186,52.3"></polygon></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" class="loader_logo2" version="1.1" viewBox="0 -2 402 103"><path fill="#0092FF" d="M0.5,70.5L35.4,1.4h18.5l34.7,69.2H67L48.5,34.4c-0.8-1.6-1.5-3-2.1-4.4c-0.6-1.3-1.2-2.7-1.6-3.9c-0.5-1.2-0.9-2.5-1.3-3.6c-0.4-1.2-0.8-2.3-1.1-3.4h4.3c-0.3,1.2-0.7,2.4-1.1,3.6c-0.4,1.2-0.9,2.5-1.4,3.7c-0.5,1.3-1.1,2.5-1.7,3.9c-0.6,1.3-1.3,2.7-2,4.1L21.7,70.5H0.5z"></path><path fill="#0092FF" d="M87.3,70.5v-51H68.5L58.9,1.4h68.7v18.2h-18.9v51L87.3,70.5L87.3,70.5z"></path><path fill="#0092FF" d="M166,48.7l24.8-47.3h18.5l34.8,69.2h-21.6l-18.6-36.2c-0.8-1.6-1.5-3-2.1-4.4c-0.6-1.3-1.2-2.7-1.6-3.9c-0.5-1.2-0.9-2.5-1.3-3.6c-0.4-1.2-0.8-2.3-1.1-3.4h4.3c-0.3,1.2-0.7,2.4-1.1,3.6c-0.4,1.2-0.9,2.5-1.4,3.7c-0.5,1.3-1.1,2.5-1.7,3.9c-0.6,1.3-1.3,2.7-2,4.1l-8.4,14.3H166z"></path><path fill="#0092FF" d="M350,70.5L318,1.4h21.3l13.1,29.4c0.4,0.9,1,2.2,1.7,3.8c0.8,1.6,1.6,3.4,2.5,5.5s1.8,4.3,2.6,6.7c0.9,2.4,1.6,4.8,2.3,7.4h-4c1-3.2,2-6.1,3.1-8.8s2.2-5.3,3.3-7.7c1.1-2.4,2-4.6,2.8-6.6l13-29.7h20.8l-31.2,69.2L350,70.5L350,70.5z"></path><path fill="#0092FF" d="M306.2,33.2c0.2,0.3,0.4,0.6,0.6,0.8c2.4,3.5,3.7,8,3.7,13.6c0,0.9-0.1,1.9-0.2,2.8h24.2l-8.6-17.2C325.9,33.2,306.2,33.2,306.2,33.2z"></path><path fill="#0092FF" d="M301.9,36.5c-1.9-2.7-4.5-4.8-7.7-6.2c-3.2-1.4-6.8-2.4-10.7-2.9c-3.9-0.6-7.9-1-11.9-1.3c-1.3-0.1-3-0.2-4.9-0.3c-2-0.1-3.9-0.3-5.8-0.5c-1.9-0.3-3.5-0.7-4.7-1.3c-1.3-0.6-1.9-1.4-1.9-2.5c0-1.2,0.6-2.1,1.7-2.7c1.2-0.6,2.7-1.1,4.7-1.3c2-0.2,4.2-0.3,6.8-0.3c2.6,0,5.5,0.2,8.4,0.6c3,0.4,5.9,1,8.8,1.7s5.4,1.6,7.6,2.7l8.8-14.5c-2.1-1.2-4.7-2.4-7.8-3.7c-3.1-1.3-6.8-2.4-10.9-3.2c-4.1-0.9-8.8-1.3-14-1.3c-5,0-9.8,0.5-14.2,1.5s-8.4,2.5-11.8,4.5s-6.1,4.4-8,7.4c-1.9,2.9-2.9,6.3-2.9,10.1c0,3.2,0.8,6.1,2.3,8.6s3.7,4.7,6.5,6.5s6.1,3.2,10,4.3s8.2,1.8,13,2.1c2.6,0.2,5,0.4,7,0.5c2.1,0.2,3.8,0.4,5.3,0.6c1.5,0.2,2.7,0.5,3.7,0.8s1.7,0.7,2.2,1.2s0.7,1.1,0.7,1.8c0,1.5-0.7,2.6-2,3.2c-1.3,0.6-2.9,1-4.6,1.1c-1.8,0.1-3.3,0.2-4.6,0.2c-4.7,0-10.2-0.8-16.4-2.3c-5.9-1.4-11.8-3.7-17.8-6.9l12.3,24.5c1,0.2,2,0.5,3.1,0.7c5.1,1,10.6,1.5,16.7,1.5c6.7,0,12.7-0.9,18.2-2.8c5.4-1.8,9.7-4.5,12.9-8.1c3.2-3.6,4.8-7.9,4.8-13C304.8,42.9,303.8,39.2,301.9,36.5z"></path><polygon fill="#0092FF" points="153.6,52.3 153.5,1.4 132.1,1.4 132.1,70.5 175.7,70.5 186,52.3"></polygon></svg>
+		</div>
+	</div>
+	 
+	<div class="mobile_rotate" id="mobile_rotate">
+		<div class="mobile_rotate_wrap">
+			<svg xmlns="http://www.w3.org/2000/svg" class="mobile_rotate_svg" viewBox="0 0 200 200"><path fill="#FFFFFF" stroke="none" d="M 53.15 184.95Q 61.45 191.6 71.4 191.6L 71.4 199.55 85.55 185.8 71.4 171.9 71.4 180.4Q 64.1 181.15 57.7 174.5 55.35 172 53.95 168.9 52.35 165.3 51.9 160.8L 41.8 160.8Q 41.8 165 42.75 168.9 45.1 177.9 53.15 184.95M 118.6 37.6L 81.8 37.6Q 76 37.6 71.85 41.7 67.75 45.8 67.75 51.65L 67.75 148Q 67.75 153.85 71.85 158 76 162.1 81.8 162.1L 118.6 162.1Q 124.4 162.1 128.5 158 132.6 153.85 132.6 148L 132.6 51.65Q 132.6 45.8 128.5 41.7 124.4 37.6 118.6 37.6M 102.1 47.05Q 102.95 47.9 102.95 49.1 102.95 50.25 102.1 51.1 101.25 51.95 100.05 51.95 98.85 51.95 98 51.1 97.15 50.25 97.15 49.1 97.15 47.9 98 47.05 98.85 46.2 100.05 46.2 101.25 46.2 102.1 47.05M 95.7 145.5L 104.3 145.5Q 105.6 145.5 105.6 146.85L 105.6 155.4Q 105.6 156.75 104.3 156.75L 95.7 156.75Q 94.35 156.75 94.35 155.4L 94.35 146.85Q 94.35 145.5 95.7 145.5M 73.35 58.65L 126.8 58.65 126.8 140.9 73.35 140.9 73.35 58.65M 146.9 15Q 138.55 8.4 128.65 8.4L 128.65 0.4 114.45 14.15 128.65 28.05 128.65 19.55Q 136 18.8 142.35 25.5 147.35 30.8 148.1 39.2L 158.25 39.2Q 158.4 25.05 146.9 15 Z"/></svg>
+		</div>
+	</div>
+	
+	<div class="socket_status" id="socket_status"><div class="socket_status_text" id="socket_status_text"></div></div>
+	
+	<div class="desktop_background"></div>
+
+	<div id="global_conteiner">
+	
+		<header class="header">
+			<div class="header_content">
+				<img src="../assets/games/greyhound_atlas/img/logo_only.png?v=3" class="header_logo_mobile"  />
+				<div class="header_center"><div class="header_center_left"></div><div class="header_center_right"></div></div>
+				<div class="header_right">
+					<span class="settings_icon"><img src="../assets/games/greyhound_atlas/img/menu.svg?v=4" class="menu_open" /></span>
+				</div>
+				<div class="clear"></div>
+			</div>	
+		</header>
+	
+		<div class="mobile_menu_cont">		
+			<div class="mobile_menu_top_bar">
+				<div class="mobile_menu_close"><img class="menu_close" src="../assets/games/greyhound_atlas/img/close_menu.svg"></div>
+				<div class="mobile_menu_top_bar_lang active" data-lang="en"><img src="../assets/games/greyhound_atlas/img/en.svg" /></div>
+			</div>
+			<div class="mobile_menu_tabs">
+				<div class="mobile_menu_tab_itm active" id="mtab1"><img src="../assets/games/greyhound_atlas/img/help.svg" class="menu_icns" /><span id="trs_mm1">RULES</span></div>
+				<div class="mobile_menu_tab_itm fairness_tb" id="mtab2"><img src="../assets/games/greyhound_atlas/img/fairness.svg" class="menu_icns" /><span id="trs_mm2">FAIRNESS</span></div>
+				<div class="mobile_menu_top_bar_sound"><img src="../assets/games/greyhound_atlas/img/sound_on.svg" class="sound_on" /><img class="sound_off" src="../assets/games/greyhound_atlas/img/sound_off.svg" /></div>
+			</div>	
+			<div class="mobile_menu_contents">
+				<div class="mobile_menu_cont_itm cont_mtab1 active">	
+					<p>RTP: 96.8%</p>
+					<p id="rules_r1">Greyhound Racing is an interactive game developed by Atlas-V. The player's objective is to predict the outcome of the initial round.</p>
+					<p id="rules_r2">Before the round begins, the game accumulates the competitors' historical data and automatically offers odds for their success or placement. This process also influences how the odds change during the game.</p>
+					<h1 id="rules_r3">How does it work:</h1>
+					<p id="rules_r4">6 greyhounds are participating during each round. The player should bet before the start of the round, maximum of 30 tickets per player. Bettings become available after the end of the previous round. The player has the opportunity to choose all the outcomes for the offered greyhound in a single round.</p>
+					<h1 id="rules_r5">The Main Bets </h1>
+					<p id="rules_r6">WIN BET - Choose only one greyhound to win the race; if your selection wins, you win!</p>
+					<p id="rules_r7">PLACE BET - Choose one greyhound, and it needs to finish first OR second to claim some winnings!</p>
+					<p id="rules_r8">SHOW BET - Choose one greyhound , and it needs to finish first OR second, OR third to claim some winnings!</p>
+					<p id="rules_r9">Example: The player has bet 100 and chosen greyhound number 2 (odds of 7.6) and number 6 (odds of 3.5). In this case, the system will charge 200, and 2 different coupons will be created with the corresponding odds and outputs.</p>
+					<h1 id="rules_r10">Exacta Bets</h1>
+					<p id="rules_r11">Here you need to choose the greyhound that will finish first AND second in the correct order to claim your winnings!</p>
+					<p id="rules_r12">To place a bet, you need to select the outcome of the selection in the basic bets section by pressing the button of the coefficient offered for the given greyhound.</p>
+					<p id="rules_r13">Then specify the amount of the bet and press the bet button. In the left part of the screen, the player will see the bets already made in the form of tickets for the upcoming round.</p>
+					<p id="rules_r14">If the player has selected several outcomes in the same round, the system multiplies the number of selections by the bet amount and creates several tickets with different results.</p>
+					<p id="rules_r15">In the additional bets section, only the odds of the winning greyhound are announced; after choosing, the player must also indicate his prediction for the 2nd place, the odds of which are determined by the system based on the game formula. The odds of the two athletes are formed according to a formula to form the main high multiplier the player sees in the bet bar before placing a bet.</p>
+					<h1 id="rules_r16">How Greyhound Racing Odds Works</h1>
+					<p id="rules_r17">Greyhound racing odds work as a probability mechanism, showing you the theoretical likelihood of a greyhound winning ahead of the rest of the field.</p>
+					<p id="rules_r18">Straightforward 'win' bets are simple and are the best way to begin your racing betting experience.</p>
+					<p id="rules_r19">Transparency and fairness are provable: the player can ensure these game qualities.</p>
+					<p id="rules_r20">Note: If a disconnection occurs after an active game round and your bets are accepted by the server, the game will proceed as expected, and any winnings will be processed according to the game result regardless of the disconnection.</p>
+				</div>
+				<div class="mobile_menu_cont_itm cont_mtab2">
+					<div class="fairness_top_logo"><img src="../assets/games/greyhound_atlas/img/icon_fairness_color.png?v=2" /><p id="feri_r1">ABOUT FAIRNESS</p></div>	
+					<p id="feri_r2">Before the start of a round, the players are provided with a “Hash Code*” - an encrypted text combination “Key*”. Here is the numbers of the first 3 dogs that came to the finish line.</p>
+					<p id="feri_r3">The outcome of the game is determined not at the moment of the game, but in advance for current round, and is given to the players in coded form.</p>
+					<p id="feri_r4" style="word-break: break-all;">For example, “Hash (Hash) code *” 3586ED7EECC3AEA4A6AC4A359D96E5CF30BBC47E24ED9E030066D7C7DE6C82B1F1376122E35B5165342F27243E1BE5B46B31F2A5D97E6DE26E0E4A6202DF3CDD.</p>
+					<p id="feri_r5">After the end of a round, the players are provided with a “Key*” and an additional input parameter for getting the “Hash Code*” - “Salt*” Using them, every player can copy and encrypt this combination to see that the encrypted “Key * “ corresponds to the “Hash code *” previously determined by the system.</p>
+					<p id="feri_r6">What is “Salt*” - it is a random sequence of letters and numbers, For instance: e20d4c76c654.</p>
+					<p id="feri_r7" style="word-break: break-all;">What is “Key*” - a text combination of four parameters<br>1. Round Id<br>2. The result of the round<br>3. Wording “GreyhoundRacing”<br>4. A random sequence of letters and numbers</p>
+					<p id="feri_r8" style="word-break: break-all;">If we encrypt the “Key*” via the “Salt*” using the SHA512 generator, we’ll get the defined Hash code.</p>
+					<p id="feri_r9">To get a hash code you can click on check icon in Result section and perform the check.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="content_super_wrapper">
+
+			<div class="content_left_side for_desktop_only">
+				<div class="side_cont_path">
+					<div class="left_side_top">
+						<div class="header_left">
+							<span class="header_credit" id="my_credit"></span>
+						</div>	
+						<div class="game_id_contener">
+							<div class="game_id" data-id="" data-hash="" data-salt="-" data-key="-">ID: <span class="game_id_num"></span></div>
+						</div>
+					</div>	
+					<div class="tab_content_wrapper">
+						<div class="tabs left_side_tabs_top">	
+							<div class="tab_itm active" id="tab1">GAME</div>
+							<div class="tab_itm" id="tab2">HISTORY</div>
+						</div>
+						<div class="tab_conts left_side_tabs_cont">
+							<div class="tab_cont cont_tab1 active">
+								<div class="table_header">
+									<div class="table_header_itm player_id"><span id="trs_bets">Bets</span> <span class="total_tickets_count"></span></div>
+									<div class="table_header_itm bet_amont" id="trs_bet">Amount</div>
+									<div class="table_header_itm bet_combin" id="trs_combin">Combination</div>
+									<div class="table_header_itm game_status_wait" style="color: #878889!important" id="trs_win">Win</div>
+								</div>
+								<div class="table_cont game_table"></div>
+							</div>
+						
+							<div class="tab_cont cont_tab2">
+								<div class="table_cont game_mybet_history_path">
+									<div class="game_mybet_history"></div>
+									<div class="btn_blue btn_load_more btn_load_more_history" style="display:none"><span id="trs_show">SHOW THE RESULTS</span></div>
+								</div>	
+							</div>
+						</div>
+					</div>	
+				</div>	
+			</div>
+			 
+			<div class="canvas_wrap">
+				<div class="side_cont_path">
+					<img class="header_logo" src="../assets/games/greyhound_atlas/img/logo_only.png?v=3" />
+					<div class="game_timer">00 : <span class="game_timer_sec">00</span></div>
+		
+					<div class="canvas_wrap_inn">
+						<div id="animation_container" style="position:relative;padding:0;margin:0;padding-bottom: 100%;">
+							<canvas id="canvas" width="562" height="562" style="position: absolute; display: none; background-color:#041E38;top:0;left:0;z-index:2"></canvas>
+							<div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:100%; width: 100%; text-align: center;background-repeat:no-repeat;background-size:40px 40px;background-position:50% 50%;background-image:url(../assets/games/greyhound_atlas/img/_preloader.gif)'></div>
+							<div class="canvas_full_overlay"><div class="race_in_progress"><span id="trs_race_in_progress">THE RACE IN PROGRESS...</span><div id="progress_timer"></div></div></div>
+						</div>
+						
+						<div class="game_result_popup">
+							<div class="game_result_popup_overlay"></div>
+							<div class="game_result_popup_content">
+								<div class="game_result_popup_top">
+									<div class="game_result_popup_top_win">
+										<div class="game_result_popup_win_ttl"><span id="trs_you_win">WIN</span><span id="popup_win_amount"></span></div>
+										<div class="game_result_popup_win_odd"><span id="trs_you_odd">Total Odd</span><span id="popup_win_odd"></span></div>
+									</div>	
+									<div class="game_result_popup_top_lost" id="trs_try">TRY AGAIN</div>
+								</div>
+								<div class="game_result_popup_bottom">
+									<div class="place_row">
+										<div class="bet_table_main_itm_cell cell6"><div class="place_number place_number1">1<span>th</span></div></div>
+										<div class="bet_table_main_itm_cell cell6" id="pop_up_horse_number1"></div>
+										<div class="bet_table_main_itm_cell cell7" id="pop_up_horse_rating1"></div>	
+										<div class="bet_table_main_itm_cell cell7 cubok"><img class="gold_place" src="../assets/games/greyhound_atlas/img/gold.png?v=2" /></div>
+									</div>
+									<div class="place_row">
+										<div class="bet_table_main_itm_cell cell6"><div class="place_number place_number2">2<span>th</span></div></div>
+										<div class="bet_table_main_itm_cell cell6" id="pop_up_horse_number2"></div>
+										<div class="bet_table_main_itm_cell cell7" id="pop_up_horse_rating2"></div>	
+										<div class="bet_table_main_itm_cell cell7 cubok"><img class="silver_place" src="../assets/games/greyhound_atlas/img/silver.png?v=2" /></div>
+									</div>
+									<div class="place_row">
+										<div class="bet_table_main_itm_cell cell6"><div class="place_number place_number3">3<span>th</span></div></div>
+										<div class="bet_table_main_itm_cell cell6" id="pop_up_horse_number3"></div>
+										<div class="bet_table_main_itm_cell cell7" id="pop_up_horse_rating3"></div>	
+										<div class="bet_table_main_itm_cell cell7 cubok"><img class="bronze_place" src="../assets/games/greyhound_atlas/img/bronze.png?v=2" /></div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					
+						<div class="bet_board">	
+							<div class="bet_table">
+								<div class="bet_table_head">
+									<div class="bet_table_head_itm active" data-id="1" id="trs_mmtab1">MAIN</div>
+									<div class="bet_table_head_itm" data-id="2" id="trs_mmtab2">EXACTA</div>
+								</div>
+								<div class="bet_table_cont">
+									<div class="bet_table_cont_tbl bet_table_cont_tbl1 active">
+										<div class="bet_table_main_itm_raw">
+											<div class="bet_table_main_itm_cell cell1"><div class="bet_table_ttl" id="trs_trap">TRAP</div></div>
+											<div class="bet_table_main_itm_cell cell2"><div class="bet_table_ttl" id="trs_nam">NAME/RATING</div></div>
+											<div class="bet_table_main_itm_cell cell3"><div class="bet_table_ttl" id="trs_perf">PERFORMING</div></div>	
+											<div class="bet_table_main_itm_cell cell4"><div class="bet_table_ttl" id="trs_hist">HISTORY</div></div>
+											<div class="bet_table_main_itm_cell cell5"><div class="bet_table_ttl" id="trs_wins">WINS</div></div>	
+											<div class="bet_table_main_itm_cell cell5"><div class="bet_table_ttl" id="trs_place">PLACE</div></div>	
+											<div class="bet_table_main_itm_cell cell5"><div class="bet_table_ttl" id="trs_show2">SHOW</div></div>	
+										</div>
+										<div id="bet_table_main_itm_raw_list1"></div>
+									</div>
+									<div class="bet_table_cont_tbl bet_table_cont_tbl2">
+										<div class="bet_table_main_itm_raw">
+											<div class="bet_table_main_itm_cell cell1"><div class="bet_table_ttl" id="trs_trap2">TRAP</div></div>
+											<div class="bet_table_main_itm_cell cell2"><div class="bet_table_ttl" id="trs_nam2">NAME/RATING</div></div>
+											<div class="bet_table_main_itm_cell cell3"><div class="bet_table_ttl" id="trs_perf2">PERFORMING</div></div>	
+											<div class="bet_table_main_itm_cell cell4"><div class="bet_table_ttl" id="trs_hist2">HISTORY</div></div>
+											<div class="bet_table_main_itm_cell cell5"><div class="bet_table_ttl" id="trs_odd2">ODD</div></div>	
+											<div class="bet_table_main_itm_cell cell5"><div class="bet_table_ttl" id="trs_first">FIRST</div></div>	
+											<div class="bet_table_main_itm_cell cell5"><div class="bet_table_ttl" id="trs_second">SECOND</div></div>	
+										</div>
+										<div id="bet_table_main_itm_raw_list2"></div>
+										<div id="exacta_error_mess">These selections are not valid</div>
+									</div>
+								</div>
+							</div>
+								
+							<div class="bet_input">
+								<div class="bet_input_row">
+									<div class="bet_input_top">
+										<div class="bet_input_ui">
+											<span class="bet_input_btn_m" data-val="-10"><img src="../assets/games/greyhound_atlas/img/mns.svg" /></span>
+											<input type="text" value="10" class="bet_input_bar" id="bet_input_bar" autocomplete="new-password">
+											<span class="bet_input_btn_m" data-val="10"><img src="../assets/games/greyhound_atlas/img/pls.svg" /></span>
+										</div>	
+										<div class="bet_input_btn double_bet" data-val=""><span>X2</span></div>
+										<div class="bet_input_btn" data-val="1000"><span>+1K</span></div>
+									</div>
+								</div>
+								<div class="bet_input_row">
+									<div class="bet_set_info">
+										<div class="bet_set_info_ttl" id="trs_tt_odd">TOTAL ODD:</div><div class="bet_set_info_val" id="bet_total_odd">x0</div>
+										<div class="bet_set_info_ttl" id="trs_pos_win">POSS. WIN:</div><div class="bet_set_info_val" id="bet_poss_win">0 PKR</div>
+									</div>
+								</div>
+								<div class="bet_input_row">
+									<div class="bet_set_btn"><div class="bet_set_btn_txt" id="trs_place_bet">BET</div><div class="bet_set_btn_amount"></div><div class="bet_set_btn_wait" id="trs_wait">WAIT...</div><div class="bet_set_btn_accept"><img src="../assets/games/greyhound_atlas/img/check.svg?v=2" /> <span id="trs_accepted">BET ACCEPTED<span></div></div>
+								</div>
+							</div>
+						</div>	
+					</div>				
+				</div>
+			</div>
+			
+			<div class="content_right_side">
+				<div class="side_cont_path demo_tbh">
+					<div class="bet_ui"></div>		
+					<div class="statistic_ui">		
+						<div class="tab_content_wrapper">
+							<div class="tabs right_side_tabs_top">		
+								<div class="tab_itm" id="tab3">RESULTS</div>
+								<div class="menu_icon"><img src="../assets/games/greyhound_atlas/img/menu.svg?v=4" class="menu_open" /></div>	
+							</div>
+							<div class="tab_conts right_side_tabs_cont">	
+								<div class="tab_cont cont_tab3 active">
+									<div class="table_header">
+										<div class="table_header_itm" id="trs_drawid">Draw ID</div>
+										<div class="table_header_itm game_result_icon" id="trs_combin2">Combination</div>
+										<div class="table_header_itm game_date" style="color: #878889;opacity:1;" id="trs_date">Date</div>
+									</div>
+									<div class="table_cont game_history"></div>
+								</div>
+								<div class="tab_itm" id="tab4">LEADERS</div>
+								<div class="tab_cont cont_tab4 active leaders_table">
+									<div class="table_header">
+										<div class="table_header_itm player_id" id="trs_position">Position</div>
+										<div class="table_header_itm player_id" id="trs_user_id">User Id</div>
+										<div class="table_header_itm bet_amont" id="trs_bet2">Bet</div>
+										<div class="table_header_itm bet_amont" id="trs_odd">Odd</div>
+										<div class="table_header_itm game_status_wait" style="color: #878889!important" id="trs_win2">Win</div>
+									</div>
+									<div class="table_cont game_leaders"></div>
+								</div>
+							</div>	
+							<div class="all_tabinbs_right"></div>
+						</div>	
+					</div>	
+					<div class="game_footer">
+						<img src="../assets/games/greyhound_atlas/img/icon_fairness.png" class="fairness2_img" /><h1 class="fairness2" id="trs_fairness1">FAIRNESS</h1>
+						<img src="../assets/games/greyhound_atlas/img/atlas_v_logo.svg" />
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="fairness_popup">
+			<div class="fairness_popup_content">
+				<div class="fairness_popup_top">
+					<div class="game_round_id"><span id="draw_id3">Draw ID</span>:<span class="game_round_id_num"></span><span class="game_round_date"></span></div>		
+					<div class="fairness_popup_close"></div>
+				</div>
+				<div class="fairness_popup_cont">
+					<div class="fairness_popup_cont_r">
+						<div class="fairness_popup_cont_bttl" id="fairness3">FAIRNESS</div>
+						<div class="fairness_popup_cont_cal">
+							<div class="fairness_popup_cont_ttl" id="trs_key">Key</div>	
+							<div class="fairness_popup_cont_hash">
+								<div class="fairness_popup_hash" id="round_key"></div>
+								<span class="copy_to_clipboard" data-val="">
+									<svg fill="#fff" width="100%" height="100%" viewBox="0 0 14 16" class="copy_to_icon"><path d="M8.94737 0H1.37652C0.619433 0 0 0.641958 0 1.42657V10.6993C0 11.0916 0.309717 11.4126 0.688259 11.4126C1.0668 11.4126 1.37652 11.0916 1.37652 10.6993V2.13986C1.37652 1.74755 1.68623 1.42657 2.06478 1.42657H8.94737C9.32591 1.42657 9.63563 1.10559 9.63563 0.713287C9.63563 0.320979 9.32591 0 8.94737 0ZM11.7004 2.85315H4.12955C3.37247 2.85315 2.75304 3.4951 2.75304 4.27972V14.2657C2.75304 15.0503 3.37247 15.6923 4.12955 15.6923H11.7004C12.4575 15.6923 13.0769 15.0503 13.0769 14.2657V4.27972C13.0769 3.4951 12.4575 2.85315 11.7004 2.85315ZM11.0121 14.2657H4.81781C4.43927 14.2657 4.12955 13.9448 4.12955 13.5524V4.99301C4.12955 4.6007 4.43927 4.27972 4.81781 4.27972H11.0121C11.3907 4.27972 11.7004 4.6007 11.7004 4.99301V13.5524C11.7004 13.9448 11.3907 14.2657 11.0121 14.2657Z"></path></svg>
+									<svg width="100%" height="100%" viewBox="0 0 16 12" class="copy_to_success"><path d="M13.9998 0.700012L5.51984 9.18001L1.97984 5.64001C1.58984 5.25001 0.959844 5.25001 0.569844 5.64001C0.179844 6.03001 0.179844 6.66001 0.569844 7.05001L4.80984 11.29C5.19984 11.68 5.82984 11.68 6.21984 11.29L15.3998 2.11001C15.7898 1.72001 15.7898 1.08001 15.3898 0.690012C15.0198 0.310012 14.3898 0.310012 13.9998 0.700012Z" fill="#37FDAD"></path></svg>
+								</span>
+							</div>
+						</div>
+						<div class="fairness_popup_cont_car">
+							<div class="fairness_popup_cont_ttl" id="trs_salt">Salt</div>
+							<div class="fairness_popup_cont_hash">
+								<div class="fairness_popup_hash" id="round_salt"></div>
+								<span class="copy_to_clipboard" data-val="">
+									<svg fill="#fff" width="100%" height="100%" viewBox="0 0 14 16" class="copy_to_icon"><path d="M8.94737 0H1.37652C0.619433 0 0 0.641958 0 1.42657V10.6993C0 11.0916 0.309717 11.4126 0.688259 11.4126C1.0668 11.4126 1.37652 11.0916 1.37652 10.6993V2.13986C1.37652 1.74755 1.68623 1.42657 2.06478 1.42657H8.94737C9.32591 1.42657 9.63563 1.10559 9.63563 0.713287C9.63563 0.320979 9.32591 0 8.94737 0ZM11.7004 2.85315H4.12955C3.37247 2.85315 2.75304 3.4951 2.75304 4.27972V14.2657C2.75304 15.0503 3.37247 15.6923 4.12955 15.6923H11.7004C12.4575 15.6923 13.0769 15.0503 13.0769 14.2657V4.27972C13.0769 3.4951 12.4575 2.85315 11.7004 2.85315ZM11.0121 14.2657H4.81781C4.43927 14.2657 4.12955 13.9448 4.12955 13.5524V4.99301C4.12955 4.6007 4.43927 4.27972 4.81781 4.27972H11.0121C11.3907 4.27972 11.7004 4.6007 11.7004 4.99301V13.5524C11.7004 13.9448 11.3907 14.2657 11.0121 14.2657Z"></path></svg>
+									<svg width="100%" height="100%" viewBox="0 0 16 12" class="copy_to_success"><path d="M13.9998 0.700012L5.51984 9.18001L1.97984 5.64001C1.58984 5.25001 0.959844 5.25001 0.569844 5.64001C0.179844 6.03001 0.179844 6.66001 0.569844 7.05001L4.80984 11.29C5.19984 11.68 5.82984 11.68 6.21984 11.29L15.3998 2.11001C15.7898 1.72001 15.7898 1.08001 15.3898 0.690012C15.0198 0.310012 14.3898 0.310012 13.9998 0.700012Z" fill="#37FDAD"></path></svg>
+								</span>
+							</div>
+						</div>
+						<div class="fairness_popup_cont_ttl" id="trs_hash">Hash</div>
+						<div class="fairness_popup_cont_hash">
+							<div class="fairness_popup_hash" id="round_hash"></div>
+							<span class="copy_to_clipboard" data-val="">
+								<svg fill="#fff" width="100%" height="100%" viewBox="0 0 14 16" class="copy_to_icon"><path d="M8.94737 0H1.37652C0.619433 0 0 0.641958 0 1.42657V10.6993C0 11.0916 0.309717 11.4126 0.688259 11.4126C1.0668 11.4126 1.37652 11.0916 1.37652 10.6993V2.13986C1.37652 1.74755 1.68623 1.42657 2.06478 1.42657H8.94737C9.32591 1.42657 9.63563 1.10559 9.63563 0.713287C9.63563 0.320979 9.32591 0 8.94737 0ZM11.7004 2.85315H4.12955C3.37247 2.85315 2.75304 3.4951 2.75304 4.27972V14.2657C2.75304 15.0503 3.37247 15.6923 4.12955 15.6923H11.7004C12.4575 15.6923 13.0769 15.0503 13.0769 14.2657V4.27972C13.0769 3.4951 12.4575 2.85315 11.7004 2.85315ZM11.0121 14.2657H4.81781C4.43927 14.2657 4.12955 13.9448 4.12955 13.5524V4.99301C4.12955 4.6007 4.43927 4.27972 4.81781 4.27972H11.0121C11.3907 4.27972 11.7004 4.6007 11.7004 4.99301V13.5524C11.7004 13.9448 11.3907 14.2657 11.0121 14.2657Z"></path></svg>
+								<svg width="100%" height="100%" viewBox="0 0 16 12" class="copy_to_success"><path d="M13.9998 0.700012L5.51984 9.18001L1.97984 5.64001C1.58984 5.25001 0.959844 5.25001 0.569844 5.64001C0.179844 6.03001 0.179844 6.66001 0.569844 7.05001L4.80984 11.29C5.19984 11.68 5.82984 11.68 6.21984 11.29L15.3998 2.11001C15.7898 1.72001 15.7898 1.08001 15.3898 0.690012C15.0198 0.310012 14.3898 0.310012 13.9998 0.700012Z" fill="#37FDAD"></path></svg>
+							</span>
+						</div>
+					</div>
+
+					<div class="fairness_popup_cont_bttl" id="trs_check_hash">CHECK HASH CODE</div>
+					<div class="fairness_popup_cont_cal">
+						<div class="fairness_popup_cont_ttl" id="trs_keyp">Past Key</div>
+						<div class="fairness_popup_cont_hash"><div class="fairness_popup_hash key_container"></div><span class="past_to_value"><svg fill="#fff" width="100%" height="100%" viewBox="0 0 14.7 18"><path d="M13.1,16.4H1.6V3.3h1.6v2.5h8.2V3.3h1.6 M7.4,1.6c0.5,0,0.8,0.4,0.8,0.8S7.8,3.3,7.4,3.3S6.5,2.9,6.5,2.5l0,0 C6.5,2,6.9,1.6,7.4,1.6 M13.1,1.6H9.7C9.2,0.4,7.8-0.3,6.6,0.1C5.9,0.4,5.3,0.9,5.1,1.6H1.6C0.7,1.6,0,2.4,0,3.3c0,0,0,0,0,0v13.1 C0,17.3,0.7,18,1.6,18h11.5c0.9,0,1.6-0.7,1.6-1.6V3.3C14.7,2.4,14,1.6,13.1,1.6C13.1,1.6,13.1,1.6,13.1,1.6z"></path></svg></span></div>
+					</div>
+					<div class="fairness_popup_cont_car">
+						<div class="fairness_popup_cont_ttl" id="trs_saltp">Past Salt</div>
+						<div class="fairness_popup_cont_hash"><div class="fairness_popup_hash salt_container"></div><span class="past_to_value"><svg fill="#fff" width="100%" height="100%" viewBox="0 0 14.7 18"><path d="M13.1,16.4H1.6V3.3h1.6v2.5h8.2V3.3h1.6 M7.4,1.6c0.5,0,0.8,0.4,0.8,0.8S7.8,3.3,7.4,3.3S6.5,2.9,6.5,2.5l0,0 C6.5,2,6.9,1.6,7.4,1.6 M13.1,1.6H9.7C9.2,0.4,7.8-0.3,6.6,0.1C5.9,0.4,5.3,0.9,5.1,1.6H1.6C0.7,1.6,0,2.4,0,3.3c0,0,0,0,0,0v13.1 C0,17.3,0.7,18,1.6,18h11.5c0.9,0,1.6-0.7,1.6-1.6V3.3C14.7,2.4,14,1.6,13.1,1.6C13.1,1.6,13.1,1.6,13.1,1.6z"></path></svg></span></div>
+					</div>
+					<div class="fairness_popup_cont_ttl" id="trs_hash2">Hash</div>
+					<div class="fairness_popup_cont_hash"><div class="fairness_popup_hash hash_container"></div></div>
+					<div class="btn_blue btn_load_more btn_check_hash"><span id="trs_check">CHECK</span></div>	
+					<div class="about_hash_code about_fairness_info" id="trs_about_hash">About Hash Code</div>		
+				</div>
+			</div>	
+		</div>
+		
+		<div class="warning_alert_popup">
+			<div class="warning_alert_popup_cont">
+				<div class="close_btn"></div>
+				<h1 class="warning_alert_popup_info" id="trs_connection_lose">You lost your connection.<br>Please reconnect.</h1>
+			</div>
+		</div>
+		
+	</div>
+
+	<script>
+		var _is_mobile=false;
+		var _server_url="greyhoundracing-nrg1.atlas-v.com";
+		var _user_id="4939b2c9b7ef4988bb58934f2f0489c6";
+		var _user_token="4939b2c9b7ef4988bb58934f2f0489c6";
+		var _demo_game=true;
+		var _min_bet=10;
+		var _max_bet=500000;
+		var _currency="<span>PKR</span>";
+	</script>
+	
+	<script src="../js/wallet.js"></script>
+	<script src="../js/core.js"></script>
+	<script src="../assets/games/greyhound_atlas/js/translations.js?v=q1.35"></script>
+	<script src="../assets/games/greyhound_atlas/js/jquery-3.1.1.min.js?v=2"></script>	
+	<script src="../assets/games/greyhound_atlas/js/moment.min.js?v=2"></script>
+	<script src="../assets/games/greyhound_atlas/js/main.js?v=38"></script>
+	<script src="../js/games/greyhound.js?v=38"></script>
+</body>
+</html>

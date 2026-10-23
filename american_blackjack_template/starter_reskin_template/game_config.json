@@ -1,0 +1,43 @@
+{
+  "game_info": {
+    "name": "American Blackjack",
+    "game_id": 48844,
+    "game_symbol": "bjmb",
+    "provider": "Pragmatic Play",
+    "portal": "1xBet",
+    "version": "v3.0.0-4K",
+    "orientation": "landscape_preferred"
+  },
+  "rules": {
+    "number_of_decks": 8,
+    "blackjack_payout": 1.5,
+    "regular_win_payout": 1.0,
+    "insurance_payout": 2.0,
+    "dealer_stands_on_soft_17": true,
+    "double_down_on_any_two_cards": true,
+    "double_after_split": true,
+    "surrender_allowed": false,
+    "max_split_hands": 2
+  },
+  "betting": {
+    "default_currency": "PKR",
+    "supported_currencies": ["PKR", "USD", "USDT", "EUR", "INR"],
+    "min_bet": 100,
+    "max_bet": 100000,
+    "chip_denominations": [100, 500, 1000, 5000, 25000],
+    "default_balance": 50000
+  },
+  "theme_styling": {
+    "table_felt_color": "#0a4428",
+    "table_border_wood": "#2c150b",
+    "gold_accent_color": "#d4af37",
+    "card_back_style": "classic_red_diamond",
+    "ambient_casino_lighting": true,
+    "felt_texture": "assets/table_felt_master.jpg"
+  },
+  "audio": {
+    "enabled_by_default": true,
+    "synthesizer_fallback": true,
+    "sound_pack": "assets/sounds/sounds.mp3.json"
+  }
+}
