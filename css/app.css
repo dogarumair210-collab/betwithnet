@@ -5722,3 +5722,51 @@ button:focus-visible, .btn:focus-visible, a:focus-visible {
         transition: none !important;
     }
 }
+
+/* 2D motion accents: lightweight shimmer, floating glints and gentle pulse */
+@keyframes bwnGoldShimmer {
+    0% { background-position: -180% 0; }
+    100% { background-position: 180% 0; }
+}
+@keyframes bwnSoftFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+@keyframes bwnGlowPulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(246, 201, 69, 0); }
+    50% { box-shadow: 0 0 14px rgba(246, 201, 69, 0.22); }
+}
+.game-card {
+    position: relative;
+    isolation: isolate;
+    animation: bwnSoftFloat 5.8s ease-in-out infinite;
+}
+.game-card:nth-child(3n) { animation-delay: -1.4s; }
+.game-card:nth-child(4n) { animation-delay: -2.8s; }
+.game-card:nth-child(5n) { animation-delay: -0.8s; }
+.game-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.12) 45%, transparent 58%);
+    background-size: 220% 100%;
+    background-position: -180% 0;
+    animation: bwnGoldShimmer 7.5s ease-in-out infinite;
+    opacity: .42;
+}
+.game-card:nth-child(2n)::after { animation-delay: -3.2s; }
+.game-card-wide-aviator, .hero-carousel-container {
+    animation: bwnGlowPulse 4.8s ease-in-out infinite;
+}
+@media (max-width: 768px) {
+    .game-card { animation-duration: 6.8s; }
+    .game-card::after { opacity: .24; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .game-card, .game-card::after, .game-card-wide-aviator, .hero-carousel-container {
+        animation: none !important;
+    }
+}
